@@ -1,0 +1,53 @@
+{
+  "tender_id": "T005",
+  "original_filename": "eProcurement System Government of India6.pdf",
+  "file_path": "/home/syed-imadulla/Desktop/sih26108-feasibility/tenders/raw/eProcurement System Government of India6.pdf",
+  "file_size": 206456,
+  "page_count": 2,
+  "ocr_required": false,
+  "extraction_method": "pymupdf_native_text",
+  "parsed_metadata": {
+    "tender_id": "2026_BHU_921647_2",
+    "tender_ref_number": "UED/2026/05082026-1",
+    "organisation_chain": "Banaras Hindu University",
+    "title": "Cable connection of DG Set in Newly constructed building of the Dept. of Molecular , Human Genetics and Electrical renovation work including replacement of old Power Sockets in Algal Culture Room, Old Building in Department of Botany, BHU",
+    "work_description": "Cable connection of DG Set in Newly constructed building of the Dept. of Molecular , Human Genetics and Electrical renovation work including replacement of old Power Sockets in Algal Culture Room, Old Building in Department of Botany, BHU",
+    "product_category": "Electrical Works",
+    "sub_category": "Cable connection of DG Set in Newly constructed b",
+    "tender_category": "Works",
+    "contract_type": "Works Tender Category Works No. of Covers 2 General Technical Evaluation Allowed Yes ItemWise Technical Evaluation Allowed No Payment Mode Offline Is Multi Currency Allowed For BOQ No Is Multi Currency Allowed For Fee No Allow Two Stage Bidding No",
+    "tender_value": "2,78,478",
+    "location": "UED BHU VARANASI Pincode 221005 Pre Bid Meeting Place NA Pre Bid Meeting Address NA Pre Bid Meeting Date NA Bid Opening Place Office of PIC UED BHU Should Allow NDA Tender No Allow Preferential Bidder No Tenderer Class As per Tender Document",
+    "source_url": "https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SPbEFdKJRc1L…"
+  },
+  "pages": [
+    {
+      "tender_id": "T005",
+      "page": 1,
+      "sections_detected": [
+        "Basic Details",
+        "Payment Instruments",
+        "Cover Details",
+        "Tender Fee Details",
+        "EMD Fee Details"
+      ],
+      "primary_section": "Basic Details",
+      "char_count": 1672,
+      "text": "eProcurement System Government of India\nTender Details\nDate : 04-Sep-2026 10:18 AM\n Print\nBasic Details\nOrganisation Chain\nBanaras Hindu University\nTender Reference Number\nUED/2026/05082026-1\nTender ID\n2026_BHU_921647_2\nWithdrawal Allowed\nYes\nTender Type\nOpen Tender\nForm of contract\nWorks\nTender Category\nWorks\nNo. of Covers\n2\nGeneral Technical\nEvaluation Allowed\nYes\nItemWise Technical Evaluation\nAllowed\nNo\nPayment Mode\nOffline\nIs Multi Currency Allowed For BOQ\nNo\nIs Multi Currency Allowed\nFor Fee\nNo\nAllow Two Stage Bidding\nNo\n \nPayment Instruments\nOffline S.No\nInstrument Type\n1\nDemand Draft\n2\nFDR\n3\nBankers Cheque\n4\nBank Guarantee\nCover Details, No. Of Covers - 2\nCover No\nCover\nDocument Type\nDescription\n1\nFee/PreQual/Technical\n.pdf\nCopy of EMD\nand tender\nprocessing fees.\n.pdf\nCertificate of\nfinancial\nTurnover From\nCharted\nAccountant (\nForm A)\n.pdf\nBankers\nCertificate from a\nCommercial\nBank (Form B)\n.pdf\nDetails of\nEligible similar\nnature of works\ncompleted during\nthe last seven\nyears(Form C)\n.pdf\nCompletion\ncertificate of the\nwork Referred to\nin (Form D)\n.pdf\nAffidavit as per\nprovision of\nUWD-6 (Form E)\n.pdf\nCertificate of\nRegistration for\nGST and\nacknowledgement\nof upto date filed\nreturn, if any\n.pdf\nEnlistment/\nregistration paper\nwith CPWD,\nMES and UED\n.pdf\nValid Electrical\nLicense Issued by\nCompetent\nAuthority in the\nname of the\ncontractor or an\nundertaki\n2\nFinance\n.xls\nBOQ\n \nTender Fee Details, [Total Fee in ₹ * - 500]\nTender Fee in ₹\n500\nEMD Fee Details\n9/4/26, 10:18 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SPbEFdKJRc1L…\n1/2\n"
+    },
+    {
+      "tender_id": "T005",
+      "page": 2,
+      "sections_detected": [
+        "Work /Item(s)",
+        "Critical Dates",
+        "Tender Documents",
+        "NIT Document",
+        "Tender Inviting Authority"
+      ],
+      "primary_section": "Work /Item(s)",
+      "char_count": 2532,
+      "text": "Fee Payable To\nRegistrar,\nBanaras\nHindu\nUniversity\nFee Payable At\nVaranasi\nTender Fee Exemption\nAllowed\nNo\nEMD Amount in ₹\n5,570\nEMD Exemption\nAllowed\nNo\nEMD Fee Type\nfixed\nEMD Percentage\nNA\nEMD Payable To\nRegistrar\nBanaras\nHindu\nUniversity\nEMD Payable At\nVaranasi\n \n \nWork /Item(s)\nTitle\nCable connection of DG Set in Newly constructed building of the Dept. of Molecular , Human Genetics and Electrical\nrenovation work including replacement of old Power Sockets in Algal Culture Room, Old Building in Department of Botany,\nBHU\nWork Description\nCable connection of DG Set in Newly constructed building of the Dept. of Molecular , Human Genetics and Electrical\nrenovation work including replacement of old Power Sockets in Algal Culture Room, Old Building in Department of Botany,\nBHU\nPre Qualification Details\nPlease refer Tender documents. \nIndependent External\nMonitor/Remarks\nNA \nTender Value in ₹\n2,78,478\nProduct Category\nElectrical\nWorks\nSub category\nCable connection of DG Set in\nNewly constructed b \nContract Type\nTender\nBid Validity(Days)\n45\nPeriod Of Work(Days)\n30 \nLocation\nUED BHU\nVARANASI\nPincode\n221005\nPre Bid Meeting Place\nNA \nPre Bid Meeting Address\nNA \nPre Bid Meeting Date\nNA \nBid Opening Place\nOffice of PIC UED BHU\nShould Allow NDA Tender\nNo \nAllow Preferential Bidder\nNo\nTenderer Class\nAs per Tender\nDocument\n \nCritical Dates\nPublish Date\n02-Sep-2026 05:00 PM\nBid Opening Date\n15-Sep-2026 02:30 PM\nDocument Download / Sale Start Date\n02-Sep-2026 05:00 PM\nDocument Download / Sale End Date\n10-Sep-2026 05:00 PM\nClarification Start Date\n02-Sep-2026 05:00 PM \nClarification End Date\n05-Sep-2026 05:00 PM \nBid Submission Start Date\n02-Sep-2026 05:00 PM\nBid Submission End Date\n10-Sep-2026 05:00 PM\n \n \nTender Documents\nNIT Document\nS.No\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTendernotice_1.pdf\nNIT\n392.24\n \nWork Item\nDocuments\nS.No\nDocument Type\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTender Documents\nDGSet.pdf\nTender Document\n1108.56\n2\nBOQ\nBOQ_971535.xls\nBOQ\n283.50\n \n \nView GTE Details - BHU GTE Template\nS.No\nParticulars\nDescription\nExpected\nValue\nMandatory\n1.0\nAre you complied as per requirement of tender document\nTender terms and condition compliance\nYes\nYes\n \n \nTender Inviting Authority\nName\nPROFESSOR IN-CHARGE\nAddress\nUniversity Engineering Department, Banaras Hindu University Varanasi\n \n9/4/26, 10:18 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SPbEFdKJRc1L…\n2/2\n"
+    }
+  ]
+}

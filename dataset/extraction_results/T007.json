@@ -1,0 +1,54 @@
+{
+  "tender_id": "T007",
+  "original_filename": "eProcurement System Government of India8.pdf",
+  "file_path": "/home/syed-imadulla/Desktop/sih26108-feasibility/tenders/raw/eProcurement System Government of India8.pdf",
+  "file_size": 190520,
+  "page_count": 2,
+  "ocr_required": false,
+  "extraction_method": "pymupdf_native_text",
+  "parsed_metadata": {
+    "tender_id": "2026_IITRP_924682_1",
+    "tender_ref_number": "34-26/HIMFOOD/FAC/IITRPR",
+    "organisation_chain": "Indian Institute of Technology Ropar",
+    "title": "Tender for Opening of Himalayan Low-Oil Food Outlet on BOT basis at IIT Ropar",
+    "work_description": "Tender for Opening of Himalayan Low-Oil Food Outlet on BOT basis at IIT Ropar",
+    "product_category": "Hotel/ Catering",
+    "sub_category": "NA",
+    "tender_category": "Services",
+    "contract_type": "Sale Tender Category Services No. of Covers 2 General Technical Evaluation Allowed No ItemWise Technical Evaluation Allowed No Payment Mode Offline Is Multi Currency Allowed For BOQ No Is Multi Currency Allowed For Fee No Allow Two Stage Bidding No",
+    "tender_value": "NA",
+    "location": "IIT Ropar Pincode 140001 Pre Bid Meeting Place NA Pre Bid Meeting Address NA Pre Bid Meeting Date NA Bid Opening Place IIT Ropar Should Allow NDA Tender No Allow Preferential Bidder No Tenderer Class As per Tender Document",
+    "source_url": "https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SGCiqWtqLzpj…"
+  },
+  "pages": [
+    {
+      "tender_id": "T007",
+      "page": 1,
+      "sections_detected": [
+        "Basic Details",
+        "Payment Instruments",
+        "Cover Details",
+        "Tender Fee Details",
+        "EMD Fee Details",
+        "Work /Item(s)",
+        "Critical Dates",
+        "Tender Documents"
+      ],
+      "primary_section": "Basic Details",
+      "char_count": 2269,
+      "text": "eProcurement System Government of India\nTender Details\nDate : 04-Sep-2026 10:19 AM\n Print\nBasic Details\nOrganisation Chain\nIndian Institute of Technology Ropar\nTender Reference Number\n34-26/HIMFOOD/FAC/IITRPR\nTender ID\n2026_IITRP_924682_1\nWithdrawal Allowed\nYes\nTender Type\nOpen Tender\nForm of contract\nSale\nTender Category\nServices\nNo. of Covers\n2\nGeneral Technical\nEvaluation Allowed\nNo\nItemWise Technical Evaluation\nAllowed\nNo\nPayment Mode\nOffline\nIs Multi Currency Allowed For BOQ\nNo\nIs Multi Currency Allowed\nFor Fee\nNo\nAllow Two Stage Bidding\nNo\n \nPayment Instruments\nOffline S.No\nInstrument Type\n1\nR-T-G-S\n2\nNEFT\nCover Details, No. Of Covers - 2\nCover No\nCover\nDocument Type\nDescription\n1\nFee/PreQual/Technical\n.pdf\nTender for\nOpening of\nHimalayan\nLow-Oil Food\nOutlet on BOT\nbasis at IIT\nRopar\n2\nFinance\n.xls\nTender for\nOpening of\nHimalayan\nLow-Oil Food\nOutlet on BOT\nbasis at IIT\nRopar\n \nTender Fee Details, [Total Fee in ₹ * - 0.00]\nTender Fee in ₹\n0.00\nFee Payable To\nNil\nFee Payable At\nNil\nTender Fee Exemption\nAllowed\nNo\nEMD Fee Details\nEMD Amount in ₹\n20,000\nEMD Exemption\nAllowed\nYes\nEMD Fee Type\nfixed\nEMD Percentage\nNA\nEMD Payable To\nIIT\nRopar\nReveune\nAccount\nEMD Payable At\nRopar/Rupnagar\n \n \nWork /Item(s)\nTitle\nTender for Opening of Himalayan Low-Oil Food Outlet on BOT basis at IIT Ropar\nWork Description\nTender for Opening of Himalayan Low-Oil Food Outlet on BOT basis at IIT Ropar\nPre Qualification Details\nPlease refer Tender documents. \nIndependent External\nMonitor/Remarks\nNA \nTender Value in ₹\nNA\nProduct Category\nHotel/ Catering\nSub category\nNA \nContract Type\nTender\nBid Validity(Days)\n180\nPeriod Of Work(Days)\n30 \nLocation\nIIT Ropar\nPincode\n140001\nPre Bid Meeting Place\nNA \nPre Bid Meeting Address\nNA \nPre Bid Meeting Date\nNA \nBid Opening Place\nIIT Ropar\nShould Allow NDA Tender\nNo \nAllow Preferential Bidder\nNo\nTenderer Class\nAs per Tender Document\n \nCritical Dates\nPublish Date\n03-Sep-2026 12:00 PM\nBid Opening Date\n24-Sep-2026 03:30 PM\nDocument Download / Sale Start Date\n03-Sep-2026 12:00 PM\nDocument Download / Sale End Date\n24-Sep-2026 03:00 PM\n9/4/26, 10:19 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SGCiqWtqLzpj…\n1/2\n"
+    },
+    {
+      "tender_id": "T007",
+      "page": 2,
+      "sections_detected": [
+        "Tender Documents",
+        "NIT Document",
+        "Tender Inviting Authority"
+      ],
+      "primary_section": "Tender Documents",
+      "char_count": 1044,
+      "text": "Clarification Start Date\n03-Sep-2026 12:00 PM \nClarification End Date\n18-Sep-2026 11:00 AM \nBid Submission Start Date\n03-Sep-2026 12:00 PM\nBid Submission End Date\n24-Sep-2026 03:00 PM\n \n \nTender Documents\nNIT Document\nS.No\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTendernotice_1.pdf\nTender for Opening of Himalayan Low-Oil Food Outlet on\nBOT basis at IIT Ropar\n807.75\n \nWork Item\nDocuments\nS.No\nDocument Type\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTender Documents\nTenderforHimalayanLowOilFoodOutlet.pdf\nTender for Opening of Himalayan\nLow-Oil Food Outlet on BOT\nbasis at IIT Ropar\n788.94\n2\nBOQ\nBOQ_971687.xls\nTender for Opening of Himalayan\nLow-Oil Food Outlet on BOT\nbasis at IIT Ropar\n305.50\n \n \n \n \nTender Inviting Authority\nName\nRegistrar\nAddress\nM. Visvesvaraya Building, Indian Institute of Technology Ropar, Rupnagar 140001\n \n9/4/26, 10:19 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SGCiqWtqLzpj…\n2/2\n"
+    }
+  ]
+}

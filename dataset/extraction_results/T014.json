@@ -1,0 +1,54 @@
+{
+  "tender_id": "T014",
+  "original_filename": "eProcurement System Government of India15.pdf",
+  "file_path": "/home/syed-imadulla/Desktop/sih26108-feasibility/tenders/raw/eProcurement System Government of India15.pdf",
+  "file_size": 209963,
+  "page_count": 2,
+  "ocr_required": false,
+  "extraction_method": "pymupdf_native_text",
+  "parsed_metadata": {
+    "tender_id": "2026_BARC_919871_1",
+    "tender_ref_number": "BARC/RRMD/ET/4/2026-2027 Date 28/07/2026",
+    "organisation_chain": "Bhabha Atomic Research Centre||Bhabha Atomic Research Centre Mumbai||Reactor Group",
+    "title": "Design, manufacturing, inspection, supply, installation, testing and commissioning of three numbers of Process Water Pump motors 3.3 kV, 440 kW at Dhruva, BARC, Mumbai 400085",
+    "work_description": "Design, manufacturing, inspection, supply, installation, testing and commissioning of three numbers of Process Water Pump motors 3.3 kV, 440 kW at Dhruva, BARC, Mumbai 400085",
+    "product_category": "Electrical Works",
+    "sub_category": "NA",
+    "tender_category": "Works",
+    "contract_type": "Item Rate Tender Category Works No. of Covers 2 General Technical Evaluation Allowed No ItemWise Technical Evaluation Allowed No Payment Mode Offline Is Multi Currency Allowed For BOQ No Is Multi Currency Allowed For Fee No Allow Two Stage Bidding No",
+    "tender_value": "1,45,14,000",
+    "location": "Trombay BARC Pincode 400085 Pre Bid Meeting Place Dhruva Complex, Trombay Mumbai Pre Bid Meeting Address Dhruva Complex, Trombay Mumbai Pre Bid Meeting Date 12-Aug-2026 11:00 AM Bid Opening Place Dhruva Complex Should Allow NDA Tender No Allow Preferential Bidder No Tenderer Class As per Tender Document",
+    "source_url": "https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SB%2BPysE2V…"
+  },
+  "pages": [
+    {
+      "tender_id": "T014",
+      "page": 1,
+      "sections_detected": [
+        "Basic Details",
+        "Payment Instruments",
+        "Cover Details",
+        "Tender Fee Details",
+        "EMD Fee Details",
+        "Work /Item(s)",
+        "Critical Dates",
+        "Tender Documents"
+      ],
+      "primary_section": "Basic Details",
+      "char_count": 2667,
+      "text": "eProcurement System Government of India\nTender Details\nDate : 04-Sep-2026 10:24 AM\n Print\nBasic Details\nOrganisation Chain\nBhabha Atomic Research Centre||Bhabha Atomic Research Centre Mumbai||Reactor Group\nTender Reference Number\nBARC/RRMD/ET/4/2026-2027 Date 28/07/2026\nTender ID\n2026_BARC_919871_1\nWithdrawal Allowed\nYes\nTender Type\nOpen Tender\nForm of contract\nItem Rate\nTender Category\nWorks\nNo. of Covers\n2\nGeneral Technical\nEvaluation Allowed\nNo\nItemWise Technical Evaluation\nAllowed\nNo\nPayment Mode\nOffline\nIs Multi Currency Allowed For BOQ\nNo\nIs Multi Currency Allowed\nFor Fee\nNo\nAllow Two Stage Bidding\nNo\n \nPayment Instruments\nOffline S.No\nInstrument Type\n1\nDemand Draft\n2\nFDR\n3\nBankers Cheque\nCover Details, No. Of Covers - 2\nCover No\nCover\nDocument Type\nDescription\n1\nFee/PreQual/Technical\n.pdf\nTender\nDocument\n.xls\nTechnical Bid\n2\nFinance\n.xls\nBoQ\n \nTender Fee Details, [Total Fee in ₹ * - 0.00]\nTender Fee in ₹\n0.00\nFee Payable To\nNil\nFee Payable At\nNil\nTender Fee Exemption\nAllowed\nNo\nEMD Fee Details\nEMD Amount in ₹\n2,90,280\nEMD Exemption\nAllowed\nYes\nEMD Fee Type\npercentage\nEMD Percentage\n2.0%\nEMD Payable To\nNIL\nEMD Payable At\nNIL\n \n \nWork /Item(s)\nTitle\nDesign, manufacturing, inspection, supply, installation, testing and commissioning of three numbers of Process Water Pump\nmotors 3.3 kV, 440 kW at Dhruva, BARC, Mumbai 400085\nWork Description\nDesign, manufacturing, inspection, supply, installation, testing and commissioning of three numbers of Process Water Pump\nmotors 3.3 kV, 440 kW at Dhruva, BARC, Mumbai 400085\nPre Qualification Details\nPlease refer Tender documents. \nIndependent External\nMonitor/Remarks\nNA \nTender Value in ₹\n1,45,14,000\nProduct Category\nElectrical\nWorks\nSub category\nNA \nContract Type\nTender\nBid Validity(Days)\n180\nPeriod Of Work(Days)\n270 \nLocation\nTrombay BARC\nPincode\n400085\nPre Bid Meeting Place\nDhruva Complex,\nTrombay Mumbai \nPre Bid Meeting Address\nDhruva Complex,\nTrombay Mumbai \nPre Bid Meeting Date\n12-Aug-2026\n11:00 AM \nBid Opening Place\nDhruva Complex\nShould Allow NDA Tender\nNo \nAllow Preferential Bidder\nNo\nTenderer Class\nAs per Tender\nDocument\n \nCritical Dates\nPublish Date\n03-Aug-2026 11:00 AM\nBid Opening Date\n10-Sep-2026 11:00 AM\nDocument Download / Sale Start Date\n03-Aug-2026 11:00 AM\nDocument Download / Sale End Date\n07-Sep-2026 04:00 PM\nClarification Start Date\nNA \nClarification End Date\nNA \nBid Submission Start Date\n14-Aug-2026 11:00 AM\nBid Submission End Date\n07-Sep-2026 04:00 PM\n \n \nTender Documents\n9/4/26, 10:24 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SB%2BPysE2V…\n1/2\n"
+    },
+    {
+      "tender_id": "T014",
+      "page": 2,
+      "sections_detected": [
+        "Tender Documents",
+        "NIT Document",
+        "Tender Inviting Authority"
+      ],
+      "primary_section": "Tender Documents",
+      "char_count": 930,
+      "text": "NIT Document\nS.No\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTendernotice_1.pdf\nNIT Eng\n392.23\n2\nTendernotice_2.pdf\nNIT Hindi\n956.67\n \nPreBid Meeting\nDocument\nS.No\nDocument Name\nDocument Type\nDescription\nDocument Size (in\nKB)\n1\ntech_prebid_966687.pdf\nPreBid Meeting Document\nPreBid Meeting MOM\n829.92\n \nWork Item\nDocuments\nS.No\nDocument Type\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nAdditional Documents\nTechnicalBid.xls\nTechnical Bid\n98.50\n2\nTender Documents\nTenderDocumentET4.pdf\nTender Docs\n3235.85\n3\nBOQ\nBOQ_966687.xls\nUpdated BoQ\n230.00\n \n \nLatest Corrigendum List\nS.No\nCorrigendum Title\nCorrigendum Type\nView\n1\nUpdated BoQ\nBOQ\n2\nCorrigendum\nDate\n \n \n \nTender Inviting Authority\nName\nAD RG and CE\nAddress\nAD RG and CE\n \n9/4/26, 10:24 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SB%2BPysE2V…\n2/2\n"
+    }
+  ]
+}

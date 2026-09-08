@@ -1,0 +1,53 @@
+{
+  "tender_id": "T013",
+  "original_filename": "eProcurement System Government of India14.pdf",
+  "file_path": "/home/syed-imadulla/Desktop/sih26108-feasibility/tenders/raw/eProcurement System Government of India14.pdf",
+  "file_size": 190198,
+  "page_count": 2,
+  "ocr_required": false,
+  "extraction_method": "pymupdf_native_text",
+  "parsed_metadata": {
+    "tender_id": "2026_ESIC_924493_1",
+    "tender_ref_number": "C/AG-12/22/DGP/HVAC/2021/PMD",
+    "organisation_chain": "Employees State Insurance Corporation||R.O. West Bengal||Construction Branch",
+    "title": "SITC of VFD water pump panel, piping work , Insulation work and replacement of by valves at ESI, Hospital Durgapur, West Bengal",
+    "work_description": "SITC of VFD water pump panel, piping work , Insulation work and replacement of by valves at ESI Hospital Durgapur, West Bengal",
+    "product_category": "Electrical Works",
+    "sub_category": "NA",
+    "tender_category": "Works",
+    "contract_type": "Percentage Tender Category Works No. of Covers 2 General Technical Evaluation Allowed No ItemWise Technical Evaluation Allowed No Payment Mode Offline Is Multi Currency Allowed For BOQ No Is Multi Currency Allowed For Fee No Allow Two Stage Bidding No",
+    "tender_value": "11,08,782",
+    "location": "ESI Hospital Durgapur Pincode 713206 Pre Bid Meeting Place ESIC Regional Office Salt lake, GB Block Pre Bid Meeting Address ESIC Regional Office Salt lake, GB Block Pre Bid Meeting Date 03-Sep-2026 11:00 AM Bid Opening Place ESIC Regional Office Salt lake, GB Block Should Allow NDA Tender No Allow Preferential Bidder No Tenderer Class As per Tender Document",
+    "source_url": "https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=S1gv5O2RDax…"
+  },
+  "pages": [
+    {
+      "tender_id": "T013",
+      "page": 1,
+      "sections_detected": [
+        "Basic Details",
+        "Payment Instruments",
+        "Cover Details",
+        "Tender Fee Details",
+        "EMD Fee Details",
+        "Work /Item(s)",
+        "Critical Dates",
+        "Tender Documents"
+      ],
+      "primary_section": "Basic Details",
+      "char_count": 2576,
+      "text": "eProcurement System Government of India\nTender Details\nDate : 04-Sep-2026 10:24 AM\n Print\nBasic Details\nOrganisation Chain\nEmployees State Insurance Corporation||R.O. West Bengal||Construction Branch\nTender Reference Number\nC/AG-12/22/DGP/HVAC/2021/PMD\nTender ID\n2026_ESIC_924493_1\nWithdrawal Allowed\nYes\nTender Type\nOpen Tender\nForm of contract\nPercentage\nTender Category\nWorks\nNo. of Covers\n2\nGeneral Technical\nEvaluation Allowed\nNo\nItemWise Technical Evaluation\nAllowed\nNo\nPayment Mode\nOffline\nIs Multi Currency Allowed For BOQ\nNo\nIs Multi Currency Allowed\nFor Fee\nNo\nAllow Two Stage Bidding\nNo\n \nPayment Instruments\nOffline S.No\nInstrument Type\n1\nDemand Draft\nCover Details, No. Of Covers - 2\nCover No\nCover\nDocument Type\nDescription\n1\nFee/PreQual/Technical\n.pdf\nNIT\n2\nFinance\n.xls\nfINANCIAL\nBOQ\n \nTender Fee Details, [Total Fee in ₹ * - 0.00]\nTender Fee in ₹\n0.00\nFee Payable To\nNil\nFee Payable At\nNil\nTender Fee Exemption\nAllowed\nNo\nEMD Fee Details\nEMD Amount in ₹\n22,176\nEMD Exemption\nAllowed\nYes\nEMD Fee Type\nfixed\nEMD Percentage\nNA\nEMD Payable To\nESIC FUND\nACCOUNT\nNo 1\nEMD Payable At\nKolkata\n \n \nWork /Item(s)\nTitle\nSITC of VFD water pump panel, piping work , Insulation work and replacement of by valves at ESI, Hospital Durgapur, West\nBengal\nWork Description\nSITC of VFD water pump panel, piping work , Insulation work and replacement of by valves at ESI Hospital Durgapur, West\nBengal\nPre Qualification Details\nPlease refer Tender documents. \nIndependent External\nMonitor/Remarks\nNA \nTender Value in ₹\n11,08,782\nProduct Category\nElectrical\nWorks\nSub category\nNA \nContract Type\nTender\nBid Validity(Days)\n90\nPeriod Of Work(Days)\n60 \nLocation\nESI Hospital Durgapur\nPincode\n713206\nPre Bid Meeting Place\nESIC Regional Office\nSalt lake, GB Block \nPre Bid Meeting Address\nESIC Regional Office\nSalt lake, GB Block \nPre Bid Meeting Date\n03-Sep-2026\n11:00 AM \nBid Opening Place\nESIC Regional Office\nSalt lake, GB Block\nShould Allow NDA Tender\nNo \nAllow Preferential Bidder\nNo\nTenderer Class\nAs per Tender\nDocument\n \nCritical Dates\nPublish Date\n02-Sep-2026 10:00 AM\nBid Opening Date\n09-Sep-2026 11:00 AM\nDocument Download / Sale Start Date\n02-Sep-2026 10:00 AM\nDocument Download / Sale End Date\n08-Sep-2026 10:00 AM\nClarification Start Date\nNA \nClarification End Date\nNA \nBid Submission Start Date\n02-Sep-2026 10:00 AM\nBid Submission End Date\n08-Sep-2026 10:00 AM\n \n \nTender Documents\n9/4/26, 10:24 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=S1gv5O2RDax…\n1/2\n"
+    },
+    {
+      "tender_id": "T013",
+      "page": 2,
+      "sections_detected": [
+        "NIT Document",
+        "Tender Inviting Authority"
+      ],
+      "primary_section": "NIT Document",
+      "char_count": 528,
+      "text": "NIT Document\nS.No\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTendernotice_1.pdf\nTENDER DOCUMENT\n1402.09\n \nWork Item\nDocuments\nS.No\nDocument Type\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nBOQ\nBOQ_971486.xls\nBOQ\n253.50\n \n \n \n \nTender Inviting Authority\nName\nRegiona Director\nAddress\nESIC Regional Office Salt lake, GB Block\n \n9/4/26, 10:24 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=S1gv5O2RDax…\n2/2\n"
+    }
+  ]
+}

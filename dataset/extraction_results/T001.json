@@ -1,0 +1,54 @@
+{
+  "tender_id": "T001",
+  "original_filename": "eProcurement System Government of India2.pdf",
+  "file_path": "/home/syed-imadulla/Desktop/sih26108-feasibility/tenders/raw/eProcurement System Government of India2.pdf",
+  "file_size": 198900,
+  "page_count": 2,
+  "ocr_required": false,
+  "extraction_method": "pymupdf_native_text",
+  "parsed_metadata": {
+    "tender_id": "2026_ISMD_921565_1",
+    "tender_ref_number": "CMU-12011/57/2026-CMU",
+    "organisation_chain": "Indian Institute of Technology(ISM) Dhanbad||Administration - ISMD||Purchase and Stores - ISMD",
+    "title": "Renovation of 5 no of toilets 3 Gents and 2 Ladies incl replacement of damaged pipelines by Hubless and GI pipes,replacement of floor and wall tiles and upgradation of all sanitary fittings at AGL Department in Main School Building at IIT ISM Dhanbad",
+    "work_description": "Renovation of 5 no of toilets 3 Gents and 2 Ladies incl replacement of damaged pipelines by Hubless and GI pipes,replacement of floor and wall tiles and upgradation of all sanitary fittings at AGL Department in Main School Building at IIT ISM Dhanbad",
+    "product_category": "Civil Works",
+    "sub_category": "NA",
+    "tender_category": "Works",
+    "contract_type": "Percentage Tender Category Works No. of Covers 2 General Technical Evaluation Allowed No ItemWise Technical Evaluation Allowed No Payment Mode Offline Is Multi Currency Allowed For BOQ No Is Multi Currency Allowed For Fee No Allow Two Stage Bidding No",
+    "tender_value": "13,27,189",
+    "location": "IIT (ISM) Dhanbad Pincode 826004 Pre Bid Meeting Place IIT (ISM), Dhanbad Pre Bid Meeting Address Conference Room, ECMU, IIT ISM Dhanbad Pre Bid Meeting Date 17-Aug-2026 03:00 PM Bid Opening Place IIT (ISM) Dhanbad Should Allow NDA Tender No Allow Preferential Bidder No Tenderer Class As per Tender Document",
+    "source_url": "https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=Sp%2FHOgPR…"
+  },
+  "pages": [
+    {
+      "tender_id": "T001",
+      "page": 1,
+      "sections_detected": [
+        "Basic Details",
+        "Payment Instruments",
+        "Cover Details",
+        "Tender Fee Details",
+        "EMD Fee Details",
+        "Work /Item(s)",
+        "Critical Dates",
+        "Tender Documents",
+        "NIT Document"
+      ],
+      "primary_section": "Basic Details",
+      "char_count": 2858,
+      "text": "eProcurement System Government of India\nTender Details\nDate : 04-Sep-2026 10:15 AM\n Print\nBasic Details\nOrganisation Chain\nIndian Institute of Technology(ISM) Dhanbad||Administration - ISMD||Purchase and Stores - ISMD\nTender Reference Number\nCMU-12011/57/2026-CMU\nTender ID\n2026_ISMD_921565_1\nWithdrawal Allowed\nYes\nTender Type\nOpen Tender\nForm of contract\nPercentage\nTender Category\nWorks\nNo. of Covers\n2\nGeneral Technical\nEvaluation Allowed\nNo\nItemWise Technical Evaluation\nAllowed\nNo\nPayment Mode\nOffline\nIs Multi Currency Allowed For BOQ\nNo\nIs Multi Currency Allowed\nFor Fee\nNo\nAllow Two Stage Bidding\nNo\n \nPayment Instruments\nOffline S.No\nInstrument Type\n1\nDemand Draft\n2\nFDR\n3\nBankers Cheque\n4\nBank Guarantee\nCover Details, No. Of Covers - 2\nCover No\nCover\nDocument Type\nDescription\n1\nFee/PreQual/Technical\n.pdf\nNIT document\n2\nFinance\n.xls\nPrice Bid\n \nTender Fee Details, [Total Fee in ₹ * - 0.00]\nTender Fee in ₹\n0.00\nFee Payable To\nNil\nFee Payable At\nNil\nTender Fee Exemption\nAllowed\nNo\nEMD Fee Details\nEMD Amount in ₹\n33,500\nEMD Exemption\nAllowed\nNo\nEMD Fee Type\nfixed\nEMD Percentage\nNA\nEMD Payable To\nDirector, IIT\nISM\nEMD Payable At\nDhanbad\n \n \nWork /Item(s)\nTitle\nRenovation of 5 no of toilets 3 Gents and 2 Ladies incl replacement of damaged pipelines by Hubless and GI pipes,replacement\nof floor and wall tiles and upgradation of all sanitary fittings at AGL Department in Main School Building at IIT ISM Dhanbad\nWork Description\nRenovation of 5 no of toilets 3 Gents and 2 Ladies incl replacement of damaged pipelines by Hubless and GI pipes,replacement\nof floor and wall tiles and upgradation of all sanitary fittings at AGL Department in Main School Building at IIT ISM Dhanbad\nPre Qualification Details\nAs per tender documents \nIndependent External\nMonitor/Remarks\nNA \nTender Value in ₹\n13,27,189\nProduct Category\nCivil Works\nSub category\nNA \nContract Type\nTender\nBid Validity(Days)\n90\nPeriod Of Work(Days)\n90 \nLocation\nIIT (ISM) Dhanbad\nPincode\n826004\nPre Bid Meeting Place\nIIT (ISM),\nDhanbad \nPre Bid Meeting Address\nConference Room, ECMU,\nIIT ISM Dhanbad \nPre Bid Meeting Date\n17-Aug-2026\n03:00 PM \nBid Opening Place\nIIT (ISM)\nDhanbad\nShould Allow NDA Tender\nNo \nAllow Preferential Bidder\nNo\nTenderer Class\nAs per Tender Document\n \nCritical Dates\nPublish Date\n11-Aug-2026 06:30 PM\nBid Opening Date\n11-Sep-2026 05:00 PM\nDocument Download / Sale Start Date\n11-Aug-2026 06:30 PM\nDocument Download / Sale End Date\n08-Sep-2026 06:30 PM\nClarification Start Date\n11-Aug-2026 06:30 PM \nClarification End Date\n17-Aug-2026 03:00 PM \nBid Submission Start Date\n11-Aug-2026 06:30 PM\nBid Submission End Date\n08-Sep-2026 06:30 PM\n \n \nTender Documents\nNIT Document\n9/4/26, 10:15 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=Sp%2FHOgPR…\n1/2\n"
+    },
+    {
+      "tender_id": "T001",
+      "page": 2,
+      "sections_detected": [
+        "NIT Document",
+        "Tender Inviting Authority"
+      ],
+      "primary_section": "NIT Document",
+      "char_count": 638,
+      "text": "S.No\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTendernotice_1.pdf\nNIT document\n1786.20\n \nWork Item\nDocuments\nS.No\nDocument Type\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nBOQ\nBOQ_968427.xls\nPrice bid\n294.00\n \n \nLatest Corrigendum List\nS.No\nCorrigendum Title\nCorrigendum Type\nView\n1\nBid Auto Extn Corrigendum\nBid Auto Extn Corrigendum\n \n \n \nTender Inviting Authority\nName\nDy SE (Civil)\nAddress\nO/o DY SE(Civil), ECMU, IIT ISM Dhanbad\n \n9/4/26, 10:15 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=Sp%2FHOgPR…\n2/2\n"
+    }
+  ]
+}

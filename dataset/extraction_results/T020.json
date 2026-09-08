@@ -1,0 +1,54 @@
+{
+  "tender_id": "T020",
+  "original_filename": "eProcurement System Government of India.pdf",
+  "file_path": "/home/syed-imadulla/Desktop/sih26108-feasibility/tenders/raw/eProcurement System Government of India.pdf",
+  "file_size": 189577,
+  "page_count": 2,
+  "ocr_required": false,
+  "extraction_method": "pymupdf_native_text",
+  "parsed_metadata": {
+    "tender_id": "2026_ARMHA_924827_2",
+    "tender_ref_number": "ENG/III-235/2026-27/75 dt 03 Sep 2026",
+    "organisation_chain": "Assam Rifles - MHA||Administration Branch - AR - MHA||Prov Branch - Admin Branch - AR - MHA",
+    "title": "Repair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn",
+    "work_description": "Repair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn",
+    "product_category": "Civil Works",
+    "sub_category": "NA",
+    "tender_category": "Works",
+    "contract_type": "Works Tender Category Works No. of Covers 2 General Technical Evaluation Allowed No ItemWise Technical Evaluation Allowed No Payment Mode Offline Is Multi Currency Allowed For BOQ No Is Multi Currency Allowed For Fee No Allow Two Stage Bidding No",
+    "tender_value": "NA",
+    "location": "Laitkor Pincode 793010 Pre Bid Meeting Place NA Pre Bid Meeting Address NA Pre Bid Meeting Date NA Bid Opening Place Laitkor Should Allow NDA Tender No Allow Preferential Bidder No Tenderer Class As per Tender Document",
+    "source_url": "https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=S%2Ffd6fmpb…"
+  },
+  "pages": [
+    {
+      "tender_id": "T020",
+      "page": 1,
+      "sections_detected": [
+        "Basic Details",
+        "Payment Instruments",
+        "Cover Details",
+        "Tender Fee Details",
+        "EMD Fee Details",
+        "Work /Item(s)",
+        "Critical Dates",
+        "Tender Documents"
+      ],
+      "primary_section": "Basic Details",
+      "char_count": 2527,
+      "text": "eProcurement System Government of India\nTender Details\nDate : 04-Sep-2026 10:14 AM\n Print\nBasic Details\nOrganisation Chain\nAssam Rifles - MHA||Administration Branch - AR - MHA||Prov Branch - Admin Branch - AR - MHA\nTender Reference Number\nENG/III-235/2026-27/75 dt 03 Sep 2026\nTender ID\n2026_ARMHA_924827_2\nWithdrawal Allowed\nYes\nTender Type\nOpen Tender\nForm of contract\nWorks\nTender Category\nWorks\nNo. of Covers\n2\nGeneral Technical\nEvaluation Allowed\nNo\nItemWise Technical Evaluation\nAllowed\nNo\nPayment Mode\nOffline\nIs Multi Currency Allowed For BOQ\nNo\nIs Multi Currency Allowed\nFor Fee\nNo\nAllow Two Stage Bidding\nNo\n \nPayment Instruments\nOffline S.No\nInstrument Type\n1\nDemand Draft\n2\nFDR\n3\nBankers Cheque\n4\nBank Guarantee\nCover Details, No. Of Covers - 2\nCover No\nCover\nDocument Type\nDescription\n1\nFee/PreQual/Technical\n.pdf\nRepair maint of\nCPVC pipe line\nin lieu of rusted\nGI pipe at\nLaitumkhrah\n2\nFinance\n.xls\nRepair/ maint of\nCPVC pipe in\nlieu of rusted GI\npipe at\nLaitumkhrah\nGrn\n \nTender Fee Details, [Total Fee in ₹ * - 1,000]\nTender Fee in ₹\n1,000\nFee Payable To\nCommandant\nARC and MC\nFee Payable At\nSBI\nLaitkor\nTender Fee Exemption\nAllowed\nNo\nEMD Fee Details\nEMD Amount in ₹\n90,100\nEMD Exemption\nAllowed\nNo\nEMD Fee Type\nfixed\nEMD Percentage\nNA\nEMD Payable To\nHQ\nDGAR\nEMD Payable At\nSBI\nLaitkor\n \n \nWork /Item(s)\nTitle\nRepair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn\nWork Description\nRepair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn\nPre Qualification Details\nAs per Tender Documents \nIndependent External\nMonitor/Remarks\nNA \nTender Value in ₹\nNA\nProduct Category\nCivil Works\nSub category\nNA \nContract Type\nTender\nBid Validity(Days)\n180\nPeriod Of Work(Days)\n90 \nLocation\nLaitkor\nPincode\n793010\nPre Bid Meeting Place\nNA \nPre Bid Meeting Address\nNA \nPre Bid Meeting Date\nNA \nBid Opening Place\nLaitkor\nShould Allow NDA Tender\nNo \nAllow Preferential Bidder\nNo\nTenderer Class\nAs per Tender Document\n \nCritical Dates\nPublish Date\n03-Sep-2026 06:20 PM\nBid Opening Date\n17-Sep-2026 11:30 AM\nDocument Download / Sale Start Date\n03-Sep-2026 06:25 PM\nDocument Download / Sale End Date\n16-Sep-2026 10:30 AM\nClarification Start Date\n03-Sep-2026 06:25 PM \nClarification End Date\n16-Sep-2026 10:00 AM \nBid Submission Start Date\n03-Sep-2026 06:30 PM\nBid Submission End Date\n16-Sep-2026 10:30 AM\n \n \n9/4/26, 10:15 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=S%2Ffd6fmpb…\n1/2\n"
+    },
+    {
+      "tender_id": "T020",
+      "page": 2,
+      "sections_detected": [
+        "Tender Documents",
+        "NIT Document",
+        "Tender Inviting Authority"
+      ],
+      "primary_section": "Tender Documents",
+      "char_count": 666,
+      "text": "Tender Documents\nNIT Document\nS.No\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTendernotice_1.pdf\nRepair/ maint of CPVC pipe in lieu of rusted GI pipe at\nLaitumkhrah Grn\n1187.28\n \nWork Item\nDocuments\nS.No\nDocument Type\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nBOQ\nBOQ_971906.xls\nRepair/ maint of CPVC pipe in\nlieu of rusted GI pipe at\nLaitumkhrah Grn\n337.00\n \n \n \n \nTender Inviting Authority\nName\nCommandant ARC and MC\nAddress\nAssam Rifles Constr and Maint Co\n \n9/4/26, 10:15 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=S%2Ffd6fmpb…\n2/2\n"
+    }
+  ]
+}

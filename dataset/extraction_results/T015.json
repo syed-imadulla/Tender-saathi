@@ -1,0 +1,54 @@
+{
+  "tender_id": "T015",
+  "original_filename": "eProcurement System Government of India16.pdf",
+  "file_path": "/home/syed-imadulla/Desktop/sih26108-feasibility/tenders/raw/eProcurement System Government of India16.pdf",
+  "file_size": 191543,
+  "page_count": 2,
+  "ocr_required": false,
+  "extraction_method": "pymupdf_native_text",
+  "parsed_metadata": {
+    "tender_id": "2026_IISRT_924861_1",
+    "tender_ref_number": "IISER-T/2091/27/2026-27 dated 03.09.2026",
+    "organisation_chain": "Indian Institute of Science Education and Research - Thiruvananthapuram||Construction and Engineering-IISER -",
+    "title": "Construction of shed for waste collection in CDH 1 and CDH 2 at IISER Campus, Vithura",
+    "work_description": "Construction of shed for waste collection in CDH 1 and CDH 2 at IISER Campus, Vithura",
+    "product_category": "Civil Works",
+    "sub_category": "NA",
+    "tender_category": "Works",
+    "contract_type": "Item Rate Tender Category Works No. of Covers 2 General Technical Evaluation Allowed No ItemWise Technical Evaluation Allowed No Payment Mode Offline Is Multi Currency Allowed For BOQ No Is Multi Currency Allowed For Fee No Allow Two Stage Bidding No",
+    "tender_value": "5,45,002",
+    "location": "IISER, Maruthamala, Vithura,Thiruvananthapuram Pincode 695551 Pre Bid Meeting Place NA Pre Bid Meeting Address NA Pre Bid Meeting Date NA Bid Opening Place Project office, IISER TVM Should Allow NDA Tender No Allow Preferential Bidder No Tenderer Class As per Tender Document",
+    "source_url": "https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=S2gBbXFrEAw…"
+  },
+  "pages": [
+    {
+      "tender_id": "T015",
+      "page": 1,
+      "sections_detected": [
+        "Basic Details",
+        "Payment Instruments",
+        "Cover Details",
+        "Tender Fee Details",
+        "EMD Fee Details",
+        "Work /Item(s)",
+        "Critical Dates",
+        "Tender Documents"
+      ],
+      "primary_section": "Basic Details",
+      "char_count": 2558,
+      "text": "eProcurement System Government of India\nTender Details\nDate : 04-Sep-2026 10:25 AM\n Print\nBasic Details\nOrganisation Chain\nIndian Institute of Science Education and Research - Thiruvananthapuram||Construction and Engineering-IISER -\nThiruvananthapuram\nTender Reference Number\nIISER-T/2091/27/2026-27 dated 03.09.2026\nTender ID\n2026_IISRT_924861_1\nWithdrawal Allowed\nYes\nTender Type\nOpen Tender\nForm of contract\nItem Rate\nTender Category\nWorks\nNo. of Covers\n2\nGeneral Technical\nEvaluation Allowed\nNo\nItemWise Technical Evaluation\nAllowed\nNo\nPayment Mode\nOffline\nIs Multi Currency Allowed For BOQ\nNo\nIs Multi Currency Allowed\nFor Fee\nNo\nAllow Two Stage Bidding\nNo\n \nPayment Instruments\nOffline S.No\nInstrument Type\n1\nDemand Draft\n2\nFDR\n3\nNEFT\n4\nBank Guarantee\nCover Details, No. Of Covers - 2\nCover No\nCover\nDocument Type\nDescription\n1\nFee/PreQual/Technical\n.pdf\nEMD, GST,\nPAN,\nEnlistment\ncertificate or\nwork\ncompletion\ncertificate, NIT\n2\nFinance\n.xls\nPrice bid BoQ\n \nTender Fee Details, [Total Fee in ₹ * - 0.00]\nTender Fee in ₹\n0.00\nFee Payable To\nNil\nFee Payable At\nNil\nTender Fee Exemption\nAllowed\nNo\nEMD Fee Details\nEMD Amount\nin ₹\n10,900\nEMD\nExemption\nAllowed\nNo\nEMD Fee\nType\nfixed\nEMD\nPercentage\nNA\nEMD Payable\nTo\nIISER\nThiruvananthapuram\nEMD Payable\nAt\nThiruvananthapuram\n \n \nWork /Item(s)\nTitle\nConstruction of shed for waste collection in CDH 1 and CDH 2 at IISER Campus, Vithura\nWork Description\nConstruction of shed for waste collection in CDH 1 and CDH 2 at IISER Campus, Vithura\nPre Qualification Details\nPlease refer Tender documents. \nIndependent External\nMonitor/Remarks\nNA \nTender Value in ₹\n5,45,002\nProduct Category\nCivil\nWorks\nSub category\nNA \nContract Type\nTender\nBid Validity(Days)\n90\nPeriod Of Work(Days)\n60 \nLocation\nIISER, Maruthamala,\nVithura,Thiruvananthapuram\nPincode\n695551 Pre Bid Meeting Place\nNA \nPre Bid Meeting Address\nNA \nPre Bid Meeting Date\nNA \nBid Opening Place\nProject office,\nIISER TVM\nShould Allow NDA Tender\nNo \nAllow Preferential Bidder\nNo\nTenderer Class\nAs per Tender Document\n \nCritical Dates\nPublish Date\n04-Sep-2026 09:15 AM\nBid Opening Date\n11-Sep-2026 04:00 PM\nDocument Download / Sale Start Date\n04-Sep-2026 09:20 AM\nDocument Download / Sale End Date\n10-Sep-2026 04:00 PM\nClarification Start Date\nNA \nClarification End Date\nNA \nBid Submission Start Date\n04-Sep-2026 09:20 AM\nBid Submission End Date\n10-Sep-2026 04:00 PM\n9/4/26, 10:25 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=S2gBbXFrEAw…\n1/2\n"
+    },
+    {
+      "tender_id": "T015",
+      "page": 2,
+      "sections_detected": [
+        "Tender Documents",
+        "NIT Document",
+        "Tender Inviting Authority"
+      ],
+      "primary_section": "Tender Documents",
+      "char_count": 526,
+      "text": " \n \nTender Documents\nNIT Document\nS.No\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTendernotice_1.pdf\nTender Notice\n1026.35\n \nWork Item\nDocuments\nS.No\nDocument Type\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nBOQ\nBOQ_971885.xls\nPrice bid BoQ\n337.50\n \n \n \n \nTender Inviting Authority\nName\nPE cum EO (I/C)\nAddress\nProject office\n \n9/4/26, 10:25 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=S2gBbXFrEAw…\n2/2\n"
+    }
+  ]
+}

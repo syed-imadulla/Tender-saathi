@@ -1,0 +1,54 @@
+{
+  "tender_id": "T004",
+  "original_filename": "eProcurement System Government of India5.pdf",
+  "file_path": "/home/syed-imadulla/Desktop/sih26108-feasibility/tenders/raw/eProcurement System Government of India5.pdf",
+  "file_size": 192768,
+  "page_count": 2,
+  "ocr_required": false,
+  "extraction_method": "pymupdf_native_text",
+  "parsed_metadata": {
+    "tender_id": "2026_DU_924515_1",
+    "tender_ref_number": "CEET-421",
+    "organisation_chain": "Delhi University||Central Office - DU||Engineering - DU",
+    "title": "Dismantling,Shifting and reinstallation of feeder pillar, power cables from outside of electrical room to AMF room, internal electrical maintenance work at common coridoor, toilets, replacement of faulty 2x2 celing light of seminar and multipurpose",
+    "work_description": "Dismantling,Shifting and reinstallation of feeder pillar, power cables from outside of electrical room to AMF room, internal electrical maintenance work at common coridoor, toilets, replacement of faulty 2x2 celing light of seminar and multipurpose",
+    "product_category": "Electrical Works",
+    "sub_category": "NA",
+    "tender_category": "Works",
+    "contract_type": "Works Tender Category Works No. of Covers 2 General Technical Evaluation Allowed No ItemWise Technical Evaluation Allowed No Payment Mode Offline Is Multi Currency Allowed For BOQ No Is Multi Currency Allowed For Fee No Allow Two Stage Bidding No",
+    "tender_value": "9,82,834",
+    "location": "North Campus Pincode 110007 Pre Bid Meeting Place NA Pre Bid Meeting Address NA Pre Bid Meeting Date NA Bid Opening Place Engineering Department Should Allow NDA Tender No Allow Preferential Bidder No Tenderer Class As per Tender Document",
+    "source_url": "https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SGIBjHhjm6t7…"
+  },
+  "pages": [
+    {
+      "tender_id": "T004",
+      "page": 1,
+      "sections_detected": [
+        "Basic Details",
+        "Payment Instruments",
+        "Cover Details",
+        "Tender Fee Details",
+        "EMD Fee Details",
+        "Work /Item(s)",
+        "Tender Documents"
+      ],
+      "primary_section": "Basic Details",
+      "char_count": 2360,
+      "text": "eProcurement System Government of India\nTender Details\nDate : 04-Sep-2026 10:17 AM\n Print\nBasic Details\nOrganisation Chain\nDelhi University||Central Office - DU||Engineering - DU\nTender Reference Number\nCEET-421\nTender ID\n2026_DU_924515_1\nWithdrawal Allowed\nYes\nTender Type\nOpen Tender\nForm of contract\nWorks\nTender Category\nWorks\nNo. of Covers\n2\nGeneral Technical\nEvaluation Allowed\nNo\nItemWise Technical Evaluation\nAllowed\nNo\nPayment Mode\nOffline\nIs Multi Currency Allowed For BOQ\nNo\nIs Multi Currency Allowed\nFor Fee\nNo\nAllow Two Stage Bidding\nNo\n \nPayment Instruments\nOffline S.No\nInstrument Type\n1\nR-T-G-S\n2\nNEFT\nCover Details, No. Of Covers - 2\nCover No\nCover\nDocument Type\nDescription\n1\nFee/PreQual/Technical\n.pdf\nSigned and scan\ncopies of ESIC,\nEPFO, Labour\nReg. Certificate,\nLatest ITR,\nGSTCertificate\nand return\n.pdf\nSigned and scan\ncopies of\nEnlistment /\nRegistration\nPower of\nAttorney /\nAuthority letter\n.pdf\nSigned and\nscanned copies\nof Tender Fee\n.pdf\nSigned and scan\ncopies of\ndocuments as\nper NIT and\nPrice Bid\n2\nFinance\n.xls\nPrice Bid\n \nTender Fee Details, [Total Fee in ₹ * - 500]\nTender Fee in ₹\n500\nFee Payable To\nRegistrar,\nUniversity of\nDelhi\nFee Payable At\nDelhi\nTender Fee Exemption\nAllowed\nNo\nEMD Fee Details\nEMD Amount in ₹\n19,657\nEMD Exemption\nAllowed\nNo\nEMD Fee Type\nfixed\nEMD Percentage\nNA\nEMD Payable To\nRegistrar,\nUniversity of\nDelhi\nEMD Payable At\nDelhi\n \n \nWork /Item(s)\nTitle\nDismantling,Shifting and reinstallation of feeder pillar, power cables from outside of electrical room to AMF room, internal\nelectrical maintenance work at common coridoor, toilets, replacement of faulty 2x2 celing light of seminar and multipurpose\nWork Description\nDismantling,Shifting and reinstallation of feeder pillar, power cables from outside of electrical room to AMF room, internal\nelectrical maintenance work at common coridoor, toilets, replacement of faulty 2x2 celing light of seminar and multipurpose\nPre Qualification Details\nPlease refer Tender documents. \nIndependent External\nMonitor/Remarks\nNA \nTender Value in ₹\n9,82,834\nProduct Category\nElectrical\nWorks\nSub category\nNA \nContract Type\nTender\nBid Validity(Days)\n90\nPeriod Of Work(Days)\n15 \n9/4/26, 10:17 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SGIBjHhjm6t7…\n1/2\n"
+    },
+    {
+      "tender_id": "T004",
+      "page": 2,
+      "sections_detected": [
+        "Critical Dates",
+        "Tender Documents",
+        "NIT Document",
+        "Tender Inviting Authority"
+      ],
+      "primary_section": "Critical Dates",
+      "char_count": 1432,
+      "text": "Location\nNorth Campus\nPincode\n110007\nPre Bid Meeting Place\nNA \nPre Bid Meeting Address\nNA \nPre Bid Meeting Date\nNA \nBid Opening Place\nEngineering\nDepartment\nShould Allow NDA Tender\nNo \nAllow Preferential Bidder\nNo\nTenderer Class\nAs per Tender\nDocument\n \nCritical Dates\nPublish Date\n02-Sep-2026 06:00 PM\nBid Opening Date\n16-Sep-2026 01:00 PM\nDocument Download / Sale Start Date\n02-Sep-2026 06:00 PM\nDocument Download / Sale End Date\n15-Sep-2026 01:00 PM\nClarification Start Date\nNA \nClarification End Date\nNA \nBid Submission Start Date\n02-Sep-2026 06:00 PM\nBid Submission End Date\n15-Sep-2026 01:00 PM\n \n \nTender Documents\nNIT Document\nS.No\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTendernotice_1.pdf\nDismantling,Shifting and reinstallation of feeder pillar, power\ncables from outside of electrical room to AMF room, internal\nelectrical maintenance work at common coridoor, toilets,\nreplacement of faulty 2x2 celing light of seminar and\nmultipurpose room\n1599.51\n \nWork Item\nDocuments\nS.No\nDocument Type\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nBOQ\nBOQ_971511.xls\nPrice Bid\n223.00\n \n \n \n \nTender Inviting Authority\nName\nExecutive Engineer\nAddress\n12, Cavalry Lane, Engineering Department, University of Delhi, Delhi-110007\n \n9/4/26, 10:17 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SGIBjHhjm6t7…\n2/2\n"
+    }
+  ]
+}

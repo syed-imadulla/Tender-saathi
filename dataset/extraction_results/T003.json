@@ -1,0 +1,53 @@
+{
+  "tender_id": "T003",
+  "original_filename": "eProcurement System Government of India4.pdf",
+  "file_path": "/home/syed-imadulla/Desktop/sih26108-feasibility/tenders/raw/eProcurement System Government of India4.pdf",
+  "file_size": 193547,
+  "page_count": 2,
+  "ocr_required": false,
+  "extraction_method": "pymupdf_native_text",
+  "parsed_metadata": {
+    "tender_id": "2026_IITK_924671_1",
+    "tender_ref_number": "54/EE/Elect/2026-27",
+    "organisation_chain": "Indian Institute of Technology Kanpur||Institute Works Department - IITK||IWD Electrical Division - IITK",
+    "title": "Replacement / repair of distribution boards and defective lights at various locations in main sports stadium and elesewhere in IIT Kanpur",
+    "work_description": "Replacement / repair of distribution boards and defective lights at various locations in main sports stadium and elsewhere in IIT Kanpur",
+    "product_category": "Electrical Works Sub category Electrical works",
+    "sub_category": "",
+    "tender_category": "Works",
+    "contract_type": "Percentage Tender Category Works No. of Covers 2 General Technical Evaluation Allowed No ItemWise Technical Evaluation Allowed No Payment Mode Offline Is Multi Currency Allowed For BOQ No Is Multi Currency Allowed For Fee No Allow Two Stage Bidding No",
+    "tender_value": "9,97,161",
+    "location": "IIT Kanpur Pincode 208016 Pre Bid Meeting Place NA Pre Bid Meeting Address NA Pre Bid Meeting Date NA Bid Opening Place IWD IIT Kanpur Should Allow NDA Tender No Allow Preferential Bidder No Tenderer Class As per Tender Document",
+    "source_url": "https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SmdRbKjL2rtk…"
+  },
+  "pages": [
+    {
+      "tender_id": "T003",
+      "page": 1,
+      "sections_detected": [
+        "Basic Details",
+        "Payment Instruments",
+        "Cover Details",
+        "Tender Fee Details",
+        "EMD Fee Details",
+        "Work /Item(s)",
+        "Critical Dates",
+        "Tender Documents",
+        "NIT Document"
+      ],
+      "primary_section": "Basic Details",
+      "char_count": 2637,
+      "text": "eProcurement System Government of India\nTender Details\nDate : 04-Sep-2026 10:17 AM\n Print\nBasic Details\nOrganisation Chain\nIndian Institute of Technology Kanpur||Institute Works Department - IITK||IWD Electrical Division - IITK\nTender Reference Number\n54/EE/Elect/2026-27\nTender ID\n2026_IITK_924671_1\nWithdrawal Allowed\nYes\nTender Type\nOpen Tender\nForm of contract\nPercentage\nTender Category\nWorks\nNo. of Covers\n2\nGeneral Technical\nEvaluation Allowed\nNo\nItemWise Technical Evaluation\nAllowed\nNo\nPayment Mode\nOffline\nIs Multi Currency Allowed For BOQ\nNo\nIs Multi Currency Allowed\nFor Fee\nNo\nAllow Two Stage Bidding\nNo\n \nPayment Instruments\nOffline S.No\nInstrument Type\n1\nDemand Draft\n2\nFDR\n3\nBankers Cheque\n4\nBank Guarantee\nCover Details, No. Of Covers - 2\nCover No\nCover\nDocument Type\nDescription\n1\nFee/PreQual/Technical\n.pdf\nNIT\n.pdf\nContractdocument\n2\nFinance\n.xls\nFinancial bid\n \nTender Fee Details, [Total Fee in ₹ * - 0.00]\nTender Fee in ₹\n0.00\nFee Payable To\nNil\nFee Payable At\nNil\nTender Fee Exemption\nAllowed\nNo\nEMD Fee Details\nEMD Amount in ₹\n19,943\nEMD Exemption\nAllowed\nNo\nEMD Fee Type\nfixed\nEMD Percentage\nNA\nEMD Payable To\nThe\nDirector\nEMD Payable At\nIIT\nKanpur\n \n \nWork /Item(s)\nTitle\nReplacement / repair of distribution boards and defective lights at various locations in main sports stadium and elesewhere in\nIIT Kanpur\nWork Description\nReplacement / repair of distribution boards and defective lights at various locations in main sports stadium and elsewhere in IIT\nKanpur\nPre Qualification Details\nAs per tender \nIndependent External\nMonitor/Remarks\nNA \nTender Value in ₹\n9,97,161\nProduct Category\nElectrical Works Sub category\nElectrical works \nContract Type\nTender\nBid Validity(Days)\n90\nPeriod Of Work(Days)\n60 \nLocation\nIIT Kanpur\nPincode\n208016\nPre Bid Meeting Place\nNA \nPre Bid Meeting Address\nNA \nPre Bid Meeting Date\nNA \nBid Opening Place\nIWD IIT Kanpur\nShould Allow NDA Tender\nNo \nAllow Preferential Bidder\nNo\nTenderer Class\nAs per Tender Document\n \nCritical Dates\nPublish Date\n03-Sep-2026 10:30 AM\nBid Opening Date\n15-Sep-2026 03:30 PM\nDocument Download / Sale Start Date\n03-Sep-2026 10:30 AM\nDocument Download / Sale End Date\n14-Sep-2026 03:30 PM\nClarification Start Date\n03-Sep-2026 10:30 AM \nClarification End Date\n09-Sep-2026 03:00 PM \nBid Submission Start Date\n03-Sep-2026 10:30 AM\nBid Submission End Date\n14-Sep-2026 03:30 PM\n \n \nTender Documents\nNIT Document\nS.No\nDocument Name\nDescription\nDocument Size (in\nKB)\n9/4/26, 10:17 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SmdRbKjL2rtk…\n1/2\n"
+    },
+    {
+      "tender_id": "T003",
+      "page": 2,
+      "sections_detected": [
+        "Tender Inviting Authority"
+      ],
+      "primary_section": "Tender Inviting Authority",
+      "char_count": 482,
+      "text": "1\nTendernotice_1.pdf\nNIT\n87.26\n2\nTendernotice_2.pdf\nContractdocument\n1366.93\n \nWork Item\nDocuments\nS.No\nDocument Type\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nBOQ\nBOQ_971677.xls\nFinancial bid\n316.50\n \n \n \n \nTender Inviting Authority\nName\nExecutive Engineer\nAddress\nIWD, IIT Kanpur\n \n9/4/26, 10:17 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SmdRbKjL2rtk…\n2/2\n"
+    }
+  ]
+}

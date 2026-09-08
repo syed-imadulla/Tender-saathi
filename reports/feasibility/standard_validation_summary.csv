@@ -1,0 +1,10 @@
+metric,count,percentage
+Total Requirements Validated,20,100.0%
+CORRECT Recommendations,11,55.0%
+PARTIALLY_CORRECT Recommendations,8,40.0%
+INCORRECT Recommendations,0,0.0%
+INSUFFICIENT_INFORMATION Cases,1,5.0%
+Standards Survived Validation (Correct + Partially Correct),19,95.0%
+Standards Changed / Augmented with Co-Applicable Standards,8,40.0%
+Standards Requiring Human/Expert Review,3,15.0%
+Mandatory Quality Control Order (QCO) Standards,5,25.0%

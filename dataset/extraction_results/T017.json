@@ -1,0 +1,53 @@
+{
+  "tender_id": "T017",
+  "original_filename": "eProcurement System Government of India18.pdf",
+  "file_path": "/home/syed-imadulla/Desktop/sih26108-feasibility/tenders/raw/eProcurement System Government of India18.pdf",
+  "file_size": 195541,
+  "page_count": 2,
+  "ocr_required": false,
+  "extraction_method": "pymupdf_native_text",
+  "parsed_metadata": {
+    "tender_id": "2026_PDIL_924890_1",
+    "tender_ref_number": "PNPM/PC298/E/603",
+    "organisation_chain": "Projects and Development India Limited, Fert||Corporate Office,Noida,PDIL,Fert",
+    "title": "COMPLETE DESIGN ENGINEERING PROCUREMENT FABRICATION CONSTRUCTION ERECTION TESTING COMMISSIONING OF RAW WATER PIPELINE FROM INTAKE WELL TO RAW WATER RESERVOIR FOR COAL TO AMMONIUM NITRATE 2000TPD PLANT OF BCGCL AT LAKHANPUR JHARSUGUDA",
+    "work_description": "COMPLETE DESIGN ENGINEERING PROCUREMENT FABRICATION CONSTRUCTION ERECTION TESTING COMMISSIONING OF RAW WATER PIPELINE FROM INTAKE WELL TO RAW WATER RESERVOIR FOR COAL TO AMMONIUM NITRATE 2000TPD PLANT OF BCGCL AT LAKHANPUR JHARSUGUDA",
+    "product_category": "Pipe Laying Works",
+    "sub_category": "NA",
+    "tender_category": "Works",
+    "contract_type": "Works Tender Category Works No. of Covers 2 General Technical Evaluation Allowed No ItemWise Technical Evaluation Allowed No Payment Mode Offline Is Multi Currency Allowed For BOQ No Is Multi Currency Allowed For Fee No Allow Two Stage Bidding No",
+    "tender_value": "NA",
+    "location": "LAKHANPUR Pincode 768211 Pre Bid Meeting Place NA Pre Bid Meeting Address NA Pre Bid Meeting Date NA Bid Opening Place PDIL, Noida Should Allow NDA Tender No Allow Preferential Bidder No Tenderer Class As per Tender Document",
+    "source_url": "https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SWKum%2Fzy…"
+  },
+  "pages": [
+    {
+      "tender_id": "T017",
+      "page": 1,
+      "sections_detected": [
+        "Basic Details",
+        "Payment Instruments",
+        "Cover Details",
+        "Tender Fee Details",
+        "EMD Fee Details",
+        "Work /Item(s)",
+        "Critical Dates"
+      ],
+      "primary_section": "Basic Details",
+      "char_count": 2710,
+      "text": "eProcurement System Government of India\nTender Details\nDate : 04-Sep-2026 10:26 AM\n Print\nBasic Details\nOrganisation Chain\nProjects and Development India Limited, Fert||Corporate Office,Noida,PDIL,Fert\nTender Reference Number\nPNPM/PC298/E/603\nTender ID\n2026_PDIL_924890_1\nWithdrawal Allowed\nYes\nTender Type\nOpen Tender\nForm of contract\nWorks\nTender Category\nWorks\nNo. of Covers\n2\nGeneral Technical\nEvaluation Allowed\nNo\nItemWise Technical Evaluation\nAllowed\nNo\nPayment Mode\nOffline\nIs Multi Currency Allowed For BOQ\nNo\nIs Multi Currency Allowed\nFor Fee\nNo\nAllow Two Stage Bidding\nNo\n \nPayment Instruments\nOffline S.No\nInstrument Type\n1\nDemand Draft\n2\nNEFT\n3\nBankers Cheque\n4\nBank Guarantee\nCover Details, No. Of Covers - 2\nCover No\nCover\nDocument Type\nDescription\n1\nFee/PreQual/Technical\n.pdf\nTender\nDocument\n2\nFinance\n.xls\nPrice BID\n \nTender Fee Details, [Total Fee in ₹ * - 0.00]\nTender Fee in ₹\n0.00\nFee Payable To\nNil\nFee Payable At\nNil\nTender Fee Exemption\nAllowed\nNo\nEMD Fee Details\nEMD Amount in ₹\n30,00,000\nEMD Exemption\nAllowed\nNo\nEMD Fee Type\nfixed\nEMD Percentage\nNA\nEMD Payable To\nBHARAT\nCOAL\nGASIFICATION\nAND\nCHEMICAL\nLIMITED\nEMD Payable At\nLAKHANPUR\n \n \nWork /Item(s)\nTitle\nCOMPLETE DESIGN ENGINEERING PROCUREMENT FABRICATION CONSTRUCTION ERECTION TESTING\nCOMMISSIONING OF RAW WATER PIPELINE FROM INTAKE WELL TO RAW WATER RESERVOIR FOR COAL TO\nAMMONIUM NITRATE 2000TPD PLANT OF BCGCL AT LAKHANPUR JHARSUGUDA\nWork Description\nCOMPLETE DESIGN ENGINEERING PROCUREMENT FABRICATION CONSTRUCTION ERECTION TESTING\nCOMMISSIONING OF RAW WATER PIPELINE FROM INTAKE WELL TO RAW WATER RESERVOIR FOR COAL TO\nAMMONIUM NITRATE 2000TPD PLANT OF BCGCL AT LAKHANPUR JHARSUGUDA\nPre Qualification Details\nAs Per Tender \nIndependent External\nMonitor/Remarks\nNA \nTender Value in ₹\nNA\nProduct Category\nPipe Laying Works\nSub category\nNA \nContract Type\nTender\nBid Validity(Days)\n120\nPeriod Of Work(Days)\n480 \nLocation\nLAKHANPUR\nPincode\n768211\nPre Bid Meeting Place\nNA \nPre Bid Meeting Address\nNA \nPre Bid Meeting Date\nNA \nBid Opening Place\nPDIL, Noida\nShould Allow NDA Tender\nNo \nAllow Preferential Bidder\nNo\nTenderer Class\nAs per Tender Document\n \nCritical Dates\nPublish Date\n04-Sep-2026 09:00 AM\nBid Opening Date\n18-Sep-2026 03:00 PM\nDocument Download / Sale Start Date\n04-Sep-2026 09:00 AM\nDocument Download / Sale End Date\n17-Sep-2026 03:00 PM\nClarification Start Date\n04-Sep-2026 09:00 AM \nClarification End Date\n17-Sep-2026 03:00 PM \nBid Submission Start Date\n04-Sep-2026 09:00 AM\nBid Submission End Date\n17-Sep-2026 03:00 PM\n \n9/4/26, 10:26 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SWKum%2Fzy…\n1/2\n"
+    },
+    {
+      "tender_id": "T017",
+      "page": 2,
+      "sections_detected": [
+        "Tender Documents",
+        "NIT Document",
+        "Tender Inviting Authority"
+      ],
+      "primary_section": "Tender Documents",
+      "char_count": 658,
+      "text": " \nTender Documents\nNIT Document\nS.No\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTendernotice_1.pdf\nLIB\n631.54\n \nWork Item\nDocuments\nS.No\nDocument Type\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTender Documents\nTECH.pdf\nPART-2 TECHNICAL\n15302.88\n2\nTender Documents\nCOM.pdf\nPART-1 COMMERCIAL\n9308.85\n3\nBOQ\nBOQ_971924.xls\nPRICE BID\n258.00\n \n \n \n \nTender Inviting Authority\nName\nProject Manager\nAddress\nPDIL BHAWAN A-14, Sector-1, Noida-201301, Uttar Pradesh\n \n9/4/26, 10:26 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SWKum%2Fzy…\n2/2\n"
+    }
+  ]
+}
