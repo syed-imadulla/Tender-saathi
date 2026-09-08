@@ -1,0 +1,523 @@
+[
+  {
+    "standard_id": "IS-778-1984",
+    "standard_number": "IS 778",
+    "year": 1984,
+    "full_title": "Specification for Copper Alloy Gate, Globe and Check Valves for Waterworks Purposes",
+    "status": "Active",
+    "reaffirmed_year": 2020,
+    "amendments_count": null,
+    "technical_committee": "CED 3",
+    "ics": null,
+    "udc": "621.646.28 + 621.646.5 [069.35] : 628.146.2",
+    "scope": "1.1 This standard covers requirements of copper alloy gate, globe and check valves of nominal sizes 8 to 100 mm suitable for working temperatures up to 45 deg C and non-shock working pressure Up to 1.6 MPa, for waterworks purposes.",
+    "notes": null,
+    "references": [
+      {
+        "standard_number": "IS 2",
+        "year": 1960,
+        "title": "Rules for rounding off numerical values"
+      },
+      {
+        "standard_number": "IS 210",
+        "year": 1978,
+        "title": "Specification for grey iron castings"
+      },
+      {
+        "standard_number": "IS 318",
+        "year": 1981,
+        "title": "Specification for leaded tin bronze, ingots and castings"
+      },
+      {
+        "standard_number": "IS 319",
+        "year": 1974,
+        "title": "Specification for free-cutting brass bars, rods and sections"
+      },
+      {
+        "standard_number": "IS 320",
+        "year": 1980,
+        "title": "Specification for high tensile brass rods and sections"
+      },
+      {
+        "standard_number": "IS 534",
+        "year": 1975,
+        "title": "Dimensions for pipe threads where pressure tight joints are required on the threads"
+      },
+      {
+        "standard_number": "IS 554",
+        "year": 1975,
+        "title": "Dimensions for pipe threads where pressure tight joints are required on threads"
+      },
+      {
+        "standard_number": "IS 1264",
+        "year": 1981,
+        "title": "Specification for brass ingots for gravity die castings and brass gravity die castings (including naval brass)"
+      },
+      {
+        "standard_number": "IS 1367",
+        "year": 1967,
+        "title": "Specification for technical supply conditions for threaded fasteners"
+      },
+      {
+        "standard_number": "IS 2712",
+        "year": 1971,
+        "title": "Specification for compressed asbestos fibre jointing"
+      },
+      {
+        "standard_number": "IS 3488",
+        "year": 1980,
+        "title": "Specification for brass bars, rods and sections suitable for forging"
+      },
+      {
+        "standard_number": "IS 4218 (Part 3)",
+        "year": 1967,
+        "title": "ISO metric screw threads: Part 3 Basic dimensions for design profiles"
+      },
+      {
+        "standard_number": "IS 4218 (Part 4)",
+        "year": 1967,
+        "title": "ISO metric screw threads: Part 4 Tolerancing system"
+      },
+      {
+        "standard_number": "IS 4398",
+        "year": 1972,
+        "title": "Specification for carbon-chromium steel for the manufacture of balls, rollers and bearing races"
+      },
+      {
+        "standard_number": "IS 4687",
+        "year": 1980,
+        "title": "Specification for gland packing asbestos"
+      },
+      {
+        "standard_number": "IS 4694",
+        "year": 1968,
+        "title": "Specification for basic dimensions for square threads"
+      },
+      {
+        "standard_number": "IS 5192",
+        "year": 1975,
+        "title": "Specification for vulcanized natural rubber based compounds"
+      },
+      {
+        "standard_number": "IS 5414",
+        "year": 1969,
+        "title": "Specification for gland packing, jute and hemp"
+      },
+      {
+        "standard_number": "IS 6912",
+        "year": 1973,
+        "title": "Specification for copper alloy and forgings"
+      },
+      {
+        "standard_number": "IS 7008 (Part 3)",
+        "year": 1973,
+        "title": "ISO metric trapezoidal screw threads: Part 3 Basic dimensions for design profiles"
+      },
+      {
+        "standard_number": "IS 7008 (Part 4)",
+        "year": 1973,
+        "title": "ISO metric trapezoidal screw threads: Part 4 Tolerancing system"
+      },
+      {
+        "standard_number": "IS 7608",
+        "year": 1975,
+        "title": "Specification for phosphor bronze wires (for general engineering Purposes)"
+      }
+    ],
+    "explicit_relationships": [],
+    "source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+778&id=0",
+    "retrieved_at": "2026-09-04T13:00:00Z",
+    "original_standard_identifier": "IS 778 : 1984",
+    "verification_status": "VERIFIED",
+    "evidence": "Screenshot of BSB Edge BIS interface showing CED 3, reaffirmed 2020, UDC 621.646.28, scope 8-100 mm up to 1.6 MPa, and 22 normative references."
+  },
+  {
+    "standard_id": "IS-14846-2000",
+    "standard_number": "IS 14846",
+    "year": 2000,
+    "full_title": "Sluice Valve for Water Works Purposes (50 to 1200 mm Size) - Specification",
+    "status": "Active",
+    "reaffirmed_year": 2020,
+    "amendments_count": null,
+    "technical_committee": "CED 3",
+    "ics": "23.060.30",
+    "udc": null,
+    "scope": "This standard covers requirements for non-rising stem typesluice valves from 50 to 1200 mm sizes used for water supply up to 45 deg C and having double flanged ends forconnections.",
+    "notes": null,
+    "references": [
+      {
+        "standard_number": "IS 28",
+        "year": 1982,
+        "title": "Phosphor bronze ingots and castings"
+      },
+      {
+        "standard_number": "IS 210",
+        "year": 1993,
+        "title": "Grey iron castings"
+      },
+      {
+        "standard_number": "IS 318",
+        "year": 1981,
+        "title": "Leaded tin bronze ingots and castings"
+      },
+      {
+        "standard_number": "IS 320",
+        "year": 1980,
+        "title": "High tensile brass rods and sections (other thanforging stock)"
+      },
+      {
+        "standard_number": "IS 341",
+        "year": 1973,
+        "title": "Black japan, Type A, B and C"
+      },
+      {
+        "standard_number": "IS 638",
+        "year": 1979,
+        "title": "Sheet rubber jointing and rubber insertionjointing"
+      },
+      {
+        "standard_number": "IS 778",
+        "year": 1984,
+        "title": "Copper alloy gate, globe and check valves forwater works purposes"
+      },
+      {
+        "standard_number": "IS 1030",
+        "year": 1989,
+        "title": "Carbon steel castings for general engineeringpurposes"
+      },
+      {
+        "standard_number": "IS 1363 (Part 1)",
+        "year": 1992,
+        "title": "Hexagon head bolts, screws and nuts of productgrade C:Part 1 Hexagon head bolts"
+      },
+      {
+        "standard_number": "IS 1363 (Part 3)",
+        "year": 1992,
+        "title": "Hexagon head bolts, screws and nuts ofproduct grade C:Part 3 Hexagon nuts (size range M5 to M64)"
+      },
+      {
+        "standard_number": "IS 1538",
+        "year": 1993,
+        "title": "Cast iron fittings for pressure pipes for water,gas and sewage"
+      },
+      {
+        "standard_number": "IS 1570 (Part 3)",
+        "year": 1979,
+        "title": "Schedules for wrought steels:Part 3 Carbon and carbon manganese free cuttingsteels"
+      },
+      {
+        "standard_number": "IS 1865",
+        "year": 1991,
+        "title": "Iron castings with spheroidal or nodulargraphite"
+      },
+      {
+        "standard_number": "IS 2062",
+        "year": 1992,
+        "title": "Steel for general structural purposes"
+      },
+      {
+        "standard_number": "IS 2535",
+        "year": 1978,
+        "title": "Basic rack and modules of cylindrical gears for general engineering and heavyengineering"
+      },
+      {
+        "standard_number": "IS 2712",
+        "year": 1979,
+        "title": "Compressed asbestos fibre jointing"
+      },
+      {
+        "standard_number": "IS 2932",
+        "year": 1993,
+        "title": "Enamel, synthetic, exterior (a) under coating (b) finishing"
+      },
+      {
+        "standard_number": "IS 3444",
+        "year": 1987,
+        "title": "Corrosion resistant alloy steel and nickel basecastings for general application"
+      },
+      {
+        "standard_number": "IS 3658",
+        "year": 1981,
+        "title": "Code of practice for liquid penetrant flawdetection"
+      },
+      {
+        "standard_number": "IS 4218 (Part 5)",
+        "year": 1979,
+        "title": "ISO Metric screw threads:Part 5 Tolerances"
+      },
+      {
+        "standard_number": "IS 4687",
+        "year": 1995,
+        "title": "Gasket and packing - Gland packing asbestos"
+      },
+      {
+        "standard_number": "IS 4854 (Part 1)",
+        "year": 1969,
+        "title": "Glossary of terms for valves and theirparts:Part 1 Screw down stop check and gate valve andtheir parts"
+      },
+      {
+        "standard_number": "IS 4905",
+        "year": 1968,
+        "title": "Methods for random sampling"
+      },
+      {
+        "standard_number": "IS 5414",
+        "year": 1995,
+        "title": "Gasket and packing Gland packing, jute andhemp"
+      },
+      {
+        "standard_number": "IS 5660",
+        "year": 1970,
+        "title": "Ready mixed paint, brushing, aluminum - RedOxide primer"
+      },
+      {
+        "standard_number": "IS 6603",
+        "year": 2000,
+        "title": "Stainless steels bars and flats"
+      }
+    ],
+    "explicit_relationships": [
+      {
+        "target_standard": "IS 778 : 1984",
+        "relationship_type": "REFERENCES",
+        "evidence": "Listed under Clause 2 References in IS 14846:2000."
+      }
+    ],
+    "source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+14846+%3a+2000&id=0",
+    "retrieved_at": "2026-09-04T13:00:00Z",
+    "original_standard_identifier": "IS 14846 : 2000",
+    "verification_status": "VERIFIED",
+    "evidence": "Screenshot of BSB Edge BIS interface showing CED 3, reaffirmed 2020, ICS 23.060.30, scope 50-1200 mm, and Clause 2 References citing IS 778:1984."
+  },
+  {
+    "standard_id": "IS-ISO-10434-2020",
+    "standard_number": "IS/ISO 10434",
+    "year": 2020,
+    "full_title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+    "status": "Active",
+    "reaffirmed_year": null,
+    "amendments_count": 0,
+    "technical_committee": "MED 17",
+    "ics": "75.180.20",
+    "udc": null,
+    "scope": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends.",
+    "notes": "New Standard from Last Update.",
+    "references": [],
+    "explicit_relationships": [
+      {
+        "target_standard": "IS 10611 : 1983",
+        "relationship_type": "SUPERSEDES",
+        "evidence": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'"
+      },
+      {
+        "target_standard": "ISO 10434 : 2020",
+        "relationship_type": "IDENTICAL_ADOPTION",
+        "evidence": "National Foreword states: 'This Indian Standard which is identical with ISO 10434 : 2020... was adopted by the Bureau of Indian Standards.'"
+      }
+    ],
+    "source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS%2fISO+10434&id=45967",
+    "retrieved_at": "2026-09-04T13:00:00Z",
+    "original_standard_identifier": "IS/ISO 10434 : 2020",
+    "verification_status": "VERIFIED",
+    "evidence": "Screenshot of BSB Edge BIS interface showing MED 17, Status Active, Amendments 0, ICS 75.180.20, National Foreword explicitly stating supersession of IS 10611:1983."
+  },
+  {
+    "standard_id": "IS-2491-2024",
+    "standard_number": "IS 2491",
+    "year": 2024,
+    "full_title": "Food Hygiene - General Principles - Code of Practice",
+    "status": "Active",
+    "reaffirmed_year": null,
+    "amendments_count": 0,
+    "technical_committee": "FAD 15",
+    "ics": null,
+    "udc": null,
+    "scope": "Fourth revision covering general principles of food hygiene for premises design, food preparation, cleaning, and personal hygiene in catering and food establishments.",
+    "notes": null,
+    "references": [],
+    "explicit_relationships": [],
+    "source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+2491&id=0",
+    "retrieved_at": "2026-09-04T13:00:00Z",
+    "original_standard_identifier": "IS 2491 : 2024",
+    "verification_status": "VERIFIED",
+    "evidence": "Screenshot of BSB Edge BIS interface showing FAD 15, Status Active, Amendments 0, 2024 edition; referenced directly by IS 15000:2024 as fourth revision."
+  },
+  {
+    "standard_id": "IS-15000-2024",
+    "standard_number": "IS 15000",
+    "year": 2024,
+    "full_title": "Hazard Analysis and Critical Control Point (HACCP) - Requirements for Any Organization in the Food Chain",
+    "status": "Active",
+    "reaffirmed_year": null,
+    "amendments_count": 0,
+    "technical_committee": "FAD 15",
+    "ics": "67.020",
+    "udc": null,
+    "scope": "This standard sets out the principles of the hazard analysis and critical control point (HACCP) system and provides general guidelines for the application of these principles, while recognizing that the details of application may vary depending on the circumstances of the food operation.",
+    "notes": null,
+    "references": [
+      {
+        "standard_number": "IS 2491",
+        "year": 2024,
+        "title": "Food hygiene - General principles - Code of practice (fourth revision)"
+      }
+    ],
+    "explicit_relationships": [
+      {
+        "target_standard": "IS 2491 : 2024",
+        "relationship_type": "REFERENCES",
+        "evidence": "Clause 2 Reference in IS 15000:2024 explicitly cites IS 2491 : 2024 Food hygiene - General principles - Code of practice (fourth revision)."
+      }
+    ],
+    "source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+15000&id=51300",
+    "retrieved_at": "2026-09-04T13:00:00Z",
+    "original_standard_identifier": "IS 15000 : 2024",
+    "verification_status": "VERIFIED",
+    "evidence": "Screenshot of BSB Edge BIS interface showing FAD 15, ICS 67.020, Status Active, Amendments 0, Section 2 References explicitly citing IS 2491:2024."
+  },
+  {
+    "standard_id": "IS-458-2021",
+    "standard_number": "IS 458",
+    "year": 2021,
+    "full_title": "Precast Concrete Pipes (with and without Reinforcement) - Specification",
+    "status": "Active",
+    "reaffirmed_year": null,
+    "amendments_count": 1,
+    "technical_committee": "CED 53",
+    "ics": "23.040.50; 91.100.30",
+    "udc": null,
+    "scope": "This standard covers the requirements for reinforced and unreinforced precast cement concrete pipes, of both pressure and non-pressure varieties used for water mains, sewers, culverts and irrigation. The requirements for collars are also covered by this standard. Notes: covers spinning process and vibration casting process; prestressed concrete pipes and pipes with non-circular section are not covered.",
+    "notes": "Revised Standard from Last Update.",
+    "references": [],
+    "explicit_relationships": [],
+    "source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+458+%3a+2021&id=0",
+    "retrieved_at": "2026-09-04T13:00:00Z",
+    "original_standard_identifier": "IS 458 : 2021",
+    "verification_status": "VERIFIED",
+    "evidence": "Screenshot of BSB Edge BIS interface showing CED 53, Status Active, Amendments 1, ICS 23.040.50; 91.100.30, Scope covering water mains, sewers, culverts, irrigation."
+  },
+  {
+    "standard_id": "IS-783-1985",
+    "standard_number": "IS 783",
+    "year": 1985,
+    "full_title": "Code of Practice for Laying of Concrete Pipes",
+    "status": "Active",
+    "reaffirmed_year": 2022,
+    "amendments_count": 3,
+    "technical_committee": "CED 53",
+    "ics": null,
+    "udc": "621.643.25 [628.247.13 : 006.76]",
+    "scope": "1.1 This standard covers recommended design practice for the laying of precast concrete pipes. It includes methods for calculating loads on pipes according to installation conditions and gives the corresponding load factors. 1.1.1 This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes, but may also be used for the calculation of loads on other rigid pipes.",
+    "notes": "Popup text notes: This Standard has Two Amendments (search table indicates 3).",
+    "references": [
+      {
+        "standard_number": "IS 2",
+        "year": 1960,
+        "title": "Rules for rounding off numerical values"
+      },
+      {
+        "standard_number": "IS 458",
+        "year": 1971,
+        "title": "Specification for concrete pipes (with and without reinforcement)"
+      },
+      {
+        "standard_number": "IS 782",
+        "year": 1978,
+        "title": "Specification for caulking lead"
+      },
+      {
+        "standard_number": "IS 784",
+        "year": 1978,
+        "title": "Specification for prestressed concrete pipes (including fittings)"
+      },
+      {
+        "standard_number": "IS 3597",
+        "year": 1985,
+        "title": "Methods of test for concrete pipes"
+      }
+    ],
+    "explicit_relationships": [
+      {
+        "target_standard": "IS 458",
+        "relationship_type": "CODE_OF_PRACTICE_FOR",
+        "evidence": "Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes'"
+      },
+      {
+        "target_standard": "IS 784",
+        "relationship_type": "CODE_OF_PRACTICE_FOR",
+        "evidence": "Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes'"
+      }
+    ],
+    "source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+783+%3a+1985&id=0",
+    "retrieved_at": "2026-09-04T13:00:00Z",
+    "original_standard_identifier": "IS 783 : 1985",
+    "verification_status": "VERIFIED",
+    "evidence": "Screenshot of BSB Edge BIS interface showing CED 53, Status Active, Reaffirmed 2022, UDC 621.643.25, Clause 1.1.1 explicitly mandating use in association with IS 458."
+  },
+  {
+    "standard_id": "IS-14333-2022",
+    "standard_number": "IS 14333",
+    "year": 2022,
+    "full_title": "Polyethylene Pipes for Sewerage and Industrial Chemicals and Effluent - Specification",
+    "status": "Active",
+    "reaffirmed_year": null,
+    "amendments_count": 0,
+    "technical_committee": "CED 50",
+    "ics": "23.040.45; 91.140.60; 93.025",
+    "udc": null,
+    "scope": "1.1 This standard specifies the characteristics and requirements for polyethylene pipes intended to be used for following applications above or below ground: a) Sewerage (pressure or non-pressure); b) Industrial effluent; and c) Industrial chemicals. 1.2 This standard covers polyethylene pipes from 63 mm to 2 500 mm nominal diameter of pressure rating from 0.20 MPa (2.0 bar) to 2.0 MPa (20.0 bar)...",
+    "notes": "Revised Standard from Last Update. Notes cite IS 4984 for reference design coefficient 1.25.",
+    "references": [
+      {
+        "standard_number": "IS 2530",
+        "year": 1963,
+        "title": "Methods of test for polyethylene molding materials and polyethylene compounds"
+      },
+      {
+        "standard_number": "IS 4905",
+        "year": 2015,
+        "title": "Random sampling and randomization procedures (first revision) / ISO 24153 : 2009"
+      },
+      {
+        "standard_number": "IS 4984",
+        "year": 2016,
+        "title": "Polyethylene pipes for water supply - Specification (fifth revision)"
+      },
+      {
+        "standard_number": "IS 7328",
+        "year": 2020,
+        "title": "Specification for polyethylene material for moulding and extrusion (second revision)"
+      },
+      {
+        "standard_number": "IS 12235 (Part 18)",
+        "year": 2004,
+        "title": "Thermoplastic pipes and fittings - Method of test: Part 18 Determination of ring stiffness (first revision)"
+      },
+      {
+        "standard_number": "IS 16268",
+        "year": 2017,
+        "title": "Plastic pipes and fittings - Combined chemical-resistance classification table / ISO TR 10358 : 1993"
+      }
+    ],
+    "explicit_relationships": [
+      {
+        "target_standard": "IS 4984 : 2016",
+        "relationship_type": "REFERENCES",
+        "evidence": "Clause 2 References and Notes 1 & 2 cite IS 4984 as baseline for allowable operating pressure."
+      }
+    ],
+    "source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+14333&id=45935",
+    "retrieved_at": "2026-09-04T13:00:00Z",
+    "original_standard_identifier": "IS 14333 : 2022",
+    "verification_status": "VERIFIED",
+    "evidence": "Screenshot of BSB Edge BIS interface showing CED 50, Status Active, Amendments 0, ICS 23.040.45; 91.140.60; 93.025, Scope 63-2500 mm, 0.2-2.0 bar, references IS 4984."
+  }
+]

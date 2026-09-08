@@ -1,0 +1,54 @@
+{
+  "tender_id": "T006",
+  "original_filename": "eProcurement System Government of India7.pdf",
+  "file_path": "/home/syed-imadulla/Desktop/sih26108-feasibility/tenders/raw/eProcurement System Government of India7.pdf",
+  "file_size": 197704,
+  "page_count": 2,
+  "ocr_required": false,
+  "extraction_method": "pymupdf_native_text",
+  "parsed_metadata": {
+    "tender_id": "2026_RGCA_909993_2",
+    "tender_ref_number": "24575",
+    "organisation_chain": "Rajiv Gandhi Centre for Aquaculture (RGCA)",
+    "title": "UPVC Partition Wall Work for Conversion of Seafood Authentication Laboratory into Conventional Microbiology Laboratory at Central Laboratory (CAGPFTL), RGCA-HQ, Karaimedu, Sirkali",
+    "work_description": "UPVC Partition Wall Work for Conversion of Seafood Authentication Laboratory into Conventional Microbiology Laboratory at Central Laboratory (CAGPFTL), RGCA-HQ, Karaimedu, Sirkali",
+    "product_category": "Civil Works - Others",
+    "sub_category": "UPVC Wall Partition Works",
+    "tender_category": "Works",
+    "contract_type": "Works Tender Category Works No. of Covers 2 General Technical Evaluation Allowed No ItemWise Technical Evaluation Allowed No Payment Mode Offline Is Multi Currency Allowed For BOQ No Is Multi Currency Allowed For Fee No Allow Two Stage Bidding No",
+    "tender_value": "12,64,889",
+    "location": "Poompuhar Rd., Karaimedu Vill., Sirkali Pincode 609109 Pre Bid Meeting Place NA Pre Bid Meeting Address NA Pre Bid Meeting Date NA Bid Opening Place Online Should Allow NDA Tender No Allow Preferential Bidder No Tenderer Class As per Tender Document",
+    "source_url": "https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=S6gSii51RvDc…"
+  },
+  "pages": [
+    {
+      "tender_id": "T006",
+      "page": 1,
+      "sections_detected": [
+        "Basic Details",
+        "Payment Instruments",
+        "Cover Details",
+        "Tender Fee Details",
+        "EMD Fee Details",
+        "Work /Item(s)",
+        "Critical Dates",
+        "Tender Documents"
+      ],
+      "primary_section": "Basic Details",
+      "char_count": 2738,
+      "text": "eProcurement System Government of India\nTender Details\nDate : 04-Sep-2026 10:18 AM\n Print\nBasic Details\nOrganisation Chain\nRajiv Gandhi Centre for Aquaculture (RGCA)\nTender Reference Number\n24575\nTender ID\n2026_RGCA_909993_2\nWithdrawal Allowed\nYes\nTender Type\nOpen Tender\nForm of contract\nWorks\nTender Category\nWorks\nNo. of Covers\n2\nGeneral Technical\nEvaluation Allowed\nNo\nItemWise Technical Evaluation\nAllowed\nNo\nPayment Mode\nOffline\nIs Multi Currency Allowed For BOQ\nNo\nIs Multi Currency Allowed\nFor Fee\nNo\nAllow Two Stage Bidding\nNo\n \nPayment Instruments\nOffline S.No\nInstrument Type\n1\nDemand Draft\n2\nR-T-G-S\n3\nNEFT\nCover Details, No. Of Covers - 2\nCover No\nCover\nDocument Type\nDescription\n1\nFee/PreQual/Technical\n.pdf\nTender Forms\n.pdf\nSupporting\nDocuments\n.pdf\nEMD\n.pdf\nOthers (if any)\n2\nFinance\n.xls\nBill of Quantity\n \nTender Fee Details, [Total Fee in ₹ * - 1,180]\nTender Fee in ₹\n1,180\nFee Payable To\nRajiv\nGandhi\nCentre for\nAquaculture\n(RGCA)\nFee Payable At\nRajiv\nGandhi\nCentre for\nAquaculture\n(RGCA)\nTender Fee Exemption\nAllowed\nYes\nEMD Fee Details\nEMD Amount in ₹\n50,596\nEMD Exemption\nAllowed\nYes\nEMD Fee Type\nfixed\nEMD Percentage\nNA\nEMD Payable To\nRajiv\nGandhi\nCentre for\nAquaculture\n(RGCA)\nEMD Payable At\nRajiv\nGandhi\nCentre for\nAquaculture\n(RGCA)\n \n \nWork /Item(s)\nTitle\nUPVC Partition Wall Work for Conversion of Seafood Authentication Laboratory into Conventional Microbiology Laboratory\nat Central Laboratory (CAGPFTL), RGCA-HQ, Karaimedu, Sirkali\nWork Description\nUPVC Partition Wall Work for Conversion of Seafood Authentication Laboratory into Conventional Microbiology Laboratory\nat Central Laboratory (CAGPFTL), RGCA-HQ, Karaimedu, Sirkali\nPre Qualification Details\nPlease refer Tender documents. \nIndependent External\nMonitor/Remarks\nNA \nTender Value in ₹\n12,64,889\nProduct Category\nCivil Works -\nOthers\nSub category\nUPVC Wall\nPartition Works \nContract Type\nTender\nBid Validity(Days)\n120\nPeriod Of Work(Days)\nNA \nLocation\nPoompuhar Rd.,\nKaraimedu Vill., Sirkali\nPincode\n609109\nPre Bid Meeting Place\nNA \nPre Bid Meeting Address\nNA \nPre Bid Meeting Date\nNA \nBid Opening Place\nOnline\nShould Allow NDA Tender\nNo \nAllow Preferential Bidder\nNo\nTenderer Class\nAs per Tender Document\n \nCritical Dates\nPublish Date\n04-Sep-2026 09:00 AM\nBid Opening Date\n28-Sep-2026 11:00 AM\nDocument Download / Sale Start Date\n04-Sep-2026 09:00 AM\nDocument Download / Sale End Date\n25-Sep-2026 06:00 PM\nClarification Start Date\nNA \nClarification End Date\nNA \nBid Submission Start Date\n04-Sep-2026 09:00 AM\nBid Submission End Date\n25-Sep-2026 06:00 PM\n9/4/26, 10:18 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=S6gSii51RvDc…\n1/2\n"
+    },
+    {
+      "tender_id": "T006",
+      "page": 2,
+      "sections_detected": [
+        "Tender Documents",
+        "NIT Document",
+        "Tender Inviting Authority"
+      ],
+      "primary_section": "Tender Documents",
+      "char_count": 762,
+      "text": " \n \nTender Documents\nNIT Document\nS.No\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTendernotice_1.pdf\nNotice Inviting Tender\n123.15\n \nWork Item\nDocuments\nS.No\nDocument Type\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nBOQ\nBOQ_971901.xls\nBill of Quantity\n328.50\n2\nTender Documents\nTenderDocument.pdf\nTender Documents\n1512.47\n3\nAdditional Documents\nTenderForms.pdf\nTender Forms\n429.79\n \n \n \n \nTender Inviting Authority\nName\nDirector RGCA\nAddress\n3/197, Poompuhar Road, Karaimedu Village, Sattanathapuram Post, Sirkali Tk., Mayiladuthurai Dist., Tamil Nadu - 609109\n \n9/4/26, 10:18 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=S6gSii51RvDc…\n2/2\n"
+    }
+  ]
+}

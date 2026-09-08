@@ -1,0 +1,54 @@
+{
+  "tender_id": "T009",
+  "original_filename": "eProcurement System Government of India10.pdf",
+  "file_path": "/home/syed-imadulla/Desktop/sih26108-feasibility/tenders/raw/eProcurement System Government of India10.pdf",
+  "file_size": 195142,
+  "page_count": 2,
+  "ocr_required": false,
+  "extraction_method": "pymupdf_native_text",
+  "parsed_metadata": {
+    "tender_id": "2026_FCI_924191_1",
+    "tender_ref_number": "02/Engg/EM/Aru/2026-27",
+    "organisation_chain": "Food Corporation of India||Regional Office,Arunanchal Pradesh,FCI,MFPD||Engineering Dn,Arunanchal Pradesh,FCI",
+    "title": "Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD Kharsang and FSD Pasighat under DO Pasighat for FY 26-27",
+    "work_description": "Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD Kharsang and FSD Pasighat under DO Pasighat for FY 26-27",
+    "product_category": "Electrical Works",
+    "sub_category": "NA",
+    "tender_category": "Works",
+    "contract_type": "Percentage Tender Category Works No. of Covers 2 General Technical Evaluation Allowed No ItemWise Technical Evaluation Allowed No Payment Mode Offline Is Multi Currency Allowed For BOQ No Is Multi Currency Allowed For Fee No Allow Two Stage Bidding No",
+    "tender_value": "5,37,580",
+    "location": "FCI FSD Kharsang and Pasighat Pincode 791102 Pre Bid Meeting Place FCI RO Itanagar Pre Bid Meeting Address FCI RO Itanagar Pre Bid Meeting Date 07-Sep-2026 11:00 AM Bid Opening Place FCI RO Itanagar Should Allow NDA Tender No Allow Preferential Bidder No Allow FTA Bidder No Tenderer Class As per Tender Document",
+    "source_url": "https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SMZmb2KWo…"
+  },
+  "pages": [
+    {
+      "tender_id": "T009",
+      "page": 1,
+      "sections_detected": [
+        "Basic Details",
+        "Payment Instruments",
+        "Cover Details",
+        "Tender Fee Details",
+        "EMD Fee Details",
+        "Work /Item(s)",
+        "Critical Dates",
+        "Tender Documents",
+        "NIT Document"
+      ],
+      "primary_section": "Basic Details",
+      "char_count": 2664,
+      "text": "eProcurement System Government of India\nTender Details\nDate : 04-Sep-2026 10:20 AM\n Print\nBasic Details\nOrganisation Chain\nFood Corporation of India||Regional Office,Arunanchal Pradesh,FCI,MFPD||Engineering Dn,Arunanchal Pradesh,FCI\nTender Reference Number\n02/Engg/EM/Aru/2026-27\nTender ID\n2026_FCI_924191_1\nWithdrawal Allowed\nYes\nTender Type\nOpen Tender\nForm of contract\nPercentage\nTender Category\nWorks\nNo. of Covers\n2\nGeneral Technical\nEvaluation Allowed\nNo\nItemWise Technical Evaluation\nAllowed\nNo\nPayment Mode\nOffline\nIs Multi Currency Allowed For BOQ\nNo\nIs Multi Currency Allowed\nFor Fee\nNo\nAllow Two Stage Bidding\nNo\n \nPayment Instruments\nOffline S.No\nInstrument Type\n1\nR-T-G-S\n2\nECS\n3\nNEFT\nCover Details, No. Of Covers - 2\nCover No\nCover\nDocument Type\nDescription\n1\nFee/PreQual/Technical\n.pdf\nTECHNICAL\nBID\n2\nFinance\n.xls\nPRICE BID\n \nTender Fee Details, [Total Fee in ₹ * - 0.00]\nTender Fee in ₹\n0.00\nFee Payable To\nNil\nFee Payable At\nNil\nTender Fee Exemption\nAllowed\nNo\nEMD Fee Details\nEMD Amount in ₹\n10,800\nEMD Exemption\nAllowed\nNo\nEMD Fee Type\nfixed\nEMD Percentage\nNA\nEMD Payable To\nFCI RO\nItanagar\nEMD Payable At\nFCI RO\nItanagar\n \n \nWork /Item(s)\nTitle\nAnnual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD\nKharsang and FSD Pasighat under DO Pasighat for FY 26-27\nWork Description\nAnnual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD\nKharsang and FSD Pasighat under DO Pasighat for FY 26-27\nPre Qualification Details\nAs per tender documents \nIndependent External\nMonitor/Remarks\nNA \nTender Value in ₹\n5,37,580\nProduct Category\nElectrical Works\nSub category\nNA \nContract Type\nTender\nBid Validity(Days)\n90\nPeriod Of Work(Days)\n365 \nLocation\nFCI FSD Kharsang and\nPasighat\nPincode\n791102\nPre Bid Meeting Place\nFCI RO\nItanagar \nPre Bid Meeting Address\nFCI RO Itanagar \nPre Bid Meeting Date\n07-Sep-2026 11:00\nAM \nBid Opening Place\nFCI RO\nItanagar\nShould Allow NDA Tender\nNo \nAllow Preferential Bidder\nNo\nAllow FTA Bidder\nNo\nTenderer Class\nAs per Tender Document\n \nCritical Dates\nPublish Date\n31-Aug-2026 03:30 PM\nBid Opening Date\n14-Sep-2026 03:30 PM\nDocument Download / Sale Start Date\n31-Aug-2026 03:30 PM\nDocument Download / Sale End Date\n12-Sep-2026 03:00 PM\nClarification Start Date\nNA \nClarification End Date\nNA \nBid Submission Start Date\n31-Aug-2026 03:30 PM\nBid Submission End Date\n12-Sep-2026 03:00 PM\n \n \nTender Documents\nNIT Document\n9/4/26, 10:20 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SMZmb2KWo…\n1/2\n"
+    },
+    {
+      "tender_id": "T009",
+      "page": 2,
+      "sections_detected": [
+        "Tender Documents",
+        "Tender Inviting Authority"
+      ],
+      "primary_section": "Tender Documents",
+      "char_count": 595,
+      "text": "S.No\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTendernotice_1.pdf\nNIT\n334.59\n \nWork Item\nDocuments\nS.No\nDocument Type\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTender Documents\nDNIT_AMC_Kharsang_Pasighat.pdf\nMTF\n1326.90\n2\nAdditional Documents\nEMDproforma.pdf\nEMD_Vendor Proforma\n220.77\n3\nBOQ\nBOQ_971179.xls\nBOQ\n344.50\n \n \n \n \nTender Inviting Authority\nName\nAGM (EM)\nAddress\nFCI RO Itanagar\n \n9/4/26, 10:20 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SMZmb2KWo…\n2/2\n"
+    }
+  ]
+}

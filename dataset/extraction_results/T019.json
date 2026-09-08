@@ -1,0 +1,54 @@
+{
+  "tender_id": "T019",
+  "original_filename": "eProcurement System Government of India20.pdf",
+  "file_path": "/home/syed-imadulla/Desktop/sih26108-feasibility/tenders/raw/eProcurement System Government of India20.pdf",
+  "file_size": 198904,
+  "page_count": 2,
+  "ocr_required": false,
+  "extraction_method": "pymupdf_native_text",
+  "parsed_metadata": {
+    "tender_id": "2026_MoRTH_924639_1",
+    "tender_ref_number": "RW/NH12014/88/2024TN/SouthIIAE",
+    "organisation_chain": "Ministry of Road Transport and Highways||P7 Delh - MoRTH||RO Chennai - MoRTH",
+    "title": "Consultancy services for Authority s Engineer for Supervision of Construction of 4 Lane Access Controlled Bypass to Tiruvannamalai Town starting from Design km 135.796 of NH-234 (km 75.150 of new NH-38) and ending at Design km 158.506 of NH-234(km 88",
+    "work_description": "Consultancy services for Authority s Engineer for Supervision of Construction of 4 Lane Access Controlled Bypass to Tiruvannamalai Town starting from Design km 135.796 of NH-234 (km 75.150 of new NH-38) and ending at Design km 158.506 of NH-234(km 88",
+    "product_category": "Consultancy Sub category NA",
+    "sub_category": "",
+    "tender_category": "Services",
+    "contract_type": "Item Rate Tender Category Services No. of Covers 2 General Technical Evaluation Allowed No ItemWise Technical Evaluation Allowed No Payment Mode Offline Is Multi Currency Allowed For BOQ No Is Multi Currency Allowed For Fee No Allow Two Stage Bidding No",
+    "tender_value": "0.00",
+    "location": "RO MoRTH Chennai Pincode 600090 Pre Bid Meeting Place Regional Office, MoRTH, Chennai Pre Bid Meeting Address Regional Office, MoRTH, C-1-A, Rajaji,Bhavan, Besant Nagar, Chennai-600090 Pre Bid Meeting Date 18-Sep- 2026 03:00 PM Bid Opening Place Regional Office, MoRTH, Chennai Should Allow NDA Tender No Allow Preferential Bidder No Allow FTA Bidder No Tenderer Class As per Tender Document",
+    "source_url": "https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=S%2FFIrNic43I…"
+  },
+  "pages": [
+    {
+      "tender_id": "T019",
+      "page": 1,
+      "sections_detected": [
+        "Basic Details",
+        "Payment Instruments",
+        "Cover Details",
+        "Tender Fee Details",
+        "EMD Fee Details",
+        "Work /Item(s)",
+        "Tender Documents"
+      ],
+      "primary_section": "Basic Details",
+      "char_count": 2335,
+      "text": "eProcurement System Government of India\nTender Details\nDate : 04-Sep-2026 10:26 AM\n Print\nBasic Details\nOrganisation Chain\nMinistry of Road Transport and Highways||P7 Delh - MoRTH||RO Chennai - MoRTH\nTender Reference Number\nRW/NH12014/88/2024TN/SouthIIAE\nTender ID\n2026_MoRTH_924639_1\nWithdrawal Allowed\nYes\nTender Type\nOpen Tender\nForm of contract\nItem Rate\nTender Category\nServices\nNo. of Covers\n2\nGeneral Technical\nEvaluation Allowed\nNo\nItemWise Technical Evaluation\nAllowed\nNo\nPayment Mode\nOffline\nIs Multi Currency Allowed For BOQ\nNo\nIs Multi Currency Allowed\nFor Fee\nNo\nAllow Two Stage Bidding\nNo\n \nPayment Instruments\nOffline S.No\nInstrument Type\n1\nDemand Draft\n2\nBank Guarantee\n3\nNTRP\nCover Details, No. Of Covers - 2\nCover No\nCover\nDocument Type\nDescription\n1\nFee/PreQual/Technical\n.pdf\nScan Copy of\ncost of\nDocument\n.pdf\nScan Copy of\nPower of\nAttorney.\n.pdf\nTender\nDocument I\n.pdf\nTender\nDocument II\n.pdf\nTender\nDocument III\n.pdf\nTender\nDocument IV\n.pdf\nTender\nDocument V\n2\nFinance\n.xls\nFinancial\nProposal\n.pdf\nFinancial\nProposal\n \nTender Fee Details, [Total Fee in ₹ * - 5,000]\nTender Fee in ₹\n5,000\nFee Payable To\nRPAO(NH),\nBangalore\nFee Payable At\nBangalore\nTender Fee Exemption\nAllowed\nNo\nEMD Fee Details\nEMD Amount in ₹\n10,00,000\nEMD Exemption\nAllowed\nYes\nEMD Fee Type\nfixed\nEMD Percentage\nNA\nEMD Payable To\nRPAO(NH),\nBangalore\nEMD Payable At\nBangalore\n \n \nWork /Item(s)\nTitle\nConsultancy services for Authority s Engineer for Supervision of Construction of 4 Lane Access Controlled Bypass to\nTiruvannamalai Town starting from Design km 135.796 of NH-234 (km 75.150 of new NH-38) and ending at Design km\n158.506 of NH-234(km 88\nWork Description\nConsultancy services for Authority s Engineer for Supervision of Construction of 4 Lane Access Controlled Bypass to\nTiruvannamalai Town starting from Design km 135.796 of NH-234 (km 75.150 of new NH-38) and ending at Design km\n158.506 of NH-234(km 88\nPre Qualification Details\nAs per tender documents. \nIndependent External\nMonitor/Remarks\nNA \nTender Value in ₹\n0.00\nProduct Category\nConsultancy Sub category\nNA \nContract Type\nTender\nBid Validity(Days)\n100\nPeriod Of Work(Days)\n4320 \n9/4/26, 10:26 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=S%2FFIrNic43I…\n1/2\n"
+    },
+    {
+      "tender_id": "T019",
+      "page": 2,
+      "sections_detected": [
+        "Critical Dates",
+        "Tender Documents",
+        "NIT Document",
+        "Tender Inviting Authority"
+      ],
+      "primary_section": "Critical Dates",
+      "char_count": 1417,
+      "text": "Location\nRO MoRTH Chennai\nPincode\n600090\nPre Bid Meeting Place\nRegional\nOffice,\nMoRTH,\nChennai \nPre Bid Meeting Address\nRegional Office, MoRTH, C-1-A,\nRajaji,Bhavan, Besant Nagar,\nChennai-600090  \nPre Bid Meeting Date\n18-Sep-\n2026 03:00\nPM \nBid Opening Place\nRegional\nOffice,\nMoRTH,\nChennai\nShould Allow NDA Tender\nNo \nAllow Preferential Bidder\nNo\nAllow FTA Bidder\nNo\nTenderer Class\nAs per Tender Document\n \nCritical Dates\nPublish Date\n03-Sep-2026 05:00 PM\nBid Opening Date\n06-Oct-2026 03:00 PM\nDocument Download / Sale Start Date\n03-Sep-2026 05:05 PM\nDocument Download / Sale End Date\n05-Oct-2026 03:00 PM\nClarification Start Date\n03-Sep-2026 05:05 PM \nClarification End Date\n18-Sep-2026 03:00 PM \nBid Submission Start Date\n03-Sep-2026 05:10 PM\nBid Submission End Date\n05-Oct-2026 03:00 PM\n \n \nTender Documents\nNIT Document\nS.No\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTendernotice_1.pdf\nNIT\n504.50\n \nWork Item\nDocuments\nS.No\nDocument Type\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTender Documents\nRFP.pdf\nRFP\n4963.64\n2\nBOQ\nBOQ_971662.xls\nBOQ\n545.50\n \n \n \n \nTender Inviting Authority\nName\nRegional Officer,MoRTH, Chennai\nAddress\nRegional Office, MoRTH, C-1-A, Rajaji,Bhavan, Besant Nagar, Chennai-600090\n \n9/4/26, 10:26 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=S%2FFIrNic43I…\n2/2\n"
+    }
+  ]
+}

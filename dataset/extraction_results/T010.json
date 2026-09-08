@@ -1,0 +1,53 @@
+{
+  "tender_id": "T010",
+  "original_filename": "eProcurement System Government of India11.pdf",
+  "file_path": "/home/syed-imadulla/Desktop/sih26108-feasibility/tenders/raw/eProcurement System Government of India11.pdf",
+  "file_size": 205122,
+  "page_count": 2,
+  "ocr_required": false,
+  "extraction_method": "pymupdf_native_text",
+  "parsed_metadata": {
+    "tender_id": "2026_CUJMU_922281_1",
+    "tender_ref_number": "CUJ/W/2025-26/10",
+    "organisation_chain": "Central University of Jammu||Engineering Wing - CUJMU",
+    "title": "Electromechanical Works and Sewerage Pipeline works from Collection Chamber to STP",
+    "work_description": "Electromechanical Works and Sewerage Pipeline works from Collection Chamber to STP 9/4/26, 10:22 AM eProcurement System Government of India https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SCm0Q8l4ILR… 1/2",
+    "product_category": "Civil Works - Others",
+    "sub_category": "Pipes line ans electromechanical works",
+    "tender_category": "Works",
+    "contract_type": "Works Tender Category Works No. of Covers 2 General Technical Evaluation Allowed No ItemWise Technical Evaluation Allowed No Payment Mode Offline Is Multi Currency Allowed For BOQ No Is Multi Currency Allowed For Fee No Allow Two Stage Bidding No",
+    "tender_value": "24,76,808",
+    "location": "central university of jammu Pincode 181143 Pre Bid Meeting Place office of the Executive Engineer Pre Bid Meeting Address central University of Jammu Rahya Suchani Bagla Samba Pre Bid Meeting Date 24-Aug- 2026 03:30 PM Bid Opening Place office of convener CPC Should Allow NDA Tender No Allow Preferential Bidder No Tenderer Class As per Tender Document",
+    "source_url": "https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SCm0Q8l4ILR…"
+  },
+  "pages": [
+    {
+      "tender_id": "T010",
+      "page": 1,
+      "sections_detected": [
+        "Basic Details",
+        "Payment Instruments",
+        "Cover Details",
+        "Tender Fee Details",
+        "EMD Fee Details",
+        "Work /Item(s)"
+      ],
+      "primary_section": "Basic Details",
+      "char_count": 1843,
+      "text": "eProcurement System Government of India\nTender Details\nDate : 04-Sep-2026 10:22 AM\n Print\nBasic Details\nOrganisation Chain\nCentral University of Jammu||Engineering Wing - CUJMU\nTender Reference Number\nCUJ/W/2025-26/10\nTender ID\n2026_CUJMU_922281_1\nWithdrawal Allowed\nYes\nTender Type\nOpen Tender\nForm of contract\nWorks\nTender Category\nWorks\nNo. of Covers\n2\nGeneral Technical\nEvaluation Allowed\nNo\nItemWise Technical Evaluation\nAllowed\nNo\nPayment Mode\nOffline\nIs Multi Currency Allowed For BOQ\nNo\nIs Multi Currency Allowed\nFor Fee\nNo\nAllow Two Stage Bidding\nNo\n \nPayment Instruments\nOffline S.No\nInstrument Type\n1\nDirect Credit\n2\nDemand Draft\n3\nFDR\n4\nNEFT\nCover Details, No. Of Covers - 2\nCover No\nCover\nDocument Type\nDescription\n1\nFee/PreQual/Technical\n.pdf\nEMD along\nwith Signed bid\n.pdf\nContractor Valid\nRegisteration\nCard\n.pdf\nGST no and\nPAN CARD\nGSTR-9\nGST3B\n.pdf\nSuccessful\nWork\nCompletion\nCertificate of\nsimilar nature\nwork by\ncompetent\nauthority\n.pdf\nTurnover\ncertificate from\nChartered\nAccountant\n.pdf\nAffidavit as Per\nAnnexure A\nmentioning\nName of work\n.pdf\nDetails of\nbidder and\nIncome tax\nreturns\n2\nFinance\n.xls\nPrice Bid\n \nTender Fee Details, [Total Fee in ₹ * - 0.00]\nTender Fee in ₹\n0.00\nFee Payable To\nNil\nFee Payable At\nNil\nTender Fee Exemption\nAllowed\nNo\nEMD Fee Details\nEMD Amount in ₹\n50,000\nEMD Exemption\nAllowed\nYes\nEMD Fee Type\nfixed\nEMD Percentage\nNA\nEMD Payable To\nregistrar\ncentral\nuniversity of\njammu\nEMD Payable At\nsamba\n \n \nWork /Item(s)\nTitle\nElectromechanical Works and Sewerage Pipeline works from Collection Chamber to STP\nWork Description\nElectromechanical Works and Sewerage Pipeline works from Collection Chamber to STP\n9/4/26, 10:22 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SCm0Q8l4ILR…\n1/2\n"
+    },
+    {
+      "tender_id": "T010",
+      "page": 2,
+      "sections_detected": [
+        "Critical Dates",
+        "Tender Documents",
+        "NIT Document",
+        "Tender Inviting Authority"
+      ],
+      "primary_section": "Critical Dates",
+      "char_count": 1771,
+      "text": "Pre Qualification Details\nAs per tender \nIndependent External\nMonitor/Remarks\nNA \nTender Value in ₹\n24,76,808\nProduct Category\nCivil\nWorks -\nOthers\nSub category\nPipes line ans\nelectromechanical\nworks \nContract Type\nTender\nBid Validity(Days)\n120\nPeriod Of Work(Days)\n60 \nLocation\ncentral university of jammu\nPincode\n181143\nPre Bid Meeting Place\noffice of the\nExecutive\nEngineer \nPre Bid Meeting Address\ncentral University of Jammu\nRahya Suchani Bagla\nSamba \nPre Bid Meeting Date\n24-Aug-\n2026 03:30\nPM \nBid Opening Place\noffice of convener\nCPC\nShould Allow NDA Tender\nNo \nAllow Preferential Bidder\nNo\nTenderer Class\nAs per Tender Document\n \nCritical Dates\nPublish Date\n18-Aug-2026 03:00 PM\nBid Opening Date\n08-Sep-2026 03:30 PM\nDocument Download / Sale Start Date\n18-Aug-2026 03:05 PM\nDocument Download / Sale End Date\n07-Sep-2026 03:00 PM\nClarification Start Date\n18-Aug-2026 03:05 PM \nClarification End Date\n24-Aug-2026 09:00 AM \nBid Submission Start Date\n18-Aug-2026 03:05 PM\nBid Submission End Date\n07-Sep-2026 03:00 PM\n \n \nTender Documents\nNIT Document\nS.No\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTendernotice_1.pdf\nNIT DOCUMENT\n242.11\n \nWork Item\nDocuments\nS.No\nDocument Type\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nBOQ\nBOQ_969273.xls\nPrice Bid\n273.00\n2\nTender Documents\nTenderEMW1.pdf\nTender Document\n1055.39\n \n \nLatest Corrigendum List\nS.No\nCorrigendum Title\nCorrigendum Type\nView\n1\nBid Auto Extn Corrigendum\nBid Auto Extn Corrigendum\n \n \n \nTender Inviting Authority\nName\nExecutive Engineer\nAddress\ncentral University of Jammu Rahya Suchani Bagla Samba\n \n9/4/26, 10:22 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SCm0Q8l4ILR…\n2/2\n"
+    }
+  ]
+}

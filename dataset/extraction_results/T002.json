@@ -1,0 +1,54 @@
+{
+  "tender_id": "T002",
+  "original_filename": "eProcurement System Government of India3.pdf",
+  "file_path": "/home/syed-imadulla/Desktop/sih26108-feasibility/tenders/raw/eProcurement System Government of India3.pdf",
+  "file_size": 192049,
+  "page_count": 2,
+  "ocr_required": false,
+  "extraction_method": "pymupdf_native_text",
+  "parsed_metadata": {
+    "tender_id": "2026_HWB_924695_1",
+    "tender_ref_number": "HWBFV/21/2026-27/TS-733",
+    "organisation_chain": "Heavy Water Board||Heavy Water Plant Baroda",
+    "title": "Annual Rate Contract for Execution of Mechanical Maintenance Works including Pumps, Valve Replacement, Flange Joint Maintenance, Heat Exchanger Maintenance, NDT and Allied Mechanical Works at Heavy Water Board Facilities, Vadodara.",
+    "work_description": "Annual Rate Contract for Execution of Mechanical Maintenance Works including Pumps, Valve Replacement, Flange Joint Maintenance, Heat Exchanger Maintenance, NDT and Allied Mechanical Works at Heavy Water Board Facilities, Vadodara.",
+    "product_category": "Machineries/ Mechanical Engg Items",
+    "sub_category": "NA",
+    "tender_category": "Works",
+    "contract_type": "Works Tender Category Works No. of Covers 2 General Technical Evaluation Allowed No ItemWise Technical Evaluation Allowed No Payment Mode Offline Is Multi Currency Allowed For BOQ No Is Multi Currency Allowed For Fee No Allow Two Stage Bidding No",
+    "tender_value": "27,40,000",
+    "location": "Heavy Water Board Facilities, Vadodara Pincode 391750 Pre Bid Meeting Place Heavy Water Board Facilities, Vadodara Pre Bid Meeting Address Heavy Water Board Facilities, Vadodara Pre Bid Meeting Date 10-Sep-2026 06:00 PM Bid Opening Place Heavy Water Board Facilities, Vadodara Should Allow NDA Tender No Allow Preferential Bidder No Tenderer Class As per Tender Document",
+    "source_url": "https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SXSWYyBO7rZ…"
+  },
+  "pages": [
+    {
+      "tender_id": "T002",
+      "page": 1,
+      "sections_detected": [
+        "Basic Details",
+        "Payment Instruments",
+        "Cover Details",
+        "Tender Fee Details",
+        "EMD Fee Details",
+        "Work /Item(s)",
+        "Critical Dates",
+        "Tender Documents"
+      ],
+      "primary_section": "Basic Details",
+      "char_count": 2852,
+      "text": "eProcurement System Government of India\nTender Details\nDate : 04-Sep-2026 10:16 AM\n Print\nBasic Details\nOrganisation Chain\nHeavy Water Board||Heavy Water Plant Baroda\nTender Reference Number\nHWBFV/21/2026-27/TS-733\nTender ID\n2026_HWB_924695_1\nWithdrawal Allowed\nYes\nTender Type\nOpen Tender\nForm of contract\nWorks\nTender Category\nWorks\nNo. of Covers\n2\nGeneral Technical\nEvaluation Allowed\nNo\nItemWise Technical Evaluation\nAllowed\nNo\nPayment Mode\nOffline\nIs Multi Currency Allowed For BOQ\nNo\nIs Multi Currency Allowed\nFor Fee\nNo\nAllow Two Stage Bidding\nNo\n \nPayment Instruments\nOffline S.No\nInstrument Type\n1\nDemand Draft\n2\nFDR\n3\nBankers Cheque\nCover Details, No. Of Covers - 2\nCover No\nCover\nDocument Type\nDescription\n1\nFee/PreQual/Technical\n.xls\nTender\nDocuments\n2\nFinance\n.xls\nBOQ\n \nTender Fee Details, [Total Fee in ₹ * - 0.00]\nTender Fee in ₹\n0.00\nFee Payable To\nNil\nFee Payable At\nNil\nTender Fee Exemption\nAllowed\nNo\nEMD Fee Details\nEMD Amount in ₹\n54,800\nEMD Exemption\nAllowed\nNo\nEMD Fee Type\npercentage EMD Percentage\n2.0%\nEMD Payable To\nPay and\nAccound\nOfficer\nEMD Payable At\nHeavy\nWater\nBoard\nFacilities,\nVadodara\n \n \nWork /Item(s)\nTitle\nAnnual Rate Contract for Execution of Mechanical Maintenance Works including Pumps, Valve Replacement, Flange Joint\nMaintenance, Heat Exchanger Maintenance, NDT and Allied Mechanical Works at Heavy Water Board Facilities, Vadodara.\nWork Description\nAnnual Rate Contract for Execution of Mechanical Maintenance Works including Pumps, Valve Replacement, Flange Joint\nMaintenance, Heat Exchanger Maintenance, NDT and Allied Mechanical Works at Heavy Water Board Facilities, Vadodara.\nPre Qualification Details\nPlease refer Tender documents. \nIndependent External\nMonitor/Remarks\nNA \nTender Value in ₹\n27,40,000\nProduct Category\nMachineries/\nMechanical Engg\nItems\nSub category\nNA \nContract Type\nTender\nBid Validity(Days)\n120\nPeriod Of Work(Days)\nNA \nLocation\nHeavy Water Board\nFacilities, Vadodara\nPincode\n391750\nPre Bid Meeting Place\nHeavy Water Board\nFacilities, Vadodara \nPre Bid Meeting Address\nHeavy Water Board\nFacilities, Vadodara \nPre Bid Meeting Date\n10-Sep-2026\n06:00 PM \nBid Opening Place\nHeavy Water Board\nFacilities, Vadodara\nShould Allow NDA Tender\nNo \nAllow Preferential Bidder\nNo\nTenderer Class\nAs per Tender\nDocument\n \nCritical Dates\nPublish Date\n04-Sep-2026 09:00 AM\nBid Opening Date\n12-Sep-2026 06:00 PM\nDocument Download / Sale Start Date\n04-Sep-2026 09:00 AM\nDocument Download / Sale End Date\n11-Sep-2026 06:00 PM\nClarification Start Date\n04-Sep-2026 09:00 AM \nClarification End Date\n11-Sep-2026 06:00 PM \nBid Submission Start Date\n04-Sep-2026 09:00 AM\nBid Submission End Date\n11-Sep-2026 06:00 PM\n \n9/4/26, 10:16 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SXSWYyBO7rZ…\n1/2\n"
+    },
+    {
+      "tender_id": "T002",
+      "page": 2,
+      "sections_detected": [
+        "Tender Documents",
+        "NIT Document",
+        "Tender Inviting Authority"
+      ],
+      "primary_section": "Tender Documents",
+      "char_count": 575,
+      "text": " \nTender Documents\nNIT Document\nS.No\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTendernotice_1.pdf\nNIT\n344.22\n \nWork Item\nDocuments\nS.No\nDocument Type\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nBOQ\nBOQ_971702.xls\nBOQ\n286.50\n2\nTender Documents\nTenderDoc.rar\nTender Documents\n4348.15\n \n \n \n \nTender Inviting Authority\nName\nOSD\nAddress\nHeavy Water Board Facilities, Vadodara\n \n9/4/26, 10:16 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SXSWYyBO7rZ…\n2/2\n"
+    }
+  ]
+}

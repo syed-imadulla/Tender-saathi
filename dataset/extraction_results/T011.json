@@ -1,0 +1,53 @@
+{
+  "tender_id": "T011",
+  "original_filename": "eProcurement System Government of India12.pdf",
+  "file_path": "/home/syed-imadulla/Desktop/sih26108-feasibility/tenders/raw/eProcurement System Government of India12.pdf",
+  "file_size": 197748,
+  "page_count": 2,
+  "ocr_required": false,
+  "extraction_method": "pymupdf_native_text",
+  "parsed_metadata": {
+    "tender_id": "2026_BSF_924381_1",
+    "tender_ref_number": "18/EE(E )/ Ftr OD/ BGLR/BSF/2026-27",
+    "organisation_chain": "DG,BSF,MHA||ANO FTR(Bangalore),BSF,MHA",
+    "title": "Providing and laying underground cable for STP for main supply of electricity under CEDCO BSF Bangalore",
+    "work_description": "Providing and laying underground cable for STP for main supply of electricity under CEDCO BSF Bangalore",
+    "product_category": "Electrical Works",
+    "sub_category": "NA",
+    "tender_category": "Works",
+    "contract_type": "Percentage Tender Category Works No. of Covers 2 General Technical Evaluation Allowed No ItemWise Technical Evaluation Allowed No Payment Mode Offline Is Multi Currency Allowed For BOQ No Is Multi Currency Allowed For Fee No Allow Two Stage Bidding No",
+    "tender_value": "7,69,319",
+    "location": "CEDCO BSF at Bangalore Pincode 560063 Pre Bid Meeting Place NA Pre Bid Meeting Address NA Pre Bid Meeting Date NA Bid Opening Place CEDCO BSF Bangalore Should Allow NDA Tender No Allow Preferential Bidder No Tenderer Class As per Tender Document",
+    "source_url": "https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SaQ7LLXD08B…"
+  },
+  "pages": [
+    {
+      "tender_id": "T011",
+      "page": 1,
+      "sections_detected": [
+        "Basic Details",
+        "Payment Instruments",
+        "Cover Details",
+        "Tender Fee Details",
+        "EMD Fee Details"
+      ],
+      "primary_section": "Basic Details",
+      "char_count": 1725,
+      "text": "eProcurement System Government of India\nTender Details\nDate : 04-Sep-2026 10:23 AM\n Print\nBasic Details\nOrganisation Chain\nDG,BSF,MHA||ANO FTR(Bangalore),BSF,MHA\nTender Reference Number\n18/EE(E )/ Ftr OD/ BGLR/BSF/2026-27\nTender ID\n2026_BSF_924381_1\nWithdrawal Allowed\nYes\nTender Type\nOpen Tender\nForm of contract\nPercentage\nTender Category\nWorks\nNo. of Covers\n2\nGeneral Technical\nEvaluation Allowed\nNo\nItemWise Technical Evaluation\nAllowed\nNo\nPayment Mode\nOffline\nIs Multi Currency Allowed For BOQ\nNo\nIs Multi Currency Allowed\nFor Fee\nNo\nAllow Two Stage Bidding\nNo\n \nPayment Instruments\nOffline S.No\nInstrument Type\n1\nDemand Draft\n2\nFDR\n3\nBankers Cheque\n4\nBank Guarantee\nCover Details, No. Of Covers - 2\nCover No\nCover\nDocument Type\nDescription\n1\nFee/PreQual/Technical\n.pdf\nScanned copy\nof EMD\n.pdf\nValid\nEnlistment\norder of the\ncontractor\n.pdf\nValid electrical\ncontractor\nlicense\n.pdf\nCopy of PAN\nCard\n.pdf\nGST\nRegistration\nCertificate\n.pdf\nCopy of EMD\nreceipt for\ndeposition of\noriginal EMD\n.pdf\nContact details\nof the contractor\nin his letterhead\n.pdf\nScanned copy\nof EPF and\nESIC\nRegistration\nCertificate\n.pdf\nThe tendered\nshall have to\nfurnish an\naffidavit on Rs.\n100 non judicial\nstamp paper as\nper NIT\n2\nFinance\n.xls\nBOQ\n \nTender Fee Details, [Total Fee in ₹ * - 0.00]\nTender Fee in ₹\n0.00\nFee Payable To\nNil\nFee Payable At\nNil\nTender Fee Exemption\nAllowed\nNo\nEMD Fee Details\nEMD Amount in ₹\n15,386\nEMD Exemption\nAllowed\nNo\nEMD Fee Type\nfixed\nEMD Percentage\nNA\nEMD Payable To\nIG\nCEDCO\nBSF\nBangalore\nEMD Payable At\nBangalore\n \n \n9/4/26, 10:23 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SaQ7LLXD08B…\n1/2\n"
+    },
+    {
+      "tender_id": "T011",
+      "page": 2,
+      "sections_detected": [
+        "Work /Item(s)",
+        "Critical Dates",
+        "Tender Documents",
+        "NIT Document",
+        "Tender Inviting Authority"
+      ],
+      "primary_section": "Work /Item(s)",
+      "char_count": 1623,
+      "text": "Work /Item(s)\nTitle\nProviding and laying underground cable for STP for main supply of electricity under CEDCO BSF Bangalore\nWork Description\nProviding and laying underground cable for STP for main supply of electricity under CEDCO BSF Bangalore\nPre Qualification Details\nPlease refer Tender documents. \nIndependent External\nMonitor/Remarks\nNA \nTender Value in ₹\n7,69,319\nProduct Category\nElectrical\nWorks\nSub category\nNA \nContract Type\nTender\nBid Validity(Days)\n75\nPeriod Of Work(Days)\n60 \nLocation\nCEDCO BSF at\nBangalore\nPincode\n560063\nPre Bid Meeting Place\nNA \nPre Bid Meeting Address\nNA \nPre Bid Meeting Date\nNA \nBid Opening Place\nCEDCO BSF\nBangalore\nShould Allow NDA Tender\nNo \nAllow Preferential Bidder\nNo\nTenderer Class\nAs per Tender\nDocument\n \nCritical Dates\nPublish Date\n01-Sep-2026 03:00 PM\nBid Opening Date\n18-Sep-2026 12:00 PM\nDocument Download / Sale Start Date\n01-Sep-2026 03:00 PM\nDocument Download / Sale End Date\n17-Sep-2026 12:00 PM\nClarification Start Date\nNA \nClarification End Date\nNA \nBid Submission Start Date\n01-Sep-2026 03:00 PM\nBid Submission End Date\n17-Sep-2026 12:00 PM\n \n \nTender Documents\nNIT Document\nS.No\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTendernotice_1.pdf\nNIT\n932.54\n \nWork Item\nDocuments\nS.No\nDocument Type\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nBOQ\nBOQ_971370.xls\nBOQ\n269.50\n \n \n \n \nTender Inviting Authority\nName\nExecutive Engineer (Elect)\nAddress\nCEDCO BSF Bangalore\n \n9/4/26, 10:23 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SaQ7LLXD08B…\n2/2\n"
+    }
+  ]
+}

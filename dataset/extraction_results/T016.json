@@ -1,0 +1,53 @@
+{
+  "tender_id": "T016",
+  "original_filename": "eProcurement System Government of India17.pdf",
+  "file_path": "/home/syed-imadulla/Desktop/sih26108-feasibility/tenders/raw/eProcurement System Government of India17.pdf",
+  "file_size": 199855,
+  "page_count": 2,
+  "ocr_required": false,
+  "extraction_method": "pymupdf_native_text",
+  "parsed_metadata": {
+    "tender_id": "2026_BSF_924676_1",
+    "tender_ref_number": "23/Engg(E )/Tender/SHQ-ABR/25-26",
+    "organisation_chain": "DG,BSF,MHA||Punjab Ftr(Jallundhar),BSF,MHA",
+    "title": "Construction of 01 No Surveillance Cum OP Shelter G1 at BOP Rana of 160 Bn Now 50 Bn BSF under SHQ BSF Abohar Sub Head Electrical",
+    "work_description": "Construction of 01 No Surveillance Cum OP Shelter G1 at BOP Rana of 160 Bn Now 50 Bn BSF under SHQ BSF Abohar Sub Head Electrical 9/4/26, 10:25 AM eProcurement System Government of India https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SCNYNIbmlU… 1/2",
+    "product_category": "Electrical Works Sub category Electrical work",
+    "sub_category": "",
+    "tender_category": "Works",
+    "contract_type": "Percentage Tender Category Works No. of Covers 2 General Technical Evaluation Allowed No ItemWise Technical Evaluation Allowed No Payment Mode Offline Is Multi Currency Allowed For BOQ No Is Multi Currency Allowed For Fee No Allow Two Stage Bidding No",
+    "tender_value": "2,35,514",
+    "location": "BOP Rana of 50 Bn BSF Pincode 152024 Pre Bid Meeting Place NA Pre Bid Meeting Address NA Pre Bid Meeting Date NA Bid Opening Place SHQ BSF Abohar Should Allow NDA Tender No Allow Preferential Bidder No Tenderer Class As per Tender Document",
+    "source_url": "https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SCNYNIbmlU…"
+  },
+  "pages": [
+    {
+      "tender_id": "T016",
+      "page": 1,
+      "sections_detected": [
+        "Basic Details",
+        "Payment Instruments",
+        "Cover Details",
+        "Tender Fee Details",
+        "EMD Fee Details",
+        "Work /Item(s)"
+      ],
+      "primary_section": "Basic Details",
+      "char_count": 2147,
+      "text": "eProcurement System Government of India\nTender Details\nDate : 04-Sep-2026 10:25 AM\n Print\nBasic Details\nOrganisation Chain\nDG,BSF,MHA||Punjab Ftr(Jallundhar),BSF,MHA\nTender Reference Number\n23/Engg(E )/Tender/SHQ-ABR/25-26\nTender ID\n2026_BSF_924676_1\nWithdrawal Allowed\nYes\nTender Type\nOpen Tender\nForm of contract\nPercentage\nTender Category\nWorks\nNo. of Covers\n2\nGeneral Technical\nEvaluation Allowed\nNo\nItemWise Technical Evaluation\nAllowed\nNo\nPayment Mode\nOffline\nIs Multi Currency Allowed For BOQ\nNo\nIs Multi Currency Allowed\nFor Fee\nNo\nAllow Two Stage Bidding\nNo\n \nPayment Instruments\nOffline S.No\nInstrument Type\n1\nDemand Draft\n2\nFDR\n3\nBankers Cheque\n4\nBank Guarantee\nCover Details, No. Of Covers - 2\nCover\nNo\nCover\nDocument Type\nDescription\n1\nFee/PreQual/Technical\n.pdf\nScanned copy of Earnest\nMoney in prescribed form\nin favour of the DIG,\nSHQ BSF Abohar\n.pdf\nScanned copy of valid\nCPWD registration\ncertificate of elect.\nCategory\nBSNL,MES,Railway,State\nPWD ap\n.pdf\nValid Electrical License\n.pdf\nScanned copy of GST\nRegistration\n.pdf\nScanned copy of PAN\ncard\n.pdf\nScanned copy of latest\nITR file\n.pdf\nUndertaking certificate as\nper NIT Page No 05,\nSerial No 07\n.pdf\nCertificate as per NIT\nPage No 05, Serial No 08\n.pdf\nBankrupt Certificate\n.pdf\nSanned copy of NIT will\nbe signed by contractor as\nper NIT page no 05, serial\nno 09\n2\nFinance\n.xls\nBOQ\n \nTender Fee Details, [Total Fee in ₹ * - 0.00]\nTender Fee in ₹\n0.00\nFee Payable To\nNil\nFee Payable At\nNil\nTender Fee Exemption\nAllowed\nNo\nEMD Fee Details\nEMD Amount in ₹\n4,710\nEMD Exemption\nAllowed\nNo\nEMD Fee Type\nfixed\nEMD Percentage\nNA\nEMD Payable To\nDIG SHQ\nBSF\nAbohar\nEMD Payable At\nSHQ BSF\nAbohar\n \n \nWork /Item(s)\nTitle\nConstruction of 01 No Surveillance Cum OP Shelter G1 at BOP Rana of 160 Bn Now 50 Bn BSF under SHQ BSF Abohar Sub\nHead Electrical\nWork Description\nConstruction of 01 No Surveillance Cum OP Shelter G1 at BOP Rana of 160 Bn Now 50 Bn BSF under SHQ BSF Abohar Sub\nHead Electrical\n9/4/26, 10:25 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SCNYNIbmlU…\n1/2\n"
+    },
+    {
+      "tender_id": "T016",
+      "page": 2,
+      "sections_detected": [
+        "Critical Dates",
+        "Tender Documents",
+        "NIT Document",
+        "Tender Inviting Authority"
+      ],
+      "primary_section": "Critical Dates",
+      "char_count": 1396,
+      "text": "Pre Qualification Details\nAs per Tender documents \nIndependent External\nMonitor/Remarks\nNA \nTender Value in ₹\n2,35,514\nProduct Category\nElectrical Works Sub category\nElectrical work \nContract Type\nTender\nBid Validity(Days)\n75\nPeriod Of Work(Days)\n60 \nLocation\nBOP Rana of 50 Bn BSF Pincode\n152024\nPre Bid Meeting Place\nNA \nPre Bid Meeting Address\nNA \nPre Bid Meeting Date\nNA \nBid Opening Place\nSHQ BSF Abohar\nShould Allow NDA Tender\nNo \nAllow Preferential Bidder\nNo\nTenderer Class\nAs per Tender Document\n \nCritical Dates\nPublish Date\n04-Sep-2026 09:00 AM\nBid Opening Date\n15-Sep-2026 12:00 PM\nDocument Download / Sale Start Date\n04-Sep-2026 10:00 AM\nDocument Download / Sale End Date\n14-Sep-2026 11:00 AM\nClarification Start Date\nNA \nClarification End Date\nNA \nBid Submission Start Date\n04-Sep-2026 10:00 AM\nBid Submission End Date\n14-Sep-2026 11:00 AM\n \n \nTender Documents\nNIT Document\nS.No\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nTendernotice_1.pdf\nNIT Document\n532.97\n \nWork Item\nDocuments\nS.No\nDocument Type\nDocument Name\nDescription\nDocument Size (in\nKB)\n1\nBOQ\nBOQ_971682.xls\nboq\n427.00\n \n \n \n \nTender Inviting Authority\nName\nAssistant Commandant Elect SHQ BSF Abohar\nAddress\nSHQ BSF Abohar\n \n9/4/26, 10:25 AM\neProcurement System Government of India\nhttps://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SCNYNIbmlU…\n2/2\n"
+    }
+  ]
+}
