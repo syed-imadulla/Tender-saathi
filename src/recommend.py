@@ -16,11 +16,16 @@ Tender PDF / Text
 from dataclasses import dataclass, field, asdict
 from typing import List, Optional, Dict, Any
 import re
+
 from src.standards import StandardsDatabase
-from src.search import StandardsSearchEngine, SearchResult
+from src.search import SearchResult
+from src.retrieval import HybridRetrievalEngine
 from src.validate import validate_standard_status, StandardValidationResult
 from src.evidence import EvidenceVerifier
 from src.extract import Requirement, extract_from_text, extract_from_pdf
+from src.decompose import CompoundRequirementDecomposer, RequirementComponent
+from src.completeness import DomainCompletenessAnalyzer, SpecificationCompletenessReport
+from src.critic import EvidenceAwareCritic, CandidateCritique, DecisionOutcome
 
 
 # ---------------------------------------------------------------------------
@@ -62,6 +67,14 @@ class RequirementRecommendationResult:
     reason: str
     recommendations: List[StandardRecommendation] = field(default_factory=list)
     alternatives: List[str] = field(default_factory=list)
+    decomposed_components: List[Dict[str, Any]] = field(default_factory=list)
+    # Milestone 3 Critic & Decision Layer fields:
+    critic_result: Optional[Dict[str, Any]] = None
+    why_this: List[str] = field(default_factory=list)
+    why_not: List[str] = field(default_factory=list)
+    risk_level: str = "LOW"
+    risk_reasons: List[str] = field(default_factory=list)
+    specification_completeness: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -97,18 +110,31 @@ AMBIGUITY_PATTERNS = [
 # ---------------------------------------------------------------------------
 
 class StandardsRecommender:
-    """End-to-end Indian Standards Recommendation Engine."""
+    """End-to-end Indian Standards Recommendation Engine with compound decomposition."""
 
-    def __init__(self, db: Optional[StandardsDatabase] = None):
+    def __init__(self, db: Optional[StandardsDatabase] = None, retrieval_mode: str = "hybrid"):
         self.db = db or StandardsDatabase()
-        self.search_engine = StandardsSearchEngine(self.db)
+        self.retrieval_mode = retrieval_mode
+        self.search_engine = HybridRetrievalEngine(self.db, default_mode=retrieval_mode)
         self.verifier = EvidenceVerifier(self.db)
+        self.decomposer = CompoundRequirementDecomposer()
+        self.completeness_analyzer = DomainCompletenessAnalyzer()
+        self.critic = EvidenceAwareCritic(self.db)
 
     def recommend_for_requirement(self, req: Requirement) -> RequirementRecommendationResult:
         """Processes an individual Requirement through the end-to-end recommendation workflow."""
         text = req.requirement_text
         req_id = req.requirement_id
         cat = req.category
+
+        # Decompose requirement if components not already present
+        if not getattr(req, "components", None):
+            decomp = self.decomposer.decompose(text)
+            req.components = decomp.components
+            req.decomposition_confidence = decomp.decomposition_confidence
+
+        # Analyze specification completeness across engineering domain
+        completeness_report = self.completeness_analyzer.analyze(text, req.components)
 
         # Step 1: Detect explicit standards mentioned and validate status
         explicit_stds = req.explicit_standards or []
@@ -132,16 +158,22 @@ class StandardsRecommender:
                     technical_committee=None
                 ))
 
-        # Step 2: Multi-modal Search over BIS Standards
-        # Primary search using full requirement text
-        search_results = self.search_engine.search(text, top_k=5)
+        # Step 2: Multi-modal Search over BIS Standards with Decomposed Components
+        # Primary search using full requirement text and decomposed components
+        search_results = self.search_engine.search(
+            text, top_k=5, components=req.components, mode=self.retrieval_mode
+        )
 
         # Secondary search if primary yields low results or for multi-item requirements
         if len(search_results) < 2:
-            # Extract key noun chunks
-            sub_queries = self._extract_subqueries(text)
+            # Extract key noun chunks from components or text
+            sub_queries = [c.text for c in req.components if c.component_type in ["material", "product", "equipment", "control", "electrical"]]
+            if not sub_queries:
+                sub_queries = self._extract_subqueries(text)
             for sq in sub_queries:
-                extra_hits = self.search_engine.search(sq, top_k=3)
+                extra_hits = self.search_engine.search(
+                    sq, top_k=3, components=req.components, mode=self.retrieval_mode
+                )
                 for eh in extra_hits:
                     if not any(r.standard_id == eh.standard_id for r in search_results):
                         search_results.append(eh)
@@ -155,7 +187,15 @@ class StandardsRecommender:
                 ambiguity_reason = reason_desc
                 break
 
-        # Step 4: Validate and Ground Candidates
+        # Step 4: Run Critic across Candidate Pool
+        critic_outcome = self.critic.evaluate_candidates(
+            candidates=search_results,
+            requirement_text=text,
+            components=req.components,
+            completeness=completeness_report
+        )
+
+        # Step 5: Validate and Ground Candidates
         recommendations: List[StandardRecommendation] = []
 
         # Add any successors from explicit mentions first
@@ -176,15 +216,17 @@ class StandardsRecommender:
             status_str = val_info.status if val_info.is_known else sr.status
             version_role = "CURRENT_ACTIVE" if val_info.is_active else "REPLACED_OR_SUPERSEDED"
 
-            # Confidence Calibration
-            if sr.relevance_score >= 0.85 and val_info.is_active:
+            # Confidence Calibration with Trust Gate
+            cand_ev = self.critic.extract_candidate_evidence(sr, text, val_info)
+            if cand_ev.evidence_strength in ["WEAK", "NONE"]:
+                conf = "Medium" if sr.relevance_score >= 0.70 and cand_ev.evidence_strength == "WEAK" else "Low"
+            elif sr.relevance_score >= 0.75 and val_info.is_active:
                 conf = "High"
             elif sr.relevance_score >= 0.40 and val_info.is_active:
                 conf = "Medium"
             else:
                 conf = "Low"
 
-            # If the requirement is flagged ambiguous, calibrate confidence down
             if ambiguity_flag:
                 conf = "Low" if conf == "Medium" else "Medium"
 
@@ -203,7 +245,7 @@ class StandardsRecommender:
                 technical_committee=None
             ))
 
-        # Step 5: Format Final Result and Human-Review Gating
+        # Step 6: Format Final Result and Human-Review Gating
         if not recommendations:
             return RequirementRecommendationResult(
                 requirement_id=req_id,
@@ -221,28 +263,72 @@ class StandardsRecommender:
                 human_review_required=True,
                 reason=ambiguity_reason if ambiguity_flag else "No matching standard with sufficient confidence found in local catalogue. Requires BIS portal search.",
                 recommendations=[],
-                alternatives=[]
+                alternatives=[],
+                decomposed_components=[c.to_dict() if hasattr(c, "to_dict") else c for c in getattr(req, "components", [])],
+                critic_result=critic_outcome.primary_critique.to_dict(),
+                why_this=critic_outcome.why_this,
+                why_not=critic_outcome.why_not,
+                risk_level=critic_outcome.risk_level,
+                risk_reasons=critic_outcome.risk_reasons,
+                specification_completeness=completeness_report.to_dict()
             )
 
         top_rec = recommendations[0]
         alternatives = [r.standard_number for r in recommendations[1:4]]
 
-        # Human Review Decision Logic
-        human_review_required = False
-        decision_reason = ""
-
-        if ambiguity_flag:
+        # Human Review and Risk Decision Logic
+        if successor_recommendations:
+            human_review_required = True
+            decision_reason = f"Tender cited superseded standard '{explicit_stds[0]}'. Recommended current active replacement."
+            risk_level = "CRITICAL"
+            risk_reasons = ["Tender explicitly cited a superseded standard requiring replacement verification."]
+            why_this = ["Recommended authoritative active successor standard recorded in BIS database."]
+            why_not = ["Original cited standard is superseded/obsolete."]
+            conf = "High"
+        elif ambiguity_flag:
             human_review_required = True
             decision_reason = ambiguity_reason
+            risk_level = "HIGH"
+            risk_reasons = critic_outcome.risk_reasons or [ambiguity_reason]
+            why_this = critic_outcome.why_this
+            why_not = critic_outcome.why_not
+            conf = "Low" if top_rec.confidence == "Medium" else top_rec.confidence
         elif top_rec.confidence == "Low" or top_rec.relevance_score < 0.35:
             human_review_required = True
             decision_reason = "Low confidence retrieval match (<0.35 score). Technical engineer verification required."
+            risk_level = "HIGH"
+            risk_reasons = critic_outcome.risk_reasons or ["Low confidence retrieval match (<0.35 score)"]
+            why_this = critic_outcome.why_this
+            why_not = critic_outcome.why_not
+            conf = "Low"
         elif top_rec.version_role == "REPLACED_OR_SUPERSEDED":
             human_review_required = True
             decision_reason = f"Candidate standard {top_rec.standard_number} is superseded. Review replacement status."
+            risk_level = "CRITICAL"
+            risk_reasons = [f"Standard {top_rec.standard_number} is superseded"]
+            why_this = critic_outcome.why_this
+            why_not = critic_outcome.why_not
+            conf = "Low"
+        elif critic_outcome.decision in ["REVIEW_REQUIRED", "INSUFFICIENT_EVIDENCE", "REJECT"]:
+            human_review_required = True
+            decision_reason = (
+                critic_outcome.primary_critique.reasons[0]
+                if critic_outcome.primary_critique.reasons else
+                "Review required prior to procurement."
+            )
+            risk_level = critic_outcome.risk_level
+            risk_reasons = critic_outcome.risk_reasons
+            why_this = critic_outcome.why_this
+            why_not = critic_outcome.why_not
+            conf = critic_outcome.confidence
         else:
             human_review_required = False
-            decision_reason = f"Authoritative active standard {top_rec.standard_number} verified against scope with {top_rec.confidence} confidence."
+            conf = critic_outcome.confidence
+            decision_reason = f"Authoritative active standard {top_rec.standard_number} verified against scope with {conf} confidence."
+            risk_level = critic_outcome.risk_level
+            risk_reasons = critic_outcome.risk_reasons
+            why_this = critic_outcome.why_this
+            why_not = critic_outcome.why_not
 
         return RequirementRecommendationResult(
             requirement_id=req_id,
@@ -254,13 +340,20 @@ class StandardsRecommender:
             status=top_rec.status,
             version_role=top_rec.version_role,
             relevance_score=top_rec.relevance_score,
-            confidence=top_rec.confidence,
+            confidence=conf,
             evidence=top_rec.evidence,
             provenance=top_rec.provenance,
             human_review_required=human_review_required,
             reason=decision_reason,
             recommendations=recommendations,
-            alternatives=alternatives
+            alternatives=alternatives,
+            decomposed_components=[c.to_dict() if hasattr(c, "to_dict") else c for c in getattr(req, "components", [])],
+            critic_result=critic_outcome.primary_critique.to_dict(),
+            why_this=why_this,
+            why_not=why_not,
+            risk_level=risk_level,
+            risk_reasons=risk_reasons,
+            specification_completeness=completeness_report.to_dict()
         )
 
     def recommend_for_text(self, text: str, req_id: str = "REQ-001") -> RequirementRecommendationResult:
