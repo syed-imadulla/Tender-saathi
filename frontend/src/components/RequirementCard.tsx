@@ -75,12 +75,14 @@ export default function RequirementCard({
               </svg>
             </span>
             <span className="req-item__std-label">
-              {sectionType === 'update' ? 'Superseded standard' : 'Possible standard'}
+              {sectionType === 'update' ? 'Superseded standard' : 'Indian Standard'}
             </span>
             <span className="req-item__std-num">
-              {sectionType === 'update' && req.superseded_citation
-                ? req.superseded_citation
-                : standardCode || 'None Identified'}
+              {req.candidate_standard === 'INSUFFICIENT_INFORMATION' 
+                ? 'No reliable match found' 
+                : (sectionType === 'update' && req.superseded_citation
+                    ? req.superseded_citation
+                    : standardCode || 'None Identified')}
             </span>
 
             {sectionType === 'update' && (

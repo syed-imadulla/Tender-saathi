@@ -66,18 +66,21 @@ function ScoreBar({
   max = 1,
 }: {
   label: string;
-  value: number | null | undefined;
+  value: number | string | null | undefined;
   max?: number;
 }) {
   if (value === null || value === undefined) return null;
-  const pct = Math.min(100, Math.max(0, Math.round((value / max) * 100)));
+  const isNumber = typeof value === 'number';
+  const pct = isNumber ? Math.min(100, Math.max(0, Math.round((value as number / max) * 100))) : 0;
   return (
     <div className="score-row">
       <span className="score-row__label">{label}</span>
       <div className="score-bar-wrap">
-        <div className="score-bar" style={{ width: `${pct}%` }} />
+        <div className="score-bar" style={{ width: `${pct}%`, opacity: isNumber ? 1 : 0.2 }} />
       </div>
-      <span className="score-row__val">{value.toFixed(3)}</span>
+      <span className="score-row__val">
+        {isNumber ? (value as number).toFixed(3) : value}
+      </span>
     </div>
   );
 }
@@ -124,7 +127,11 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
         aria-label="Evidence and technical details"
       >
         <div className="drawer__head">
-          <h2 className="drawer__title">Why this standard?</h2>
+          <h2 className="drawer__title">
+            {req.candidate_standard === 'INSUFFICIENT_INFORMATION' 
+              ? 'Why no standard was recommended?' 
+              : 'Why this standard?'}
+          </h2>
           <button
             className="drawer__close"
             onClick={onClose}
@@ -297,11 +304,11 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
           {/* COLLAPSED SECTION 2: Technical score details */}
           <CollapseSection title="Technical score details" defaultOpen={false}>
             <div className="score-breakdown-list">
-              <ScoreBar label="BM25" value={req.scores?.bm25} />
-              <ScoreBar label="Semantic" value={req.scores?.semantic} />
+              <ScoreBar label="BM25" value={req.scores?.deterministic === 1.0 ? 'Not used' : req.scores?.bm25} />
+              <ScoreBar label="Semantic" value={req.scores?.deterministic === 1.0 ? 'Not used' : req.scores?.semantic} />
               <ScoreBar label="Deterministic" value={req.scores?.deterministic} />
               {req.scores?.reranker !== null && req.scores?.reranker !== undefined && (
-                <ScoreBar label="Reranker" value={req.scores?.reranker} />
+                <ScoreBar label="Reranker" value={req.scores?.deterministic === 1.0 ? 'Not used' : req.scores?.reranker} />
               )}
               <ScoreBar label="Final" value={req.scores?.final} />
             </div>

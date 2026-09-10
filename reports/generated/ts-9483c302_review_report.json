@@ -2,10 +2,10 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-9483C302",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: cpvc",
+    "source_file": "eProcurement System Government of India20.pdf",
     "date": null,
     "requirements_analyzed": 1
   },
@@ -15,7 +15,7 @@
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-9483C302",
     "requirements_analyzed": 1,
     "recommendations_count": 0,
     "review_required_count": 0,
@@ -32,9 +32,9 @@
     },
     "completeness_distribution": {
       "KNOWN": 0,
-      "POTENTIALLY_MISSING": 1,
+      "POTENTIALLY_MISSING": 0,
       "UNKNOWN": 0,
-      "NOT_APPLICABLE": 0
+      "NOT_APPLICABLE": 1
     },
     "risk_distribution": {
       "LOW": 0,
@@ -51,8 +51,8 @@
     "related_standards_count": 0,
     "review_queue": [
       {
-        "requirement_id": "REQ-001",
-        "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
+        "requirement_id": "TS-9483C302-R001",
+        "requirement_text": "Consultancy services for Authority s Engineer for Supervision of Construction of 4 Lane Access Controlled Bypass to Tiruvannamalai Town starting from Design km 135.796 of NH-234 (km 75.150 of new NH-38) and ending at Design km 158.506 of NH-234(km 88",
         "risk_level": "HIGH",
         "decision": "INSUFFICIENT_EVIDENCE",
         "candidate_standard": "INSUFFICIENT_INFORMATION",
@@ -69,55 +69,10 @@
   },
   "requirements": [
     {
-      "requirement_id": "REQ-001",
-      "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
-      "category": "material",
-      "components": [
-        {
-          "text": "CPVC pipes",
-          "component_type": "material",
-          "domain": "piping",
-          "extracted_attributes": {
-            "category": "pipe_material"
-          }
-        },
-        {
-          "text": "CPVC fittings",
-          "component_type": "equipment",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "domain": "mechanical"
-          }
-        },
-        {
-          "text": "domestic hot water distribution",
-          "component_type": "application",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "is_process": false
-          }
-        },
-        {
-          "text": "domestic cold water distribution",
-          "component_type": "application",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "is_process": false
-          }
-        },
-        {
-          "text": "supply",
-          "component_type": "action",
-          "domain": "general",
-          "extracted_attributes": {}
-        },
-        {
-          "text": "installation",
-          "component_type": "action",
-          "domain": "general",
-          "extracted_attributes": {}
-        }
-      ],
+      "requirement_id": "TS-9483C302-R001",
+      "requirement_text": "Consultancy services for Authority s Engineer for Supervision of Construction of 4 Lane Access Controlled Bypass to Tiruvannamalai Town starting from Design km 135.796 of NH-234 (km 75.150 of new NH-38) and ending at Design km 158.506 of NH-234(km 88",
+      "category": "installation_execution",
+      "components": [],
       "recommended_standard": "INSUFFICIENT_INFORMATION",
       "recommended_title": "No Applicable Standard in Local Database",
       "relevance_score": 0.0,
@@ -132,11 +87,8 @@
         "No applicable Indian Standard found in local catalogue meeting relevance criteria."
       ],
       "why_not": [],
-      "completeness_label": "POTENTIALLY_MISSING",
-      "potentially_missing_parameters": [
-        "Diameter / Nominal Bore (DN/OD)",
-        "Pressure Class / Schedule / SDR"
-      ],
+      "completeness_label": "NOT_APPLICABLE",
+      "potentially_missing_parameters": [],
       "known_parameters": {},
       "related_standards": [],
       "decision": "INSUFFICIENT_EVIDENCE",
@@ -151,8 +103,8 @@
   ],
   "review_queue": [
     {
-      "requirement_id": "REQ-001",
-      "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
+      "requirement_id": "TS-9483C302-R001",
+      "requirement_text": "Consultancy services for Authority s Engineer for Supervision of Construction of 4 Lane Access Controlled Bypass to Tiruvannamalai Town starting from Design km 135.796 of NH-234 (km 75.150 of new NH-38) and ending at Design km 158.506 of NH-234(km 88",
       "risk_level": "HIGH",
       "decision": "INSUFFICIENT_EVIDENCE",
       "candidate_standard": "INSUFFICIENT_INFORMATION",
