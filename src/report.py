@@ -57,6 +57,7 @@ class RequirementReviewSection:
     relevance_score: float = 0.0
     lifecycle_status: str = "Unknown"
     successor_standard: Optional[str] = None
+    superseded_citation: Optional[str] = None
     evidence_strength: str = "NONE"
     provenance: str = "UNKNOWN"
     evidence_text: str = ""
@@ -228,8 +229,13 @@ class TenderReviewReport:
 
             # Recommended Standard & Lifecycle
             md.append(f"- **Recommended Standard:** **{req.recommended_standard}** — *{req.recommended_title}*")
-            status_badge = f"**{req.lifecycle_status}**"
-            if req.successor_standard:
+            status_upper = req.lifecycle_status.upper()
+            status_badge = f"**{status_upper}**"
+            if status_upper == "SUPERSEDED" and req.successor_standard:
+                status_badge += f" (Superseded by `{req.successor_standard}`)"
+            elif req.superseded_citation:
+                status_badge += f" (Active successor replacing cited superseded `{req.superseded_citation}`)"
+            elif req.successor_standard and req.successor_standard != req.recommended_standard:
                 status_badge += f" (Superseded by `{req.successor_standard}`)"
             md.append(f"- **Lifecycle Status:** {status_badge} | **Composite Relevance Score:** `{req.relevance_score:.3f}`")
 
@@ -367,14 +373,55 @@ class ReportGenerator:
             missing_params = spec_comp.get("potentially_missing_parameters", [])
             known_params = spec_comp.get("known_parameters", {})
 
-            # Extract successor standard if superseded
+            # Extract successor standard if candidate is superseded, OR cited standard if candidate is active successor
             succ_std = None
-            for rec in getattr(r, "recommendations", []):
-                if getattr(rec, "superseded_warning", None):
-                    succ_std = rec.standard_number
-                    break
+            superseded_cite = None
+            explicit_stds = getattr(r, "explicit_standards_found", []) or []
 
-            decision = crit_res.get("decision") or ("REVIEW_REQUIRED" if r.human_review_required else "RECOMMEND")
+            if (r.status or "").lower() == "superseded":
+                for rec in getattr(r, "recommendations", []) or []:
+                    warn = getattr(rec, "superseded_warning", "") or ""
+                    match = re.search(r'SUPERSEDED by\s+([A-Za-z0-9/:\s\-]+?)(?:\.|$)', warn, re.IGNORECASE)
+                    if match:
+                        succ_std = match.group(1).strip()
+                        break
+                if not succ_std:
+                    for rel in getattr(r, "related_standards", []) or []:
+                        if rel.get("relationship_type") in ["SUPERSEDED_BY", "SUPERSEDES"]:
+                            succ_std = rel.get("standard_number")
+                            break
+            elif explicit_stds:
+                for rec in getattr(r, "recommendations", []) or []:
+                    warn = getattr(rec, "superseded_warning", "") or ""
+                    if "superseded" in warn.lower():
+                        superseded_cite = explicit_stds[0]
+                        break
+                if not superseded_cite:
+                    for rel in getattr(r, "related_standards", []) or []:
+                        if rel.get("relationship_type") == "SUPERSEDES" and rel.get("lifecycle_status") == "Superseded":
+                            superseded_cite = rel.get("standard_number")
+                            break
+            elif getattr(r, "recommendations", []):
+                for rec in r.recommendations:
+                    warn = getattr(rec, "superseded_warning", "") or ""
+                    if "superseded" in warn.lower():
+                        match = re.search(r"(?:IS\s*(?:/|\s*)?(?:ISO|IEC)?\s*\d+)", warn)
+                        if match:
+                            superseded_cite = match.group(0)
+                            break
+
+            # Standards review decision categorization strictly matching M6 audit logic
+            crit_decision = crit_res.get("decision")
+            if (
+                crit_decision == "INSUFFICIENT_EVIDENCE" or
+                not r.candidate_standard or
+                r.candidate_standard in ["INSUFFICIENT_INFORMATION", "", "UNKNOWN", "NONE"]
+            ):
+                decision = "INSUFFICIENT_EVIDENCE"
+            elif r.human_review_required or crit_decision in ["REVIEW_REQUIRED", "RECOMMEND_WITH_REVIEW", "REJECT"]:
+                decision = "REVIEW_REQUIRED"
+            else:
+                decision = "RECOMMEND"
 
             req_sections.append(RequirementReviewSection(
                 requirement_id=r.requirement_id,
@@ -386,6 +433,7 @@ class ReportGenerator:
                 relevance_score=r.relevance_score or 0.0,
                 lifecycle_status=r.status or "Unknown",
                 successor_standard=succ_std,
+                superseded_citation=superseded_cite,
                 evidence_strength=ev_strength,
                 provenance=prov,
                 evidence_text=ev_text,

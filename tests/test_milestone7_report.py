@@ -105,9 +105,9 @@ class TestMilestone7Report(unittest.TestCase):
             requirement_text="Replacement of valves conforming to IS 10611",
             category="product",
             explicit_standards_found=["IS 10611"],
-            candidate_standard="IS/ISO 10434 : 2020",
+            candidate_standard="IS 10611 : 1983",
             title="Steel Globe Valves",
-            status="Active",
+            status="Superseded",
             confidence="Medium",
             reason="Superseded standard cited in tender.",
             evidence="Curated catalog mapping IS 10611 -> IS/ISO 10434.",
@@ -136,25 +136,25 @@ class TestMilestone7Report(unittest.TestCase):
             },
             related_standards=[
                 {
-                    "standard_number": "IS 10611",
+                    "standard_number": "IS/ISO 10434",
                     "title": "Steel Globe Valves",
-                    "relationship_type": "SUPERSEDES",
+                    "relationship_type": "SUPERSEDED_BY",
                     "direction": "OUTGOING",
-                    "lifecycle_status": "Superseded",
-                    "review_note": "Legacy standard cited; verify replacement"
+                    "lifecycle_status": "Active",
+                    "review_note": "Authoritative active successor standard"
                 }
             ],
             recommendations=[
                 StandardRecommendation(
-                    standard_number="IS/ISO 10434",
+                    standard_number="IS 10611",
                     title="Steel Globe Valves",
-                    status="Active",
-                    version_role="CURRENT_ACTIVE",
+                    status="Superseded",
+                    version_role="REPLACED_OR_SUPERSEDED",
                     relevance_score=0.85,
                     confidence="Medium",
                     evidence="Curated catalog",
                     provenance="CURATED",
-                    superseded_warning="Cites superseded IS 10611"
+                    superseded_warning="Standard IS 10611 is SUPERSEDED by IS/ISO 10434. Update to latest specification."
                 )
             ],
             risk_level="CRITICAL",
@@ -205,14 +205,14 @@ class TestMilestone7Report(unittest.TestCase):
             recommendations_count=1,
             review_required_count=2,
             insufficient_evidence_count=0,
-            active_count=2,
+            active_count=1,
             superseded_count=1,
             withdrawn_count=0,
-            unknown_lifecycle_count=0,
+            unknown_lifecycle_count=1,
             evidence_distribution={"STRONG": 1, "MODERATE": 1, "WEAK": 1, "NONE": 0},
             completeness_distribution={"KNOWN": 1, "POTENTIALLY_MISSING": 1, "UNKNOWN": 1, "NOT_APPLICABLE": 0},
             risk_distribution={"CRITICAL": 1, "HIGH": 1, "MEDIUM": 0, "LOW": 1},
-            lifecycle_distribution={"Active": 2, "Superseded": 1, "Withdrawn": 0, "Unknown": 0},
+            lifecycle_distribution={"Active": 1, "Superseded": 1, "Withdrawn": 0, "Unknown": 1},
             related_standards_count=2,
             publication_readiness="REVIEW_REQUIRED",
             readiness_reasons=[
@@ -295,7 +295,7 @@ class TestMilestone7Report(unittest.TestCase):
         self.assertEqual(es["recommendations_count"], 1)
         self.assertEqual(es["review_required_count"], 2)
         self.assertEqual(es["insufficient_evidence_count"], 0)
-        self.assertEqual(es["active_count"], 2)
+        self.assertEqual(es["active_count"], 1)
         self.assertEqual(es["superseded_count"], 1)
         self.assertEqual(es["related_standards_count"], 2)
 
@@ -333,7 +333,7 @@ class TestMilestone7Report(unittest.TestCase):
     def test_lifecycle_information_preserved(self):
         report = self.generator.generate_report(self.audit_result, self.requirements_list)
         self.assertEqual(report.requirements[0].lifecycle_status, "Active")
-        self.assertEqual(report.requirements[1].lifecycle_status, "Active")
+        self.assertEqual(report.requirements[1].lifecycle_status, "Superseded")
         self.assertEqual(report.requirements[2].lifecycle_status, "Unknown")
 
     # 11. Superseded standards are clearly represented
