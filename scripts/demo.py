@@ -163,6 +163,21 @@ def format_card(res: RequirementRecommendationResult, input_source: str):
     alt_str = ", ".join(res.alternatives) if res.alternatives else "None identified in top-k retrieval"
     print(f"\n{BOLD}[8] ALTERNATIVE STANDARDS{RESET} : {alt_str}")
 
+    # 8b. RELATED STANDARDS TO REVIEW (GRAPH DEPTH 1)
+    rel_stds = getattr(res, "related_standards", [])
+    if rel_stds:
+        print(f"\n{BOLD}[8b] RELATED STANDARDS TO REVIEW (GRAPH DEPTH 1){RESET}:")
+        for r in rel_stds[:3]:
+            dir_str = "→" if r.get("direction") == "OUTGOING" else "←"
+            rel_type = r.get("relationship_type", "RELATED")
+            tgt_std = r.get("standard_number", "")
+            title = r.get("title", "")
+            stat = r.get("lifecycle_status", "Active")
+            ev_str = r.get("evidence_strength", "MODERATE")
+            note = r.get("review_note", "Related standard to review")
+            print(f"    • [{dir_str} {rel_type}] {BOLD}{tgt_std}{RESET} — {title}")
+            print(f"      Status: {stat} | Evidence: {ev_str} | Note: {note}")
+
     # 9. HUMAN VERIFICATION REQUIRED?
     print(f"\n{BOLD}[9] HUMAN VERIFICATION REQUIRED?{RESET}:")
     if res.human_review_required:
