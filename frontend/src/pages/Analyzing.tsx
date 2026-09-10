@@ -1,30 +1,20 @@
-// Analyzing.tsx — State 2: In-place analyzing animation
-// Note: The actual analysis is triggered in Home.tsx before transitioning here.
-// This component is purely presentational — it shows progress while analysis runs.
+// Analyzing.tsx — State 2: In-place analyzing animation matching Reference Image 2
 import { useEffect, useState } from 'react';
 import './Analyzing.css';
 import Header from '../components/Header';
-import type { AnalysisResult } from '../types';
-
-interface AnalyzingProps {
-  onDone: (result: AnalysisResult) => void;
-  onError: (message: string) => void;
-}
 
 const STEPS = [
-  { label: 'Reading document', durationMs: 600 },
-  { label: 'Understanding requirements', durationMs: 1200 },
-  { label: 'Finding Indian Standards', durationMs: 2000 },
-  { label: 'Checking evidence and lifecycle', durationMs: 1600 },
-  { label: 'Preparing review', durationMs: 800 },
+  { label: 'Reading document', durationMs: 700 },
+  { label: 'Understanding requirements', durationMs: 1400 },
+  { label: 'Finding Indian Standards', durationMs: 1800 },
+  { label: 'Checking evidence and lifecycle', durationMs: 1500 },
+  { label: 'Preparing review', durationMs: 1000 },
 ];
 
-// Analyzing component just shows the progress steps.
-// The App component handles the actual API call and passes result up.
-export default function Analyzing(_props: AnalyzingProps) {
+export default function Analyzing() {
   const [activeStep, setActiveStep] = useState(0);
 
-  // Animate steps purely as UX — actual backend decides timing
+  // Progressive checklist animation
   useEffect(() => {
     let idx = 0;
     const advance = () => {
@@ -71,8 +61,8 @@ export default function Analyzing(_props: AnalyzingProps) {
           </ol>
 
           <p className="analyzing__note">
-            This may take a few seconds. TenderSaathi is checking Indian Standards evidence
-            and cross-referencing the lifecycle database.
+            This takes a few seconds. TenderSaathi is analyzing procurement clauses against
+            the Bureau of Indian Standards (BIS) catalogue.
           </p>
         </div>
       </main>

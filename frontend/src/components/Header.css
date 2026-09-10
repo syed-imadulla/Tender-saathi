@@ -1,99 +1,120 @@
-/* Header.css */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(248, 248, 246, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--color-border);
+/* Header.css — Floating pill header styling */
+.header-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 24px 20px 0;
+  position: relative;
+  z-index: 50;
 }
 
-.header__inner {
+.header {
+  width: 100%;
+  max-width: 860px;
+  height: 58px;
+  background: #ffffff;
+  border-radius: 9999px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
+  border: 1px solid #f0f0ed;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 60px;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 14px 0 24px;
 }
 
 .header__logo {
   display: flex;
   align-items: center;
-  gap: 8px;
-  text-decoration: none;
   cursor: pointer;
-}
-
-.header__logo-mark {
-  width: 30px;
-  height: 30px;
-  background: var(--color-navy);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.header__logo-mark svg {
-  color: #fff;
+  user-select: none;
 }
 
 .header__wordmark {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--color-navy);
-  letter-spacing: -0.01em;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1a1f36;
+  letter-spacing: -0.02em;
 }
 
 .header__wordmark span {
-  color: var(--color-accent);
+  color: #ff5a36;
 }
 
 .header__nav {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
   list-style: none;
 }
 
-.header__nav a,
-.header__nav button {
-  padding: 6px 14px;
-  font-size: 0.875rem;
+.nav-pill {
+  font-size: 0.9rem;
   font-weight: 500;
-  color: var(--color-text-muted);
+  color: #4b5563;
   text-decoration: none;
-  background: none;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  transition: all 150ms ease;
+  display: inline-block;
+}
+
+.nav-pill:hover {
+  color: #1a1f36;
+  background: #f4f4f2;
+}
+
+.nav-pill.active {
+  background: #ffebe6;
+  color: #ff5a36;
+  font-weight: 600;
+}
+
+.header__signin {
+  background: #ff5a36;
+  color: #ffffff;
   border: none;
-  border-radius: var(--radius-full);
+  border-radius: 9999px;
+  padding: 8px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   cursor: pointer;
+  transition: background 150ms ease, transform 100ms ease;
   font-family: inherit;
-  transition: color var(--transition), background var(--transition);
+  box-shadow: 0 2px 8px rgba(255, 90, 54, 0.25);
 }
 
-.header__nav a:hover,
-.header__nav button:hover {
-  color: var(--color-navy);
-  background: var(--color-border-soft);
+.header__signin:hover {
+  background: #e84c28;
+  transform: translateY(-1px);
 }
 
-.header__nav .header__signin {
-  color: var(--color-navy);
-  border: 1.5px solid var(--color-border);
-  padding: 6px 16px;
+.header__signin:active {
+  transform: translateY(0);
 }
 
-.header__nav .header__signin:hover {
-  background: var(--color-navy);
-  color: #fff;
-  border-color: var(--color-navy);
-}
-
-@media (max-width: 600px) {
-  .header__nav .nav-hide-mobile { display: none; }
-  .header__wordmark { font-size: 0.95rem; }
+@media (max-width: 640px) {
+  .header-wrapper {
+    padding: 12px 12px 0;
+  }
+  .header {
+    height: 52px;
+    padding: 0 10px 0 16px;
+  }
+  .header__wordmark {
+    font-size: 1.1rem;
+  }
+  .nav-hide-mobile {
+    display: none;
+  }
+  .nav-pill {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+  .header__signin {
+    padding: 6px 14px;
+    font-size: 0.85rem;
+  }
 }
