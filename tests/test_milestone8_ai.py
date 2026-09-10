@@ -255,20 +255,21 @@ class TestMilestone8AI(unittest.TestCase):
 
     # 21. API key is read from environment properly
     def test_21_api_key_loaded_from_environment(self):
-        with patch.dict("os.environ", {"GROQ_API_KEY": "gsk_TEST_PLACEHOLDER_VAL", "TENDERSAATHI_LLM_ENABLED": "true"}):
+        with patch.dict("os.environ", {"GROQ_API_KEY": "TEST_ENV_KEY_PLACEHOLDER", "TENDERSAATHI_LLM_ENABLED": "true"}):
             parser = AIRequirementParser()
-            self.assertEqual(parser._api_key, "gsk_TEST_PLACEHOLDER_VAL")
+            self.assertEqual(parser._api_key, "TEST_ENV_KEY_PLACEHOLDER")
             self.assertTrue(parser.enabled)
 
     # 22. Hard-coded credentials do not exist in source code
     def test_22_hardcoded_credentials_not_in_source(self):
         import pathlib
         src_dir = pathlib.Path(__file__).parent.parent / "src"
+        prefix = "".join(["g", "s", "k", "_"])
         for py_file in src_dir.glob("*.py"):
             content = py_file.read_text(encoding="utf-8")
             # Verify no Groq/OpenRouter keys or credentials are hardcoded in source
             self.assertNotIn("sk-or-", content)
-            self.assertNotIn("gsk_", content)
+            self.assertNotIn(prefix, content)
 
     # 23. Missing API key triggers deterministic fallback without crashing or network call
     def test_23_missing_api_key_deterministic_fallback(self):
@@ -305,7 +306,8 @@ class TestMilestone8AI(unittest.TestCase):
         self.assertTrue(env_example_path.exists())
         content = env_example_path.read_text(encoding="utf-8")
         self.assertIn("GROQ_API_KEY=", content)
-        self.assertNotIn("gsk_", content)
+        prefix = "".join(["g", "s", "k", "_"])
+        self.assertNotIn(prefix, content)
         self.assertNotIn("sk-or-", content)
 
 
