@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-CPVC`
-- **Source File:** `Sample: cpvc`
+- **Tender ID:** `TS-A873305F`
+- **Source File:** `eProcurement System Government of India.pdf`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -46,14 +46,14 @@
 
 ## 5. Requirement-by-Requirement Review
 
-### 5.1 Requirement `REQ-001` [MATERIAL]
+### 5.1 Requirement `TS-A873305F-R001` [MATERIAL]
 
 **Original Requirement Text:**
-> "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778."
+> "Repair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn"
 
-- **Decomposed Technical Components:** `general: CPVC pipes`, `general: CPVC fittings`, `general: domestic hot and cold water distribution`, `general: supply`, `general: installation`
+- **Decomposed Technical Components:** `general: Repair`, `general: maint`, `general: CPVC pipe`, `general: GI pipe`, `general: water supply`, `general: maintenance`, `general: replacement`, `general: installation`, `general: testing`
 - **Recommended Standard:** **IS 15778 : 2007** — *Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*
-- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.980`
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.971`
 - **Evidence Strength:** `MODERATE` | **Provenance:** `CURATED`
 - **Verbatim Evidence (BIS Standards Catalogue):** "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
 - **Why This Standard?:**
@@ -63,8 +63,7 @@
   - Provenance established via BIS Standards Catalogue (CURATED).
   - Candidate addresses multiple decomposed technical aspects of the requirement.
 - **Why Not Alternatives?:**
-  - Alternative standard SP 57 (QAWSM) has lower composite relevance (0.605 vs 0.980).
-  - Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification.
+  - Alternative standard IS 6392 has lower composite relevance (0.577 vs 0.971).
 - **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
 - **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `High`
 

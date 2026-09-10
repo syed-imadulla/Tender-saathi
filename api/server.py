@@ -159,28 +159,50 @@ def _normalize_result(
             "final": _safe_float(getattr(r, "final_score", r.relevance_score)),
         }
 
-        # Determine successor standard from related standards or recommendations
+        # Determine superseded citation and successor standard
+        is_superseded_status = (r.status or "").lower() == "superseded"
+        has_superseded_warn = any(bool(getattr(rec, "superseded_warning", "")) for rec in (r.recommendations or []))
+        has_superseded_reason = bool(r.reason and "cited superseded standard" in r.reason.lower())
+
+        is_superseded = is_superseded_status or has_superseded_warn or has_superseded_reason
+
         successor_std = None
         superseded_cite = None
-        for rel in (r.related_standards or []):
-            if rel.get("relationship_type") in ("SUPERSEDED_BY",):
-                successor_std = rel.get("standard_number")
-                break
-        if not successor_std:
-            for rec in (r.recommendations or []):
-                warn = getattr(rec, "superseded_warning", "") or ""
-                match = re.search(r"SUPERSEDED by\s+([A-Za-z0-9/:\s\-]+?)(?:\.|$)", warn, re.IGNORECASE)
-                if match:
-                    successor_std = match.group(1).strip()
-                    break
 
-        is_superseded = (r.status or "").lower() == "superseded"
         if is_superseded:
-            superseded_cite = r.candidate_standard
+            # If the candidate itself is superseded
+            if is_superseded_status:
+                superseded_cite = r.candidate_standard
+                for rel in (r.related_standards or []):
+                    if rel.get("relationship_type") in ("SUPERSEDED_BY",):
+                        successor_std = rel.get("standard_number")
+                        break
+            else:
+                # The candidate is the active replacement (e.g. IS/ISO 10434)
+                # and the tender cited the superseded standard (e.g. IS 10611)
+                successor_std = r.candidate_standard
+                if r.explicit_standards_found:
+                    superseded_cite = r.explicit_standards_found[0]
+                else:
+                    for rel in (r.related_standards or []):
+                        if (rel.get("lifecycle_status") or "").lower() == "superseded":
+                            superseded_cite = rel.get("standard_number")
+                            break
+
+            # Fallback search for successor in superseded_warning
+            if not successor_std:
+                for rec in (r.recommendations or []):
+                    warn = getattr(rec, "superseded_warning", "") or ""
+                    match = re.search(r"SUPERSEDED by\s+([A-Za-z0-9/:\s\-]+?)(?:\.|$)", warn, re.IGNORECASE)
+                    if match:
+                        successor_std = match.group(1).strip()
+                        break
 
         # Primary "reason" / why-flagged text
         why_flagged = r.reason or ""
-        if r.human_review_required and missing:
+        if is_superseded and superseded_cite and successor_std:
+            why_flagged = f"Cited standard '{superseded_cite}' is superseded. Recommended current active successor: {successor_std}."
+        elif r.human_review_required and missing:
             why_flagged = f"Missing: {', '.join(missing)}."
         elif not why_flagged and missing:
             why_flagged = f"Potentially missing parameters: {', '.join(missing[:3])}."

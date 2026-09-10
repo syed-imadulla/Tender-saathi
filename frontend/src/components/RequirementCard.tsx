@@ -1,11 +1,11 @@
-// RequirementCard.tsx — Card component for displaying a single requirement
-// Progressively reveals deeper details, with button to open the full EvidenceDrawer
+// RequirementCard.tsx — Expandable requirement card matching Reference Image 2
 import { useState } from 'react';
 import './RequirementCard.css';
 import type { Requirement } from '../types';
 
 interface RequirementCardProps {
   req: Requirement;
+  index: number;
   sectionType: 'attention' | 'good' | 'update';
   onOpenEvidence: (req: Requirement) => void;
   defaultExpanded?: boolean;
@@ -13,31 +13,26 @@ interface RequirementCardProps {
 
 export default function RequirementCard({
   req,
+  index,
   sectionType,
   onOpenEvidence,
   defaultExpanded = false,
 }: RequirementCardProps) {
   const [expanded, setExpanded] = useState(defaultExpanded);
 
-  const statusClass =
-    sectionType === 'attention'
-      ? 'req-card--attention'
-      : sectionType === 'update'
-      ? 'req-card--update'
-      : 'req-card--good';
+  // Extract a clean title from requirement text
+  const displayTitle = req.text.length > 55 ? `${req.text.slice(0, 52)}...` : req.text;
 
-  const riskClass =
-    req.risk_level === 'CRITICAL' || req.risk_level === 'HIGH'
-      ? 'badge--red'
-      : req.risk_level === 'MEDIUM'
-      ? 'badge--amber'
-      : 'badge--green';
+  // Format standard name
+  const standardCode = req.candidate_standard && req.candidate_standard !== 'NONE'
+    ? req.candidate_standard
+    : null;
 
   return (
-    <div className={`req-card ${statusClass}`}>
-      {/* Header — Click to expand / collapse */}
+    <div className={`req-item ${expanded ? 'req-item--expanded' : ''}`}>
+      {/* Collapsed Header Bar */}
       <div
-        className="req-card__head"
+        className="req-item__summary"
         onClick={() => setExpanded((prev) => !prev)}
         role="button"
         tabIndex={0}
@@ -49,128 +44,173 @@ export default function RequirementCard({
           }
         }}
       >
-        <div className="req-card__head-main">
-          <div className="req-card__title">{req.text}</div>
+        <div className="req-item__left">
+          <div className="req-item__index-title">
+            <span className="req-item__number">{index}.</span>
+            <span className="req-item__title">{displayTitle}</span>
+          </div>
 
-          <div className="req-card__subtitle">
-            {sectionType === 'update' && req.successor_standard ? (
-              <span>
-                Cites superseded standard — update to{' '}
-                <strong>{req.successor_standard}</strong>
+          {/* Subtitle / Why flagged / Missing params */}
+          <div className="req-item__desc">
+            {sectionType === 'update' ? (
+              <span className="req-item__desc-update">
+                Cited standard is superseded.
+                {req.successor_standard && (
+                  <> Current active successor: <strong>{req.successor_standard}</strong></>
+                )}
               </span>
             ) : sectionType === 'attention' ? (
-              <span>{req.why_flagged || 'Review required before publication.'}</span>
+              <span>{req.why_flagged || 'Missing required specifications or testing parameters.'}</span>
             ) : (
-              <span>{req.title || 'Verified match with active national standard.'}</span>
+              <span>{req.title || 'Verified match with active Indian Standard.'}</span>
             )}
           </div>
 
-          <div className="req-card__std">
-            <span>Matched:</span>
-            <span className="req-card__std-num">{req.candidate_standard}</span>
-            <span>•</span>
-            <span
-              className={`badge ${
-                req.lifecycle_status === 'SUPERSEDED' || req.lifecycle_status === 'WITHDRAWN'
-                  ? 'badge--red'
-                  : 'badge--green'
-              }`}
-            >
-              {req.lifecycle_status || 'ACTIVE'}
+          {/* Standard line */}
+          <div className="req-item__std-line">
+            <span className="req-item__std-icon" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+              </svg>
             </span>
-            <span className={`badge ${riskClass}`}>{req.risk_level} RISK</span>
+            <span className="req-item__std-label">
+              {sectionType === 'update' ? 'Superseded standard' : 'Possible standard'}
+            </span>
+            <span className="req-item__std-num">
+              {sectionType === 'update' && req.superseded_citation
+                ? req.superseded_citation
+                : standardCode || 'None Identified'}
+            </span>
+
+            {sectionType === 'update' && (
+              <span className="badge badge--superseded">SUPERSEDED</span>
+            )}
+
+            {sectionType === 'good' && (
+              <span className="badge badge--strong">{req.evidence_strength} EVIDENCE</span>
+            )}
           </div>
         </div>
 
-        <svg
-          className={`req-card__chevron ${expanded ? 'req-card__chevron--open' : ''}`}
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <polyline points="6 9 12 15 18 9" />
-        </svg>
+        {/* Right action: "See why →" */}
+        <div className="req-item__right">
+          <button
+            type="button"
+            className="req-item__see-why"
+            onClick={(e) => {
+              e.stopPropagation();
+              onOpenEvidence(req);
+            }}
+            aria-label={`See evidence why ${standardCode || 'standard'} was suggested`}
+          >
+            See why →
+          </button>
+        </div>
       </div>
 
-      {/* Expanded body with progressive details */}
+      {/* Expanded In-Place Content */}
       {expanded && (
-        <div className="req-card__body">
-          {/* Successor Standard Banner if superseded */}
-          {req.successor_standard && (
-            <div className="req-card__successor">
-              <div>
-                <div className="req-card__successor-label">Action Required — Replace With</div>
-                <div className="req-card__successor-std">{req.successor_standard}</div>
+        <div className="req-item__details">
+          {/* Full requirement clause */}
+          <div className="req-detail-block">
+            <span className="req-detail-label">Full Requirement Clause</span>
+            <p className="req-detail-text">{req.text}</p>
+          </div>
+
+          {/* Why flagged / Missing parameters */}
+          {sectionType === 'attention' && (
+            <div className="req-detail-block">
+              <span className="req-detail-label">Why This Was Flagged</span>
+              <p className="req-detail-text">
+                {req.why_flagged || 'Clarification or technical parameters are missing.'}
+              </p>
+
+              {req.missing_parameters && req.missing_parameters.length > 0 && (
+                <div className="req-missing-params">
+                  <span className="req-missing-title">Missing Engineering Parameters:</span>
+                  <ul className="req-missing-list">
+                    {req.missing_parameters.map((p, i) => (
+                      <li key={i}>{p}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Update notice for superseded standards */}
+          {sectionType === 'update' && (
+            <div className="req-detail-block req-detail-block--warning">
+              <span className="req-detail-label">Supersedence Warning</span>
+              <p className="req-detail-text">
+                The cited standard <strong>{req.superseded_citation || req.candidate_standard}</strong> is outdated
+                or superseded.
+                {req.successor_standard && (
+                  <> Tender specifications should cite current active standard <strong>{req.successor_standard}</strong>.</>
+                )}
+              </p>
+            </div>
+          )}
+
+          {/* Recommended Standard details */}
+          {standardCode && (
+            <div className="req-detail-block">
+              <span className="req-detail-label">
+                {sectionType === 'update' ? 'Current Active Successor Standard' : 'Recommended Indian Standard'}
+              </span>
+              <div className="req-std-box">
+                <span className="req-std-box__num">{req.successor_standard || standardCode}</span>
+                {req.title && <span className="req-std-box__title">{req.title}</span>}
               </div>
             </div>
           )}
 
-          {/* Standard Title & Category */}
-          <div className="req-card__field">
-            <span className="req-card__field-label">Standard Title</span>
-            <span className="req-card__field-value">{req.title || 'N/A'}</span>
-          </div>
-
-          {/* Decision / Review Reason */}
-          {req.why_flagged && (
-            <div className="req-card__field">
-              <span className="req-card__field-label">Review Guidance</span>
-              <span className="req-card__field-value">{req.why_flagged}</span>
-            </div>
-          )}
-
-          {/* Missing Parameters */}
-          {req.missing_parameters && req.missing_parameters.length > 0 && (
-            <div className="req-card__field">
-              <span className="req-card__field-label">Missing Parameters for Compliance</span>
-              <ul className="req-card__missing">
-                {req.missing_parameters.map((param, idx) => (
-                  <li key={idx}>{param}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {/* Evidence Snippet */}
+          {/* Grounded Evidence excerpt */}
           {req.evidence && (
-            <div className="req-card__field">
-              <span className="req-card__field-label">Evidence Grounding</span>
-              <span className="req-card__field-value text-muted" style={{ fontStyle: 'italic' }}>
+            <div className="req-detail-block">
+              <span className="req-detail-label">Evidence Excerpt</span>
+              <blockquote className="req-evidence-quote">
                 "{req.evidence}"
+              </blockquote>
+            </div>
+          )}
+
+          {/* Risk & Review Status */}
+          <div className="req-detail-row">
+            <div>
+              <span className="req-detail-label">Risk Level</span>
+              <span className={`badge badge--${(req.risk_level || 'low').toLowerCase()}`}>
+                {req.risk_level} RISK
               </span>
             </div>
-          )}
 
-          {/* Actions */}
-          <div className="req-card__actions">
+            <div>
+              <span className="req-detail-label">Audit Decision</span>
+              <span className="badge badge--review">{req.decision}</span>
+            </div>
+
+            {req.human_review_required && (
+              <div>
+                <span className="req-detail-label">Human Action</span>
+                <span className="badge badge--human">⚠ HUMAN REVIEW REQUIRED</span>
+              </div>
+            )}
+          </div>
+
+          {/* Deep Drawer Trigger */}
+          <div className="req-detail-footer">
             <button
-              className="btn btn--secondary btn--sm"
               type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                onOpenEvidence(req);
-              }}
+              className="btn-view-evidence"
+              onClick={() => onOpenEvidence(req)}
             >
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="10" />
                 <line x1="12" y1="16" x2="12" y2="12" />
                 <line x1="12" y1="8" x2="12.01" y2="8" />
               </svg>
-              View Full Evidence & AI Breakdown
+              View full evidence drawer & technical details →
             </button>
           </div>
         </div>

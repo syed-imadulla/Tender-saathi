@@ -10,15 +10,18 @@ export default function App() {
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const handleAnalysisDone = useCallback((r: AnalysisResult) => {
-    setResult(r);
+  const handleStartAnalysis = useCallback((promise: Promise<AnalysisResult>) => {
+    setState('analyzing');
     setError(null);
-    setState('results');
-  }, []);
-
-  const handleAnalysisError = useCallback((msg: string) => {
-    setError(msg);
-    setState('home');
+    promise
+      .then((res) => {
+        setResult(res);
+        setState('results');
+      })
+      .catch((err) => {
+        setError(err instanceof Error ? err.message : 'Analysis failed. Please try again.');
+        setState('home');
+      });
   }, []);
 
   const handleNewCheck = useCallback(() => {
@@ -27,25 +30,16 @@ export default function App() {
     setError(null);
   }, []);
 
-  const handleStartAnalyzing = useCallback(() => {
-    setState('analyzing');
-  }, []);
-
   return (
     <>
       {state === 'home' && (
         <Home
-          onStartAnalyzing={handleStartAnalyzing}
-          onDone={handleAnalysisDone}
-          onError={handleAnalysisError}
+          onStartAnalysis={handleStartAnalysis}
           errorMessage={error}
         />
       )}
       {state === 'analyzing' && (
-        <Analyzing
-          onDone={handleAnalysisDone}
-          onError={handleAnalysisError}
-        />
+        <Analyzing />
       )}
       {state === 'results' && result && (
         <Results

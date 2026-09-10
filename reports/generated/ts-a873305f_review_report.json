@@ -2,10 +2,10 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-A873305F",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: cpvc",
+    "source_file": "eProcurement System Government of India.pdf",
     "date": null,
     "requirements_analyzed": 1
   },
@@ -15,7 +15,7 @@
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-A873305F",
     "requirements_analyzed": 1,
     "recommendations_count": 1,
     "review_required_count": 0,
@@ -58,12 +58,28 @@
   },
   "requirements": [
     {
-      "requirement_id": "REQ-001",
-      "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
+      "requirement_id": "TS-A873305F-R001",
+      "requirement_text": "Repair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn",
       "category": "material",
       "components": [
         {
-          "text": "CPVC pipes",
+          "text": "Repair",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "repair"
+          }
+        },
+        {
+          "text": "maint",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "maint"
+          }
+        },
+        {
+          "text": "CPVC pipe",
           "component_type": "material",
           "domain": "piping",
           "extracted_attributes": {
@@ -71,15 +87,15 @@
           }
         },
         {
-          "text": "CPVC fittings",
-          "component_type": "equipment",
-          "domain": "mechanical",
+          "text": "GI pipe",
+          "component_type": "material",
+          "domain": "piping",
           "extracted_attributes": {
-            "domain": "mechanical"
+            "category": "pipe_material"
           }
         },
         {
-          "text": "domestic hot and cold water distribution",
+          "text": "water supply",
           "component_type": "application",
           "domain": "mechanical",
           "extracted_attributes": {
@@ -87,7 +103,13 @@
           }
         },
         {
-          "text": "supply",
+          "text": "maintenance",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "replacement",
           "component_type": "action",
           "domain": "general",
           "extracted_attributes": {}
@@ -97,11 +119,17 @@
           "component_type": "action",
           "domain": "general",
           "extracted_attributes": {}
+        },
+        {
+          "text": "testing",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
         }
       ],
       "recommended_standard": "IS 15778 : 2007",
       "recommended_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
-      "relevance_score": 0.98,
+      "relevance_score": 0.971,
       "lifecycle_status": "Active",
       "successor_standard": null,
       "superseded_citation": null,
@@ -117,8 +145,7 @@
         "Candidate addresses multiple decomposed technical aspects of the requirement."
       ],
       "why_not": [
-        "Alternative standard SP 57 (QAWSM) has lower composite relevance (0.605 vs 0.980).",
-        "Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification."
+        "Alternative standard IS 6392 has lower composite relevance (0.577 vs 0.971)."
       ],
       "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [

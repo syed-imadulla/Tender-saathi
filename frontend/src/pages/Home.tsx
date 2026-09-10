@@ -1,4 +1,4 @@
-// Home.tsx — Landing / Upload page (State 1)
+// Home.tsx — Landing / Upload page (State 1) matching Reference Image 1
 import { useRef, useState, useCallback } from 'react';
 import './Home.css';
 import Header from '../components/Header';
@@ -6,66 +6,28 @@ import { analyzeText, analyzePdf, analyzeSample } from '../api';
 import type { AnalysisResult } from '../types';
 
 interface HomeProps {
-  onStartAnalyzing: () => void;
-  onDone: (result: AnalysisResult) => void;
-  onError: (message: string) => void;
+  onStartAnalysis: (promise: Promise<AnalysisResult>) => void;
   errorMessage: string | null;
 }
 
-const SAMPLE_LABELS = {
+const SAMPLE_LABELS: Record<'cpvc' | 'valve' | 'superseded', string> = {
   cpvc: 'CPVC Pipes',
   valve: 'Valve Replacement',
   superseded: 'IS 10611 (Superseded)',
-} as const;
+};
 
 const MAX_SIZE_BYTES = 25 * 1024 * 1024;
 
-export default function Home({ onStartAnalyzing, onDone, onError, errorMessage }: HomeProps) {
+export default function Home({ onStartAnalysis, errorMessage }: HomeProps) {
   const [text, setText] = useState('');
-  const [loading, setLoading] = useState(false);
   const [dragOver, setDragOver] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  // Store pending file/text to pass to Analyzing state
-  const pendingRef = useRef<
-    { type: 'text'; value: string } | { type: 'file'; value: File } | { type: 'sample'; value: string } | null
-  >(null);
-
-  const runAnalysis = useCallback(async () => {
-    setLoading(true);
-    onStartAnalyzing();
-
-    // Slight delay so UI transitions to Analyzing state
-    await new Promise((r) => setTimeout(r, 300));
-
-    try {
-      let result: AnalysisResult;
-      const p = pendingRef.current;
-      if (!p) throw new Error('No input provided.');
-
-      if (p.type === 'text') {
-        result = await analyzeText(p.value);
-      } else if (p.type === 'file') {
-        result = await analyzePdf(p.value);
-      } else {
-        result = await analyzeSample(p.value as 'cpvc' | 'valve' | 'superseded');
-      }
-
-      onDone(result);
-    } catch (e) {
-      const msg = e instanceof Error ? e.message : 'Analysis failed. Please try again.';
-      onError(msg);
-    } finally {
-      setLoading(false);
-    }
-  }, [onStartAnalyzing, onDone, onError]);
 
   const handleTextSubmit = useCallback(() => {
     const trimmed = text.trim();
     if (!trimmed) return;
-    pendingRef.current = { type: 'text', value: trimmed };
-    runAnalysis();
-  }, [text, runAnalysis]);
+    onStartAnalysis(analyzeText(trimmed));
+  }, [text, onStartAnalysis]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -76,16 +38,15 @@ export default function Home({ onStartAnalyzing, onDone, onError, errorMessage }
 
   const handleFile = useCallback((file: File) => {
     if (!file.name.match(/\.(pdf|docx)$/i)) {
-      onError('Unsupported file type. Please upload a PDF or DOCX file.');
+      alert('Unsupported file type. Please upload a PDF or DOCX file.');
       return;
     }
     if (file.size > MAX_SIZE_BYTES) {
-      onError('File too large. Maximum size is 25 MB.');
+      alert('File too large. Maximum size is 25 MB.');
       return;
     }
-    pendingRef.current = { type: 'file', value: file };
-    runAnalysis();
-  }, [runAnalysis, onError]);
+    onStartAnalysis(analyzePdf(file));
+  }, [onStartAnalysis]);
 
   const handleFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -99,17 +60,16 @@ export default function Home({ onStartAnalyzing, onDone, onError, errorMessage }
     if (file) handleFile(file);
   }, [handleFile]);
 
-  const handleSample = useCallback((demo: string) => {
-    pendingRef.current = { type: 'sample', value: demo };
-    runAnalysis();
-  }, [runAnalysis]);
+  const handleSample = useCallback((demo: 'cpvc' | 'valve' | 'superseded') => {
+    onStartAnalysis(analyzeSample(demo));
+  }, [onStartAnalysis]);
 
   return (
     <div className="home" id="home">
       <Header />
 
       <main className="home__hero" role="main">
-        <p className="home__eyebrow">Indian Standards for Better Procurement</p>
+        <p className="home__eyebrow">INDIAN STANDARDS FOR BETTER PROCUREMENT</p>
 
         <h1 className="home__headline">
           Check your tender
@@ -124,7 +84,7 @@ export default function Home({ onStartAnalyzing, onDone, onError, errorMessage }
         {/* Upload / Input bar */}
         <div className="home__upload-wrap">
           <div
-            className={`home__upload-bar${loading ? ' home__upload-bar--loading' : ''}${dragOver ? ' home__upload-bar--drag' : ''}`}
+            className={`home__upload-bar${dragOver ? ' home__upload-bar--drag' : ''}`}
             onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
             onDragLeave={() => setDragOver(false)}
             onDrop={handleDrop}
@@ -137,9 +97,8 @@ export default function Home({ onStartAnalyzing, onDone, onError, errorMessage }
               type="button"
               aria-label="Attach PDF or DOCX"
               onClick={() => fileInputRef.current?.click()}
-              disabled={loading}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48" />
               </svg>
             </button>
@@ -153,7 +112,6 @@ export default function Home({ onStartAnalyzing, onDone, onError, errorMessage }
               onChange={(e) => setText(e.target.value)}
               onKeyDown={handleKeyDown}
               rows={1}
-              disabled={loading}
               aria-label="Type a procurement requirement or upload a tender document"
               style={{ resize: 'none', overflow: 'hidden' }}
               onInput={(e) => {
@@ -169,9 +127,9 @@ export default function Home({ onStartAnalyzing, onDone, onError, errorMessage }
               type="button"
               aria-label="Submit requirement for analysis"
               onClick={handleTextSubmit}
-              disabled={loading || !text.trim()}
+              disabled={!text.trim()}
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <line x1="12" y1="19" x2="12" y2="5" />
                 <polyline points="5 12 12 5 19 12" />
               </svg>
@@ -185,7 +143,7 @@ export default function Home({ onStartAnalyzing, onDone, onError, errorMessage }
             <span>Up to 25 MB</span>
           </p>
 
-          {/* Error */}
+          {/* Error message */}
           {errorMessage && (
             <div className="home__error" role="alert">
               {errorMessage}
@@ -196,15 +154,14 @@ export default function Home({ onStartAnalyzing, onDone, onError, errorMessage }
         {/* Samples */}
         <div className="home__samples" aria-label="Try a sample analysis">
           <span className="home__sample-label">Try a sample:</span>
-          {Object.entries(SAMPLE_LABELS).map(([key, label]) => (
+          {(['cpvc', 'valve', 'superseded'] as const).map((key) => (
             <button
               key={key}
               className="home__sample-btn"
               type="button"
               onClick={() => handleSample(key)}
-              disabled={loading}
             >
-              {label}
+              {SAMPLE_LABELS[key]}
             </button>
           ))}
         </div>

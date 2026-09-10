@@ -1,5 +1,4 @@
-// EvidenceDrawer.tsx — Right-side evidence panel (not a separate page)
-// Evidence first, then AI understanding, then technical scores (all progressive disclosure)
+// EvidenceDrawer.tsx — Right-side evidence panel with progressive disclosure
 import { useState } from 'react';
 import './EvidenceDrawer.css';
 import type { Requirement } from '../types';
@@ -9,7 +8,11 @@ interface EvidenceDrawerProps {
   onClose: () => void;
 }
 
-function CollapseSection({ title, children, defaultOpen = false }: {
+function CollapseSection({
+  title,
+  children,
+  defaultOpen = false,
+}: {
   title: string;
   children: React.ReactNode;
   defaultOpen?: boolean;
@@ -23,11 +26,18 @@ function CollapseSection({ title, children, defaultOpen = false }: {
         aria-expanded={open}
         type="button"
       >
-        {title}
+        <span>{title}</span>
         <svg
           className={`drawer-collapsible__arrow${open ? ' drawer-collapsible__arrow--open' : ''}`}
-          width="14" height="14" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
         >
           <polyline points="6 9 12 15 18 9" />
         </svg>
@@ -40,15 +50,27 @@ function CollapseSection({ title, children, defaultOpen = false }: {
 function EvBadge({ strength }: { strength: string }) {
   const s = (strength || '').toLowerCase();
   return (
-    <span className={`badge badge--${s === 'strong' ? 'strong' : s === 'moderate' ? 'moderate' : s === 'weak' ? 'weak' : 'none'}`}>
+    <span
+      className={`badge badge--${
+        s === 'strong' ? 'strong' : s === 'moderate' ? 'moderate' : s === 'weak' ? 'weak' : 'none'
+      }`}
+    >
       {strength || 'NONE'}
     </span>
   );
 }
 
-function ScoreBar({ label, value, max = 1 }: { label: string; value: number | null; max?: number }) {
+function ScoreBar({
+  label,
+  value,
+  max = 1,
+}: {
+  label: string;
+  value: number | null | undefined;
+  max?: number;
+}) {
   if (value === null || value === undefined) return null;
-  const pct = Math.min(100, Math.round((value / max) * 100));
+  const pct = Math.min(100, Math.max(0, Math.round((value / max) * 100)));
   return (
     <div className="score-row">
       <span className="score-row__label">{label}</span>
@@ -60,37 +82,58 @@ function ScoreBar({ label, value, max = 1 }: { label: string; value: number | nu
   );
 }
 
-export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
-  const ai = req.ai_understanding || { facets: {}, provider: 'unknown', model: 'unknown', is_fallback: true };
-  const hasFacets = Object.keys(ai.facets || {}).filter((k) => ai.facets[k]).length > 0;
-  const isAiFallback = ai.is_fallback;
+const FACET_KEYS = [
+  { key: 'equipment', label: 'Equipment' },
+  { key: 'control', label: 'Control' },
+  { key: 'electrical', label: 'Electrical' },
+  { key: 'voltage', label: 'Voltage' },
+  { key: 'application', label: 'Application' },
+  { key: 'work_type', label: 'Work type' },
+];
 
-  const lifecycleClass = (req.lifecycle_status || '').toLowerCase() === 'superseded'
-    ? 'badge--superseded'
-    : (req.lifecycle_status || '').toLowerCase() === 'active'
-    ? 'badge--active'
-    : 'badge--low';
+export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
+  const ai = req.ai_understanding || {
+    facets: {},
+    provider: 'unknown',
+    model: 'unknown',
+    is_fallback: true,
+  };
+
+  const isAiFallback = ai.is_fallback;
+  const lifecycle = (req.lifecycle_status || '').toLowerCase();
+  const lifecycleClass =
+    lifecycle === 'superseded'
+      ? 'badge--superseded'
+      : lifecycle === 'active'
+      ? 'badge--active'
+      : 'badge--low';
 
   return (
     <>
-      {/* Overlay */}
+      {/* Overlay Backdrop */}
       <div
         className="drawer-overlay"
         onClick={onClose}
         aria-hidden="true"
       />
 
-      {/* Drawer panel */}
+      {/* Drawer Panel */}
       <aside
         className="drawer"
-        role="complementary"
-        aria-label="Evidence details"
+        role="dialog"
+        aria-label="Evidence and technical details"
       >
         <div className="drawer__head">
-          <span className="drawer__title">Why this standard?</span>
-          <button className="drawer__close" onClick={onClose} aria-label="Close evidence panel" type="button">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+          <h2 className="drawer__title">Why this standard?</h2>
+          <button
+            className="drawer__close"
+            onClick={onClose}
+            aria-label="Close evidence drawer"
+            type="button"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           </button>
         </div>
@@ -98,57 +141,83 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
         <div className="drawer__body">
           {/* 1. Requirement */}
           <div className="drawer-section">
-            <div className="drawer-section__label">Requirement</div>
+            <span className="drawer-section__label">1. Requirement</span>
             <div className="drawer-section__value">{req.text}</div>
           </div>
 
           {/* 2. Standard */}
           {req.candidate_standard && req.candidate_standard !== 'NONE' && (
             <div className="drawer-section">
-              <div className="drawer-section__label">Candidate Standard</div>
-              <div className="drawer-section__value drawer-section__value--standard">{req.candidate_standard}</div>
-              {req.title && <div className="drawer-section__value drawer-section__value--muted" style={{ marginTop: 4 }}>{req.title}</div>}
+              <span className="drawer-section__label">2. Indian Standard</span>
+              <div className="drawer-section__value drawer-section__value--standard">
+                {req.candidate_standard}
+              </div>
+              {req.title && (
+                <div className="drawer-section__value drawer-section__value--muted">
+                  {req.title}
+                </div>
+              )}
             </div>
           )}
 
-          {/* 3. Evidence */}
+          {/* 3. Why this was suggested */}
+          {(req.why_this?.length > 0 || req.why_flagged) && (
+            <div className="drawer-section">
+              <span className="drawer-section__label">3. Why This Was Suggested</span>
+              {req.why_this?.length > 0 ? (
+                <ul className="drawer-bullet-list">
+                  {req.why_this.map((w, i) => (
+                    <li key={i}>{w}</li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="drawer-section__value">{req.why_flagged}</div>
+              )}
+            </div>
+          )}
+
+          {/* 4. Evidence */}
           {req.evidence && (
             <div className="drawer-section">
-              <div className="drawer-section__label">Evidence</div>
-              <div className="drawer-section__value">{req.evidence}</div>
+              <span className="drawer-section__label">4. Evidence</span>
+              <blockquote className="drawer-evidence-quote">
+                "{req.evidence}"
+              </blockquote>
             </div>
           )}
 
-          {/* 4. Evidence Strength + Provenance */}
-          <div className="drawer-section" style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
+          {/* 5 & 6. Evidence Strength + Provenance */}
+          <div className="drawer-section drawer-section--row">
             <div>
-              <div className="drawer-section__label">Evidence Strength</div>
+              <span className="drawer-section__label">5. Evidence Strength</span>
               <EvBadge strength={req.evidence_strength} />
             </div>
             <div>
-              <div className="drawer-section__label">Provenance</div>
+              <span className="drawer-section__label">6. Provenance</span>
               <span className="badge badge--low">{req.provenance}</span>
             </div>
           </div>
 
-          {/* 5. Lifecycle */}
-          <div className="drawer-section" style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
+          {/* 7. Lifecycle */}
+          <div className="drawer-section drawer-section--row">
             <div>
-              <div className="drawer-section__label">Lifecycle Status</div>
-              <span className={`badge ${lifecycleClass}`}>{req.lifecycle_status || 'Unknown'}</span>
+              <span className="drawer-section__label">7. Lifecycle Status</span>
+              <span className={`badge ${lifecycleClass}`}>
+                {req.lifecycle_status || 'Unknown'}
+              </span>
             </div>
             {req.successor_standard && (
               <div>
-                <div className="drawer-section__label">Current Successor</div>
-                <span style={{ fontSize: '0.9rem', fontWeight: 700 }}>{req.successor_standard}</span>
+                <span className="drawer-section__label">Current Successor</span>
+                <span className="drawer-successor-num">{req.successor_standard}</span>
               </div>
             )}
           </div>
 
-          {/* 6. Related Standards */}
+          {/* 8. Related Standards (Graph) */}
           {req.related_standards?.length > 0 && (
             <div className="drawer-section">
-              <div className="drawer-section__label">Related Standards (Graph)</div>
+              <span className="drawer-section__label">8. Related Standards (Graph)</span>
               <div className="drawer-related">
                 {req.related_standards.slice(0, 5).map((rel, i) => (
                   <div key={i} className="drawer-related-item">
@@ -163,80 +232,83 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
             </div>
           )}
 
-          {/* 7. Completeness */}
+          {/* 9. Missing Parameters / Completeness */}
           {req.missing_parameters?.length > 0 && (
             <div className="drawer-section">
-              <div className="drawer-section__label">Potentially Missing Parameters</div>
-              <ul style={{ paddingLeft: 18, fontSize: '0.87rem', color: 'var(--color-navy)', lineHeight: 1.7 }}>
-                {req.missing_parameters.map((p, i) => <li key={i}>{p}</li>)}
+              <span className="drawer-section__label">9. Missing Parameters / Completeness</span>
+              <ul className="drawer-bullet-list">
+                {req.missing_parameters.map((p, i) => (
+                  <li key={i}>{p}</li>
+                ))}
               </ul>
             </div>
           )}
 
-          {/* 8. Risk & Decision */}
-          <div className="drawer-section" style={{ display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'flex-start' }}>
+          {/* 10. Risk & Decision */}
+          <div className="drawer-section drawer-section--row">
             <div>
-              <div className="drawer-section__label">Risk</div>
-              <span className={`badge badge--${(req.risk_level || 'low').toLowerCase()}`}>{req.risk_level}</span>
+              <span className="drawer-section__label">10. Risk Level</span>
+              <span className={`badge badge--${(req.risk_level || 'low').toLowerCase()}`}>
+                {req.risk_level} RISK
+              </span>
             </div>
             <div>
-              <div className="drawer-section__label">Decision</div>
+              <span className="drawer-section__label">Audit Decision</span>
               <span className="badge badge--review">{req.decision}</span>
             </div>
             {req.human_review_required && (
               <div>
-                <span className="badge badge--human">⚠ Human Review Required</span>
+                <span className="drawer-section__label">Review Flag</span>
+                <span className="badge badge--human">⚠ HUMAN REVIEW REQUIRED</span>
               </div>
             )}
           </div>
 
-          {/* 9. Why this (collapsible) */}
-          {req.why_this?.length > 0 && (
-            <CollapseSection title="Why This Candidate">
-              <ul style={{ paddingLeft: 18, fontSize: '0.87rem', color: 'var(--color-navy)', lineHeight: 1.7 }}>
-                {req.why_this.map((w, i) => <li key={i}>{w}</li>)}
-              </ul>
-            </CollapseSection>
-          )}
-
-          {/* 10. AI Understanding (collapsed by default) */}
+          {/* COLLAPSED SECTION 1: How TenderSaathi understood this requirement */}
           <CollapseSection title="How TenderSaathi understood this requirement" defaultOpen={false}>
-            {hasFacets ? (
-              <div className="drawer-ai-facets">
-                {Object.entries(ai.facets).filter(([, v]) => v).map(([k, v]) => (
-                  <div key={k} className="drawer-ai-facet">
-                    <div className="drawer-ai-facet__key">{k.replace(/_/g, ' ')}</div>
-                    <div className="drawer-ai-facet__val">{Array.isArray(v) ? v.join(', ') : String(v)}</div>
+            <div className="drawer-ai-facets">
+              {FACET_KEYS.map(({ key, label }) => {
+                const val = ai.facets ? ai.facets[key] : null;
+                const displayVal = Array.isArray(val) ? val.join(', ') : val ? String(val) : '—';
+                return (
+                  <div key={key} className="drawer-ai-facet">
+                    <div className="drawer-ai-facet__key">{label}</div>
+                    <div className="drawer-ai-facet__val">{displayVal}</div>
                   </div>
-                ))}
-              </div>
-            ) : (
-              <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>No structured facets available.</p>
-            )}
-            <div className="drawer-ai-attr">
-              {isAiFallback
-                ? 'Understood using: Deterministic fallback'
-                : `Understood by: ${ai.provider} · ${ai.model}`}
+                );
+              })}
             </div>
+
+            <div className="drawer-ai-attr">
+              {isAiFallback ? (
+                <span>Understood using: <strong>Deterministic fallback</strong></span>
+              ) : (
+                <span>
+                  Understood by: <strong>Groq · {ai.model || 'openai/gpt-oss-120b'}</strong>
+                </span>
+              )}
+            </div>
+
             <p className="drawer-ai-trust">
-              AI helps understand the requirement. It does not decide which Indian Standard applies.
+              "AI helps understand the requirement. It does not decide which Indian Standard applies."
             </p>
           </CollapseSection>
 
-          {/* 11. Technical Scores (collapsed by default) */}
-          <CollapseSection title="Technical Score Breakdown" defaultOpen={false}>
-            <div style={{ marginTop: 8 }}>
+          {/* COLLAPSED SECTION 2: Technical score details */}
+          <CollapseSection title="Technical score details" defaultOpen={false}>
+            <div className="score-breakdown-list">
               <ScoreBar label="BM25" value={req.scores?.bm25} />
               <ScoreBar label="Semantic" value={req.scores?.semantic} />
               <ScoreBar label="Deterministic" value={req.scores?.deterministic} />
-              {req.scores?.reranker !== null && (
+              {req.scores?.reranker !== null && req.scores?.reranker !== undefined && (
                 <ScoreBar label="Reranker" value={req.scores?.reranker} />
               )}
               <ScoreBar label="Final" value={req.scores?.final} />
             </div>
-            <p style={{ marginTop: 12, fontSize: '0.73rem', color: 'var(--color-text-faint)', lineHeight: 1.5 }}>
-              BM25 + semantic + deterministic retrieval scores combined with cross-encoder reranking.
-              Relevance score = 1 / (1 + exp(-logit)).
+
+            <p className="score-formula-note">
+              Relevance score σ(logit) = 1 / (1 + exp(-logit)). Combines BM25 lexical keyword matching,
+              bge/MiniLM embeddings, deterministic catalogue lookups, and cross-encoder reranking.
             </p>
           </CollapseSection>
         </div>
