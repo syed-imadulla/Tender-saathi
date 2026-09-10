@@ -1,0 +1,224 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "T001",
+    "tender_title": "Procurement Audit: T001",
+    "organisation": null,
+    "source_file": "eProcurement System Government of India2.pdf",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "REVIEW_REQUIRED",
+  "readiness_reasons": [
+    "1 requirement(s) require technical engineer review.",
+    "1 requirement(s) have potentially missing specification parameters."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "T001",
+    "requirements_analyzed": 1,
+    "recommendations_count": 0,
+    "review_required_count": 1,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 0,
+    "withdrawn_count": 0,
+    "active_count": 1,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 1,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 1,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 0
+    },
+    "risk_distribution": {
+      "LOW": 0,
+      "MEDIUM": 1,
+      "HIGH": 0,
+      "CRITICAL": 0
+    },
+    "lifecycle_distribution": {
+      "Active": 1,
+      "Superseded": 0,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 2,
+    "review_queue": [
+      {
+        "requirement_id": "T001-R001",
+        "requirement_text": "Renovation of 5 no of toilets 3 Gents and 2 Ladies incl replacement of damaged pipelines by Hubless and GI pipes,replacement of floor and wall tiles and upgradation of all sanitary fittings at AGL Department in Main School Building at IIT ISM Dhanbad",
+        "risk_level": "MEDIUM",
+        "decision": "RECOMMEND_WITH_REVIEW",
+        "candidate_standard": "IS 15622 : 2017",
+        "evidence_strength": "MODERATE",
+        "primary_reason": "Specification review identified potentially missing parameters: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR.",
+        "priority": 3
+      }
+    ],
+    "publication_readiness": "REVIEW_REQUIRED",
+    "readiness_reasons": [
+      "1 requirement(s) require technical engineer review.",
+      "1 requirement(s) have potentially missing specification parameters."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification."
+  },
+  "requirements": [
+    {
+      "requirement_id": "T001-R001",
+      "requirement_text": "Renovation of 5 no of toilets 3 Gents and 2 Ladies incl replacement of damaged pipelines by Hubless and GI pipes,replacement of floor and wall tiles and upgradation of all sanitary fittings at AGL Department in Main School Building at IIT ISM Dhanbad",
+      "category": "material",
+      "components": [
+        {
+          "text": "Renovation",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "renovation"
+          }
+        },
+        {
+          "text": "replacement",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "replacement"
+          }
+        },
+        {
+          "text": "pipelines",
+          "component_type": "material",
+          "domain": "piping",
+          "extracted_attributes": {
+            "category": "pipe_material"
+          }
+        },
+        {
+          "text": "GI pipes",
+          "component_type": "material",
+          "domain": "piping",
+          "extracted_attributes": {
+            "category": "pipe_material"
+          }
+        },
+        {
+          "text": "wall tiles",
+          "component_type": "material",
+          "domain": "civil",
+          "extracted_attributes": {
+            "category": "tiles",
+            "standard_focus": "IS 15622"
+          }
+        },
+        {
+          "text": "upgradation",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "upgradation"
+          }
+        },
+        {
+          "text": "sanitary fittings",
+          "component_type": "product",
+          "domain": "sanitary",
+          "extracted_attributes": {
+            "category": "sanitaryware",
+            "standard_focus": "IS 2556 / IS 774"
+          }
+        }
+      ],
+      "recommended_standard": "IS 15622 : 2017",
+      "recommended_title": "Pressed Ceramic Tiles - Specification (First Revision)",
+      "relevance_score": 0.77,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "evidence_text": "Exact Match: IS 15622 covers all pressed ceramic tiles for wall and floor finishes (water absorption groups B Ia, B Ib, B IIa, B IIb, B III).",
+      "evidence_source": "BIS Standards Catalogue",
+      "why_this": [
+        "Official title aligns with specification: 'Pressed Ceramic Tiles - Specification (First Revision)'.",
+        "Authoritative scope explicitly covers application: \"Exact Match: IS 15622 covers all pressed ceramic tiles for wall and floor finishes (water absorption groups B Ia, B Ib,...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BIS Standards Catalogue (CURATED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
+      ],
+      "why_not": [
+        "Alternative standard IS 774 scored lower across the 5-dimension critic evaluation."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Diameter / Nominal Bore (DN/OD)",
+        "Pressure Class / Schedule / SDR"
+      ],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 13753",
+          "title": "Pressed Ceramic Tiles - Specification (First Revision)",
+          "relationship_type": "SUPERSEDES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Authoritative record for IS 15622 explicitly supersedes earlier standard IS 13753.",
+          "source_url": "IS 15622:2017 Clause 1 Scope; Gazette Notification S.O. 4467(E)",
+          "review_note": "Authoritative successor standard supersedes IS 13753. Review legacy specifications."
+        },
+        {
+          "standard_number": "IS 13755",
+          "title": "Pressed Ceramic Tiles - Specification (First Revision)",
+          "relationship_type": "SUPERSEDES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Foreword of IS 15622: supersedes earlier standards IS 13753 (wall tiles) and IS 13755 (floor tiles).",
+          "source_url": "IS 15622:2017 Clause 1 Scope; Gazette Notification S.O. 4467(E)",
+          "review_note": "Authoritative successor standard supersedes IS 13755. Review legacy specifications."
+        }
+      ],
+      "decision": "RECOMMEND_WITH_REVIEW",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "Medium",
+      "review_reason": "Authoritative active standard IS 15622 : 2017 verified against scope with Medium confidence."
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "T001-R001",
+      "requirement_text": "Renovation of 5 no of toilets 3 Gents and 2 Ladies incl replacement of damaged pipelines by Hubless and GI pipes,replacement of floor and wall tiles and upgradation of all sanitary fittings at AGL Department in Main School Building at IIT ISM Dhanbad",
+      "risk_level": "MEDIUM",
+      "decision": "RECOMMEND_WITH_REVIEW",
+      "candidate_standard": "IS 15622 : 2017",
+      "evidence_strength": "MODERATE",
+      "primary_reason": "Specification review identified potentially missing parameters: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR.",
+      "priority": 3
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 1,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 0,
+      "CURATED": 1,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}
