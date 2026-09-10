@@ -24,20 +24,21 @@ import re
 from src.standards import StandardsDatabase
 from src.search import SearchResult
 from src.validate import validate_standard_status, StandardValidationResult
-from src.completeness import SpecificationCompletenessReport, ParameterAssessment
 from src.decompose import RequirementComponent
+from src.completeness import SpecificationCompletenessReport, DomainCompletenessAnalyzer
+from src.graph import StandardsGraph
 
 
 @dataclass
 class CandidateEvidence:
     """Standardized evidence payload anchored strictly in stored catalogue data."""
     evidence_text: str
-    evidence_source: str                 # e.g. "BSB Edge Portal", "BIS Standards Catalogue"
-    source_url: Optional[str]            # Authoritative portal URL
-    provenance: str                      # VERIFIED, CURATED, INFERRED, UNKNOWN
-    evidence_type: str                   # scope, supersession, reference, amendment, catalogue_metadata
-    evidence_strength: str               # STRONG, MODERATE, WEAK, NONE
-    grounded: bool                       # True if claim maps to verified or curated stored text
+    evidence_source: str                    # "BSB Edge Portal", "BIS Standards Catalogue", "Normative Reference"
+    source_url: Optional[str]
+    provenance: str                         # "VERIFIED", "CURATED", "INFERRED"
+    evidence_type: str                      # "scope", "title", "reference", "supersession", "catalogue_metadata"
+    evidence_strength: str                  # "STRONG", "MODERATE", "WEAK", "NONE"
+    grounded: bool = True
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -48,24 +49,36 @@ class CandidateCritique:
     """Critic evaluation for a single candidate standard."""
     standard_number: str
     title: str
-    relevance_score: float
-    evidence_score: float
-    lifecycle_score: float
-    completeness_score: float
-    ambiguity_score: float
-    overall_score: float
-    decision: str                        # RECOMMEND, RECOMMEND_WITH_REVIEW, REVIEW_REQUIRED, INSUFFICIENT_EVIDENCE, REJECT
+    relevance_score: float                  # [0, 1]
+    evidence_score: float                   # [0, 1]
+    lifecycle_score: float                  # [0, 1]
+    completeness_score: float               # [0, 1]
+    ambiguity_score: float                  # [0, 1]
+    overall_score: float                    # Weighted composite
+    decision: str                           # RECOMMEND, RECOMMEND_WITH_REVIEW, REVIEW_REQUIRED, INSUFFICIENT_EVIDENCE, REJECT
     review_required: bool
-    risk_level: str                      # CRITICAL, HIGH, MEDIUM, LOW
+    risk_level: str                         # LOW, MEDIUM, HIGH, CRITICAL
     risk_reasons: List[str] = field(default_factory=list)
     reasons: List[str] = field(default_factory=list)
     evidence: Optional[CandidateEvidence] = None
 
     def to_dict(self) -> Dict[str, Any]:
-        d = asdict(self)
-        if self.evidence:
-            d["evidence"] = self.evidence.to_dict()
-        return d
+        return {
+            "standard_number": self.standard_number,
+            "title": self.title,
+            "relevance_score": self.relevance_score,
+            "evidence_score": self.evidence_score,
+            "lifecycle_score": self.lifecycle_score,
+            "completeness_score": self.completeness_score,
+            "ambiguity_score": self.ambiguity_score,
+            "overall_score": self.overall_score,
+            "decision": self.decision,
+            "review_required": self.review_required,
+            "risk_level": self.risk_level,
+            "risk_reasons": self.risk_reasons,
+            "reasons": self.reasons,
+            "evidence": self.evidence.to_dict() if self.evidence else None
+        }
 
 
 @dataclass
@@ -99,12 +112,18 @@ class DecisionOutcome:
 
 class EvidenceAwareCritic:
     """
-    Deterministic critic and decision layer evaluating retrieved standards
-    against evidence, completeness, lifecycle, and domain consistency.
+    Evaluates retrieved standard candidates across 5 deterministic dimensions:
+    1. Relevance Score: normalized match score from hybrid retrieval [0, 1]
+    2. Evidence Strength: grounded verbatim scope / clause support [0, 1]
+    3. Lifecycle Status: active vs superseded vs withdrawn [0, 1]
+    4. Specification Completeness: domain parameter coverage ratio [0, 1]
+    5. Ambiguity / Conflict: candidate margin delta and domain conflict penalties [0, 1]
     """
 
     def __init__(self, db: Optional[StandardsDatabase] = None):
         self.db = db or StandardsDatabase()
+        self.completeness_analyzer = DomainCompletenessAnalyzer()
+        self.graph = StandardsGraph(self.db)
 
     def extract_candidate_evidence(
         self,
@@ -520,6 +539,15 @@ class EvidenceAwareCritic:
         if len(components) >= 2:
             reasons.append(f"Candidate addresses multiple decomposed technical aspects of the requirement.")
 
+        # Stored relationship context (depth = 1)
+        if hasattr(self, "graph") and self.graph:
+            related = self.graph.get_related_standards(candidate.standard_number, limit=2)
+            for r in related:
+                if r.relationship_type == "REFERENCES" and r.direction == "OUTGOING":
+                    reasons.append(f"Cites normative reference {r.standard_number} ({r.title}).")
+                elif r.relationship_type == "CODE_OF_PRACTICE_FOR" and r.direction == "OUTGOING":
+                    reasons.append(f"Official code of practice associated with {r.standard_number}.")
+
         return reasons
 
     def _generate_why_not(
@@ -535,6 +563,16 @@ class EvidenceAwareCritic:
 
         top_alt = alternatives[0]
         alt_cand = candidates[1] if len(candidates) > 1 else None
+
+        # Check explicit relationship from stored graph (e.g. Supersedence)
+        if hasattr(self, "graph") and self.graph:
+            expl = self.graph.explain_relationship(primary.standard_number, top_alt.standard_number)
+            if not expl:
+                expl = self.graph.explain_relationship(top_alt.standard_number, primary.standard_number)
+            if expl and "SUPERSEDES" in expl:
+                reasons.append(
+                    f"{top_alt.standard_number} was not selected because the stored relationship identifies it as superseded by {primary.standard_number}."
+                )
 
         # Relevance delta
         score_diff = primary.relevance_score - top_alt.relevance_score

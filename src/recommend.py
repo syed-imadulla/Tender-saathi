@@ -26,6 +26,7 @@ from src.extract import Requirement, extract_from_text, extract_from_pdf
 from src.decompose import CompoundRequirementDecomposer, RequirementComponent
 from src.completeness import DomainCompletenessAnalyzer, SpecificationCompletenessReport
 from src.critic import EvidenceAwareCritic, CandidateCritique, DecisionOutcome
+from src.graph import StandardsGraph, RelatedStandardResult
 
 
 # ---------------------------------------------------------------------------
@@ -75,6 +76,8 @@ class RequirementRecommendationResult:
     risk_level: str = "LOW"
     risk_reasons: List[str] = field(default_factory=list)
     specification_completeness: Optional[Dict[str, Any]] = None
+    # Milestone 5 Evidence & Relationship Graph fields:
+    related_standards: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -120,6 +123,7 @@ class StandardsRecommender:
         self.decomposer = CompoundRequirementDecomposer()
         self.completeness_analyzer = DomainCompletenessAnalyzer()
         self.critic = EvidenceAwareCritic(self.db)
+        self.graph = StandardsGraph(self.db)
 
     def recommend_for_requirement(self, req: Requirement) -> RequirementRecommendationResult:
         """Processes an individual Requirement through the end-to-end recommendation workflow."""
@@ -330,6 +334,10 @@ class StandardsRecommender:
             why_this = critic_outcome.why_this
             why_not = critic_outcome.why_not
 
+        # Step 7: Explore lightweight Evidence & Relationship Graph (Depth = 1)
+        related_stds_res = self.graph.get_related_standards(top_rec.standard_number, limit=5)
+        related_standards_dicts = [r.to_dict() for r in related_stds_res]
+
         return RequirementRecommendationResult(
             requirement_id=req_id,
             requirement_text=text,
@@ -353,7 +361,8 @@ class StandardsRecommender:
             why_not=why_not,
             risk_level=risk_level,
             risk_reasons=risk_reasons,
-            specification_completeness=completeness_report.to_dict()
+            specification_completeness=completeness_report.to_dict(),
+            related_standards=related_standards_dicts
         )
 
     def recommend_for_text(self, text: str, req_id: str = "REQ-001") -> RequirementRecommendationResult:
