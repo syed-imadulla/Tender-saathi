@@ -53,7 +53,7 @@
 **Original Requirement Text:**
 > "Repair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn"
 
-- **Decomposed Technical Components:** `general: Repair`, `general: maint`, `general: CPVC pipe`, `general: GI pipe`, `general: pipeline`, `general: maintenance`
+- **Decomposed Technical Components:** `general: Repair`, `general: maint`, `general: CPVC pipe`, `general: GI pipe`, `general: plumbing`, `general: maintenance`, `general: replacement`, `general: installation`, `general: testing`
 - **Recommended Standard:** **IS 15778 : 2007** — *Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*
 - **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.920`
 - **Evidence Strength:** `MODERATE` | **Provenance:** `CURATED`
@@ -65,8 +65,8 @@
   - Provenance established via BIS Standards Catalogue (CURATED).
   - Candidate addresses multiple decomposed technical aspects of the requirement.
 - **Why Not Alternatives?:**
-  - Alternative standard IS 6392 has lower composite relevance (0.410 vs 0.920).
-- **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR, Piping Application / Service)
+  - Alternative standard IS 1239 (Part 2) has lower composite relevance (0.459 vs 0.920).
+- **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
 - **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `High`
 
 ---

@@ -148,6 +148,12 @@
           "extracted_attributes": {
             "is_process": false
           }
+        },
+        {
+          "text": "testing",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
         }
       ],
       "recommended_standard": "IS 2712 : 2020",

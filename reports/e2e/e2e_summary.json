@@ -1,0 +1,70 @@
+{
+  "dataset": {
+    "raw_tenders": 20,
+    "successfully_processed": 20,
+    "failed": 0,
+    "total_pages": 40,
+    "total_requirements_analyzed": 25,
+    "granular_dataset_requirements": 72,
+    "explicit_standards_in_raw_tenders": 0
+  },
+  "ai_understanding": {
+    "provider": "groq",
+    "model": "openai/gpt-oss-120b",
+    "llm_success_count": 25,
+    "llm_fallback_count": 0,
+    "llm_failure_count": 0
+  },
+  "retrieval": {
+    "mode": "hybrid+rerank",
+    "first_stage_models": [
+      "BM25",
+      "all-MiniLM-L6-v2",
+      "Deterministic"
+    ],
+    "second_stage_reranker": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "benchmark_warm_latency_hybrid_ms": 57.0,
+    "benchmark_warm_latency_reranker_ms": 488.1
+  },
+  "tender_audit_aggregates": {
+    "total_recommendations": 2,
+    "total_review_required": 17,
+    "total_insufficient_evidence": 6,
+    "total_active": 25,
+    "total_superseded": 0,
+    "total_withdrawn": 0,
+    "total_unknown_lifecycle": 0,
+    "total_related_standards": 22
+  },
+  "distributions": {
+    "publication_readiness": {
+      "READY_FOR_REVIEW": 2,
+      "REVIEW_REQUIRED": 14,
+      "INSUFFICIENT_EVIDENCE": 4
+    },
+    "risk": {
+      "LOW": 2,
+      "MEDIUM": 4,
+      "HIGH": 19
+    },
+    "evidence": {
+      "STRONG": 4,
+      "MODERATE": 17,
+      "WEAK": 4,
+      "NONE": 0
+    },
+    "completeness": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 9,
+      "UNKNOWN": 6,
+      "NOT_APPLICABLE": 10
+    },
+    "lifecycle": {
+      "Active": 25
+    }
+  },
+  "performance": {
+    "avg_tender_processing_time_sec": 4.006,
+    "avg_requirement_processing_time_sec": 3.191
+  }
+}
