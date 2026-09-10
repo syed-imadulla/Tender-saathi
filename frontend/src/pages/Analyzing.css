@@ -1,0 +1,125 @@
+/* Analyzing.css */
+.analyzing {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+}
+
+.analyzing__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+}
+
+.analyzing__card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 48px 56px;
+  box-shadow: var(--shadow-md);
+  min-width: 380px;
+  max-width: 480px;
+  width: 100%;
+  text-align: left;
+}
+
+.analyzing__title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.analyzing__spinner {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.analyzing__steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.analyzing__step {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  transition: color 400ms ease;
+}
+
+.analyzing__step--done {
+  color: var(--color-navy);
+}
+
+.analyzing__step--active {
+  color: var(--color-navy);
+  font-weight: 500;
+}
+
+.analyzing__step-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+}
+
+.analyzing__step-icon--done {
+  background: var(--color-green-bg);
+  color: var(--color-green);
+  border: 1.5px solid var(--color-green-border);
+}
+
+.analyzing__step-icon--active {
+  border: 2px solid var(--color-accent);
+  animation: pulse-border 1.4s ease-in-out infinite;
+}
+
+.analyzing__step-icon--pending {
+  border: 1.5px solid var(--color-border);
+}
+
+@keyframes pulse-border {
+  0%, 100% { border-color: var(--color-accent); }
+  50%       { border-color: var(--color-border); }
+}
+
+.analyzing__note {
+  margin-top: 32px;
+  padding: 12px 16px;
+  background: var(--color-gray-bg);
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  color: var(--color-text-faint);
+  line-height: 1.5;
+}
+
+@media (max-width: 500px) {
+  .analyzing__card {
+    min-width: 0;
+    padding: 36px 28px;
+  }
+}

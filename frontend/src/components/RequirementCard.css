@@ -1,0 +1,175 @@
+/* RequirementCard.css */
+.req-card {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+
+.req-card:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+/* ─── Header (always visible) ──────────────────────────────────────────── */
+.req-card__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--transition);
+}
+
+.req-card__head:hover {
+  background: var(--color-gray-bg);
+}
+
+.req-card__head-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.req-card__title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  margin-bottom: 4px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.req-card__subtitle {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  line-height: 1.45;
+}
+
+.req-card__std {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: var(--color-text-faint);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.req-card__std-num {
+  font-weight: 600;
+  color: var(--color-navy-mid);
+  font-family: 'Inter', monospace;
+  font-size: 0.8rem;
+}
+
+.req-card__chevron {
+  color: var(--color-text-faint);
+  transition: transform 180ms ease;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.req-card__chevron--open {
+  transform: rotate(180deg);
+}
+
+/* ─── Section-specific accents ─────────────────────────────────────────── */
+.req-card--attention {
+  border-left: 3px solid var(--color-amber);
+}
+
+.req-card--good {
+  border-left: 3px solid var(--color-green);
+}
+
+.req-card--update {
+  border-left: 3px solid var(--color-red);
+}
+
+/* ─── Expanded body ─────────────────────────────────────────────────────── */
+.req-card__body {
+  border-top: 1px solid var(--color-border-soft);
+  padding: 16px 20px;
+  background: #fafaf8;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.req-card__field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.req-card__field-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+}
+
+.req-card__field-value {
+  font-size: 0.87rem;
+  color: var(--color-navy);
+  line-height: 1.5;
+}
+
+.req-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.req-card__missing {
+  padding-left: 16px;
+  font-size: 0.83rem;
+  color: var(--color-navy);
+  line-height: 1.7;
+}
+
+.req-card__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-top: 4px;
+}
+
+/* Successor standard block */
+.req-card__successor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+  padding: 10px 14px;
+  background: var(--color-green-bg);
+  border: 1px solid var(--color-green-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+}
+
+.req-card__successor-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 700;
+  color: var(--color-green);
+  margin-bottom: 2px;
+}
+
+.req-card__successor-std {
+  font-weight: 700;
+  font-size: 0.95rem;
+  font-family: 'Inter', monospace;
+  color: var(--color-navy);
+}
+
+@media (max-width: 600px) {
+  .req-card__head { padding: 14px 16px; }
+  .req-card__body { padding: 14px 16px; }
+}
