@@ -20,6 +20,8 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 from src.recommend import StandardsRecommender, RequirementRecommendationResult
 from src.extract import extract_from_pdf, extract_from_text
+from src.audit import TenderAuditResult
+from src.report import ReportGenerator
 
 
 TENDER_MAP = {
@@ -257,18 +259,50 @@ def format_audit(audit: TenderAuditResult):
 
 def main():
     parser = argparse.ArgumentParser(description="SIH26108 Presentation-Ready Recommendation Demo CLI")
-    group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("--query", type=str, help="Single procurement requirement specification string")
-    group.add_argument("--tender", type=str, help="Tender ID to demo (e.g. T002, T007, T010, T020) or PDF path")
-    group.add_argument("--audit", nargs="?", const="SAMPLE", type=str, help="Run tender-level audit demonstration (e.g. --audit or --audit T001)")
+    parser.add_argument("--query", type=str, help="Single procurement requirement specification string")
+    parser.add_argument("--tender", type=str, help="Tender ID to demo (e.g. T002, T007, T010, T020) or PDF path")
+    parser.add_argument("--audit", nargs="?", const="SAMPLE", default=None, type=str, help="Run tender-level audit demonstration (e.g. --audit or --audit T001)")
+    parser.add_argument("--report", action="store_true", help="Generate Evidence-Backed Standards Review Report (Markdown + JSON)")
+    parser.add_argument("target", nargs="?", default=None, help="Optional tender ID or query parameter")
 
     args = parser.parse_args()
+
+    # Allow python scripts/demo.py --audit --report <tender> syntax
+    if args.audit and args.target:
+        args.audit = args.target
+    elif args.tender is None and args.query is None and args.audit is None and args.target:
+        # If target provided without flag, infer tender or audit
+        args.audit = args.target
+
+    if not (args.query or args.tender or args.audit):
+        parser.print_help()
+        sys.exit(1)
+
     recommender = StandardsRecommender()
 
     if args.query:
         print(f"\nProcessing single requirement query: \"{args.query}\"...")
         res = recommender.recommend_for_text(args.query, req_id="DEMO-REQ-001")
         format_card(res, input_source=f"CLI Text Query: '{args.query}'")
+
+        if args.report:
+            audit_res = recommender.audit_tender([res], tender_id="QUERY_AUDIT")
+            rep_gen = ReportGenerator()
+            md_path, json_path = rep_gen.generate_and_save(
+                audit_res,
+                [res],
+                output_dir="reports/generated",
+                tender_metadata={"tender_title": f"Ad-Hoc Query: {args.query[:50]}"}
+            )
+            print(f"{BOLD}{GREEN}============================================================{RESET}")
+            print(f"{BOLD}{GREEN}REPORT GENERATED SUCCESSFULLY{RESET}")
+            print(f"{BOLD}{GREEN}============================================================{RESET}")
+            print(f"Publication Readiness : {audit_res.publication_readiness}")
+            print(f"Requirements Analysed : {audit_res.requirements_analyzed}")
+            print(f"Review Queue Items    : {len(audit_res.review_queue)}")
+            print(f"Markdown Report       : {BOLD}{md_path}{RESET}")
+            print(f"JSON Report           : {BOLD}{json_path}{RESET}")
+            print(f"{BOLD}{GREEN}============================================================{RESET}\n")
 
     elif args.tender:
         t_key = args.tender.upper().strip()
@@ -290,12 +324,32 @@ def main():
         audit_res = recommender.audit_tender(report.results, tender_id=t_key)
         format_audit(audit_res)
 
+        if args.report:
+            rep_gen = ReportGenerator()
+            md_path, json_path = rep_gen.generate_and_save(
+                audit_res,
+                report.results,
+                output_dir="reports/generated",
+                tender_metadata={"tender_title": f"Tender Package {t_key}", "source_file": os.path.basename(pdf_path)}
+            )
+            print(f"{BOLD}{GREEN}============================================================{RESET}")
+            print(f"{BOLD}{GREEN}REPORT GENERATED SUCCESSFULLY{RESET}")
+            print(f"{BOLD}{GREEN}============================================================{RESET}")
+            print(f"Publication Readiness : {audit_res.publication_readiness}")
+            print(f"Requirements Analysed : {audit_res.requirements_analyzed}")
+            print(f"Review Queue Items    : {len(audit_res.review_queue)}")
+            print(f"Markdown Report       : {BOLD}{md_path}{RESET}")
+            print(f"JSON Report           : {BOLD}{json_path}{RESET}")
+            print(f"{BOLD}{GREEN}============================================================{RESET}\n")
+
     elif args.audit:
         audit_target = args.audit.upper().strip()
         print(f"\nRunning Tender Audit & Publication Readiness Engine for: {audit_target}...")
 
+        source_file = None
         if audit_target in TENDER_MAP:
             pdf_path = TENDER_MAP[audit_target]
+            source_file = os.path.basename(pdf_path)
             report = recommender.recommend_for_pdf(pdf_path, tender_id=audit_target)
             results = report.results
         else:
@@ -315,6 +369,24 @@ def main():
 
         audit_res = recommender.audit_tender(results, tender_id=audit_target)
         format_audit(audit_res)
+
+        if args.report:
+            rep_gen = ReportGenerator()
+            md_path, json_path = rep_gen.generate_and_save(
+                audit_res,
+                results,
+                output_dir="reports/generated",
+                tender_metadata={"tender_title": f"Procurement Audit: {audit_target}", "source_file": source_file}
+            )
+            print(f"{BOLD}{GREEN}============================================================{RESET}")
+            print(f"{BOLD}{GREEN}REPORT GENERATED SUCCESSFULLY{RESET}")
+            print(f"{BOLD}{GREEN}============================================================{RESET}")
+            print(f"Publication Readiness : {audit_res.publication_readiness}")
+            print(f"Requirements Analysed : {audit_res.requirements_analyzed}")
+            print(f"Review Queue Items    : {len(audit_res.review_queue)}")
+            print(f"Markdown Report       : {BOLD}{md_path}{RESET}")
+            print(f"JSON Report           : {BOLD}{json_path}{RESET}")
+            print(f"{BOLD}{GREEN}============================================================{RESET}\n")
 
 
 if __name__ == "__main__":
