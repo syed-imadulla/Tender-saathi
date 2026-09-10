@@ -95,7 +95,7 @@
           }
         },
         {
-          "text": "pipeline",
+          "text": "plumbing",
           "component_type": "application",
           "domain": "mechanical",
           "extracted_attributes": {
@@ -104,6 +104,24 @@
         },
         {
           "text": "maintenance",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "replacement",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "testing",
           "component_type": "action",
           "domain": "general",
           "extracted_attributes": {}
@@ -127,13 +145,12 @@
         "Candidate addresses multiple decomposed technical aspects of the requirement."
       ],
       "why_not": [
-        "Alternative standard IS 6392 has lower composite relevance (0.410 vs 0.920)."
+        "Alternative standard IS 1239 (Part 2) has lower composite relevance (0.459 vs 0.920)."
       ],
       "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [
         "Diameter / Nominal Bore (DN/OD)",
-        "Pressure Class / Schedule / SDR",
-        "Piping Application / Service"
+        "Pressure Class / Schedule / SDR"
       ],
       "known_parameters": {},
       "related_standards": [],

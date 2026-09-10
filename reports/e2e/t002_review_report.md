@@ -56,7 +56,7 @@
 **Original Requirement Text:**
 > "Annual Rate Contract for Execution of Mechanical Maintenance Works including Pumps, Valve Replacement, Flange Joint Maintenance, Heat Exchanger Maintenance, NDT and Allied Mechanical Works at Heavy Water Board Facilities, Vadodara."
 
-- **Decomposed Technical Components:** `general: Maintenance`, `general: Pumps`, `general: Valve`, `general: Replacement`, `general: Flange`, `general: valves`, `general: flange joints`, `general: heat exchangers`, `general: mechanical maintenance`
+- **Decomposed Technical Components:** `general: Maintenance`, `general: Pumps`, `general: Valve`, `general: Replacement`, `general: Flange`, `general: valves`, `general: flange joints`, `general: heat exchangers`, `general: mechanical maintenance`, `general: testing`
 - **Recommended Standard:** **IS 2712 : 2020** — *Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 2712]*
 - **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.646`
 - **Evidence Strength:** `MODERATE` | **Provenance:** `CURATED`

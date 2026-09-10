@@ -1,0 +1,456 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "PKG-EXPLICIT-CITATIONS",
+    "tender_title": "Special Verification Package: Explicit IS Citations, Supersedence & Lifecycle",
+    "organisation": "TenderSaathi Verification Suite",
+    "source_file": "synthetic_explicit_citations_verification.pdf",
+    "date": null,
+    "requirements_analyzed": 4
+  },
+  "publication_readiness": "REVIEW_REQUIRED",
+  "readiness_reasons": [
+    "1 requirement(s) cite or match superseded standard(s).",
+    "1 requirement(s) flagged with CRITICAL risk.",
+    "1 requirement(s) flagged with HIGH risk.",
+    "2 requirement(s) require technical engineer review.",
+    "4 requirement(s) have potentially missing specification parameters."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "PKG-EXPLICIT-CITATIONS",
+    "requirements_analyzed": 4,
+    "recommendations_count": 2,
+    "review_required_count": 2,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 1,
+    "withdrawn_count": 0,
+    "active_count": 3,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 3,
+      "MODERATE": 1,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 4,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 0
+    },
+    "risk_distribution": {
+      "LOW": 2,
+      "MEDIUM": 0,
+      "HIGH": 1,
+      "CRITICAL": 1
+    },
+    "lifecycle_distribution": {
+      "Active": 3,
+      "Superseded": 1,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 7,
+    "review_queue": [
+      {
+        "requirement_id": "CITE-001",
+        "requirement_text": "Procurement of steel gate valves conforming to IS 10611",
+        "risk_level": "CRITICAL",
+        "decision": "REVIEW_REQUIRED",
+        "candidate_standard": "IS/ISO 10434 : 2020",
+        "evidence_strength": "STRONG",
+        "primary_reason": "Tender explicitly cited a superseded standard requiring replacement verification.",
+        "priority": 1
+      },
+      {
+        "requirement_id": "CITE-003",
+        "requirement_text": "Sluice valves for water works conforming to IS 780",
+        "risk_level": "HIGH",
+        "decision": "REVIEW_REQUIRED",
+        "candidate_standard": "IS 14846 : 2000",
+        "evidence_strength": "STRONG",
+        "primary_reason": "Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material",
+        "priority": 2
+      }
+    ],
+    "publication_readiness": "REVIEW_REQUIRED",
+    "readiness_reasons": [
+      "1 requirement(s) cite or match superseded standard(s).",
+      "1 requirement(s) flagged with CRITICAL risk.",
+      "1 requirement(s) flagged with HIGH risk.",
+      "2 requirement(s) require technical engineer review.",
+      "4 requirement(s) have potentially missing specification parameters."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification."
+  },
+  "requirements": [
+    {
+      "requirement_id": "CITE-001",
+      "requirement_text": "Procurement of steel gate valves conforming to IS 10611",
+      "category": "product_equipment",
+      "components": [
+        {
+          "text": "gate valves",
+          "component_type": "product",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "category": "flow_control_valve"
+          }
+        },
+        {
+          "text": "steel gate valve",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        }
+      ],
+      "recommended_standard": "IS/ISO 10434 : 2020",
+      "recommended_title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+      "relevance_score": 1.0,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": "IS 10611",
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends.",
+      "evidence_source": "BSB Edge Portal",
+      "why_this": [
+        "Recommended authoritative active successor standard recorded in BIS database."
+      ],
+      "why_not": [
+        "Original cited standard is superseded/obsolete."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Nominal Size / Diameter (DN)",
+        "Pressure Rating (PN / Class)",
+        "Body Metallurgy / Material",
+        "Fluid Medium / Service"
+      ],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 10611 : 1983",
+          "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "relationship_type": "SUPERSEDES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS%2fISO+10434&id=45967",
+          "review_note": "Authoritative successor standard supersedes IS 10611 : 1983. Review legacy specifications."
+        }
+      ],
+      "decision": "REVIEW_REQUIRED",
+      "risk_level": "CRITICAL",
+      "risk_reasons": [
+        "Tender explicitly cited a superseded standard requiring replacement verification."
+      ],
+      "human_review_required": true,
+      "confidence": "High",
+      "review_reason": "Tender cited superseded standard 'IS 10611'. Recommended current active replacement."
+    },
+    {
+      "requirement_id": "CITE-002",
+      "requirement_text": "Food establishment hygiene management in accordance with IS 15000",
+      "category": "general_specification",
+      "components": [
+        {
+          "text": "food establishment hygiene management",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        }
+      ],
+      "recommended_standard": "IS 15000 : 2024",
+      "recommended_title": "Hazard Analysis and Critical Control Point (HACCP) - Requirements for Any Organization in the Food Chain",
+      "relevance_score": 0.98,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "This standard sets out the principles of the hazard analysis and critical control point (HACCP) system and provides general guidelines for the application of these principles, while recognizing that the details of application may vary depending on the circumstances of the food operation.",
+      "evidence_source": "BSB Edge Portal",
+      "why_this": [
+        "Official title aligns with specification: 'Hazard Analysis and Critical Control Point (HACCP) - Requirements for Any Organization in the Food Chain'.",
+        "Authoritative scope explicitly covers application: \"This standard sets out the principles of the hazard analysis and critical control point (HACCP) system and provides gene...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BSB Edge Portal (VERIFIED).",
+        "Cites normative reference IS 2491 : 2024 (Food Hygiene - General Principles - Code of Practice)."
+      ],
+      "why_not": [
+        "Alternative standard IS 2491 has lower composite relevance (0.842 vs 0.980)."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Food Establishment Type"
+      ],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 2491 : 2024",
+          "title": "Food Hygiene - General Principles - Code of Practice",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Active",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Clause 2 Reference in IS 15000:2024 explicitly cites IS 2491 : 2024 Food hygiene - General principles - Code of practice (fourth revision).",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+2491&id=0",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        }
+      ],
+      "decision": "RECOMMEND",
+      "risk_level": "LOW",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "High",
+      "review_reason": "Authoritative active standard IS 15000 : 2024 verified against scope with High confidence."
+    },
+    {
+      "requirement_id": "CITE-003",
+      "requirement_text": "Sluice valves for water works conforming to IS 780",
+      "category": "product_equipment",
+      "components": [
+        {
+          "text": "Sluice valves",
+          "component_type": "product",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "category": "flow_control_valve"
+          }
+        },
+        {
+          "text": "sluice valve",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "water works",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        }
+      ],
+      "recommended_standard": "IS 14846 : 2000",
+      "recommended_title": "Sluice Valve for Water Works Purposes (50 to 1200 mm Size) - Specification",
+      "relevance_score": 0.98,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "This standard covers requirements for non-rising stem typesluice valves from 50 to 1200 mm sizes used for water supply up to 45 deg C and having double flanged ends forconnections.",
+      "evidence_source": "BSB Edge Portal",
+      "why_this": [
+        "Standard title directly matches requirement component(s): 'sluice valve, water works'.",
+        "Authoritative scope explicitly covers application: \"This standard covers requirements for non-rising stem typesluice valves from 50 to 1200 mm sizes used for water supply u...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BSB Edge Portal (VERIFIED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement.",
+        "Cites normative reference IS 778 : 1984 (Specification for Copper Alloy Gate, Globe and Check Valves for Waterworks Purposes).",
+        "Cites normative reference IS 28 : 1982 (Title not in local index)."
+      ],
+      "why_not": [
+        "Alternative standard IS 778 has lower composite relevance (0.387 vs 0.980)."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Nominal Size / Diameter (DN)",
+        "Pressure Rating (PN / Class)",
+        "Body Metallurgy / Material",
+        "Fluid Medium / Service"
+      ],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 778 : 1984",
+          "title": "Specification for Copper Alloy Gate, Globe and Check Valves for Waterworks Purposes",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Active",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Listed under Clause 2 References in IS 14846:2000.",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+778&id=0",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        },
+        {
+          "standard_number": "IS 28 : 1982",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Cited under Clause 2 References in IS 14846 : 2000.",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+14846+%3a+2000&id=0",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        },
+        {
+          "standard_number": "IS 210 : 1993",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Cited under Clause 2 References in IS 14846 : 2000.",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+14846+%3a+2000&id=0",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        },
+        {
+          "standard_number": "IS 318 : 1981",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Cited under Clause 2 References in IS 14846 : 2000.",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+14846+%3a+2000&id=0",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        },
+        {
+          "standard_number": "IS 320 : 1980",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Cited under Clause 2 References in IS 14846 : 2000.",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+14846+%3a+2000&id=0",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        }
+      ],
+      "decision": "REVIEW_REQUIRED",
+      "risk_level": "HIGH",
+      "risk_reasons": [
+        "Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material"
+      ],
+      "human_review_required": true,
+      "confidence": "Low",
+      "review_reason": "Strong evidence grounded in BSB Edge Portal (VERIFIED)"
+    },
+    {
+      "requirement_id": "CITE-004",
+      "requirement_text": "CPVC pipes conforming to IS 15778 for domestic plumbing",
+      "category": "material",
+      "components": [
+        {
+          "text": "CPVC pipes",
+          "component_type": "material",
+          "domain": "piping",
+          "extracted_attributes": {
+            "category": "pipe_material"
+          }
+        },
+        {
+          "text": "domestic plumbing",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        }
+      ],
+      "recommended_standard": "IS 15778 : 2007",
+      "recommended_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
+      "relevance_score": 0.98,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "evidence_text": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.",
+      "evidence_source": "BIS Standards Catalogue",
+      "why_this": [
+        "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.",
+        "Authoritative scope explicitly covers application: \"Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BIS Standards Catalogue (CURATED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
+      ],
+      "why_not": [
+        "Alternative standard IS 14333 has lower composite relevance (0.301 vs 0.980)."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Diameter / Nominal Bore (DN/OD)",
+        "Pressure Class / Schedule / SDR"
+      ],
+      "known_parameters": {},
+      "related_standards": [],
+      "decision": "RECOMMEND",
+      "risk_level": "LOW",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "High",
+      "review_reason": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "CITE-001",
+      "requirement_text": "Procurement of steel gate valves conforming to IS 10611",
+      "risk_level": "CRITICAL",
+      "decision": "REVIEW_REQUIRED",
+      "candidate_standard": "IS/ISO 10434 : 2020",
+      "evidence_strength": "STRONG",
+      "primary_reason": "Tender explicitly cited a superseded standard requiring replacement verification.",
+      "priority": 1
+    },
+    {
+      "requirement_id": "CITE-003",
+      "requirement_text": "Sluice valves for water works conforming to IS 780",
+      "risk_level": "HIGH",
+      "decision": "REVIEW_REQUIRED",
+      "candidate_standard": "IS 14846 : 2000",
+      "evidence_strength": "STRONG",
+      "primary_reason": "Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material",
+      "priority": 2
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 3,
+      "MODERATE": 1,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 3,
+      "CURATED": 1,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}

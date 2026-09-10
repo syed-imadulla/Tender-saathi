@@ -248,8 +248,16 @@ def run_e2e_validation():
     # Distributions across all requirements
     readiness_dist = Counter(t["audit"].publication_readiness for t in tender_audit_records)
     risk_dist = Counter(r.risk_level for r in all_requirement_results)
-    ev_dist = Counter(getattr(r, "evidence_strength", "NONE") for r in all_requirement_results)
-    comp_dist = Counter(getattr(r, "specification_completeness", {}).get("completeness_state", "UNKNOWN") if getattr(r, "specification_completeness", None) else "UNKNOWN" for r in all_requirement_results)
+    ev_dist = Counter()
+    for t in tender_audit_records:
+        for k, v in t["audit"].evidence_distribution.items():
+            ev_dist[k] += v
+
+    comp_dist = Counter()
+    for t in tender_audit_records:
+        for k, v in t["audit"].completeness_distribution.items():
+            comp_dist[k] += v
+
     life_dist = Counter(r.status for r in all_requirement_results)
 
     total_recommendations = sum(t["audit"].recommendations_count for t in tender_audit_records)
@@ -406,7 +414,8 @@ Across the 20 audited tenders (25 total primary requirements):
 ### Specification Completeness Distribution
 - **KNOWN**: {comp_dist.get("KNOWN", 0)}
 - **POTENTIALLY_MISSING**: {comp_dist.get("POTENTIALLY_MISSING", 0)}
-- **UNKNOWN / NOT_APPLICABLE**: {comp_dist.get("UNKNOWN", 0) + comp_dist.get("NOT_APPLICABLE", 0)}
+- **UNKNOWN**: {comp_dist.get("UNKNOWN", 0)}
+- **NOT_APPLICABLE**: {comp_dist.get("NOT_APPLICABLE", 0)}
 
 ---
 
