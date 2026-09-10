@@ -1,0 +1,245 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "T014",
+    "tender_title": "Tender T014: Process Water Pump Motors 3.3kV SITC",
+    "organisation": "Heavy Water Board / Department of Atomic Energy",
+    "source_file": "eProcurement System Government of India15.pdf",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "REVIEW_REQUIRED",
+  "readiness_reasons": [
+    "1 requirement(s) flagged with HIGH risk.",
+    "1 requirement(s) require technical engineer review.",
+    "1 requirement(s) have potentially missing specification parameters."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "T014",
+    "requirements_analyzed": 1,
+    "recommendations_count": 0,
+    "review_required_count": 1,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 0,
+    "withdrawn_count": 0,
+    "active_count": 1,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 1,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 1,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 0
+    },
+    "risk_distribution": {
+      "LOW": 0,
+      "MEDIUM": 0,
+      "HIGH": 1,
+      "CRITICAL": 0
+    },
+    "lifecycle_distribution": {
+      "Active": 1,
+      "Superseded": 0,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 0,
+    "review_queue": [
+      {
+        "requirement_id": "T014-R001",
+        "requirement_text": "Design, manufacturing, inspection, supply, installation, testing and commissioning of three numbers of Process Water Pump motors 3.3 kV, 440 kW at Dhruva, BARC, Mumbai 400085",
+        "risk_level": "HIGH",
+        "decision": "REVIEW_REQUIRED",
+        "candidate_standard": "IS/IEC 60034-1 : 2017",
+        "evidence_strength": "MODERATE",
+        "primary_reason": "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)",
+        "priority": 2
+      }
+    ],
+    "publication_readiness": "REVIEW_REQUIRED",
+    "readiness_reasons": [
+      "1 requirement(s) flagged with HIGH risk.",
+      "1 requirement(s) require technical engineer review.",
+      "1 requirement(s) have potentially missing specification parameters."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification."
+  },
+  "requirements": [
+    {
+      "requirement_id": "T014-R001",
+      "requirement_text": "Design, manufacturing, inspection, supply, installation, testing and commissioning of three numbers of Process Water Pump motors 3.3 kV, 440 kW at Dhruva, BARC, Mumbai 400085",
+      "category": "product_equipment",
+      "components": [
+        {
+          "text": "inspection",
+          "component_type": "testing",
+          "domain": "quality_assurance",
+          "extracted_attributes": {
+            "test_type": "inspection"
+          }
+        },
+        {
+          "text": "supply, installation, testing and commissioning",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "supply, installation, testing and commissioning"
+          }
+        },
+        {
+          "text": "Process Water Pump",
+          "component_type": "product",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "category": "pump_rotodynamic",
+            "is_process": true
+          }
+        },
+        {
+          "text": "motors",
+          "component_type": "electrical",
+          "domain": "electrical",
+          "extracted_attributes": {
+            "category": "electric_machine",
+            "standard_focus": "IS/IEC 60034-1"
+          }
+        },
+        {
+          "text": "3.3 kV",
+          "component_type": "specification",
+          "domain": "electrical",
+          "extracted_attributes": {
+            "spec_type": "voltage",
+            "value": "3.3 kV",
+            "kv": 3.3,
+            "level": "medium_or_high_voltage"
+          }
+        },
+        {
+          "text": "Process Water Pump motor",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "process water pumping",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": true
+          }
+        },
+        {
+          "text": "design",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "manufacturing",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "testing",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "commissioning",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        }
+      ],
+      "recommended_standard": "IS/IEC 60034-1 : 2017",
+      "recommended_title": "Rotating Electrical Machines - Part 1: Rating and Performance",
+      "relevance_score": 0.915,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "evidence_text": "Exact Match: IS/IEC 60034-1 is the authoritative Indian Standard governing rating, temperature rise limits, dielectric tests, and performance of 3.3 kV rotating electric motors.",
+      "evidence_source": "BIS Standards Catalogue",
+      "why_this": [
+        "Official title aligns with specification: 'Rotating Electrical Machines - Part 1: Rating and Performance'.",
+        "Authoritative scope explicitly covers application: \"Exact Match: IS/IEC 60034-1 is the authoritative Indian Standard governing rating, temperature rise limits, dielectric t...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BIS Standards Catalogue (CURATED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
+      ],
+      "why_not": [
+        "Alternative standard IS 458 has lower composite relevance (0.310 vs 0.915)."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Pump Mechanism / Type",
+        "Discharge / Flow Rate (Q)",
+        "Total Dynamic Head (H)",
+        "Motor Coupling / Prime Mover"
+      ],
+      "known_parameters": {},
+      "related_standards": [],
+      "decision": "REVIEW_REQUIRED",
+      "risk_level": "HIGH",
+      "risk_reasons": [
+        "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)"
+      ],
+      "human_review_required": true,
+      "confidence": "Low",
+      "review_reason": "Moderate evidence grounded in BIS Standards Catalogue"
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "T014-R001",
+      "requirement_text": "Design, manufacturing, inspection, supply, installation, testing and commissioning of three numbers of Process Water Pump motors 3.3 kV, 440 kW at Dhruva, BARC, Mumbai 400085",
+      "risk_level": "HIGH",
+      "decision": "REVIEW_REQUIRED",
+      "candidate_standard": "IS/IEC 60034-1 : 2017",
+      "evidence_strength": "MODERATE",
+      "primary_reason": "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)",
+      "priority": 2
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 1,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 0,
+      "CURATED": 1,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}
