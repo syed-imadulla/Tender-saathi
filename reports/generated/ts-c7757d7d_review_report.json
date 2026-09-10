@@ -1,0 +1,295 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-C7757D7D",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "text input",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "REVIEW_REQUIRED",
+  "readiness_reasons": [
+    "1 requirement(s) flagged with HIGH risk.",
+    "1 requirement(s) require technical engineer review.",
+    "1 requirement(s) have potentially missing specification parameters."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-C7757D7D",
+    "requirements_analyzed": 1,
+    "recommendations_count": 0,
+    "review_required_count": 1,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 0,
+    "withdrawn_count": 0,
+    "active_count": 1,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 1,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 0
+    },
+    "risk_distribution": {
+      "LOW": 0,
+      "MEDIUM": 0,
+      "HIGH": 1,
+      "CRITICAL": 0
+    },
+    "lifecycle_distribution": {
+      "Active": 1,
+      "Superseded": 0,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 5,
+    "review_queue": [
+      {
+        "requirement_id": "REQ-001",
+        "requirement_text": "Supply and installation of waterworks valves for potable water pipelines, including sluice/gate valves and check valves, suitable for water service, with pressure testing and installation as per applicable Indian Standards.",
+        "risk_level": "HIGH",
+        "decision": "REVIEW_REQUIRED",
+        "candidate_standard": "IS 778 : 1984",
+        "evidence_strength": "STRONG",
+        "primary_reason": "Potentially missing engineering parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR",
+        "priority": 2
+      }
+    ],
+    "publication_readiness": "REVIEW_REQUIRED",
+    "readiness_reasons": [
+      "1 requirement(s) flagged with HIGH risk.",
+      "1 requirement(s) require technical engineer review.",
+      "1 requirement(s) have potentially missing specification parameters."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification."
+  },
+  "requirements": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "Supply and installation of waterworks valves for potable water pipelines, including sluice/gate valves and check valves, suitable for water service, with pressure testing and installation as per applicable Indian Standards.",
+      "category": "product_equipment",
+      "components": [
+        {
+          "text": "potable water",
+          "component_type": "application",
+          "domain": "water_supply",
+          "extracted_attributes": {
+            "application_type": "drinking_water"
+          }
+        },
+        {
+          "text": "pipelines",
+          "component_type": "material",
+          "domain": "piping",
+          "extracted_attributes": {
+            "category": "pipe_material"
+          }
+        },
+        {
+          "text": "gate valves",
+          "component_type": "product",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "category": "flow_control_valve"
+          }
+        },
+        {
+          "text": "check valves",
+          "component_type": "product",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "category": "flow_control_valve"
+          }
+        },
+        {
+          "text": "testing",
+          "component_type": "testing",
+          "domain": "quality_assurance",
+          "extracted_attributes": {
+            "test_type": "testing"
+          }
+        },
+        {
+          "text": "sluice valve",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "gate valve",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "check valve",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "potable water pipelines",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        }
+      ],
+      "recommended_standard": "IS 778 : 1984",
+      "recommended_title": "Specification for Copper Alloy Gate, Globe and Check Valves for Waterworks Purposes",
+      "relevance_score": 0.945,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "1.1 This standard covers requirements of copper alloy gate, globe and check valves of nominal sizes 8 to 100 mm suitable for working temperatures up to 45 deg C and non-shock working pressure Up to 1.6 MPa, for waterworks purposes.",
+      "evidence_source": "BSB Edge Portal",
+      "why_this": [
+        "Standard title directly matches requirement component(s): 'check valves, check valve'.",
+        "Authoritative scope explicitly covers application: \"1.1 This standard covers requirements of copper alloy gate, globe and check valves of nominal sizes 8 to 100 mm suitable...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BSB Edge Portal (VERIFIED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement.",
+        "Cites normative reference IS 2 : 1960 (Title not in local index).",
+        "Cites normative reference IS 210 : 1978 (Title not in local index)."
+      ],
+      "why_not": [
+        "Alternative standard IS 14846 scored lower across the 5-dimension critic evaluation."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Piping Material",
+        "Diameter / Nominal Bore (DN/OD)",
+        "Pressure Class / Schedule / SDR"
+      ],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 2 : 1960",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Cited under Clause 2 References in IS 778 : 1984.",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+778&id=0",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        },
+        {
+          "standard_number": "IS 210 : 1978",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Cited under Clause 2 References in IS 778 : 1984.",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+778&id=0",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        },
+        {
+          "standard_number": "IS 318 : 1981",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Cited under Clause 2 References in IS 778 : 1984.",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+778&id=0",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        },
+        {
+          "standard_number": "IS 319 : 1974",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Cited under Clause 2 References in IS 778 : 1984.",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+778&id=0",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        },
+        {
+          "standard_number": "IS 320 : 1980",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Cited under Clause 2 References in IS 778 : 1984.",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+778&id=0",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        }
+      ],
+      "decision": "REVIEW_REQUIRED",
+      "risk_level": "HIGH",
+      "risk_reasons": [
+        "Potentially missing engineering parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR",
+        "Ambiguous choice between IS 778 and IS 14846 due to missing distinguishing parameters"
+      ],
+      "human_review_required": true,
+      "confidence": "Low",
+      "review_reason": "Strong evidence grounded in BSB Edge Portal (VERIFIED)"
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "Supply and installation of waterworks valves for potable water pipelines, including sluice/gate valves and check valves, suitable for water service, with pressure testing and installation as per applicable Indian Standards.",
+      "risk_level": "HIGH",
+      "decision": "REVIEW_REQUIRED",
+      "candidate_standard": "IS 778 : 1984",
+      "evidence_strength": "STRONG",
+      "primary_reason": "Potentially missing engineering parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR",
+      "priority": 2
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 1,
+      "CURATED": 0,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}

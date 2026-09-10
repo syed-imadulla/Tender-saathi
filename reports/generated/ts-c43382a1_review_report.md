@@ -9,30 +9,27 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-SUPERSEDED`
-- **Source File:** `Sample: superseded`
+- **Tender ID:** `TS-C43382A1`
+- **Source File:** `eProcurement System Government of India.pdf`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
 
-**Status:** 🟡 REVIEW_REQUIRED
+**Status:** 🟢 READY_FOR_REVIEW
 
 ### Key Observations:
-- 1 requirement(s) cite or match superseded standard(s).
-- 1 requirement(s) flagged with CRITICAL risk.
-- 1 requirement(s) require technical engineer review.
-- 1 requirement(s) have potentially missing specification parameters.
+- All 1 requirement(s) have grounded standards evidence with no critical or high risk flags.
 
 ## 3. Executive Summary
 
 | Metric | Count / Distribution | Notes |
 |---|---|---|
 | **Requirements Analysed** | 1 | Total clauses extracted |
-| **Direct Recommendations** | 0 | Active standards grounded in evidence |
-| **Review Required** | 1 | Flagged for engineering attention |
+| **Direct Recommendations** | 1 | Active standards grounded in evidence |
+| **Review Required** | 0 | Flagged for engineering attention |
 | **Insufficient Evidence** | 0 | No reliable standard matched |
-| **Active Standards** | 0 | Verified current in BIS catalogue |
-| **Superseded Standards** | 1 | Outdated standards identified |
+| **Active Standards** | 1 | Verified current in BIS catalogue |
+| **Superseded Standards** | 0 | Outdated standards identified |
 | **Withdrawn Standards** | 0 | Cancelled standards |
 | **Unknown Lifecycle** | 0 | Unindexed in local catalogue |
 | **Related Standards to Review** | 1 | Discovered via relationship graph (depth=1) |
@@ -40,36 +37,37 @@
 ### Governance Distributions
 
 - **Evidence Strength:** STRONG: `1` | MODERATE: `0` | WEAK: `0` | NONE: `0`
-- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `1` | UNKNOWN: `0` | NOT_APPLICABLE: `0`
-- **Risk Distribution:** CRITICAL: `1` | HIGH: `0` | MEDIUM: `0` | LOW: `0`
+- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `0` | UNKNOWN: `0` | NOT_APPLICABLE: `1`
+- **Risk Distribution:** CRITICAL: `0` | HIGH: `0` | MEDIUM: `0` | LOW: `1`
 
 ## 4. Prioritized Human Review Queue
 
-| # | Priority | Requirement ID | Candidate Standard | Issue / Primary Reason |
-|---|---|---|---|---|
-| 1 | **CRITICAL** | `REQ-001` | `IS/ISO 10434 : 2020` | Tender explicitly cited a superseded standard requiring replacement verification. |
+*No requirements currently require human technical review.*
 
 ## 5. Requirement-by-Requirement Review
 
-### 5.1 Requirement `REQ-001` [PRODUCT_EQUIPMENT]
+### 5.1 Requirement `TS-C43382A1-R001` [INSTALLATION_EXECUTION]
 
 **Original Requirement Text:**
-> "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983."
+> "REPLACEMENT OF CRANE RAIL TRACK FOR RMQC (RAIL MOUNTED QUAY CRANE) INCLUDING ALLIED WORKS AT BERTH NO. 11 and 12 IN DOCK AREA, H.D.C, HALDIA"
 
-- **Decomposed Technical Components:** `general: gate valves`
+- **Decomposed Technical Components:** `general: REPLACEMENT`, `general: crane rail track`, `general: rail mounted quay crane`, `general: supply`, `general: installation`, `general: testing`
 - **Recommended Standard:** **IS/ISO 10434 : 2020** — *Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries*
-- **Lifecycle Status:** **ACTIVE** (Active successor replacing cited superseded `IS 10611 1983`) | **Composite Relevance Score:** `1.000`
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.570`
 - **Evidence Strength:** `STRONG` | **Provenance:** `VERIFIED`
 - **Verbatim Evidence (BSB Edge Portal):** "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends."
 - **Why This Standard?:**
-  - Recommended authoritative active successor standard recorded in BIS database.
+  - Official title aligns with specification: 'Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries'.
+  - Authoritative scope explicitly covers application: "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petroc..."
+  - Standard is currently active in the BIS repository with verified currency.
+  - Provenance established via BSB Edge Portal (VERIFIED).
+  - Candidate addresses multiple decomposed technical aspects of the requirement.
 - **Why Not Alternatives?:**
-  - Original cited standard is superseded/obsolete.
-- **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material, Fluid Medium / Service)
+  - Alternative standard IS 101 has lower composite relevance (0.392 vs 0.570).
+- **Specification Review Completeness:** `NOT_APPLICABLE`
 - **Related Standards Identified for Review (Graph Depth = 1):**
   - [→ SUPERSEDES] `IS 10611 : 1983` — *Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries* (Superseded) — *Note:* Authoritative successor standard supersedes IS 10611 : 1983. Review legacy specifications.
-- **Standards Review Decision:** `REVIEW_REQUIRED` | **Risk Level:** `CRITICAL` | **Confidence:** `High`
-- ⚠ **Human Technical Review Required:** Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.
+- **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `Medium`
 
 ---
 

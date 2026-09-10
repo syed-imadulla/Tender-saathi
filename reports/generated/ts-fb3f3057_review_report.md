@@ -9,19 +9,16 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-SUPERSEDED`
-- **Source File:** `Sample: superseded`
+- **Tender ID:** `TS-FB3F3057`
+- **Source File:** `text input`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
 
-**Status:** 🟡 REVIEW_REQUIRED
+**Status:** 🔴 INSUFFICIENT_EVIDENCE
 
 ### Key Observations:
-- 1 requirement(s) cite or match superseded standard(s).
-- 1 requirement(s) flagged with CRITICAL risk.
-- 1 requirement(s) require technical engineer review.
-- 1 requirement(s) have potentially missing specification parameters.
+- No reliable standards evidence identified across all requirements.
 
 ## 3. Executive Summary
 
@@ -29,8 +26,8 @@
 |---|---|---|
 | **Requirements Analysed** | 1 | Total clauses extracted |
 | **Direct Recommendations** | 0 | Active standards grounded in evidence |
-| **Review Required** | 1 | Flagged for engineering attention |
-| **Insufficient Evidence** | 0 | No reliable standard matched |
+| **Review Required** | 0 | Flagged for engineering attention |
+| **Insufficient Evidence** | 1 | No reliable standard matched |
 | **Active Standards** | 0 | Verified current in BIS catalogue |
 | **Superseded Standards** | 1 | Outdated standards identified |
 | **Withdrawn Standards** | 0 | Cancelled standards |
@@ -39,8 +36,8 @@
 
 ### Governance Distributions
 
-- **Evidence Strength:** STRONG: `1` | MODERATE: `0` | WEAK: `0` | NONE: `0`
-- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `1` | UNKNOWN: `0` | NOT_APPLICABLE: `0`
+- **Evidence Strength:** STRONG: `0` | MODERATE: `0` | WEAK: `1` | NONE: `0`
+- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `0` | UNKNOWN: `0` | NOT_APPLICABLE: `1`
 - **Risk Distribution:** CRITICAL: `1` | HIGH: `0` | MEDIUM: `0` | LOW: `0`
 
 ## 4. Prioritized Human Review Queue
@@ -51,25 +48,25 @@
 
 ## 5. Requirement-by-Requirement Review
 
-### 5.1 Requirement `REQ-001` [PRODUCT_EQUIPMENT]
+### 5.1 Requirement `REQ-001` [INSTALLATION_EXECUTION]
 
 **Original Requirement Text:**
-> "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983."
+> "Supply equipment conforming to IS 10611."
 
-- **Decomposed Technical Components:** `general: gate valves`
+- **Decomposed Technical Components:** `general: equipment`, `general: supply`
 - **Recommended Standard:** **IS/ISO 10434 : 2020** — *Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries*
-- **Lifecycle Status:** **ACTIVE** (Active successor replacing cited superseded `IS 10611 1983`) | **Composite Relevance Score:** `1.000`
-- **Evidence Strength:** `STRONG` | **Provenance:** `VERIFIED`
+- **Lifecycle Status:** **ACTIVE** (Active successor replacing cited superseded `IS 10611`) | **Composite Relevance Score:** `1.000`
+- **Evidence Strength:** `WEAK` | **Provenance:** `VERIFIED`
 - **Verbatim Evidence (BSB Edge Portal):** "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends."
 - **Why This Standard?:**
   - Recommended authoritative active successor standard recorded in BIS database.
 - **Why Not Alternatives?:**
   - Original cited standard is superseded/obsolete.
-- **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material, Fluid Medium / Service)
+- **Specification Review Completeness:** `NOT_APPLICABLE`
 - **Related Standards Identified for Review (Graph Depth = 1):**
   - [→ SUPERSEDES] `IS 10611 : 1983` — *Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries* (Superseded) — *Note:* Authoritative successor standard supersedes IS 10611 : 1983. Review legacy specifications.
-- **Standards Review Decision:** `REVIEW_REQUIRED` | **Risk Level:** `CRITICAL` | **Confidence:** `High`
-- ⚠ **Human Technical Review Required:** Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.
+- **Standards Review Decision:** `INSUFFICIENT_EVIDENCE` | **Risk Level:** `CRITICAL` | **Confidence:** `High`
+- ⚠ **Human Technical Review Required:** Tender cited superseded standard 'IS 10611'. Recommended current active replacement.
 
 ---
 

@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-SUPERSEDED`
-- **Source File:** `Sample: superseded`
+- **Tender ID:** `TS-9EEC0A19`
+- **Source File:** `text input`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -56,7 +56,7 @@
 **Original Requirement Text:**
 > "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983."
 
-- **Decomposed Technical Components:** `general: gate valves`
+- **Decomposed Technical Components:** `general: gate valves`, `general: bolted bonnet steel gate valve`, `general: supply`
 - **Recommended Standard:** **IS/ISO 10434 : 2020** — *Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries*
 - **Lifecycle Status:** **ACTIVE** (Active successor replacing cited superseded `IS 10611 1983`) | **Composite Relevance Score:** `1.000`
 - **Evidence Strength:** `STRONG` | **Provenance:** `VERIFIED`

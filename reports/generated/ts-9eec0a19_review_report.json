@@ -2,10 +2,10 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-SUPERSEDED",
+    "tender_id": "TS-9EEC0A19",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: superseded",
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
@@ -18,7 +18,7 @@
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-SUPERSEDED",
+    "tender_id": "TS-9EEC0A19",
     "requirements_analyzed": 1,
     "recommendations_count": 0,
     "review_required_count": 1,
@@ -86,6 +86,20 @@
           "extracted_attributes": {
             "category": "flow_control_valve"
           }
+        },
+        {
+          "text": "bolted bonnet steel gate valve",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
         }
       ],
       "recommended_standard": "IS/ISO 10434 : 2020",

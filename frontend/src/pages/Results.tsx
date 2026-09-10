@@ -1,11 +1,16 @@
-// Results.tsx — Main Results screen matching Reference Image 2
+// Results.tsx — TenderSaathi Indian Standards Recommendation Results Page
 import { useState, useMemo } from 'react';
 import './Results.css';
 import Header from '../components/Header';
-import RequirementCard from '../components/RequirementCard';
+import {
+  RecommendationCard,
+  AttentionCard,
+  UpdateCard,
+  RelatedCard,
+} from '../components/RequirementCard';
 import EvidenceDrawer from '../components/EvidenceDrawer';
 import { downloadReport, triggerDownload } from '../api';
-import type { AnalysisResult, Requirement } from '../types';
+import type { AnalysisResult, Requirement, RelatedStandard } from '../types';
 
 interface ResultsProps {
   result: AnalysisResult;
@@ -17,16 +22,96 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
   const [isDownloading, setIsDownloading] = useState(false);
   const [showReportMenu, setShowReportMenu] = useState(false);
 
-  // Accordion open/close states (default attention & update open, good closed if attention has items)
-  const [attentionOpen, setAttentionOpen] = useState(true);
-  const [goodOpen, setGoodOpen] = useState(result.sections?.needs_attention?.length === 0);
-  const [updateOpen, setUpdateOpen] = useState(true);
+  const { tender } = result;
+  const allReqs = result.requirements || [];
 
-  const { tender, summary, readiness, sections } = result;
+  // 1. Recommended Standards: Genuine recommendations based on backend decision truth
+  // Rule:
+  // - RECOMMEND -> display as recommendation
+  // - REVIEW_REQUIRED / RECOMMEND_WITH_REVIEW -> display recommendation + review warning
+  // - INSUFFICIENT_EVIDENCE / INSUFFICIENT_INFORMATION / NONE -> excluded from recommendations
+  const recommendedList = useMemo(() => {
+    return allReqs.filter((req) => {
+      const std = req.candidate_standard;
+      if (!std || std === 'NONE' || std === 'INSUFFICIENT_INFORMATION') {
+        return false;
+      }
+      // Never treat INSUFFICIENT_EVIDENCE as a recommended standard
+      if (req.decision === 'INSUFFICIENT_EVIDENCE') {
+        return false;
+      }
+      // If the candidate standard itself is superseded without replacement, don't recommend it
+      if (
+        req.lifecycle_status &&
+        req.lifecycle_status.toLowerCase() === 'superseded' &&
+        !req.successor_standard
+      ) {
+        return false;
+      }
 
-  const attentionList = sections?.needs_attention || [];
-  const goodList = sections?.looks_good || [];
-  const updateList = sections?.standards_to_update || [];
+      if (
+        req.decision === 'RECOMMEND' ||
+        req.decision === 'RECOMMEND_WITH_REVIEW' ||
+        req.decision === 'REVIEW_REQUIRED'
+      ) {
+        return true;
+      }
+
+      if (req.successor_standard && req.candidate_standard === req.successor_standard) {
+        return true;
+      }
+
+      return false;
+    });
+  }, [allReqs]);
+
+  // 2. Needs Attention: Actual missing parameters, ambiguity, or human review required
+  const attentionList = useMemo(() => {
+    return allReqs.filter((req) => {
+      const hasMissing = req.missing_parameters && req.missing_parameters.length > 0;
+      const isInsufficient =
+        req.decision === 'INSUFFICIENT_EVIDENCE' ||
+        req.candidate_standard === 'INSUFFICIENT_INFORMATION';
+      const needsHumanReview = req.human_review_required || req.decision === 'REVIEW_REQUIRED';
+      return hasMissing || isInsufficient || needsHumanReview;
+    });
+  }, [allReqs]);
+
+  // 3. Standards That Need an Update: Superseded citations
+  const updateList = useMemo(() => {
+    return allReqs.filter((req) => {
+      return Boolean(
+        req.superseded_citation ||
+        (req.lifecycle_status && req.lifecycle_status.toLowerCase() === 'superseded') ||
+        (req.successor_standard && req.successor_standard !== req.candidate_standard)
+      );
+    });
+  }, [allReqs]);
+
+  // 4. Related Standards (Graph): Kept strictly separate ("Related ≠ Applicable")
+  const relatedStandardsList = useMemo(() => {
+    const list: Array<{ standard: RelatedStandard; parentStandard: string; parentReq: Requirement }> = [];
+    const seen = new Set<string>();
+
+    for (const req of allReqs) {
+      if (!req.candidate_standard || req.candidate_standard === 'NONE' || req.candidate_standard === 'INSUFFICIENT_INFORMATION') {
+        continue;
+      }
+      for (const rel of req.related_standards || []) {
+        if (!rel.standard_number) continue;
+        if (rel.standard_number === req.candidate_standard) continue;
+        if (seen.has(rel.standard_number)) continue;
+        seen.add(rel.standard_number);
+
+        list.push({
+          standard: rel,
+          parentStandard: req.candidate_standard,
+          parentReq: req,
+        });
+      }
+    }
+    return list;
+  }, [allReqs]);
 
   // Format file size
   const formattedSize = useMemo(() => {
@@ -52,22 +137,7 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
     }
   };
 
-  // Readiness badge color & label
-  const readinessBadge = useMemo(() => {
-    switch (readiness) {
-      case 'READY_FOR_REVIEW':
-        return { label: 'READY FOR REVIEW', className: 'readiness-pill--ready' };
-      case 'INSUFFICIENT_EVIDENCE':
-        return { label: 'INSUFFICIENT EVIDENCE', className: 'readiness-pill--insufficient' };
-      case 'REVIEW_REQUIRED':
-      default:
-        return { label: 'REVIEW REQUIRED', className: 'readiness-pill--review' };
-    }
-  }, [readiness]);
-
-  // Dynamic summary sentence
-  const attentionCount = summary.needs_attention + summary.standards_to_update;
-  const standardsCount = summary.active_count + summary.superseded_count || attentionList.length + goodList.length;
+  const recCount = recommendedList.length;
 
   return (
     <div className="results-page">
@@ -75,7 +145,7 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
 
       <main className="results-container" role="main">
         {/* 1. Tender File Card at Top */}
-        <div className="tender-file-card" aria-label="Analyzed tender file details">
+        <section className="tender-file-card" aria-label="Analyzed tender file details">
           <div className="tender-file-card__left">
             <div className="tender-file-card__icon" aria-hidden="true">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -118,17 +188,17 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
               New check
             </button>
           </div>
-        </div>
+        </section>
 
-        {/* 2. Analysis Complete Headline + Download Report Button */}
+        {/* 2. Hero Headline + Download Report Button */}
         <div className="results-hero">
           <div className="results-hero__left">
             <p className="results-eyebrow">ANALYSIS COMPLETE</p>
             <h1 className="results-title">
-              Here’s what we <span>found.</span>
+              Indian Standards for your tender.
             </h1>
             <p className="results-desc">
-              We analysed your tender using relevant Indian Standards (BIS) and found a few things that need your attention.
+              We found standards that may apply to the requirements in your tender. Review the recommendations and any items that need clarification before publication.
             </p>
           </div>
 
@@ -177,235 +247,142 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
           </div>
         </div>
 
-        {/* 3. Summary Card */}
-        <div className="summary-card" aria-label="Tender findings summary">
-          <div className="summary-card__icon-wrap" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-              <line x1="12" y1="9" x2="12" y2="13" />
-              <line x1="12" y1="17" x2="12.01" y2="17" />
-            </svg>
-          </div>
-
-          <div className="summary-card__content">
-            <div className="summary-card__headline-row">
-              <h3 className="summary-card__title">
-                {attentionList.length > 0
-                  ? `${attentionList.length} thing${attentionList.length === 1 ? '' : 's'} need your attention.`
-                  : updateList.length > 0
-                  ? `${updateList.length} standard${updateList.length === 1 ? '' : 's'} need an update.`
-                  : 'All analyzed requirements look good.'}
-              </h3>
-              <span className={`readiness-pill ${readinessBadge.className}`}>
-                {readinessBadge.label}
+        {/* 3. PRIMARY SECTION: INDIAN STANDARDS TO CONSIDER */}
+        <section className="results-section results-section--primary" aria-label="Indian Standards to consider">
+          <div className="section-banner">
+            <div className="section-banner__header">
+              <h2 className="section-banner__title">INDIAN STANDARDS TO CONSIDER</h2>
+              <span className="section-banner__count">
+                {recCount === 1
+                  ? '1 Indian Standard recommended'
+                  : recCount > 1
+                  ? `${recCount} Indian Standards recommended`
+                  : 'No reliable standard match found'}
               </span>
             </div>
-            <p className="summary-card__stats">
-              {goodList.length} requirement{goodList.length === 1 ? '' : 's'} look good
-              &nbsp;&nbsp;·&nbsp;&nbsp;
-              {attentionList.length} need{attentionList.length === 1 ? 's' : ''} more details
-              &nbsp;&nbsp;·&nbsp;&nbsp;
-              {standardsCount} relevant Indian Standard{standardsCount === 1 ? '' : 's'} found
-            </p>
           </div>
-        </div>
 
-        {/* 4. MAIN RESULTS: EXACTLY THREE EXPANDABLE SECTIONS */}
-        <div className="results-accordions">
-          {/* Section A: Needs your attention */}
-          <section className="accordion-section accordion-section--attention" aria-label="Requirements that need your attention">
-            <div
-              className="accordion-header"
-              onClick={() => setAttentionOpen((prev) => !prev)}
-              role="button"
-              tabIndex={0}
-              aria-expanded={attentionOpen}
-              onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setAttentionOpen((prev) => !prev)}
-            >
-              <div className="accordion-header__left">
-                <div className="accordion-badge accordion-badge--attention" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-                    <line x1="12" y1="9" x2="12" y2="13" />
-                    <line x1="12" y1="17" x2="12.01" y2="17" />
+          <div className="recommendations-list">
+            {recCount > 0 ? (
+              recommendedList.map((req, i) => (
+                <RecommendationCard
+                  key={req.id || i}
+                  req={req}
+                  isPrimary={i === 0 && recCount > 1}
+                  onOpenEvidence={setActiveEvidenceReq}
+                />
+              ))
+            ) : (
+              <div className="rec-empty-card">
+                <div className="rec-empty-card__icon" aria-hidden="true">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
                   </svg>
                 </div>
-                <div className="accordion-header__text">
-                  <h3 className="accordion-title">Needs your attention</h3>
-                  <p className="accordion-subtitle">These items may need clarification or additional details.</p>
+                <div>
+                  <h3 className="rec-empty-card__title">No reliable standard match found</h3>
+                  <p className="rec-empty-card__desc">
+                    We could not establish a sufficiently supported Indian Standard from the available catalogue.
+                  </p>
                 </div>
-              </div>
-
-              <div className="accordion-header__right">
-                <span className="accordion-count">{attentionList.length} item{attentionList.length === 1 ? '' : 's'}</span>
-                <svg
-                  className={`accordion-chevron ${attentionOpen ? 'accordion-chevron--open' : ''}`}
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
-              </div>
-            </div>
-
-            {attentionOpen && (
-              <div className="accordion-body">
-                {attentionList.length > 0 ? (
-                  attentionList.map((req, i) => (
-                    <RequirementCard
-                      key={req.id || i}
-                      req={req}
-                      index={i + 1}
-                      sectionType="attention"
-                      onOpenEvidence={setActiveEvidenceReq}
-                      defaultExpanded={false}
-                    />
-                  ))
-                ) : (
-                  <div className="accordion-empty">
-                    No requirements flagged for attention. All citations meet verified standards.
-                  </div>
-                )}
               </div>
             )}
-          </section>
+          </div>
+        </section>
 
-          {/* Section B: Looks good */}
-          <section className="accordion-section accordion-section--good" aria-label="Requirements that look good">
-            <div
-              className="accordion-header"
-              onClick={() => setGoodOpen((prev) => !prev)}
-              role="button"
-              tabIndex={0}
-              aria-expanded={goodOpen}
-              onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setGoodOpen((prev) => !prev)}
-            >
-              <div className="accordion-header__left">
-                <div className="accordion-badge accordion-badge--good" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                </div>
-                <div className="accordion-header__text">
-                  <h3 className="accordion-title">Looks good</h3>
-                  <p className="accordion-subtitle">These requirements have strong supporting evidence.</p>
-                </div>
+        {/* 4. SECTION 2: NEEDS YOUR ATTENTION */}
+        {attentionList.length > 0 && (
+          <section className="results-section results-section--attention" aria-label="Requirements that need your attention">
+            <div className="section-header-row">
+              <div className="section-header-row__left">
+                <h3 className="section-subheading">NEEDS YOUR ATTENTION</h3>
+                <p className="section-subheading-desc">
+                  Review these items that need engineering clarification or additional specification details before publication.
+                </p>
               </div>
-
-              <div className="accordion-header__right">
-                <span className="accordion-count">{goodList.length} item{goodList.length === 1 ? '' : 's'}</span>
-                <svg
-                  className={`accordion-chevron ${goodOpen ? 'accordion-chevron--open' : ''}`}
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
-              </div>
+              <span className="section-badge section-badge--attention">
+                {attentionList.length} item{attentionList.length === 1 ? '' : 's'}
+              </span>
             </div>
 
-            {goodOpen && (
-              <div className="accordion-body">
-                {goodList.length > 0 ? (
-                  goodList.map((req, i) => (
-                    <RequirementCard
-                      key={req.id || i}
-                      req={req}
-                      index={i + 1}
-                      sectionType="good"
-                      onOpenEvidence={setActiveEvidenceReq}
-                      defaultExpanded={false}
-                    />
-                  ))
-                ) : (
-                  <div className="accordion-empty">
-                    No active citations currently marked fully verified without notes.
-                  </div>
-                )}
-              </div>
-            )}
+            <div className="attention-list">
+              {attentionList.map((req, i) => (
+                <AttentionCard
+                  key={req.id || i}
+                  req={req}
+                  onOpenEvidence={setActiveEvidenceReq}
+                />
+              ))}
+            </div>
           </section>
+        )}
 
-          {/* Section C: Standards that need an update */}
-          <section className="accordion-section accordion-section--update" aria-label="Standards that need an update">
-            <div
-              className="accordion-header"
-              onClick={() => setUpdateOpen((prev) => !prev)}
-              role="button"
-              tabIndex={0}
-              aria-expanded={updateOpen}
-              onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && setUpdateOpen((prev) => !prev)}
-            >
-              <div className="accordion-header__left">
-                <div className="accordion-badge accordion-badge--update" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                  </svg>
-                </div>
-                <div className="accordion-header__text">
-                  <h3 className="accordion-title">Standards that need an update</h3>
-                  <p className="accordion-subtitle">These standards seem outdated. Consider using the latest version.</p>
-                </div>
-              </div>
+        {/* 5. SECTION 3: STANDARDS THAT NEED AN UPDATE */}
+        <section className="results-section results-section--update" aria-label="Standards that need an update">
+          <div className="section-header-row">
+            <div className="section-header-row__left">
+              <h3 className="section-subheading">STANDARDS THAT NEED AN UPDATE</h3>
+              <p className="section-subheading-desc">
+                Superseded or outdated Indian Standards identified in the tender specifications.
+              </p>
+            </div>
+            {updateList.length > 0 && (
+              <span className="section-badge section-badge--warning">
+                {updateList.length} superseded
+              </span>
+            )}
+          </div>
 
-              <div className="accordion-header__right">
-                <span className="accordion-count">{updateList.length} item{updateList.length === 1 ? '' : 's'}</span>
-                <svg
-                  className={`accordion-chevron ${updateOpen ? 'accordion-chevron--open' : ''}`}
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
+          {updateList.length > 0 ? (
+            <div className="update-list">
+              {updateList.map((req, i) => (
+                <UpdateCard
+                  key={req.id || i}
+                  req={req}
+                  onOpenEvidence={setActiveEvidenceReq}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="update-empty-box">
+              <span className="update-empty-box__icon" aria-hidden="true">✓</span>
+              <span>No outdated or superseded standard references found.</span>
+            </div>
+          )}
+        </section>
+
+        {/* 6. SECTION 4: RELATED STANDARDS TO REVIEW */}
+        {relatedStandardsList.length > 0 && (
+          <section className="results-section results-section--related" aria-label="Related standards to review">
+            <div className="section-header-row">
+              <div className="section-header-row__left">
+                <h3 className="section-subheading">RELATED STANDARDS TO REVIEW</h3>
+                <p className="section-subheading-desc">
+                  These standards are referenced by the recommended standards or exist in the standards knowledge graph. Review for co-application. They are not automatic recommendations.
+                </p>
               </div>
+              <span className="section-badge section-badge--neutral">
+                {relatedStandardsList.length} reference{relatedStandardsList.length === 1 ? '' : 's'}
+              </span>
             </div>
 
-            {updateOpen && (
-              <div className="accordion-body">
-                {updateList.length > 0 ? (
-                  updateList.map((req, i) => (
-                    <RequirementCard
-                      key={req.id || i}
-                      req={req}
-                      index={i + 1}
-                      sectionType="update"
-                      onOpenEvidence={setActiveEvidenceReq}
-                      defaultExpanded={false}
-                    />
-                  ))
-                ) : (
-                  <div className="accordion-empty">
-                    No outdated or superseded standard citations identified in this tender.
-                  </div>
-                )}
-              </div>
-            )}
+            <div className="related-list">
+              {relatedStandardsList.map((item, i) => (
+                <RelatedCard
+                  key={i}
+                  related={item.standard}
+                  parentStandard={item.parentStandard}
+                  parentReq={item.parentReq}
+                  onOpenEvidence={setActiveEvidenceReq}
+                />
+              ))}
+            </div>
           </section>
-        </div>
+        )}
 
-        {/* 5. Security & Privacy Footer Note */}
+        {/* 7. Security & Privacy Footer Note */}
         <footer className="results-footer">
           <div className="security-notice">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -416,7 +393,7 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
         </footer>
       </main>
 
-      {/* 6. Evidence Drawer (opens on 'See why') */}
+      {/* 8. Evidence Drawer (opens on 'See why') */}
       {activeEvidenceReq && (
         <EvidenceDrawer
           req={activeEvidenceReq}

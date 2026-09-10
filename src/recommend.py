@@ -206,8 +206,9 @@ class StandardsRecommender:
                 # 2. Inject the authoritative successor if superseded
                 if not val_res.is_active and val_res.successor_standard:
                     superseded_explicit_warnings.append(val_res.warning_message)
-                    cursor.execute("SELECT * FROM standards WHERE standard_number = ?", (val_res.successor_standard,))
-                    succ_row = cursor.fetchone()
+                    successor_number = val_res.successor_standard.split(" : ")[0].strip()
+                    succ_row = cursor.execute("SELECT * FROM standards WHERE standard_number = ? OR standard_id = ?",
+                                              (successor_number, val_res.successor_standard)).fetchone()
                     if succ_row:
                         s_dict = dict(succ_row)
                         succ_res = self.search_engine.det_engine._format_result(

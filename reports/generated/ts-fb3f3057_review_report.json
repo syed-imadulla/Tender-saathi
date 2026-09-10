@@ -2,42 +2,39 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-SUPERSEDED",
+    "tender_id": "TS-FB3F3057",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: superseded",
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
-  "publication_readiness": "REVIEW_REQUIRED",
+  "publication_readiness": "INSUFFICIENT_EVIDENCE",
   "readiness_reasons": [
-    "1 requirement(s) cite or match superseded standard(s).",
-    "1 requirement(s) flagged with CRITICAL risk.",
-    "1 requirement(s) require technical engineer review.",
-    "1 requirement(s) have potentially missing specification parameters."
+    "No reliable standards evidence identified across all requirements."
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-SUPERSEDED",
+    "tender_id": "TS-FB3F3057",
     "requirements_analyzed": 1,
     "recommendations_count": 0,
-    "review_required_count": 1,
-    "insufficient_evidence_count": 0,
+    "review_required_count": 0,
+    "insufficient_evidence_count": 1,
     "superseded_count": 1,
     "withdrawn_count": 0,
     "active_count": 0,
     "unknown_lifecycle_count": 0,
     "evidence_distribution": {
-      "STRONG": 1,
+      "STRONG": 0,
       "MODERATE": 0,
-      "WEAK": 0,
+      "WEAK": 1,
       "NONE": 0
     },
     "completeness_distribution": {
       "KNOWN": 0,
-      "POTENTIALLY_MISSING": 1,
+      "POTENTIALLY_MISSING": 0,
       "UNKNOWN": 0,
-      "NOT_APPLICABLE": 0
+      "NOT_APPLICABLE": 1
     },
     "risk_distribution": {
       "LOW": 0,
@@ -55,37 +52,40 @@
     "review_queue": [
       {
         "requirement_id": "REQ-001",
-        "requirement_text": "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.",
+        "requirement_text": "Supply equipment conforming to IS 10611.",
         "risk_level": "CRITICAL",
-        "decision": "REVIEW_REQUIRED",
+        "decision": "INSUFFICIENT_EVIDENCE",
         "candidate_standard": "IS/ISO 10434 : 2020",
-        "evidence_strength": "STRONG",
+        "evidence_strength": "WEAK",
         "primary_reason": "Tender explicitly cited a superseded standard requiring replacement verification.",
         "priority": 1
       }
     ],
-    "publication_readiness": "REVIEW_REQUIRED",
+    "publication_readiness": "INSUFFICIENT_EVIDENCE",
     "readiness_reasons": [
-      "1 requirement(s) cite or match superseded standard(s).",
-      "1 requirement(s) flagged with CRITICAL risk.",
-      "1 requirement(s) require technical engineer review.",
-      "1 requirement(s) have potentially missing specification parameters."
+      "No reliable standards evidence identified across all requirements."
     ],
     "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification."
   },
   "requirements": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.",
-      "category": "product_equipment",
+      "requirement_text": "Supply equipment conforming to IS 10611.",
+      "category": "installation_execution",
       "components": [
         {
-          "text": "gate valves",
-          "component_type": "product",
+          "text": "equipment",
+          "component_type": "equipment",
           "domain": "mechanical",
           "extracted_attributes": {
-            "category": "flow_control_valve"
+            "domain": "mechanical"
           }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
         }
       ],
       "recommended_standard": "IS/ISO 10434 : 2020",
@@ -93,8 +93,8 @@
       "relevance_score": 1.0,
       "lifecycle_status": "Active",
       "successor_standard": null,
-      "superseded_citation": "IS 10611 1983",
-      "evidence_strength": "STRONG",
+      "superseded_citation": "IS 10611",
+      "evidence_strength": "WEAK",
       "provenance": "VERIFIED",
       "evidence_text": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends.",
       "evidence_source": "BSB Edge Portal",
@@ -104,13 +104,8 @@
       "why_not": [
         "Original cited standard is superseded/obsolete."
       ],
-      "completeness_label": "POTENTIALLY_MISSING",
-      "potentially_missing_parameters": [
-        "Nominal Size / Diameter (DN)",
-        "Pressure Rating (PN / Class)",
-        "Body Metallurgy / Material",
-        "Fluid Medium / Service"
-      ],
+      "completeness_label": "NOT_APPLICABLE",
+      "potentially_missing_parameters": [],
       "known_parameters": {},
       "related_standards": [
         {
@@ -126,33 +121,33 @@
           "review_note": "Authoritative successor standard supersedes IS 10611 : 1983. Review legacy specifications."
         }
       ],
-      "decision": "REVIEW_REQUIRED",
+      "decision": "INSUFFICIENT_EVIDENCE",
       "risk_level": "CRITICAL",
       "risk_reasons": [
         "Tender explicitly cited a superseded standard requiring replacement verification."
       ],
       "human_review_required": true,
       "confidence": "High",
-      "review_reason": "Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement."
+      "review_reason": "Tender cited superseded standard 'IS 10611'. Recommended current active replacement."
     }
   ],
   "review_queue": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.",
+      "requirement_text": "Supply equipment conforming to IS 10611.",
       "risk_level": "CRITICAL",
-      "decision": "REVIEW_REQUIRED",
+      "decision": "INSUFFICIENT_EVIDENCE",
       "candidate_standard": "IS/ISO 10434 : 2020",
-      "evidence_strength": "STRONG",
+      "evidence_strength": "WEAK",
       "primary_reason": "Tender explicitly cited a superseded standard requiring replacement verification.",
       "priority": 1
     }
   ],
   "evidence_summary": {
     "evidence_distribution": {
-      "STRONG": 1,
+      "STRONG": 0,
       "MODERATE": 0,
-      "WEAK": 0,
+      "WEAK": 1,
       "NONE": 0
     },
     "provenance_distribution": {
