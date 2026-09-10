@@ -155,7 +155,10 @@ Human review
 
 ### 1. AI Requirement Understanding (`src/ai_understanding.py`)
 - **Core Role**: The LLM does not recommend the Indian Standard. It understands the procurement requirement and converts it into structured technical facets. Retrieval, evidence, lifecycle, graph, and critic layers determine the final recommendation.
-- **Provider & Model**: Groq API using `openai/gpt-oss-120b` (secondary: OpenRouter if explicitly configured).
+- **Architecture**: Groq (`openai/gpt-oss-120b`) (Fallback: Deterministic Requirement Decomposition). OpenRouter is an optional explicitly configured provider, not an automatic fallback.
+- **Fallback Behavior**:
+  - Primary provider: Groq (`openai/gpt-oss-120b`).
+  - If Groq is unavailable, disabled, unconfigured, times out, or returns malformed output, TenderSaathi falls back to the existing deterministic requirement decomposition.
 - **Function**: Converts messy natural-language tender clauses into strict structured technical fields (`equipment`, `control`, `electrical`, `voltage`, `application`, `work_type`).
 - **Critical Safety Guardrails**:
   - The LLM **NEVER** selects an Indian Standard, invents an IS code, or declares compliance.
@@ -167,8 +170,7 @@ Human review
     - the evidence generator
     - the final decision maker
   - Any standard numbers or IS codes in LLM outputs are automatically stripped and ignored.
-- **Graceful Deterministic Fallback**:
-  - If the LLM is disabled, unconfigured, times out, network fails, or output schema is malformed, the engine seamlessly falls back to deterministic decomposition (`src/decompose.py`). The system is **100% functional offline**.
+  - The system is **100% functional offline**.
 
 ### 2. Second-Stage Neural Candidate Reranking (`src/reranker.py`)
 - **Model**: `cross-encoder/ms-marco-MiniLM-L-6-v2` (~90 MB, 22.7M parameters).
