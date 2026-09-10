@@ -189,11 +189,78 @@ def format_card(res: RequirementRecommendationResult, input_source: str):
     print(CYAN + d_hr + RESET + "\n")
 
 
+def format_audit(audit: TenderAuditResult):
+    """Formats tender-level audit and publication readiness for presentation."""
+    box_w = 60
+    eq_hr = "=" * box_w
+
+    print("\n" + eq_hr)
+    print(f"{BOLD}TENDER AUDIT — {audit.tender_id}{RESET}")
+    print(eq_hr)
+    print(f"Requirements analysed: {audit.requirements_analyzed}")
+
+    print(f"\n{BOLD}Standards Review{RESET}")
+    print(f"  Recommendations:        {audit.recommendations_count}")
+    print(f"  Review Required:        {audit.review_required_count}")
+    print(f"  Insufficient Evidence:  {audit.insufficient_evidence_count}")
+
+    print(f"\n{BOLD}Lifecycle{RESET}")
+    print(f"  Active:                 {audit.lifecycle_distribution.get('Active', 0)}")
+    print(f"  Superseded:             {audit.lifecycle_distribution.get('Superseded', 0)}")
+    print(f"  Withdrawn:              {audit.lifecycle_distribution.get('Withdrawn', 0)}")
+    print(f"  Unknown:                {audit.lifecycle_distribution.get('Unknown', 0)}")
+
+    print(f"\n{BOLD}Evidence{RESET}")
+    print(f"  STRONG:                 {audit.evidence_distribution.get('STRONG', 0)}")
+    print(f"  MODERATE:               {audit.evidence_distribution.get('MODERATE', 0)}")
+    print(f"  WEAK:                   {audit.evidence_distribution.get('WEAK', 0)}")
+    print(f"  NONE:                   {audit.evidence_distribution.get('NONE', 0)}")
+
+    print(f"\n{BOLD}Specification Review{RESET}")
+    for k in ["KNOWN", "POTENTIALLY_MISSING", "UNKNOWN", "NOT_APPLICABLE"]:
+        val = audit.completeness_distribution.get(k, 0)
+        if val > 0 or k in ["KNOWN", "POTENTIALLY_MISSING"]:
+            print(f"  {k:<22}: {val}")
+
+    print(f"\nRelated Standards to Review: {audit.related_standards_count}")
+
+    # Publication Readiness Status
+    stat = audit.publication_readiness
+    if stat == "READY_FOR_REVIEW":
+        stat_color = GREEN
+        icon = "✓"
+    elif stat == "REVIEW_REQUIRED":
+        stat_color = YELLOW
+        icon = "⚠"
+    else:
+        stat_color = RED
+        icon = "✗"
+
+    print(f"\n{BOLD}Publication Readiness:{RESET}")
+    print(f"{stat_color}{BOLD}{icon} {stat}{RESET}")
+
+    if audit.readiness_reasons:
+        print(f"\n{BOLD}Reasons:{RESET}")
+        for reason in audit.readiness_reasons:
+            print(f"• {reason}")
+
+    if audit.review_queue:
+        print(f"\n{BOLD}Human Review Queue:{RESET}")
+        for idx, item in enumerate(audit.review_queue[:5], 1):
+            color = RED if item.risk_level == "CRITICAL" else (YELLOW if item.risk_level == "HIGH" else BLUE)
+            clean_text = item.requirement_text[:48] + "..." if len(item.requirement_text) > 48 else item.requirement_text
+            print(f"{idx}. {color}{BOLD}{item.risk_level:<8}{RESET} — Req: '{clean_text}'")
+            print(f"   Candidate: {item.candidate_standard} | Issue: {item.primary_reason}")
+
+    print(eq_hr + "\n")
+
+
 def main():
     parser = argparse.ArgumentParser(description="SIH26108 Presentation-Ready Recommendation Demo CLI")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--query", type=str, help="Single procurement requirement specification string")
     group.add_argument("--tender", type=str, help="Tender ID to demo (e.g. T002, T007, T010, T020) or PDF path")
+    group.add_argument("--audit", nargs="?", const="SAMPLE", type=str, help="Run tender-level audit demonstration (e.g. --audit or --audit T001)")
 
     args = parser.parse_args()
     recommender = StandardsRecommender()
@@ -218,6 +285,36 @@ def main():
         print(f"Found {report.total_requirements} requirement(s) in tender {t_key}.\n")
         for res in report.results:
             format_card(res, input_source=f"Tender PDF: {os.path.basename(pdf_path)} ({t_key})")
+
+        # Automatically display aggregated tender audit summary
+        audit_res = recommender.audit_tender(report.results, tender_id=t_key)
+        format_audit(audit_res)
+
+    elif args.audit:
+        audit_target = args.audit.upper().strip()
+        print(f"\nRunning Tender Audit & Publication Readiness Engine for: {audit_target}...")
+
+        if audit_target in TENDER_MAP:
+            pdf_path = TENDER_MAP[audit_target]
+            report = recommender.recommend_for_pdf(pdf_path, tender_id=audit_target)
+            results = report.results
+        else:
+            # Representative multi-requirement procurement package
+            sample_queries = [
+                ("REQ-001", "Supply of CPVC pipes for potable water distribution"),
+                ("REQ-002", "Replacement of damaged valves in pumping station"),
+                ("REQ-003", "Procurement of valves conforming to IS 10611"),
+                ("REQ-004", "Sewerage Pipeline works from Collection Chamber to STP"),
+                ("REQ-005", "Low-Oil Food Outlet on BOT concession agreement"),
+                ("REQ-006", "SITC of VFD water pump panel for booster station")
+            ]
+            results = [
+                recommender.recommend_for_text(text, req_id=req_id)
+                for req_id, text in sample_queries
+            ]
+
+        audit_res = recommender.audit_tender(results, tender_id=audit_target)
+        format_audit(audit_res)
 
 
 if __name__ == "__main__":
