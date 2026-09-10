@@ -24,8 +24,15 @@ wheels/
 .installed.cfg
 *.egg
 
-# Virtual environments
+# Environment variables & credentials
 .env
+.env.*
+!.env.example
+*.key
+*.pem
+*.secret
+
+# Virtual environments
 .venv
 env/
 venv/

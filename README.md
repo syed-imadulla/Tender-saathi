@@ -3,13 +3,14 @@
 **Evidence-backed Indian Standards validation for procurement specifications.**
 
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![Tests Passing](https://img.shields.io/badge/Tests-15%2F15%20Passing-brightgreen.svg)]()
-[![Top-1 Accuracy](https://img.shields.io/badge/Top--1%20Benchmark-80%25-success.svg)]()
-[![Top-3 Recall](https://img.shields.io/badge/Top--3%20Benchmark-90%25-success.svg)]()
-[![MRR](https://img.shields.io/badge/MRR-0.863-blueviolet.svg)]()
-[![Stage](https://img.shields.io/badge/Status-Feasibility%20Prototype-orange.svg)]()
+[![Tests Passing](https://img.shields.io/badge/Tests-130%2F130%20Passing-brightgreen.svg)]()
+[![Top-1 Accuracy](https://img.shields.io/badge/Top--1%20Benchmark-95.0%25-success.svg)]()
+[![Top-3 Recall](https://img.shields.io/badge/Top--3%20Benchmark-100.0%25-success.svg)]()
+[![MRR](https://img.shields.io/badge/MRR-0.975-blueviolet.svg)]()
+[![Stage](https://img.shields.io/badge/Milestone-M8%20AI%20%2B%20Reranking-orange.svg)]()
 
-> **“AI interprets. Rules validate. Evidence supports. Humans decide.”**
+> **“AI interprets. Retrieval finds. Reranking prioritizes. Rules validate. Evidence supports. Humans decide.”**
+
 
 ---
 
@@ -127,6 +128,96 @@ The repository implements a functional feasibility prototype demonstrating the c
 The current prototype utilizes deterministic token overlap, title/scope phrase matching, domain-keyword boosting, and explicit graph traversal. Formal BM25 scoring, semantic vector embeddings, and an LLM explanation layer are planned for future phases.
 
 ---
+
+## Milestone 8: AI Requirement Understanding & Neural Candidate Reranking
+
+Milestone 8 evolves TenderSaathi from a hybrid retrieval + deterministic recommendation engine into an **Evidence-Grounded Hybrid AI Recommendation Engine**:
+
+```
+Tender language
+      ↓
+AI requirement understanding
+      ↓
+Structured technical facets
+      ↓
+Retrieval
+      ↓
+Candidate standards
+      ↓
+Cross-encoder reranking
+      ↓
+Evidence + lifecycle + graph
+      ↓
+Critic
+      ↓
+Human review
+```
+
+### 1. AI Requirement Understanding (`src/ai_understanding.py`)
+- **Core Role**: The LLM does not recommend the Indian Standard. It understands the procurement requirement and converts it into structured technical facets. Retrieval, evidence, lifecycle, graph, and critic layers determine the final recommendation.
+- **Provider & Model**: Groq API using `openai/gpt-oss-120b` (secondary: OpenRouter if explicitly configured).
+- **Function**: Converts messy natural-language tender clauses into strict structured technical fields (`equipment`, `control`, `electrical`, `voltage`, `application`, `work_type`).
+- **Critical Safety Guardrails**:
+  - The LLM **NEVER** selects an Indian Standard, invents an IS code, or declares compliance.
+  - The LLM **NEVER** generates evidence, lifecycle status, BIS relationships, or legal compliance decisions.
+  - The LLM is **NEVER** treated as:
+    - the source of truth
+    - the standards database
+    - the compliance authority
+    - the evidence generator
+    - the final decision maker
+  - Any standard numbers or IS codes in LLM outputs are automatically stripped and ignored.
+- **Graceful Deterministic Fallback**:
+  - If the LLM is disabled, unconfigured, times out, network fails, or output schema is malformed, the engine seamlessly falls back to deterministic decomposition (`src/decompose.py`). The system is **100% functional offline**.
+
+### 2. Second-Stage Neural Candidate Reranking (`src/reranker.py`)
+- **Model**: `cross-encoder/ms-marco-MiniLM-L-6-v2` (~90 MB, 22.7M parameters).
+- **Operation**: Operates over the candidate pool (~10 candidates) produced by Stage 1 (BM25 + `all-MiniLM-L6-v2` + Deterministic). Computes full token-level cross-attention over `(query, candidate_standard_metadata)`.
+- **Score Normalization**: Raw unbounded logits are normalized via standard logistic sigmoid:
+  `score = 1 / (1 + exp(-logit))` (or $\sigma(\text{logit}) = 1 / (1 + \exp(-\text{logit}))$)
+- **Score Transparency**: Tracks individual score contributions (`bm25_score`, `semantic_score`, `deterministic_score`, `reranker_score`, `final_score`). Retrieval scores represent relevance signals, **not evidence strength**.
+- **Exact Citation Protection**: Authoritative matches and explicitly cited IS numbers retain priority and cannot be displaced by neural reranker drift.
+- **Honest Latency & Tradeoff Disclosure**:
+  - *Warm Retrieval Latency*: Hybrid = **57.0 ms** | Hybrid + Cross-Encoder = **488.1 ms**.
+  - The Cross-Encoder is used only as a second-stage precision reranker over a small candidate pool. This increases warm retrieval latency compared with the hybrid baseline, but avoids running expensive cross-attention across the full standards catalogue.
+  - `ms-marco-MiniLM-L-6-v2` is a general-domain English passage ranking model pre-trained on MS MARCO. It is not pre-trained on BIS technical gazettes, and is benchmarked transparently.
+
+### 3. Milestone 8 Benchmark Ablation
+Milestone 8 preserved the existing benchmark accuracy while adding AI-based requirement understanding and neural candidate reranking.
+
+| Architecture | Top-1 | Top-3 | MRR | Warm Latency |
+|---|---|---|---|---|
+| Deterministic | 95.0% | 100.0% | 0.975 | 16.2 ms |
+| BM25 | 90.0% | 100.0% | 0.950 | 19.8 ms |
+| Semantic (`all-MiniLM-L6-v2`) | 85.0% | 95.0% | 0.912 | 46.3 ms |
+| Hybrid | 95.0% | 100.0% | 0.975 | 57.0 ms |
+| Hybrid + Cross-Encoder | 95.0% | 100.0% | 0.975 | 488.1 ms |
+
+### 4. Core Operating Principles
+> **“AI interprets. Retrieval finds. Reranking prioritizes. Rules validate. Evidence supports. Humans decide.”**
+
+- **LLM ≠ source of truth**
+- **Retrieval score ≠ evidence strength**
+- **Graph relationship ≠ applicability**
+
+### 5. Environment & Credential Security
+- Groq API key is stored in local `.env`.
+- `.env` is strictly ignored by Git (`.gitignore`).
+- `.env.example` contains placeholders only (`GROQ_API_KEY=<your-groq-api-key>`).
+- API keys are never hard-coded in source code.
+- Missing or empty API key triggers deterministic fallback without crashing or sending network traffic.
+- API keys and authorization headers are never logged or exposed in error messages.
+- No credentials are included in screenshots, tests, or documentation.
+
+| Variable | Default | Description |
+|---|---|---|
+| `GROQ_API_KEY` | *(empty)* | Groq API key for AI requirement understanding |
+| `TENDERSAATHI_LLM_ENABLED` | `false` | Enable/disable LLM requirement parser (`true` / `false`) |
+| `TENDERSAATHI_LLM_PROVIDER` | `groq` | LLM provider (`groq` or `openrouter`) |
+| `TENDERSAATHI_LLM_MODEL` | `openai/gpt-oss-120b` | Model identifier on configured provider |
+
+---
+
 
 ## Evidence, Confidence & Human Review
 
@@ -272,8 +363,26 @@ python3 -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
 # 3. Install required packages
-pip install pymupdf pandas openpyxl
+pip install -r requirements.txt
 ```
+
+### Environment Setup
+
+To enable optional AI requirement understanding, create a local `.env` file using the provided template:
+```bash
+cp .env.example .env
+```
+
+Configure your local `.env` file:
+```env
+GROQ_API_KEY=<your-groq-api-key>
+TENDERSAATHI_LLM_ENABLED=true
+TENDERSAATHI_LLM_PROVIDER=groq
+TENDERSAATHI_LLM_MODEL=openai/gpt-oss-120b
+```
+
+> [!IMPORTANT]
+> **Never commit `.env` to Git.** The `.env` file is strictly ignored by `.gitignore`. The repository provides `.env.example` as a clean template. If no API key is provided, the system runs 100% offline using deterministic rule-based decomposition.
 
 ### Run Demo Scenarios
 ```bash
@@ -286,16 +395,19 @@ python3 scripts/demo.py --tender T020
 # Demo 3: Ambiguous Requirement Query
 python3 scripts/demo.py --query "valve replacement"
 
+# Demo 4: AI Requirement Understanding & Neural Reranking (loads key from .env)
+python3 scripts/demo.py --query "Supply, installation and commissioning of 3.3kV process water pump motors with starter panel" --llm --rerank
+
 # Custom Procurement Query
-python3 scripts/demo.py --query "Supply and laying of CPVC pipes for potable water"
+python3 scripts/demo.py --query "Supply and laying of CPVC pipes for potable water" --rerank
 ```
 
 ### Run Automated Tests & Evaluation
 ```bash
-# Run 15 unit tests
+# Run all 130 unit tests
 python3 -m unittest discover -s tests -v
 
-# Run 20-tender benchmark evaluation
+# Run 20-tender benchmark evaluation across all retrieval modes
 python3 -m src.evaluate
 ```
 
