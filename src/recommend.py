@@ -27,6 +27,7 @@ from src.decompose import CompoundRequirementDecomposer, RequirementComponent
 from src.completeness import DomainCompletenessAnalyzer, SpecificationCompletenessReport
 from src.critic import EvidenceAwareCritic, CandidateCritique, DecisionOutcome
 from src.graph import StandardsGraph, RelatedStandardResult
+from src.audit import TenderAuditEngine, TenderAuditResult
 
 
 # ---------------------------------------------------------------------------
@@ -124,6 +125,7 @@ class StandardsRecommender:
         self.completeness_analyzer = DomainCompletenessAnalyzer()
         self.critic = EvidenceAwareCritic(self.db)
         self.graph = StandardsGraph(self.db)
+        self.audit_engine = TenderAuditEngine()
 
     def recommend_for_requirement(self, req: Requirement) -> RequirementRecommendationResult:
         """Processes an individual Requirement through the end-to-end recommendation workflow."""
@@ -380,6 +382,19 @@ class StandardsRecommender:
             total_requirements=len(results),
             results=results
         )
+
+    def audit_tender(
+        self,
+        results: List[RequirementRecommendationResult],
+        tender_id: str = "TENDER_AUDIT"
+    ) -> TenderAuditResult:
+        """Audits a list of requirement recommendation results for a tender."""
+        return self.audit_engine.audit_tender(results, tender_id=tender_id)
+
+    def audit_pdf(self, pdf_path: str, tender_id: Optional[str] = None) -> TenderAuditResult:
+        """Extracts requirements from PDF, runs recommendations, and performs full tender audit."""
+        report = self.recommend_for_pdf(pdf_path, tender_id=tender_id)
+        return self.audit_engine.audit_report(report)
 
     def _extract_subqueries(self, text: str) -> List[str]:
         """Extracts key noun phrases or sub-clauses for targeted retrieval."""
