@@ -18,6 +18,12 @@ from typing import Optional, Dict
 # Ensure repository root is on sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 from src.recommend import StandardsRecommender, RequirementRecommendationResult
 from src.extract import extract_from_pdf, extract_from_text
 from src.audit import TenderAuditResult
@@ -82,6 +88,19 @@ def format_card(res: RequirementRecommendationResult, input_source: str):
             c_dom = c.get("domain", "")
             print(f"      - [{c_type}] {BOLD}{c_txt}{RESET} ({c_dom})")
 
+    # 1b. AI REQUIREMENT UNDERSTANDING (Milestone 8)
+    ai_und = getattr(res, "ai_understanding", None) or {}
+    ai_prov = getattr(res, "ai_provider", "deterministic")
+    ai_model = getattr(res, "ai_model", None)
+    is_fallback = getattr(res, "is_ai_fallback", True)
+    fallback_tag = f" {YELLOW}(Fallback: Deterministic Decomposer){RESET}" if is_fallback else f" {GREEN}(AI Extracted Facets){RESET}"
+    print(f"\n{BOLD}[1b] AI REQUIREMENT UNDERSTANDING{RESET}: {CYAN}{ai_prov}{RESET} | Model: {CYAN}{ai_model or 'rule-based'}{RESET}{fallback_tag}")
+    if ai_und:
+        for facet in ["equipment", "control", "electrical", "voltage", "application", "work_type"]:
+            vals = ai_und.get(facet, [])
+            if vals:
+                print(f"      • {facet.capitalize():<12}: {', '.join(vals)}")
+
     # 2. DETECTED CATEGORY
     print(f"\n{BOLD}[2] DETECTED CATEGORY{RESET}     : {YELLOW}{res.category.upper()}{RESET}")
 
@@ -92,8 +111,11 @@ def format_card(res: RequirementRecommendationResult, input_source: str):
         star = " ★ (PRIMARY RECOMMENDATION)" if idx == 1 else ""
         print(f"    {idx}. {BOLD}{r.standard_number}{RESET}{star} — {r.title}")
         print(f"       Status: {stat_color}{r.status}{RESET} [{r.version_role}] | Relevance: {r.relevance_score} | Confidence: {r.confidence}")
+        rerank_str = f"{r.reranker_score:.3f}" if r.reranker_score is not None else "N/A"
+        print(f"       Scores: BM25={r.bm25_score:.2f} | Semantic={r.semantic_score:.2f} | Det={r.deterministic_score:.2f} | Rerank={rerank_str} | Final={r.final_score:.3f}")
         if r.superseded_warning:
             print(f"       {RED}⚠ SUPERSEDENCE ALERT: {r.superseded_warning}{RESET}")
+
 
     # 4. WHY THIS STANDARD?
     print(f"\n{BOLD}[4] WHY THIS STANDARD?{RESET}    :")
@@ -263,6 +285,10 @@ def main():
     parser.add_argument("--tender", type=str, help="Tender ID to demo (e.g. T002, T007, T010, T020) or PDF path")
     parser.add_argument("--audit", nargs="?", const="SAMPLE", default=None, type=str, help="Run tender-level audit demonstration (e.g. --audit or --audit T001)")
     parser.add_argument("--report", action="store_true", help="Generate Evidence-Backed Standards Review Report (Markdown + JSON)")
+    parser.add_argument("--llm", action="store_true", default=None, help="Enable AI requirement understanding via Groq LLM")
+    parser.add_argument("--no-llm", action="store_false", dest="llm", help="Disable LLM (use deterministic decomposition only)")
+    parser.add_argument("--rerank", action="store_true", default=False, help="Enable Cross-Encoder neural reranker (cross-encoder/ms-marco-MiniLM-L-6-v2)")
+    parser.add_argument("--no-rerank", action="store_false", dest="rerank", help="Disable neural reranker")
     parser.add_argument("target", nargs="?", default=None, help="Optional tender ID or query parameter")
 
     args = parser.parse_args()
@@ -278,7 +304,12 @@ def main():
         parser.print_help()
         sys.exit(1)
 
-    recommender = StandardsRecommender()
+    retrieval_mode = "hybrid+rerank" if args.rerank else "hybrid"
+    recommender = StandardsRecommender(
+        retrieval_mode=retrieval_mode,
+        ai_enabled=args.llm
+    )
+
 
     if args.query:
         print(f"\nProcessing single requirement query: \"{args.query}\"...")

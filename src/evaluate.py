@@ -198,7 +198,7 @@ def evaluate_benchmark(
     # 2. Run Ablation Study
     ablation_results = {"hybrid": hybrid_eval}
     if run_ablation:
-        for mode in ["deterministic", "bm25", "semantic"]:
+        for mode in ["deterministic", "bm25", "semantic", "hybrid+rerank"]:
             rec_mode = StandardsRecommender(retrieval_mode=mode)
             ablation_results[mode] = evaluate_single_mode(rec_mode, df_gt)
 
@@ -209,7 +209,7 @@ def evaluate_benchmark(
 
     # 4. Generate Comprehensive Markdown Report
     os.makedirs(os.path.dirname(output_report_path), exist_ok=True)
-    report_content = f"""# Milestone 2: Technical Feasibility Evaluation Report (SIH26108)
+    report_content = f"""# Milestone 2 & Milestone 8: Technical Feasibility Evaluation Report (SIH26108)
 
 **Project**: SIH 2026 Problem Statement SIH26108 — *“AI-Powered Recommendation Engine for Identifying Applicable Indian Standards for Procurement Specifications”*  
 **Date of Evaluation**: 2026-09-10  
@@ -237,7 +237,7 @@ The end-to-end prototype was benchmarked against all **20 human-verifiable procu
 
 ## 2. Retrieval Ablation Study
 
-Comparison of individual retrieval mechanisms against the hybrid ensemble:
+Comparison of individual retrieval mechanisms against the hybrid ensemble and neural reranker:
 
 | Retrieval Architecture | Top-1 Accuracy | Top-3 Recall | MRR | Avg Latency | T013-R002 (VFD Panel) | T014-R002 (Process Pump) |
 |---|---|---|---|---|---|---|
@@ -245,6 +245,8 @@ Comparison of individual retrieval mechanisms against the hybrid ensemble:
 | **B. Okapi BM25 Alone** | {ablation_results.get('bm25', {}).get('top1_accuracy', 0):.1f}% | {ablation_results.get('bm25', {}).get('top3_recall', 0):.1f}% | {ablation_results.get('bm25', {}).get('mrr', 0):.3f} | {ablation_results.get('bm25', {}).get('avg_latency_ms', 0):.1f} ms | `{ablation_results.get('bm25', {}).get('key_cases', {}).get('T013-R002', {}).get('candidate', 'N/A')}` ({ablation_results.get('bm25', {}).get('key_cases', {}).get('T013-R002', {}).get('outcome', 'N/A')}) | `{ablation_results.get('bm25', {}).get('key_cases', {}).get('T014-R002', {}).get('candidate', 'N/A')}` ({ablation_results.get('bm25', {}).get('key_cases', {}).get('T014-R002', {}).get('outcome', 'N/A')}) |
 | **C. Semantic Alone (`all-MiniLM-L6-v2`)** | {ablation_results.get('semantic', {}).get('top1_accuracy', 0):.1f}% | {ablation_results.get('semantic', {}).get('top3_recall', 0):.1f}% | {ablation_results.get('semantic', {}).get('mrr', 0):.3f} | {ablation_results.get('semantic', {}).get('avg_latency_ms', 0):.1f} ms | `{ablation_results.get('semantic', {}).get('key_cases', {}).get('T013-R002', {}).get('candidate', 'N/A')}` ({ablation_results.get('semantic', {}).get('key_cases', {}).get('T013-R002', {}).get('outcome', 'N/A')}) | `{ablation_results.get('semantic', {}).get('key_cases', {}).get('T014-R002', {}).get('candidate', 'N/A')}` ({ablation_results.get('semantic', {}).get('key_cases', {}).get('T014-R002', {}).get('outcome', 'N/A')}) |
 | **D. Hybrid Retrieval Ensemble** | **{hybrid_eval['top1_accuracy']:.1f}%** | **{hybrid_eval['top3_recall']:.1f}%** | **{hybrid_eval['mrr']:.3f}** | **{hybrid_eval['avg_latency_ms']:.1f} ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **E. Hybrid + Cross-Encoder Reranker** | **{ablation_results.get('hybrid+rerank', {}).get('top1_accuracy', 0):.1f}%** | **{ablation_results.get('hybrid+rerank', {}).get('top3_recall', 0):.1f}%** | **{ablation_results.get('hybrid+rerank', {}).get('mrr', 0):.3f}** | **{ablation_results.get('hybrid+rerank', {}).get('avg_latency_ms', 0):.1f} ms** | `{ablation_results.get('hybrid+rerank', {}).get('key_cases', {}).get('T013-R002', {}).get('candidate', 'N/A')}` ({ablation_results.get('hybrid+rerank', {}).get('key_cases', {}).get('T013-R002', {}).get('outcome', 'N/A')}) | `{ablation_results.get('hybrid+rerank', {}).get('key_cases', {}).get('T014-R002', {}).get('candidate', 'N/A')}` ({ablation_results.get('hybrid+rerank', {}).get('key_cases', {}).get('T014-R002', {}).get('outcome', 'N/A')}) |
+
 
 ---
 
@@ -322,7 +324,7 @@ def main():
     print("=" * 78)
     print(f"{'Mode':<18} | {'Top-1 Acc':<10} | {'Top-3 Rec':<10} | {'MRR':<8} | {'Avg Latency':<12}")
     print("-" * 78)
-    for mode in ["deterministic", "bm25", "semantic", "hybrid"]:
+    for mode in ["deterministic", "bm25", "semantic", "hybrid", "hybrid+rerank"]:
         m = ab.get(mode, {})
         print(f"{mode:<18} | {m.get('top1_accuracy', 0):>8.1f}%  | {m.get('top3_recall', 0):>8.1f}%  | {m.get('mrr', 0):>6.3f} | {m.get('avg_latency_ms', 0):>8.1f} ms")
     print("=" * 78)

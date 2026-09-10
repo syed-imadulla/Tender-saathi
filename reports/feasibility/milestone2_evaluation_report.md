@@ -1,4 +1,4 @@
-# Milestone 2: Technical Feasibility Evaluation Report (SIH26108)
+# Milestone 2 & Milestone 8: Technical Feasibility Evaluation Report (SIH26108)
 
 **Project**: SIH 2026 Problem Statement SIH26108 — *“AI-Powered Recommendation Engine for Identifying Applicable Indian Standards for Procurement Specifications”*  
 **Date of Evaluation**: 2026-09-10  
@@ -20,20 +20,22 @@ The end-to-end prototype was benchmarked against all **20 human-verifiable procu
 | **Supersedence Detection Rate** | **100.0%** | Generic LLMs (~10-20%) | **Authoritative** |
 | **Ambiguity Detection Recall** | **100.0%** | Human Engineer Gating | **Zero Guessing** |
 | **Ambiguity Precision** | **12.5%** | Balanced Flagging | **Robust** |
-| **Query Latency (Avg)** | **60.4 ms** | Real-time Search (<200ms) | **Optimal** |
+| **Query Latency (Avg)** | **55.8 ms** | Real-time Search (<200ms) | **Optimal** |
 
 ---
 
 ## 2. Retrieval Ablation Study
 
-Comparison of individual retrieval mechanisms against the hybrid ensemble:
+Comparison of individual retrieval mechanisms against the hybrid ensemble and neural reranker:
 
 | Retrieval Architecture | Top-1 Accuracy | Top-3 Recall | MRR | Avg Latency | T013-R002 (VFD Panel) | T014-R002 (Process Pump) |
 |---|---|---|---|---|---|---|
-| **A. Deterministic / Heuristic Alone** | 95.0% | 100.0% | 0.975 | 19.8 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **B. Okapi BM25 Alone** | 90.0% | 100.0% | 0.950 | 22.1 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **C. Semantic Alone (`all-MiniLM-L6-v2`)** | 85.0% | 95.0% | 0.912 | 72.1 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **D. Hybrid Retrieval Ensemble** | **95.0%** | **100.0%** | **0.975** | **60.4 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **A. Deterministic / Heuristic Alone** | 95.0% | 100.0% | 0.975 | 17.6 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **B. Okapi BM25 Alone** | 90.0% | 100.0% | 0.950 | 22.0 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **C. Semantic Alone (`all-MiniLM-L6-v2`)** | 85.0% | 95.0% | 0.912 | 101.6 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **D. Hybrid Retrieval Ensemble** | **95.0%** | **100.0%** | **0.975** | **55.8 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **E. Hybrid + Cross-Encoder Reranker** | **95.0%** | **100.0%** | **0.975** | **585.4 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+
 
 ---
 

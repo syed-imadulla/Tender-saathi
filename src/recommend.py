@@ -46,6 +46,11 @@ class StandardRecommendation:
     provenance: str                       # VERIFIED (BSB Edge), CURATED (BIS Catalogue), INFERRED
     superseded_warning: Optional[str] = None
     technical_committee: Optional[str] = None
+    bm25_score: float = 0.0
+    semantic_score: float = 0.0
+    deterministic_score: float = 0.0
+    reranker_score: Optional[float] = None
+    final_score: float = 0.0
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -79,9 +84,20 @@ class RequirementRecommendationResult:
     specification_completeness: Optional[Dict[str, Any]] = None
     # Milestone 5 Evidence & Relationship Graph fields:
     related_standards: List[Dict[str, Any]] = field(default_factory=list)
+    # Milestone 8 AI Understanding & Reranking fields:
+    ai_understanding: Optional[Dict[str, Any]] = None
+    ai_provider: Optional[str] = None
+    ai_model: Optional[str] = None
+    is_ai_fallback: bool = True
+    bm25_score: float = 0.0
+    semantic_score: float = 0.0
+    deterministic_score: float = 0.0
+    reranker_score: Optional[float] = None
+    final_score: float = 0.0
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
+
 
 
 @dataclass
@@ -116,7 +132,13 @@ AMBIGUITY_PATTERNS = [
 class StandardsRecommender:
     """End-to-end Indian Standards Recommendation Engine with compound decomposition."""
 
-    def __init__(self, db: Optional[StandardsDatabase] = None, retrieval_mode: str = "hybrid"):
+    def __init__(
+        self,
+        db: Optional[StandardsDatabase] = None,
+        retrieval_mode: str = "hybrid",
+        ai_enabled: Optional[bool] = None,
+        ai_parser: Optional[Any] = None
+    ):
         self.db = db or StandardsDatabase()
         self.retrieval_mode = retrieval_mode
         self.search_engine = HybridRetrievalEngine(self.db, default_mode=retrieval_mode)
@@ -126,6 +148,8 @@ class StandardsRecommender:
         self.critic = EvidenceAwareCritic(self.db)
         self.graph = StandardsGraph(self.db)
         self.audit_engine = TenderAuditEngine()
+        from src.ai_understanding import AIRequirementParser
+        self.ai_parser = ai_parser or AIRequirementParser(enabled=ai_enabled)
 
     def recommend_for_requirement(self, req: Requirement) -> RequirementRecommendationResult:
         """Processes an individual Requirement through the end-to-end recommendation workflow."""
@@ -133,11 +157,24 @@ class StandardsRecommender:
         req_id = req.requirement_id
         cat = req.category
 
+        # Step 0: AI Requirement Understanding (converts natural text to structured facets)
+        parsed_ai = self.ai_parser.parse(text)
+
         # Decompose requirement if components not already present
         if not getattr(req, "components", None):
             decomp = self.decomposer.decompose(text)
             req.components = decomp.components
             req.decomposition_confidence = decomp.decomposition_confidence
+
+        # Enrich components with non-duplicate AI understanding facets if active
+        if not parsed_ai.is_fallback:
+            ai_components = parsed_ai.to_components()
+            existing_texts = {c.text.lower() for c in req.components}
+            for ac in ai_components:
+                if ac.text.lower() not in existing_texts:
+                    req.components.append(ac)
+                    existing_texts.add(ac.text.lower())
+
 
         # Analyze specification completeness across engineering domain
         completeness_report = self.completeness_analyzer.analyze(text, req.components)
@@ -248,7 +285,12 @@ class StandardsRecommender:
                 evidence=evidence_str,
                 provenance=sr.verification_status,
                 superseded_warning=warning,
-                technical_committee=None
+                technical_committee=None,
+                bm25_score=round(sr.bm25_score, 3),
+                semantic_score=round(sr.semantic_score, 3),
+                deterministic_score=round(sr.deterministic_score, 3),
+                reranker_score=round(sr.reranker_score, 3) if sr.reranker_score is not None else None,
+                final_score=round(sr.final_score, 3)
             ))
 
         # Step 6: Format Final Result and Human-Review Gating
@@ -276,7 +318,16 @@ class StandardsRecommender:
                 why_not=critic_outcome.why_not,
                 risk_level=critic_outcome.risk_level,
                 risk_reasons=critic_outcome.risk_reasons,
-                specification_completeness=completeness_report.to_dict()
+                specification_completeness=completeness_report.to_dict(),
+                ai_understanding=parsed_ai.to_dict(),
+                ai_provider=parsed_ai.ai_provider,
+                ai_model=parsed_ai.ai_model,
+                is_ai_fallback=parsed_ai.is_fallback,
+                bm25_score=0.0,
+                semantic_score=0.0,
+                deterministic_score=0.0,
+                reranker_score=None,
+                final_score=0.0
             )
 
         top_rec = recommendations[0]
@@ -364,7 +415,16 @@ class StandardsRecommender:
             risk_level=risk_level,
             risk_reasons=risk_reasons,
             specification_completeness=completeness_report.to_dict(),
-            related_standards=related_standards_dicts
+            related_standards=related_standards_dicts,
+            ai_understanding=parsed_ai.to_dict(),
+            ai_provider=parsed_ai.ai_provider,
+            ai_model=parsed_ai.ai_model,
+            is_ai_fallback=parsed_ai.is_fallback,
+            bm25_score=top_rec.bm25_score,
+            semantic_score=top_rec.semantic_score,
+            deterministic_score=top_rec.deterministic_score,
+            reranker_score=top_rec.reranker_score,
+            final_score=top_rec.final_score
         )
 
     def recommend_for_text(self, text: str, req_id: str = "REQ-001") -> RequirementRecommendationResult:

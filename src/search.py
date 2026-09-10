@@ -36,6 +36,15 @@ class SearchResult:
     explicit_relationships: List[Dict[str, str]] = field(default_factory=list)
     verification_status: str = "VERIFIED"
     source_provenance: str = ""
+    # Milestone 8 Score Transparency & AI Attribution fields:
+    bm25_score: float = 0.0
+    semantic_score: float = 0.0
+    deterministic_score: float = 0.0
+    reranker_score: Optional[float] = None
+    final_score: float = 0.0
+    ai_provider: Optional[str] = None
+    ai_model: Optional[str] = None
+
 
 
 class StandardsSearchEngine:
@@ -283,5 +292,7 @@ class StandardsSearchEngine:
             referenced_standards=ref_names[:10], # Top 10 references
             explicit_relationships=rel_list,
             verification_status=row_dict["verification_status"],
-            source_provenance=f"{row_dict['source']} ({row_dict.get('source_url') or 'local'})"
+            source_provenance=f"{row_dict['source']} ({row_dict.get('source_url') or 'local'})",
+            deterministic_score=score,
+            final_score=score
         )
