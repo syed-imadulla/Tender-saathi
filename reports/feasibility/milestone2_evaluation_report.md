@@ -20,7 +20,7 @@ The end-to-end prototype was benchmarked against all **20 human-verifiable procu
 | **Supersedence Detection Rate** | **100.0%** | Generic LLMs (~10-20%) | **Authoritative** |
 | **Ambiguity Detection Recall** | **100.0%** | Human Engineer Gating | **Zero Guessing** |
 | **Ambiguity Precision** | **12.5%** | Balanced Flagging | **Robust** |
-| **Query Latency (Avg)** | **55.8 ms** | Real-time Search (<200ms) | **Optimal** |
+| **Query Latency (Avg)** | **1544.7 ms** | Real-time Search (<200ms) | **Optimal** |
 
 ---
 
@@ -30,11 +30,11 @@ Comparison of individual retrieval mechanisms against the hybrid ensemble and ne
 
 | Retrieval Architecture | Top-1 Accuracy | Top-3 Recall | MRR | Avg Latency | T013-R002 (VFD Panel) | T014-R002 (Process Pump) |
 |---|---|---|---|---|---|---|
-| **A. Deterministic / Heuristic Alone** | 95.0% | 100.0% | 0.975 | 17.6 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **B. Okapi BM25 Alone** | 90.0% | 100.0% | 0.950 | 22.0 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **C. Semantic Alone (`all-MiniLM-L6-v2`)** | 85.0% | 95.0% | 0.912 | 101.6 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **D. Hybrid Retrieval Ensemble** | **95.0%** | **100.0%** | **0.975** | **55.8 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **E. Hybrid + Cross-Encoder Reranker** | **95.0%** | **100.0%** | **0.975** | **585.4 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **A. Deterministic / Heuristic Alone** | 95.0% | 100.0% | 0.975 | 299.4 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **B. Okapi BM25 Alone** | 90.0% | 100.0% | 0.950 | 191.3 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **C. Semantic Alone (`all-MiniLM-L6-v2`)** | 85.0% | 95.0% | 0.912 | 223.1 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **D. Hybrid Retrieval Ensemble** | **95.0%** | **100.0%** | **0.975** | **1544.7 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **E. Hybrid + Cross-Encoder Reranker** | **95.0%** | **100.0%** | **0.975** | **594.0 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
 
 
 ---
@@ -48,7 +48,7 @@ Comparison of individual retrieval mechanisms against the hybrid ensemble and ne
 | **`T001-R004`** | `product_equipment` | upgradation of all sanitary fittings at ... | IS 2556 (Part 1 to 17); IS 781 : 19... | **IS 781 : 1984** | `TOP1_HIT` | ✅ Direct Rec |
 | **`T002-R002`** | `material` | Valve Replacement | nan | **IS 14846 : 2000** | `TOP1_HIT` | ⚠️ Flagged |
 | **`T002-R003`** | `installation_execution` | Flange Joint Maintenance | IS 6392 : 1971; IS 2712 : 2020 | **IS 6392 : 1971** | `TOP1_HIT` | ✅ Direct Rec |
-| **`T003-R001`** | `material` | Replacement / repair of distribution boa... | IS/IEC 61439-3 : 2012; IS 10322 (Pa... | **IS 10322 (Part 5 / Sec 5) : 2013** | `TOP1_HIT` | ✅ Direct Rec |
+| **`T003-R001`** | `material` | Replacement / repair of distribution boa... | IS/IEC 61439-3 : 2012; IS 10322 (Pa... | **IS/IEC 61439-3 : 2012** | `TOP1_HIT` | ✅ Direct Rec |
 | **`T004-R002`** | `material` | power cables from outside of electrical ... | IS 7098 (Part 1) : 1988; IS 1255 : ... | **IS 7098 (Part 1) : 1988** | `TOP1_HIT` | ⚠️ Flagged |
 | **`T004-R005`** | `product_equipment` | Dismantling,Shifting and reinstallation ... | IS 5039 : 1983; IS/IEC 61439-5 : 20... | **IS 5039 : 1983** | `TOP1_HIT` | ✅ Direct Rec |
 | **`T005-R001`** | `material` | Cable connection of DG Set in Newly cons... | IS 3043 : 2018; IS 7098 (Part 1) : ... | **IS 3043 : 2018** | `TOP1_HIT` | ⚠️ Flagged |

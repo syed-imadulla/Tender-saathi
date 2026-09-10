@@ -1,0 +1,355 @@
+/* Results.css — The central Results screen for TenderSaathi */
+
+.results-page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+}
+
+.results-content {
+  flex: 1;
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ─── Top Bar / Navigation ──────────────────────────────────────────────── */
+.results-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.results-topbar__meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.results-topbar__id {
+  font-family: 'Inter', monospace;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-navy);
+  background: var(--color-gray-bg);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+.results-topbar__source {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.results-topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ─── Readiness Hero Banner ────────────────────────────────────────────── */
+.readiness-banner {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.readiness-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.readiness-banner--green::before {
+  background: var(--color-green);
+}
+
+.readiness-banner--amber::before {
+  background: var(--color-amber);
+}
+
+.readiness-banner--red::before {
+  background: var(--color-red);
+}
+
+.readiness-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.readiness-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.readiness-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+}
+
+.readiness-badge--green {
+  background: var(--color-green-bg);
+  color: var(--color-green);
+  border: 1px solid var(--color-green-border);
+}
+
+.readiness-badge--amber {
+  background: var(--color-amber-bg);
+  color: var(--color-amber);
+  border: 1px solid var(--color-amber-border);
+}
+
+.readiness-badge--red {
+  background: var(--color-red-bg);
+  color: var(--color-red);
+  border: 1px solid var(--color-red-border);
+}
+
+.readiness-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin-top: 6px;
+}
+
+.readiness-desc {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  max-width: 780px;
+}
+
+.readiness-reasons {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 20px;
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--color-navy);
+}
+
+.readiness-reasons li {
+  line-height: 1.4;
+}
+
+/* ─── Metric Strip ──────────────────────────────────────────────────────── */
+.metric-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-border-soft);
+}
+
+.metric-card {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 14px;
+  background: var(--color-gray-bg);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-soft);
+}
+
+.metric-card__val {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  line-height: 1.1;
+  font-family: 'Inter', sans-serif;
+}
+
+.metric-card__val--amber {
+  color: var(--color-amber);
+}
+
+.metric-card__val--green {
+  color: var(--color-green);
+}
+
+.metric-card__val--red {
+  color: var(--color-red);
+}
+
+.metric-card__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ─── Filters & Section Navigation ──────────────────────────────────────── */
+.results-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.filter-pill:hover {
+  border-color: var(--color-navy-mid);
+  color: var(--color-navy);
+}
+
+.filter-pill--active {
+  background: var(--color-navy);
+  color: #ffffff;
+  border-color: var(--color-navy);
+}
+
+.filter-pill__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.06);
+  color: inherit;
+}
+
+.filter-pill--active .filter-pill__count {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* ─── Section Header ────────────────────────────────────────────────────── */
+.section-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.section-intro__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-navy);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-intro__desc {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* ─── Requirements List ─────────────────────────────────────────────────── */
+.requirements-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.results-empty {
+  text-align: center;
+  padding: 48px 24px;
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+}
+
+.results-empty__title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-navy);
+  margin-bottom: 6px;
+}
+
+/* ─── AI Engine Metadata Pill ───────────────────────────────────────────── */
+.ai-meta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--color-text-faint);
+  background: var(--color-gray-bg);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+}
+
+.ai-meta-tag__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-green);
+}
+
+.ai-meta-tag__dot--fallback {
+  background: var(--color-amber);
+}
+
+@media (max-width: 768px) {
+  .results-content {
+    padding: 20px 16px 60px;
+    gap: 20px;
+  }
+  .readiness-banner {
+    padding: 20px 18px;
+  }
+  .metric-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
