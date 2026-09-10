@@ -44,10 +44,18 @@ class StandardsSearchEngine:
     def __init__(self, db: Optional[StandardsDatabase] = None):
         self.db = db or StandardsDatabase()
 
-    def search(self, query: str, top_k: int = 5) -> List[SearchResult]:
+    def search(self, query: str, top_k: int = 5, components: Optional[List[Any]] = None) -> List[SearchResult]:
         query_clean = query.strip()
         if not query_clean:
             return []
+
+        # Resolve components if not passed
+        if components is None:
+            try:
+                from src.decompose import decompose_requirement
+                components = decompose_requirement(query_clean).components
+            except Exception:
+                components = []
 
         results = []
         with self.db._get_connection() as conn:
@@ -90,7 +98,7 @@ class StandardsSearchEngine:
                             reason=f"Standard number match on identifier containing '{exact_number}'"
                         ))
 
-            # 2. Title and Scope Substring / Token Matching
+            # 2. Title, Scope, and Decomposed Component Matching
             STOP_WORDS = {
                 'repair', 'maint', 'maintenance', 'annual', 'contract', 'work', 'works',
                 'supply', 'supplies', 'execution', 'providing', 'fixing', 'replacement',
@@ -105,6 +113,16 @@ class StandardsSearchEngine:
             sig_tokens = [t for t in raw_tokens if t not in STOP_WORDS]
             effective_tokens = sig_tokens or raw_tokens
 
+            # Detect domain constraints from decomposed components
+            has_industrial_or_mv = False
+            if components:
+                for c in components:
+                    attrs = getattr(c, "extracted_attributes", {}) or {}
+                    c_type = getattr(c, "component_type", "")
+                    if attrs.get("level") == "medium_or_high_voltage" or attrs.get("is_process") or c_type in ["control"]:
+                        has_industrial_or_mv = True
+                        break
+
             cursor.execute("SELECT * FROM standards")
             all_standards = cursor.fetchall()
 
@@ -116,6 +134,13 @@ class StandardsSearchEngine:
                 title_lower = (r_dict["full_title"] or "").lower()
                 scope_lower = (r_dict["scope"] or "").lower()
                 notes_lower = (r_dict["notes"] or "").lower()
+                std_num = r_dict["standard_number"]
+
+                # Domain conflict filter: exclude agricultural irrigation pump standards when
+                # requirement specifies medium voltage (3.3 kV), VFD drives, or industrial process pumps
+                is_agri = "agriculture" in title_lower or "agricultural" in title_lower
+                if is_agri and has_industrial_or_mv:
+                    continue
 
                 # Exact phrase in title or scope
                 if query_clean.lower() in title_lower:
@@ -134,6 +159,35 @@ class StandardsSearchEngine:
                     ))
                     continue
 
+                # Component-level evaluation
+                comp_score = 0.0
+                comp_reasons = []
+                matched_components = 0
+
+                if components:
+                    for c in components:
+                        c_text = getattr(c, "text", "").lower()
+                        c_type = getattr(c, "component_type", "")
+                        c_attrs = getattr(c, "extracted_attributes", {}) or {}
+                        std_focus = c_attrs.get("standard_focus")
+
+                        # Check standard focus match (e.g. IS/IEC 61800, IS/IEC 61439, IS/IEC 60034-1)
+                        if std_focus and std_focus in std_num:
+                            comp_score += 0.55
+                            matched_components += 1
+                            comp_reasons.append(f"Component '{c.text}' ({c_type}) matches standard series {std_focus}")
+
+                        # Check component text in title or scope/notes
+                        if len(c_text) > 2:
+                            if c_text in title_lower:
+                                comp_score += 0.35
+                                matched_components += 1
+                                comp_reasons.append(f"Component '{c.text}' in title")
+                            elif c_text in scope_lower or c_text in notes_lower:
+                                comp_score += 0.25
+                                matched_components += 1
+                                comp_reasons.append(f"Component '{c.text}' in scope/notes")
+
                 # Distinctive domain noun match (e.g. "cpvc", "hubless", "haccp", "sluice valve")
                 domain_hits = []
                 for dt in ["cpvc", "hubless", "haccp", "sluice", "vitrified", "flange", "earthing", "sewerage", "plaster", "insulation", "sanitary", "pillar", "cable", "vfd", "pump"]:
@@ -141,39 +195,55 @@ class StandardsSearchEngine:
                         domain_hits.append(dt)
 
                 # Token overlap scoring using effective tokens
-                if effective_tokens:
-                    title_hits = sum(1 for t in effective_tokens if t in title_lower)
-                    scope_hits = sum(1 for t in effective_tokens if t in scope_lower)
+                title_hits = sum(1 for t in effective_tokens if t in title_lower) if effective_tokens else 0
+                scope_hits = sum(1 for t in effective_tokens if t in scope_lower) if effective_tokens else 0
 
-                    if domain_hits or title_hits > 0 or scope_hits > 0:
-                        raw_score = (title_hits * 0.45) + (scope_hits * 0.25)
+                if domain_hits or title_hits > 0 or scope_hits > 0 or comp_score > 0:
+                    raw_score = (title_hits * 0.45) + (scope_hits * 0.25)
+                    if domain_hits:
+                        raw_score += len(domain_hits) * 0.40
+
+                    # Incorporate component score
+                    raw_score += comp_score
+
+                    # Normalize against matched subset rather than entire lengthy query
+                    norm_denom = max(1, min(len(effective_tokens), 3))
+                    score = min(0.95, raw_score / norm_denom)
+
+                    # Multi-component coherence boost
+                    if matched_components >= 2:
+                        score = min(0.96, score * 1.15)
+
+                    # Boost specific product standards over generic handbooks (SP)
+                    if r_dict["standard_number"].startswith("IS") and not r_dict["standard_number"].startswith("SP"):
+                        score = min(0.96, score * 1.12)
+
+                    if raw_score >= 0.35 or score >= 0.22 or comp_score >= 0.40:
+                        reasons = []
+                        if comp_reasons:
+                            reasons.extend(comp_reasons)
                         if domain_hits:
-                            raw_score += len(domain_hits) * 0.40
+                            reasons.append(f"Domain keyword match: {', '.join(domain_hits)}")
+                        if title_hits:
+                            reasons.append(f"{title_hits} title keyword matches")
+                        if scope_hits:
+                            reasons.append(f"{scope_hits} scope keyword matches")
 
-                        # Normalize against matched subset rather than entire lengthy query
-                        norm_denom = max(1, min(len(effective_tokens), 3))
-                        score = min(0.92, raw_score / norm_denom)
+                        results.append(self._format_result(
+                            r_dict,
+                            score=round(score, 3),
+                            reason="; ".join(reasons)
+                        ))
 
-                        # Boost specific product standards over generic handbooks (SP)
-                        if r_dict["standard_number"].startswith("IS") and not r_dict["standard_number"].startswith("SP"):
-                            score = min(0.95, score * 1.12)
-
-                        if raw_score >= 0.35 or score >= 0.22:
-                            reasons = []
-                            if domain_hits:
-                                reasons.append(f"Domain keyword match: {', '.join(domain_hits)}")
-                            if title_hits:
-                                reasons.append(f"{title_hits} title keyword matches")
-                            if scope_hits:
-                                reasons.append(f"{scope_hits} scope keyword matches")
-                            results.append(self._format_result(
-                                r_dict,
-                                score=round(score, 3),
-                                reason="; ".join(reasons)
-                            ))
-
-        # Sort by relevance score descending
-        results.sort(key=lambda x: x.relevance_score, reverse=True)
+        # Sort by relevance score descending with component/title hit tie-breaker
+        results.sort(
+            key=lambda x: (
+                x.relevance_score,
+                x.relevance_reason.count("title"),
+                x.relevance_reason.count("Component")
+            ),
+            reverse=True
+        )
         return results[:top_k]
 
     def _format_result(self, row_dict: Dict[str, Any], score: float, reason: str) -> SearchResult:

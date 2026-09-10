@@ -17,6 +17,9 @@ import csv
 import pymupdf
 
 
+from src.decompose import RequirementComponent, decompose_requirement
+
+
 # ---------------------------------------------------------------------------
 # Data Model
 # ---------------------------------------------------------------------------
@@ -31,9 +34,13 @@ class Requirement:
     section: Optional[str] = None
     explicit_standards: List[str] = field(default_factory=list)
     raw_context: Optional[str] = None
+    components: List[RequirementComponent] = field(default_factory=list)
+    decomposition_confidence: float = 1.0
 
     def to_dict(self) -> Dict[str, Any]:
-        return asdict(self)
+        d = asdict(self)
+        d["components"] = [c.to_dict() if hasattr(c, "to_dict") else c for c in self.components]
+        return d
 
 
 # ---------------------------------------------------------------------------
@@ -217,6 +224,7 @@ def extract_from_text(
     cleaned_text = re.sub(r'\s+', ' ', text.strip())
     cat = classify_category(cleaned_text)
     explicit_stds = detect_explicit_standards(cleaned_text)
+    decomp = decompose_requirement(cleaned_text)
     return Requirement(
         requirement_id=requirement_id,
         requirement_text=cleaned_text,
@@ -225,7 +233,9 @@ def extract_from_text(
         page=1,
         section="User Input",
         explicit_standards=explicit_stds,
-        raw_context=cleaned_text
+        raw_context=cleaned_text,
+        components=decomp.components,
+        decomposition_confidence=decomp.decomposition_confidence
     )
 
 
@@ -265,6 +275,7 @@ def extract_from_pdf(pdf_path: str, tender_id: Optional[str] = None) -> List[Req
                 seen_texts.add(clean_block.lower())
                 cat = classify_category(clean_block)
                 explicit_stds = detect_explicit_standards(clean_block)
+                decomp = decompose_requirement(clean_block)
                 requirements.append(Requirement(
                     requirement_id=f"{t_id}-R{req_counter:03d}",
                     requirement_text=clean_block,
@@ -273,7 +284,9 @@ def extract_from_pdf(pdf_path: str, tender_id: Optional[str] = None) -> List[Req
                     page=1,
                     section=sec_name,
                     explicit_standards=explicit_stds,
-                    raw_context=clean_block
+                    raw_context=clean_block,
+                    components=decomp.components,
+                    decomposition_confidence=decomp.decomposition_confidence
                 ))
                 req_counter += 1
 
@@ -304,6 +317,7 @@ def extract_from_pdf(pdf_path: str, tender_id: Optional[str] = None) -> List[Req
                 seen_texts.add(clean_l.lower())
                 cat = classify_category(clean_l)
                 explicit_stds = detect_explicit_standards(clean_l)
+                decomp = decompose_requirement(clean_l)
 
                 requirements.append(Requirement(
                     requirement_id=f"{t_id}-R{req_counter:03d}",
@@ -313,7 +327,9 @@ def extract_from_pdf(pdf_path: str, tender_id: Optional[str] = None) -> List[Req
                     page=pno + 1,
                     section=f"Page {pno + 1}",
                     explicit_standards=explicit_stds,
-                    raw_context=clean_l
+                    raw_context=clean_l,
+                    components=decomp.components,
+                    decomposition_confidence=decomp.decomposition_confidence
                 ))
                 req_counter += 1
 

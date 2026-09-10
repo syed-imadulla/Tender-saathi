@@ -72,6 +72,13 @@ def format_card(res: RequirementRecommendationResult, input_source: str):
     print(f"    • Requirement ID      : {BOLD}{res.requirement_id}{RESET} ({input_source})")
     if res.explicit_standards_found:
         print(f"    • Cited Standards     : {MAGENTA}{', '.join(res.explicit_standards_found)}{RESET}")
+    if hasattr(res, "decomposed_components") and res.decomposed_components:
+        print(f"    • Decomposed Components:")
+        for c in res.decomposed_components:
+            c_txt = c.get("text", "")
+            c_type = c.get("component_type", "").upper()
+            c_dom = c.get("domain", "")
+            print(f"      - [{c_type}] {BOLD}{c_txt}{RESET} ({c_dom})")
 
     # 2. DETECTED CATEGORY
     print(f"\n{BOLD}[2] DETECTED CATEGORY{RESET}     : {YELLOW}{res.category.upper()}{RESET}")
@@ -87,20 +94,70 @@ def format_card(res: RequirementRecommendationResult, input_source: str):
             print(f"       {RED}⚠ SUPERSEDENCE ALERT: {r.superseded_warning}{RESET}")
 
     # 4. WHY THIS STANDARD?
-    print(f"\n{BOLD}[4] WHY THIS STANDARD?{RESET}    : {res.reason}")
+    print(f"\n{BOLD}[4] WHY THIS STANDARD?{RESET}    :")
+    why_this_list = getattr(res, "why_this", None)
+    if why_this_list:
+        for reason in why_this_list:
+            print(f"    • {reason}")
+    else:
+        print(f"    • {res.reason}")
 
-    # 5. SCOPE / EVIDENCE
-    print(f"\n{BOLD}[5] SCOPE / EVIDENCE{RESET}      :")
+    # 4b. WHY NOT ALTERNATIVES? (Milestone 3 measurable candidate differences)
+    why_not_list = getattr(res, "why_not", None)
+    if why_not_list:
+        print(f"\n{BOLD}[4b] WHY NOT ALTERNATIVES?{RESET} :")
+        if isinstance(why_not_list, list):
+            for reason in why_not_list:
+                print(f"    • {reason}")
+        elif isinstance(why_not_list, dict):
+            for std_num, reasons in why_not_list.items():
+                print(f"    • {BOLD}{std_num}{RESET}: {'; '.join(reasons)}")
+
+    # 5. SCOPE / EVIDENCE & TRUST GATE
+    print(f"\n{BOLD}[5] EVIDENCE & TRUST GATE{RESET} :")
     print(f"    • Provenance Source   : {BLUE}{res.provenance}{RESET}")
     print(f"    • Verbatim Evidence   : {res.evidence}")
+    c_res = getattr(res, "critic_result", None) or {}
+    if c_res:
+        ev_dict = c_res.get("evidence") or {}
+        ev_strength = ev_dict.get("evidence_strength", "UNKNOWN") if isinstance(ev_dict, dict) else getattr(ev_dict, "evidence_strength", "UNKNOWN")
+        ret_score = c_res.get("relevance_score", 0.0)
+        ev_color = GREEN if ev_strength in ["STRONG", "MODERATE"] else YELLOW
+        print(f"    • Evidence Strength   : {ev_color}{ev_strength}{RESET} | Retrieval Score: {ret_score:.3f}")
+
+    # 5b. SPECIFICATION REVIEW COMPLETENESS
+    c_rep = getattr(res, "specification_completeness", None) or getattr(res, "completeness_report", None) or {}
+    if c_rep:
+        c_label = c_rep.get("completeness_label", "UNKNOWN")
+        c_dom = c_rep.get("domain", "generic")
+        is_adeq = c_rep.get("is_adequately_specified", False)
+        known_params = c_rep.get("known_parameters", {})
+        missing_params = c_rep.get("potentially_missing_parameters", [])
+
+        c_stat_color = GREEN if is_adeq else (YELLOW if c_dom != "generic" else BLUE)
+        print(f"\n{BOLD}[5b] SPEC REVIEW COMPLETENESS{RESET}: {c_stat_color}{c_label}{RESET} (Domain: {c_dom})")
+        if known_params:
+            print(f"    • Known Parameters    : {', '.join(f'{k}={v}' for k, v in known_params.items())}")
+        if missing_params:
+            print(f"    • Potentially Missing : {YELLOW}{', '.join(missing_params)}{RESET}")
 
     # 6. CURRENT STATUS
     stat_color = GREEN if "active" in res.status.lower() else RED
     print(f"\n{BOLD}[6] CURRENT STATUS{RESET}        : {stat_color}{res.status.upper()}{RESET} [{res.version_role}]")
 
-    # 7. CONFIDENCE
+    # 7. CONFIDENCE & CRITIC DECISION
     conf_color = GREEN if res.confidence == "High" else (YELLOW if res.confidence == "Medium" else RED)
-    print(f"\n{BOLD}[7] CONFIDENCE{RESET}            : {conf_color}{res.confidence.upper()}{RESET}")
+    decision_val = c_res.get("decision") if c_res else ("RECOMMEND" if not res.human_review_required else "REVIEW_REQUIRED")
+    risk_val = getattr(res, "risk_level", None) or ("LOW" if not res.human_review_required else "HIGH")
+    risk_color = GREEN if risk_val == "LOW" else (YELLOW if risk_val == "MEDIUM" else RED)
+    
+    print(f"\n{BOLD}[7] DECISION & RISK{RESET}      :")
+    print(f"    • Critic Decision     : {BOLD}{decision_val}{RESET}")
+    print(f"    • Risk Level          : {risk_color}{BOLD}{risk_val}{RESET}")
+    print(f"    • Final Confidence    : {conf_color}{res.confidence.upper()}{RESET}")
+    risk_reasons = getattr(res, "risk_reasons", [])
+    if risk_reasons:
+        print(f"    • Risk Factors        : {'; '.join(risk_reasons)}")
 
     # 8. ALTERNATIVE STANDARDS
     alt_str = ", ".join(res.alternatives) if res.alternatives else "None identified in top-k retrieval"
