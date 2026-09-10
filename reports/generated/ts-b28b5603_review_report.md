@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-CPVC`
-- **Source File:** `Sample: cpvc`
+- **Tender ID:** `TS-B28B5603`
+- **Source File:** `text input`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -51,7 +51,7 @@
 **Original Requirement Text:**
 > "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778."
 
-- **Decomposed Technical Components:** `general: CPVC pipes`
+- **Decomposed Technical Components:** `general: CPVC pipes`, `general: CPVC fittings`, `general: domestic hot water distribution`, `general: domestic cold water distribution`, `general: supply`, `general: installation`
 - **Recommended Standard:** **IS 15778 : 2007** — *Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*
 - **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `1.000`
 - **Evidence Strength:** `STRONG` | **Provenance:** `CURATED`
@@ -61,8 +61,9 @@
   - Authoritative scope explicitly covers application: "Tender explicitly requires compliance with IS 15778."
   - Standard is currently active in the BIS repository with verified currency.
   - Provenance established via Tender Document (VERIFIED).
+  - Candidate addresses multiple decomposed technical aspects of the requirement.
 - **Why Not Alternatives?:**
-  - Alternative standard SP 57 (QAWSM) has lower composite relevance (0.567 vs 1.000).
+  - Alternative standard SP 57 (QAWSM) has lower composite relevance (0.605 vs 1.000).
   - Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification.
 - **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
 - **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `High`

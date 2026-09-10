@@ -2,10 +2,10 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-B1E449F1",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: cpvc",
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
@@ -15,7 +15,7 @@
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-B1E449F1",
     "requirements_analyzed": 1,
     "recommendations_count": 1,
     "review_required_count": 0,
@@ -25,8 +25,8 @@
     "active_count": 1,
     "unknown_lifecycle_count": 0,
     "evidence_distribution": {
-      "STRONG": 1,
-      "MODERATE": 0,
+      "STRONG": 0,
+      "MODERATE": 1,
       "WEAK": 0,
       "NONE": 0
     },
@@ -59,7 +59,7 @@
   "requirements": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
+      "requirement_text": "Supply and installation of CPVC pipes for domestic water distribution.",
       "category": "material",
       "components": [
         {
@@ -69,32 +69,54 @@
           "extracted_attributes": {
             "category": "pipe_material"
           }
+        },
+        {
+          "text": "domestic water distribution",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
         }
       ],
       "recommended_standard": "IS 15778 : 2007",
       "recommended_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
-      "relevance_score": 1.0,
+      "relevance_score": 0.865,
       "lifecycle_status": "Active",
       "successor_standard": null,
       "superseded_citation": null,
-      "evidence_strength": "STRONG",
+      "evidence_strength": "MODERATE",
       "provenance": "CURATED",
-      "evidence_text": "Tender explicitly requires compliance with IS 15778.",
-      "evidence_source": "Tender Document",
+      "evidence_text": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.",
+      "evidence_source": "BIS Standards Catalogue",
       "why_this": [
         "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.",
-        "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 15778.\"",
+        "Authoritative scope explicitly covers application: \"Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.\"",
         "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via Tender Document (VERIFIED)."
+        "Provenance established via BIS Standards Catalogue (CURATED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
       ],
       "why_not": [
-        "Alternative standard SP 57 (QAWSM) has lower composite relevance (0.567 vs 1.000).",
+        "Alternative standard SP 57 (QAWSM) has lower composite relevance (0.638 vs 0.865).",
         "Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification."
       ],
       "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [
         "Diameter / Nominal Bore (DN/OD)",
-        "Pressure Class / Schedule / SDR"
+        "Pressure Class / Schedule / SDR",
+        "Piping Application / Service"
       ],
       "known_parameters": {},
       "related_standards": [],
@@ -109,8 +131,8 @@
   "review_queue": [],
   "evidence_summary": {
     "evidence_distribution": {
-      "STRONG": 1,
-      "MODERATE": 0,
+      "STRONG": 0,
+      "MODERATE": 1,
       "WEAK": 0,
       "NONE": 0
     },

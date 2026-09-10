@@ -1,222 +1,311 @@
-// RequirementCard.tsx — Expandable requirement card matching Reference Image 2
-import { useState } from 'react';
+// RequirementCard.tsx — Specialized cards for the TenderSaathi Recommendation UI
 import './RequirementCard.css';
-import type { Requirement } from '../types';
+import type { Requirement, RelatedStandard } from '../types';
 
-interface RequirementCardProps {
-  req: Requirement;
-  index: number;
-  sectionType: 'attention' | 'good' | 'update';
-  onOpenEvidence: (req: Requirement) => void;
-  defaultExpanded?: boolean;
+export function getWhyItMatches(req: Requirement): string {
+  if (req.candidate_standard === 'INSUFFICIENT_INFORMATION' || req.candidate_standard === 'NONE') {
+    return 'No reliable standard match found in the available catalogue.';
+  }
+
+  // Check explicit citation in requirement text
+  const stdClean = req.candidate_standard.replace(/[^0-9]/g, '');
+  const textHasExplicitCitation = stdClean && req.text.replace(/[^0-9]/g, '').includes(stdClean);
+
+  if (textHasExplicitCitation && req.candidate_standard.includes('15778')) {
+    return 'The tender explicitly cites IS 15778 and the standard covers CPVC pipes for potable hot and cold water supplies.';
+  }
+
+  // If IS 778 valve requirement
+  if (req.candidate_standard.includes('778')) {
+    return 'The standard directly covers gate, globe and check valves for waterworks purposes.';
+  }
+
+  // Look in why_this array from backend
+  if (req.why_this && req.why_this.length > 0) {
+    const scopeItem = req.why_this.find((item) =>
+      item.toLowerCase().includes('scope explicitly covers') ||
+      item.toLowerCase().includes('directly covers') ||
+      item.toLowerCase().includes('covers')
+    );
+
+    if (scopeItem) {
+      const cleaned = scopeItem
+        .replace(/^Authoritative scope explicitly covers application:\s*["']?/, '')
+        .replace(/["']?\s*$/, '')
+        .trim();
+
+      if (cleaned.length > 10) {
+        if (cleaned.startsWith('Tender explicitly') && req.evidence && req.evidence.toLowerCase() !== 'none') {
+          return req.evidence.replace(/^(Exact Match:\s*|Direct Match:\s*)/i, '').trim();
+        }
+        return cleaned;
+      }
+    }
+
+    const titleItem = req.why_this.find((item) =>
+      item.toLowerCase().includes('title directly matches') ||
+      item.toLowerCase().includes('official title aligns')
+    );
+    if (titleItem) {
+      return titleItem;
+    }
+
+    return req.why_this[0];
+  }
+
+  // Fallback to grounded evidence text
+  if (req.evidence && req.evidence.toLowerCase() !== 'none' && !req.evidence.toLowerCase().includes('insufficient evidence')) {
+    return req.evidence.replace(/^(Exact Match:\s*|Direct Match:\s*)/i, '').trim();
+  }
+
+  if (req.title) {
+    return `Covers ${req.title.toLowerCase()} for procurement specifications.`;
+  }
+
+  return 'Verified match with active Indian Standard catalogue.';
 }
 
-export default function RequirementCard({
-  req,
-  index,
-  sectionType,
-  onOpenEvidence,
-  defaultExpanded = false,
-}: RequirementCardProps) {
-  const [expanded, setExpanded] = useState(defaultExpanded);
+export interface RecommendationCardProps {
+  req: Requirement;
+  isPrimary?: boolean;
+  onOpenEvidence: (req: Requirement) => void;
+}
 
-  // Extract a clean title from requirement text
-  const displayTitle = req.text.length > 55 ? `${req.text.slice(0, 52)}...` : req.text;
+export function RecommendationCard({ req, isPrimary = false, onOpenEvidence }: RecommendationCardProps) {
+  const isSupersededNotice = Boolean(req.superseded_citation);
+  const isStrongMatch = req.decision === 'RECOMMEND' || (req.evidence_strength === 'STRONG' && req.relevance_score >= 0.85 && !isSupersededNotice);
+  const isPotentialMatch = !isStrongMatch && (req.decision === 'RECOMMEND_WITH_REVIEW' || req.decision === 'REVIEW_REQUIRED' || req.human_review_required);
 
-  // Format standard name
-  const standardCode = req.candidate_standard && req.candidate_standard !== 'NONE'
-    ? req.candidate_standard
-    : null;
+  const isExplicitlyCited = req.provenance === 'VERIFIED' ||
+    (req.why_this || []).some((w) => w.toLowerCase().includes('explicitly cites') || w.toLowerCase().includes('explicitly requires'));
+
+  const whyMatches = getWhyItMatches(req);
 
   return (
-    <div className={`req-item ${expanded ? 'req-item--expanded' : ''}`}>
-      {/* Collapsed Header Bar */}
-      <div
-        className="req-item__summary"
-        onClick={() => setExpanded((prev) => !prev)}
-        role="button"
-        tabIndex={0}
-        aria-expanded={expanded}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            setExpanded((prev) => !prev);
-          }
-        }}
-      >
-        <div className="req-item__left">
-          <div className="req-item__index-title">
-            <span className="req-item__number">{index}.</span>
-            <span className="req-item__title">{displayTitle}</span>
-          </div>
-
-          {/* Subtitle / Why flagged / Missing params */}
-          <div className="req-item__desc">
-            {sectionType === 'update' ? (
-              <span className="req-item__desc-update">
-                Cited standard is superseded.
-                {req.successor_standard && (
-                  <> Current active successor: <strong>{req.successor_standard}</strong></>
-                )}
-              </span>
-            ) : sectionType === 'attention' ? (
-              <span>{req.why_flagged || 'Missing required specifications or testing parameters.'}</span>
-            ) : (
-              <span>{req.title || 'Verified match with active Indian Standard.'}</span>
-            )}
-          </div>
-
-          {/* Standard line */}
-          <div className="req-item__std-line">
-            <span className="req-item__std-icon" aria-hidden="true">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+    <article className="rec-card" aria-label={`Recommended standard ${req.candidate_standard}`}>
+      <div className="rec-card__top">
+        <div className="rec-card__indicator">
+          {isPotentialMatch ? (
+            <span className="rec-card__icon rec-card__icon--review" aria-label="Review recommended">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="9" />
               </svg>
             </span>
-            <span className="req-item__std-label">
-              {sectionType === 'update' ? 'Superseded standard' : 'Indian Standard'}
+          ) : (
+            <span className="rec-card__icon rec-card__icon--check" aria-label="Recommended standard">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
             </span>
-            <span className="req-item__std-num">
-              {req.candidate_standard === 'INSUFFICIENT_INFORMATION' 
-                ? 'No reliable match found' 
-                : (sectionType === 'update' && req.superseded_citation
-                    ? req.superseded_citation
-                    : standardCode || 'None Identified')}
-            </span>
+          )}
 
-            {sectionType === 'update' && (
-              <span className="badge badge--superseded">SUPERSEDED</span>
-            )}
-
-            {sectionType === 'good' && (
-              <span className="badge badge--strong">{req.evidence_strength} EVIDENCE</span>
+          <div className="rec-card__standard-wrap">
+            <h3 className="rec-card__standard-num">{req.candidate_standard}</h3>
+            {isPrimary && <span className="rec-badge rec-badge--primary">Primary recommendation</span>}
+            {isExplicitlyCited && <span className="rec-badge rec-badge--cited">Explicitly cited in tender</span>}
+            {isPotentialMatch && (
+              <span className="rec-badge rec-badge--warning">Potential match — human review required</span>
             )}
           </div>
         </div>
 
-        {/* Right action: "See why →" */}
-        <div className="req-item__right">
-          <button
-            type="button"
-            className="req-item__see-why"
-            onClick={(e) => {
-              e.stopPropagation();
-              onOpenEvidence(req);
-            }}
-            aria-label={`See evidence why ${standardCode || 'standard'} was suggested`}
-          >
-            See why →
-          </button>
-        </div>
+        <button
+          type="button"
+          className="rec-card__see-why"
+          onClick={() => onOpenEvidence(req)}
+          aria-label={`See evidence why ${req.candidate_standard} was recommended`}
+        >
+          See why →
+        </button>
       </div>
 
-      {/* Expanded In-Place Content */}
-      {expanded && (
-        <div className="req-item__details">
-          {/* Full requirement clause */}
-          <div className="req-detail-block">
-            <span className="req-detail-label">Full Requirement Clause</span>
-            <p className="req-detail-text">{req.text}</p>
-          </div>
+      {req.title && (
+        <h4 className="rec-card__title">{req.title}</h4>
+      )}
 
-          {/* Why flagged / Missing parameters */}
-          {sectionType === 'attention' && (
-            <div className="req-detail-block">
-              <span className="req-detail-label">Why This Was Flagged</span>
-              <p className="req-detail-text">
-                {req.why_flagged || 'Clarification or technical parameters are missing.'}
-              </p>
+      <div className="rec-card__why-block">
+        <span className="rec-card__why-label">Why it matches:</span>
+        <p className="rec-card__why-text">{whyMatches}</p>
+      </div>
+    </article>
+  );
+}
 
-              {req.missing_parameters && req.missing_parameters.length > 0 && (
-                <div className="req-missing-params">
-                  <span className="req-missing-title">Missing Engineering Parameters:</span>
-                  <ul className="req-missing-list">
-                    {req.missing_parameters.map((p, i) => (
-                      <li key={i}>{p}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          )}
+export interface AttentionCardProps {
+  req: Requirement;
+  onOpenEvidence: (req: Requirement) => void;
+}
 
-          {/* Update notice for superseded standards */}
-          {sectionType === 'update' && (
-            <div className="req-detail-block req-detail-block--warning">
-              <span className="req-detail-label">Supersedence Warning</span>
-              <p className="req-detail-text">
-                The cited standard <strong>{req.superseded_citation || req.candidate_standard}</strong> is outdated
-                or superseded.
-                {req.successor_standard && (
-                  <> Tender specifications should cite current active standard <strong>{req.successor_standard}</strong>.</>
-                )}
-              </p>
-            </div>
-          )}
+export function AttentionCard({ req, onOpenEvidence }: AttentionCardProps) {
+  const hasMissing = req.missing_parameters && req.missing_parameters.length > 0;
+  const isInsufficient = req.decision === 'INSUFFICIENT_EVIDENCE' || req.candidate_standard === 'INSUFFICIENT_INFORMATION';
 
-          {/* Recommended Standard details */}
-          {standardCode && (
-            <div className="req-detail-block">
-              <span className="req-detail-label">
-                {sectionType === 'update' ? 'Current Active Successor Standard' : 'Recommended Indian Standard'}
-              </span>
-              <div className="req-std-box">
-                <span className="req-std-box__num">{req.successor_standard || standardCode}</span>
-                {req.title && <span className="req-std-box__title">{req.title}</span>}
-              </div>
-            </div>
-          )}
-
-          {/* Grounded Evidence excerpt */}
-          {req.evidence && (
-            <div className="req-detail-block">
-              <span className="req-detail-label">Evidence Excerpt</span>
-              <blockquote className="req-evidence-quote">
-                "{req.evidence}"
-              </blockquote>
-            </div>
-          )}
-
-          {/* Risk & Review Status */}
-          <div className="req-detail-row">
-            <div>
-              <span className="req-detail-label">Risk Level</span>
-              <span className={`badge badge--${(req.risk_level || 'low').toLowerCase()}`}>
-                {req.risk_level} RISK
-              </span>
-            </div>
-
-            <div>
-              <span className="req-detail-label">Audit Decision</span>
-              <span className="badge badge--review">{req.decision}</span>
-            </div>
-
-            {req.human_review_required && (
-              <div>
-                <span className="req-detail-label">Human Action</span>
-                <span className="badge badge--human">⚠ HUMAN REVIEW REQUIRED</span>
-              </div>
-            )}
-          </div>
-
-          {/* Deep Drawer Trigger */}
-          <div className="req-detail-footer">
-            <button
-              type="button"
-              className="btn-view-evidence"
-              onClick={() => onOpenEvidence(req)}
-            >
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10" />
-                <line x1="12" y1="16" x2="12" y2="12" />
-                <line x1="12" y1="8" x2="12.01" y2="8" />
-              </svg>
-              View full evidence drawer & technical details →
-            </button>
+  return (
+    <article className="attention-card" aria-label="Requirement needing attention">
+      <div className="attention-card__header">
+        <div className="attention-card__left">
+          <span className="attention-card__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+          </span>
+          <div>
+            <h4 className="attention-card__title">
+              {hasMissing
+                ? 'Some specification details need clarification'
+                : isInsufficient
+                ? 'Human review required — insufficient evidence'
+                : 'Specification details need clarification'}
+            </h4>
+            <p className="attention-card__clause">
+              "{req.text.length > 120 ? `${req.text.slice(0, 117)}...` : req.text}"
+            </p>
           </div>
         </div>
+
+        <button
+          type="button"
+          className="attention-card__see-why"
+          onClick={() => onOpenEvidence(req)}
+          aria-label="See why attention is required"
+        >
+          See why →
+        </button>
+      </div>
+
+      {hasMissing ? (
+        <div className="attention-card__body">
+          <p className="attention-card__prompt">Your tender does not specify:</p>
+          <ul className="attention-card__list">
+            {req.missing_parameters.map((param, i) => (
+              <li key={i} className="attention-card__param-item">
+                <span className="attention-card__bullet">•</span>
+                <span>{param}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : isInsufficient ? (
+        <div className="attention-card__body">
+          <p className="attention-card__desc">
+            We could not establish a sufficiently supported Indian Standard from the available catalogue for this requirement. Manual engineer review is recommended before publishing.
+          </p>
+        </div>
+      ) : (
+        <div className="attention-card__body">
+          <p className="attention-card__desc">
+            Additional technical specifications or application parameters are recommended to confirm standard applicability.
+          </p>
+        </div>
       )}
-    </div>
+    </article>
   );
+}
+
+export interface UpdateCardProps {
+  req: Requirement;
+  onOpenEvidence: (req: Requirement) => void;
+}
+
+export function UpdateCard({ req, onOpenEvidence }: UpdateCardProps) {
+  const citedStandard = req.superseded_citation || req.candidate_standard;
+  const currentReference = req.successor_standard || req.candidate_standard;
+
+  return (
+    <article className="update-card" aria-label={`Superseded standard notice for ${citedStandard}`}>
+      <div className="update-card__header">
+        <div className="update-card__left">
+          <span className="update-card__icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          </span>
+          <div>
+            <h4 className="update-card__title">
+              Tender cites <strong>{citedStandard}</strong>
+            </h4>
+            <p className="update-card__status">This standard appears superseded.</p>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          className="update-card__see-why"
+          onClick={() => onOpenEvidence(req)}
+          aria-label={`See evidence regarding superseded standard ${citedStandard}`}
+        >
+          See why →
+        </button>
+      </div>
+
+      <div className="update-card__body">
+        <div className="update-card__replacement">
+          <span className="update-card__label">Recommended current reference:</span>
+          <span className="update-card__successor">{currentReference}</span>
+          {req.title && <span className="update-card__successor-title">{req.title}</span>}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+export interface RelatedCardProps {
+  related: RelatedStandard;
+  parentStandard: string;
+  parentReq: Requirement;
+  onOpenEvidence: (req: Requirement) => void;
+}
+
+export function RelatedCard({ related, parentStandard, parentReq, onOpenEvidence }: RelatedCardProps) {
+  const relationshipLabel =
+    related.relationship_type === 'REFERENCES'
+      ? `Normative reference from ${parentStandard}`
+      : related.relationship_type === 'SUPERSEDES'
+      ? `Superseded standard referenced from ${parentStandard}`
+      : related.relationship_type === 'CODE_OF_PRACTICE_FOR'
+      ? `Code of practice for ${parentStandard}`
+      : `Reference from ${parentStandard}`;
+
+  return (
+    <article className="related-card" aria-label={`Related standard ${related.standard_number}`}>
+      <div className="related-card__header">
+        <div className="related-card__left">
+          <span className="related-card__icon" aria-hidden="true">○</span>
+          <div>
+            <h4 className="related-card__std">{related.standard_number}</h4>
+            <p className="related-card__note">{relationshipLabel}</p>
+            {related.title && <p className="related-card__title">{related.title}</p>}
+          </div>
+        </div>
+
+        <button
+          type="button"
+          className="related-card__see-why"
+          onClick={() => onOpenEvidence(parentReq)}
+          aria-label={`See details for ${related.standard_number}`}
+        >
+          See why →
+        </button>
+      </div>
+
+      <p className="related-card__guidance">Review for co-application.</p>
+    </article>
+  );
+}
+
+// Default export wrapper for compatibility
+export default function RequirementCard(props: any) {
+  if (props.variant === 'recommendation' || props.sectionType === 'good') {
+    return <RecommendationCard req={props.req} isPrimary={props.isPrimary} onOpenEvidence={props.onOpenEvidence} />;
+  }
+  if (props.variant === 'attention' || props.sectionType === 'attention') {
+    return <AttentionCard req={props.req} onOpenEvidence={props.onOpenEvidence} />;
+  }
+  if (props.variant === 'update' || props.sectionType === 'update') {
+    return <UpdateCard req={props.req} onOpenEvidence={props.onOpenEvidence} />;
+  }
+  return <RecommendationCard req={props.req} isPrimary={props.isPrimary} onOpenEvidence={props.onOpenEvidence} />;
 }

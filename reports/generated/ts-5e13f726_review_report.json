@@ -2,10 +2,10 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-5E13F726",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: cpvc",
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
@@ -15,7 +15,7 @@
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-5E13F726",
     "requirements_analyzed": 1,
     "recommendations_count": 1,
     "review_required_count": 0,
@@ -25,16 +25,16 @@
     "active_count": 1,
     "unknown_lifecycle_count": 0,
     "evidence_distribution": {
-      "STRONG": 1,
-      "MODERATE": 0,
+      "STRONG": 0,
+      "MODERATE": 1,
       "WEAK": 0,
       "NONE": 0
     },
     "completeness_distribution": {
       "KNOWN": 0,
-      "POTENTIALLY_MISSING": 1,
+      "POTENTIALLY_MISSING": 0,
       "UNKNOWN": 0,
-      "NOT_APPLICABLE": 0
+      "NOT_APPLICABLE": 1
     },
     "risk_distribution": {
       "LOW": 1,
@@ -59,58 +59,61 @@
   "requirements": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
-      "category": "material",
+      "requirement_text": "Supply of 4G LTE routers conforming to IS 99999",
+      "category": "installation_execution",
       "components": [
         {
-          "text": "CPVC pipes",
-          "component_type": "material",
-          "domain": "piping",
+          "text": "4G LTE router",
+          "component_type": "equipment",
+          "domain": "mechanical",
           "extracted_attributes": {
-            "category": "pipe_material"
+            "domain": "mechanical"
           }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
         }
       ],
-      "recommended_standard": "IS 15778 : 2007",
-      "recommended_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
-      "relevance_score": 1.0,
+      "recommended_standard": "SP 57 (QAWSM) : 1993",
+      "recommended_title": "Handbook on Pipes and Fittings for Drinking Water Supply",
+      "relevance_score": 0.429,
       "lifecycle_status": "Active",
       "successor_standard": null,
       "superseded_citation": null,
-      "evidence_strength": "STRONG",
+      "evidence_strength": "MODERATE",
       "provenance": "CURATED",
-      "evidence_text": "Tender explicitly requires compliance with IS 15778.",
-      "evidence_source": "Tender Document",
+      "evidence_text": "Curated reference standard for Handbook on Pipes and Fittings for Drinking Water Supply",
+      "evidence_source": "BIS Standards Catalogue",
       "why_this": [
-        "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.",
-        "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 15778.\"",
+        "Standard title directly matches requirement component(s): 'supply'.",
+        "Authoritative scope explicitly covers application: \"Curated reference standard for Handbook on Pipes and Fittings for Drinking Water Supply\"",
         "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via Tender Document (VERIFIED)."
+        "Provenance established via BIS Standards Catalogue (CURATED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
       ],
       "why_not": [
-        "Alternative standard SP 57 (QAWSM) has lower composite relevance (0.567 vs 1.000).",
-        "Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification."
+        "Alternative standard IS 14846 has lower composite relevance (0.240 vs 0.429)."
       ],
-      "completeness_label": "POTENTIALLY_MISSING",
-      "potentially_missing_parameters": [
-        "Diameter / Nominal Bore (DN/OD)",
-        "Pressure Class / Schedule / SDR"
-      ],
+      "completeness_label": "NOT_APPLICABLE",
+      "potentially_missing_parameters": [],
       "known_parameters": {},
       "related_standards": [],
       "decision": "RECOMMEND",
       "risk_level": "LOW",
       "risk_reasons": [],
       "human_review_required": false,
-      "confidence": "High",
-      "review_reason": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
+      "confidence": "Medium",
+      "review_reason": "Authoritative active standard SP 57 (QAWSM) : 1993 verified against scope with Medium confidence."
     }
   ],
   "review_queue": [],
   "evidence_summary": {
     "evidence_distribution": {
-      "STRONG": 1,
-      "MODERATE": 0,
+      "STRONG": 0,
+      "MODERATE": 1,
       "WEAK": 0,
       "NONE": 0
     },

@@ -1,102 +1,141 @@
-/* RequirementCard.css — Styling for requirement cards in the accordion */
+/* RequirementCard.css — Clean cards for TenderSaathi recommendation UI */
 
-.req-item {
-  border-bottom: 1px solid #f1f5f9;
-  transition: background-color 150ms ease;
-}
-
-.req-item:last-child {
-  border-bottom: none;
-}
-
-.req-item:hover {
-  background-color: rgba(0, 0, 0, 0.01);
-}
-
-.req-item--expanded {
-  background-color: #fafaf9;
-}
-
-.req-item__summary {
-  padding: 18px 24px;
+/* ─── 1. Recommendation Card ───────────────────────────────────────────── */
+.rec-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 22px 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+  transition: all 180ms ease;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rec-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.rec-card__top {
+  display: flex;
+  align-items: flex-start;
   justify-content: space-between;
-  cursor: pointer;
-  gap: 20px;
+  gap: 16px;
 }
 
-.req-item__left {
-  flex: 1;
-  min-width: 0;
-}
-
-.req-item__index-title {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  font-size: 0.98rem;
-  font-weight: 700;
-  color: #1a1f36;
-  line-height: 1.35;
-}
-
-.req-item__number {
-  color: #64748b;
-  font-weight: 600;
-}
-
-.req-item__title {
-  color: #1a1f36;
-}
-
-.req-item__desc {
-  margin-top: 4px;
-  font-size: 0.88rem;
-  color: #64748b;
-  line-height: 1.4;
-}
-
-.req-item__desc-update strong {
-  color: #1a1f36;
-}
-
-.req-item__std-line {
-  margin-top: 8px;
+.rec-card__indicator {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.84rem;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
-.req-item__std-icon {
-  color: #94a3b8;
+.rec-card__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-}
-
-.req-item__std-label {
-  color: #64748b;
-  font-weight: 500;
-}
-
-.req-item__std-num {
-  font-weight: 700;
-  color: #1a1f36;
-}
-
-.req-item__right {
+  justify-content: center;
   flex-shrink: 0;
 }
 
-.req-item__see-why {
-  background: none;
+.rec-card__icon--check {
+  background: #ecfdf5;
+  color: #16a34a;
+}
+
+.rec-card__icon--review {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+.rec-card__standard-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.rec-card__standard-num {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1a1f36;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.rec-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.rec-badge--primary {
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+}
+
+.rec-badge--cited {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+.rec-badge--warning {
+  background: #fff7ed;
+  color: #c2410c;
+  border: 1px solid #fed7aa;
+}
+
+.rec-card__title {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #334155;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.rec-card__why-block {
+  background: #f8fafc;
+  border-left: 3px solid #ff5a36;
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  margin-top: 2px;
+}
+
+.rec-card__why-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.rec-card__why-text {
+  font-size: 0.94rem;
+  color: #1a1f36;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.rec-card__see-why {
+  background: transparent;
   border: none;
   color: #ff5a36;
   font-family: inherit;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.92rem;
+  font-weight: 700;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -104,80 +143,206 @@
   padding: 6px 12px;
   border-radius: 9999px;
   transition: all 150ms ease;
+  white-space: nowrap;
 }
 
-.req-item__see-why:hover {
-  background: #fff0eb;
-  color: #e84c28;
+.rec-card__see-why:hover {
+  background: #fff5f2;
+  color: #e04825;
   transform: translateX(2px);
 }
 
-/* ─── Expanded in-place details ────────────────────────────────────────── */
-.req-item__details {
-  padding: 0 24px 22px 42px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  animation: fadeIn 200ms ease-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.req-detail-block {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.req-detail-block--warning {
-  background: #fff8f5;
-  border-left: 3px solid #ff5a36;
-  padding: 10px 14px;
-  border-radius: 4px;
-}
-
-.req-detail-label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #64748b;
-}
-
-.req-detail-text {
-  font-size: 0.92rem;
-  color: #1a1f36;
-  line-height: 1.5;
-}
-
-.req-missing-params {
-  margin-top: 8px;
-  background: #fff5f2;
-  border: 1px solid #fed8cc;
-  padding: 10px 14px;
-  border-radius: 8px;
-}
-
-.req-missing-title {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: #c2410c;
-  display: block;
-  margin-bottom: 6px;
-}
-
-.req-missing-list {
-  padding-left: 20px;
-  font-size: 0.85rem;
-  color: #1a1f36;
-  line-height: 1.6;
-}
-
-.req-std-box {
+/* ─── 2. Attention Card ─────────────────────────────────────────────────── */
+.attention-card {
   background: #ffffff;
+  border: 1px solid #fed7aa;
+  border-left: 4px solid #f97316;
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 180ms ease;
+}
+
+.attention-card:hover {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+}
+
+.attention-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.attention-card__left {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.attention-card__icon {
+  color: #ea580c;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.attention-card__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1f36;
+  margin: 0 0 4px 0;
+  line-height: 1.35;
+}
+
+.attention-card__clause {
+  font-size: 0.84rem;
+  color: #64748b;
+  font-style: italic;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.attention-card__see-why {
+  background: transparent;
+  border: none;
+  color: #ff5a36;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  transition: all 150ms ease;
+}
+
+.attention-card__see-why:hover {
+  background: #fff5f2;
+  color: #e04825;
+  transform: translateX(2px);
+}
+
+.attention-card__body {
+  padding-left: 32px;
+}
+
+.attention-card__prompt {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #9a3412;
+  margin: 0 0 6px 0;
+}
+
+.attention-card__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.attention-card__param-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: #334155;
+  line-height: 1.4;
+}
+
+.attention-card__bullet {
+  color: #ea580c;
+  font-weight: 700;
+}
+
+.attention-card__desc {
+  font-size: 0.88rem;
+  color: #475569;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ─── 3. Update Card (Superseded Standards) ────────────────────────────── */
+.update-card {
+  background: #ffffff;
+  border: 1px solid #fecaca;
+  border-left: 4px solid #ef4444;
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all 180ms ease;
+}
+
+.update-card:hover {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+}
+
+.update-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.update-card__left {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.update-card__icon {
+  color: #dc2626;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.update-card__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1f36;
+  margin: 0 0 2px 0;
+}
+
+.update-card__status {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #dc2626;
+  margin: 0;
+}
+
+.update-card__see-why {
+  background: transparent;
+  border: none;
+  color: #ff5a36;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  transition: all 150ms ease;
+}
+
+.update-card__see-why:hover {
+  background: #fff5f2;
+  color: #e04825;
+  transform: translateX(2px);
+}
+
+.update-card__body {
+  padding-left: 32px;
+}
+
+.update-card__replacement {
+  background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   padding: 10px 14px;
@@ -186,82 +351,138 @@
   gap: 2px;
 }
 
-.req-std-box__num {
-  font-size: 0.95rem;
+.update-card__label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #64748b;
+  letter-spacing: 0.05em;
+}
+
+.update-card__successor {
+  font-size: 1rem;
   font-weight: 700;
   color: #1a1f36;
 }
 
-.req-std-box__title {
-  font-size: 0.82rem;
+.update-card__successor-title {
+  font-size: 0.84rem;
   color: #64748b;
 }
 
-.req-evidence-quote {
-  font-size: 0.88rem;
-  font-style: italic;
-  color: #334155;
-  background: #f8fafc;
-  border-left: 3px solid #94a3b8;
-  padding: 8px 14px;
-  border-radius: 0 6px 6px 0;
-  line-height: 1.5;
-}
-
-.req-detail-row {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  flex-wrap: wrap;
-  padding-top: 4px;
-}
-
-.req-detail-row > div {
+/* ─── 4. Related Standard Card ─────────────────────────────────────────── */
+.related-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
+  transition: all 180ms ease;
 }
 
-.req-detail-footer {
-  margin-top: 4px;
+.related-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.related-card__header {
   display: flex;
-  justify-content: flex-start;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
 }
 
-.btn-view-evidence {
-  background: #ffffff;
-  border: 1.5px solid #ff5a36;
+.related-card__left {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.related-card__icon {
+  font-size: 1.1rem;
+  color: #64748b;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.related-card__std {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a1f36;
+  margin: 0 0 2px 0;
+}
+
+.related-card__note {
+  font-size: 0.84rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.related-card__title {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin: 2px 0 0 0;
+}
+
+.related-card__see-why {
+  background: transparent;
+  border: none;
   color: #ff5a36;
-  padding: 8px 16px;
-  border-radius: 9999px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
   font-family: inherit;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 4px 8px;
+  border-radius: 9999px;
   transition: all 150ms ease;
 }
 
-.btn-view-evidence:hover {
-  background: #ff5a36;
-  color: #ffffff;
+.related-card__see-why:hover {
+  background: #fff5f2;
+  color: #e04825;
+  transform: translateX(2px);
 }
 
+.related-card__guidance {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #475569;
+  padding-left: 24px;
+  margin: 0;
+}
+
+/* ─── Responsive Media Queries ─────────────────────────────────────────── */
 @media (max-width: 640px) {
-  .req-item__summary {
-    padding: 14px 16px;
+  .rec-card {
+    padding: 16px 18px;
+  }
+  .rec-card__top {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 10px;
   }
-  .req-item__details {
-    padding: 0 16px 18px 16px;
+  .rec-card__see-why {
+    align-self: flex-end;
+    padding: 4px 8px;
   }
-  .req-item__right {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
+  .attention-card__header,
+  .update-card__header,
+  .related-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .attention-card__see-why,
+  .update-card__see-why,
+  .related-card__see-why {
+    align-self: flex-end;
+  }
+  .attention-card__body,
+  .update-card__body {
+    padding-left: 0;
   }
 }

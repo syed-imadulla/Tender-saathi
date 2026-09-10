@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-CPVC`
-- **Source File:** `Sample: cpvc`
+- **Tender ID:** `TS-9A7D9A6D`
+- **Source File:** `text input`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -32,12 +32,12 @@
 | **Superseded Standards** | 0 | Outdated standards identified |
 | **Withdrawn Standards** | 0 | Cancelled standards |
 | **Unknown Lifecycle** | 0 | Unindexed in local catalogue |
-| **Related Standards to Review** | 0 | Discovered via relationship graph (depth=1) |
+| **Related Standards to Review** | 2 | Discovered via relationship graph (depth=1) |
 
 ### Governance Distributions
 
-- **Evidence Strength:** STRONG: `1` | MODERATE: `0` | WEAK: `0` | NONE: `0`
-- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `1` | UNKNOWN: `0` | NOT_APPLICABLE: `0`
+- **Evidence Strength:** STRONG: `0` | MODERATE: `1` | WEAK: `0` | NONE: `0`
+- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `0` | UNKNOWN: `0` | NOT_APPLICABLE: `1`
 - **Risk Distribution:** CRITICAL: `0` | HIGH: `0` | MEDIUM: `0` | LOW: `1`
 
 ## 4. Prioritized Human Review Queue
@@ -49,23 +49,26 @@
 ### 5.1 Requirement `REQ-001` [MATERIAL]
 
 **Original Requirement Text:**
-> "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778."
+> "Supply of orbital titanium spacecraft thermal shielding tiles."
 
-- **Decomposed Technical Components:** `general: CPVC pipes`
-- **Recommended Standard:** **IS 15778 : 2007** — *Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*
-- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `1.000`
-- **Evidence Strength:** `STRONG` | **Provenance:** `CURATED`
-- **Verbatim Evidence (Tender Document):** "Tender explicitly requires compliance with IS 15778."
+- **Decomposed Technical Components:** `general: tiles`
+- **Recommended Standard:** **IS 15622 : 2017** — *Pressed Ceramic Tiles - Specification (First Revision)*
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.638`
+- **Evidence Strength:** `MODERATE` | **Provenance:** `CURATED`
+- **Verbatim Evidence (BIS Standards Catalogue):** "Exact Match: IS 15622 covers all pressed ceramic tiles for wall and floor finishes (water absorption groups B Ia, B Ib, B IIa, B IIb, B III)."
 - **Why This Standard?:**
-  - Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.
-  - Authoritative scope explicitly covers application: "Tender explicitly requires compliance with IS 15778."
+  - Standard title directly matches requirement component(s): 'tiles'.
+  - Authoritative scope explicitly covers application: "Exact Match: IS 15622 covers all pressed ceramic tiles for wall and floor finishes (water absorption groups B Ia, B Ib,..."
   - Standard is currently active in the BIS repository with verified currency.
-  - Provenance established via Tender Document (VERIFIED).
+  - Provenance established via BIS Standards Catalogue (CURATED).
 - **Why Not Alternatives?:**
-  - Alternative standard SP 57 (QAWSM) has lower composite relevance (0.567 vs 1.000).
-  - Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification.
-- **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
-- **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `High`
+  - Alternative standard IS 14164 has lower composite relevance (0.477 vs 0.638).
+  - Alternative IS 14164 is a general code of practice/handbook rather than a direct manufacturing product specification.
+- **Specification Review Completeness:** `NOT_APPLICABLE`
+- **Related Standards Identified for Review (Graph Depth = 1):**
+  - [→ SUPERSEDES] `IS 13753` — *Pressed Ceramic Tiles - Specification (First Revision)* (Superseded) — *Note:* Authoritative successor standard supersedes IS 13753. Review legacy specifications.
+  - [→ SUPERSEDES] `IS 13755` — *Pressed Ceramic Tiles - Specification (First Revision)* (Superseded) — *Note:* Authoritative successor standard supersedes IS 13755. Review legacy specifications.
+- **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `Medium`
 
 ---
 

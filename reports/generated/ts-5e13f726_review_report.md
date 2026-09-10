@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-CPVC`
-- **Source File:** `Sample: cpvc`
+- **Tender ID:** `TS-5E13F726`
+- **Source File:** `text input`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -36,8 +36,8 @@
 
 ### Governance Distributions
 
-- **Evidence Strength:** STRONG: `1` | MODERATE: `0` | WEAK: `0` | NONE: `0`
-- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `1` | UNKNOWN: `0` | NOT_APPLICABLE: `0`
+- **Evidence Strength:** STRONG: `0` | MODERATE: `1` | WEAK: `0` | NONE: `0`
+- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `0` | UNKNOWN: `0` | NOT_APPLICABLE: `1`
 - **Risk Distribution:** CRITICAL: `0` | HIGH: `0` | MEDIUM: `0` | LOW: `1`
 
 ## 4. Prioritized Human Review Queue
@@ -46,26 +46,26 @@
 
 ## 5. Requirement-by-Requirement Review
 
-### 5.1 Requirement `REQ-001` [MATERIAL]
+### 5.1 Requirement `REQ-001` [INSTALLATION_EXECUTION]
 
 **Original Requirement Text:**
-> "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778."
+> "Supply of 4G LTE routers conforming to IS 99999"
 
-- **Decomposed Technical Components:** `general: CPVC pipes`
-- **Recommended Standard:** **IS 15778 : 2007** — *Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*
-- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `1.000`
-- **Evidence Strength:** `STRONG` | **Provenance:** `CURATED`
-- **Verbatim Evidence (Tender Document):** "Tender explicitly requires compliance with IS 15778."
+- **Decomposed Technical Components:** `general: 4G LTE router`, `general: supply`
+- **Recommended Standard:** **SP 57 (QAWSM) : 1993** — *Handbook on Pipes and Fittings for Drinking Water Supply*
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.429`
+- **Evidence Strength:** `MODERATE` | **Provenance:** `CURATED`
+- **Verbatim Evidence (BIS Standards Catalogue):** "Curated reference standard for Handbook on Pipes and Fittings for Drinking Water Supply"
 - **Why This Standard?:**
-  - Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.
-  - Authoritative scope explicitly covers application: "Tender explicitly requires compliance with IS 15778."
+  - Standard title directly matches requirement component(s): 'supply'.
+  - Authoritative scope explicitly covers application: "Curated reference standard for Handbook on Pipes and Fittings for Drinking Water Supply"
   - Standard is currently active in the BIS repository with verified currency.
-  - Provenance established via Tender Document (VERIFIED).
+  - Provenance established via BIS Standards Catalogue (CURATED).
+  - Candidate addresses multiple decomposed technical aspects of the requirement.
 - **Why Not Alternatives?:**
-  - Alternative standard SP 57 (QAWSM) has lower composite relevance (0.567 vs 1.000).
-  - Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification.
-- **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
-- **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `High`
+  - Alternative standard IS 14846 has lower composite relevance (0.240 vs 0.429).
+- **Specification Review Completeness:** `NOT_APPLICABLE`
+- **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `Medium`
 
 ---
 

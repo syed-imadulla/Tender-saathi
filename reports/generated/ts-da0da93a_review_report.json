@@ -2,30 +2,28 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-SUPERSEDED",
+    "tender_id": "TS-DA0DA93A",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: superseded",
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
   "publication_readiness": "REVIEW_REQUIRED",
   "readiness_reasons": [
-    "1 requirement(s) cite or match superseded standard(s).",
-    "1 requirement(s) flagged with CRITICAL risk.",
-    "1 requirement(s) require technical engineer review.",
-    "1 requirement(s) have potentially missing specification parameters."
+    "1 requirement(s) flagged with HIGH risk.",
+    "1 requirement(s) require technical engineer review."
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-SUPERSEDED",
+    "tender_id": "TS-DA0DA93A",
     "requirements_analyzed": 1,
     "recommendations_count": 0,
     "review_required_count": 1,
     "insufficient_evidence_count": 0,
-    "superseded_count": 1,
+    "superseded_count": 0,
     "withdrawn_count": 0,
-    "active_count": 0,
+    "active_count": 1,
     "unknown_lifecycle_count": 0,
     "evidence_distribution": {
       "STRONG": 1,
@@ -35,19 +33,19 @@
     },
     "completeness_distribution": {
       "KNOWN": 0,
-      "POTENTIALLY_MISSING": 1,
-      "UNKNOWN": 0,
+      "POTENTIALLY_MISSING": 0,
+      "UNKNOWN": 1,
       "NOT_APPLICABLE": 0
     },
     "risk_distribution": {
       "LOW": 0,
       "MEDIUM": 0,
-      "HIGH": 0,
-      "CRITICAL": 1
+      "HIGH": 1,
+      "CRITICAL": 0
     },
     "lifecycle_distribution": {
-      "Active": 0,
-      "Superseded": 1,
+      "Active": 1,
+      "Superseded": 0,
       "Withdrawn": 0,
       "Unknown": 0
     },
@@ -55,57 +53,84 @@
     "review_queue": [
       {
         "requirement_id": "REQ-001",
-        "requirement_text": "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.",
-        "risk_level": "CRITICAL",
+        "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+        "risk_level": "HIGH",
         "decision": "REVIEW_REQUIRED",
         "candidate_standard": "IS/ISO 10434 : 2020",
         "evidence_strength": "STRONG",
-        "primary_reason": "Tender explicitly cited a superseded standard requiring replacement verification.",
-        "priority": 1
+        "primary_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)",
+        "priority": 2
       }
     ],
     "publication_readiness": "REVIEW_REQUIRED",
     "readiness_reasons": [
-      "1 requirement(s) cite or match superseded standard(s).",
-      "1 requirement(s) flagged with CRITICAL risk.",
-      "1 requirement(s) require technical engineer review.",
-      "1 requirement(s) have potentially missing specification parameters."
+      "1 requirement(s) flagged with HIGH risk.",
+      "1 requirement(s) require technical engineer review."
     ],
     "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification."
   },
   "requirements": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.",
+      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
       "category": "product_equipment",
       "components": [
         {
-          "text": "gate valves",
+          "text": "Repair",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "repair"
+          }
+        },
+        {
+          "text": "replacement",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "replacement"
+          }
+        },
+        {
+          "text": "valves",
           "component_type": "product",
           "domain": "mechanical",
           "extracted_attributes": {
             "category": "flow_control_valve"
           }
+        },
+        {
+          "text": "mechanical distribution system",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
         }
       ],
       "recommended_standard": "IS/ISO 10434 : 2020",
       "recommended_title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
-      "relevance_score": 1.0,
+      "relevance_score": 0.581,
       "lifecycle_status": "Active",
       "successor_standard": null,
-      "superseded_citation": "IS 10611 1983",
+      "superseded_citation": null,
       "evidence_strength": "STRONG",
       "provenance": "VERIFIED",
       "evidence_text": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends.",
       "evidence_source": "BSB Edge Portal",
       "why_this": [
-        "Recommended authoritative active successor standard recorded in BIS database."
+        "Standard title directly matches requirement component(s): 'valves'.",
+        "Authoritative scope explicitly covers application: \"This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petroc...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BSB Edge Portal (VERIFIED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
       ],
       "why_not": [
-        "Original cited standard is superseded/obsolete."
+        "Alternative standard IS 781 has lower composite relevance (0.506 vs 0.581)."
       ],
-      "completeness_label": "POTENTIALLY_MISSING",
+      "completeness_label": "UNKNOWN",
       "potentially_missing_parameters": [
+        "Valve Type",
         "Nominal Size / Diameter (DN)",
         "Pressure Rating (PN / Class)",
         "Body Metallurgy / Material",
@@ -127,25 +152,25 @@
         }
       ],
       "decision": "REVIEW_REQUIRED",
-      "risk_level": "CRITICAL",
+      "risk_level": "HIGH",
       "risk_reasons": [
-        "Tender explicitly cited a superseded standard requiring replacement verification."
+        "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)"
       ],
       "human_review_required": true,
-      "confidence": "High",
-      "review_reason": "Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement."
+      "confidence": "Low",
+      "review_reason": "Tender specifies valve work without defining valve nominal diameter (DN), pressure rating (PN), body metallurgy (cast iron vs bronze vs forged steel), or process medium."
     }
   ],
   "review_queue": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.",
-      "risk_level": "CRITICAL",
+      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+      "risk_level": "HIGH",
       "decision": "REVIEW_REQUIRED",
       "candidate_standard": "IS/ISO 10434 : 2020",
       "evidence_strength": "STRONG",
-      "primary_reason": "Tender explicitly cited a superseded standard requiring replacement verification.",
-      "priority": 1
+      "primary_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)",
+      "priority": 2
     }
   ],
   "evidence_summary": {
