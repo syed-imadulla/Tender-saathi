@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-CPVC`
-- **Source File:** `Sample: cpvc`
+- **Tender ID:** `TS-9483C302`
+- **Source File:** `eProcurement System Government of India20.pdf`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -37,30 +37,29 @@
 ### Governance Distributions
 
 - **Evidence Strength:** STRONG: `0` | MODERATE: `0` | WEAK: `0` | NONE: `1`
-- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `1` | UNKNOWN: `0` | NOT_APPLICABLE: `0`
+- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `0` | UNKNOWN: `0` | NOT_APPLICABLE: `1`
 - **Risk Distribution:** CRITICAL: `0` | HIGH: `1` | MEDIUM: `0` | LOW: `0`
 
 ## 4. Prioritized Human Review Queue
 
 | # | Priority | Requirement ID | Candidate Standard | Issue / Primary Reason |
 |---|---|---|---|---|
-| 1 | **HIGH** | `REQ-001` | `INSUFFICIENT_INFORMATION` | No matching standards found in database. |
+| 1 | **HIGH** | `TS-9483C302-R001` | `INSUFFICIENT_INFORMATION` | No matching standards found in database. |
 
 ## 5. Requirement-by-Requirement Review
 
-### 5.1 Requirement `REQ-001` [MATERIAL]
+### 5.1 Requirement `TS-9483C302-R001` [INSTALLATION_EXECUTION]
 
 **Original Requirement Text:**
-> "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778."
+> "Consultancy services for Authority s Engineer for Supervision of Construction of 4 Lane Access Controlled Bypass to Tiruvannamalai Town starting from Design km 135.796 of NH-234 (km 75.150 of new NH-38) and ending at Design km 158.506 of NH-234(km 88"
 
-- **Decomposed Technical Components:** `general: CPVC pipes`, `general: CPVC fittings`, `general: domestic hot water distribution`, `general: domestic cold water distribution`, `general: supply`, `general: installation`
 - **Recommended Standard:** **INSUFFICIENT_INFORMATION** — *No Applicable Standard in Local Database*
 - **Lifecycle Status:** **UNKNOWN** | **Composite Relevance Score:** `0.000`
 - **Evidence Strength:** `NONE` | **Provenance:** `UNKNOWN`
 - **Verbatim Evidence (NONE):** "Insufficient evidence from the retrieved standards data."
 - **Why This Standard?:**
   - No applicable Indian Standard found in local catalogue meeting relevance criteria.
-- **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
+- **Specification Review Completeness:** `NOT_APPLICABLE`
 - **Standards Review Decision:** `INSUFFICIENT_EVIDENCE` | **Risk Level:** `HIGH` | **Confidence:** `Low`
 - ⚠ **Human Technical Review Required:** No matching standard with sufficient confidence found in local catalogue. Requires BIS portal search.
 

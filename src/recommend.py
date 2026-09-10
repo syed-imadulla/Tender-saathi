@@ -182,24 +182,43 @@ class StandardsRecommender:
         # Step 1: Detect explicit standards mentioned and validate status
         explicit_stds = req.explicit_standards or []
         superseded_explicit_warnings = []
-        successor_recommendations = []
+        explicit_search_results = []
 
         for exp in explicit_stds:
             val_res = validate_standard_status(exp, self.db)
-            if not val_res.is_active and val_res.successor_standard:
-                superseded_explicit_warnings.append(val_res.warning_message)
-                successor_recommendations.append(StandardRecommendation(
-                    standard_number=val_res.successor_standard,
-                    title=val_res.successor_title or "Authoritative Successor Standard",
-                    status="Active",
-                    version_role="CURRENT_ACTIVE",
-                    relevance_score=1.0,
-                    confidence="High",
-                    evidence=val_res.evidence or "Explicit supersedence relationship recorded in BIS database.",
-                    provenance="VERIFIED",
-                    superseded_warning=f"Tender cited superseded standard '{exp}'. Recommended current active replacement.",
-                    technical_committee=None
-                ))
+            
+            with self.db._get_connection() as conn:
+                cursor = conn.cursor()
+                # 1. Inject the explicit citation itself
+                cursor.execute("SELECT * FROM standards WHERE standard_number = ?", (exp,))
+                row = cursor.fetchone()
+                if row:
+                    r_dict = dict(row)
+                    exact_res = self.search_engine.det_engine._format_result(
+                        r_dict, 
+                        score=1.0, 
+                        reason=f"Explicitly cited in tender: {exp}"
+                    )
+                    exact_res.deterministic_score = 1.0
+                    exact_res.final_score = 1.0
+                    explicit_search_results.append(exact_res)
+
+                # 2. Inject the authoritative successor if superseded
+                if not val_res.is_active and val_res.successor_standard:
+                    superseded_explicit_warnings.append(val_res.warning_message)
+                    cursor.execute("SELECT * FROM standards WHERE standard_number = ?", (val_res.successor_standard,))
+                    succ_row = cursor.fetchone()
+                    if succ_row:
+                        s_dict = dict(succ_row)
+                        succ_res = self.search_engine.det_engine._format_result(
+                            s_dict,
+                            score=1.0,
+                            reason=f"Authoritative successor for cited standard {exp}"
+                        )
+                        succ_res.deterministic_score = 1.0
+                        succ_res.final_score = 1.0
+                        setattr(succ_res, "_explicit_successor_warning", f"Tender cited superseded standard '{exp}'. Recommended current active replacement.")
+                        explicit_search_results.append(succ_res)
 
         # Step 2: Multi-modal Search over BIS Standards with Decomposed Components
         # Primary search using full requirement text and decomposed components
@@ -221,6 +240,19 @@ class StandardsRecommender:
                     if not any(r.standard_id == eh.standard_id for r in search_results):
                         search_results.append(eh)
 
+        # Merge explicit citations into search_results so they are evaluated by the Critic
+        for esr in explicit_search_results:
+            existing = next((r for r in search_results if r.standard_number == esr.standard_number), None)
+            if not existing:
+                search_results.insert(0, esr)
+            else:
+                existing.deterministic_score = 1.0
+                existing.final_score = max(existing.final_score, 1.0)
+                existing.relevance_score = 1.0
+                existing.relevance_reason = esr.relevance_reason + " | " + existing.relevance_reason
+                if hasattr(esr, "_explicit_successor_warning"):
+                    setattr(existing, "_explicit_successor_warning", getattr(esr, "_explicit_successor_warning"))
+
         # Step 3: Check Ambiguity Heuristics
         ambiguity_flag = False
         ambiguity_reason = ""
@@ -239,11 +271,8 @@ class StandardsRecommender:
         )
 
         # Step 5: Validate and Ground Candidates
+        # Validate and Ground Candidates
         recommendations: List[StandardRecommendation] = []
-
-        # Add any successors from explicit mentions first
-        for sr in successor_recommendations:
-            recommendations.append(sr)
 
         for sr in search_results:
             # Avoid duplicate standard numbers
@@ -274,6 +303,10 @@ class StandardsRecommender:
                 conf = "Low" if conf == "Medium" else "Medium"
 
             warning = val_info.warning_message if not val_info.is_active else None
+            
+            # If this candidate was injected as an authoritative successor, preserve the warning
+            if hasattr(sr, "_explicit_successor_warning"):
+                warning = getattr(sr, "_explicit_successor_warning")
 
             recommendations.append(StandardRecommendation(
                 standard_number=f"{sr.standard_number} : {sr.year}" if sr.year else sr.standard_number,
@@ -334,7 +367,7 @@ class StandardsRecommender:
         alternatives = [r.standard_number for r in recommendations[1:4]]
 
         # Human Review and Risk Decision Logic
-        if successor_recommendations:
+        if superseded_explicit_warnings:
             human_review_required = True
             decision_reason = f"Tender cited superseded standard '{explicit_stds[0]}'. Recommended current active replacement."
             risk_level = "CRITICAL"

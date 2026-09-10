@@ -166,6 +166,19 @@ class EvidenceAwareCritic:
                 grounded=True
             )
 
+        # Check if explicitly cited in tender
+        if "Explicitly cited in tender" in candidate.relevance_reason:
+            return CandidateEvidence(
+                evidence_text=f"Tender explicitly requires compliance with {candidate.standard_number}.",
+                evidence_source="Tender Document",
+                source_url=None,
+                provenance="VERIFIED",
+                evidence_type="explicit_citation",
+                evidence_strength="STRONG",
+                grounded=True
+            )
+
+
         # Check stored scope text
         has_scope = scope and len(scope.strip()) > 15 and "insufficient" not in scope.lower()
         if has_scope:

@@ -1,0 +1,169 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-31D2B34C",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "eProcurement System Government of India.pdf",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "REVIEW_REQUIRED",
+  "readiness_reasons": [
+    "1 requirement(s) flagged with CRITICAL risk.",
+    "1 requirement(s) require technical engineer review."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-31D2B34C",
+    "requirements_analyzed": 1,
+    "recommendations_count": 0,
+    "review_required_count": 1,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 0,
+    "withdrawn_count": 0,
+    "active_count": 1,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 1,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 0,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 1
+    },
+    "risk_distribution": {
+      "LOW": 0,
+      "MEDIUM": 0,
+      "HIGH": 0,
+      "CRITICAL": 1
+    },
+    "lifecycle_distribution": {
+      "Active": 1,
+      "Superseded": 0,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 0,
+    "review_queue": [
+      {
+        "requirement_id": "TS-31D2B34C-R001",
+        "requirement_text": "EOI for identification and Empanelment of technical support partners for provisioning of training infrastructure , manpower and other resources, candidate mobilization, training materials, and placement support in the wool textile and allied sectors",
+        "risk_level": "CRITICAL",
+        "decision": "REJECT",
+        "candidate_standard": "IS/ISO 3795 : 1989",
+        "evidence_strength": "MODERATE",
+        "primary_reason": "Domain mismatch: Agricultural irrigation standard selected for industrial equipment",
+        "priority": 1
+      }
+    ],
+    "publication_readiness": "REVIEW_REQUIRED",
+    "readiness_reasons": [
+      "1 requirement(s) flagged with CRITICAL risk.",
+      "1 requirement(s) require technical engineer review."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification."
+  },
+  "requirements": [
+    {
+      "requirement_id": "TS-31D2B34C-R001",
+      "requirement_text": "EOI for identification and Empanelment of technical support partners for provisioning of training infrastructure , manpower and other resources, candidate mobilization, training materials, and placement support in the wool textile and allied sectors",
+      "category": "general_specification",
+      "components": [
+        {
+          "text": "training infrastructure",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "wool textile sector training",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        }
+      ],
+      "recommended_standard": "IS/ISO 3795 : 1989",
+      "recommended_title": "Road Vehicles and Tractors and Machinery for Agriculture and Forestry - Determination of Burning Behaviour of Interior Materials",
+      "relevance_score": 0.519,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "evidence_text": "Curated reference standard for Road Vehicles and Tractors and Machinery for Agriculture and Forestry - Determination of Burning Behaviour of Interior Materials",
+      "evidence_source": "BIS Standards Catalogue",
+      "why_this": [
+        "Official title aligns with specification: 'Road Vehicles and Tractors and Machinery for Agriculture and Forestry - Determination of Burning Behaviour of Interior Materials'.",
+        "Authoritative scope explicitly covers application: \"Curated reference standard for Road Vehicles and Tractors and Machinery for Agriculture and Forestry - Determination of...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BIS Standards Catalogue (CURATED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
+      ],
+      "why_not": [
+        "Alternative standard IS/ISO 10434 has lower composite relevance (0.465 vs 0.519)."
+      ],
+      "completeness_label": "NOT_APPLICABLE",
+      "potentially_missing_parameters": [],
+      "known_parameters": {},
+      "related_standards": [],
+      "decision": "REVIEW_REQUIRED",
+      "risk_level": "CRITICAL",
+      "risk_reasons": [
+        "Domain mismatch: Agricultural irrigation standard selected for industrial equipment"
+      ],
+      "human_review_required": true,
+      "confidence": "Low",
+      "review_reason": "Moderate evidence grounded in BIS Standards Catalogue"
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "TS-31D2B34C-R001",
+      "requirement_text": "EOI for identification and Empanelment of technical support partners for provisioning of training infrastructure , manpower and other resources, candidate mobilization, training materials, and placement support in the wool textile and allied sectors",
+      "risk_level": "CRITICAL",
+      "decision": "REJECT",
+      "candidate_standard": "IS/ISO 3795 : 1989",
+      "evidence_strength": "MODERATE",
+      "primary_reason": "Domain mismatch: Agricultural irrigation standard selected for industrial equipment",
+      "priority": 1
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 1,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 0,
+      "CURATED": 1,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}
