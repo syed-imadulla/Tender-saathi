@@ -10,7 +10,7 @@
 ## 1. Tender Information
 
 - **Tender ID:** `T001`
-- **Tender Title:** Procurement Audit: T001
+- **Tender Title:** Tender Package T001
 - **Source File:** `eProcurement System Government of India2.pdf`
 - **Requirements Analysed:** 1
 

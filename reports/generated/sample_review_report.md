@@ -63,7 +63,7 @@
 
 - **Decomposed Technical Components:** `general: CPVC pipes`, `general: potable water`
 - **Recommended Standard:** **IS 15778 : 2007** — *Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*
-- **Lifecycle Status:** **Active** | **Composite Relevance Score:** `0.878`
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.878`
 - **Evidence Strength:** `MODERATE` | **Provenance:** `CURATED`
 - **Verbatim Evidence (BIS Standards Catalogue):** "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
 - **Why This Standard?:**
@@ -87,7 +87,7 @@
 
 - **Decomposed Technical Components:** `general: Replacement`, `general: valves`
 - **Recommended Standard:** **IS/ISO 10434 : 2020** — *Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries*
-- **Lifecycle Status:** **Active** | **Composite Relevance Score:** `0.610`
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.610`
 - **Evidence Strength:** `STRONG` | **Provenance:** `VERIFIED`
 - **Verbatim Evidence (BSB Edge Portal):** "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends."
 - **Why This Standard?:**
@@ -113,7 +113,7 @@
 
 - **Decomposed Technical Components:** `general: valves`
 - **Recommended Standard:** **IS/ISO 10434 : 2020** — *Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries*
-- **Lifecycle Status:** **Active** (Superseded by `IS/ISO 10434 : 2020`) | **Composite Relevance Score:** `1.000`
+- **Lifecycle Status:** **ACTIVE** (Active successor replacing cited superseded `IS 10611`) | **Composite Relevance Score:** `1.000`
 - **Evidence Strength:** `STRONG` | **Provenance:** `VERIFIED`
 - **Verbatim Evidence (BSB Edge Portal):** "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends."
 - **Why This Standard?:**
@@ -135,7 +135,7 @@
 
 - **Decomposed Technical Components:** `general: Sewerage Pipeline`, `general: STP`
 - **Recommended Standard:** **IS 14333 : 2022** — *Polyethylene Pipes for Sewerage and Industrial Chemicals and Effluent - Specification*
-- **Lifecycle Status:** **Active** | **Composite Relevance Score:** `0.635`
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.635`
 - **Evidence Strength:** `STRONG` | **Provenance:** `VERIFIED`
 - **Verbatim Evidence (BSB Edge Portal):** "1.1 This standard specifies the characteristics and requirements for polyethylene pipes intended to be used for following applications above or below ground: a) Sewerage (pressure or non-pressure); b) Industrial effluent; and c) Industrial chemicals. 1.2 This standard covers polyethylene pipes from 63 mm to 2 500 mm nominal diameter of pressure rating from 0.20 MPa (2.0 bar) to 2.0 MPa (20.0 bar)."
 - **Why This Standard?:**
@@ -167,7 +167,7 @@
 
 - **Decomposed Technical Components:** `general: Food Outlet`
 - **Recommended Standard:** **IS 302 : 1994** — *Safety of Household and Similar Electrical Appliances - Part 2 : Particular Requirements - Section 209 : Low Speed Food Grinding Machines*
-- **Lifecycle Status:** **Active** (Superseded by `SP 18 : 1981`) | **Composite Relevance Score:** `0.622`
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.622`
 - **Evidence Strength:** `MODERATE` | **Provenance:** `CURATED`
 - **Verbatim Evidence (BIS Standards Catalogue):** "Curated reference standard for Safety of Household and Similar Electrical Appliances - Part 2 : Particular Requirements - Section 209 : Low Speed Food Grinding Machines"
 - **Why This Standard?:**
@@ -190,7 +190,7 @@
 
 - **Decomposed Technical Components:** `general: SITC`, `general: VFD`, `general: water pump`, `general: panel`
 - **Recommended Standard:** **IS/IEC 61800-2 : 2015** — *Adjustable speed AC power drive systems; Low-voltage switchgear and controlgear assemblies - Part 2: Power switchgear assemblies [IS/IEC 61800-2]*
-- **Lifecycle Status:** **Active** | **Composite Relevance Score:** `0.924`
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.924`
 - **Evidence Strength:** `MODERATE` | **Provenance:** `CURATED`
 - **Verbatim Evidence (BIS Standards Catalogue):** "Partial Match: Proposed standard covers the VFD drive controller, but the panel enclosure and switchgear assembly are governed by IS/IEC 61439-2."
 - **Why This Standard?:**
@@ -204,7 +204,7 @@
 - **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: System Nominal Voltage, Busbar / Incomer Current Rating, Enclosure Ingress Protection (IP))
 - **Related Standards Identified for Review (Graph Depth = 1):**
   - [→ SUPERSEDES] `IS 13947` — *Adjustable speed AC power drive systems; Low-voltage switchgear and controlgear assemblies - Part 2: Power switchgear assemblies [IS/IEC 61800-2]* (Superseded) — *Note:* Authoritative successor standard supersedes IS 13947. Review legacy specifications.
-- **Standards Review Decision:** `RECOMMEND_WITH_REVIEW` | **Risk Level:** `MEDIUM` | **Confidence:** `Medium`
+- **Standards Review Decision:** `REVIEW_REQUIRED` | **Risk Level:** `MEDIUM` | **Confidence:** `Medium`
 
 ---
 
