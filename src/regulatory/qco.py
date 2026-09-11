@@ -11,6 +11,7 @@ Strict rules enforced:
 
 import json
 import os
+import re
 from datetime import datetime, date
 from typing import Optional, Dict, Any, List
 
@@ -64,6 +65,14 @@ class QCOEngine:
                     keys_to_index.add(self.normalizer.normalize_identifier(base_std))
                     keys_to_index.add(base_std.strip().upper())
 
+                # Also index bare base number without parts (e.g. IS 16444 for IS 16444 Part 1)
+                parsed = self.normalizer.parse(std_num or base_std)
+                if parsed.base_number:
+                    bare_slug = f"{parsed.prefix.replace('/', '-')}-{parsed.base_number}"
+                    bare_num = f"{parsed.prefix} {parsed.base_number}"
+                    keys_to_index.add(bare_slug)
+                    keys_to_index.add(bare_num.upper())
+
                 for k in keys_to_index:
                     if k not in self._standard_to_order_map:
                         self._standard_to_order_map[k] = []
@@ -82,31 +91,43 @@ class QCOEngine:
         Evaluate QCO applicability for a standard and optional product context.
         """
         # If no standard is provided, we cannot establish a QCO without an authoritative match
-        if not standard_number or not standard_number.strip():
-            return RegulatoryApplicabilityResult(
-                category=RegulatoryCategory.QCO.value,
-                status=RegulatoryStatus.NOT_IDENTIFIED.value,
-                matched_product="",
-                standard_number="",
-                legal_basis="",
-                source="",
-                effective_date=None,
-                provenance=RegulatoryProvenanceLevel.OFFICIAL_PRIMARY.value,
-                confidence=1.0,
-                human_review_required=False,
-                explanation="No Indian Standard provided to evaluate Quality Control Order applicability."
-            )
+        norm_id = self.normalizer.normalize_identifier(standard_number) if standard_number else ""
+        norm_key = standard_number.strip().upper() if standard_number else ""
 
-        norm_id = self.normalizer.normalize_identifier(standard_number)
-        norm_key = standard_number.strip().upper()
-
-        matches = self._standard_to_order_map.get(norm_id) or self._standard_to_order_map.get(norm_key)
+        matches = (self._standard_to_order_map.get(norm_id) or self._standard_to_order_map.get(norm_key)) if norm_id else None
 
         # Also attempt base standard matching if standard contains year
-        if not matches and ":" in standard_number:
+        if not matches and standard_number and ":" in standard_number:
             base_part = standard_number.split(":")[0].strip()
             base_norm = self.normalizer.normalize_identifier(base_part)
             matches = self._standard_to_order_map.get(base_norm) or self._standard_to_order_map.get(base_part.upper())
+
+        # If no match on candidate standard, check if product_text explicitly cites a QCO standard
+        if not matches and product_text:
+            text_stds = re.findall(r'\b(IS\s*(?:/\s*IEC)?\s*\d+(?:\s*(?:\(Part\s*\d+\)|Part\s*\d+))?)\b', product_text, flags=re.IGNORECASE)
+            for ts in text_stds:
+                ts_norm = self.normalizer.normalize_identifier(ts)
+                m = self._standard_to_order_map.get(ts_norm) or self._standard_to_order_map.get(ts.strip().upper())
+                if m:
+                    matches = m
+                    standard_number = ts
+                    break
+
+        if not matches:
+            if not standard_number or not standard_number.strip():
+                return RegulatoryApplicabilityResult(
+                    category=RegulatoryCategory.QCO.value,
+                    status=RegulatoryStatus.NOT_IDENTIFIED.value,
+                    matched_product="",
+                    standard_number="",
+                    legal_basis="",
+                    source="",
+                    effective_date=None,
+                    provenance=RegulatoryProvenanceLevel.OFFICIAL_PRIMARY.value,
+                    confidence=1.0,
+                    human_review_required=False,
+                    explanation="No Indian Standard provided to evaluate Quality Control Order applicability."
+                )
 
         if not matches:
             return RegulatoryApplicabilityResult(
