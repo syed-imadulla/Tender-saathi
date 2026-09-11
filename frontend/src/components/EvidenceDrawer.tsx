@@ -111,7 +111,7 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
       ? 'badge--active'
       : 'badge--low';
 
-  const isNoMatch = req.candidate_standard === 'INSUFFICIENT_INFORMATION' || req.candidate_standard === 'NONE';
+  const isNoMatch = !req.candidate_standard || req.candidate_standard === 'INSUFFICIENT_INFORMATION' || req.candidate_standard === 'NONE' || req.decision === 'NO_RELIABLE_MATCH';
 
   return (
     <>
@@ -168,10 +168,24 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
             )}
           </section>
 
-          {/* 3. Why It Matches */}
+          {/* 3. Why It Matches / Why Rejected */}
           <section className="drawer-section">
-            <span className="drawer-section__label">3. Why It Matches</span>
-            {req.why_this && req.why_this.length > 0 ? (
+            <span className="drawer-section__label">
+              {isNoMatch ? '3. Why No Standard Was Recommended' : '3. Why It Matches'}
+            </span>
+            {isNoMatch ? (
+              req.why_not && req.why_not.length > 0 ? (
+                <ul className="drawer-bullet-list drawer-bullet-list--missing">
+                  {req.why_not.map((reason, i) => (
+                    <li key={i}>{reason}</li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="drawer-section__value">
+                  We could not establish a sufficiently supported Indian Standard from the available catalogue.
+                </div>
+              )
+            ) : req.why_this && req.why_this.length > 0 ? (
               <ul className="drawer-bullet-list">
                 {req.why_this.map((reason, i) => (
                   <li key={i}>{reason}</li>
@@ -285,6 +299,20 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
                 </span>
               </div>
             </div>
+
+            {req.applicability && (
+              <div style={{ marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid #e2e8f0' }}>
+                <span className="drawer-meta-label" style={{ fontWeight: 600, display: 'block', marginBottom: '0.5rem', color: '#1e293b' }}>
+                  Applicability Assessment
+                </span>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', fontSize: '0.82rem', color: '#475569' }}>
+                  <div>Domain Match: <strong style={{ color: req.applicability.domain_match ? '#166534' : '#b91c1c' }}>{req.applicability.domain_match ? '✓ Yes' : '✗ Mismatch'}</strong></div>
+                  <div>Product Match: <strong style={{ color: req.applicability.product_match ? '#166534' : '#b91c1c' }}>{req.applicability.product_match ? '✓ Yes' : '✗ Mismatch'}</strong></div>
+                  <div>Scope Grounding: <strong style={{ color: req.applicability.scope_match ? '#166534' : '#b91c1c' }}>{req.applicability.scope_match ? '✓ Grounded' : '✗ Generic only'}</strong></div>
+                  <div>Evidence Support: <strong style={{ color: req.applicability.evidence_support ? '#166534' : '#b91c1c' }}>{req.applicability.evidence_support ? '✓ Established' : '✗ Not established'}</strong></div>
+                </div>
+              </div>
+            )}
           </CollapseSection>
 
           {/* 10. AI Understanding (Collapsed by default) */}

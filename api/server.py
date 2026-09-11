@@ -212,7 +212,7 @@ def _normalize_result(
             "text": r.requirement_text,
             "category": r.category,
             # Standard
-            "candidate_standard": r.candidate_standard or "NONE",
+            "candidate_standard": r.candidate_standard,
             "title": r.title or "",
             "lifecycle_status": r.status or "Unknown",
             "successor_standard": successor_std,
@@ -248,6 +248,8 @@ def _normalize_result(
             },
             # Score breakdown
             "scores": scores,
+            # Milestone 9: Applicability Gate results
+            "applicability": getattr(r, "applicability", None),
         }
 
         all_reqs.append(req_dict)
@@ -256,7 +258,7 @@ def _normalize_result(
         decision = req_dict["decision"]
         if is_superseded:
             standards_to_update.append(req_dict)
-        elif decision in ("REVIEW_REQUIRED", "RECOMMEND_WITH_REVIEW", "REJECT", "INSUFFICIENT_EVIDENCE") or r.human_review_required:
+        elif decision in ("REVIEW_REQUIRED", "RECOMMEND_WITH_REVIEW", "REJECT", "INSUFFICIENT_EVIDENCE", "NO_RELIABLE_MATCH") or r.human_review_required or req_dict["candidate_standard"] is None:
             needs_attention.append(req_dict)
         else:
             looks_good.append(req_dict)

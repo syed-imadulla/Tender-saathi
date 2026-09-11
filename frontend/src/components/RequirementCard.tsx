@@ -3,7 +3,7 @@ import './RequirementCard.css';
 import type { Requirement, RelatedStandard } from '../types';
 
 export function getWhyItMatches(req: Requirement): string {
-  if (req.candidate_standard === 'INSUFFICIENT_INFORMATION' || req.candidate_standard === 'NONE') {
+  if (!req.candidate_standard || req.candidate_standard === 'INSUFFICIENT_INFORMATION' || req.candidate_standard === 'NONE') {
     return 'No reliable standard match found in the available catalogue.';
   }
 
@@ -138,7 +138,8 @@ export interface AttentionCardProps {
 
 export function AttentionCard({ req, onOpenEvidence }: AttentionCardProps) {
   const hasMissing = req.missing_parameters && req.missing_parameters.length > 0;
-  const isInsufficient = req.decision === 'INSUFFICIENT_EVIDENCE' || req.candidate_standard === 'INSUFFICIENT_INFORMATION';
+  const isNoReliableMatch = req.decision === 'NO_RELIABLE_MATCH' || !req.candidate_standard;
+  const isInsufficient = isNoReliableMatch || req.decision === 'INSUFFICIENT_EVIDENCE' || req.candidate_standard === 'INSUFFICIENT_INFORMATION';
 
   return (
     <article className="attention-card" aria-label="Requirement needing attention">
@@ -155,6 +156,8 @@ export function AttentionCard({ req, onOpenEvidence }: AttentionCardProps) {
             <h4 className="attention-card__title">
               {hasMissing
                 ? 'Some specification details need clarification'
+                : isNoReliableMatch
+                ? 'Human review required — no reliable match found'
                 : isInsufficient
                 ? 'Human review required — insufficient evidence'
                 : 'Specification details need clarification'}
