@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS 4031 (Part 1) : 1988",
+  "title": "Methods of Physical Tests for Hydraulic Cement - Part 1 Determination of Fineness by Dry Sieving",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Methods of Physical Tests for Hydraulic Cement - Part 1 Determination of Fineness by Dry Sieving.",
+  "status": "ACTIVE",
+  "publication_year": 1988,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 2",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Cement",
+    "Testing"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.788352+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-4031-Part-1-1988",
+  "base_standard_number": "IS 4031 (Part 1)"
+}

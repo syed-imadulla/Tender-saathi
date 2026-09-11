@@ -1,0 +1,26 @@
+{
+  "standard_number": "IS 589 : 1961",
+  "title": "Basic climatic and mechanical durability tests for components for electronic and electrical equipment",
+  "scope": "Curated reference standard for Basic climatic and mechanical durability tests for components for electronic and electrical equipment",
+  "status": "WITHDRAWN",
+  "publication_year": 1961,
+  "reaffirmed_year": null,
+  "technical_committee": "LTD 2",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CURATED_EXCEL_REPO",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T11:50:20.506175+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-589-1961",
+  "base_standard_number": "IS 589"
+}

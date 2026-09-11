@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 16805 : 2018",
+  "title": "CCTV Cameras - Essential Requirements",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for CCTV Cameras - Essential Requirements.",
+  "status": "ACTIVE",
+  "publication_year": 2018,
+  "reaffirmed_year": null,
+  "technical_committee": "LITD 7",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "CCTV",
+    "Surveillance",
+    "Security Cameras"
+  ],
+  "certification": [
+    "BIS_CRS_SCHEME_II"
+  ],
+  "source": {
+    "source_type": "BIS_CRS_REGISTRY",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791214+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-16805-2018",
+  "base_standard_number": "IS 16805"
+}

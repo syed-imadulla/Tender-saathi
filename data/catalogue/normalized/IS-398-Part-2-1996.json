@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 398 (Part 2) : 1996",
+  "title": "Aluminium Conductors for Overhead Transmission Purposes - Part 2 Aluminium Conductors, Galvanized Steel-Reinforced (ACSR)",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Aluminium Conductors for Overhead Transmission Purposes - Part 2 Aluminium Conductors, Galvanized Steel-Reinforced (ACSR).",
+  "status": "ACTIVE",
+  "publication_year": 1996,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 9",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Conductors",
+    "ACSR",
+    "Transmission Lines"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.790450+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-398-Part-2-1996",
+  "base_standard_number": "IS 398 (Part 2)"
+}

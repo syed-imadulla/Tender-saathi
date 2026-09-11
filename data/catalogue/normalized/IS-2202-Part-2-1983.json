@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS 2202 (Part 2) : 1983",
+  "title": "Specification for Wooden Flush Door Shutters (Solid Core Type) - Part 2 Particle Board and Hardboard Face Panels",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Specification for Wooden Flush Door Shutters (Solid Core Type) - Part 2 Particle Board and Hardboard Face Panels.",
+  "status": "ACTIVE",
+  "publication_year": 1983,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 11",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Flush Doors",
+    "Particle Board"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791785+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-2202-Part-2-1983",
+  "base_standard_number": "IS 2202 (Part 2)"
+}

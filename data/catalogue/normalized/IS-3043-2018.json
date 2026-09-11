@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 3043 : 2018",
+  "title": "Crosslinked Polyethylene Insulated Cables - Part 1: Up to 1100 V; Code of Practice for Earthing [IS 3043]",
+  "scope": "Partial Match: Proposed standard covers generator earthing, but the tender specifically dictates Cable connection, which requires LT power cable standard IS 7098 Part 1.",
+  "status": "ACTIVE",
+  "publication_year": 2018,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "VALIDATED_RESEARCH_BIS_CATALOGUE_AND_REGULATORY_STATUTE",
+    "source_url": "IS 3043:2018 Clause 28; IS 7098 (Part 1) Clause 1",
+    "retrieved_at": "2026-09-11T11:50:20.640625+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-3043-2018",
+  "base_standard_number": "IS 3043"
+}

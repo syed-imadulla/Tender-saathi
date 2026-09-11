@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 12234 : 1988",
+  "title": "Plastic Equilibrium Ball Valves (Horizontal Plunger Type) for Cold Water Services - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Plastic Equilibrium Ball Valves (Horizontal Plunger Type) for Cold Water Services - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 1988,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 46",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Valves",
+    "Ball Valves",
+    "Plumbing"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.790106+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-12234-1988",
+  "base_standard_number": "IS 12234"
+}

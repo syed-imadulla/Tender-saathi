@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS/IEC 60947 (Part 3) : 2012",
+  "title": "Low-Voltage Switchgear and Controlgear - Part 3: Switches, Disconnectors, Switch-Disconnectors and Fuse-Combination Units",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Low-Voltage Switchgear and Controlgear - Part 3: Switches, Disconnectors, Switch-Disconnectors and Fuse-Combination Units.",
+  "status": "ACTIVE",
+  "publication_year": 2012,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 7",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Switches",
+    "Isolators",
+    "SDF"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.790760+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-IEC-60947-Part-3-2012",
+  "base_standard_number": "IS/IEC 60947 (Part 3)"
+}

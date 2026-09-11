@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS/IEC 60034 (Part 1) : 2017",
+  "title": "Rotating Electrical Machines - Part 1: Rating and Performance",
+  "scope": "Exact Match: IS/IEC 60034-1 is the authoritative Indian Standard governing rating, temperature rise limits, dielectric tests, and performance of 3.3 kV rotating electric motors.",
+  "status": "ACTIVE",
+  "publication_year": 2017,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "VALIDATED_RESEARCH_BIS_CATALOGUE_AND_REGULATORY_STATUTE",
+    "source_url": "IS/IEC 60034-1:2017 Clause 1 Scope",
+    "retrieved_at": "2026-09-11T11:50:20.688416+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-IEC-60034-Part-1-2017",
+  "base_standard_number": "IS/IEC 60034 (Part 1)"
+}

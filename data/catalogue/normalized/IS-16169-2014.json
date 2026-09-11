@@ -1,0 +1,29 @@
+{
+  "standard_number": "IS 16169 : 2014",
+  "title": "Test Procedure for Islanding Prevention Measures for Utility-Interconnected Photovoltaic Inverters",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Test Procedure for Islanding Prevention Measures for Utility-Interconnected Photovoltaic Inverters.",
+  "status": "ACTIVE",
+  "publication_year": 2014,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 28",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Solar Inverters",
+    "Islanding"
+  ],
+  "certification": [
+    "BIS_CRS_SCHEME_II"
+  ],
+  "source": {
+    "source_type": "BIS_CRS_REGISTRY",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.792887+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-16169-2014",
+  "base_standard_number": "IS 16169"
+}

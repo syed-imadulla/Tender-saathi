@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS/IEC 62305 (Part 1) : 2010",
+  "title": "Protection Against Lightning - Part 1: General Principles",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Protection Against Lightning - Part 1: General Principles.",
+  "status": "ACTIVE",
+  "publication_year": 2010,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 20",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Lightning Protection",
+    "Safety"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.790834+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-IEC-62305-Part-1-2010",
+  "base_standard_number": "IS/IEC 62305 (Part 1)"
+}

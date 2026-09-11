@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 781 : 1984",
+  "title": "Vitreous sanitary appliances; Cast copper alloy bib taps and stop valves; Flushing cisterns [IS 781]",
+  "scope": "Partial Match: IS 2556 covers only porcelain fixtures. AGL toilet upgradation also includes water supply bib taps (IS 781) and cisterns (IS 774).",
+  "status": "ACTIVE",
+  "publication_year": 1984,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "VALIDATED_RESEARCH_BIS_CATALOGUE_AND_CPWD_SPEC",
+    "source_url": "IS 2556:Part 1:1994; IS 781:1984; IS 774:2021",
+    "retrieved_at": "2026-09-11T11:50:20.604524+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-781-1984",
+  "base_standard_number": "IS 781"
+}

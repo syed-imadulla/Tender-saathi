@@ -1,0 +1,31 @@
+{
+  "standard_number": "IS 616 : 2017",
+  "title": "Audio, Video and Similar Electronic Apparatus - Safety Requirements",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Audio, Video and Similar Electronic Apparatus - Safety Requirements.",
+  "status": "ACTIVE",
+  "publication_year": 2017,
+  "reaffirmed_year": null,
+  "technical_committee": "LITD 7",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Television",
+    "Audio Systems",
+    "Display",
+    "Electronics"
+  ],
+  "certification": [
+    "BIS_CRS_SCHEME_II"
+  ],
+  "source": {
+    "source_type": "BIS_CRS_REGISTRY",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791108+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-616-2017",
+  "base_standard_number": "IS 616"
+}

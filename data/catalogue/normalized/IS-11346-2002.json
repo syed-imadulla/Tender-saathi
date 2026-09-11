@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 11346 : 2002",
+  "title": "Tests for Agricultural and Water Supply Pumps - Code of Acceptance",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Tests for Agricultural and Water Supply Pumps - Code of Acceptance.",
+  "status": "ACTIVE",
+  "publication_year": 2002,
+  "reaffirmed_year": null,
+  "technical_committee": "MED 20",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Pumps",
+    "Testing",
+    "Agricultural Pumps"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.792951+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-11346-2002",
+  "base_standard_number": "IS 11346"
+}

@@ -1,0 +1,29 @@
+{
+  "standard_number": "IS 16102 (Part 1) : 2012",
+  "title": "Self-Ballasted LED Lamps for General Lighting Services - Part 1: Safety Requirements",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Self-Ballasted LED Lamps for General Lighting Services - Part 1: Safety Requirements.",
+  "status": "ACTIVE",
+  "publication_year": 2012,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 24",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "LED Bulbs",
+    "Lighting Safety"
+  ],
+  "certification": [
+    "BIS_CRS_SCHEME_II"
+  ],
+  "source": {
+    "source_type": "BIS_CRS_REGISTRY",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791023+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-16102-Part-1-2012",
+  "base_standard_number": "IS 16102 (Part 1)"
+}

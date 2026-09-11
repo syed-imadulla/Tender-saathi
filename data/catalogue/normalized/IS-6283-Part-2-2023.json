@@ -1,0 +1,26 @@
+{
+  "standard_number": "IS 6283 (Part 2) : 2023",
+  "title": "Tractors Machinery for Agriculture and Forestry Powered Lawn and Garden Equipment Symbols for Operator Controls and Other Displays Part 2 Symbols for Agricultural Tractors and Machinery (Third Revision)",
+  "scope": "Curated reference standard for Tractors Machinery for Agriculture and Forestry Powered Lawn and Garden Equipment Symbols for Operator Controls and Other Displays Part 2 Symbols for Agricultural Tractors and Machinery (Third Revision)",
+  "status": "ACTIVE",
+  "publication_year": 2023,
+  "reaffirmed_year": null,
+  "technical_committee": "FAD 11",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CURATED_EXCEL_REPO",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T11:50:20.571208+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-6283-Part-2-2023",
+  "base_standard_number": "IS 6283 (Part 2)"
+}

@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS 2645 : 2003",
+  "title": "Integral Waterproofing Compounds for Cement Mortar and Concrete - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Integral Waterproofing Compounds for Cement Mortar and Concrete - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 2003,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 41",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Waterproofing",
+    "Concrete Additive"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791875+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-2645-2003",
+  "base_standard_number": "IS 2645"
+}

@@ -1,0 +1,26 @@
+{
+  "standard_number": "IS 932 : 1960",
+  "title": "30-40 M (or 100-110 ft) Mechanically operated turn-table ladder for fire brigade use",
+  "scope": "Curated reference standard for 30-40 M (or 100-110 ft) Mechanically operated turn-table ladder for fire brigade use",
+  "status": "WITHDRAWN",
+  "publication_year": 1960,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 22",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CURATED_EXCEL_REPO",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T11:50:20.513575+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-932-1960",
+  "base_standard_number": "IS 932"
+}

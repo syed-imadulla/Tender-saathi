@@ -1,0 +1,26 @@
+{
+  "standard_number": "SP 18 (Part 12) : 1984",
+  "title": "ISI Handbook of Food Analysis - Parts XII, XIII, XIV, XV",
+  "scope": "Curated reference standard for ISI Handbook of Food Analysis - Parts XII, XIII, XIV, XV",
+  "status": "WITHDRAWN",
+  "publication_year": 1984,
+  "reaffirmed_year": null,
+  "technical_committee": "FAD 1",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CURATED_EXCEL_REPO",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T11:50:20.547548+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "SP-18-Part-12-1984",
+  "base_standard_number": "SP 18 (Part 12)"
+}

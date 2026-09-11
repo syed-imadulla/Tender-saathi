@@ -1,0 +1,29 @@
+{
+  "standard_number": "IS 16221 (Part 1) : 2016",
+  "title": "Safety of Power Converters for Use in Photovoltaic Power Systems - Part 1: General Requirements",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Safety of Power Converters for Use in Photovoltaic Power Systems - Part 1: General Requirements.",
+  "status": "ACTIVE",
+  "publication_year": 2016,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 28",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Solar Inverters",
+    "Power Converters"
+  ],
+  "certification": [
+    "BIS_CRS_SCHEME_II"
+  ],
+  "source": {
+    "source_type": "BIS_CRS_REGISTRY",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.792863+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-16221-Part-1-2016",
+  "base_standard_number": "IS 16221 (Part 1)"
+}

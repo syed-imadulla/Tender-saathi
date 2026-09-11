@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS 7375 : 1974",
+  "title": "Specification for Autoclaves (Horizontal Cylindrical Type) for Hospital Use",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Specification for Autoclaves (Horizontal Cylindrical Type) for Hospital Use.",
+  "status": "ACTIVE",
+  "publication_year": 1974,
+  "reaffirmed_year": null,
+  "technical_committee": "MHD 10",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Autoclaves",
+    "Hospital"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791981+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-7375-1974",
+  "base_standard_number": "IS 7375"
+}

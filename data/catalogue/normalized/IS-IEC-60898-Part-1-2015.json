@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS/IEC 60898 (Part 1) : 2015",
+  "title": "Electrical Accessories - Circuit-Breakers for Overcurrent Protection for Household and Similar Installations - Part 1: Circuit-Breakers for A.C. Operation",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Electrical Accessories - Circuit-Breakers for Overcurrent Protection for Household and Similar Installations - Part 1: Circuit-Breakers for A.C. Operation.",
+  "status": "ACTIVE",
+  "publication_year": 2015,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 7",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "MCB",
+    "Circuit Breakers",
+    "Miniature Circuit Breakers"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.790782+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-IEC-60898-Part-1-2015",
+  "base_standard_number": "IS/IEC 60898 (Part 1)"
+}

@@ -1,0 +1,26 @@
+{
+  "standard_number": "IS/ISO 516 : 2019",
+  "title": "Camera Shutters - Timing - General Definition and Mechanical Shutter Measurements",
+  "scope": "Curated reference standard for Camera Shutters - Timing - General Definition and Mechanical Shutter Measurements",
+  "status": "ACTIVE",
+  "publication_year": 2019,
+  "reaffirmed_year": null,
+  "technical_committee": "MED 32",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CURATED_EXCEL_REPO",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T11:50:20.502275+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-ISO-516-2019",
+  "base_standard_number": "IS/ISO 516"
+}

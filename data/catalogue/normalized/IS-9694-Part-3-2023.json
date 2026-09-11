@@ -1,0 +1,26 @@
+{
+  "standard_number": "IS 9694 (Part 3) : 2023",
+  "title": "Selection, Installation, Operation And Maintenance Of Horizontal Centrifugal Pumps For Agriculture Application – Code Of Practice Part 3 Operation",
+  "scope": "Curated reference standard for Selection, Installation, Operation And Maintenance Of Horizontal Centrifugal Pumps For Agriculture Application – Code Of Practice Part 3 Operation",
+  "status": "ACTIVE",
+  "publication_year": 2023,
+  "reaffirmed_year": null,
+  "technical_committee": "MED 20",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CURATED_EXCEL_REPO",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T11:50:20.589218+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-9694-Part-3-2023",
+  "base_standard_number": "IS 9694 (Part 3)"
+}

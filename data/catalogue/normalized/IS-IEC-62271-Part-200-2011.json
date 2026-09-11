@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS/IEC 62271 (Part 200) : 2011",
+  "title": "High-Voltage Switchgear and Controlgear - Part 200: A.C. Metal-Enclosed Switchgear and Controlgear for Rated Voltages Above 1 kV and up to and Including 52 kV",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for High-Voltage Switchgear and Controlgear - Part 200: A.C. Metal-Enclosed Switchgear and Controlgear for Rated Voltages Above 1 kV and up to and Including 52 kV.",
+  "status": "ACTIVE",
+  "publication_year": 2011,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 8",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Switchgear",
+    "High Voltage",
+    "Meters"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.792613+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-IEC-62271-Part-200-2011",
+  "base_standard_number": "IS/IEC 62271 (Part 200)"
+}

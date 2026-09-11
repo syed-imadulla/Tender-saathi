@@ -1,0 +1,26 @@
+{
+  "standard_number": "IS 603 : 1983",
+  "title": "Code of practice for construction of underground rural foodgrain storage structures",
+  "scope": "Curated reference standard for Code of practice for construction of underground rural foodgrain storage structures",
+  "status": "WITHDRAWN",
+  "publication_year": 1983,
+  "reaffirmed_year": null,
+  "technical_committee": "FAD 13",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CURATED_EXCEL_REPO",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T11:50:20.427708+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-603-1983",
+  "base_standard_number": "IS 603"
+}

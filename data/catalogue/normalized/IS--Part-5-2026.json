@@ -1,0 +1,29 @@
+{
+  "standard_number": "IS  (Part 5) : 2026",
+  "title": "Power Transformers - Part 5: Ability to Withstand Short Circuit",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Power Transformers - Part 5: Ability to Withstand Short Circuit.",
+  "status": "ACTIVE",
+  "publication_year": 2026,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 16",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Transformers",
+    "Short Circuit"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.790558+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS--Part-5-2026",
+  "base_standard_number": "IS  (Part 5)"
+}

@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 1536 : 2001",
+  "title": "Centrifugally Cast (Spun) Iron Pressure Pipes for Water, Gas and Sewage - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Centrifugally Cast (Spun) Iron Pressure Pipes for Water, Gas and Sewage - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 2001,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 54",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Pipes",
+    "Cast Iron Pipes",
+    "Water Supply"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.789835+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-1536-2001",
+  "base_standard_number": "IS 1536"
+}

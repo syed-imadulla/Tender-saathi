@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 8472 : 1998",
+  "title": "Pumps - Regenerative Pumps for Clear, Cold Fresh Water - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Pumps - Regenerative Pumps for Clear, Cold Fresh Water - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 1998,
+  "reaffirmed_year": null,
+  "technical_committee": "MED 20",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Pumps",
+    "Regenerative Pumps",
+    "Domestic Water"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791246+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-8472-1998",
+  "base_standard_number": "IS 8472"
+}

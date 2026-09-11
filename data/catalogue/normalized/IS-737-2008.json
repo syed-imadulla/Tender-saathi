@@ -1,0 +1,29 @@
+{
+  "standard_number": "IS 737 : 2008",
+  "title": "Wrought Aluminium and Aluminium Alloy Sheet and Strip for General Engineering Purposes - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Wrought Aluminium and Aluminium Alloy Sheet and Strip for General Engineering Purposes - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 2008,
+  "reaffirmed_year": null,
+  "technical_committee": "MTD 7",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Aluminium",
+    "Sheets"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.793120+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-737-2008",
+  "base_standard_number": "IS 737"
+}

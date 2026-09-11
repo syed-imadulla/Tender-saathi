@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 14255 : 1995",
+  "title": "Aerial Bunched Cables for Working Voltages up to and Including 1100 V - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Aerial Bunched Cables for Working Voltages up to and Including 1100 V - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 1995,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 9",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Cables",
+    "AB Cables",
+    "Overhead Distribution"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.790424+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-14255-1995",
+  "base_standard_number": "IS 14255"
+}

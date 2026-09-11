@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 4984 : 2016",
+  "title": "High Density Polyethylene Pipes for Water Supply - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for High Density Polyethylene Pipes for Water Supply - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 2016,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 50",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Pipes",
+    "HDPE Pipes",
+    "Water Supply"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.789943+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-4984-2016",
+  "base_standard_number": "IS 4984"
+}

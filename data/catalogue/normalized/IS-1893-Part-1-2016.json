@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 1893 (Part 1) : 2016",
+  "title": "Criteria for Earthquake Resistant Design of Structures - Part 1 General Provisions and Buildings",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Criteria for Earthquake Resistant Design of Structures - Part 1 General Provisions and Buildings.",
+  "status": "ACTIVE",
+  "publication_year": 2016,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 39",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Seismic",
+    "Earthquake",
+    "Structural"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.789491+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-1893-Part-1-2016",
+  "base_standard_number": "IS 1893 (Part 1)"
+}

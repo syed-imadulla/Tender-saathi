@@ -1,0 +1,26 @@
+{
+  "standard_number": "IS 404 (Part 2) : 1993",
+  "title": "Lead pipes - Part 2: For chemical purposes",
+  "scope": "Curated reference standard for Lead pipes - Part 2: For chemical purposes",
+  "status": "ACTIVE",
+  "publication_year": 1993,
+  "reaffirmed_year": 2023,
+  "technical_committee": "MTD 9",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CURATED_EXCEL_REPO",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T11:50:20.458187+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-404-Part-2-1993",
+  "base_standard_number": "IS 404 (Part 2)"
+}

@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 410 : 1977",
+  "title": "Specification for Cold Rolled Brass Sheet, Strip and Foil",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Specification for Cold Rolled Brass Sheet, Strip and Foil.",
+  "status": "ACTIVE",
+  "publication_year": 1977,
+  "reaffirmed_year": null,
+  "technical_committee": "MTD 8",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Brass",
+    "Sheets",
+    "Copper Alloy"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.793140+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-410-1977",
+  "base_standard_number": "IS 410"
+}

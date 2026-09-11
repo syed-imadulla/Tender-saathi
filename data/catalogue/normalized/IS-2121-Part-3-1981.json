@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 2121 (Part 3) : 1981",
+  "title": "Conductors and Earthwire Accessories for Overhead Power Lines - Part 3",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Conductors and Earthwire Accessories for Overhead Power Lines - Part 3.",
+  "status": "ACTIVE",
+  "publication_year": 1981,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 37",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Overhead Lines",
+    "Conductors",
+    "Fittings"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.792570+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-2121-Part-3-1981",
+  "base_standard_number": "IS 2121 (Part 3)"
+}

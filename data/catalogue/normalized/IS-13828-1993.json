@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS 13828 : 1993",
+  "title": "Improving Earthquake Resistance of Low Strength Masonry Buildings - Guidelines",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Improving Earthquake Resistance of Low Strength Masonry Buildings - Guidelines.",
+  "status": "ACTIVE",
+  "publication_year": 1993,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 39",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Seismic",
+    "Masonry"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.789574+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-13828-1993",
+  "base_standard_number": "IS 13828"
+}

@@ -1,0 +1,29 @@
+{
+  "standard_number": "IS 3177 : 1999",
+  "title": "Code of Practice for Electric Overhead Travelling Cranes and Gantry Cranes Other Than Steel Works Cranes",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Code of Practice for Electric Overhead Travelling Cranes and Gantry Cranes Other Than Steel Works Cranes.",
+  "status": "ACTIVE",
+  "publication_year": 1999,
+  "reaffirmed_year": null,
+  "technical_committee": "MED 14",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Cranes",
+    "EOT Cranes",
+    "Gantry Cranes",
+    "Hoists"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791313+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-3177-1999",
+  "base_standard_number": "IS 3177"
+}

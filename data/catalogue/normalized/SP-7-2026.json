@@ -1,0 +1,26 @@
+{
+  "standard_number": "SP 7 : 2026",
+  "title": "National Building Construction Standards 2026 - (Volume 1 & 2)",
+  "scope": "Curated reference standard for National Building Construction Standards 2026 - (Volume 1 & 2)",
+  "status": "ACTIVE",
+  "publication_year": 2026,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 46",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CURATED_EXCEL_REPO",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T11:50:20.403943+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "SP-7-2026",
+  "base_standard_number": "SP 7"
+}

@@ -1,0 +1,31 @@
+{
+  "standard_number": "IS 2112 : 2014",
+  "title": "Silver and Silver Alloys, Jewellery/Artefacts - Fineness and Marking - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Silver and Silver Alloys, Jewellery/Artefacts - Fineness and Marking - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 2014,
+  "reaffirmed_year": null,
+  "technical_committee": "MTD 10",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Hallmarking",
+    "Silver",
+    "Precious Metals",
+    "Jewellery"
+  ],
+  "certification": [
+    "BIS_HALLMARKING_SCHEME_IV"
+  ],
+  "source": {
+    "source_type": "BIS_HALLMARKING_REGISTRY",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791618+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-2112-2014",
+  "base_standard_number": "IS 2112"
+}

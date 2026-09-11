@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 2212 : 1991",
+  "title": "Code of Practice for Brickwork",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Code of Practice for Brickwork.",
+  "status": "ACTIVE",
+  "publication_year": 1991,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 13",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Brickwork",
+    "Masonry",
+    "Construction"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.789744+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-2212-1991",
+  "base_standard_number": "IS 2212"
+}

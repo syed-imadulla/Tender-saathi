@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS 8931 : 1993",
+  "title": "Specification for Cast Copper Alloy Fancy Bib Taps, Stop Valves and Pillar Taps for Water Services",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Specification for Cast Copper Alloy Fancy Bib Taps, Stop Valves and Pillar Taps for Water Services.",
+  "status": "ACTIVE",
+  "publication_year": 1993,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "CP Brass Fittings",
+    "Pillar Taps"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.790268+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-8931-1993",
+  "base_standard_number": "IS 8931"
+}

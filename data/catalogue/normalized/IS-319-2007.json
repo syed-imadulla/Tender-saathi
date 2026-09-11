@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS 319 : 2007",
+  "title": "Free Cutting Brass Bars, Rods and Sections - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Free Cutting Brass Bars, Rods and Sections - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 2007,
+  "reaffirmed_year": null,
+  "technical_committee": "MTD 8",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Brass Rods",
+    "Free Cutting"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.793150+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-319-2007",
+  "base_standard_number": "IS 319"
+}

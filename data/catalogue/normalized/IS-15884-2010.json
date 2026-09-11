@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 15884 : 2010",
+  "title": "Alternating Current Direct Connected Static Prepayment Meters for Active Energy (Classes 1 and 2) - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Alternating Current Direct Connected Static Prepayment Meters for Active Energy (Classes 1 and 2) - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 2010,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 8",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Switchgear",
+    "High Voltage",
+    "Meters"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.792752+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-15884-2010",
+  "base_standard_number": "IS 15884"
+}

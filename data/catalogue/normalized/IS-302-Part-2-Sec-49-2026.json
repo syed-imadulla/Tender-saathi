@@ -1,0 +1,26 @@
+{
+  "standard_number": "IS 302 (Part 2) (Sec 49) : 2026",
+  "title": "Household and Similar Electrical Appliances - Safety - Part 2 Particular Requirements - Section 49 Commercial Electric Appliances for Keeping Food and Crockery Warm",
+  "scope": "Curated reference standard for Household and Similar Electrical Appliances - Safety - Part 2 Particular Requirements - Section 49 Commercial Electric Appliances for Keeping Food and Crockery Warm",
+  "status": "ACTIVE",
+  "publication_year": 2026,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 32",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CURATED_EXCEL_REPO",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T11:50:20.560689+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-302-Part-2-Sec-49-2026",
+  "base_standard_number": "IS 302 (Part 2) (Sec 49)"
+}

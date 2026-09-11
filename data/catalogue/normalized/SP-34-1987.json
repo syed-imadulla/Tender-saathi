@@ -1,0 +1,26 @@
+{
+  "standard_number": "SP 34 : 1987",
+  "title": "Handbook on Concrete Reinforcement and Detailing",
+  "scope": "Curated reference standard for Handbook on Concrete Reinforcement and Detailing",
+  "status": "ACTIVE",
+  "publication_year": 1987,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 2",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CURATED_EXCEL_REPO",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T11:50:20.431438+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "SP-34-1987",
+  "base_standard_number": "SP 34"
+}

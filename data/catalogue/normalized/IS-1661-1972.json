@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 1661 : 1972",
+  "title": "Code of Practice for Application of Cement and Cement-Lime Plaster Finishes",
+  "scope": "Exact Match: IS 1661 is the national standard governing execution, surface preparation, mortar mix proportions, and curing of cement plastering repairs.",
+  "status": "ACTIVE",
+  "publication_year": 1972,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "VALIDATED_RESEARCH_BIS_CATALOGUE_AND_CPWD_SPEC",
+    "source_url": "IS 1661:1972 Clause 1 Scope; CPWD Section 11",
+    "retrieved_at": "2026-09-11T11:50:20.672191+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-1661-1972",
+  "base_standard_number": "IS 1661"
+}

@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 9473 : 2002",
+  "title": "Respiratory Protective Devices - Filtering Half Masks to Protect Against Particles - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Respiratory Protective Devices - Filtering Half Masks to Protect Against Particles - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 2002,
+  "reaffirmed_year": null,
+  "technical_committee": "CHD 19",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Face Mask",
+    "Respirator",
+    "Safety PPE"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791935+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-9473-2002",
+  "base_standard_number": "IS 9473"
+}

@@ -1,0 +1,26 @@
+{
+  "standard_number": "SP 57 : 1993",
+  "title": "Handbook on Pipes and Fittings for Drinking Water Supply",
+  "scope": "Curated reference standard for Handbook on Pipes and Fittings for Drinking Water Supply",
+  "status": "ACTIVE",
+  "publication_year": 1993,
+  "reaffirmed_year": 2016,
+  "technical_committee": "CED 50",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CURATED_EXCEL_REPO",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T11:50:20.450611+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "SP-57-1993",
+  "base_standard_number": "SP 57"
+}

@@ -1,0 +1,29 @@
+{
+  "standard_number": "IS 16221 (Part 2) : 2015",
+  "title": "Safety of Power Converters for Use in Photovoltaic Power Systems - Part 2: Particular Requirements for Inverters",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Safety of Power Converters for Use in Photovoltaic Power Systems - Part 2: Particular Requirements for Inverters.",
+  "status": "ACTIVE",
+  "publication_year": 2015,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 28",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Solar Inverters",
+    "Grid Tied Inverter"
+  ],
+  "certification": [
+    "BIS_CRS_SCHEME_II"
+  ],
+  "source": {
+    "source_type": "BIS_CRS_REGISTRY",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.792876+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-16221-Part-2-2015",
+  "base_standard_number": "IS 16221 (Part 2)"
+}
