@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 13703 (Part 2) (Sec 1) : 1993",
+  "title": "Low-Voltage Fuses for Voltages Not Exceeding 1000 V AC - Part 2 Fuses for Use by Authorized Persons - Section 1 Requirements for Fuses with Fuse-Links with Blade Contacts",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Low-Voltage Fuses for Voltages Not Exceeding 1000 V AC - Part 2 Fuses for Use by Authorized Persons - Section 1 Requirements for Fuses with Fuse-Links with Blade Contacts.",
+  "status": "ACTIVE",
+  "publication_year": 1993,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 8",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Switchgear",
+    "High Voltage",
+    "Meters"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.792700+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-13703-Part-2-Sec-1-1993",
+  "base_standard_number": "IS 13703 (Part 2) (Sec 1)"
+}

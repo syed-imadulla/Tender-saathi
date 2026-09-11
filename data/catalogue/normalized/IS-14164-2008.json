@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 14164 : 2008",
+  "title": "Industrial Application and Finishing of Thermal Insulation Materials at Temperatures Above -40 deg C and Up to 700 deg C - Code of Practice (First Revision)",
+  "scope": "Exact Match: IS 14164 is the primary national code of practice governing application, securing, vapor sealing, and protective cladding of pipe thermal insulation.",
+  "status": "ACTIVE",
+  "publication_year": 2008,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "VALIDATED_RESEARCH_BIS_CATALOGUE_AND_CPWD_SPEC",
+    "source_url": "IS 14164:2008 Scope Clause 1",
+    "retrieved_at": "2026-09-11T11:50:20.684839+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-14164-2008",
+  "base_standard_number": "IS 14164"
+}

@@ -1,0 +1,26 @@
+{
+  "standard_number": "SP 37 (Part 3) : 1987",
+  "title": "Handbook for Refractories - Part 3 : Refractories for Cement Kiln System",
+  "scope": "Curated reference standard for Handbook for Refractories - Part 3 : Refractories for Cement Kiln System",
+  "status": "WITHDRAWN",
+  "publication_year": 1987,
+  "reaffirmed_year": 2017,
+  "technical_committee": "MTD 15",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CURATED_EXCEL_REPO",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T11:50:20.435152+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "SP-37-Part-3-1987",
+  "base_standard_number": "SP 37 (Part 3)"
+}

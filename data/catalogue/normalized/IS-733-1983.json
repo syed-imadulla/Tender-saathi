@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 733 : 1983",
+  "title": "Specification for Wrought Aluminium and Aluminium Alloy Bars, Rods and Sections for General Engineering Purposes",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Specification for Wrought Aluminium and Aluminium Alloy Bars, Rods and Sections for General Engineering Purposes.",
+  "status": "ACTIVE",
+  "publication_year": 1983,
+  "reaffirmed_year": null,
+  "technical_committee": "MTD 7",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Aluminium",
+    "Extrusions",
+    "Bars"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.793108+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-733-1983",
+  "base_standard_number": "IS 733"
+}

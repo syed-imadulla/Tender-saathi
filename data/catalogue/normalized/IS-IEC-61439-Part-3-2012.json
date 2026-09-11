@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS/IEC 61439 (Part 3) : 2012",
+  "title": "Low-voltage switchgear assemblies - Part 3: Distribution boards (DBO); Luminaires - Part 5 Sec 5: Floodlights [IS/IEC 61439-3]",
+  "scope": "Partial Match: Proposed standard covers only the distribution boards. Defective sports lights are governed by floodlight luminaire standard IS 10322.",
+  "status": "ACTIVE",
+  "publication_year": 2012,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "VALIDATED_RESEARCH_BIS_CATALOGUE_AND_CPWD_SPEC",
+    "source_url": "IS/IEC 61439-3 Clause 1; IS 10322 (Part 5/Sec 5) Clause 1",
+    "retrieved_at": "2026-09-11T11:50:20.620656+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-IEC-61439-Part-3-2012",
+  "base_standard_number": "IS/IEC 61439 (Part 3)"
+}

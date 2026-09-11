@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 1255 : 1983",
+  "title": "Crosslinked Polyethylene Insulated Cables - Part 1: Up to 1100 V; Code of Practice for Installation of Power Cables [IS 1255]",
+  "scope": "Partial Match: Proposed standard covers the physical cable, but the tender explicitly mandates Providing and Laying underground cable, which requires laying code IS 1255.",
+  "status": "ACTIVE",
+  "publication_year": 1983,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "VALIDATED_RESEARCH_GOVERNMENT_GAZETTE_QCO_AND_BIS",
+    "source_url": "IS 7098 (Part 1):1988 Clause 1; IS 1255 Section 6",
+    "retrieved_at": "2026-09-11T11:50:20.668664+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-1255-1983",
+  "base_standard_number": "IS 1255"
+}

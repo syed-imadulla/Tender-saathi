@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 10322 (Part 5) (Sec 1) : 2012",
+  "title": "Luminaires - Part 5: Particular Requirements - Section 1 Fixed General Purpose Luminaires",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Luminaires - Part 5: Particular Requirements - Section 1 Fixed General Purpose Luminaires.",
+  "status": "ACTIVE",
+  "publication_year": 2012,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 24",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Luminaires",
+    "Indoor Lighting",
+    "Battern"
+  ],
+  "certification": [
+    "BIS_CRS_SCHEME_II"
+  ],
+  "source": {
+    "source_type": "BIS_CRS_REGISTRY",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.790956+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-10322-Part-5-Sec-1-2012",
+  "base_standard_number": "IS 10322 (Part 5) (Sec 1)"
+}

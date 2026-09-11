@@ -1,0 +1,29 @@
+{
+  "standard_number": "IS 16046 (Part 1) : 2018",
+  "title": "Secondary Cells and Batteries Containing Alkaline or Other Non-Acid Electrolytes - Safety Requirements for Portable Sealed Secondary Cells - Part 1 Nickel Systems",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Secondary Cells and Batteries Containing Alkaline or Other Non-Acid Electrolytes - Safety Requirements for Portable Sealed Secondary Cells - Part 1 Nickel Systems.",
+  "status": "ACTIVE",
+  "publication_year": 2018,
+  "reaffirmed_year": null,
+  "technical_committee": "LITD 7",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "NiMH Battery",
+    "Rechargeable Cells"
+  ],
+  "certification": [
+    "BIS_CRS_SCHEME_II"
+  ],
+  "source": {
+    "source_type": "BIS_CRS_REGISTRY",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791122+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-16046-Part-1-2018",
+  "base_standard_number": "IS 16046 (Part 1)"
+}

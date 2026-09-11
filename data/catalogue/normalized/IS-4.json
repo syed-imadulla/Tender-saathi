@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 4",
+  "title": "Food Hygiene - General Principles - Code of Practice; FSSAI General Sanitary and Hygienic Requirements [FSSAI Schedule 4]",
+  "scope": "Partial Match: IS 2491 covers food hygiene principles for catering premises, but commercial food outlets are legally governed by statutory FSSAI licensing.",
+  "status": "ACTIVE",
+  "publication_year": null,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "VALIDATED_RESEARCH_BIS_CODE_OF_PRACTICE_AND_STATUTE",
+    "source_url": "IS 2491:2013 Clause 1 Scope; FSSAI Schedule 4",
+    "retrieved_at": "2026-09-11T11:50:20.651060+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-4",
+  "base_standard_number": "IS 4"
+}

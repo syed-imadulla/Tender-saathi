@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 3854 : 1997",
+  "title": "Switches for Domestic and Similar Purposes - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Switches for Domestic and Similar Purposes - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 1997,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 14",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Switches",
+    "Piano Switches",
+    "Modular Switches"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.790869+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-3854-1997",
+  "base_standard_number": "IS 3854"
+}

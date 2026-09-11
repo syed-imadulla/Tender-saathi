@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS/IEC 61439 (Part 2) : 2011",
+  "title": "Adjustable speed AC power drive systems; Low-voltage switchgear and controlgear assemblies - Part 2: Power switchgear assemblies [IS/IEC 61439-2]",
+  "scope": "Partial Match: Proposed standard covers the VFD drive controller, but the panel enclosure and switchgear assembly are governed by IS/IEC 61439-2.",
+  "status": "ACTIVE",
+  "publication_year": 2011,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "VALIDATED_RESEARCH_BIS_CATALOGUE_AND_CPWD_SPEC",
+    "source_url": "IS/IEC 61800-2 Clause 1; IS/IEC 61439-2 Clause 1",
+    "retrieved_at": "2026-09-11T11:50:20.681575+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-IEC-61439-Part-2-2011",
+  "base_standard_number": "IS/IEC 61439 (Part 2)"
+}

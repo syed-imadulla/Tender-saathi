@@ -1,0 +1,32 @@
+{
+  "standard_number": "IS 13252 (Part 1) : 2010",
+  "title": "Information Technology Equipment - Safety - Part 1: General Requirements",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Information Technology Equipment - Safety - Part 1: General Requirements.",
+  "status": "ACTIVE",
+  "publication_year": 2010,
+  "reaffirmed_year": null,
+  "technical_committee": "LITD 7",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Computers",
+    "Laptops",
+    "Servers",
+    "Printers",
+    "IT Equipment"
+  ],
+  "certification": [
+    "BIS_CRS_SCHEME_II"
+  ],
+  "source": {
+    "source_type": "BIS_CRS_REGISTRY",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791097+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-13252-Part-1-2010",
+  "base_standard_number": "IS 13252 (Part 1)"
+}

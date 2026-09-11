@@ -1,0 +1,29 @@
+{
+  "standard_number": "IS 7098 (Part 3) : 1993",
+  "title": "Crosslinked Polyethylene Insulated Thermoplastic Sheathed Cables - Part 3: For Working Voltages from 66 kV up to and Including 220 kV",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Crosslinked Polyethylene Insulated Thermoplastic Sheathed Cables - Part 3: For Working Voltages from 66 kV up to and Including 220 kV.",
+  "status": "ACTIVE",
+  "publication_year": 1993,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 9",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Cables",
+    "EHV Cables"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.790363+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-7098-Part-3-1993",
+  "base_standard_number": "IS 7098 (Part 3)"
+}

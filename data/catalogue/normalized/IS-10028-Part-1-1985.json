@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 10028 (Part 1) : 1985",
+  "title": "Code of Practice for Selection, Installation and Maintenance of Transformers - Part 1 Selection",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Code of Practice for Selection, Installation and Maintenance of Transformers - Part 1 Selection.",
+  "status": "ACTIVE",
+  "publication_year": 1985,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 16",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Transformers",
+    "Selection",
+    "Installation"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.790572+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-10028-Part-1-1985",
+  "base_standard_number": "IS 10028 (Part 1)"
+}

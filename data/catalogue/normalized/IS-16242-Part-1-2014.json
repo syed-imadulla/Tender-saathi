@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 16242 (Part 1) : 2014",
+  "title": "Uninterruptible Power Systems (UPS) - Part 1: General and Safety Requirements for UPS",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Uninterruptible Power Systems (UPS) - Part 1: General and Safety Requirements for UPS.",
+  "status": "ACTIVE",
+  "publication_year": 2014,
+  "reaffirmed_year": null,
+  "technical_committee": "LITD 7",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "UPS",
+    "Inverters",
+    "Power Backup"
+  ],
+  "certification": [
+    "BIS_CRS_SCHEME_II"
+  ],
+  "source": {
+    "source_type": "BIS_CRS_REGISTRY",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791152+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-16242-Part-1-2014",
+  "base_standard_number": "IS 16242 (Part 1)"
+}

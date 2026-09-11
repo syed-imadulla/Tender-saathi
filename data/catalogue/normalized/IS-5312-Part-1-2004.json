@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 5312 (Part 1) : 2004",
+  "title": "Swing Check Type Reflux (Non-Return) Valves for Water Works Purposes - Part 1 Single Door Pattern",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Swing Check Type Reflux (Non-Return) Valves for Water Works Purposes - Part 1 Single Door Pattern.",
+  "status": "ACTIVE",
+  "publication_year": 2004,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 46",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Valves",
+    "Non-Return Valves",
+    "Check Valves"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.790066+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-5312-Part-1-2004",
+  "base_standard_number": "IS 5312 (Part 1)"
+}

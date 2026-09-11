@@ -1,0 +1,31 @@
+{
+  "standard_number": "IS 12615 : 2018",
+  "title": "Line Operated Three-Phase A.C. Motors (IE Code) - Ecological Requirements and Energy Efficiency - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Line Operated Three-Phase A.C. Motors (IE Code) - Ecological Requirements and Energy Efficiency - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 2018,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 15",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Motors",
+    "Induction Motors",
+    "Energy Efficiency",
+    "IE3 Motors"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.790625+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-12615-2018",
+  "base_standard_number": "IS 12615"
+}

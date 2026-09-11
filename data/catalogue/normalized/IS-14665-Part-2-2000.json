@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS 14665 (Part 2) : 2000",
+  "title": "Electric Traction Lifts - Part 2: Code of Practice for Installation, Operation and Maintenance",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Electric Traction Lifts - Part 2: Code of Practice for Installation, Operation and Maintenance.",
+  "status": "ACTIVE",
+  "publication_year": 2000,
+  "reaffirmed_year": null,
+  "technical_committee": "MED 14",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Lifts",
+    "Elevator Installation"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791378+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-14665-Part-2-2000",
+  "base_standard_number": "IS 14665 (Part 2)"
+}

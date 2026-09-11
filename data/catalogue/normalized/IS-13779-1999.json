@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 13779 : 1999",
+  "title": "AC Static Watt-Hour Meters, Class 1 and 2 - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for AC Static Watt-Hour Meters, Class 1 and 2 - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 1999,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 8",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Switchgear",
+    "High Voltage",
+    "Meters"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.792727+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-13779-1999",
+  "base_standard_number": "IS 13779"
+}

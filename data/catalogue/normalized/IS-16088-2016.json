@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 16088 : 2016",
+  "title": "Unplasticized Polyvinyl Chloride (uPVC) Profiles for the Fabrication of Windows and Doors - Specification",
+  "scope": "Exact Match: IS 16088 governs extruded multi-chamber UPVC hollow profiles used in architectural partitions and frame assemblies.",
+  "status": "ACTIVE",
+  "publication_year": 2016,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "VALIDATED_RESEARCH_BIS_CATALOGUE",
+    "source_url": "IS 16088:2016 Scope Clause 1",
+    "retrieved_at": "2026-09-11T11:50:20.644146+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-16088-2016",
+  "base_standard_number": "IS 16088"
+}

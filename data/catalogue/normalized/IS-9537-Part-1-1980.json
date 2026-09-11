@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS 9537 (Part 1) : 1980",
+  "title": "Conduits for Electrical Installations - Part 1: General Requirements",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Conduits for Electrical Installations - Part 1: General Requirements.",
+  "status": "ACTIVE",
+  "publication_year": 1980,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 14",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Conduits",
+    "Wiring"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.790883+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-9537-Part-1-1980",
+  "base_standard_number": "IS 9537 (Part 1)"
+}

@@ -1,0 +1,29 @@
+{
+  "standard_number": "IS 383 : 2016",
+  "title": "Coarse and Fine Aggregate for Concrete - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Coarse and Fine Aggregate for Concrete - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 2016,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 2",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Aggregates",
+    "Sand",
+    "Gravel",
+    "Concrete"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.788778+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-383-2016",
+  "base_standard_number": "IS 383"
+}

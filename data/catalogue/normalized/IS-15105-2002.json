@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS 15105 : 2002",
+  "title": "Design and Installation of Fixed Automatic Sprinkler Fire Extinguishing Systems - Code of Practice",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Design and Installation of Fixed Automatic Sprinkler Fire Extinguishing Systems - Code of Practice.",
+  "status": "ACTIVE",
+  "publication_year": 2002,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 22",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Fire Sprinklers",
+    "Automatic Sprinklers"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791524+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-15105-2002",
+  "base_standard_number": "IS 15105"
+}

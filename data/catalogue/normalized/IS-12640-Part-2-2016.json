@@ -1,0 +1,29 @@
+{
+  "standard_number": "IS 12640 (Part 2) : 2016",
+  "title": "Residual Current Operated Circuit-Breakers With Integral Overcurrent Protection for Household and Similar Uses (RCBOs) - Part 1: General Rules",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Residual Current Operated Circuit-Breakers With Integral Overcurrent Protection for Household and Similar Uses (RCBOs) - Part 1: General Rules.",
+  "status": "ACTIVE",
+  "publication_year": 2016,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 7",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "RCBO",
+    "Safety Breakers"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.790811+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-12640-Part-2-2016",
+  "base_standard_number": "IS 12640 (Part 2)"
+}

@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 303 : 1989",
+  "title": "Specification for Plywood for General Purposes",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Specification for Plywood for General Purposes.",
+  "status": "ACTIVE",
+  "publication_year": 1989,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 20",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Plywood",
+    "Wood Panels",
+    "Carpentry"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.793196+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-303-1989",
+  "base_standard_number": "IS 303"
+}

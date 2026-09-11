@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 5039 : 1983",
+  "title": "Distribution Pillars for Voltages Not Exceeding 1000 V AC and 1200 V DC - Specification",
+  "scope": "Exact Match: IS 5039 is the dedicated Indian Standard for outdoor electrical feeder distribution pillars.",
+  "status": "ACTIVE",
+  "publication_year": 1983,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "VALIDATED_RESEARCH_BIS_CATALOGUE",
+    "source_url": "IS 5039:1983 Scope Clause 1",
+    "retrieved_at": "2026-09-11T11:50:20.633015+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-5039-1983",
+  "base_standard_number": "IS 5039"
+}

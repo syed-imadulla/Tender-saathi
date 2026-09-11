@@ -1,0 +1,26 @@
+{
+  "standard_number": "SP 62 : 1997",
+  "title": "Handbook on Building Construction Practices (Excluding Electrical Work)",
+  "scope": "Curated reference standard for Handbook on Building Construction Practices (Excluding Electrical Work)",
+  "status": "ACTIVE",
+  "publication_year": 1997,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 13",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CURATED_EXCEL_REPO",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T11:50:20.407976+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "SP-62-1997",
+  "base_standard_number": "SP 62"
+}

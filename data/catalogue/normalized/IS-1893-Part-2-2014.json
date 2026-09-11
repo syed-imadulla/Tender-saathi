@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 1893 (Part 2) : 2014",
+  "title": "Criteria for Earthquake Resistant Design of Structures - Part 2 Liquid Retaining Tanks",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Criteria for Earthquake Resistant Design of Structures - Part 2 Liquid Retaining Tanks.",
+  "status": "ACTIVE",
+  "publication_year": 2014,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 39",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Seismic",
+    "Tanks",
+    "Structural"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.789510+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-1893-Part-2-2014",
+  "base_standard_number": "IS 1893 (Part 2)"
+}

@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 15683 : 2018",
+  "title": "Portable Fire Extinguishers - Performance and Construction - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Portable Fire Extinguishers - Performance and Construction - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 2018,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 22",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Fire Extinguisher",
+    "Safety",
+    "Fire Protection"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791429+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-15683-2018",
+  "base_standard_number": "IS 15683"
+}

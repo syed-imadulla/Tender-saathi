@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 14697 : 1999",
+  "title": "AC Static Transformer Operated Watt-Hour and VAR-Hour Meters, Class 0.2 S and 0.5 S - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for AC Static Transformer Operated Watt-Hour and VAR-Hour Meters, Class 0.2 S and 0.5 S - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 1999,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 8",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Switchgear",
+    "High Voltage",
+    "Meters"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.792738+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-14697-1999",
+  "base_standard_number": "IS 14697"
+}

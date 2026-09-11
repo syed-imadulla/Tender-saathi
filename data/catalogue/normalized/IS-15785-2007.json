@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS 15785 : 2007",
+  "title": "Code of Practice for Installation and Maintenance of Lift Without Conventional Machine Room",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Code of Practice for Installation and Maintenance of Lift Without Conventional Machine Room.",
+  "status": "ACTIVE",
+  "publication_year": 2007,
+  "reaffirmed_year": null,
+  "technical_committee": "MED 14",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Lifts",
+    "MRL Lifts"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791406+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-15785-2007",
+  "base_standard_number": "IS 15785"
+}

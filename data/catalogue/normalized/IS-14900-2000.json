@@ -1,0 +1,29 @@
+{
+  "standard_number": "IS 14900 : 2000",
+  "title": "Transparent Float Glass - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Transparent Float Glass - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 2000,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 5",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Float Glass",
+    "Glazing"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791854+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-14900-2000",
+  "base_standard_number": "IS 14900"
+}

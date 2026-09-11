@@ -1,0 +1,26 @@
+{
+  "standard_number": "IS 101 (Part 5) (Sec 8) : 2024",
+  "title": "Methods of Sampling and Test for Paints, Varnishes and Related Products - Part 5 Mechanical Tests - Section 8 Determination of Resistance to Abrasion by Abrasive-Paper Covered Wheel and Linearly Reciprocating Test Specimen",
+  "scope": "Curated reference standard for Methods of Sampling and Test for Paints, Varnishes and Related Products - Part 5 Mechanical Tests - Section 8 Determination of Resistance to Abrasion by Abrasive-Paper Covered Wheel and Linearly Reciprocating Test Specimen",
+  "status": "ACTIVE",
+  "publication_year": 2024,
+  "reaffirmed_year": null,
+  "technical_committee": "CHD 20",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CURATED_EXCEL_REPO",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T11:50:20.495655+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-101-Part-5-Sec-8-2024",
+  "base_standard_number": "IS 101 (Part 5) (Sec 8)"
+}

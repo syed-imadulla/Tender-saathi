@@ -1,0 +1,26 @@
+{
+  "standard_number": "IS/ISO 3795 : 1989",
+  "title": "Road Vehicles and Tractors and Machinery for Agriculture and Forestry - Determination of Burning Behaviour of Interior Materials",
+  "scope": "Curated reference standard for Road Vehicles and Tractors and Machinery for Agriculture and Forestry - Determination of Burning Behaviour of Interior Materials",
+  "status": "ACTIVE",
+  "publication_year": 1989,
+  "reaffirmed_year": 2022,
+  "technical_committee": "MED 7",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CURATED_EXCEL_REPO",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T11:50:20.564240+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-ISO-3795-1989",
+  "base_standard_number": "IS/ISO 3795"
+}

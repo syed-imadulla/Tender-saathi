@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 13703 (Part 2) (Sec 2) : 1993",
+  "title": "Low-Voltage Fuses - Part 2 Fuses for Use by Authorized Persons - Section 2 Requirements for Fuses with Striker Fuse-Links",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Low-Voltage Fuses - Part 2 Fuses for Use by Authorized Persons - Section 2 Requirements for Fuses with Striker Fuse-Links.",
+  "status": "ACTIVE",
+  "publication_year": 1993,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 8",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Switchgear",
+    "High Voltage",
+    "Meters"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.792716+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-13703-Part-2-Sec-2-1993",
+  "base_standard_number": "IS 13703 (Part 2) (Sec 2)"
+}

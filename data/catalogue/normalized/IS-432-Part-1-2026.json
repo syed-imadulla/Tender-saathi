@@ -1,0 +1,26 @@
+{
+  "standard_number": "IS 432 (Part 1) : 2026",
+  "title": "Mild Steel and Medium Tensile Steel Bars and Cold Reduced Steel Wires for Concrete Reinforcement - Specification - Part 1 Mild Steel and Medium Tensile Steel Bars",
+  "scope": "Curated reference standard for Mild Steel and Medium Tensile Steel Bars and Cold Reduced Steel Wires for Concrete Reinforcement - Specification - Part 1 Mild Steel and Medium Tensile Steel Bars",
+  "status": "ACTIVE",
+  "publication_year": 2026,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 54",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CURATED_EXCEL_REPO",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T11:50:20.446819+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-432-Part-1-2026",
+  "base_standard_number": "IS 432 (Part 1)"
+}

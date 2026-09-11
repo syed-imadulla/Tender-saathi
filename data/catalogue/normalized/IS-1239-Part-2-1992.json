@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 1239 (Part 2) : 1992",
+  "title": "Mild Steel Tubes, Tubulars and Other Wrought Steel Fittings - Part 2: Mild Steel Tubulars and Other Wrought Steel Pipe Fittings",
+  "scope": "Exact Match: Plumbing pipework in municipal pump houses utilizes threaded galvanized malleable iron or wrought steel fittings governed by IS 1239 (Part 2).",
+  "status": "ACTIVE",
+  "publication_year": 1992,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "VALIDATED_RESEARCH_LOCAL_STANDARDS_REPO_AND_BIS",
+    "source_url": "IS 1239 (Part 2):1992 Clause 1; SP 57:1993",
+    "retrieved_at": "2026-09-11T11:50:20.675019+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-1239-Part-2-1992",
+  "base_standard_number": "IS 1239 (Part 2)"
+}

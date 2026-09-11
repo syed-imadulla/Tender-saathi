@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 13947 (Part 1) : 1993",
+  "title": "Specification for Low-Voltage Switchgear and Controlgear - Part 1 General Rules",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Specification for Low-Voltage Switchgear and Controlgear - Part 1 General Rules.",
+  "status": "SUPERSEDED",
+  "publication_year": 1993,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 7",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [
+    "IS/IEC 60947-1"
+  ],
+  "references": [],
+  "product_domain": [
+    "Switchgear"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.792048+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-13947-Part-1-1993",
+  "base_standard_number": "IS 13947 (Part 1)"
+}

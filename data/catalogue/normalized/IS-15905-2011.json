@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 15905 : 2011",
+  "title": "Cast Iron Hubless Pipes and Fittings for Waste Water and Ventilation Systems - Specification",
+  "scope": "Exact Match: IS 15905 covers cast iron hubless (spigotless) drainage pipes joined with mechanical elastomeric couplings.",
+  "status": "ACTIVE",
+  "publication_year": 2011,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "VALIDATED_RESEARCH_BIS_CATALOGUE_AND_CPWD_SPEC",
+    "source_url": "IS 15905:2011 Clause 1 Scope; CPWD Vol 2 Subhead 17",
+    "retrieved_at": "2026-09-11T11:50:20.592822+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-15905-2011",
+  "base_standard_number": "IS 15905"
+}

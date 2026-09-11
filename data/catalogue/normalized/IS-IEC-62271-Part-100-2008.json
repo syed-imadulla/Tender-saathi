@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS/IEC 62271 (Part 100) : 2008",
+  "title": "High-Voltage Switchgear and Controlgear - Part 100: Alternating-Current Circuit-Breakers",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for High-Voltage Switchgear and Controlgear - Part 100: Alternating-Current Circuit-Breakers.",
+  "status": "ACTIVE",
+  "publication_year": 2008,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 8",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Switchgear",
+    "High Voltage",
+    "Meters"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.792599+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-IEC-62271-Part-100-2008",
+  "base_standard_number": "IS/IEC 62271 (Part 100)"
+}

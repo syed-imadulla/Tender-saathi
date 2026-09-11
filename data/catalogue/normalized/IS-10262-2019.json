@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 10262 : 2019",
+  "title": "Concrete Mix Proportioning - Guidelines",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Concrete Mix Proportioning - Guidelines.",
+  "status": "ACTIVE",
+  "publication_year": 2019,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 2",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Concrete",
+    "Mix Design",
+    "Civil"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.788795+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-10262-2019",
+  "base_standard_number": "IS 10262"
+}

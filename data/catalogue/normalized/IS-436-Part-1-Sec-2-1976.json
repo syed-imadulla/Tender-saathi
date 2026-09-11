@@ -1,0 +1,26 @@
+{
+  "standard_number": "IS 436 (Part 1) (Sec 2) : 1976",
+  "title": "Methods for sampling of coal and coke: Part I Sampling of Coal/Section 2: Mechanical sampling",
+  "scope": "Curated reference standard for Methods for sampling of coal and coke: Part I Sampling of Coal/Section 2: Mechanical sampling",
+  "status": "WITHDRAWN",
+  "publication_year": 1976,
+  "reaffirmed_year": 2010,
+  "technical_committee": "PCD 7",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CURATED_EXCEL_REPO",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T11:50:20.498933+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-436-Part-1-Sec-2-1976",
+  "base_standard_number": "IS 436 (Part 1) (Sec 2)"
+}

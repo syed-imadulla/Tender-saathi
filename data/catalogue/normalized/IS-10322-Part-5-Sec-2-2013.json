@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 10322 (Part 5) (Sec 2) : 2013",
+  "title": "Luminaires - Part 5: Particular Requirements - Section 2 Recessed Luminaires",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Luminaires - Part 5: Particular Requirements - Section 2 Recessed Luminaires.",
+  "status": "ACTIVE",
+  "publication_year": 2013,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 24",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Luminaires",
+    "Recessed Downlight",
+    "False Ceiling"
+  ],
+  "certification": [
+    "BIS_CRS_SCHEME_II"
+  ],
+  "source": {
+    "source_type": "BIS_CRS_REGISTRY",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.790972+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-10322-Part-5-Sec-2-2013",
+  "base_standard_number": "IS 10322 (Part 5) (Sec 2)"
+}

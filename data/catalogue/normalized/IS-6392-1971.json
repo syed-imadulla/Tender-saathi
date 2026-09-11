@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 6392 : 1971",
+  "title": "Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]",
+  "scope": "Partial Match: IS 6392 covers circular steel flanges, but flange joint maintenance inherently requires gasket replacement sheets governed by IS 2712.",
+  "status": "ACTIVE",
+  "publication_year": 1971,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "VALIDATED_RESEARCH_BIS_CATALOGUE",
+    "source_url": "IS 6392:1971 Scope Clause 1; IS 2712:2020 Clause 1",
+    "retrieved_at": "2026-09-11T11:50:20.611914+00:00",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  "canonical_id": "IS-6392-1971",
+  "base_standard_number": "IS 6392"
+}

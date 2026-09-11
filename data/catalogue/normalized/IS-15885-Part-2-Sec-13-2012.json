@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 15885 (Part 2) (Sec 13) : 2012",
+  "title": "Lamp Controlgear - Part 2: Particular Requirements - Section 13 D.C. or A.C. Supplied Electronic Controlgear for LED Modules",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Lamp Controlgear - Part 2: Particular Requirements - Section 13 D.C. or A.C. Supplied Electronic Controlgear for LED Modules.",
+  "status": "ACTIVE",
+  "publication_year": 2012,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 24",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "LED Driver",
+    "Power Supply",
+    "Ballast"
+  ],
+  "certification": [
+    "BIS_CRS_SCHEME_II"
+  ],
+  "source": {
+    "source_type": "BIS_CRS_REGISTRY",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:02:35.791069+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-15885-Part-2-Sec-13-2012",
+  "base_standard_number": "IS 15885 (Part 2) (Sec 13)"
+}
