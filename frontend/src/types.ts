@@ -54,6 +54,8 @@ export interface Requirement {
   evidence: string;
   evidence_strength: 'STRONG' | 'MODERATE' | 'WEAK' | 'NONE';
   provenance: 'VERIFIED' | 'CURATED' | 'INFERRED' | 'UNKNOWN';
+  evidence_standard?: string | null;
+  why_it_matches?: string;
   // Quality
   confidence: string;
   relevance_score: number;
@@ -77,6 +79,74 @@ export interface Requirement {
   scores: ScoreBreakdown;
   // Applicability (Milestone 9)
   applicability?: ApplicabilityData | null;
+  // Milestone 10: Standards Dependency & Coverage
+  dependencies?: DependencyItem[];
+  standards_coverage?: StandardsCoverage | null;
+  potential_gaps?: GapItem[];
+  verified_missing?: GapItem[];
+  potentially_missing?: GapItem[];
+  related_for_review?: GapItem[];
+}
+
+export interface DependencyItem {
+  standard_number: string;
+  title: string;
+  relationship_type: string;
+  dependency_status: string;
+  direction: string;
+  lifecycle_status: string;
+  provenance: string;
+  evidence_strength: string;
+  evidence_text: string;
+  source: string;
+  confidence: number;
+  why_related: string;
+  functional_category: string;
+  is_applicable_to_requirement: boolean;
+  applicability_decision: string;
+}
+
+export interface GapItem {
+  gap_type: 'STANDARD_GAP' | 'SPECIFICATION_GAP' | 'LIFECYCLE_RISK' | 'EVIDENCE_GAP' | string;
+  standard_number?: string | null;
+  title?: string | null;
+  gap_severity: 'VERIFIED_MISSING' | 'POTENTIALLY_MISSING' | 'RELATED_FOR_REVIEW' | 'CRITICAL' | 'HIGH' | 'MEDIUM' | string;
+  relationship_type?: string | null;
+  description: string;
+  why_flagged: string;
+  remediation_suggestion: string;
+  provenance: string;
+  confidence: number;
+}
+
+export interface CoverageSummary {
+  primary_standard_covered: boolean;
+  total_dependencies: number;
+  covered_in_tender: number;
+  potentially_missing: number;
+  verified_missing: number;
+  related_for_review: number;
+  coverage_percentage: number;
+}
+
+export interface StandardsCoverage {
+  requirement_id: string;
+  requirement_text: string;
+  primary_standard?: { standard: string; title: string; status: string } | null;
+  coverage_summary: CoverageSummary;
+  dependencies_coverage: Array<{
+    standard: string;
+    title: string;
+    relationship_type: string;
+    dependency_status: string;
+    coverage_status: string;
+    evidence: string;
+    provenance: string;
+    why_flagged?: string;
+  }>;
+  specification_gaps: GapItem[];
+  standard_gaps: GapItem[];
+  all_gaps: GapItem[];
 }
 
 export interface AnalysisSummary {
@@ -92,7 +162,18 @@ export interface AnalysisSummary {
   related_standards_count: number;
   evidence_distribution: Record<string, number>;
   risk_distribution: Record<string, number>;
+  dependency_count?: number;
+  normative_reference_count?: number;
+  allied_standard_count?: number;
+  test_standard_count?: number;
+  installation_standard_count?: number;
+  verified_missing_count?: number;
+  potentially_missing_count?: number;
+  related_for_review_count?: number;
+  standards_coverage?: Record<string, any>;
+  gap_summary?: Record<string, any>;
 }
+
 
 export interface TenderInfo {
   id: string;

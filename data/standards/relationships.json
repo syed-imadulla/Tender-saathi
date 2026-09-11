@@ -1,0 +1,218 @@
+[
+  {
+    "source_standard": "IS 15000 : 2024",
+    "target_standard": "IS 2491 : 2024",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 Normative References explicitly cites IS 2491 for Food Hygiene - General Principles.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS/ISO 10434 : 2020",
+    "target_standard": "IS 10611 : 1983",
+    "relationship_type": "SUPERSEDES",
+    "evidence": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS/ISO 10434 : 2020",
+    "target_standard": "ISO 10434 : 2020",
+    "relationship_type": "ALLIED_STANDARD",
+    "evidence": "National Foreword states: 'This Indian Standard which is identical with ISO 10434 : 2020... was adopted by the Bureau of Indian Standards.'",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 783 : 1985",
+    "target_standard": "IS 458 : 2021",
+    "relationship_type": "CODE_OF_PRACTICE",
+    "evidence": "Foreword and Clause 1 Scope declare IS 783 as the Code of practice for laying of concrete pipes manufactured in accordance with IS 458.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 458 : 2021",
+    "target_standard": "IS 783 : 1985",
+    "relationship_type": "INSTALLATION_STANDARD",
+    "evidence": "Clause 1 Scope note recommends laying, bedding and jointing of precast concrete pipes in accordance with IS 783.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 458 : 2021",
+    "target_standard": "IS 3597 : 1998",
+    "relationship_type": "TEST_METHOD",
+    "evidence": "Clause 8 Sampling and Testing references IS 3597 for Methods of tests for concrete pipes (three-edge bearing test, hydrostatic test).",
+    "evidence_source": "CURATED_STANDARDS_DOC",
+    "provenance": "CURATED",
+    "confidence": 0.9
+  },
+  {
+    "source_standard": "IS 14846 : 2000",
+    "target_standard": "IS 778 : 1984",
+    "relationship_type": "REFERENCES",
+    "evidence": "Listed under Clause 2 References in IS 14846:2000 for copper alloy internal valve trim components.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 778 : 1984",
+    "target_standard": "IS 210 : 1978",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 References cites IS 210 for Specification for grey iron castings used in valve handwheels and caps.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 778 : 1984",
+    "target_standard": "IS 554 : 1975",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 References cites IS 554 for pipe threads where pressure-tight joints are required on threads.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 778 : 1984",
+    "target_standard": "IS 14846 : 2000",
+    "relationship_type": "ALLIED_STANDARD",
+    "evidence": "Related waterworks valve standard covering larger nominal size sluice valves (50 mm to 1200 mm).",
+    "evidence_source": "CURATED_STANDARDS_DOC",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  {
+    "source_standard": "IS 15778 : 2007",
+    "target_standard": "IS 12235 : 2004",
+    "relationship_type": "TEST_METHOD",
+    "evidence": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
+    "evidence_source": "CURATED_STANDARDS_DOC",
+    "provenance": "CURATED",
+    "confidence": 0.95
+  },
+  {
+    "source_standard": "IS 15778 : 2007",
+    "target_standard": "IS 7634 (Part 3) : 2003",
+    "relationship_type": "INSTALLATION_STANDARD",
+    "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+    "evidence_source": "CURATED_STANDARDS_DOC",
+    "provenance": "CURATED",
+    "confidence": 0.9
+  },
+  {
+    "source_standard": "IS 15778 : 2007",
+    "target_standard": "IS 4985 : 2000",
+    "relationship_type": "ALLIED_STANDARD",
+    "evidence": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+    "evidence_source": "CURATED_STANDARDS_DOC",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  {
+    "source_standard": "IS 14333 : 2022",
+    "target_standard": "IS 4984 : 2016",
+    "relationship_type": "REFERENCES",
+    "evidence": "Clause 2 References cites IS 4984 for high-density polyethylene raw material specifications and extrusion testing.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 14333 : 2022",
+    "target_standard": "IS 7634 (Part 2) : 2012",
+    "relationship_type": "CODE_OF_PRACTICE",
+    "evidence": "Foreword recommends installation, laying, and jointing of polyethylene sewer pipes per IS 7634 Part 2.",
+    "evidence_source": "CURATED_STANDARDS_DOC",
+    "provenance": "CURATED",
+    "confidence": 0.9
+  },
+  {
+    "source_standard": "IS 15622 : 2017",
+    "target_standard": "IS 13753 : 1993",
+    "relationship_type": "SUPERSEDES",
+    "evidence": "Scope and Foreword state IS 15622 supersedes older rubber insulating mat standards IS 13753 and IS 13755.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 15622 : 2017",
+    "target_standard": "IS 13755 : 1993",
+    "relationship_type": "SUPERSEDES",
+    "evidence": "Scope and Foreword state IS 15622 supersedes older rubber insulating mat standards IS 13753 and IS 13755.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 694 : 2010",
+    "target_standard": "IS 8130 : 2013",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 References cites IS 8130 for Conductors for insulated electric cables and flexible cords.",
+    "evidence_source": "CURATED_STANDARDS_DOC",
+    "provenance": "CURATED",
+    "confidence": 0.95
+  },
+  {
+    "source_standard": "IS 694 : 2010",
+    "target_standard": "IS 10810 : 1984",
+    "relationship_type": "TEST_METHOD",
+    "evidence": "Clause 14 Tests cites IS 10810 series for methods of test for electric cables (spark test, tensile strength, insulation resistance).",
+    "evidence_source": "CURATED_STANDARDS_DOC",
+    "provenance": "CURATED",
+    "confidence": 0.95
+  },
+  {
+    "source_standard": "IS 694 : 2010",
+    "target_standard": "IS 5831 : 1984",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 References cites IS 5831 for PVC insulation and sheath of electric cables.",
+    "evidence_source": "CURATED_STANDARDS_DOC",
+    "provenance": "CURATED",
+    "confidence": 0.95
+  },
+  {
+    "source_standard": "IS/IEC 60034-1 : 2017",
+    "target_standard": "IS 12615 : 2018",
+    "relationship_type": "ALLIED_STANDARD",
+    "evidence": "National Annex and committee MED 06 correlate rotating electrical machines with IS 12615 energy efficiency class requirements (IE2/IE3).",
+    "evidence_source": "CURATED_STANDARDS_DOC",
+    "provenance": "CURATED",
+    "confidence": 0.9
+  },
+  {
+    "source_standard": "IS/IEC 60034-1 : 2017",
+    "target_standard": "IS 12065 : 1987",
+    "relationship_type": "SAFETY_STANDARD",
+    "evidence": "Clause 2 References cites IS 12065 for permissible limits of noise levels for rotating electrical machines.",
+    "evidence_source": "CURATED_STANDARDS_DOC",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  {
+    "source_standard": "IS/IEC 61800-2 : 2015",
+    "target_standard": "IS 13947 : 1993",
+    "relationship_type": "SUPERSEDES",
+    "evidence": "Adoption foreword indicates modernization of variable speed drive controlgear requirements over older IS 13947.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS/IEC 61439-3 : 2012",
+    "target_standard": "IS 8623 : 1993",
+    "relationship_type": "SUPERSEDES",
+    "evidence": "Foreword confirms IS/IEC 61439 supersedes the legacy IS 8623 series for low-voltage switchgear and controlgear assemblies.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  }
+]

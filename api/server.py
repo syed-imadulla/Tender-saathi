@@ -38,6 +38,7 @@ from flask import Flask, request, jsonify, send_file, Response
 from flask_cors import CORS
 
 from src.recommend import StandardsRecommender, RequirementRecommendationResult, TenderRecommendationReport
+from src.critic import are_standards_equivalent
 from src.extract import extract_from_text, extract_from_pdf
 from src.audit import TenderAuditEngine, TenderAuditResult
 from src.report import ReportGenerator
@@ -207,6 +208,22 @@ def _normalize_result(
         elif not why_flagged and missing:
             why_flagged = f"Potentially missing parameters: {', '.join(missing[:3])}."
 
+        # Determine candidate and evidence consistency
+        cand_std = r.candidate_standard
+        ev_std = getattr(r, "evidence_standard", None) or (cand_std if cand_std else None)
+        why_it_matches = getattr(r, "why_it_matches", None)
+
+        if cand_std:
+            if ev_std and not are_standards_equivalent(cand_std, ev_std):
+                why_it_matches = "Match identified from the requirement context; supporting evidence needs review."
+                r.human_review_required = True
+                ev_std = None
+            elif not why_it_matches:
+                why_it_matches = "Match identified from the requirement context; supporting evidence needs review."
+        else:
+            ev_std = None
+            why_it_matches = "No reliable Indian Standard match found in the available catalogue."
+
         req_dict: Dict[str, Any] = {
             "id": r.requirement_id,
             "text": r.requirement_text,
@@ -221,6 +238,8 @@ def _normalize_result(
             "evidence": r.evidence or "",
             "evidence_strength": ev_strength,
             "provenance": r.provenance or "UNKNOWN",
+            "evidence_standard": ev_std,
+            "why_it_matches": why_it_matches,
             # Quality
             "confidence": r.confidence or "Low",
             "relevance_score": _safe_float(r.relevance_score),
@@ -250,6 +269,13 @@ def _normalize_result(
             "scores": scores,
             # Milestone 9: Applicability Gate results
             "applicability": getattr(r, "applicability", None),
+            # Milestone 10: Standards Dependency & Coverage results
+            "dependencies": getattr(r, "dependencies", []) or [],
+            "standards_coverage": getattr(r, "standards_coverage", None),
+            "potential_gaps": getattr(r, "potential_gaps", []) or [],
+            "verified_missing": getattr(r, "verified_missing", []) or [],
+            "potentially_missing": getattr(r, "potentially_missing", []) or [],
+            "related_for_review": getattr(r, "related_for_review", []) or [],
         }
 
         all_reqs.append(req_dict)
@@ -277,7 +303,18 @@ def _normalize_result(
         "related_standards_count": audit.related_standards_count,
         "evidence_distribution": audit.evidence_distribution,
         "risk_distribution": audit.risk_distribution,
+        "dependency_count": getattr(audit, "dependency_count", 0),
+        "normative_reference_count": getattr(audit, "normative_reference_count", 0),
+        "allied_standard_count": getattr(audit, "allied_standard_count", 0),
+        "test_standard_count": getattr(audit, "test_standard_count", 0),
+        "installation_standard_count": getattr(audit, "installation_standard_count", 0),
+        "verified_missing_count": getattr(audit, "verified_missing_count", 0),
+        "potentially_missing_count": getattr(audit, "potentially_missing_count", 0),
+        "related_for_review_count": getattr(audit, "related_for_review_count", 0),
+        "standards_coverage": getattr(audit, "standards_coverage", {}),
+        "gap_summary": getattr(audit, "gap_summary", {}),
     }
+
 
     # Determine AI attribution from first non-fallback result
     ai_provider = "deterministic_fallback"

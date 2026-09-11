@@ -25,7 +25,7 @@ from src.evidence import EvidenceVerifier
 from src.extract import Requirement, extract_from_text, extract_from_pdf
 from src.decompose import CompoundRequirementDecomposer, RequirementComponent
 from src.completeness import DomainCompletenessAnalyzer, SpecificationCompletenessReport
-from src.critic import EvidenceAwareCritic, CandidateCritique, DecisionOutcome
+from src.critic import EvidenceAwareCritic, CandidateCritique, DecisionOutcome, are_standards_equivalent
 from src.graph import StandardsGraph, RelatedStandardResult
 from src.audit import TenderAuditEngine, TenderAuditResult
 from src.applicability import ApplicabilityGate, ApplicabilityResult, ApplicabilityDecision
@@ -98,9 +98,20 @@ class RequirementRecommendationResult:
     final_score: float = 0.0
     # Milestone 9 Applicability Gate fields:
     applicability: Optional[Dict[str, Any]] = None
+    # Milestone 10 Standards Dependency & Coverage fields:
+    dependencies: List[Dict[str, Any]] = field(default_factory=list)
+    standards_coverage: Optional[Dict[str, Any]] = None
+    potential_gaps: List[Dict[str, Any]] = field(default_factory=list)
+    verified_missing: List[Dict[str, Any]] = field(default_factory=list)
+    potentially_missing: List[Dict[str, Any]] = field(default_factory=list)
+    related_for_review: List[Dict[str, Any]] = field(default_factory=list)
+    # Milestone 10 Evidence Consistency & Explanation fields:
+    evidence_standard: Optional[str] = None
+    why_it_matches: Optional[str] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
+
 
 
 
@@ -153,11 +164,18 @@ class StandardsRecommender:
         self.graph = StandardsGraph(self.db)
         self.audit_engine = TenderAuditEngine()
         self.applicability_gate = ApplicabilityGate()
+        from src.dependencies import StandardsDependencyEngine
+        from src.gap_detection import StandardsGapDetector
+        self.dependency_engine = StandardsDependencyEngine(self.graph, self.applicability_gate)
+        self.gap_detector = StandardsGapDetector()
         from src.ai_understanding import AIRequirementParser
         self.ai_parser = ai_parser or AIRequirementParser(enabled=ai_enabled)
 
-    def recommend_for_requirement(self, req: Requirement) -> RequirementRecommendationResult:
+
+    def recommend_for_requirement(self, req: Any, tender_cited_standards: Optional[List[str]] = None) -> RequirementRecommendationResult:
         """Processes an individual Requirement through the end-to-end recommendation workflow."""
+        if isinstance(req, str):
+            req = extract_from_text(req)
         text = req.requirement_text
         req_id = req.requirement_id
         cat = req.category
@@ -341,7 +359,9 @@ class StandardsRecommender:
                 deterministic_score=0.0,
                 reranker_score=None,
                 final_score=0.0,
-                applicability=primary_app_res
+                applicability=primary_app_res,
+                evidence_standard=None,
+                why_it_matches="No reliable Indian Standard match found in the available catalogue."
             )
 
         # Step 4: Run Critic across Applicable Candidate Pool
@@ -471,6 +491,57 @@ class StandardsRecommender:
         related_stds_res = self.graph.get_related_standards(top_rec.standard_number, limit=5)
         related_standards_dicts = [r.to_dict() for r in related_stds_res]
 
+        # Step 8: Standards Dependency & Coverage Analysis (Milestone 10)
+        dep_report = self.dependency_engine.analyze_dependencies(
+            requirement=req,
+            primary_standard=top_rec.standard_number,
+            primary_title=top_rec.title
+        )
+        cov_map = self.gap_detector.detect_gaps(
+            requirement=req,
+            primary_standard=top_rec.standard_number,
+            primary_title=top_rec.title,
+            dependency_report=dep_report,
+            completeness_report=completeness_report.to_dict(),
+            tender_cited_standards=explicit_stds
+        )
+
+        dep_dicts = [d.to_dict() for d in dep_report.all_dependencies]
+        cov_dict = cov_map.to_dict()
+        all_gap_dicts = [g.to_dict() for g in cov_map.all_gaps]
+        ver_missing_dicts = [g.to_dict() for g in cov_map.standard_gaps if g.gap_severity == "VERIFIED_MISSING"]
+        pot_missing_dicts = [g.to_dict() for g in cov_map.standard_gaps if g.gap_severity == "POTENTIALLY_MISSING"]
+        rel_review_dicts = [g.to_dict() for g in cov_map.standard_gaps if g.gap_severity == "RELATED_FOR_REVIEW"]
+
+        # Strict Evidence Consistency Rule Check:
+        primary_crit = critic_outcome.primary_critique
+        crit_ev = primary_crit.evidence if primary_crit else None
+        evidence_std = getattr(crit_ev, "standard_number", None) or top_rec.standard_number
+
+        is_ev_consistent = are_standards_equivalent(top_rec.standard_number, evidence_std)
+        if not is_ev_consistent:
+            why_it_matches = "Match identified from the requirement context; supporting evidence needs review."
+            human_review_required = True
+            decision_reason = "Evidence consistency validation failed: candidate and evidence standards mismatch."
+            evidence_std = None
+        else:
+            # Build clean candidate-specific why_it_matches
+            scope_snip = None
+            for item in why_this:
+                if "Authoritative scope explicitly covers application:" in item:
+                    scope_snip = item.replace("Authoritative scope explicitly covers application:", "").strip(' "\'')
+                    scope_snip = re.sub(r'^(Exact Match:\s*|Direct Match:\s*)', '', scope_snip, flags=re.IGNORECASE).strip()
+                    break
+
+            if scope_snip and len(scope_snip) > 10 and not scope_snip.lower().startswith("insufficient"):
+                why_it_matches = scope_snip
+            elif top_rec.evidence and "insufficient" not in top_rec.evidence.lower():
+                why_it_matches = re.sub(r'^(Exact Match:\s*|Direct Match:\s*)', '', top_rec.evidence, flags=re.IGNORECASE).strip()
+            elif top_rec.title:
+                why_it_matches = f"Official title aligns with specification: {top_rec.title}."
+            else:
+                why_it_matches = f"Standard {top_rec.standard_number} verified against requirement specification."
+
         return RequirementRecommendationResult(
             requirement_id=req_id,
             requirement_text=text,
@@ -505,8 +576,17 @@ class StandardsRecommender:
             deterministic_score=top_rec.deterministic_score,
             reranker_score=top_rec.reranker_score,
             final_score=top_rec.final_score,
-            applicability=top_rec.applicability
+            applicability=top_rec.applicability,
+            dependencies=dep_dicts,
+            standards_coverage=cov_dict,
+            potential_gaps=all_gap_dicts,
+            verified_missing=ver_missing_dicts,
+            potentially_missing=pot_missing_dicts,
+            related_for_review=rel_review_dicts,
+            evidence_standard=evidence_std,
+            why_it_matches=why_it_matches
         )
+
 
     def recommend_for_text(self, text: str, req_id: str = "REQ-001") -> RequirementRecommendationResult:
         """Extracts requirement from text and executes recommendation."""

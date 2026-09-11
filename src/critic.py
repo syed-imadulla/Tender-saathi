@@ -30,6 +30,19 @@ from src.graph import StandardsGraph
 from src.applicability import GENERIC_STOPWORDS
 
 
+def are_standards_equivalent(std1: Optional[str], std2: Optional[str]) -> bool:
+    """
+    Validates whether two standard identifiers refer to the same Indian Standard.
+    Strips publication year (e.g., ': 2007') and normalizes whitespace and casing.
+    Returns False if either is empty/None or if the identifiers do not match.
+    """
+    if not std1 or not std2:
+        return False
+    base1 = std1.split(":")[0].strip().upper()
+    base2 = std2.split(":")[0].strip().upper()
+    return re.sub(r"\s+", " ", base1) == re.sub(r"\s+", " ", base2)
+
+
 @dataclass
 class CandidateEvidence:
     """Standardized evidence payload anchored strictly in stored catalogue data."""
@@ -40,6 +53,7 @@ class CandidateEvidence:
     evidence_type: str                      # "scope", "title", "reference", "supersession", "catalogue_metadata"
     evidence_strength: str                  # "STRONG", "MODERATE", "WEAK", "NONE"
     grounded: bool = True
+    standard_number: Optional[str] = None   # Standard number associated with this evidence
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -145,7 +159,8 @@ class EvidenceAwareCritic:
                 provenance="UNKNOWN",
                 evidence_type="catalogue_metadata",
                 evidence_strength="NONE",
-                grounded=False
+                grounded=False,
+                standard_number=candidate.standard_number
             )
 
         provenance = std.get("verification_status", "INFERRED")
@@ -153,6 +168,7 @@ class EvidenceAwareCritic:
         scope = std.get("scope") or ""
         notes = std.get("notes") or ""
         source_name = "BSB Edge Portal" if provenance == "VERIFIED" else "BIS Standards Catalogue"
+        cand_std_num = candidate.standard_number or std.get("standard_number")
 
         # Check if this candidate is an authoritative successor
         if val_result and not val_result.is_active and val_result.successor_standard:
@@ -164,7 +180,8 @@ class EvidenceAwareCritic:
                 provenance=provenance,
                 evidence_type="supersession",
                 evidence_strength=ev_strength,
-                grounded=True
+                grounded=True,
+                standard_number=val_result.successor_standard or cand_std_num
             )
 
         # Check if explicitly cited in tender
@@ -176,7 +193,8 @@ class EvidenceAwareCritic:
                 provenance="VERIFIED",
                 evidence_type="explicit_citation",
                 evidence_strength="STRONG",
-                grounded=True
+                grounded=True,
+                standard_number=cand_std_num
             )
 
 
@@ -203,7 +221,8 @@ class EvidenceAwareCritic:
                     provenance=provenance,
                     evidence_type="scope",
                     evidence_strength=strength,
-                    grounded=True
+                    grounded=True,
+                    standard_number=cand_std_num
                 )
             else:
                 # Stored scope exists, but does not support this requirement
@@ -214,7 +233,8 @@ class EvidenceAwareCritic:
                     provenance=provenance,
                     evidence_type="scope",
                     evidence_strength="WEAK",
-                    grounded=False
+                    grounded=False,
+                    standard_number=cand_std_num
                 )
 
         # Fallback to notes or reference relationships
@@ -227,7 +247,8 @@ class EvidenceAwareCritic:
                 provenance=provenance,
                 evidence_type="reference",
                 evidence_strength=strength,
-                grounded=True
+                grounded=True,
+                standard_number=cand_std_num
             )
 
         # Fallback to committee metadata (does not independently establish standard applicability)
@@ -241,7 +262,8 @@ class EvidenceAwareCritic:
                 provenance=provenance,
                 evidence_type="catalogue_metadata",
                 evidence_strength="WEAK",
-                grounded=True
+                grounded=True,
+                standard_number=cand_std_num
             )
 
         return CandidateEvidence(
@@ -251,7 +273,8 @@ class EvidenceAwareCritic:
             provenance=provenance,
             evidence_type="catalogue_metadata",
             evidence_strength="NONE",
-            grounded=False
+            grounded=False,
+            standard_number=cand_std_num
         )
 
     def critique_candidate(
@@ -536,10 +559,13 @@ class EvidenceAwareCritic:
         else:
             reasons.append(f"Official title aligns with specification: '{candidate.full_title}'.")
 
-        # Scope grounding
+        # Scope grounding with strict evidence consistency
         if critique.evidence and critique.evidence.grounded and critique.evidence.evidence_text != "Insufficient evidence from the retrieved standards data.":
-            ev_snip = critique.evidence.evidence_text[:120].strip() + ("..." if len(critique.evidence.evidence_text) > 120 else "")
-            reasons.append(f"Authoritative scope explicitly covers application: \"{ev_snip}\"")
+            if are_standards_equivalent(critique.evidence.standard_number, candidate.standard_number):
+                ev_snip = critique.evidence.evidence_text[:120].strip() + ("..." if len(critique.evidence.evidence_text) > 120 else "")
+                reasons.append(f"Authoritative scope explicitly covers application: \"{ev_snip}\"")
+            else:
+                reasons.append("Match identified from the requirement context; supporting evidence needs review.")
 
         # Lifecycle
         if critique.lifecycle_score == 1.0:
