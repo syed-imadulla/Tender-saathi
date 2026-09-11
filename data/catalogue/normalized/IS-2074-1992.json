@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 2074 : 1992",
+  "title": "Ready Mixed Paint, Air Drying, Red Oxide-Zinc Chrome, Priming - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Ready Mixed Paint, Air Drying, Red Oxide-Zinc Chrome, Priming - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 1992,
+  "reaffirmed_year": null,
+  "technical_committee": "CHD 20",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Red Oxide Primer",
+    "Paint",
+    "Steelwork"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:53:19.589845+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-2074-1992",
+  "base_standard_number": "IS 2074"
+}

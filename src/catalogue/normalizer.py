@@ -83,11 +83,19 @@ class StandardIdentifierNormalizer:
         if amd_match:
             remainder = cls.AMENDMENT_PATTERN.sub('', remainder).strip()
 
-        # 3. Extract Year if present
-        year_match = cls.YEAR_PATTERN.search(remainder)
-        year = int(year_match.group(1)) if year_match else None
-        if year_match:
-            remainder = cls.YEAR_PATTERN.sub('', remainder).strip()
+        # 3. Extract Year if present (prioritize colon separator or trailing position)
+        year = None
+        if ":" in remainder:
+            std_part, yr_part = remainder.rsplit(":", 1)
+            ym = cls.YEAR_PATTERN.search(yr_part)
+            if ym:
+                year = int(ym.group(1))
+                remainder = std_part.strip()
+        else:
+            end_ym = re.search(r'[-_\s](19\d\d|20\d\d)\s*$', remainder)
+            if end_ym:
+                year = int(end_ym.group(1))
+                remainder = remainder[:end_ym.start()].strip()
 
         # 4. Extract Part and Section
         part_match = cls.PART_PATTERN.search(remainder)
@@ -100,7 +108,7 @@ class StandardIdentifierNormalizer:
         if sec_match:
             remainder = cls.SECTION_PATTERN.sub('', remainder).strip()
 
-        # 5. Extract Base Number (e.g. 15778, 61439, 10322, 1239)
+        # 5. Extract Base Number (e.g. 15778, 61439, 10322, 1239, 2062)
         # Handle hyphenated parts if not caught by part pattern, e.g. 61439-3
         dash_part = re.search(r'(\d+)\s*[-]\s*(\d+)', remainder)
         if dash_part and part is None:
@@ -114,23 +122,19 @@ class StandardIdentifierNormalizer:
         base_number = re.sub(r'[^\d\w]', '', base_number)
 
         # 6. Construct canonical number and canonical slug
-        parts_comp = []
         slug_comp = [prefix.replace('/', '-'), base_number]
 
         base_str = f"{prefix} {base_number}"
 
         if part is not None:
-            parts_comp.append(f"(Part {part})")
             slug_comp.append(f"Part-{part}")
             base_str += f" (Part {part})"
 
         if section is not None:
-            parts_comp.append(f"/ Sec {section}")
             slug_comp.append(f"Sec-{section}")
             base_str += f" (Sec {section})"
 
         if amendment is not None:
-            parts_comp.append(f"[Amd {amendment}]")
             slug_comp.append(f"Amd-{amendment}")
             base_str += f" Amd {amendment}"
 
