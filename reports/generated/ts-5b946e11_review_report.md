@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-SUPERSEDED`
-- **Source File:** `Sample: superseded`
+- **Tender ID:** `TS-5B946E11`
+- **Source File:** `eProcurement System Government of India20.pdf`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -18,10 +18,7 @@
 **Status:** 🟡 REVIEW_REQUIRED
 
 ### Key Observations:
-- 1 requirement(s) cite or match superseded standard(s).
-- 1 requirement(s) flagged with CRITICAL risk.
 - 1 requirement(s) require technical engineer review.
-- 1 requirement(s) have potentially missing specification parameters.
 
 ## 3. Executive Summary
 
@@ -31,8 +28,8 @@
 | **Direct Recommendations** | 0 | Active standards grounded in evidence |
 | **Review Required** | 1 | Flagged for engineering attention |
 | **Insufficient Evidence** | 0 | No reliable standard matched |
-| **Active Standards** | 0 | Verified current in BIS catalogue |
-| **Superseded Standards** | 1 | Outdated standards identified |
+| **Active Standards** | 1 | Verified current in BIS catalogue |
+| **Superseded Standards** | 0 | Outdated standards identified |
 | **Withdrawn Standards** | 0 | Cancelled standards |
 | **Unknown Lifecycle** | 0 | Unindexed in local catalogue |
 | **Related Standards to Review** | 1 | Discovered via relationship graph (depth=1) |
@@ -40,12 +37,12 @@
 ### Governance Distributions
 
 - **Evidence Strength:** STRONG: `1` | MODERATE: `0` | WEAK: `0` | NONE: `0`
-- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `1` | UNKNOWN: `0` | NOT_APPLICABLE: `0`
-- **Risk Distribution:** CRITICAL: `1` | HIGH: `0` | MEDIUM: `0` | LOW: `0`
+- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `0` | UNKNOWN: `0` | NOT_APPLICABLE: `1`
+- **Risk Distribution:** CRITICAL: `0` | HIGH: `0` | MEDIUM: `1` | LOW: `0`
 
 ### Standards Ecosystem & Dependency Coverage
 
-- **Normative References:** `0`
+- **Normative References:** `1`
 - **Testing Method Dependencies:** `0`
 - **Installation / Laying Standards:** `0`
 - **Allied Standards:** `0`
@@ -56,29 +53,30 @@
 
 | # | Priority | Requirement ID | Candidate Standard | Issue / Primary Reason |
 |---|---|---|---|---|
-| 1 | **CRITICAL** | `REQ-001` | `IS/ISO 10434 : 2020` | Tender explicitly cited a superseded standard requiring replacement verification. |
+| 1 | **MEDIUM** | `TS-5B946E11-R001` | `IS 2491 : 2024` | Authoritative active standard IS 2491 : 2024 verified against scope with Medium confidence. |
 
 ## 5. Requirement-by-Requirement Review
 
-### 5.1 Requirement `REQ-001` [PRODUCT_EQUIPMENT]
+### 5.1 Requirement `TS-5B946E11-R001` [INSTALLATION_EXECUTION]
 
 **Original Requirement Text:**
-> "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983."
+> "Consultancy services for Authority s Engineer for Supervision of Construction of 4 Lane Access Controlled Bypass to Tiruvannamalai Town starting from Design km 135.796 of NH-234 (km 75.150 of new NH-38) and ending at Design km 158.506 of NH-234(km 88"
 
-- **Decomposed Technical Components:** `general: gate valves`
-- **Recommended Standard:** **IS/ISO 10434 : 2020** — *Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries*
-- **Lifecycle Status:** **ACTIVE** (Active successor replacing cited superseded `IS 10611 1983`) | **Composite Relevance Score:** `1.000`
+- **Recommended Standard:** **IS 2491 : 2024** — *Food Hygiene - General Principles - Code of Practice*
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.447`
 - **Evidence Strength:** `STRONG` | **Provenance:** `VERIFIED`
-- **Verbatim Evidence (BSB Edge Portal):** "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends."
+- **Verbatim Evidence (BSB Edge Portal):** "Fourth revision covering general principles of food hygiene for premises design, food preparation, cleaning, and personal hygiene in catering and food establishments."
 - **Why This Standard?:**
-  - Recommended authoritative active successor standard recorded in BIS database.
+  - Official title aligns with specification: 'Food Hygiene - General Principles - Code of Practice'.
+  - Authoritative scope explicitly covers application: "Fourth revision covering general principles of food hygiene for premises design, food preparation, cleaning, and persona..."
+  - Standard is currently active in the BIS repository with verified currency.
+  - Provenance established via BSB Edge Portal (VERIFIED).
 - **Why Not Alternatives?:**
-  - Original cited standard is superseded/obsolete.
-- **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material, Fluid Medium / Service)
+  - Alternative standard IS 601 has lifecycle limitations (status: REJECT).
+- **Specification Review Completeness:** `NOT_APPLICABLE`
 - **Related Standards Identified for Review (Graph Depth = 1):**
-  - [→ SUPERSEDES] `IS 10611 : 1983` — *Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries* (Superseded) — *Note:* Authoritative successor standard supersedes IS 10611 : 1983. Review legacy specifications.
-- **Standards Review Decision:** `REVIEW_REQUIRED` | **Risk Level:** `CRITICAL` | **Confidence:** `High`
-- ⚠ **Human Technical Review Required:** Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.
+  - [← REFERENCES] `IS 15000 : 2024` — *Hazard Analysis and Critical Control Point (HACCP) - Requirements for Any Organization in the Food Chain* (Active) — *Note:* Primary standard is cited by IS 15000 : 2024. Review for broader installation context.
+- **Standards Review Decision:** `REVIEW_REQUIRED` | **Risk Level:** `MEDIUM` | **Confidence:** `Medium`
 
 ---
 

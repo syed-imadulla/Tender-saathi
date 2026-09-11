@@ -107,17 +107,14 @@ class TestMilestone10EvidenceConsistency(unittest.TestCase):
 
     def test_04_electrical_cable_why_matches_correctness(self):
         """Electrical cable requirement must correspond to cable standard, not CPVC or valves."""
-        text = "Polyvinyl Chloride Insulated Unsheathed Cables"
+        text = "PVC insulated electric cable"
         res = self.recommender.recommend_for_text(text, req_id="TEST-CABLE-01")
 
-        if res.candidate_standard is not None:
-            self.assertTrue(
-                are_standards_equivalent(res.candidate_standard, res.evidence_standard),
-                f"Candidate {res.candidate_standard} != evidence standard {res.evidence_standard}"
-            )
-        else:
-            self.assertEqual(res.ambiguity_state, "AMBIGUOUS")
-            self.assertIsNotNone(res.competing_interpretations)
+        self.assertIsNotNone(res.candidate_standard)
+        self.assertTrue(
+            are_standards_equivalent(res.candidate_standard, res.evidence_standard),
+            f"Candidate {res.candidate_standard} != evidence standard {res.evidence_standard}"
+        )
 
         why_text = (res.why_it_matches or "").lower()
         self.assertTrue(
@@ -175,7 +172,7 @@ class TestMilestone10EvidenceConsistency(unittest.TestCase):
                     f"evidence_standard ({res.evidence_standard}) for requirement: '{req_text[:40]}'"
                 )
 
-        self.assertGreaterEqual(tested_count, 10, "Invariant must be verified across at least 10 positive recommendations")
+        self.assertGreaterEqual(tested_count, 15, "Invariant must be verified across at least 15 positive recommendations")
 
     def test_07_evidence_consistency_rule_mismatch_fallback(self):
         """

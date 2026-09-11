@@ -3,15 +3,15 @@
   "sweep_results": [
     {
       "threshold": 0.03,
-      "accuracy": 80.0,
-      "correct_state": 32,
+      "accuracy": 77.5,
+      "correct_state": 31,
       "total_cases": 40,
       "invariant_violations": 0,
       "by_state": {
         "CLEAR": {
           "total": 10,
-          "correct": 10,
-          "accuracy": 100.0
+          "correct": 9,
+          "accuracy": 90.0
         },
         "INCOMPLETE": {
           "total": 10,
@@ -34,19 +34,19 @@
           "accuracy": 100.0
         }
       },
-      "elapsed_sec": 7.09
+      "elapsed_sec": 11.06
     },
     {
       "threshold": 0.05,
-      "accuracy": 80.0,
-      "correct_state": 32,
+      "accuracy": 77.5,
+      "correct_state": 31,
       "total_cases": 40,
       "invariant_violations": 0,
       "by_state": {
         "CLEAR": {
           "total": 10,
-          "correct": 10,
-          "accuracy": 100.0
+          "correct": 9,
+          "accuracy": 90.0
         },
         "INCOMPLETE": {
           "total": 10,
@@ -69,24 +69,24 @@
           "accuracy": 100.0
         }
       },
-      "elapsed_sec": 6.36
+      "elapsed_sec": 10.76
     },
     {
       "threshold": 0.08,
-      "accuracy": 80.0,
-      "correct_state": 32,
+      "accuracy": 75.0,
+      "correct_state": 30,
       "total_cases": 40,
       "invariant_violations": 0,
       "by_state": {
         "CLEAR": {
           "total": 10,
-          "correct": 10,
-          "accuracy": 100.0
+          "correct": 9,
+          "accuracy": 90.0
         },
         "INCOMPLETE": {
           "total": 10,
-          "correct": 10,
-          "accuracy": 100.0
+          "correct": 9,
+          "accuracy": 90.0
         },
         "AMBIGUOUS": {
           "total": 10,
@@ -104,24 +104,24 @@
           "accuracy": 100.0
         }
       },
-      "elapsed_sec": 6.34
+      "elapsed_sec": 16.62
     },
     {
       "threshold": 0.1,
-      "accuracy": 80.0,
-      "correct_state": 32,
+      "accuracy": 72.5,
+      "correct_state": 29,
       "total_cases": 40,
       "invariant_violations": 0,
       "by_state": {
         "CLEAR": {
           "total": 10,
-          "correct": 10,
-          "accuracy": 100.0
+          "correct": 9,
+          "accuracy": 90.0
         },
         "INCOMPLETE": {
           "total": 10,
-          "correct": 10,
-          "accuracy": 100.0
+          "correct": 8,
+          "accuracy": 80.0
         },
         "AMBIGUOUS": {
           "total": 10,
@@ -139,19 +139,54 @@
           "accuracy": 100.0
         }
       },
-      "elapsed_sec": 6.55
+      "elapsed_sec": 9.65
+    },
+    {
+      "threshold": 0.15,
+      "accuracy": 72.5,
+      "correct_state": 29,
+      "total_cases": 40,
+      "invariant_violations": 0,
+      "by_state": {
+        "CLEAR": {
+          "total": 10,
+          "correct": 9,
+          "accuracy": 90.0
+        },
+        "INCOMPLETE": {
+          "total": 10,
+          "correct": 8,
+          "accuracy": 80.0
+        },
+        "AMBIGUOUS": {
+          "total": 10,
+          "correct": 2,
+          "accuracy": 20.0
+        },
+        "CONFLICTING": {
+          "total": 5,
+          "correct": 5,
+          "accuracy": 100.0
+        },
+        "NO_RELIABLE_MATCH": {
+          "total": 5,
+          "correct": 5,
+          "accuracy": 100.0
+        }
+      },
+      "elapsed_sec": 11.54
     }
   ],
   "ambiguity_benchmark": {
     "threshold": 0.03,
     "total_cases": 40,
-    "correct_state": 32,
-    "accuracy": 80.0,
+    "correct_state": 31,
+    "accuracy": 77.5,
     "by_state": {
       "CLEAR": {
         "total": 10,
-        "correct": 10,
-        "accuracy": 100.0
+        "correct": 9,
+        "accuracy": 90.0
       },
       "INCOMPLETE": {
         "total": 10,
@@ -302,15 +337,15 @@
         "category": "Civil/Drainage",
         "text": "Supply and laying of precast reinforced concrete pipes NP3 class 600 mm internal...",
         "expected_state": "CLEAR",
-        "predicted_state": "CLEAR",
-        "state_match": true,
-        "candidate_standard": "IS 14333 : 1996",
-        "evidence_standard": "IS 14333 : 1996",
-        "human_review_required": false,
+        "predicted_state": "REVIEW_REQUIRED",
+        "state_match": false,
+        "candidate_standard": "IS 458 : 2021",
+        "evidence_standard": "IS 458 : 2021",
+        "human_review_required": true,
         "expected_review_required": false,
-        "review_match": true,
+        "review_match": false,
         "separation_margin": null,
-        "reason": "Authoritative active standard IS 14333 : 1996 verified against scope with Medium confidence."
+        "reason": "Authoritative active standard IS 458 : 2021 verified against scope with Medium confidence."
       },
       {
         "id": "AMB-CLR-10",
@@ -778,14 +813,14 @@
         "reason": "No reliable Indian Standard match found. We could not establish a sufficiently supported Indian Stan"
       }
     ],
-    "elapsed_sec": 7.09
+    "elapsed_sec": 11.06
   },
   "catalogue_preservation": {
     "total_queries": 50,
     "preserved_count": 6,
     "preservation_rate": 12.0,
-    "abstention_count": 7,
-    "candidate_evidence_matches": 43,
+    "abstention_count": 8,
+    "candidate_evidence_matches": 42,
     "records": [
       {
         "id": "BENCH-01",
@@ -1034,9 +1069,9 @@
         "id": "BENCH-28",
         "text": "Low-voltage switchgear and controlgear assemblies power swit...",
         "expected_standard": "IS/IEC 61439-2",
-        "candidate_standard": "IS/IEC 61800-2 : 2015",
-        "evidence_standard": "IS/IEC 61800-2 : 2015",
-        "ambiguity_state": "REVIEW_REQUIRED",
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "ambiguity_state": "AMBIGUOUS",
         "is_preserved": false
       },
       {

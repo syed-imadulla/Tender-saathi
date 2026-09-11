@@ -107,6 +107,9 @@ class StandardsSearchEngine:
                 rows = cursor.fetchall()
                 for row in rows:
                     r_dict = dict(row)
+                    ident_str = f"{r_dict.get('standard_number', '')} {r_dict.get('standard_id', '')} {r_dict.get('original_standard_identifier', '')}"
+                    if not re.search(r'\b' + re.escape(exact_number) + r'\b', ident_str):
+                        continue
                     if not any(res.standard_id == r_dict["standard_id"] for res in results):
                         results.append(self._format_result(
                             r_dict,
@@ -126,7 +129,21 @@ class StandardsSearchEngine:
             }
 
             raw_tokens = [t.lower() for t in re.split(r'[\s,\-/:]+', query_clean) if len(t) > 2]
-            sig_tokens = [t for t in raw_tokens if t not in STOP_WORDS]
+            ACRONYM_MAP = {
+                "pvc": ["polyvinyl", "chloride"],
+                "xlpe": ["crosslinked", "polyethylene"],
+                "hdpe": ["polyethylene"],
+                "cpvc": ["chlorinated", "polyvinyl"],
+                "upvc": ["unplasticized"],
+                "haccp": ["hazard", "analysis"],
+                "opc": ["ordinary", "portland"],
+                "ppc": ["portland", "pozzolana"],
+            }
+            expanded_tokens = list(raw_tokens)
+            for tok in raw_tokens:
+                if tok in ACRONYM_MAP:
+                    expanded_tokens.extend(ACRONYM_MAP[tok])
+            sig_tokens = [t for t in expanded_tokens if t not in STOP_WORDS]
             effective_tokens = sig_tokens or raw_tokens
 
             # Detect domain constraints from decomposed components
