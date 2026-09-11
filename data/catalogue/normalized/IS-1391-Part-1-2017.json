@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 1391 (Part 1) : 2017",
+  "title": "Room Air Conditioners - Specification - Part 1 Unitary Air Conditioners",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Room Air Conditioners - Specification - Part 1 Unitary Air Conditioners.",
+  "status": "ACTIVE",
+  "publication_year": 2017,
+  "reaffirmed_year": null,
+  "technical_committee": "MED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Air Conditioners",
+    "Window AC",
+    "HVAC"
+  ],
+  "certification": [
+    "BIS_CRS_SCHEME_II"
+  ],
+  "source": {
+    "source_type": "BIS_CRS_REGISTRY",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.441584+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-1391-Part-1-2017",
+  "base_standard_number": "IS 1391 (Part 1)"
+}

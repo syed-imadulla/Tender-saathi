@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS 3025 (Part 23) : 1986",
+  "title": "Methods of Sampling and Test (Physical and Chemical) for Water and Wastewater - Part 23 Alkalinity",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Methods of Sampling and Test (Physical and Chemical) for Water and Wastewater - Part 23 Alkalinity.",
+  "status": "ACTIVE",
+  "publication_year": 1986,
+  "reaffirmed_year": null,
+  "technical_committee": "CHD 13",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Water Testing",
+    "Alkalinity"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.442498+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-3025-Part-23-1986",
+  "base_standard_number": "IS 3025 (Part 23)"
+}

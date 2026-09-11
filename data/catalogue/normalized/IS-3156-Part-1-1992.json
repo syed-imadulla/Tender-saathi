@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 3156 (Part 1) : 1992",
+  "title": "Voltage Transformers - Part 1 General Requirements",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Voltage Transformers - Part 1 General Requirements.",
+  "status": "ACTIVE",
+  "publication_year": 1992,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 34",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Voltage Transformers",
+    "PT",
+    "Substation"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.441400+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-3156-Part-1-1992",
+  "base_standard_number": "IS 3156 (Part 1)"
+}

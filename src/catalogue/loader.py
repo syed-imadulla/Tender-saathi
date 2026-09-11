@@ -106,6 +106,48 @@ class CatalogueLoader:
             CREATE INDEX IF NOT EXISTS idx_cat_base_num ON catalogue_standards(base_standard_number);
             CREATE INDEX IF NOT EXISTS idx_cat_status ON catalogue_standards(status);
             CREATE INDEX IF NOT EXISTS idx_cat_prov ON catalogue_standards(provenance);
+
+            -- Compatibility table and indices for StandardsDatabase / search engines
+            CREATE TABLE IF NOT EXISTS standards (
+                standard_id TEXT PRIMARY KEY,
+                standard_number TEXT NOT NULL,
+                year INTEGER,
+                full_title TEXT NOT NULL,
+                status TEXT NOT NULL,
+                reaffirmed_year INTEGER,
+                amendments_count INTEGER,
+                technical_committee TEXT,
+                ics TEXT,
+                udc TEXT,
+                scope TEXT,
+                notes TEXT,
+                source TEXT NOT NULL,
+                source_url TEXT,
+                retrieved_at TEXT,
+                original_standard_identifier TEXT NOT NULL,
+                verification_status TEXT NOT NULL,
+                evidence TEXT
+            );
+
+            CREATE INDEX IF NOT EXISTS idx_std_number ON standards(standard_number);
+            CREATE INDEX IF NOT EXISTS idx_std_status ON standards(status);
+
+            CREATE TABLE IF NOT EXISTS standard_references (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                standard_id TEXT NOT NULL,
+                referenced_standard_number TEXT NOT NULL,
+                referenced_year INTEGER,
+                referenced_title TEXT,
+                citing_clause TEXT
+            );
+
+            CREATE TABLE IF NOT EXISTS standard_relationships (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                source_standard_id TEXT NOT NULL,
+                target_standard TEXT NOT NULL,
+                relationship_type TEXT NOT NULL,
+                evidence TEXT NOT NULL
+            );
             """)
 
     def load_from_json_file(
@@ -248,6 +290,34 @@ class CatalogueLoader:
                     json.dumps(r.source),
                     r.source.get("provenance") or ProvenanceLevel.UNKNOWN.value,
                     r.source.get("retrieved_at") or datetime.now(timezone.utc).isoformat()
+                ))
+
+                cursor.execute("""
+                INSERT OR REPLACE INTO standards (
+                    standard_id, standard_number, year, full_title, status,
+                    reaffirmed_year, amendments_count, technical_committee,
+                    ics, udc, scope, notes, source, source_url,
+                    retrieved_at, original_standard_identifier, verification_status, evidence
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """, (
+                    r.canonical_id,
+                    r.standard_number,
+                    r.publication_year,
+                    r.title,
+                    r.status,
+                    r.reaffirmed_year,
+                    len(r.amendments),
+                    r.technical_committee,
+                    None,
+                    None,
+                    r.scope,
+                    ", ".join(r.product_domain) if r.product_domain else None,
+                    r.source.get("source_type") or "CATALOGUE_INGESTION",
+                    r.source.get("source_url"),
+                    r.source.get("retrieved_at") or datetime.now(timezone.utc).isoformat(),
+                    r.standard_number,
+                    r.source.get("provenance") or ProvenanceLevel.OFFICIAL_PRIMARY.value,
+                    r.source.get("source_citation")
                 ))
 
         return new_count, updated_count, unchanged_count

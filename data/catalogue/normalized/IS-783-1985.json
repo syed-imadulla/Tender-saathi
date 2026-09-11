@@ -1,0 +1,26 @@
+{
+  "standard_number": "IS 783 : 1985",
+  "title": "Code of Practice for Laying of Concrete Pipes",
+  "scope": "1.1 This standard covers recommended design practice for the laying of precast concrete pipes. It includes methods for calculating loads on pipes according to installation conditions and gives the corresponding load factors. 1.1.1 This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes, but may also be used for the calculation of loads on other rigid pipes.",
+  "status": "ACTIVE",
+  "publication_year": 1985,
+  "reaffirmed_year": 2022,
+  "technical_committee": "CED 53",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "BSB_EDGE_MANUALLY_VERIFIED",
+    "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+783+%3a+1985&id=0",
+    "retrieved_at": "2026-09-04T13:00:00Z",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-783-1985",
+  "base_standard_number": "IS 783"
+}

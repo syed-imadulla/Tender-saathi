@@ -1,0 +1,26 @@
+{
+  "standard_number": "IS 458 : 2021",
+  "title": "Precast Concrete Pipes (with and without Reinforcement) - Specification",
+  "scope": "This standard covers the requirements for reinforced and unreinforced precast cement concrete pipes, of both pressure and non-pressure varieties used for water mains, sewers, culverts and irrigation. The requirements for collars are also covered by this standard. Notes: covers spinning process and vibration casting process; prestressed concrete pipes and pipes with non-circular section are not covered.",
+  "status": "ACTIVE",
+  "publication_year": 2021,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 53",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "BSB_EDGE_MANUALLY_VERIFIED",
+    "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+458+%3a+2021&id=0",
+    "retrieved_at": "2026-09-04T13:00:00Z",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-458-2021",
+  "base_standard_number": "IS 458"
+}

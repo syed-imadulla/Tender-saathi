@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS 2720 (Part 2) : 1973",
+  "title": "Methods of Test for Soils - Part 2: Determination of Water Content",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Methods of Test for Soils - Part 2: Determination of Water Content.",
+  "status": "ACTIVE",
+  "publication_year": 1973,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 43",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Soil Testing",
+    "Moisture Content"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.440877+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-2720-Part-2-1973",
+  "base_standard_number": "IS 2720 (Part 2)"
+}

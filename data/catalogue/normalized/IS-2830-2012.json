@@ -1,0 +1,29 @@
+{
+  "standard_number": "IS 2830 : 2012",
+  "title": "Carbon Steel Cast Billet Ingots, Billets, Blooms and Slabs for Re-Rolling into High Tensile Structural Steel - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Carbon Steel Cast Billet Ingots, Billets, Blooms and Slabs for Re-Rolling into High Tensile Structural Steel - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 2012,
+  "reaffirmed_year": null,
+  "technical_committee": "MTD 4",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Billets",
+    "Steel Billets"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.442367+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-2830-2012",
+  "base_standard_number": "IS 2830"
+}

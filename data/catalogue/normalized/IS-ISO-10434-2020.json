@@ -1,0 +1,26 @@
+{
+  "standard_number": "IS/ISO 10434 : 2020",
+  "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+  "scope": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends.",
+  "status": "ACTIVE",
+  "publication_year": 2020,
+  "reaffirmed_year": null,
+  "technical_committee": "MED 17",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "BSB_EDGE_MANUALLY_VERIFIED",
+    "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS%2fISO+10434&id=45967",
+    "retrieved_at": "2026-09-04T13:00:00Z",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-ISO-10434-2020",
+  "base_standard_number": "IS/ISO 10434"
+}

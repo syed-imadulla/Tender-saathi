@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 2720 (Part 16) : 1987",
+  "title": "Methods of Test for Soils - Part 16: Laboratory Determination of CBR",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Methods of Test for Soils - Part 16: Laboratory Determination of CBR.",
+  "status": "ACTIVE",
+  "publication_year": 1987,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 43",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Soil Testing",
+    "CBR",
+    "Pavement"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.440964+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-2720-Part-16-1987",
+  "base_standard_number": "IS 2720 (Part 16)"
+}

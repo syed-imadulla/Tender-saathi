@@ -1,0 +1,29 @@
+{
+  "standard_number": "IS 13925 (Part 1) : 2012",
+  "title": "Shunt Capacitors for A.C. Power Systems Having a Rated Voltage Above 1000 V - Part 1 General",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Shunt Capacitors for A.C. Power Systems Having a Rated Voltage Above 1000 V - Part 1 General.",
+  "status": "ACTIVE",
+  "publication_year": 2012,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 29",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "HT Capacitors",
+    "Substation"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.441249+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-13925-Part-1-2012",
+  "base_standard_number": "IS 13925 (Part 1)"
+}

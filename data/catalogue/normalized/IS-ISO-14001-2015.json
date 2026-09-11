@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS/ISO 14001 : 2015",
+  "title": "Environmental Management Systems - Requirements with Guidance for Use",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Environmental Management Systems - Requirements with Guidance for Use.",
+  "status": "ACTIVE",
+  "publication_year": 2015,
+  "reaffirmed_year": null,
+  "technical_committee": "MSD 9",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "EMS",
+    "Environmental Management",
+    "ISO 14001"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.441764+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-ISO-14001-2015",
+  "base_standard_number": "IS/ISO 14001"
+}

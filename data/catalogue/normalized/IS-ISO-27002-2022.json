@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS/ISO 27002 : 2022",
+  "title": "Information Security, Cybersecurity and Privacy Protection - Information Security Controls",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Information Security, Cybersecurity and Privacy Protection - Information Security Controls.",
+  "status": "ACTIVE",
+  "publication_year": 2022,
+  "reaffirmed_year": null,
+  "technical_committee": "LITD 17",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Cybersecurity Controls",
+    "Security"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.441711+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-ISO-27002-2022",
+  "base_standard_number": "IS/ISO 27002"
+}

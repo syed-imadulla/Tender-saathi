@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 1498 : 1970",
+  "title": "Classification and Identification of Soils for General Engineering Purposes",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Classification and Identification of Soils for General Engineering Purposes.",
+  "status": "ACTIVE",
+  "publication_year": 1970,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 43",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Soils",
+    "Geotechnical",
+    "Civil"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.440797+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-1498-1970",
+  "base_standard_number": "IS 1498"
+}

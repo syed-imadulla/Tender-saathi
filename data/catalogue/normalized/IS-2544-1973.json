@@ -1,0 +1,29 @@
+{
+  "standard_number": "IS 2544 : 1973",
+  "title": "Specification for Porcelain Post Insulators for Systems with Nominal Voltages Greater Than 1000 V",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Specification for Porcelain Post Insulators for Systems with Nominal Voltages Greater Than 1000 V.",
+  "status": "ACTIVE",
+  "publication_year": 1973,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 19",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Post Insulators",
+    "Substation"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.441307+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-2544-1973",
+  "base_standard_number": "IS 2544"
+}

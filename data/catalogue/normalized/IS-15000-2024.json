@@ -1,0 +1,26 @@
+{
+  "standard_number": "IS 15000 : 2024",
+  "title": "Hazard Analysis and Critical Control Point (HACCP) - Requirements for Any Organization in the Food Chain",
+  "scope": "This standard sets out the principles of the hazard analysis and critical control point (HACCP) system and provides general guidelines for the application of these principles, while recognizing that the details of application may vary depending on the circumstances of the food operation.",
+  "status": "ACTIVE",
+  "publication_year": 2024,
+  "reaffirmed_year": null,
+  "technical_committee": "FAD 15",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "BSB_EDGE_MANUALLY_VERIFIED",
+    "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+15000&id=51300",
+    "retrieved_at": "2026-09-04T13:00:00Z",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-15000-2024",
+  "base_standard_number": "IS 15000"
+}
