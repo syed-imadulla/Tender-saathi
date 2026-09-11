@@ -1,0 +1,58 @@
+{
+  "version": "2026-09-11",
+  "provenance": "OFFICIAL_PRIMARY",
+  "source_description": "Authoritative Hallmarking Orders issued under the Bureau of Indian Standards (Hallmarking) Regulations, 2018",
+  "hallmarking_orders": [
+    {
+      "order_id": "HM-GOLD-2020",
+      "order_title": "Hallmarking of Gold Jewellery and Gold Artefacts Order, 2020",
+      "ministry": "Ministry of Consumer Affairs, Food and Public Distribution",
+      "gazette_notification": "S.O. 204(E) as amended",
+      "legal_basis": "Sections 14, 15 and 16 of the Bureau of Indian Standards Act, 2016 / BIS (Hallmarking) Regulations, 2018",
+      "source_url": "https://consumeraffairs.nic.in",
+      "effective_date": "2021-06-23",
+      "precious_metal": "GOLD",
+      "mandatory_coverage": true,
+      "purity_grades": ["14K (585)", "18K (750)", "20K (833)", "22K (916)", "23K (958)", "24K (995/999)"],
+      "standards": [
+        {
+          "standard_number": "IS 1417 : 2016",
+          "base_standard": "IS 1417",
+          "title": "Gold and Gold Alloys, Jewellery/Artefacts - Fineness and Marking - Specification",
+          "product_scope": "Gold jewellery and gold artefacts"
+        },
+        {
+          "standard_number": "IS 1418 : 2009",
+          "base_standard": "IS 1418",
+          "title": "Assaying and Marking of Gold in Gold Bullion, Gold Alloys and Gold Jewellery/Artefacts - Cupellation (Fire Assay) Method",
+          "product_scope": "Assaying and fire assay of gold"
+        },
+        {
+          "standard_number": "IS 15820 : 2009",
+          "base_standard": "IS 15820",
+          "title": "General Requirements for Competence of Assaying and Hallmarking Centres",
+          "product_scope": "Assaying and Hallmarking Centres"
+        }
+      ]
+    },
+    {
+      "order_id": "HM-SILVER-2014",
+      "order_title": "Silver and Silver Alloys, Jewellery/Artefacts - Fineness and Marking (Voluntary Hallmarking)",
+      "ministry": "Ministry of Consumer Affairs, Food and Public Distribution",
+      "gazette_notification": "BIS (Hallmarking) Regulations, 2018",
+      "legal_basis": "Sections 14 and 15 of the Bureau of Indian Standards Act, 2016",
+      "source_url": "https://www.bis.gov.in",
+      "effective_date": "2018-06-14",
+      "precious_metal": "SILVER",
+      "mandatory_coverage": false,
+      "standards": [
+        {
+          "standard_number": "IS 2112 : 2014",
+          "base_standard": "IS 2112",
+          "title": "Silver and Silver Alloys, Jewellery/Artefacts - Fineness and Marking - Specification",
+          "product_scope": "Silver jewellery and silver artefacts"
+        }
+      ]
+    }
+  ]
+}

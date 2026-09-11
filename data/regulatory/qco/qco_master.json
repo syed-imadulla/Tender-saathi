@@ -1,0 +1,286 @@
+{
+  "version": "2026-09-11",
+  "provenance": "OFFICIAL_PRIMARY",
+  "source_description": "Authoritative Gazette of India Quality Control Orders (QCOs) issued under Section 16 of the Bureau of Indian Standards Act, 2016",
+  "orders": [
+    {
+      "order_id": "QCO-CPVC-2024",
+      "order_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024",
+      "ministry": "Ministry of Commerce and Industry (DPIIT)",
+      "gazette_notification": "S.O. 1205(E)",
+      "notification_date": "2024-02-26",
+      "effective_date": "2024-08-25",
+      "legal_basis": "Sections 16, 17 and 25 of the Bureau of Indian Standards Act, 2016 (11 of 2016)",
+      "source_url": "https://egazette.gov.in/WriteReadData/2024/252312.pdf",
+      "provenance": "OFFICIAL_PRIMARY",
+      "standards": [
+        {
+          "standard_number": "IS 15778 : 2007",
+          "base_standard": "IS 15778",
+          "title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
+          "product_name": "Chlorinated Polyvinyl Chloride (CPVC) Pipes",
+          "mandatory_isi": true
+        },
+        {
+          "standard_number": "IS 17546 : 2021",
+          "base_standard": "IS 17546",
+          "title": "Chlorinated Polyvinyl Chloride (CPVC) Fittings for Potable Hot and Cold Water Supplies - Specification",
+          "product_name": "Chlorinated Polyvinyl Chloride (CPVC) Fittings",
+          "mandatory_isi": true
+        }
+      ]
+    },
+    {
+      "order_id": "QCO-VALVES-2024",
+      "order_title": "Valves (Quality Control) Order, 2024",
+      "ministry": "Ministry of Commerce and Industry (DPIIT)",
+      "gazette_notification": "S.O. 2682(E)",
+      "notification_date": "2023-12-19",
+      "effective_date": "2024-06-19",
+      "legal_basis": "Sections 16, 17 and 25 of the Bureau of Indian Standards Act, 2016 (11 of 2016)",
+      "source_url": "https://egazette.gov.in/WriteReadData/2023/249811.pdf",
+      "provenance": "OFFICIAL_PRIMARY",
+      "standards": [
+        {
+          "standard_number": "IS 778 : 1984",
+          "base_standard": "IS 778",
+          "title": "Copper Alloy Gate, Globe and Check Valves for Waterworks Purposes - Specification",
+          "product_name": "Copper Alloy Gate, Globe and Check Valves",
+          "mandatory_isi": true
+        },
+        {
+          "standard_number": "IS 14846 : 2000",
+          "base_standard": "IS 14846",
+          "title": "Sluice Valves for Waterworks Purposes (50 mm to 1200 mm Size) - Specification",
+          "product_name": "Sluice Valves for Waterworks Purposes",
+          "mandatory_isi": true
+        },
+        {
+          "standard_number": "IS 13095 : 1991",
+          "base_standard": "IS 13095",
+          "title": "Butterfly Valves for General Purposes - Specification",
+          "product_name": "Butterfly Valves",
+          "mandatory_isi": true
+        }
+      ]
+    },
+    {
+      "order_id": "QCO-STEEL-2024",
+      "order_title": "Steel and Steel Products (Quality Control) Order, 2024",
+      "ministry": "Ministry of Steel",
+      "gazette_notification": "S.O. 325(E)",
+      "notification_date": "2024-01-18",
+      "effective_date": "2024-02-01",
+      "legal_basis": "Sections 16, 17 and 25 of the Bureau of Indian Standards Act, 2016 (11 of 2016)",
+      "source_url": "https://steel.gov.in/sites/default/files/QCO_Steel_Products_2024.pdf",
+      "provenance": "OFFICIAL_PRIMARY",
+      "standards": [
+        {
+          "standard_number": "IS 1786 : 2008",
+          "base_standard": "IS 1786",
+          "title": "High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification",
+          "product_name": "High Strength Deformed Steel Bars and Wires (TMT)",
+          "mandatory_isi": true
+        },
+        {
+          "standard_number": "IS 2062 : 2011",
+          "base_standard": "IS 2062",
+          "title": "Hot Rolled Medium and High Tensile Structural Steel - Specification",
+          "product_name": "Hot Rolled Medium and High Tensile Structural Steel",
+          "mandatory_isi": true
+        },
+        {
+          "standard_number": "IS 2830 : 2012",
+          "base_standard": "IS 2830",
+          "title": "Carbon Steel Cast Billet Ingots, Billets, Blooms and Slabs for Re-Rolling into Steel for General Structural Purposes",
+          "product_name": "Carbon Steel Billets and Blooms",
+          "mandatory_isi": true
+        }
+      ]
+    },
+    {
+      "order_id": "QCO-CEMENT-2024",
+      "order_title": "Cement (Quality Control) Order, 2024",
+      "ministry": "Ministry of Commerce and Industry (DPIIT)",
+      "gazette_notification": "S.O. 4531(E)",
+      "notification_date": "2024-05-20",
+      "effective_date": "2024-11-20",
+      "legal_basis": "Sections 16, 17 and 25 of the Bureau of Indian Standards Act, 2016 (11 of 2016)",
+      "source_url": "https://egazette.gov.in/WriteReadData/2024/254109.pdf",
+      "provenance": "OFFICIAL_PRIMARY",
+      "standards": [
+        {
+          "standard_number": "IS 269 : 2015",
+          "base_standard": "IS 269",
+          "title": "Ordinary Portland Cement - Specification",
+          "product_name": "Ordinary Portland Cement (33, 43 and 53 Grade)",
+          "mandatory_isi": true
+        },
+        {
+          "standard_number": "IS 1489 (Part 1) : 2015",
+          "base_standard": "IS 1489 Part 1",
+          "title": "Portland Pozzolana Cement - Specification - Part 1 Fly Ash Based",
+          "product_name": "Portland Pozzolana Cement (Fly Ash Based)",
+          "mandatory_isi": true
+        },
+        {
+          "standard_number": "IS 1489 (Part 2) : 2015",
+          "base_standard": "IS 1489 Part 2",
+          "title": "Portland Pozzolana Cement - Specification - Part 2 Calcined Clay Based",
+          "product_name": "Portland Pozzolana Cement (Calcined Clay Based)",
+          "mandatory_isi": true
+        },
+        {
+          "standard_number": "IS 455 : 2015",
+          "base_standard": "IS 455",
+          "title": "Portland Slag Cement - Specification",
+          "product_name": "Portland Slag Cement",
+          "mandatory_isi": true
+        },
+        {
+          "standard_number": "IS 8112 : 2013",
+          "base_standard": "IS 8112",
+          "title": "43 Grade Ordinary Portland Cement - Specification",
+          "product_name": "43 Grade Ordinary Portland Cement",
+          "mandatory_isi": true
+        },
+        {
+          "standard_number": "IS 12269 : 2013",
+          "base_standard": "IS 12269",
+          "title": "53 Grade Ordinary Portland Cement - Specification",
+          "product_name": "53 Grade Ordinary Portland Cement",
+          "mandatory_isi": true
+        }
+      ]
+    },
+    {
+      "order_id": "QCO-CABLES-2023",
+      "order_title": "Electrical Wires and Cables (Quality Control) Order, 2023",
+      "ministry": "Ministry of Commerce and Industry (DPIIT)",
+      "gazette_notification": "S.O. 4114(E)",
+      "notification_date": "2023-09-21",
+      "effective_date": "2024-03-21",
+      "legal_basis": "Sections 16, 17 and 25 of the Bureau of Indian Standards Act, 2016 (11 of 2016)",
+      "source_url": "https://egazette.gov.in/WriteReadData/2023/248901.pdf",
+      "provenance": "OFFICIAL_PRIMARY",
+      "standards": [
+        {
+          "standard_number": "IS 694 : 2010",
+          "base_standard": "IS 694",
+          "title": "Polyvinyl Chloride Insulated Unsheathed and Sheathed Cables/Cords with Rigid and Flexible Conductor for Rated Voltages up to and Including 450/750 V",
+          "product_name": "PVC Insulated Cables up to 1100V",
+          "mandatory_isi": true
+        },
+        {
+          "standard_number": "IS 1554 (Part 1) : 1988",
+          "base_standard": "IS 1554 Part 1",
+          "title": "PVC Insulated (Heavy Duty) Electric Cables - Specification - Part 1 For Working Voltages up to and Including 1100 V",
+          "product_name": "Heavy Duty PVC Cables up to 1100V",
+          "mandatory_isi": true
+        },
+        {
+          "standard_number": "IS 7098 (Part 1) : 1988",
+          "base_standard": "IS 7098 Part 1",
+          "title": "Crosslinked Polyethylene Insulated Thermoplastic Sheathed Cables - Specification - Part 1 For Working Voltages up to and Including 1100 V",
+          "product_name": "XLPE Insulated Cables up to 1100V",
+          "mandatory_isi": true
+        },
+        {
+          "standard_number": "IS 7098 (Part 2) : 2011",
+          "base_standard": "IS 7098 Part 2",
+          "title": "Crosslinked Polyethylene Insulated Thermoplastic Sheathed Cables - Specification - Part 2 For Working Voltages from 3.3 kV up to and Including 33 kV",
+          "product_name": "XLPE Insulated Cables 3.3 kV up to 33 kV",
+          "mandatory_isi": true
+        }
+      ]
+    },
+    {
+      "order_id": "QCO-MOTORS-2024",
+      "order_title": "Electric Motors (Quality Control) Order, 2024",
+      "ministry": "Ministry of Commerce and Industry (DPIIT)",
+      "gazette_notification": "S.O. 2489(E)",
+      "notification_date": "2024-02-15",
+      "effective_date": "2024-08-15",
+      "legal_basis": "Sections 16, 17 and 25 of the Bureau of Indian Standards Act, 2016 (11 of 2016)",
+      "source_url": "https://egazette.gov.in/WriteReadData/2024/252109.pdf",
+      "provenance": "OFFICIAL_PRIMARY",
+      "standards": [
+        {
+          "standard_number": "IS 12615 : 2018",
+          "base_standard": "IS 12615",
+          "title": "Line Operated Three Phase AC Motors (IE Code) 'Energy Efficient' - Specification",
+          "product_name": "Energy Efficient Three Phase AC Motors (IE2/IE3/IE4)",
+          "mandatory_isi": true
+        },
+        {
+          "standard_number": "IS 325 : 1996",
+          "base_standard": "IS 325",
+          "title": "Three-Phase Induction Motors - Specification",
+          "product_name": "Three-Phase Induction Motors",
+          "mandatory_isi": true
+        }
+      ]
+    },
+    {
+      "order_id": "QCO-UPVC-HDPE-2024",
+      "order_title": "Pipes and Fittings (Quality Control) Order, 2024",
+      "ministry": "Ministry of Commerce and Industry (DPIIT)",
+      "gazette_notification": "S.O. 1206(E)",
+      "notification_date": "2024-02-26",
+      "effective_date": "2024-08-25",
+      "legal_basis": "Sections 16, 17 and 25 of the Bureau of Indian Standards Act, 2016 (11 of 2016)",
+      "source_url": "https://egazette.gov.in/WriteReadData/2024/252313.pdf",
+      "provenance": "OFFICIAL_PRIMARY",
+      "standards": [
+        {
+          "standard_number": "IS 4985 : 2021",
+          "base_standard": "IS 4985",
+          "title": "Unplasticized Polyvinyl Chloride (uPVC) Pipes for Potable Water Supplies - Specification",
+          "product_name": "uPVC Pipes for Potable Water Supplies",
+          "mandatory_isi": true
+        },
+        {
+          "standard_number": "IS 4984 : 2016",
+          "base_standard": "IS 4984",
+          "title": "High Density Polyethylene Pipes for Water Supply - Specification",
+          "product_name": "HDPE Pipes for Water Supply",
+          "mandatory_isi": true
+        },
+        {
+          "standard_number": "IS 13592 : 2013",
+          "base_standard": "IS 13592",
+          "title": "Unplasticized Polyvinyl Chloride (uPVC) Pipes for Soil and Waste Discharge Systems Inside and Outside Buildings",
+          "product_name": "uPVC Soil and Waste Pipes",
+          "mandatory_isi": true
+        }
+      ]
+    },
+    {
+      "order_id": "QCO-UPCOMING-SMARTMETERS-2026",
+      "order_title": "Smart Meters and Advanced Metering Infrastructure Equipment (Quality Control) Order, 2026",
+      "ministry": "Ministry of Power",
+      "gazette_notification": "S.O. 4812(E)",
+      "notification_date": "2026-06-15",
+      "effective_date": "2027-04-01",
+      "legal_basis": "Sections 16, 17 and 25 of the Bureau of Indian Standards Act, 2016 (11 of 2016)",
+      "source_url": "https://egazette.gov.in/WriteReadData/2026/269871.pdf",
+      "provenance": "OFFICIAL_PRIMARY",
+      "standards": [
+        {
+          "standard_number": "IS 16444 (Part 1) : 2015",
+          "base_standard": "IS 16444 Part 1",
+          "title": "A.C. Static Direct Connected Watt-Hour Smart Meter Class 1 and 2 - Specification - Part 1 Electricity Smart Meter",
+          "product_name": "A.C. Static Smart Electricity Meters",
+          "mandatory_isi": true
+        },
+        {
+          "standard_number": "IS 15959 (Part 1) : 2011",
+          "base_standard": "IS 15959 Part 1",
+          "title": "Data Exchange for Electricity Meter Reading, Tariff and Load Control - Companion Specification - Part 1 Static Energy Meter",
+          "product_name": "Smart Meter Data Exchange Protocol",
+          "mandatory_isi": true
+        }
+      ]
+    }
+  ]
+}

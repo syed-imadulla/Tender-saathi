@@ -29,6 +29,7 @@ from src.critic import EvidenceAwareCritic, CandidateCritique, DecisionOutcome, 
 from src.graph import StandardsGraph, RelatedStandardResult
 from src.audit import TenderAuditEngine, TenderAuditResult
 from src.applicability import ApplicabilityGate, ApplicabilityResult, ApplicabilityDecision
+from src.regulatory.regulatory_engine import RegulatoryEngine
 
 
 # ---------------------------------------------------------------------------
@@ -108,6 +109,8 @@ class RequirementRecommendationResult:
     # Milestone 10 Evidence Consistency & Explanation fields:
     evidence_standard: Optional[str] = None
     why_it_matches: Optional[str] = None
+    # Milestone 11 Regulatory & Certification fields:
+    regulatory: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -168,6 +171,7 @@ class StandardsRecommender:
         from src.gap_detection import StandardsGapDetector
         self.dependency_engine = StandardsDependencyEngine(self.graph, self.applicability_gate)
         self.gap_detector = StandardsGapDetector()
+        self.regulatory_engine = RegulatoryEngine()
         from src.ai_understanding import AIRequirementParser
         self.ai_parser = ai_parser or AIRequirementParser(enabled=ai_enabled)
 
@@ -361,7 +365,8 @@ class StandardsRecommender:
                 final_score=0.0,
                 applicability=primary_app_res,
                 evidence_standard=None,
-                why_it_matches="No reliable Indian Standard match found in the available catalogue."
+                why_it_matches="No reliable Indian Standard match found in the available catalogue.",
+                regulatory=self.regulatory_engine.evaluate_to_dict(None, text)
             )
 
         # Step 4: Run Critic across Applicable Candidate Pool
@@ -584,7 +589,8 @@ class StandardsRecommender:
             potentially_missing=pot_missing_dicts,
             related_for_review=rel_review_dicts,
             evidence_standard=evidence_std,
-            why_it_matches=why_it_matches
+            why_it_matches=why_it_matches,
+            regulatory=self.regulatory_engine.evaluate_to_dict(top_rec.standard_number, text)
         )
 
 

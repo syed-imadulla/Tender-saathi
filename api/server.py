@@ -276,6 +276,8 @@ def _normalize_result(
             "verified_missing": getattr(r, "verified_missing", []) or [],
             "potentially_missing": getattr(r, "potentially_missing", []) or [],
             "related_for_review": getattr(r, "related_for_review", []) or [],
+            # Milestone 11: Regulatory Intelligence results
+            "regulatory": getattr(r, "regulatory", None) or {},
         }
 
         all_reqs.append(req_dict)
@@ -313,6 +315,17 @@ def _normalize_result(
         "related_for_review_count": getattr(audit, "related_for_review_count", 0),
         "standards_coverage": getattr(audit, "standards_coverage", {}),
         "gap_summary": getattr(audit, "gap_summary", {}),
+        "certification_checks": getattr(audit, "certification_checks", 0),
+        "qco_checks": getattr(audit, "qco_checks", 0),
+        "crs_checks": getattr(audit, "crs_checks", 0),
+        "hallmarking_checks": getattr(audit, "hallmarking_checks", 0),
+        "regulatory_review_items": getattr(audit, "regulatory_review_items", 0),
+        "unknown_regulatory_items": getattr(audit, "unknown_regulatory_items", 0),
+        "upcoming_qco_items": getattr(audit, "upcoming_qco_items", 0),
+        "mandatory_qco_count": getattr(audit, "mandatory_qco_count", 0),
+        "mandatory_certification_count": getattr(audit, "mandatory_certification_count", 0),
+        "crs_applicable_count": getattr(audit, "crs_applicable_count", 0),
+        "hallmarking_applicable_count": getattr(audit, "hallmarking_applicable_count", 0),
     }
 
 

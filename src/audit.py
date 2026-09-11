@@ -81,6 +81,18 @@ class TenderAuditResult:
     related_for_review_count: int = 0
     standards_coverage: Dict[str, Any] = field(default_factory=dict)
     gap_summary: Dict[str, Any] = field(default_factory=dict)
+    # Milestone 11 Regulatory Intelligence metrics:
+    certification_checks: int = 0
+    qco_checks: int = 0
+    crs_checks: int = 0
+    hallmarking_checks: int = 0
+    regulatory_review_items: int = 0
+    unknown_regulatory_items: int = 0
+    upcoming_qco_items: int = 0
+    mandatory_qco_count: int = 0
+    mandatory_certification_count: int = 0
+    crs_applicable_count: int = 0
+    hallmarking_applicable_count: int = 0
 
     def to_dict(self) -> Dict[str, Any]:
         d = asdict(self)
@@ -262,6 +274,59 @@ class TenderAuditEngine:
             pot_missing_count += len(pm)
             rel_review_count += len(rr)
 
+        # Aggregate Milestone 11 Regulatory Intelligence metrics
+        certification_checks = 0
+        qco_checks = 0
+        crs_checks = 0
+        hallmarking_checks = 0
+        regulatory_review_items = 0
+        unknown_regulatory_items = 0
+        upcoming_qco_items = 0
+        mandatory_qco_count = 0
+        mandatory_certification_count = 0
+        crs_applicable_count = 0
+        hallmarking_applicable_count = 0
+
+        for r in results:
+            reg = getattr(r, "regulatory", None) or {}
+            if reg:
+                cert = reg.get("certification") or {}
+                qco = reg.get("qco") or {}
+                crs = reg.get("crs") or {}
+                hm = reg.get("hallmarking") or {}
+
+                if cert:
+                    certification_checks += 1
+                    if cert.get("status") == "APPLICABLE":
+                        mandatory_certification_count += 1
+                    if cert.get("human_review_required"):
+                        regulatory_review_items += 1
+                    if cert.get("status") == "UNKNOWN":
+                        unknown_regulatory_items += 1
+
+                if qco:
+                    qco_checks += 1
+                    if qco.get("status") == "CURRENT":
+                        mandatory_qco_count += 1
+                    elif qco.get("status") == "UPCOMING":
+                        upcoming_qco_items += 1
+                    if qco.get("status") == "UNKNOWN":
+                        unknown_regulatory_items += 1
+
+                if crs:
+                    crs_checks += 1
+                    if crs.get("status") == "APPLICABLE":
+                        crs_applicable_count += 1
+                    if crs.get("status") == "UNKNOWN":
+                        unknown_regulatory_items += 1
+
+                if hm:
+                    hallmarking_checks += 1
+                    if hm.get("status") == "APPLICABLE":
+                        hallmarking_applicable_count += 1
+                    if hm.get("status") == "UNKNOWN":
+                        unknown_regulatory_items += 1
+
         # Sort Review Queue: CRITICAL (1) -> HIGH (2) -> MEDIUM (3) -> LOW (4)
         # Secondary sort: Evidence severity (NONE -> WEAK -> MODERATE -> STRONG)
         # Tertiary sort: Completeness severity (UNKNOWN -> POTENTIALLY_MISSING -> NOT_APPLICABLE -> KNOWN)
@@ -342,7 +407,18 @@ class TenderAuditEngine:
             potentially_missing_count=pot_missing_count,
             related_for_review_count=rel_review_count,
             standards_coverage=standards_coverage,
-            gap_summary=gap_summary
+            gap_summary=gap_summary,
+            certification_checks=certification_checks,
+            qco_checks=qco_checks,
+            crs_checks=crs_checks,
+            hallmarking_checks=hallmarking_checks,
+            regulatory_review_items=regulatory_review_items,
+            unknown_regulatory_items=unknown_regulatory_items,
+            upcoming_qco_items=upcoming_qco_items,
+            mandatory_qco_count=mandatory_qco_count,
+            mandatory_certification_count=mandatory_certification_count,
+            crs_applicable_count=crs_applicable_count,
+            hallmarking_applicable_count=hallmarking_applicable_count
         )
 
 

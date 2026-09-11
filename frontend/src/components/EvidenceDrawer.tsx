@@ -333,8 +333,144 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
             </section>
           )}
 
-          {/* 10. Technical Details (Collapsed by default) */}
-          <CollapseSection title="10. Technical Details" defaultOpen={false}>
+          {/* 10. Regulatory & Certification Intelligence */}
+          {req.regulatory && (
+            <section className="drawer-section">
+              <h3 className="drawer-section__title">10. Regulatory & Certification Intelligence</h3>
+              <p style={{ fontSize: '0.78rem', color: '#64748b', marginTop: '-0.25rem', marginBottom: '0.75rem' }}>
+                Statutory conformity assessment under the BIS Act, 2016 and Ministry Gazette Orders.
+              </p>
+
+              <div className="drawer-regulatory-grid">
+                {/* BIS Product Certification */}
+                <div className="regulatory-status-card">
+                  <span className="regulatory-status-card__header">BIS Product Certification</span>
+                  <div>
+                    {req.regulatory.certification?.status === 'APPLICABLE' ? (
+                      <span className="regulatory-badge regulatory-badge--applicable">✓ Mandatory Scheme-I</span>
+                    ) : req.regulatory.certification?.status === 'REVIEW_REQUIRED' ? (
+                      <span className="regulatory-badge regulatory-badge--review_required">⚠ Review Scheme</span>
+                    ) : req.regulatory.certification?.status === 'NOT_IDENTIFIED' ? (
+                      <span className="regulatory-badge regulatory-badge--not_identified">— Not Identified</span>
+                    ) : (
+                      <span className="regulatory-badge regulatory-badge--unknown">? Unknown</span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Quality Control Order (QCO) */}
+                <div className="regulatory-status-card">
+                  <span className="regulatory-status-card__header">Quality Control Order</span>
+                  <div>
+                    {req.regulatory.qco?.status === 'CURRENT' ? (
+                      <span className="regulatory-badge regulatory-badge--current">✓ Current QCO</span>
+                    ) : req.regulatory.qco?.status === 'UPCOMING' ? (
+                      <span className="regulatory-badge regulatory-badge--upcoming">⚠ Upcoming QCO</span>
+                    ) : req.regulatory.qco?.status === 'NOT_IDENTIFIED' ? (
+                      <span className="regulatory-badge regulatory-badge--not_identified">— Not Identified</span>
+                    ) : (
+                      <span className="regulatory-badge regulatory-badge--unknown">? Unknown</span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Compulsory Registration Scheme (CRS) */}
+                <div className="regulatory-status-card">
+                  <span className="regulatory-status-card__header">Compulsory Registration (CRS)</span>
+                  <div>
+                    {req.regulatory.crs?.status === 'APPLICABLE' ? (
+                      <span className="regulatory-badge regulatory-badge--applicable">✓ Mandatory Scheme-II</span>
+                    ) : req.regulatory.crs?.status === 'NOT_IDENTIFIED' ? (
+                      <span className="regulatory-badge regulatory-badge--not_identified">— Not Identified</span>
+                    ) : (
+                      <span className="regulatory-badge regulatory-badge--unknown">? Unknown</span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Hallmarking */}
+                <div className="regulatory-status-card">
+                  <span className="regulatory-status-card__header">Hallmarking</span>
+                  <div>
+                    {req.regulatory.hallmarking?.status === 'APPLICABLE' ? (
+                      <span className="regulatory-badge regulatory-badge--applicable">✓ Mandatory Gold HUID</span>
+                    ) : req.regulatory.hallmarking?.status === 'REVIEW_REQUIRED' ? (
+                      <span className="regulatory-badge regulatory-badge--review_required">⚠ Voluntary Silver</span>
+                    ) : req.regulatory.hallmarking?.status === 'NOT_APPLICABLE' ? (
+                      <span className="regulatory-badge regulatory-badge--not_applicable">— Not Applicable</span>
+                    ) : (
+                      <span className="regulatory-badge regulatory-badge--unknown">? Unknown</span>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Expandable Evidentiary Basis */}
+              <div style={{ marginTop: '0.75rem' }}>
+                <CollapseSection title="View Regulatory Evidentiary Basis" defaultOpen={false}>
+                  <div className="regulatory-detail-box">
+                    {req.regulatory.qco && req.regulatory.qco.status !== 'NOT_IDENTIFIED' && (
+                      <div className="regulatory-detail-row">
+                        <span className="regulatory-detail-label">QCO Basis: </span>
+                        <span>{req.regulatory.qco.explanation}</span>
+                        {req.regulatory.qco.legal_basis && (
+                          <div style={{ color: '#64748b', fontSize: '0.74rem', marginTop: '2px' }}>
+                            Legal Basis: {req.regulatory.qco.legal_basis} · Source: {req.regulatory.qco.source}
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {req.regulatory.certification && req.regulatory.certification.status === 'APPLICABLE' && (
+                      <div className="regulatory-detail-row">
+                        <span className="regulatory-detail-label">Certification Basis: </span>
+                        <span>{req.regulatory.certification.explanation}</span>
+                        <div style={{ color: '#64748b', fontSize: '0.74rem', marginTop: '2px' }}>
+                          Legal Basis: {req.regulatory.certification.legal_basis} · Source: {req.regulatory.certification.source}
+                        </div>
+                      </div>
+                    )}
+
+                    {req.regulatory.crs && req.regulatory.crs.status === 'APPLICABLE' && (
+                      <div className="regulatory-detail-row">
+                        <span className="regulatory-detail-label">CRS Basis: </span>
+                        <span>{req.regulatory.crs.explanation}</span>
+                        <div style={{ color: '#64748b', fontSize: '0.74rem', marginTop: '2px' }}>
+                          Legal Basis: {req.regulatory.crs.legal_basis} · Source: {req.regulatory.crs.source}
+                        </div>
+                      </div>
+                    )}
+
+                    {req.regulatory.hallmarking && req.regulatory.hallmarking.status !== 'NOT_APPLICABLE' && (
+                      <div className="regulatory-detail-row">
+                        <span className="regulatory-detail-label">Hallmarking Basis: </span>
+                        <span>{req.regulatory.hallmarking.explanation}</span>
+                        <div style={{ color: '#64748b', fontSize: '0.74rem', marginTop: '2px' }}>
+                          Legal Basis: {req.regulatory.hallmarking.legal_basis} · Source: {req.regulatory.hallmarking.source}
+                        </div>
+                      </div>
+                    )}
+
+                    {(!req.regulatory.qco || req.regulatory.qco.status === 'NOT_IDENTIFIED') &&
+                     (!req.regulatory.certification || req.regulatory.certification.status !== 'APPLICABLE') &&
+                     (!req.regulatory.crs || req.regulatory.crs.status !== 'APPLICABLE') &&
+                     (!req.regulatory.hallmarking || req.regulatory.hallmarking.status === 'NOT_APPLICABLE') && (
+                      <div style={{ color: '#64748b', fontStyle: 'italic' }}>
+                        No mandatory Quality Control Order, CRS schedule, or Hallmarking mandate identified for this standard in current authoritative gazette records. Note: The existence of an Indian Standard does not automatically imply mandatory BIS certification.
+                      </div>
+                    )}
+                  </div>
+                </CollapseSection>
+              </div>
+
+              <div className="regulatory-disclaimer">
+                Regulatory intelligence is evaluated deterministically from authoritative Ministry Gazette orders and BIS registries without LLM interpretation. Technical and legal officer review is required before contract finalization.
+              </div>
+            </section>
+          )}
+
+          {/* 11. Technical Details (Collapsed by default) */}
+          <CollapseSection title="11. Technical Details" defaultOpen={false}>
             <div className="score-breakdown-list">
               <ScoreBar label="BM25" value={req.scores?.deterministic === 1.0 ? 'Not used' : req.scores?.bm25} />
               <ScoreBar label="Semantic" value={req.scores?.deterministic === 1.0 ? 'Not used' : req.scores?.semantic} />
@@ -379,8 +515,8 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
             )}
           </CollapseSection>
 
-          {/* 11. AI Understanding (Collapsed by default) */}
-          <CollapseSection title="11. AI Requirement Understanding" defaultOpen={false}>
+          {/* 12. AI Understanding (Collapsed by default) */}
+          <CollapseSection title="12. AI Requirement Understanding" defaultOpen={false}>
             <div className="drawer-ai-facets">
               {FACET_KEYS.map(({ key, label }) => {
                 const val = ai.facets ? ai.facets[key] : null;
