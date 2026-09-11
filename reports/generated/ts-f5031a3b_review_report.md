@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-CPVC`
-- **Source File:** `Sample: cpvc`
+- **Tender ID:** `TS-F5031A3B`
+- **Source File:** `text input`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -58,22 +58,21 @@
 ### 5.1 Requirement `REQ-001` [MATERIAL]
 
 **Original Requirement Text:**
-> "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778."
+> "Supply and installation of chlorinated polyvinyl chloride (CPVC) pipes conforming to IS 15778."
 
-- **Decomposed Technical Components:** `general: CPVC pipes`
+- **Decomposed Technical Components:** `general: pipes`
 - **Recommended Standard:** **IS 15778 : 2007** — *Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*
 - **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `1.000`
 - **Evidence Strength:** `STRONG` | **Provenance:** `CURATED`
 - **Verbatim Evidence (Tender Document):** "Tender explicitly requires compliance with IS 15778."
 - **Why This Standard?:**
-  - Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.
+  - Standard title directly matches requirement component(s): 'pipes'.
   - Authoritative scope explicitly covers application: "Tender explicitly requires compliance with IS 15778."
   - Standard is currently active in the BIS repository with verified currency.
   - Provenance established via Tender Document (VERIFIED).
 - **Why Not Alternatives?:**
-  - Alternative standard SP 57 (QAWSM) has lower composite relevance (0.567 vs 1.000).
-  - Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification.
-- **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
+  - Alternative standard IS 14333 has lower composite relevance (0.621 vs 1.000).
+- **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR, Piping Application / Service)
 - **Related Standards Identified for Review (Graph Depth = 1):**
   - [→ TEST_METHOD] `IS 12235 : 2004` — *Title not in local index* (Unknown) — *Note:* Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance.
   - [→ INSTALLATION_STANDARD] `IS 7634 (Part 3) : 2003` — *Title not in local index* (Unknown) — *Note:* Installation, laying, and jointing standard associated with IS 7634 (Part 3) : 2003. Review for installation execution.

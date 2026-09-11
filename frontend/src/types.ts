@@ -40,6 +40,22 @@ export interface ApplicabilityData {
   rejection_reasons?: string[];
 }
 
+export type AmbiguityState =
+  | 'CLEAR'
+  | 'AMBIGUOUS'
+  | 'INCOMPLETE'
+  | 'CONFLICTING'
+  | 'NO_RELIABLE_MATCH'
+  | 'REVIEW_REQUIRED';
+
+export interface CompetingInterpretation {
+  standard_number: string;
+  title?: string;
+  score?: number;
+  technical_scope?: string;
+  distinguishing_parameter_needed?: string;
+}
+
 export interface Requirement {
   id: string;
   text: string;
@@ -88,6 +104,16 @@ export interface Requirement {
   related_for_review?: GapItem[];
   // Milestone 11: Regulatory & Certification Intelligence
   regulatory?: RegulatoryData | null;
+  // Milestone 12: Controlled Ambiguity & Human Review
+  ambiguity_state?: AmbiguityState;
+  ambiguity_reason?: string;
+  retrieval_status?: 'CANDIDATES_FOUND' | 'ZERO_RESULTS' | string;
+  applicability_status?: 'APPLICABLE' | 'ALL_REJECTED' | 'REVIEW_REQUIRED' | string;
+  evidence_status?: 'VALID' | 'INSUFFICIENT' | 'GROUNDING_FAILED' | string;
+  missing_information?: string[];
+  competing_interpretations?: CompetingInterpretation[];
+  suggested_clarification_question?: string | null;
+  unresolved_components?: string[];
 }
 
 export interface RegulatoryItem {
@@ -197,6 +223,14 @@ export interface AnalysisSummary {
   related_for_review_count?: number;
   standards_coverage?: Record<string, any>;
   gap_summary?: Record<string, any>;
+  ambiguity_summary?: {
+    clear: number;
+    ambiguous: number;
+    incomplete: number;
+    conflicting: number;
+    no_reliable_match: number;
+    review_required: number;
+  };
 }
 
 

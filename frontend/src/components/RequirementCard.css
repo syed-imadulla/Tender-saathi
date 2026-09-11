@@ -266,6 +266,48 @@
   margin: 0;
 }
 
+.attention-card--conflicting {
+  border-color: #fca5a5;
+  border-left: 4px solid #dc2626;
+  background: #fffafa;
+}
+
+.attention-card--ambiguous {
+  border-color: #ddd6fe;
+  border-left: 4px solid #7c3aed;
+  background: #fdfcff;
+}
+
+.attention-card--incomplete {
+  border-color: #fed7aa;
+  border-left: 4px solid #f97316;
+  background: #ffffff;
+}
+
+.attention-card--no-reliable-match {
+  border-color: #cbd5e1;
+  border-left: 4px solid #64748b;
+  background: #f8fafc;
+}
+
+.attention-card--review-required {
+  border-color: #fde68a;
+  border-left: 4px solid #d97706;
+  background: #fffdf7;
+}
+
+.clarification-callout {
+  transition: all 150ms ease;
+}
+
+.clarification-callout:hover {
+  filter: brightness(0.98);
+}
+
+.competing-standards-block {
+  border: 1px solid #e2e8f0;
+}
+
 /* ─── 3. Update Card (Superseded Standards) ────────────────────────────── */
 .update-card {
   background: #ffffff;

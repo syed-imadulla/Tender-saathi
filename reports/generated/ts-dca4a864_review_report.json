@@ -2,10 +2,10 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-DCA4A864",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: cpvc",
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
@@ -15,7 +15,7 @@
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-DCA4A864",
     "requirements_analyzed": 1,
     "recommendations_count": 1,
     "review_required_count": 0,
@@ -95,11 +95,11 @@
   "requirements": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
+      "requirement_text": "Supply and installation of chlorinated polyvinyl chloride (CPVC) pipes conforming to IS 15778.",
       "category": "material",
       "components": [
         {
-          "text": "CPVC pipes",
+          "text": "pipes",
           "component_type": "material",
           "domain": "piping",
           "extracted_attributes": {
@@ -118,19 +118,19 @@
       "evidence_text": "Tender explicitly requires compliance with IS 15778.",
       "evidence_source": "Tender Document",
       "why_this": [
-        "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.",
+        "Standard title directly matches requirement component(s): 'pipes'.",
         "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 15778.\"",
         "Standard is currently active in the BIS repository with verified currency.",
         "Provenance established via Tender Document (VERIFIED)."
       ],
       "why_not": [
-        "Alternative standard SP 57 (QAWSM) has lower composite relevance (0.567 vs 1.000).",
-        "Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification."
+        "Alternative standard IS 14333 has lower composite relevance (0.621 vs 1.000)."
       ],
       "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [
         "Diameter / Nominal Bore (DN/OD)",
-        "Pressure Class / Schedule / SDR"
+        "Pressure Class / Schedule / SDR",
+        "Piping Application / Service"
       ],
       "known_parameters": {},
       "related_standards": [

@@ -1,0 +1,362 @@
+[
+  {
+    "id": "AMB-CLR-01",
+    "category": "Civil/Plumbing",
+    "requirement_text": "Supply and installation of chlorinated polyvinyl chloride (CPVC) pipes and fittings for domestic hot and cold water distribution system conforming to IS 15778.",
+    "expected_state": "CLEAR",
+    "expected_candidate": "IS 15778",
+    "expected_review_required": false,
+    "discriminating_parameter": "material=CPVC"
+  },
+  {
+    "id": "AMB-CLR-02",
+    "category": "Civil/Materials",
+    "requirement_text": "Supply of 43 Grade Ordinary Portland Cement (OPC) packed in 50 kg HDPE/PP bags conforming to IS 269.",
+    "expected_state": "CLEAR",
+    "expected_candidate": "IS 269",
+    "expected_review_required": false,
+    "discriminating_parameter": "cement_grade=43"
+  },
+  {
+    "id": "AMB-CLR-03",
+    "category": "Electrical/Cables",
+    "requirement_text": "Supply of 1100V grade PVC insulated, PVC sheathed copper conductor multi-core control cables conforming to IS 694.",
+    "expected_state": "CLEAR",
+    "expected_candidate": "IS 694",
+    "expected_review_required": false,
+    "discriminating_parameter": "voltage=1100V, insulation=PVC"
+  },
+  {
+    "id": "AMB-CLR-04",
+    "category": "Electrical/Motors",
+    "requirement_text": "Supply of three phase squirrel cage induction motors 415V, 50Hz, 30 kW with IE3 premium efficiency conforming to IS 12615.",
+    "expected_state": "CLEAR",
+    "expected_candidate": "IS 12615",
+    "expected_review_required": false,
+    "discriminating_parameter": "efficiency_class=IE3"
+  },
+  {
+    "id": "AMB-CLR-05",
+    "category": "Civil/Plumbing",
+    "requirement_text": "Supply and delivery of high density polyethylene (HDPE) pipes PE-100 grade, PN 10, DN 200 mm for potable water conveyance conforming to IS 4984.",
+    "expected_state": "CLEAR",
+    "expected_candidate": "IS 4984",
+    "expected_review_required": false,
+    "discriminating_parameter": "material=HDPE, service=potable_water"
+  },
+  {
+    "id": "AMB-CLR-06",
+    "category": "Civil/Plumbing",
+    "requirement_text": "Supply of unplasticized PVC (uPVC) pipes Class 3 (0.6 MPa) 110 mm diameter with solvent cement jointing for cold potable water service conforming to IS 4985.",
+    "expected_state": "CLEAR",
+    "expected_candidate": "IS 4985",
+    "expected_review_required": false,
+    "discriminating_parameter": "material=uPVC"
+  },
+  {
+    "id": "AMB-CLR-07",
+    "category": "Mechanical/Valves",
+    "requirement_text": "Supply of copper alloy gate, globe and check valves 50 mm nominal diameter for waterworks purposes conforming to IS 778.",
+    "expected_state": "CLEAR",
+    "expected_candidate": "IS 778",
+    "expected_review_required": false,
+    "discriminating_parameter": "body_material=copper_alloy"
+  },
+  {
+    "id": "AMB-CLR-08",
+    "category": "Civil/Materials",
+    "requirement_text": "Supply of structural steel standard quality Fe 410 WA plates 20 mm thickness conforming to IS 2062.",
+    "expected_state": "CLEAR",
+    "expected_candidate": "IS 2062",
+    "expected_review_required": false,
+    "discriminating_parameter": "grade=Fe410"
+  },
+  {
+    "id": "AMB-CLR-09",
+    "category": "Civil/Drainage",
+    "requirement_text": "Supply and laying of precast reinforced concrete pipes NP3 class 600 mm internal diameter for non-pressure underground sewerage and drainage conforming to IS 458.",
+    "expected_state": "CLEAR",
+    "expected_candidate": "IS 458",
+    "expected_review_required": false,
+    "discriminating_parameter": "material=precast_concrete, class=NP3"
+  },
+  {
+    "id": "AMB-CLR-10",
+    "category": "Electrical/Luminaires",
+    "requirement_text": "Supply and installation of 45W outdoor LED street lighting luminaires IP66 for road illumination conforming to IS 10322.",
+    "expected_state": "CLEAR",
+    "expected_candidate": "IS 10322",
+    "expected_review_required": false,
+    "discriminating_parameter": "luminaire_type=street_lighting"
+  },
+  {
+    "id": "AMB-INC-01",
+    "category": "Mechanical/Valves",
+    "requirement_text": "Procurement and supply of industrial valves for water utility distribution network.",
+    "expected_state": "INCOMPLETE",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "missing_parameter": "valve_type, body_material, nominal_size"
+  },
+  {
+    "id": "AMB-INC-02",
+    "category": "Civil/Plumbing",
+    "requirement_text": "Procurement of piping and pipe fittings for urban infrastructure utility corridor.",
+    "expected_state": "INCOMPLETE",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "missing_parameter": "material, nominal_bore, pressure_rating"
+  },
+  {
+    "id": "AMB-INC-03",
+    "category": "Electrical/Cables",
+    "requirement_text": "Supply and laying of electrical power cables for factory electrification.",
+    "expected_state": "INCOMPLETE",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "missing_parameter": "voltage_grade, conductor_material, insulation_type"
+  },
+  {
+    "id": "AMB-INC-04",
+    "category": "Mechanical/Pumps",
+    "requirement_text": "Supply and installation of water pumps for public water works system.",
+    "expected_state": "INCOMPLETE",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "missing_parameter": "pump_type, discharge, head, motor_rating"
+  },
+  {
+    "id": "AMB-INC-05",
+    "category": "Electrical/Motors",
+    "requirement_text": "Procurement of electric induction motors for municipal utility pumping station.",
+    "expected_state": "INCOMPLETE",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "missing_parameter": "voltage, power_rating, efficiency_class"
+  },
+  {
+    "id": "AMB-INC-06",
+    "category": "Mechanical/Valves",
+    "requirement_text": "Replacement of damaged valves in pumping station.",
+    "expected_state": "INCOMPLETE",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "missing_parameter": "valve_type, metallurgy, pressure_class"
+  },
+  {
+    "id": "AMB-INC-07",
+    "category": "Civil/Piping",
+    "requirement_text": "Laying of underground sewerage pipeline without defining pipe material or class.",
+    "expected_state": "INCOMPLETE",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "missing_parameter": "pipe_material, diameter, pipe_class"
+  },
+  {
+    "id": "AMB-INC-08",
+    "category": "Electrical/Switchgear",
+    "requirement_text": "Supply and erection of electrical distribution panels for administrative complex.",
+    "expected_state": "INCOMPLETE",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "missing_parameter": "system_voltage, current_rating, fault_level"
+  },
+  {
+    "id": "AMB-INC-09",
+    "category": "Civil/Sanitary",
+    "requirement_text": "Procurement of sanitary drainage pipes and accessories for residential quarters.",
+    "expected_state": "INCOMPLETE",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "missing_parameter": "pipe_material, diameter"
+  },
+  {
+    "id": "AMB-INC-10",
+    "category": "Civil/Materials",
+    "requirement_text": "Supply of standard cement bags for general concrete construction works.",
+    "expected_state": "INCOMPLETE",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "missing_parameter": "cement_type, grade"
+  },
+  {
+    "id": "AMB-AMB-01",
+    "category": "Mechanical/Valves",
+    "requirement_text": "Supply of waterworks gate valves for potable water pipeline without specifying metallurgy (copper alloy vs cast iron).",
+    "expected_state": "AMBIGUOUS",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "competing_standards": ["IS 778", "IS 14846"]
+  },
+  {
+    "id": "AMB-AMB-02",
+    "category": "Civil/Plumbing",
+    "requirement_text": "Supply of water supply distribution pipe 100 mm diameter suitable for cold potable water (unspecified galvanized steel vs ductile iron).",
+    "expected_state": "AMBIGUOUS",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "competing_standards": ["IS 1239 (Part 1)", "IS 8329"]
+  },
+  {
+    "id": "AMB-AMB-03",
+    "category": "Electrical/Cables",
+    "requirement_text": "Supply of 1.1 kV insulated power cables for internal building wiring without defining insulation polymer (PVC vs XLPE).",
+    "expected_state": "AMBIGUOUS",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "competing_standards": ["IS 694", "IS 7098 (Part 1)"]
+  },
+  {
+    "id": "AMB-AMB-04",
+    "category": "Civil/Piping",
+    "requirement_text": "Sewerage pipeline construction without specifying pipe material (concrete IS 458 vs structured wall polyethylene IS 14333).",
+    "expected_state": "AMBIGUOUS",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "competing_standards": ["IS 458", "IS 14333"]
+  },
+  {
+    "id": "AMB-AMB-05",
+    "category": "Services/Catering",
+    "requirement_text": "Operation and management of staff canteen and food outlet on BOT concession revenue share model.",
+    "expected_state": "AMBIGUOUS",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "competing_standards": ["IS 2491", "IS 15000"]
+  },
+  {
+    "id": "AMB-AMB-06",
+    "category": "Civil/Flooring",
+    "requirement_text": "Supply of ceramic floor tiles for commercial mall corridors without specifying pressing type (dry-pressed vs extruded).",
+    "expected_state": "AMBIGUOUS",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "competing_standards": ["IS 15622", "IS 13712"]
+  },
+  {
+    "id": "AMB-AMB-07",
+    "category": "Mechanical/Valves",
+    "requirement_text": "Procurement of dual-plate check valves and swing check valves for water distribution network.",
+    "expected_state": "AMBIGUOUS",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "competing_standards": ["IS 778", "IS 5312"]
+  },
+  {
+    "id": "AMB-AMB-08",
+    "category": "Electrical/Transformers",
+    "requirement_text": "Supply of 11 kV / 415 V 500 kVA distribution transformer without specifying cooling type (oil immersed vs dry type).",
+    "expected_state": "AMBIGUOUS",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "competing_standards": ["IS 1180 (Part 1)", "IS 2026"]
+  },
+  {
+    "id": "AMB-AMB-09",
+    "category": "Civil/Structural",
+    "requirement_text": "Design and fabrication of structural steel framing using cold formed light gauge steel vs hot rolled sections.",
+    "expected_state": "AMBIGUOUS",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "competing_standards": ["IS 800", "IS 801"]
+  },
+  {
+    "id": "AMB-AMB-10",
+    "category": "Mechanical/Piping",
+    "requirement_text": "Supply of carbon steel pipes for high pressure steam and general industrial fluid service.",
+    "expected_state": "AMBIGUOUS",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "competing_standards": ["IS 1239 (Part 1)", "IS 3589"]
+  },
+  {
+    "id": "AMB-CNF-01",
+    "category": "Electrical/Substation",
+    "requirement_text": "Installation of 33 kV medium voltage electrical substation cabling conforming to IS 694.",
+    "expected_state": "CONFLICTING",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "conflict_rule": "CONF-01"
+  },
+  {
+    "id": "AMB-CNF-02",
+    "category": "Mechanical/Industrial",
+    "requirement_text": "Supply of centrifugal pumps for heavy industrial process water treatment plant with variable frequency drive conforming to IS 9079.",
+    "expected_state": "CONFLICTING",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "conflict_rule": "CONF-02"
+  },
+  {
+    "id": "AMB-CNF-03",
+    "category": "Civil/HeavyEquipment",
+    "requirement_text": "REPLACEMENT OF CRANE RAIL TRACK FOR RMQC (RAIL MOUNTED QUAY CRANE) conforming to IS 15622.",
+    "expected_state": "CONFLICTING",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "conflict_rule": "CONF-03"
+  },
+  {
+    "id": "AMB-CNF-04",
+    "category": "Electrical/Transmission",
+    "requirement_text": "Supply of 11 kV high tension transmission line conductors and cables conforming to IS 694.",
+    "expected_state": "CONFLICTING",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "conflict_rule": "CONF-01"
+  },
+  {
+    "id": "AMB-CNF-05",
+    "category": "Mechanical/Refinery",
+    "requirement_text": "Supply of heavy petrochemical boiler feed water process pump with 3.3 kV medium voltage drive conforming to IS 9079.",
+    "expected_state": "CONFLICTING",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "conflict_rule": "CONF-02"
+  },
+  {
+    "id": "AMB-NOM-01",
+    "category": "Aerospace/Materials",
+    "requirement_text": "Procurement of carbon fiber reinforced polymer matrix prepreg sheets for supersonic aerospace fuselage structures.",
+    "expected_state": "NO_RELIABLE_MATCH",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "reason": "Aerospace composite prepreg is not covered by current BIS catalogue"
+  },
+  {
+    "id": "AMB-NOM-02",
+    "category": "Nuclear/Equipment",
+    "requirement_text": "Supply of liquid metal sodium primary coolant circulation pump for sodium-cooled fast breeder reactor.",
+    "expected_state": "NO_RELIABLE_MATCH",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "reason": "Nuclear liquid metal coolant pump is specialized equipment not in civil catalogue"
+  },
+  {
+    "id": "AMB-NOM-03",
+    "category": "Electronics/Display",
+    "requirement_text": "Supply of quantum dot photoresist color filter optical film for 8K ultra high definition television displays.",
+    "expected_state": "NO_RELIABLE_MATCH",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "reason": "Quantum dot optical films are specialized semiconductor display components"
+  },
+  {
+    "id": "AMB-NOM-04",
+    "category": "Marine/Offshore",
+    "requirement_text": "Procurement of deep ocean subsea electro-hydraulic dynamic umbilical cable for offshore oil exploration.",
+    "expected_state": "NO_RELIABLE_MATCH",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "reason": "Deep ocean dynamic umbilical cables are not in general electrical standards catalogue"
+  },
+  {
+    "id": "AMB-NOM-05",
+    "category": "Semiconductor/PV",
+    "requirement_text": "Supply of high-purity Czochralski monocrystalline silicon ingots 9N purity for photovoltaic solar cell wafer slicing.",
+    "expected_state": "NO_RELIABLE_MATCH",
+    "expected_candidate": null,
+    "expected_review_required": true,
+    "reason": "Semiconductor grade 9N silicon ingots are specialized advanced materials"
+  }
+]

@@ -278,6 +278,16 @@ def _normalize_result(
             "related_for_review": getattr(r, "related_for_review", []) or [],
             # Milestone 11: Regulatory Intelligence results
             "regulatory": getattr(r, "regulatory", None) or {},
+            # Milestone 12: Controlled Ambiguity & Human Review contract
+            "ambiguity_state": getattr(r, "ambiguity_state", "CLEAR") or "CLEAR",
+            "ambiguity_reason": getattr(r, "ambiguity_reason", "") or "",
+            "retrieval_status": getattr(r, "retrieval_status", "CANDIDATES_FOUND") or "CANDIDATES_FOUND",
+            "applicability_status": getattr(r, "applicability_status", "APPLICABLE") or "APPLICABLE",
+            "evidence_status": getattr(r, "evidence_status", "VALID") or "VALID",
+            "missing_information": getattr(r, "missing_information", []) or [],
+            "competing_interpretations": getattr(r, "competing_interpretations", []) or [],
+            "suggested_clarification_question": getattr(r, "suggested_clarification_question", None),
+            "unresolved_components": getattr(r, "unresolved_components", []) or [],
         }
 
         all_reqs.append(req_dict)
@@ -326,6 +336,14 @@ def _normalize_result(
         "mandatory_certification_count": getattr(audit, "mandatory_certification_count", 0),
         "crs_applicable_count": getattr(audit, "crs_applicable_count", 0),
         "hallmarking_applicable_count": getattr(audit, "hallmarking_applicable_count", 0),
+        "ambiguity_summary": {
+            "clear": sum(1 for req in all_reqs if req.get("ambiguity_state") == "CLEAR"),
+            "ambiguous": sum(1 for req in all_reqs if req.get("ambiguity_state") == "AMBIGUOUS"),
+            "incomplete": sum(1 for req in all_reqs if req.get("ambiguity_state") == "INCOMPLETE"),
+            "conflicting": sum(1 for req in all_reqs if req.get("ambiguity_state") == "CONFLICTING"),
+            "no_reliable_match": sum(1 for req in all_reqs if req.get("ambiguity_state") == "NO_RELIABLE_MATCH"),
+            "review_required": sum(1 for req in all_reqs if req.get("ambiguity_state") == "REVIEW_REQUIRED"),
+        },
     }
 
 

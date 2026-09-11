@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-VALVE`
-- **Source File:** `Sample: valve`
+- **Tender ID:** `TS-58B88009`
+- **Source File:** `eProcurement System Government of India.pdf`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -37,7 +37,7 @@
 ### Governance Distributions
 
 - **Evidence Strength:** STRONG: `0` | MODERATE: `0` | WEAK: `0` | NONE: `1`
-- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `0` | UNKNOWN: `1` | NOT_APPLICABLE: `0`
+- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `0` | UNKNOWN: `0` | NOT_APPLICABLE: `1`
 - **Risk Distribution:** CRITICAL: `0` | HIGH: `1` | MEDIUM: `0` | LOW: `0`
 
 ### Standards Ecosystem & Dependency Coverage
@@ -53,27 +53,29 @@
 
 | # | Priority | Requirement ID | Candidate Standard | Issue / Primary Reason |
 |---|---|---|---|---|
-| 1 | **HIGH** | `REQ-001` | `NONE` | Tender specifies valve work without defining valve nominal diameter (DN), pressure rating (PN), body metallurgy (cast iron vs bronze vs forged steel), or process medium. |
+| 1 | **HIGH** | `TS-58B88009-R001` | `NONE` | All candidates rejected by Applicability Gate. |
 
 ## 5. Requirement-by-Requirement Review
 
-### 5.1 Requirement `REQ-001` [PRODUCT_EQUIPMENT]
+### 5.1 Requirement `TS-58B88009-R001` [INSTALLATION_EXECUTION]
 
 **Original Requirement Text:**
-> "Repair and replacement of valves in the mechanical distribution system."
+> "REPLACEMENT OF CRANE RAIL TRACK FOR RMQC (RAIL MOUNTED QUAY CRANE) INCLUDING ALLIED WORKS AT BERTH NO. 11 and 12 IN DOCK AREA, H.D.C, HALDIA"
 
-- **Decomposed Technical Components:** `general: Repair`, `general: replacement`, `general: valves`
-- **Recommended Standard:** **NONE** — *Requirement Specification Incomplete - Clarification Required*
+- **Decomposed Technical Components:** `general: REPLACEMENT`
+- **Recommended Standard:** **NONE** — *No Reliable Indian Standard Match Found*
 - **Lifecycle Status:** **UNKNOWN** | **Composite Relevance Score:** `0.000`
 - **Evidence Strength:** `NONE` | **Provenance:** `UNKNOWN`
 - **Verbatim Evidence:** "We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue."
 - **Why This Standard?:**
-  - Tender specifies valve work without defining valve nominal diameter (DN), pressure rating (PN), body metallurgy (cast iron vs bronze vs forged steel), or process medium.
+  - No reliable Indian Standard match found. We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue. Human review required.
 - **Why Not Alternatives?:**
-  - Specification omits critical discriminating parameters: valve nominal diameter (DN), pressure rating (PN), body metallurgy (cast iron vs bronze vs forged steel), process medium.
-- **Specification Review Completeness:** `UNKNOWN` (Potentially missing: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material, Fluid Medium / Service)
+  - Standard IS/ISO 10434 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) rejected: Requirement specifies crane rail track / cranes, but candidate standard covers industrial valves.; No substantive technical vocabulary overlap with standard scope (generic words only).
+  - Standard IS 101 (Methods of Sampling and Test for Paints, Varnishes and Related Products Part 5 Mechanical Tests Section 5 Impact resistance — Falling-weight test, small-area indenter) rejected: No substantive technical vocabulary overlap with standard scope (generic words only).; Zero substantive technical term overlap between requirement and standard.
+  - Standard IS 101 (Methods of Sampling and Test for Paints, Varnishes and Related Products Part 5 Mechanical Tests Section 3 Impact resistance — Falling-weight test, large-area indenter (Fifth Revision)) rejected: No substantive technical vocabulary overlap with standard scope (generic words only).; Zero substantive technical term overlap between requirement and standard.
+- **Specification Review Completeness:** `NOT_APPLICABLE`
 - **Standards Review Decision:** `INSUFFICIENT_EVIDENCE` | **Risk Level:** `HIGH` | **Confidence:** `Low`
-- ⚠ **Human Technical Review Required:** Tender specifies valve work without defining valve nominal diameter (DN), pressure rating (PN), body metallurgy (cast iron vs bronze vs forged steel), or process medium.
+- ⚠ **Human Technical Review Required:** No reliable Indian Standard match found. We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue. Human review required.
 
 ---
 

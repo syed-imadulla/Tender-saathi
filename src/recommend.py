@@ -30,6 +30,7 @@ from src.graph import StandardsGraph, RelatedStandardResult
 from src.audit import TenderAuditEngine, TenderAuditResult
 from src.applicability import ApplicabilityGate, ApplicabilityResult, ApplicabilityDecision
 from src.regulatory.regulatory_engine import RegulatoryEngine
+from src.ambiguity import AmbiguityEngine, AmbiguityState, AmbiguityReport
 
 
 # ---------------------------------------------------------------------------
@@ -111,6 +112,16 @@ class RequirementRecommendationResult:
     why_it_matches: Optional[str] = None
     # Milestone 11 Regulatory & Certification fields:
     regulatory: Optional[Dict[str, Any]] = None
+    # Milestone 12 Ambiguity & Clarification fields:
+    ambiguity_state: str = "CLEAR"
+    ambiguity_reason: str = ""
+    retrieval_status: str = "CANDIDATES_FOUND"
+    applicability_status: str = "VIABLE_CANDIDATE"
+    evidence_status: str = "VALID"
+    missing_information: List[str] = field(default_factory=list)
+    competing_interpretations: List[Dict[str, Any]] = field(default_factory=list)
+    suggested_clarification_question: Optional[str] = None
+    unresolved_components: List[str] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -155,7 +166,8 @@ class StandardsRecommender:
         db: Optional[StandardsDatabase] = None,
         retrieval_mode: str = "hybrid",
         ai_enabled: Optional[bool] = None,
-        ai_parser: Optional[Any] = None
+        ai_parser: Optional[Any] = None,
+        ambiguity_engine: Optional[Any] = None
     ):
         self.db = db or StandardsDatabase()
         self.retrieval_mode = retrieval_mode
@@ -174,6 +186,8 @@ class StandardsRecommender:
         self.regulatory_engine = RegulatoryEngine()
         from src.ai_understanding import AIRequirementParser
         self.ai_parser = ai_parser or AIRequirementParser(enabled=ai_enabled)
+        from src.ambiguity import AmbiguityEngine
+        self.ambiguity_engine = ambiguity_engine or AmbiguityEngine()
 
 
     def recommend_for_requirement(self, req: Any, tender_cited_standards: Optional[List[str]] = None) -> RequirementRecommendationResult:
@@ -318,12 +332,83 @@ class StandardsRecommender:
                 reasons_str = "; ".join(app_res.rejection_reasons) if app_res.rejection_reasons else "Insufficient domain applicability"
                 why_not_reasons.append(f"Standard {cand.standard_number} ({cand.full_title}) rejected: {reasons_str}")
 
-            primary_app_res = rejected_candidates[0][1].to_dict() if rejected_candidates else None
-            user_facing_explanation = (
-                "No reliable Indian Standard match found. "
-                "We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue. "
-                "Human review required."
+        # Step 4: Run Critic across Applicable Candidate Pool (if candidates exist)
+        critic_outcome = None
+        if applicable_candidates:
+            critic_outcome = self.critic.evaluate_candidates(
+                candidates=applicable_candidates,
+                requirement_text=text,
+                components=req.components,
+                completeness=completeness_report
             )
+
+        # Ambiguity Engine Evaluation across strict 8-stage decision pipeline
+        ambiguity_report = self.ambiguity_engine.evaluate(
+            requirement_text=text,
+            decomposed_components=req.components,
+            completeness_report=completeness_report,
+            retrieved_candidates=search_results,
+            applicable_candidates=applicable_candidates,
+            rejected_candidates=rejected_candidates,
+            candidate_applicability_map=candidate_applicability_map,
+            critic_outcome=critic_outcome,
+            explicit_standards=explicit_stds,
+            unresolved_components=None
+        )
+
+        # Clean Abstention for INCOMPLETE, AMBIGUOUS, CONFLICTING, NO_RELIABLE_MATCH
+        if ambiguity_report.ambiguity_state in [
+            AmbiguityState.INCOMPLETE,
+            AmbiguityState.AMBIGUOUS,
+            AmbiguityState.CONFLICTING,
+            AmbiguityState.NO_RELIABLE_MATCH
+        ]:
+            primary_app_res = rejected_candidates[0][1].to_dict() if rejected_candidates else None
+
+            if ambiguity_report.ambiguity_state == AmbiguityState.NO_RELIABLE_MATCH:
+                why_not_reasons = []
+                for cand, app_res in rejected_candidates[:3]:
+                    reasons_str = "; ".join(app_res.rejection_reasons) if app_res.rejection_reasons else "Insufficient domain applicability"
+                    why_not_reasons.append(f"Standard {cand.standard_number} ({cand.full_title}) rejected: {reasons_str}")
+                if not why_not_reasons:
+                    why_not_reasons = ["No reliable candidate standards retrieved from catalogue."]
+                user_facing_explanation = (
+                    "No reliable Indian Standard match found. "
+                    "We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue. "
+                    "Human review required."
+                )
+                title = "No Reliable Indian Standard Match Found"
+                critic_decision = "NO_RELIABLE_MATCH"
+                critic_reasons = ["All candidates rejected by Applicability Gate." if rejected_candidates else "Zero candidates retrieved from catalogue."]
+                why_it_matches = "No reliable Indian Standard match found in the available catalogue."
+            elif ambiguity_report.ambiguity_state == AmbiguityState.INCOMPLETE:
+                why_not_reasons = [
+                    f"Specification omits critical discriminating parameters: {', '.join(ambiguity_report.missing_information)}."
+                ]
+                user_facing_explanation = ambiguity_report.ambiguity_reason
+                title = "Requirement Specification Incomplete - Clarification Required"
+                critic_decision = "REVIEW_REQUIRED"
+                critic_reasons = [ambiguity_report.ambiguity_reason]
+                why_it_matches = "Tender specification omits critical discriminating parameters required to identify an applicable Indian Standard."
+            elif ambiguity_report.ambiguity_state == AmbiguityState.AMBIGUOUS:
+                why_not_reasons = [
+                    f"Candidate standard {c.get('standard_number')} competes within separation threshold: {c.get('distinguishing_parameter_needed') or 'distinguishing specification missing'}."
+                    for c in ambiguity_report.competing_interpretations
+                ]
+                user_facing_explanation = ambiguity_report.ambiguity_reason
+                title = "Ambiguous Requirement - Multiple Competing Standards"
+                critic_decision = "REVIEW_REQUIRED"
+                critic_reasons = [ambiguity_report.ambiguity_reason]
+                why_it_matches = "Multiple candidate Indian Standards are applicable with close relevance scores; tender lacks distinguishing parameters."
+            elif ambiguity_report.ambiguity_state == AmbiguityState.CONFLICTING:
+                why_not_reasons = [
+                    f"Conflict rule {ambiguity_report.conflict_rule_id} triggered: {ambiguity_report.ambiguity_reason}"
+                ]
+                user_facing_explanation = ambiguity_report.ambiguity_reason
+                title = "Conflicting Specification Detected - Clarification Required"
+                critic_decision = "REVIEW_REQUIRED"
+                critic_reasons = [ambiguity_report.ambiguity_reason]
+                why_it_matches = "Conflicting technical parameters or standard scopes detected in specification."
 
             return RequirementRecommendationResult(
                 requirement_id=req_id,
@@ -331,7 +416,7 @@ class StandardsRecommender:
                 category=cat,
                 explicit_standards_found=explicit_stds,
                 candidate_standard=None,
-                title="No Reliable Indian Standard Match Found",
+                title=title,
                 status="Unknown",
                 version_role="UNKNOWN",
                 relevance_score=0.0,
@@ -341,19 +426,19 @@ class StandardsRecommender:
                 human_review_required=True,
                 reason=user_facing_explanation,
                 recommendations=[],
-                alternatives=[],
+                alternatives=[c.get("standard_number") for c in ambiguity_report.competing_interpretations],
                 decomposed_components=[c.to_dict() if hasattr(c, "to_dict") else c for c in getattr(req, "components", [])],
                 critic_result={
-                    "decision": "NO_RELIABLE_MATCH",
-                    "reasons": ["All candidates rejected by Applicability Gate."],
+                    "decision": critic_decision,
+                    "reasons": critic_reasons,
                     "risk_level": "HIGH",
-                    "risk_reasons": ["No reliable Indian Standard match found in available catalogue."]
+                    "risk_reasons": critic_reasons
                 },
                 why_this=[],
                 why_not=why_not_reasons,
                 risk_level="HIGH",
-                risk_reasons=["No reliable Indian Standard match found in available catalogue."],
-                specification_completeness=completeness_report.to_dict(),
+                risk_reasons=critic_reasons,
+                specification_completeness=completeness_report.to_dict() if completeness_report else None,
                 ai_understanding=parsed_ai.to_dict(),
                 ai_provider=parsed_ai.ai_provider,
                 ai_model=parsed_ai.ai_model,
@@ -365,17 +450,18 @@ class StandardsRecommender:
                 final_score=0.0,
                 applicability=primary_app_res,
                 evidence_standard=None,
-                why_it_matches="No reliable Indian Standard match found in the available catalogue.",
-                regulatory=self.regulatory_engine.evaluate_to_dict(None, text)
+                why_it_matches=why_it_matches,
+                regulatory=self.regulatory_engine.evaluate_to_dict(None, text),
+                ambiguity_state=ambiguity_report.ambiguity_state.value,
+                ambiguity_reason=ambiguity_report.ambiguity_reason,
+                retrieval_status=ambiguity_report.retrieval_status,
+                applicability_status=ambiguity_report.applicability_status,
+                evidence_status=ambiguity_report.evidence_status,
+                missing_information=ambiguity_report.missing_information,
+                competing_interpretations=ambiguity_report.competing_interpretations,
+                suggested_clarification_question=ambiguity_report.suggested_clarification_question,
+                unresolved_components=ambiguity_report.unresolved_components
             )
-
-        # Step 4: Run Critic across Applicable Candidate Pool
-        critic_outcome = self.critic.evaluate_candidates(
-            candidates=applicable_candidates,
-            requirement_text=text,
-            components=req.components,
-            completeness=completeness_report
-        )
 
         # Step 5: Validate and Ground Candidates
         recommendations: List[StandardRecommendation] = []
@@ -452,13 +538,13 @@ class StandardsRecommender:
             why_this = ["Recommended authoritative active successor standard recorded in BIS database."]
             why_not = ["Original cited standard is superseded/obsolete."]
             conf = "High"
-        elif ambiguity_flag:
+        elif ambiguity_report.human_review_required or ambiguity_flag:
             human_review_required = True
-            decision_reason = ambiguity_reason
+            decision_reason = ambiguity_report.ambiguity_reason or ambiguity_reason
             risk_level = "HIGH"
-            risk_reasons = critic_outcome.risk_reasons or [ambiguity_reason]
-            why_this = critic_outcome.why_this
-            why_not = critic_outcome.why_not
+            risk_reasons = critic_outcome.risk_reasons or [decision_reason] if critic_outcome else [decision_reason]
+            why_this = critic_outcome.why_this if critic_outcome else []
+            why_not = critic_outcome.why_not if critic_outcome else []
             conf = "Low" if top_rec.confidence == "Medium" else top_rec.confidence
         elif top_rec.confidence == "Low" or top_rec.relevance_score < 0.35:
             human_review_required = True
@@ -524,7 +610,7 @@ class StandardsRecommender:
         rel_review_dicts = [g.to_dict() for g in cov_map.standard_gaps if g.gap_severity == "RELATED_FOR_REVIEW"]
 
         # Strict Evidence Consistency Rule Check:
-        primary_crit = critic_outcome.primary_critique
+        primary_crit = critic_outcome.primary_critique if critic_outcome else None
         crit_ev = primary_crit.evidence if primary_crit else None
         evidence_std = getattr(crit_ev, "standard_number", None) or top_rec.standard_number
 
@@ -533,10 +619,18 @@ class StandardsRecommender:
             why_it_matches = "Match identified from the requirement context; supporting evidence needs review."
             human_review_required = True
             decision_reason = "Evidence consistency validation failed: candidate and evidence standards mismatch."
-            evidence_std = None
+            evidence_status_val = "GROUNDING_FAILED"
+            ambiguity_state_val = "REVIEW_REQUIRED"
+            evidence_std = top_rec.standard_number  # canonical identity for non-null recommendation!
         else:
             # Canonical alignment: ensure evidence_standard strictly matches candidate_standard
             evidence_std = top_rec.standard_number
+            evidence_status_val = ambiguity_report.evidence_status
+            if ambiguity_report.ambiguity_state == AmbiguityState.CLEAR and not human_review_required:
+                ambiguity_state_val = "CLEAR"
+            else:
+                ambiguity_state_val = "REVIEW_REQUIRED"
+
             # Build clean candidate-specific why_it_matches
             scope_snip = None
             for item in why_this:
@@ -553,6 +647,12 @@ class StandardsRecommender:
                 why_it_matches = f"Official title aligns with specification: {top_rec.title}."
             else:
                 why_it_matches = f"Standard {top_rec.standard_number} verified against requirement specification."
+
+        # Re-evaluate with any auxiliary/unresolved missing gaps
+        unresolved_missing = [(g.title or g.description or g.standard_number or "unspecified") for g in cov_map.standard_gaps if g.gap_severity == "VERIFIED_MISSING"]
+        if unresolved_missing:
+            human_review_required = True
+            ambiguity_state_val = "REVIEW_REQUIRED"
 
         return RequirementRecommendationResult(
             requirement_id=req_id,
@@ -572,17 +672,17 @@ class StandardsRecommender:
             recommendations=recommendations,
             alternatives=alternatives,
             decomposed_components=[c.to_dict() if hasattr(c, "to_dict") else c for c in getattr(req, "components", [])],
-            critic_result=critic_outcome.primary_critique.to_dict(),
+            critic_result=critic_outcome.primary_critique.to_dict() if critic_outcome and critic_outcome.primary_critique else {},
             why_this=why_this,
             why_not=why_not,
             risk_level=risk_level,
             risk_reasons=risk_reasons,
-            specification_completeness=completeness_report.to_dict(),
+            specification_completeness=completeness_report.to_dict() if completeness_report else None,
             related_standards=related_standards_dicts,
-            ai_understanding=parsed_ai.to_dict(),
-            ai_provider=parsed_ai.ai_provider,
-            ai_model=parsed_ai.ai_model,
-            is_ai_fallback=parsed_ai.is_fallback,
+            ai_understanding=parsed_ai.to_dict() if parsed_ai else None,
+            ai_provider=parsed_ai.ai_provider if parsed_ai else None,
+            ai_model=parsed_ai.ai_model if parsed_ai else None,
+            is_ai_fallback=parsed_ai.is_fallback if parsed_ai else True,
             bm25_score=top_rec.bm25_score,
             semantic_score=top_rec.semantic_score,
             deterministic_score=top_rec.deterministic_score,
@@ -597,7 +697,16 @@ class StandardsRecommender:
             related_for_review=rel_review_dicts,
             evidence_standard=evidence_std,
             why_it_matches=why_it_matches,
-            regulatory=self.regulatory_engine.evaluate_to_dict(top_rec.standard_number, text)
+            regulatory=self.regulatory_engine.evaluate_to_dict(top_rec.standard_number, text),
+            ambiguity_state=ambiguity_state_val,
+            ambiguity_reason=ambiguity_report.ambiguity_reason,
+            retrieval_status=ambiguity_report.retrieval_status,
+            applicability_status=ambiguity_report.applicability_status,
+            evidence_status=evidence_status_val,
+            missing_information=ambiguity_report.missing_information,
+            competing_interpretations=ambiguity_report.competing_interpretations,
+            suggested_clarification_question=ambiguity_report.suggested_clarification_question,
+            unresolved_components=unresolved_missing
         )
 
 

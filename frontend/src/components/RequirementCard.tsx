@@ -164,33 +164,92 @@ export interface AttentionCardProps {
 }
 
 export function AttentionCard({ req, onOpenEvidence }: AttentionCardProps) {
-  const hasMissing = req.missing_parameters && req.missing_parameters.length > 0;
-  const isNoReliableMatch = req.decision === 'NO_RELIABLE_MATCH' || !req.candidate_standard;
-  const isInsufficient = isNoReliableMatch || req.decision === 'INSUFFICIENT_EVIDENCE' || req.candidate_standard === 'INSUFFICIENT_INFORMATION';
+  const ambiguityState = req.ambiguity_state || (
+    req.decision === 'NO_RELIABLE_MATCH' ? 'NO_RELIABLE_MATCH' :
+    req.missing_parameters && req.missing_parameters.length > 0 ? 'INCOMPLETE' :
+    'REVIEW_REQUIRED'
+  );
+
+  const isConflicting = ambiguityState === 'CONFLICTING';
+  const isIncomplete = ambiguityState === 'INCOMPLETE';
+  const isAmbiguous = ambiguityState === 'AMBIGUOUS';
+  const isNoMatch = ambiguityState === 'NO_RELIABLE_MATCH';
+  const isReviewRequired = ambiguityState === 'REVIEW_REQUIRED';
+
+  const cardClass = `attention-card attention-card--${ambiguityState.toLowerCase().replace(/_/g, '-')}`;
+
+  let stateTitle = 'Specification details need clarification';
+  let badgeLabel = 'REVIEW REQUIRED';
+  let badgeClass = 'badge--warning';
+
+  if (isConflicting) {
+    stateTitle = 'Conflicting Specifications Detected';
+    badgeLabel = 'CONFLICTING';
+    badgeClass = 'badge--superseded';
+  } else if (isIncomplete) {
+    stateTitle = 'Incomplete Specification — Critical Parameters Missing';
+    badgeLabel = 'INCOMPLETE';
+    badgeClass = 'badge--warning';
+  } else if (isAmbiguous) {
+    stateTitle = 'Ambiguous Requirement — Multiple Competing Standards';
+    badgeLabel = 'AMBIGUOUS';
+    badgeClass = 'badge--primary';
+  } else if (isNoMatch) {
+    stateTitle = 'No Reliable Indian Standard Match Found in Catalogue';
+    badgeLabel = 'NO RELIABLE MATCH';
+    badgeClass = 'badge--low';
+  } else if (isReviewRequired) {
+    stateTitle = 'Technical Review Required Prior to Procurement';
+    badgeLabel = 'REVIEW REQUIRED';
+    badgeClass = 'badge--warning';
+  }
+
+  const missingList = (req.missing_information && req.missing_information.length > 0)
+    ? req.missing_information
+    : (req.missing_parameters && req.missing_parameters.length > 0)
+    ? req.missing_parameters
+    : [];
 
   return (
-    <article className="attention-card" aria-label="Requirement needing attention">
+    <article className={cardClass} aria-label={`Requirement needing attention: ${badgeLabel}`}>
       <div className="attention-card__header">
         <div className="attention-card__left">
           <span className="attention-card__icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-              <line x1="12" y1="9" x2="12" y2="13" />
-              <line x1="12" y1="17" x2="12.01" y2="17" />
-            </svg>
+            {isConflicting ? (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+              </svg>
+            ) : isAmbiguous ? (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M16 3h5v5" />
+                <path d="M8 21H3v-5" />
+                <path d="M21 3l-7.5 7.5" />
+                <path d="M3 21l7.5-7.5" />
+              </svg>
+            ) : isNoMatch ? (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+              </svg>
+            ) : (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ea580c" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                <line x1="12" y1="9" x2="12" y2="13" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+            )}
           </span>
           <div>
-            <h4 className="attention-card__title">
-              {hasMissing
-                ? 'Some specification details need clarification'
-                : isNoReliableMatch
-                ? 'Human review required — no reliable match found'
-                : isInsufficient
-                ? 'Human review required — insufficient evidence'
-                : 'Specification details need clarification'}
-            </h4>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px', flexWrap: 'wrap' }}>
+              <h4 className="attention-card__title" style={{ margin: 0 }}>
+                {stateTitle}
+              </h4>
+              <span className={`rec-badge ${badgeClass}`} style={{ fontSize: '0.72rem', padding: '2px 8px' }}>
+                {badgeLabel}
+              </span>
+            </div>
             <p className="attention-card__clause">
-              "{req.text.length > 120 ? `${req.text.slice(0, 117)}...` : req.text}"
+              "{req.text.length > 130 ? `${req.text.slice(0, 127)}...` : req.text}"
             </p>
           </div>
         </div>
@@ -199,37 +258,89 @@ export function AttentionCard({ req, onOpenEvidence }: AttentionCardProps) {
           type="button"
           className="attention-card__see-why"
           onClick={() => onOpenEvidence(req)}
-          aria-label="See why attention is required"
+          aria-label="See technical details and audit evidence"
         >
-          See why →
+          Audit Details →
         </button>
       </div>
 
-      {hasMissing ? (
-        <div className="attention-card__body">
-          <p className="attention-card__prompt">Your tender does not specify:</p>
-          <ul className="attention-card__list">
-            {req.missing_parameters.map((param, i) => (
-              <li key={i} className="attention-card__param-item">
-                <span className="attention-card__bullet">•</span>
-                <span>{param}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : isInsufficient ? (
-        <div className="attention-card__body">
-          <p className="attention-card__desc">
-            We could not establish a sufficiently supported Indian Standard from the available catalogue for this requirement. Manual engineer review is recommended before publishing.
+      <div className="attention-card__body">
+        {/* State description / reason */}
+        {req.ambiguity_reason && (
+          <p className="attention-card__desc" style={{ marginBottom: '8px', fontWeight: 500, color: '#334155' }}>
+            {req.ambiguity_reason}
           </p>
-        </div>
-      ) : (
-        <div className="attention-card__body">
-          <p className="attention-card__desc">
-            Additional technical specifications or application parameters are recommended to confirm standard applicability.
-          </p>
-        </div>
-      )}
+        )}
+
+        {/* Missing discriminating parameters */}
+        {missingList.length > 0 && (
+          <div style={{ marginTop: '6px', marginBottom: '8px' }}>
+            <p className="attention-card__prompt">Critical parameters required to determine standard:</p>
+            <ul className="attention-card__list">
+              {missingList.map((param, i) => (
+                <li key={i} className="attention-card__param-item">
+                  <span className="attention-card__bullet">•</span>
+                  <span>{param}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Competing Interpretations for AMBIGUOUS state */}
+        {isAmbiguous && req.competing_interpretations && req.competing_interpretations.length > 0 && (
+          <div className="competing-standards-block" style={{ marginTop: '8px', marginBottom: '8px', background: '#f8fafc', padding: '10px 12px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+            <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#475569', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              Competing Candidate Standards (Within Separation Margin):
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {req.competing_interpretations.map((ci, idx) => (
+                <div key={idx} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.85rem', flexWrap: 'wrap', gap: '4px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <strong style={{ color: '#1e293b' }}>{ci.standard_number}</strong>
+                    {ci.score !== undefined && (
+                      <span style={{ fontSize: '0.75rem', color: '#64748b' }}>(Score: {(ci.score).toFixed(3)})</span>
+                    )}
+                    {ci.title && <span style={{ color: '#475569', fontSize: '0.8rem' }}>— {ci.title}</span>}
+                  </div>
+                  {ci.distinguishing_parameter_needed && (
+                    <span style={{ fontSize: '0.78rem', color: '#7c3aed', background: '#f5f3ff', padding: '1px 6px', borderRadius: '4px' }}>
+                      Requires: {ci.distinguishing_parameter_needed}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Suggested clarification question for tender officer */}
+        {req.suggested_clarification_question && (
+          <div
+            className="clarification-callout"
+            style={{
+              marginTop: '10px',
+              padding: '10px 14px',
+              background: isConflicting ? '#fef2f2' : isIncomplete ? '#fffbeb' : '#f8fafc',
+              border: `1px solid ${isConflicting ? '#fca5a5' : isIncomplete ? '#fde68a' : '#cbd5e1'}`,
+              borderRadius: '8px',
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '10px'
+            }}
+          >
+            <span style={{ fontSize: '1rem', marginTop: '1px' }}>💬</span>
+            <div style={{ fontSize: '0.85rem', lineHeight: '1.45' }}>
+              <strong style={{ color: isConflicting ? '#991b1b' : isIncomplete ? '#92400e' : '#1e293b' }}>
+                Actionable Tender Clarification Recommendation:
+              </strong>
+              <p style={{ margin: '3px 0 0 0', color: '#334155' }}>
+                {req.suggested_clarification_question}
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
     </article>
   );
 }
