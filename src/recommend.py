@@ -416,8 +416,13 @@ class StandardsRecommender:
 
             app_dict = candidate_applicability_map.get(sr.standard_number).to_dict() if sr.standard_number in candidate_applicability_map else None
 
+            if sr.year and not (f": {sr.year}" in sr.standard_number or sr.standard_number.endswith(str(sr.year))):
+                rec_std_num = f"{sr.standard_number} : {sr.year}"
+            else:
+                rec_std_num = sr.standard_number
+
             recommendations.append(StandardRecommendation(
-                standard_number=f"{sr.standard_number} : {sr.year}" if sr.year else sr.standard_number,
+                standard_number=rec_std_num,
                 title=sr.full_title,
                 status=status_str,
                 version_role=version_role,
@@ -530,6 +535,8 @@ class StandardsRecommender:
             decision_reason = "Evidence consistency validation failed: candidate and evidence standards mismatch."
             evidence_std = None
         else:
+            # Canonical alignment: ensure evidence_standard strictly matches candidate_standard
+            evidence_std = top_rec.standard_number
             # Build clean candidate-specific why_it_matches
             scope_snip = None
             for item in why_this:

@@ -1,0 +1,31 @@
+{
+  "standard_number": "IS 2062 : 2011",
+  "title": "Hot Rolled Medium and High Tensile Structural Steel - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Hot Rolled Medium and High Tensile Structural Steel - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 2011,
+  "reaffirmed_year": null,
+  "technical_committee": "MTD 4",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Steel",
+    "Structural Steel",
+    "Plates",
+    "Beams"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:53:19.583879+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-2062-2011",
+  "base_standard_number": "IS 2062"
+}

@@ -4,55 +4,355 @@
   "total_requirements": 50,
   "description": "Diverse real-world tender requirements covering Civil, Electrical, Mechanical, Electronics/CRS, Chemicals, and Hallmarking to evaluate retrieval across 85-standard baseline vs 500+ expanded catalogue.",
   "items": [
-    {"id": "BENCH-01", "query": "Providing and fixing Chlorinated Polyvinyl Chloride (CPVC) pipes for hot and cold water distribution including CPVC fittings", "expected_standard": "IS 15778", "domain": "Civil/Plumbing", "in_85_baseline": true},
-    {"id": "BENCH-02", "query": "Supply of unplasticized PVC (uPVC) pipes for potable water supply 110 mm OD Class 3", "expected_standard": "IS 4985", "domain": "Civil/Plumbing", "in_85_baseline": true},
-    {"id": "BENCH-03", "query": "High density polyethylene (HDPE) pipes PE-100 grade PN-10 for municipal water distribution", "expected_standard": "IS 4984", "domain": "Civil/Plumbing", "in_85_baseline": true},
-    {"id": "BENCH-04", "query": "Providing cast iron sluice valves for waterworks purposes 200 mm diameter PN 1.0 rating with companion flanges", "expected_standard": "IS 14846", "domain": "Civil/Waterworks", "in_85_baseline": true},
-    {"id": "BENCH-05", "query": "Copper alloy gate globe and check valves 50mm nominal bore for water supply installation", "expected_standard": "IS 778", "domain": "Mechanical/Valves", "in_85_baseline": true},
-    {"id": "BENCH-06", "query": "Centric disc wafer type butterfly valves for industrial general water service", "expected_standard": "IS 13095", "domain": "Mechanical/Valves", "in_85_baseline": true},
-    {"id": "BENCH-07", "query": "High strength deformed steel bars grade Fe 500D for reinforced concrete foundation and columns", "expected_standard": "IS 1786", "domain": "Civil/Structural", "in_85_baseline": true},
-    {"id": "BENCH-08", "query": "Hot rolled medium and high tensile structural steel plates and beams grade E 250 quality A", "expected_standard": "IS 2062", "domain": "Civil/Structural", "in_85_baseline": true},
-    {"id": "BENCH-09", "query": "Ordinary Portland Cement 43 grade for structural concrete works in bags", "expected_standard": "IS 8112", "domain": "Civil/Materials", "in_85_baseline": true},
-    {"id": "BENCH-10", "query": "Portland Pozzolana Cement fly ash based conforming to standard specifications", "expected_standard": "IS 1489 (Part 1)", "domain": "Civil/Materials", "in_85_baseline": true},
-    {"id": "BENCH-11", "query": "Code of practice for plain and reinforced concrete design and construction", "expected_standard": "IS 456", "domain": "Civil/Codes", "in_85_baseline": true},
-    {"id": "BENCH-12", "query": "Coarse and fine aggregates from natural sources for concrete preparation", "expected_standard": "IS 383", "domain": "Civil/Materials", "in_85_baseline": true},
-    {"id": "BENCH-13", "query": "Methods of sampling and analysis of concrete for slump test and workability", "expected_standard": "IS 1199", "domain": "Civil/Testing", "in_85_baseline": true},
-    {"id": "BENCH-14", "query": "Methods of test for strength of concrete compressive strength cubes", "expected_standard": "IS 516", "domain": "Civil/Testing", "in_85_baseline": true},
-    {"id": "BENCH-15", "query": "Criteria for earthquake resistant design of structures general provisions and buildings", "expected_standard": "IS 1893 (Part 1)", "domain": "Civil/Codes", "in_85_baseline": true},
-    {"id": "BENCH-16", "query": "Ductile detailing of reinforced concrete structures subjected to seismic forces", "expected_standard": "IS 13920", "domain": "Civil/Codes", "in_85_baseline": true},
-    {"id": "BENCH-17", "query": "Common burnt clay building bricks of compressive strength class 7.5", "expected_standard": "IS 1077", "domain": "Civil/Materials", "in_85_baseline": true},
-    {"id": "BENCH-18", "query": "Pressed ceramic tiles vitrified floor tiles group B1a for commercial flooring", "expected_standard": "IS 15622", "domain": "Civil/Finishes", "in_85_baseline": true},
-    {"id": "BENCH-19", "query": "Vitreous china wash basins with pedestal flat back pattern single tap hole", "expected_standard": "IS 2556 (Part 4)", "domain": "Civil/Sanitary", "in_85_baseline": true},
-    {"id": "BENCH-20", "query": "Precast concrete pipes with and without reinforcement for drainage and sewerage works", "expected_standard": "IS 458", "domain": "Civil/Pipes", "in_85_baseline": true},
-    {"id": "BENCH-21", "query": "PVC insulated copper conductor single core unsheathed wires 1100V grade for conduit wiring", "expected_standard": "IS 694", "domain": "Electrical/Cables", "in_85_baseline": true},
-    {"id": "BENCH-22", "query": "Cross-linked polyethylene (XLPE) insulated PVC sheathed power cables 1.1 kV grade armoured aluminium conductor", "expected_standard": "IS 7098 (Part 1)", "domain": "Electrical/Cables", "in_85_baseline": true},
-    {"id": "BENCH-23", "query": "11 kV grade XLPE insulated aluminium conductor armoured medium voltage power cables", "expected_standard": "IS 7098 (Part 2)", "domain": "Electrical/Cables", "in_85_baseline": true},
-    {"id": "BENCH-24", "query": "Code of practice for installation and maintenance of power cables up to and including 33 kV rating", "expected_standard": "IS 1255", "domain": "Electrical/Codes", "in_85_baseline": true},
-    {"id": "BENCH-25", "query": "Code of practice for earthing and lightning protection for electrical installations", "expected_standard": "IS 3043", "domain": "Electrical/Codes", "in_85_baseline": true},
-    {"id": "BENCH-26", "query": "Energy efficient three phase squirrel cage induction motors IE3 premium efficiency class 15 kW", "expected_standard": "IS 12615", "domain": "Electrical/Motors", "in_85_baseline": true},
-    {"id": "BENCH-27", "query": "Outdoor type three phase oil immersed distribution transformers 11 kV / 433 V 100 kVA", "expected_standard": "IS 1180 (Part 1)", "domain": "Electrical/Transformers", "in_85_baseline": true},
-    {"id": "BENCH-28", "query": "Low-voltage switchgear and controlgear assemblies power switchgear and controlgear assemblies (PSC-assemblies)", "expected_standard": "IS/IEC 61439-2", "domain": "Electrical/Panels", "in_85_baseline": true},
-    {"id": "BENCH-29", "query": "Circuit breakers for overcurrent protection for household and similar installations (MCB) 10kA C-curve", "expected_standard": "IS/IEC 60898-1", "domain": "Electrical/Switchgear", "in_85_baseline": true},
-    {"id": "BENCH-30", "query": "Residual current operated circuit breakers without integral overcurrent protection (RCCB) 30mA sensitivity", "expected_standard": "IS/IEC 61008-1", "domain": "Electrical/Switchgear", "in_85_baseline": true},
-    {"id": "BENCH-31", "query": "Self-ballasted LED lamps for general lighting services safety requirements B22 base 9W", "expected_standard": "IS 16102 (Part 1)", "domain": "Electrical/Lighting", "in_85_baseline": true},
-    {"id": "BENCH-32", "query": "Fixed general purpose LED luminaires and street lighting fittings", "expected_standard": "IS 10322 (Part 5/Sec 1)", "domain": "Electrical/Lighting", "in_85_baseline": true},
-    {"id": "BENCH-33", "query": "Electronic controlgear for LED modules DC supplied electronic drivers for lighting", "expected_standard": "IS 15885 (Part 2/Sec 13)", "domain": "Electrical/Lighting", "in_85_baseline": true},
-    {"id": "BENCH-34", "query": "Crystalline silicon terrestrial photovoltaic (PV) modules design qualification and type approval", "expected_standard": "IS 14286", "domain": "Solar/Renewable", "in_85_baseline": true},
-    {"id": "BENCH-35", "query": "Photovoltaic module safety qualification requirements for construction and testing", "expected_standard": "IS/IEC 61730-1", "domain": "Solar/Renewable", "in_85_baseline": true},
-    {"id": "BENCH-36", "query": "Information technology equipment safety general requirements including laptops and workstations", "expected_standard": "IS 13252 (Part 1)", "domain": "Electronics/IT", "in_85_baseline": false},
-    {"id": "BENCH-37", "query": "Secondary cells and batteries containing alkaline or other non-acid electrolytes portable lithium systems", "expected_standard": "IS 16046 (Part 2)", "domain": "Electronics/Batteries", "in_85_baseline": false},
-    {"id": "BENCH-38", "query": "Uninterruptible power systems (UPS) general and safety requirements for computer systems 5 kVA", "expected_standard": "IS 16242 (Part 1)", "domain": "Electronics/Power", "in_85_baseline": false},
-    {"id": "BENCH-39", "query": "A.C. static direct connected watt-hour smart meter class 1 and 2 electricity smart meters", "expected_standard": "IS 16444 (Part 1)", "domain": "Electrical/Metering", "in_85_baseline": false},
-    {"id": "BENCH-40", "query": "Electric ceiling fans and regulators energy efficient BLDC ceiling fans", "expected_standard": "IS 374", "domain": "Electrical/Appliances", "in_85_baseline": true},
-    {"id": "BENCH-41", "query": "Portable fire extinguishers performance and construction stored pressure ABC dry powder 6 kg", "expected_standard": "IS 15683", "domain": "Mechanical/Fire", "in_85_baseline": true},
-    {"id": "BENCH-42", "query": "Selection, installation and maintenance of first-aid fire extinguishers code of practice", "expected_standard": "IS 2190", "domain": "Mechanical/Fire", "in_85_baseline": true},
-    {"id": "BENCH-43", "query": "Internal fire hydrants and hose reels on premises code of practice", "expected_standard": "IS 3844", "domain": "Mechanical/Fire", "in_85_baseline": true},
-    {"id": "BENCH-44", "query": "Electric traction passenger lifts car sling guide rails and safety gear components", "expected_standard": "IS 14665 (Part 1)", "domain": "Mechanical/Lifts", "in_85_baseline": false},
-    {"id": "BENCH-45", "query": "Centrifugal pumps for clear cold water single stage monobloc pump sets", "expected_standard": "IS 1520", "domain": "Mechanical/Pumps", "in_85_baseline": false},
-    {"id": "BENCH-46", "query": "Submersible pumpsets for deep well water supply borehole installations", "expected_standard": "IS 8034", "domain": "Mechanical/Pumps", "in_85_baseline": false},
-    {"id": "BENCH-47", "query": "Supply of 22 carat gold jewellery and coins with mandatory BIS hallmarking and HUID", "expected_standard": "IS 1417", "domain": "PreciousMetals/Hallmarking", "in_85_baseline": false},
-    {"id": "BENCH-48", "query": "Silver medals and jewellery artefacts fineness marking and assaying", "expected_standard": "IS 2112", "domain": "PreciousMetals/Hallmarking", "in_85_baseline": false},
-    {"id": "BENCH-49", "query": "Enamel synthetic exterior undercoating and finishing paint gloss finish", "expected_standard": "IS 2932", "domain": "Chemicals/Paints", "in_85_baseline": false},
-    {"id": "BENCH-50", "query": "Providing catering snacks and tea concession stall in transit lounge", "expected_standard": "ABSTAIN", "domain": "Commercial/Abstention", "in_85_baseline": true}
+    {
+      "id": "BENCH-01",
+      "query": "Providing and fixing Chlorinated Polyvinyl Chloride (CPVC) pipes for hot and cold water distribution including CPVC fittings",
+      "expected_standard": "IS 15778",
+      "domain": "Civil/Plumbing",
+      "in_85_baseline": true
+    },
+    {
+      "id": "BENCH-02",
+      "query": "Supply of unplasticized PVC (uPVC) pipes for potable water supply 110 mm OD Class 3",
+      "expected_standard": "IS 4985",
+      "domain": "Civil/Plumbing",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-03",
+      "query": "High density polyethylene (HDPE) pipes PE-100 grade PN-10 for municipal water distribution",
+      "expected_standard": "IS 4984",
+      "domain": "Civil/Plumbing",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-04",
+      "query": "Providing cast iron sluice valves for waterworks purposes 200 mm diameter PN 1.0 rating with companion flanges",
+      "expected_standard": "IS 14846",
+      "domain": "Civil/Waterworks",
+      "in_85_baseline": true
+    },
+    {
+      "id": "BENCH-05",
+      "query": "Copper alloy gate globe and check valves 50mm nominal bore for water supply installation",
+      "expected_standard": "IS 778",
+      "domain": "Mechanical/Valves",
+      "in_85_baseline": true
+    },
+    {
+      "id": "BENCH-06",
+      "query": "Centric disc wafer type butterfly valves for industrial general water service",
+      "expected_standard": "IS 13095",
+      "domain": "Mechanical/Valves",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-07",
+      "query": "High strength deformed steel bars grade Fe 500D for reinforced concrete foundation and columns",
+      "expected_standard": "IS 1786",
+      "domain": "Civil/Structural",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-08",
+      "query": "Hot rolled medium and high tensile structural steel plates and beams grade E 250 quality A",
+      "expected_standard": "IS 2062",
+      "domain": "Civil/Structural",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-09",
+      "query": "Ordinary Portland Cement 43 grade for structural concrete works in bags",
+      "expected_standard": "IS 8112",
+      "domain": "Civil/Materials",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-10",
+      "query": "Portland Pozzolana Cement fly ash based conforming to standard specifications",
+      "expected_standard": "IS 1489 (Part 1)",
+      "domain": "Civil/Materials",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-11",
+      "query": "Code of practice for plain and reinforced concrete design and construction",
+      "expected_standard": "IS 456",
+      "domain": "Civil/Codes",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-12",
+      "query": "Coarse and fine aggregates from natural sources for concrete preparation",
+      "expected_standard": "IS 383",
+      "domain": "Civil/Materials",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-13",
+      "query": "Methods of sampling and analysis of concrete for slump test and workability",
+      "expected_standard": "IS 1199",
+      "domain": "Civil/Testing",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-14",
+      "query": "Methods of test for strength of concrete compressive strength cubes",
+      "expected_standard": "IS 516",
+      "domain": "Civil/Testing",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-15",
+      "query": "Criteria for earthquake resistant design of structures general provisions and buildings",
+      "expected_standard": "IS 1893 (Part 1)",
+      "domain": "Civil/Codes",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-16",
+      "query": "Ductile detailing of reinforced concrete structures subjected to seismic forces",
+      "expected_standard": "IS 13920",
+      "domain": "Civil/Codes",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-17",
+      "query": "Common burnt clay building bricks of compressive strength class 7.5",
+      "expected_standard": "IS 1077",
+      "domain": "Civil/Materials",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-18",
+      "query": "Pressed ceramic tiles vitrified floor tiles group B1a for commercial flooring",
+      "expected_standard": "IS 15622",
+      "domain": "Civil/Finishes",
+      "in_85_baseline": true
+    },
+    {
+      "id": "BENCH-19",
+      "query": "Vitreous china wash basins with pedestal flat back pattern single tap hole",
+      "expected_standard": "IS 2556 (Part 4)",
+      "domain": "Civil/Sanitary",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-20",
+      "query": "Precast concrete pipes with and without reinforcement for drainage and sewerage works",
+      "expected_standard": "IS 458",
+      "domain": "Civil/Pipes",
+      "in_85_baseline": true
+    },
+    {
+      "id": "BENCH-21",
+      "query": "PVC insulated copper conductor single core unsheathed wires 1100V grade for conduit wiring",
+      "expected_standard": "IS 694",
+      "domain": "Electrical/Cables",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-22",
+      "query": "Cross-linked polyethylene (XLPE) insulated PVC sheathed power cables 1.1 kV grade armoured aluminium conductor",
+      "expected_standard": "IS 7098 (Part 1)",
+      "domain": "Electrical/Cables",
+      "in_85_baseline": true
+    },
+    {
+      "id": "BENCH-23",
+      "query": "11 kV grade XLPE insulated aluminium conductor armoured medium voltage power cables",
+      "expected_standard": "IS 7098 (Part 2)",
+      "domain": "Electrical/Cables",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-24",
+      "query": "Code of practice for installation and maintenance of power cables up to and including 33 kV rating",
+      "expected_standard": "IS 1255",
+      "domain": "Electrical/Codes",
+      "in_85_baseline": true
+    },
+    {
+      "id": "BENCH-25",
+      "query": "Code of practice for earthing and lightning protection for electrical installations",
+      "expected_standard": "IS 3043",
+      "domain": "Electrical/Codes",
+      "in_85_baseline": true
+    },
+    {
+      "id": "BENCH-26",
+      "query": "Energy efficient three phase squirrel cage induction motors IE3 premium efficiency class 15 kW",
+      "expected_standard": "IS 12615",
+      "domain": "Electrical/Motors",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-27",
+      "query": "Outdoor type three phase oil immersed distribution transformers 11 kV / 433 V 100 kVA",
+      "expected_standard": "IS 1180 (Part 1)",
+      "domain": "Electrical/Transformers",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-28",
+      "query": "Low-voltage switchgear and controlgear assemblies power switchgear and controlgear assemblies (PSC-assemblies)",
+      "expected_standard": "IS/IEC 61439-2",
+      "domain": "Electrical/Panels",
+      "in_85_baseline": true
+    },
+    {
+      "id": "BENCH-29",
+      "query": "Circuit breakers for overcurrent protection for household and similar installations (MCB) 10kA C-curve",
+      "expected_standard": "IS/IEC 60898-1",
+      "domain": "Electrical/Switchgear",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-30",
+      "query": "Residual current operated circuit breakers without integral overcurrent protection (RCCB) 30mA sensitivity",
+      "expected_standard": "IS/IEC 61008-1",
+      "domain": "Electrical/Switchgear",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-31",
+      "query": "Self-ballasted LED lamps for general lighting services safety requirements B22 base 9W",
+      "expected_standard": "IS 16102 (Part 1)",
+      "domain": "Electrical/Lighting",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-32",
+      "query": "Fixed general purpose LED luminaires and street lighting fittings",
+      "expected_standard": "IS 10322 (Part 5/Sec 1)",
+      "domain": "Electrical/Lighting",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-33",
+      "query": "Electronic controlgear for LED modules DC supplied electronic drivers for lighting",
+      "expected_standard": "IS 15885 (Part 2/Sec 13)",
+      "domain": "Electrical/Lighting",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-34",
+      "query": "Crystalline silicon terrestrial photovoltaic (PV) modules design qualification and type approval",
+      "expected_standard": "IS 14286",
+      "domain": "Solar/Renewable",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-35",
+      "query": "Photovoltaic module safety qualification requirements for construction and testing",
+      "expected_standard": "IS/IEC 61730-1",
+      "domain": "Solar/Renewable",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-36",
+      "query": "Information technology equipment safety general requirements including laptops and workstations",
+      "expected_standard": "IS 13252 (Part 1)",
+      "domain": "Electronics/IT",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-37",
+      "query": "Secondary cells and batteries containing alkaline or other non-acid electrolytes portable lithium systems",
+      "expected_standard": "IS 16046 (Part 2)",
+      "domain": "Electronics/Batteries",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-38",
+      "query": "Uninterruptible power systems (UPS) general and safety requirements for computer systems 5 kVA",
+      "expected_standard": "IS 16242 (Part 1)",
+      "domain": "Electronics/Power",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-39",
+      "query": "A.C. static direct connected watt-hour smart meter class 1 and 2 electricity smart meters",
+      "expected_standard": "IS 16444 (Part 1)",
+      "domain": "Electrical/Metering",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-40",
+      "query": "Electric ceiling fans and regulators energy efficient BLDC ceiling fans",
+      "expected_standard": "IS 374",
+      "domain": "Electrical/Appliances",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-41",
+      "query": "Portable fire extinguishers performance and construction stored pressure ABC dry powder 6 kg",
+      "expected_standard": "IS 15683",
+      "domain": "Mechanical/Fire",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-42",
+      "query": "Selection, installation and maintenance of first-aid fire extinguishers code of practice",
+      "expected_standard": "IS 2190",
+      "domain": "Mechanical/Fire",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-43",
+      "query": "Internal fire hydrants and hose reels on premises code of practice",
+      "expected_standard": "IS 3844",
+      "domain": "Mechanical/Fire",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-44",
+      "query": "Electric traction passenger lifts car sling guide rails and safety gear components",
+      "expected_standard": "IS 14665 (Part 1)",
+      "domain": "Mechanical/Lifts",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-45",
+      "query": "Centrifugal pumps for clear cold water single stage monobloc pump sets",
+      "expected_standard": "IS 1520",
+      "domain": "Mechanical/Pumps",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-46",
+      "query": "Submersible pumpsets for deep well water supply borehole installations",
+      "expected_standard": "IS 8034",
+      "domain": "Mechanical/Pumps",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-47",
+      "query": "Supply of 22 carat gold jewellery and coins with mandatory BIS hallmarking and HUID",
+      "expected_standard": "IS 1417",
+      "domain": "PreciousMetals/Hallmarking",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-48",
+      "query": "Silver medals and jewellery artefacts fineness marking and assaying",
+      "expected_standard": "IS 2112",
+      "domain": "PreciousMetals/Hallmarking",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-49",
+      "query": "Enamel synthetic exterior undercoating and finishing paint gloss finish",
+      "expected_standard": "IS 2932",
+      "domain": "Chemicals/Paints",
+      "in_85_baseline": false
+    },
+    {
+      "id": "BENCH-50",
+      "query": "Providing catering snacks and tea concession stall in transit lounge",
+      "expected_standard": "ABSTAIN",
+      "domain": "Commercial/Abstention",
+      "in_85_baseline": true
+    }
   ]
 }

@@ -1,0 +1,29 @@
+{
+  "standard_number": "IS 1979 : 1985",
+  "title": "Specification for High Test Line Pipe",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Specification for High Test Line Pipe.",
+  "status": "ACTIVE",
+  "publication_year": 1985,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 54",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Line Pipe",
+    "High Pressure"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:53:19.590184+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-1979-1985",
+  "base_standard_number": "IS 1979"
+}

@@ -301,7 +301,7 @@ class CatalogueLoader:
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """, (
                     r.canonical_id,
-                    r.standard_number,
+                    r.base_standard_number,
                     r.publication_year,
                     r.title,
                     r.status,

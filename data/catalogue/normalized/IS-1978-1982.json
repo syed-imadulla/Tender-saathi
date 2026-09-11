@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 1978 : 1982",
+  "title": "Specification for Line Pipe",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Specification for Line Pipe.",
+  "status": "ACTIVE",
+  "publication_year": 1982,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 54",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Line Pipe",
+    "Oil Gas Pipes",
+    "Piping"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:53:19.590174+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-1978-1982",
+  "base_standard_number": "IS 1978"
+}
