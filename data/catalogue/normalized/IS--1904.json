@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS  : 1904",
+  "title": "Code of Practice for Design and Construction of Foundations in Soils: General Requirements",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Code of Practice for Design and Construction of Foundations in Soils: General Requirements.",
+  "status": "ACTIVE",
+  "publication_year": 1904,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 43",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Foundations",
+    "Soil Mechanics",
+    "Civil"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.440980+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS--1904",
+  "base_standard_number": "IS "
+}

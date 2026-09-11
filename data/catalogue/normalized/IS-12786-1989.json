@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 12786 : 1989",
+  "title": "Irrigation Equipment - Polyethylene Pipes for Irrigation Laterals - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Irrigation Equipment - Polyethylene Pipes for Irrigation Laterals - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 1989,
+  "reaffirmed_year": null,
+  "technical_committee": "FAD 15",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Drip Irrigation",
+    "LLDPE Pipes",
+    "Micro Irrigation"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.441997+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-12786-1989",
+  "base_standard_number": "IS 12786"
+}

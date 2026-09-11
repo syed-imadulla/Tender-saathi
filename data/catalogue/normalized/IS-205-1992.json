@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 205 : 1992",
+  "title": "Specification for Non-Ferrous Metal Butt Hinges",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Specification for Non-Ferrous Metal Butt Hinges.",
+  "status": "ACTIVE",
+  "publication_year": 1992,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 15",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Hinges",
+    "Hardware",
+    "Brass Hinges"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.441122+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-205-1992",
+  "base_standard_number": "IS 205"
+}

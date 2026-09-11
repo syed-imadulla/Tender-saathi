@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS 3188 : 1980",
+  "title": "Dimensions for Disc Insulators",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Dimensions for Disc Insulators.",
+  "status": "ACTIVE",
+  "publication_year": 1980,
+  "reaffirmed_year": null,
+  "technical_committee": "ETD 19",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Disc Insulators",
+    "Transmission Lines"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.441323+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-3188-1980",
+  "base_standard_number": "IS 3188"
+}

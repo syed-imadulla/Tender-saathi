@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 659 : 1964",
+  "title": "Safety Code for Mechanical Refrigeration",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Safety Code for Mechanical Refrigeration.",
+  "status": "ACTIVE",
+  "publication_year": 1964,
+  "reaffirmed_year": null,
+  "technical_committee": "MED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Refrigeration",
+    "HVAC",
+    "Safety"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.441460+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-659-1964",
+  "base_standard_number": "IS 659"
+}

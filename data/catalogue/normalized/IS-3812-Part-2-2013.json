@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS 3812 (Part 2) : 2013",
+  "title": "Pulverized Fuel Ash - Specification - Part 2 For Use as Admixture in Cement Mortar and Concrete",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Pulverized Fuel Ash - Specification - Part 2 For Use as Admixture in Cement Mortar and Concrete.",
+  "status": "ACTIVE",
+  "publication_year": 2013,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 2",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Flyash",
+    "Admixture"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.441852+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-3812-Part-2-2013",
+  "base_standard_number": "IS 3812 (Part 2)"
+}

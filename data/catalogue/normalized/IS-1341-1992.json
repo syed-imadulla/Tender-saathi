@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS 1341 : 1992",
+  "title": "Specification for Steel Butt Hinges",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Specification for Steel Butt Hinges.",
+  "status": "ACTIVE",
+  "publication_year": 1992,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 15",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Hinges",
+    "Steel Hinges"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.441133+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-1341-1992",
+  "base_standard_number": "IS 1341"
+}

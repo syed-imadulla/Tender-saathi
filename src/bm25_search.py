@@ -84,7 +84,10 @@ class BM25Index:
         self.idf_cache: Dict[str, float] = {}
 
     def build_from_db(self, db: StandardsDatabase):
-        """Indexes all standards from the SQLite database."""
+        """Indexes all standards from the SQLite database with persistent caching."""
+        import json
+        import os
+
         self.doc_ids.clear()
         self.doc_records.clear()
         self.doc_lengths.clear()
@@ -92,10 +95,33 @@ class BM25Index:
         self.doc_frequencies.clear()
         self.idf_cache.clear()
 
+        cache_dir = os.path.dirname(os.path.abspath(db.db_path))
+        cache_path = os.path.join(cache_dir, "bm25_index.json")
+
         with db._get_connection() as conn:
             cursor = conn.cursor()
             cursor.execute("SELECT * FROM standards")
             rows = [dict(r) for r in cursor.fetchall()]
+
+        current_ids = [r["standard_id"] for r in rows]
+
+        # Check if cache matches current database
+        if os.path.exists(cache_path):
+            try:
+                with open(cache_path, "r", encoding="utf-8") as f:
+                    cached = json.load(f)
+                if cached.get("doc_ids") == current_ids:
+                    self.doc_ids = cached["doc_ids"]
+                    self.doc_records = cached["doc_records"]
+                    self.doc_lengths = cached["doc_lengths"]
+                    self.doc_term_freqs = cached["doc_term_freqs"]
+                    self.doc_frequencies = cached["doc_frequencies"]
+                    self.avg_doc_length = cached["avg_doc_length"]
+                    self.total_docs = cached["total_docs"]
+                    self.idf_cache = cached["idf_cache"]
+                    return
+            except Exception:
+                pass
 
         self.total_docs = len(rows)
         total_len = 0
@@ -133,6 +159,23 @@ class BM25Index:
         # Precompute IDF for all indexed terms
         for term, df in self.doc_frequencies.items():
             self.idf_cache[term] = self._calculate_idf(df)
+
+        # Save to persistent cache
+        try:
+            os.makedirs(cache_dir, exist_ok=True)
+            with open(cache_path, "w", encoding="utf-8") as f:
+                json.dump({
+                    "doc_ids": self.doc_ids,
+                    "doc_records": self.doc_records,
+                    "doc_lengths": self.doc_lengths,
+                    "doc_term_freqs": self.doc_term_freqs,
+                    "doc_frequencies": self.doc_frequencies,
+                    "avg_doc_length": self.avg_doc_length,
+                    "total_docs": self.total_docs,
+                    "idf_cache": self.idf_cache,
+                }, f)
+        except Exception:
+            pass
 
     def _calculate_idf(self, df: int) -> float:
         """Standard Robertson-Spärck Jones IDF with smoothing."""

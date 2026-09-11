@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 8148 : 2018",
+  "title": "Packaged Air Conditioners - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Packaged Air Conditioners - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 2018,
+  "reaffirmed_year": null,
+  "technical_committee": "MED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Packaged AC",
+    "Central AC",
+    "HVAC"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.441625+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-8148-2018",
+  "base_standard_number": "IS 8148"
+}

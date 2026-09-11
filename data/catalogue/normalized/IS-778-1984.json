@@ -1,0 +1,26 @@
+{
+  "standard_number": "IS 778 : 1984",
+  "title": "Specification for Copper Alloy Gate, Globe and Check Valves for Waterworks Purposes",
+  "scope": "1.1 This standard covers requirements of copper alloy gate, globe and check valves of nominal sizes 8 to 100 mm suitable for working temperatures up to 45 deg C and non-shock working pressure Up to 1.6 MPa, for waterworks purposes.",
+  "status": "ACTIVE",
+  "publication_year": 1984,
+  "reaffirmed_year": 2020,
+  "technical_committee": "CED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Baseline Prototype"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "BSB_EDGE_MANUALLY_VERIFIED",
+    "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+778&id=0",
+    "retrieved_at": "2026-09-04T13:00:00Z",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-778-1984",
+  "base_standard_number": "IS 778"
+}

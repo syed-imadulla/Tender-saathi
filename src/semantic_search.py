@@ -85,7 +85,12 @@ class SemanticSearchEngine:
     ):
         self.db = db or StandardsDatabase()
         self.model_name = model_name
-        self.cache_dir = cache_dir
+        # If cache_dir was left default, align with the DB directory
+        if cache_dir == "data/standards" and self.db.db_path != "data/standards/standards.db":
+            self.cache_dir = os.path.dirname(os.path.abspath(self.db.db_path))
+        else:
+            self.cache_dir = cache_dir
+
         self.model = get_embedding_model(model_name)
         self.is_available = self.model is not None
 
@@ -97,9 +102,11 @@ class SemanticSearchEngine:
             self._build_or_load_index()
 
     def _build_or_load_index(self):
-        """Loads embeddings from cache or computes and saves them."""
+        """Loads embeddings from cache or incrementally computes and saves them."""
+        import hashlib
         npy_path = os.path.join(self.cache_dir, "semantic_embeddings.npy")
         meta_path = os.path.join(self.cache_dir, "semantic_doc_ids.json")
+        hash_path = os.path.join(self.cache_dir, "semantic_doc_hashes.json")
 
         with self.db._get_connection() as conn:
             cursor = conn.cursor()
@@ -109,53 +116,115 @@ class SemanticSearchEngine:
         self.doc_records = {r["standard_id"]: r for r in rows}
         current_ids = [r["standard_id"] for r in rows]
 
-        # Check if cache is valid and matches current database rows
-        cache_valid = False
-        if os.path.exists(npy_path) and os.path.exists(meta_path):
-            try:
-                with open(meta_path, "r", encoding="utf-8") as f:
-                    cached_ids = json.load(f)
-                if cached_ids == current_ids:
-                    self.doc_ids = cached_ids
-                    self.doc_embeddings = np.load(npy_path)
-                    cache_valid = True
-            except Exception:
-                cache_valid = False
-
-        if not cache_valid:
-            self._compute_and_cache_embeddings(rows, npy_path, meta_path)
-
-    def _compute_and_cache_embeddings(self, rows: List[Dict[str, Any]], npy_path: str, meta_path: str):
-        """Encodes standards text and caches to disk."""
-        texts = []
-        self.doc_ids = []
-
+        # Compute document representation strings and hashes
+        doc_strings = {}
+        current_hashes = {}
         for r in rows:
-            self.doc_ids.append(r["standard_id"])
+            sid = r["standard_id"]
             std_num = r.get("standard_number") or ""
             title = r.get("full_title") or ""
             scope = r.get("scope") or ""
             notes = r.get("notes") or ""
             tc = r.get("technical_committee") or ""
-
-            # Rich semantic document representation
             doc_str = f"{std_num} : {title}. Scope: {scope}. Notes: {notes}. Committee: {tc}"
-            texts.append(doc_str)
+            doc_strings[sid] = doc_str
+            current_hashes[sid] = hashlib.sha256(doc_str.encode('utf-8')).hexdigest()[:16]
 
-        if not texts or self.model is None:
+        # Check if cache is fully up-to-date
+        if (
+            os.path.exists(npy_path) and
+            os.path.exists(meta_path) and
+            os.path.exists(hash_path)
+        ):
+            try:
+                with open(meta_path, "r", encoding="utf-8") as f:
+                    cached_ids = json.load(f)
+                with open(hash_path, "r", encoding="utf-8") as f:
+                    cached_hashes = json.load(f)
+
+                if cached_ids == current_ids and cached_hashes == current_hashes:
+                    self.doc_ids = cached_ids
+                    self.doc_embeddings = np.load(npy_path)
+                    return
+            except Exception:
+                pass
+
+        # Perform incremental update
+        self._compute_and_cache_incremental(rows, doc_strings, current_hashes, npy_path, meta_path, hash_path)
+
+    def _compute_and_cache_incremental(
+        self,
+        rows: List[Dict[str, Any]],
+        doc_strings: Dict[str, str],
+        current_hashes: Dict[str, str],
+        npy_path: str,
+        meta_path: str,
+        hash_path: str
+    ):
+        """Incrementally computes embeddings, reusing unchanged cached vectors."""
+        if not rows or self.model is None:
             return
 
-        embeddings = self.model.encode(texts, convert_to_numpy=True, show_progress_bar=False)
-        # Normalize to unit vectors for fast dot product cosine similarity
-        norms = np.linalg.norm(embeddings, axis=1, keepdims=True)
-        norms[norms == 0] = 1.0
-        self.doc_embeddings = embeddings / norms
+        cached_ids = []
+        cached_hashes = {}
+        cached_embeddings = None
+
+        if os.path.exists(npy_path) and os.path.exists(meta_path) and os.path.exists(hash_path):
+            try:
+                with open(meta_path, "r", encoding="utf-8") as f:
+                    cached_ids = json.load(f)
+                with open(hash_path, "r", encoding="utf-8") as f:
+                    cached_hashes = json.load(f)
+                cached_embeddings = np.load(npy_path)
+            except Exception:
+                cached_ids = []
+                cached_hashes = {}
+                cached_embeddings = None
+
+        cached_id_to_idx = {cid: idx for idx, cid in enumerate(cached_ids)} if cached_embeddings is not None else {}
+
+        new_doc_ids = [r["standard_id"] for r in rows]
+        new_matrix = np.zeros((len(rows), 384), dtype=np.float32)  # all-MiniLM-L6-v2 dimension = 384
+
+        to_encode_indices = []
+        to_encode_texts = []
+
+        for idx, sid in enumerate(new_doc_ids):
+            # Check if unchanged standard exists in cache
+            if (
+                sid in cached_id_to_idx and
+                sid in cached_hashes and
+                cached_hashes[sid] == current_hashes.get(sid) and
+                cached_embeddings is not None and
+                cached_id_to_idx[sid] < len(cached_embeddings)
+            ):
+                # REUSE existing embedding
+                new_matrix[idx] = cached_embeddings[cached_id_to_idx[sid]]
+            else:
+                # NEW or UPDATED standard
+                to_encode_indices.append(idx)
+                to_encode_texts.append(doc_strings.get(sid, ""))
+
+        if to_encode_texts:
+            logger.info(f"Incrementally encoding {len(to_encode_texts)} new/updated standards...")
+            encoded = self.model.encode(to_encode_texts, convert_to_numpy=True, show_progress_bar=False)
+            norms = np.linalg.norm(encoded, axis=1, keepdims=True)
+            norms[norms == 0] = 1.0
+            normalized_encoded = encoded / norms
+
+            for pos, matrix_idx in enumerate(to_encode_indices):
+                new_matrix[matrix_idx] = normalized_encoded[pos]
+
+        self.doc_ids = new_doc_ids
+        self.doc_embeddings = new_matrix
 
         try:
             os.makedirs(self.cache_dir, exist_ok=True)
             np.save(npy_path, self.doc_embeddings)
             with open(meta_path, "w", encoding="utf-8") as f:
                 json.dump(self.doc_ids, f)
+            with open(hash_path, "w", encoding="utf-8") as f:
+                json.dump(current_hashes, f)
         except Exception as e:
             logger.warning(f"Could not cache semantic embeddings: {e}")
 

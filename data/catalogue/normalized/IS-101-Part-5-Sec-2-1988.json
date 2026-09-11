@@ -1,0 +1,27 @@
+{
+  "standard_number": "IS 101 (Part 5) (Sec 2) : 1988",
+  "title": "Methods of Sampling and Test for Paints, Varnishes and Related Products - Part 5 Mechanical Tests - Section 2 Scratch Hardness",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Methods of Sampling and Test for Paints, Varnishes and Related Products - Part 5 Mechanical Tests - Section 2 Scratch Hardness.",
+  "status": "ACTIVE",
+  "publication_year": 1988,
+  "reaffirmed_year": null,
+  "technical_committee": "CHD 20",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Paint Testing",
+    "Mechanical"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.442902+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-101-Part-5-Sec-2-1988",
+  "base_standard_number": "IS 101 (Part 5) (Sec 2)"
+}

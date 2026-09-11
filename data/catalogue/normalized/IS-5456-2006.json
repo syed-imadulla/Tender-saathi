@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS 5456 : 2006",
+  "title": "Positive Displacement Compressors and Exhausters - Methods of Test",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Positive Displacement Compressors and Exhausters - Methods of Test.",
+  "status": "ACTIVE",
+  "publication_year": 2006,
+  "reaffirmed_year": null,
+  "technical_committee": "MED 3",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Compressors",
+    "Air Compressors",
+    "Testing"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.441641+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS-5456-2006",
+  "base_standard_number": "IS 5456"
+}

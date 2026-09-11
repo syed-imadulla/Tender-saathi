@@ -1,0 +1,28 @@
+{
+  "standard_number": "IS  : 2089",
+  "title": "Specification for Common Proofed Tarpaulins (Fabric-Cotton Duck)",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Specification for Common Proofed Tarpaulins (Fabric-Cotton Duck).",
+  "status": "ACTIVE",
+  "publication_year": 2089,
+  "reaffirmed_year": null,
+  "technical_committee": "TXD 32",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Tarpaulins",
+    "Weather Protection",
+    "Canvas"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.442209+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.9
+  },
+  "canonical_id": "IS--2089",
+  "base_standard_number": "IS "
+}

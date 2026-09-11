@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 14246 : 2013",
+  "title": "Continuously Pre-Painted Galvanized Steel Sheets and Coils - Specification",
+  "scope": "Indian Standard specification covering requirements, sampling, and test methods for Continuously Pre-Painted Galvanized Steel Sheets and Coils - Specification.",
+  "status": "ACTIVE",
+  "publication_year": 2013,
+  "reaffirmed_year": null,
+  "technical_committee": "MTD 4",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Color Coated Sheets",
+    "PPGI Sheets",
+    "Roofing"
+  ],
+  "certification": [
+    "BIS_PRODUCT_CERTIFICATION_SCHEME_I"
+  ],
+  "source": {
+    "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-11T12:06:14.442252+00:00",
+    "provenance": "OFFICIAL_PRIMARY",
+    "confidence": 1.0
+  },
+  "canonical_id": "IS-14246-2013",
+  "base_standard_number": "IS 14246"
+}
