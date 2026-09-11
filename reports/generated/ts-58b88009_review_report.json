@@ -2,10 +2,10 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-58B88009",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: valve",
+    "source_file": "eProcurement System Government of India.pdf",
     "date": null,
     "requirements_analyzed": 1
   },
@@ -15,7 +15,7 @@
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-58B88009",
     "requirements_analyzed": 1,
     "recommendations_count": 0,
     "review_required_count": 1,
@@ -33,8 +33,8 @@
     "completeness_distribution": {
       "KNOWN": 0,
       "POTENTIALLY_MISSING": 0,
-      "UNKNOWN": 1,
-      "NOT_APPLICABLE": 0
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 1
     },
     "risk_distribution": {
       "LOW": 0,
@@ -51,13 +51,13 @@
     "related_standards_count": 0,
     "review_queue": [
       {
-        "requirement_id": "REQ-001",
-        "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+        "requirement_id": "TS-58B88009-R001",
+        "requirement_text": "REPLACEMENT OF CRANE RAIL TRACK FOR RMQC (RAIL MOUNTED QUAY CRANE) INCLUDING ALLIED WORKS AT BERTH NO. 11 and 12 IN DOCK AREA, H.D.C, HALDIA",
         "risk_level": "HIGH",
-        "decision": "REVIEW_REQUIRED",
+        "decision": "NO_RELIABLE_MATCH",
         "candidate_standard": "NONE",
         "evidence_strength": "NONE",
-        "primary_reason": "Tender specifies valve work without defining valve nominal diameter (DN), pressure rating (PN), body metallurgy (cast iron vs bronze vs forged steel), or process medium.",
+        "primary_reason": "All candidates rejected by Applicability Gate.",
         "priority": 2
       }
     ],
@@ -105,37 +105,21 @@
   },
   "requirements": [
     {
-      "requirement_id": "REQ-001",
-      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
-      "category": "product_equipment",
+      "requirement_id": "TS-58B88009-R001",
+      "requirement_text": "REPLACEMENT OF CRANE RAIL TRACK FOR RMQC (RAIL MOUNTED QUAY CRANE) INCLUDING ALLIED WORKS AT BERTH NO. 11 and 12 IN DOCK AREA, H.D.C, HALDIA",
+      "category": "installation_execution",
       "components": [
         {
-          "text": "Repair",
-          "component_type": "installation",
-          "domain": "execution",
-          "extracted_attributes": {
-            "action": "repair"
-          }
-        },
-        {
-          "text": "replacement",
+          "text": "REPLACEMENT",
           "component_type": "installation",
           "domain": "execution",
           "extracted_attributes": {
             "action": "replacement"
           }
-        },
-        {
-          "text": "valves",
-          "component_type": "product",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "category": "flow_control_valve"
-          }
         }
       ],
       "recommended_standard": "NONE",
-      "recommended_title": "Requirement Specification Incomplete - Clarification Required",
+      "recommended_title": "No Reliable Indian Standard Match Found",
       "relevance_score": 0.0,
       "lifecycle_status": "Unknown",
       "successor_standard": null,
@@ -145,40 +129,36 @@
       "evidence_text": "We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue.",
       "evidence_source": null,
       "why_this": [
-        "Tender specifies valve work without defining valve nominal diameter (DN), pressure rating (PN), body metallurgy (cast iron vs bronze vs forged steel), or process medium."
+        "No reliable Indian Standard match found. We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue. Human review required."
       ],
       "why_not": [
-        "Specification omits critical discriminating parameters: valve nominal diameter (DN), pressure rating (PN), body metallurgy (cast iron vs bronze vs forged steel), process medium."
+        "Standard IS/ISO 10434 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) rejected: Requirement specifies crane rail track / cranes, but candidate standard covers industrial valves.; No substantive technical vocabulary overlap with standard scope (generic words only).",
+        "Standard IS 101 (Methods of Sampling and Test for Paints, Varnishes and Related Products Part 5 Mechanical Tests Section 5 Impact resistance — Falling-weight test, small-area indenter) rejected: No substantive technical vocabulary overlap with standard scope (generic words only).; Zero substantive technical term overlap between requirement and standard.",
+        "Standard IS 101 (Methods of Sampling and Test for Paints, Varnishes and Related Products Part 5 Mechanical Tests Section 3 Impact resistance — Falling-weight test, large-area indenter (Fifth Revision)) rejected: No substantive technical vocabulary overlap with standard scope (generic words only).; Zero substantive technical term overlap between requirement and standard."
       ],
-      "completeness_label": "UNKNOWN",
-      "potentially_missing_parameters": [
-        "Valve Type",
-        "Nominal Size / Diameter (DN)",
-        "Pressure Rating (PN / Class)",
-        "Body Metallurgy / Material",
-        "Fluid Medium / Service"
-      ],
+      "completeness_label": "NOT_APPLICABLE",
+      "potentially_missing_parameters": [],
       "known_parameters": {},
       "related_standards": [],
       "decision": "INSUFFICIENT_EVIDENCE",
       "risk_level": "HIGH",
       "risk_reasons": [
-        "Tender specifies valve work without defining valve nominal diameter (DN), pressure rating (PN), body metallurgy (cast iron vs bronze vs forged steel), or process medium."
+        "All candidates rejected by Applicability Gate."
       ],
       "human_review_required": true,
       "confidence": "Low",
-      "review_reason": "Tender specifies valve work without defining valve nominal diameter (DN), pressure rating (PN), body metallurgy (cast iron vs bronze vs forged steel), or process medium."
+      "review_reason": "No reliable Indian Standard match found. We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue. Human review required."
     }
   ],
   "review_queue": [
     {
-      "requirement_id": "REQ-001",
-      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+      "requirement_id": "TS-58B88009-R001",
+      "requirement_text": "REPLACEMENT OF CRANE RAIL TRACK FOR RMQC (RAIL MOUNTED QUAY CRANE) INCLUDING ALLIED WORKS AT BERTH NO. 11 and 12 IN DOCK AREA, H.D.C, HALDIA",
       "risk_level": "HIGH",
-      "decision": "REVIEW_REQUIRED",
+      "decision": "NO_RELIABLE_MATCH",
       "candidate_standard": "NONE",
       "evidence_strength": "NONE",
-      "primary_reason": "Tender specifies valve work without defining valve nominal diameter (DN), pressure rating (PN), body metallurgy (cast iron vs bronze vs forged steel), or process medium.",
+      "primary_reason": "All candidates rejected by Applicability Gate.",
       "priority": 2
     }
   ],

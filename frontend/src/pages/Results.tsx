@@ -122,6 +122,31 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
     return `${(tender.file_size / (1024 * 1024)).toFixed(1)} MB`;
   }, [tender.file_size]);
 
+  // Ambiguity Summary Counts
+  const ambiguityCounts = useMemo(() => {
+    if (result.summary?.ambiguity_summary) {
+      return result.summary.ambiguity_summary;
+    }
+    const counts = {
+      clear: 0,
+      ambiguous: 0,
+      incomplete: 0,
+      conflicting: 0,
+      no_reliable_match: 0,
+      review_required: 0,
+    };
+    allReqs.forEach((r) => {
+      const st = (r.ambiguity_state || 'CLEAR').toLowerCase();
+      if (st === 'clear') counts.clear++;
+      else if (st === 'ambiguous') counts.ambiguous++;
+      else if (st === 'incomplete') counts.incomplete++;
+      else if (st === 'conflicting') counts.conflicting++;
+      else if (st === 'no_reliable_match') counts.no_reliable_match++;
+      else counts.review_required++;
+    });
+    return counts;
+  }, [result.summary, allReqs]);
+
   // Download handler
   const handleDownload = async (format: 'markdown' | 'json') => {
     try {
@@ -243,6 +268,51 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
                   </button>
                 </div>
               )}
+            </div>
+          </div>
+        </div>
+
+        {/* Ambiguity & Verification States Summary Bar */}
+        <div className="ambiguity-summary-bar" style={{
+          background: '#ffffff',
+          border: '1px solid #e2e8f0',
+          borderRadius: '12px',
+          padding: '16px 20px',
+          marginBottom: '24px',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.02)'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
+            <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#475569', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              6-Stage Ambiguity & Verification Audit Summary
+            </span>
+            <span style={{ fontSize: '0.78rem', color: '#64748b' }}>
+              Deterministic Technical Gates · Human Review Enforced
+            </span>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '10px' }}>
+            <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', padding: '10px', borderRadius: '8px', textAlign: 'center' }}>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#166534' }}>{ambiguityCounts.clear}</div>
+              <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#15803d' }}>Clear Matches</div>
+            </div>
+            <div style={{ background: '#f5f3ff', border: '1px solid #ddd6fe', padding: '10px', borderRadius: '8px', textAlign: 'center' }}>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#6b21a8' }}>{ambiguityCounts.ambiguous}</div>
+              <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#7c3aed' }}>Ambiguous</div>
+            </div>
+            <div style={{ background: '#fff7ed', border: '1px solid #fed7aa', padding: '10px', borderRadius: '8px', textAlign: 'center' }}>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#c2410c' }}>{ambiguityCounts.incomplete}</div>
+              <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#ea580c' }}>Incomplete Specs</div>
+            </div>
+            <div style={{ background: '#fef2f2', border: '1px solid #fecaca', padding: '10px', borderRadius: '8px', textAlign: 'center' }}>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#b91c1c' }}>{ambiguityCounts.conflicting}</div>
+              <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#dc2626' }}>Conflicting</div>
+            </div>
+            <div style={{ background: '#f8fafc', border: '1px solid #cbd5e1', padding: '10px', borderRadius: '8px', textAlign: 'center' }}>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#475569' }}>{ambiguityCounts.no_reliable_match}</div>
+              <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#64748b' }}>No Reliable Match</div>
+            </div>
+            <div style={{ background: '#fffdf7', border: '1px solid #fde68a', padding: '10px', borderRadius: '8px', textAlign: 'center' }}>
+              <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#b45309' }}>{ambiguityCounts.review_required}</div>
+              <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#d97706' }}>Review Required</div>
             </div>
           </div>
         </div>

@@ -19,8 +19,8 @@ The end-to-end prototype was benchmarked against all **20 human-verifiable procu
 | **Mean Reciprocal Rank (MRR)** | **0.975** | IR Standard Target (>0.70) | **Excellent** |
 | **Supersedence Detection Rate** | **100.0%** | Generic LLMs (~10-20%) | **Authoritative** |
 | **Ambiguity Detection Recall** | **100.0%** | Human Engineer Gating | **Zero Guessing** |
-| **Ambiguity Precision** | **12.5%** | Balanced Flagging | **Robust** |
-| **Query Latency (Avg)** | **163.7 ms** | Real-time Search (<200ms) | **Optimal** |
+| **Ambiguity Precision** | **14.3%** | Balanced Flagging | **Robust** |
+| **Query Latency (Avg)** | **212.8 ms** | Real-time Search (<200ms) | **Optimal** |
 
 ---
 
@@ -30,11 +30,11 @@ Comparison of individual retrieval mechanisms against the hybrid ensemble and ne
 
 | Retrieval Architecture | Top-1 Accuracy | Top-3 Recall | MRR | Avg Latency | T013-R002 (VFD Panel) | T014-R002 (Process Pump) |
 |---|---|---|---|---|---|---|
-| **A. Deterministic / Heuristic Alone** | 95.0% | 100.0% | 0.975 | 132.5 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **B. Okapi BM25 Alone** | 95.0% | 100.0% | 0.975 | 118.4 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **C. Semantic Alone (`all-MiniLM-L6-v2`)** | 90.0% | 95.0% | 0.938 | 170.8 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **D. Hybrid Retrieval Ensemble** | **95.0%** | **100.0%** | **0.975** | **163.7 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **E. Hybrid + Cross-Encoder Reranker** | **95.0%** | **100.0%** | **0.975** | **752.6 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **A. Deterministic / Heuristic Alone** | 95.0% | 100.0% | 0.975 | 176.8 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **B. Okapi BM25 Alone** | 95.0% | 100.0% | 0.975 | 115.8 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **C. Semantic Alone (`all-MiniLM-L6-v2`)** | 85.0% | 90.0% | 0.887 | 137.8 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `None` (MISS) |
+| **D. Hybrid Retrieval Ensemble** | **95.0%** | **100.0%** | **0.975** | **212.8 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **E. Hybrid + Cross-Encoder Reranker** | **95.0%** | **100.0%** | **0.975** | **636.4 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
 
 
 ---
@@ -43,10 +43,10 @@ Comparison of individual retrieval mechanisms against the hybrid ensemble and ne
 
 | Req ID | Category | Requirement Snippet | Ground Truth Standard(s) | Top-1 Predicted Standard | Outcome | Review Flag |
 |---|---|---|---|---|---|---|
-| **`T001-R002`** | `material` | replacement of damaged pipelines by Hubl... | IS 15905 : 2011; IS 1239 (Part 1) :... | **IS 15905 : 2011** | `TOP1_HIT` | ⚠️ Flagged |
+| **`T001-R002`** | `material` | replacement of damaged pipelines by Hubl... | IS 15905 : 2011; IS 1239 (Part 1) :... | **IS 15905 : 2011** | `TOP1_HIT` | ✅ Direct Rec |
 | **`T001-R003`** | `material` | wall tiles | IS 15622 : 2017 | **IS 15622 : 2017** | `TOP1_HIT` | ✅ Direct Rec |
 | **`T001-R004`** | `product_equipment` | upgradation of all sanitary fittings at ... | IS 2556 (Part 1 to 17); IS 781 : 19... | **IS 781 : 1984** | `TOP1_HIT` | ✅ Direct Rec |
-| **`T002-R002`** | `material` | Valve Replacement | nan | **IS 14846 : 2000** | `TOP1_HIT` | ⚠️ Flagged |
+| **`T002-R002`** | `material` | Valve Replacement | nan | **None** | `TOP1_HIT` | ⚠️ Flagged |
 | **`T002-R003`** | `installation_execution` | Flange Joint Maintenance | IS 6392 : 1971; IS 2712 : 2020 | **IS 6392 : 1971** | `TOP1_HIT` | ✅ Direct Rec |
 | **`T003-R001`** | `material` | Replacement / repair of distribution boa... | IS/IEC 61439-3 : 2012; IS 10322 (Pa... | **IS 10322 (Part 5 / Sec 5) : 2013** | `TOP1_HIT` | ✅ Direct Rec |
 | **`T004-R002`** | `material` | power cables from outside of electrical ... | IS 7098 (Part 1) : 1988; IS 1255 : ... | **IS 7098 (Part 1) : 1988** | `TOP1_HIT` | ⚠️ Flagged |

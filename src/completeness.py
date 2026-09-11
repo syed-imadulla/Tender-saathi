@@ -108,7 +108,7 @@ DOMAIN_DEFINITIONS: Dict[str, Dict[str, Dict[str, Any]]] = {
     "pipe": {
         "material": {
             "display": "Piping Material",
-            "regex": r'\b(cpvc|upvc|pvc|hdpe|mdpe|polyethylene|di|ductile\s*iron|ci|cast\s*iron|gi|galvanized\s*iron|mild\s*steel|ms|precast\s*concrete|rcc|stoneware|copper|ss|stainless\s*steel)\b',
+            "regex": r'\b(cpvc|upvc|pvc|hdpe|mdpe|polyethylene|di|ductile\s*iron|ci|cast\s*iron|hubless|gi|galvanized\s*iron|mild\s*steel|ms|precast\s*concrete|rcc|stoneware|copper|ss|stainless\s*steel)\b',
             "critical": True
         },
         "diameter": {
@@ -123,7 +123,7 @@ DOMAIN_DEFINITIONS: Dict[str, Dict[str, Dict[str, Any]]] = {
         },
         "application": {
             "display": "Piping Application / Service",
-            "regex": r'\b(water\s*supply|potable|drinking\s*water|hot\s*and\s*cold|sewerage|drainage|irrigation|plumbing|sanitary|industrial\s*effluent|gas|fire\s*fighting)\b',
+            "regex": r'\b(water\s*supply|potable|drinking\s*water|hot\s*and\s*cold|sewerage|drainage|culvert|cross\s*drainage|storm\s*water|irrigation|plumbing|sanitary|industrial\s*effluent|gas|fire\s*fighting)\b',
             "critical": True
         }
     },
@@ -263,7 +263,8 @@ class DomainCompletenessAnalyzer:
         
         # Check components first if available
         if components:
-            for c in components:
+            sorted_comps = sorted(components, key=lambda comp: 0 if getattr(comp, "component_type", "") in ["product", "equipment"] else 1)
+            for c in sorted_comps:
                 c_low = c.text.lower()
                 if any(k in c_low for k in ["valve", "sluice", "nrv"]):
                     return "valve"

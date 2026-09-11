@@ -159,6 +159,13 @@ DOMAINS = {
             "lagging", "refractory"
         },
         "description": "Thermal & Acoustic Insulation Materials"
+    },
+    "AEROSPACE_AND_DEFENSE": {
+        "keywords": {
+            "aerospace", "aircraft", "fuselage", "avionics", "supersonic",
+            "spacecraft", "satellite", "prepreg", "flight", "rocket"
+        },
+        "description": "Aerospace, Defense & Advanced Flight Structures"
     }
 }
 
@@ -177,6 +184,11 @@ DOMAIN_CONFLICTS = {
     ("CIVIL_AND_STRUCTURAL", "VALVES_AND_FLOW"): "Requirement specifies structural/civil works, but candidate standard covers valves.",
     ("CIVIL_AND_STRUCTURAL", "PIPES_AND_FITTINGS"): "Requirement specifies structural/civil works, but candidate standard covers pipes/plumbing.",
     ("PIPES_AND_FITTINGS", "FOOD_AND_AGRICULTURE"): "Requirement specifies piping systems, but candidate standard covers food products.",
+    ("AEROSPACE_AND_DEFENSE", "PIPES_AND_FITTINGS"): "Requirement specifies aerospace/aircraft structures, but candidate standard covers pipe flanges/plumbing.",
+    ("AEROSPACE_AND_DEFENSE", "VALVES_AND_FLOW"): "Requirement specifies aerospace/aircraft structures, but candidate standard covers civil/plumbing valves.",
+    ("AEROSPACE_AND_DEFENSE", "FOOD_AND_AGRICULTURE"): "Requirement specifies aerospace/aircraft structures, but candidate standard covers food/agriculture.",
+    ("AEROSPACE_AND_DEFENSE", "TILES_AND_SURFACES"): "Requirement specifies aerospace/aircraft structures, but candidate standard covers ceramic tiles.",
+    ("AEROSPACE_AND_DEFENSE", "CEMENT_AND_CONCRETE"): "Requirement specifies aerospace/aircraft structures, but candidate standard covers cement/concrete.",
 }
 
 

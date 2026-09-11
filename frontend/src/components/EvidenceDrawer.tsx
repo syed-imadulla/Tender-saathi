@@ -469,8 +469,87 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
             </section>
           )}
 
-          {/* 11. Technical Details (Collapsed by default) */}
-          <CollapseSection title="11. Technical Details" defaultOpen={false}>
+          {/* 11. Controlled Ambiguity & Decision Pipeline (Milestone 12) */}
+          <section className="drawer-section" style={{ background: '#f8fafc', padding: '14px 16px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+            <h3 className="drawer-section__title" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span>11. Ambiguity & Decision Pipeline Audit</span>
+              <span className={`badge ${
+                req.ambiguity_state === 'CLEAR' ? 'badge--active' :
+                req.ambiguity_state === 'CONFLICTING' ? 'badge--superseded' :
+                req.ambiguity_state === 'AMBIGUOUS' ? 'badge--primary' :
+                'badge--warning'
+              }`} style={{ fontSize: '0.75rem', textTransform: 'uppercase' }}>
+                {req.ambiguity_state || 'REVIEW_REQUIRED'}
+              </span>
+            </h3>
+
+            {req.ambiguity_reason && (
+              <p style={{ fontSize: '0.84rem', color: '#334155', margin: '4px 0 10px 0', lineHeight: '1.45', fontWeight: 500 }}>
+                {req.ambiguity_reason}
+              </p>
+            )}
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', margin: '8px 0 12px 0', fontSize: '0.78rem' }}>
+              <div style={{ background: '#ffffff', padding: '6px 8px', borderRadius: '6px', border: '1px solid #e2e8f0' }}>
+                <span style={{ color: '#64748b', display: 'block', fontSize: '0.7rem' }}>RETRIEVAL</span>
+                <strong style={{ color: req.retrieval_status === 'ZERO_RESULTS' ? '#b91c1c' : '#1e293b' }}>
+                  {req.retrieval_status || 'CANDIDATES_FOUND'}
+                </strong>
+              </div>
+              <div style={{ background: '#ffffff', padding: '6px 8px', borderRadius: '6px', border: '1px solid #e2e8f0' }}>
+                <span style={{ color: '#64748b', display: 'block', fontSize: '0.7rem' }}>APPLICABILITY</span>
+                <strong style={{ color: req.applicability_status === 'ALL_REJECTED' ? '#b91c1c' : '#1e293b' }}>
+                  {req.applicability_status || 'APPLICABLE'}
+                </strong>
+              </div>
+              <div style={{ background: '#ffffff', padding: '6px 8px', borderRadius: '6px', border: '1px solid #e2e8f0' }}>
+                <span style={{ color: '#64748b', display: 'block', fontSize: '0.7rem' }}>EVIDENCE</span>
+                <strong style={{ color: req.evidence_status === 'VALID' ? '#166534' : '#b91c1c' }}>
+                  {req.evidence_status || 'VALID'}
+                </strong>
+              </div>
+            </div>
+
+            {/* Competing Interpretations within separation threshold */}
+            {req.competing_interpretations && req.competing_interpretations.length > 0 && (
+              <div style={{ marginTop: '10px', background: '#ffffff', padding: '10px', borderRadius: '6px', border: '1px solid #e2e8f0' }}>
+                <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#475569', display: 'block', marginBottom: '6px', textTransform: 'uppercase' }}>
+                  Competing Candidate Standards ({req.competing_interpretations.length}):
+                </span>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                  {req.competing_interpretations.map((ci, idx) => (
+                    <div key={idx} style={{ fontSize: '0.82rem', padding: '4px 6px', background: '#f8fafc', borderRadius: '4px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <strong style={{ color: '#1e293b' }}>{ci.standard_number}</strong>
+                        {ci.score !== undefined && <span style={{ color: '#64748b', fontSize: '0.75rem' }}>Score: {ci.score.toFixed(3)}</span>}
+                      </div>
+                      {ci.title && <div style={{ color: '#475569', fontSize: '0.78rem' }}>{ci.title}</div>}
+                      {ci.distinguishing_parameter_needed && (
+                        <div style={{ color: '#7c3aed', fontSize: '0.75rem', marginTop: '2px' }}>
+                          Distinguishing requirement: <em>{ci.distinguishing_parameter_needed}</em>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Actionable clarification question */}
+            {req.suggested_clarification_question && (
+              <div style={{ marginTop: '10px', padding: '10px 12px', background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '6px' }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#166534', display: 'block', marginBottom: '3px' }}>
+                  SUGGESTED CLARIFICATION QUESTION FOR TENDER OFFICER:
+                </span>
+                <p style={{ margin: 0, fontSize: '0.82rem', color: '#14532d', lineHeight: '1.4' }}>
+                  "{req.suggested_clarification_question}"
+                </p>
+              </div>
+            )}
+          </section>
+
+          {/* 12. Technical Details (Collapsed by default) */}
+          <CollapseSection title="12. Technical Scoring & Algorithms" defaultOpen={false}>
             <div className="score-breakdown-list">
               <ScoreBar label="BM25" value={req.scores?.deterministic === 1.0 ? 'Not used' : req.scores?.bm25} />
               <ScoreBar label="Semantic" value={req.scores?.deterministic === 1.0 ? 'Not used' : req.scores?.semantic} />

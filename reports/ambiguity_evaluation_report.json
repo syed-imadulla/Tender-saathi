@@ -1,0 +1,1242 @@
+{
+  "selected_threshold": 0.03,
+  "sweep_results": [
+    {
+      "threshold": 0.03,
+      "accuracy": 55.00000000000001,
+      "correct_state": 22,
+      "total_cases": 40,
+      "invariant_violations": 0,
+      "by_state": {
+        "CLEAR": {
+          "total": 10,
+          "correct": 10,
+          "accuracy": 100.0
+        },
+        "INCOMPLETE": {
+          "total": 10,
+          "correct": 4,
+          "accuracy": 40.0
+        },
+        "AMBIGUOUS": {
+          "total": 10,
+          "correct": 1,
+          "accuracy": 10.0
+        },
+        "CONFLICTING": {
+          "total": 5,
+          "correct": 5,
+          "accuracy": 100.0
+        },
+        "NO_RELIABLE_MATCH": {
+          "total": 5,
+          "correct": 2,
+          "accuracy": 40.0
+        }
+      },
+      "elapsed_sec": 6.31
+    },
+    {
+      "threshold": 0.05,
+      "accuracy": 55.00000000000001,
+      "correct_state": 22,
+      "total_cases": 40,
+      "invariant_violations": 0,
+      "by_state": {
+        "CLEAR": {
+          "total": 10,
+          "correct": 10,
+          "accuracy": 100.0
+        },
+        "INCOMPLETE": {
+          "total": 10,
+          "correct": 4,
+          "accuracy": 40.0
+        },
+        "AMBIGUOUS": {
+          "total": 10,
+          "correct": 1,
+          "accuracy": 10.0
+        },
+        "CONFLICTING": {
+          "total": 5,
+          "correct": 5,
+          "accuracy": 100.0
+        },
+        "NO_RELIABLE_MATCH": {
+          "total": 5,
+          "correct": 2,
+          "accuracy": 40.0
+        }
+      },
+      "elapsed_sec": 6.26
+    },
+    {
+      "threshold": 0.08,
+      "accuracy": 55.00000000000001,
+      "correct_state": 22,
+      "total_cases": 40,
+      "invariant_violations": 0,
+      "by_state": {
+        "CLEAR": {
+          "total": 10,
+          "correct": 10,
+          "accuracy": 100.0
+        },
+        "INCOMPLETE": {
+          "total": 10,
+          "correct": 4,
+          "accuracy": 40.0
+        },
+        "AMBIGUOUS": {
+          "total": 10,
+          "correct": 1,
+          "accuracy": 10.0
+        },
+        "CONFLICTING": {
+          "total": 5,
+          "correct": 5,
+          "accuracy": 100.0
+        },
+        "NO_RELIABLE_MATCH": {
+          "total": 5,
+          "correct": 2,
+          "accuracy": 40.0
+        }
+      },
+      "elapsed_sec": 6.43
+    },
+    {
+      "threshold": 0.1,
+      "accuracy": 55.00000000000001,
+      "correct_state": 22,
+      "total_cases": 40,
+      "invariant_violations": 0,
+      "by_state": {
+        "CLEAR": {
+          "total": 10,
+          "correct": 10,
+          "accuracy": 100.0
+        },
+        "INCOMPLETE": {
+          "total": 10,
+          "correct": 4,
+          "accuracy": 40.0
+        },
+        "AMBIGUOUS": {
+          "total": 10,
+          "correct": 1,
+          "accuracy": 10.0
+        },
+        "CONFLICTING": {
+          "total": 5,
+          "correct": 5,
+          "accuracy": 100.0
+        },
+        "NO_RELIABLE_MATCH": {
+          "total": 5,
+          "correct": 2,
+          "accuracy": 40.0
+        }
+      },
+      "elapsed_sec": 6.09
+    }
+  ],
+  "ambiguity_benchmark": {
+    "threshold": 0.03,
+    "total_cases": 40,
+    "correct_state": 22,
+    "accuracy": 55.00000000000001,
+    "by_state": {
+      "CLEAR": {
+        "total": 10,
+        "correct": 10,
+        "accuracy": 100.0
+      },
+      "INCOMPLETE": {
+        "total": 10,
+        "correct": 4,
+        "accuracy": 40.0
+      },
+      "AMBIGUOUS": {
+        "total": 10,
+        "correct": 1,
+        "accuracy": 10.0
+      },
+      "CONFLICTING": {
+        "total": 5,
+        "correct": 5,
+        "accuracy": 100.0
+      },
+      "NO_RELIABLE_MATCH": {
+        "total": 5,
+        "correct": 2,
+        "accuracy": 40.0
+      }
+    },
+    "invariant_violations": 0,
+    "clean_abstention_violations": 0,
+    "results": [
+      {
+        "id": "AMB-CLR-01",
+        "category": "Civil/Plumbing",
+        "text": "Supply and installation of chlorinated polyvinyl chloride (CPVC) pipes and fitti...",
+        "expected_state": "CLEAR",
+        "predicted_state": "CLEAR",
+        "state_match": true,
+        "candidate_standard": "IS 15778 : 2007",
+        "evidence_standard": "IS 15778 : 2007",
+        "human_review_required": false,
+        "expected_review_required": false,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
+      },
+      {
+        "id": "AMB-CLR-02",
+        "category": "Civil/Materials",
+        "text": "Supply of 43 Grade Ordinary Portland Cement (OPC) packed in 50 kg HDPE/PP bags c...",
+        "expected_state": "CLEAR",
+        "predicted_state": "CLEAR",
+        "state_match": true,
+        "candidate_standard": "IS 269 : 2015",
+        "evidence_standard": "IS 269 : 2015",
+        "human_review_required": false,
+        "expected_review_required": false,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Authoritative active standard IS 269 : 2015 verified against scope with High confidence."
+      },
+      {
+        "id": "AMB-CLR-03",
+        "category": "Electrical/Cables",
+        "text": "Supply of 1100V grade PVC insulated, PVC sheathed copper conductor multi-core co...",
+        "expected_state": "CLEAR",
+        "predicted_state": "CLEAR",
+        "state_match": true,
+        "candidate_standard": "IS 7098 (Part 1) : 1988",
+        "evidence_standard": "IS 7098 (Part 1) : 1988",
+        "human_review_required": false,
+        "expected_review_required": false,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Authoritative active standard IS 7098 (Part 1) : 1988 verified against scope with Medium confidence."
+      },
+      {
+        "id": "AMB-CLR-04",
+        "category": "Electrical/Motors",
+        "text": "Supply of three phase squirrel cage induction motors 415V, 50Hz, 30 kW with IE3 ...",
+        "expected_state": "CLEAR",
+        "predicted_state": "CLEAR",
+        "state_match": true,
+        "candidate_standard": "IS/IEC 60034-1 : 2017",
+        "evidence_standard": "IS/IEC 60034-1 : 2017",
+        "human_review_required": false,
+        "expected_review_required": false,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Authoritative active standard IS/IEC 60034-1 : 2017 verified against scope with Medium confidence."
+      },
+      {
+        "id": "AMB-CLR-05",
+        "category": "Civil/Plumbing",
+        "text": "Supply and delivery of high density polyethylene (HDPE) pipes PE-100 grade, PN 1...",
+        "expected_state": "CLEAR",
+        "predicted_state": "CLEAR",
+        "state_match": true,
+        "candidate_standard": "IS 14333 : 2022",
+        "evidence_standard": "IS 14333 : 2022",
+        "human_review_required": false,
+        "expected_review_required": false,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Authoritative active standard IS 14333 : 2022 verified against scope with High confidence."
+      },
+      {
+        "id": "AMB-CLR-06",
+        "category": "Civil/Plumbing",
+        "text": "Supply of unplasticized PVC (uPVC) pipes Class 3 (0.6 MPa) 110 mm diameter with ...",
+        "expected_state": "CLEAR",
+        "predicted_state": "CLEAR",
+        "state_match": true,
+        "candidate_standard": "IS 15778 : 2007",
+        "evidence_standard": "IS 15778 : 2007",
+        "human_review_required": false,
+        "expected_review_required": false,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
+      },
+      {
+        "id": "AMB-CLR-07",
+        "category": "Mechanical/Valves",
+        "text": "Supply of copper alloy gate, globe and check valves 50 mm nominal diameter for w...",
+        "expected_state": "CLEAR",
+        "predicted_state": "CLEAR",
+        "state_match": true,
+        "candidate_standard": "IS 778 : 1984",
+        "evidence_standard": "IS 778 : 1984",
+        "human_review_required": false,
+        "expected_review_required": false,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Authoritative active standard IS 778 : 1984 verified against scope with High confidence."
+      },
+      {
+        "id": "AMB-CLR-08",
+        "category": "Civil/Materials",
+        "text": "Supply of structural steel standard quality Fe 410 WA plates 20 mm thickness con...",
+        "expected_state": "CLEAR",
+        "predicted_state": "CLEAR",
+        "state_match": true,
+        "candidate_standard": "IS 432 : 2026",
+        "evidence_standard": "IS 432 : 2026",
+        "human_review_required": false,
+        "expected_review_required": false,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Authoritative active standard IS 432 : 2026 verified against scope with Medium confidence."
+      },
+      {
+        "id": "AMB-CLR-09",
+        "category": "Civil/Drainage",
+        "text": "Supply and laying of precast reinforced concrete pipes NP3 class 600 mm internal...",
+        "expected_state": "CLEAR",
+        "predicted_state": "CLEAR",
+        "state_match": true,
+        "candidate_standard": "IS 14333 : 1996",
+        "evidence_standard": "IS 14333 : 1996",
+        "human_review_required": false,
+        "expected_review_required": false,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Authoritative active standard IS 14333 : 1996 verified against scope with Medium confidence."
+      },
+      {
+        "id": "AMB-CLR-10",
+        "category": "Electrical/Luminaires",
+        "text": "Supply and installation of 45W outdoor LED street lighting luminaires IP66 for r...",
+        "expected_state": "CLEAR",
+        "predicted_state": "CLEAR",
+        "state_match": true,
+        "candidate_standard": "IS 10322 (Part 5 / Sec 5) : 2013",
+        "evidence_standard": "IS 10322 (Part 5 / Sec 5) : 2013",
+        "human_review_required": false,
+        "expected_review_required": false,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Authoritative active standard IS 10322 (Part 5 / Sec 5) : 2013 verified against scope with High conf"
+      },
+      {
+        "id": "AMB-INC-01",
+        "category": "Mechanical/Valves",
+        "text": "Procurement and supply of industrial valves for water utility distribution netwo...",
+        "expected_state": "INCOMPLETE",
+        "predicted_state": "INCOMPLETE",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Tender specifies valve work without defining valve nominal diameter (DN), pressure rating (PN), body"
+      },
+      {
+        "id": "AMB-INC-02",
+        "category": "Civil/Plumbing",
+        "text": "Procurement of piping and pipe fittings for urban infrastructure utility corrido...",
+        "expected_state": "INCOMPLETE",
+        "predicted_state": "INCOMPLETE",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Tender requirement specifies 'pipe' equipment but omits critical discriminating technical parameters"
+      },
+      {
+        "id": "AMB-INC-03",
+        "category": "Electrical/Cables",
+        "text": "Supply and laying of electrical power cables for factory electrification....",
+        "expected_state": "INCOMPLETE",
+        "predicted_state": "REVIEW_REQUIRED",
+        "state_match": false,
+        "candidate_standard": "IS 1255 : 1983",
+        "evidence_standard": "IS 1255 : 1983",
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Insulation Material; "
+      },
+      {
+        "id": "AMB-INC-04",
+        "category": "Mechanical/Pumps",
+        "text": "Supply and installation of water pumps for public water works system....",
+        "expected_state": "INCOMPLETE",
+        "predicted_state": "REVIEW_REQUIRED",
+        "state_match": false,
+        "candidate_standard": "IS 9694 : 2023",
+        "evidence_standard": "IS 9694 : 2023",
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total "
+      },
+      {
+        "id": "AMB-INC-05",
+        "category": "Electrical/Motors",
+        "text": "Procurement of electric induction motors for municipal utility pumping station....",
+        "expected_state": "INCOMPLETE",
+        "predicted_state": "INCOMPLETE",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Tender requirement specifies 'pump' equipment but omits critical discriminating technical parameters"
+      },
+      {
+        "id": "AMB-INC-06",
+        "category": "Mechanical/Valves",
+        "text": "Replacement of damaged valves in pumping station....",
+        "expected_state": "INCOMPLETE",
+        "predicted_state": "INCOMPLETE",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Tender specifies valve work without defining valve nominal diameter (DN), pressure rating (PN), body"
+      },
+      {
+        "id": "AMB-INC-07",
+        "category": "Civil/Piping",
+        "text": "Laying of underground sewerage pipeline without defining pipe material or class....",
+        "expected_state": "INCOMPLETE",
+        "predicted_state": "REVIEW_REQUIRED",
+        "state_match": false,
+        "candidate_standard": "IS 14333 : 1996",
+        "evidence_standard": "IS 14333 : 1996",
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Potentially missing engineering parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressu"
+      },
+      {
+        "id": "AMB-INC-08",
+        "category": "Electrical/Switchgear",
+        "text": "Supply and erection of electrical distribution panels for administrative complex...",
+        "expected_state": "INCOMPLETE",
+        "predicted_state": "CLEAR",
+        "state_match": false,
+        "candidate_standard": "IS 5039 : 1983",
+        "evidence_standard": "IS 5039 : 1983",
+        "human_review_required": false,
+        "expected_review_required": true,
+        "review_match": false,
+        "separation_margin": null,
+        "reason": "Authoritative active standard IS 5039 : 1983 verified against scope with Medium confidence."
+      },
+      {
+        "id": "AMB-INC-09",
+        "category": "Civil/Sanitary",
+        "text": "Procurement of sanitary drainage pipes and accessories for residential quarters....",
+        "expected_state": "INCOMPLETE",
+        "predicted_state": "REVIEW_REQUIRED",
+        "state_match": false,
+        "candidate_standard": "IS 15905 : 2011",
+        "evidence_standard": "IS 15905 : 2011",
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Potentially missing engineering parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressu"
+      },
+      {
+        "id": "AMB-INC-10",
+        "category": "Civil/Materials",
+        "text": "Supply of standard cement bags for general concrete construction works....",
+        "expected_state": "INCOMPLETE",
+        "predicted_state": "REVIEW_REQUIRED",
+        "state_match": false,
+        "candidate_standard": "IS 458 : 2021",
+        "evidence_standard": "IS 458 : 2021",
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Authoritative active standard IS 458 : 2021 verified against scope with High confidence."
+      },
+      {
+        "id": "AMB-AMB-01",
+        "category": "Mechanical/Valves",
+        "text": "Supply of waterworks gate valves for potable water pipeline without specifying m...",
+        "expected_state": "AMBIGUOUS",
+        "predicted_state": "CLEAR",
+        "state_match": false,
+        "candidate_standard": "IS 778 : 1984",
+        "evidence_standard": "IS 778 : 1984",
+        "human_review_required": false,
+        "expected_review_required": true,
+        "review_match": false,
+        "separation_margin": null,
+        "reason": "Authoritative active standard IS 778 : 1984 verified against scope with High confidence."
+      },
+      {
+        "id": "AMB-AMB-02",
+        "category": "Civil/Plumbing",
+        "text": "Supply of water supply distribution pipe 100 mm diameter suitable for cold potab...",
+        "expected_state": "AMBIGUOUS",
+        "predicted_state": "CLEAR",
+        "state_match": false,
+        "candidate_standard": "IS 15778 : 2007",
+        "evidence_standard": "IS 15778 : 2007",
+        "human_review_required": false,
+        "expected_review_required": true,
+        "review_match": false,
+        "separation_margin": null,
+        "reason": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
+      },
+      {
+        "id": "AMB-AMB-03",
+        "category": "Electrical/Cables",
+        "text": "Supply of 1.1 kV insulated power cables for internal building wiring without def...",
+        "expected_state": "AMBIGUOUS",
+        "predicted_state": "CLEAR",
+        "state_match": false,
+        "candidate_standard": "IS 1255 : 1983",
+        "evidence_standard": "IS 1255 : 1983",
+        "human_review_required": false,
+        "expected_review_required": true,
+        "review_match": false,
+        "separation_margin": null,
+        "reason": "Authoritative active standard IS 1255 : 1983 verified against scope with Medium confidence."
+      },
+      {
+        "id": "AMB-AMB-04",
+        "category": "Civil/Piping",
+        "text": "Sewerage pipeline construction without specifying pipe material (concrete IS 458...",
+        "expected_state": "AMBIGUOUS",
+        "predicted_state": "REVIEW_REQUIRED",
+        "state_match": false,
+        "candidate_standard": "IS 14333 : 1996",
+        "evidence_standard": "IS 14333 : 1996",
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Primary applicable standard IS 14333 is clearly identifiable and sufficiently supported."
+      },
+      {
+        "id": "AMB-AMB-05",
+        "category": "Services/Catering",
+        "text": "Operation and management of staff canteen and food outlet on BOT concession reve...",
+        "expected_state": "AMBIGUOUS",
+        "predicted_state": "AMBIGUOUS",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Multiple competing Indian Standards (IS 2491 and FSSAI Schedule 4) have comparable applicability (sc"
+      },
+      {
+        "id": "AMB-AMB-06",
+        "category": "Civil/Flooring",
+        "text": "Supply of ceramic floor tiles for commercial mall corridors without specifying p...",
+        "expected_state": "AMBIGUOUS",
+        "predicted_state": "CLEAR",
+        "state_match": false,
+        "candidate_standard": "IS 15622 : 2017",
+        "evidence_standard": "IS 15622 : 2017",
+        "human_review_required": false,
+        "expected_review_required": true,
+        "review_match": false,
+        "separation_margin": null,
+        "reason": "Authoritative active standard IS 15622 : 2017 verified against scope with High confidence."
+      },
+      {
+        "id": "AMB-AMB-07",
+        "category": "Mechanical/Valves",
+        "text": "Procurement of dual-plate check valves and swing check valves for water distribu...",
+        "expected_state": "AMBIGUOUS",
+        "predicted_state": "REVIEW_REQUIRED",
+        "state_match": false,
+        "candidate_standard": "IS 778 : 1984",
+        "evidence_standard": "IS 778 : 1984",
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Clas"
+      },
+      {
+        "id": "AMB-AMB-08",
+        "category": "Electrical/Transformers",
+        "text": "Supply of 11 kV / 415 V 500 kVA distribution transformer without specifying cool...",
+        "expected_state": "AMBIGUOUS",
+        "predicted_state": "REVIEW_REQUIRED",
+        "state_match": false,
+        "candidate_standard": "IS 5039 : 1983",
+        "evidence_standard": "IS 5039 : 1983",
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Low confidence retrieval match (<0.35 score). Technical engineer verification required."
+      },
+      {
+        "id": "AMB-AMB-09",
+        "category": "Civil/Structural",
+        "text": "Design and fabrication of structural steel framing using cold formed light gauge...",
+        "expected_state": "AMBIGUOUS",
+        "predicted_state": "CLEAR",
+        "state_match": false,
+        "candidate_standard": "IS 432 : 2026",
+        "evidence_standard": "IS 432 : 2026",
+        "human_review_required": false,
+        "expected_review_required": true,
+        "review_match": false,
+        "separation_margin": null,
+        "reason": "Authoritative active standard IS 432 : 2026 verified against scope with High confidence."
+      },
+      {
+        "id": "AMB-AMB-10",
+        "category": "Mechanical/Piping",
+        "text": "Supply of carbon steel pipes for high pressure steam and general industrial flui...",
+        "expected_state": "AMBIGUOUS",
+        "predicted_state": "INCOMPLETE",
+        "state_match": false,
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Tender requirement specifies 'pipe' equipment but omits critical discriminating technical parameters"
+      },
+      {
+        "id": "AMB-CNF-01",
+        "category": "Electrical/Substation",
+        "text": "Installation of 33 kV medium voltage electrical substation cabling conforming to...",
+        "expected_state": "CONFLICTING",
+        "predicted_state": "CONFLICTING",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Conflict detected [CONF-04-VOLTAGE-CONFLICT]: Low-voltage cable standard IS 694 (rated up to 1100 V)"
+      },
+      {
+        "id": "AMB-CNF-02",
+        "category": "Mechanical/Industrial",
+        "text": "Supply of centrifugal pumps for heavy industrial process water treatment plant w...",
+        "expected_state": "CONFLICTING",
+        "predicted_state": "CONFLICTING",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Conflict detected [CONF-01-AGRI-IND-MV]: Requirement specifies industrial process/equipment, but cit"
+      },
+      {
+        "id": "AMB-CNF-03",
+        "category": "Civil/HeavyEquipment",
+        "text": "REPLACEMENT OF CRANE RAIL TRACK FOR RMQC (RAIL MOUNTED QUAY CRANE) conforming to...",
+        "expected_state": "CONFLICTING",
+        "predicted_state": "CONFLICTING",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Conflict detected [CONF-05-TILE-CRANE-CONFLICT]: Ceramic tile standard IS 15622 specified for heavy "
+      },
+      {
+        "id": "AMB-CNF-04",
+        "category": "Electrical/Transmission",
+        "text": "Supply of 11 kV high tension transmission line conductors and cables conforming ...",
+        "expected_state": "CONFLICTING",
+        "predicted_state": "CONFLICTING",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Conflict detected [CONF-04-VOLTAGE-CONFLICT]: Low-voltage cable standard IS 694 (rated up to 1100 V)"
+      },
+      {
+        "id": "AMB-CNF-05",
+        "category": "Mechanical/Refinery",
+        "text": "Supply of heavy petrochemical boiler feed water process pump with 3.3 kV medium ...",
+        "expected_state": "CONFLICTING",
+        "predicted_state": "CONFLICTING",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Conflict detected [CONF-01-AGRI-IND-MV]: Requirement specifies industrial process/equipment, but cit"
+      },
+      {
+        "id": "AMB-NOM-01",
+        "category": "Aerospace/Materials",
+        "text": "Procurement of carbon fiber reinforced polymer matrix prepreg sheets for superso...",
+        "expected_state": "NO_RELIABLE_MATCH",
+        "predicted_state": "NO_RELIABLE_MATCH",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "No reliable Indian Standard match found. We could not establish a sufficiently supported Indian Stan"
+      },
+      {
+        "id": "AMB-NOM-02",
+        "category": "Nuclear/Equipment",
+        "text": "Supply of liquid metal sodium primary coolant circulation pump for sodium-cooled...",
+        "expected_state": "NO_RELIABLE_MATCH",
+        "predicted_state": "INCOMPLETE",
+        "state_match": false,
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Tender requirement specifies 'pump' equipment but omits critical discriminating technical parameters"
+      },
+      {
+        "id": "AMB-NOM-03",
+        "category": "Electronics/Display",
+        "text": "Supply of quantum dot photoresist color filter optical film for 8K ultra high de...",
+        "expected_state": "NO_RELIABLE_MATCH",
+        "predicted_state": "CLEAR",
+        "state_match": false,
+        "candidate_standard": "IS/ISO 516 : 2019",
+        "evidence_standard": "IS/ISO 516 : 2019",
+        "human_review_required": false,
+        "expected_review_required": true,
+        "review_match": false,
+        "separation_margin": null,
+        "reason": "Authoritative active standard IS/ISO 516 : 2019 verified against scope with Medium confidence."
+      },
+      {
+        "id": "AMB-NOM-04",
+        "category": "Marine/Offshore",
+        "text": "Procurement of deep ocean subsea electro-hydraulic dynamic umbilical cable for o...",
+        "expected_state": "NO_RELIABLE_MATCH",
+        "predicted_state": "INCOMPLETE",
+        "state_match": false,
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "Tender requirement specifies 'cable' equipment but omits critical discriminating technical parameter"
+      },
+      {
+        "id": "AMB-NOM-05",
+        "category": "Semiconductor/PV",
+        "text": "Supply of high-purity Czochralski monocrystalline silicon ingots 9N purity for p...",
+        "expected_state": "NO_RELIABLE_MATCH",
+        "predicted_state": "NO_RELIABLE_MATCH",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "No reliable Indian Standard match found. We could not establish a sufficiently supported Indian Stan"
+      }
+    ],
+    "elapsed_sec": 6.31
+  },
+  "catalogue_preservation": {
+    "total_queries": 50,
+    "preserved_count": 6,
+    "preservation_rate": 12.0,
+    "abstention_count": 7,
+    "candidate_evidence_matches": 43,
+    "records": [
+      {
+        "id": "BENCH-01",
+        "text": "Providing and fixing Chlorinated Polyvinyl Chloride (CPVC) p...",
+        "expected_standard": "IS 15778",
+        "candidate_standard": "IS 15778 : 2007",
+        "evidence_standard": "IS 15778 : 2007",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": true
+      },
+      {
+        "id": "BENCH-02",
+        "text": "Supply of unplasticized PVC (uPVC) pipes for potable water s...",
+        "expected_standard": "IS 4985",
+        "candidate_standard": "IS 15778 : 2007",
+        "evidence_standard": "IS 15778 : 2007",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-03",
+        "text": "High density polyethylene (HDPE) pipes PE-100 grade PN-10 fo...",
+        "expected_standard": "IS 4984",
+        "candidate_standard": "IS 14333 : 1996",
+        "evidence_standard": "IS 14333 : 1996",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-04",
+        "text": "Providing cast iron sluice valves for waterworks purposes 20...",
+        "expected_standard": "IS 14846",
+        "candidate_standard": "IS 14846 : 2000",
+        "evidence_standard": "IS 14846 : 2000",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": true
+      },
+      {
+        "id": "BENCH-05",
+        "text": "Copper alloy gate globe and check valves 50mm nominal bore f...",
+        "expected_standard": "IS 778",
+        "candidate_standard": "IS 778 : 1984",
+        "evidence_standard": "IS 778 : 1984",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": true
+      },
+      {
+        "id": "BENCH-06",
+        "text": "Centric disc wafer type butterfly valves for industrial gene...",
+        "expected_standard": "IS 13095",
+        "candidate_standard": "IS 14846 : 2000",
+        "evidence_standard": "IS 14846 : 2000",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-07",
+        "text": "High strength deformed steel bars grade Fe 500D for reinforc...",
+        "expected_standard": "IS 1786",
+        "candidate_standard": "IS 432 : 2026",
+        "evidence_standard": "IS 432 : 2026",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-08",
+        "text": "Hot rolled medium and high tensile structural steel plates a...",
+        "expected_standard": "IS 2062",
+        "candidate_standard": "IS 432 : 2026",
+        "evidence_standard": "IS 432 : 2026",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-09",
+        "text": "Ordinary Portland Cement 43 grade for structural concrete wo...",
+        "expected_standard": "IS 8112",
+        "candidate_standard": "IS 269 : 2015",
+        "evidence_standard": "IS 269 : 2015",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-10",
+        "text": "Portland Pozzolana Cement fly ash based conforming to standa...",
+        "expected_standard": "IS 1489 (Part 1)",
+        "candidate_standard": "IS 269 : 2015",
+        "evidence_standard": "IS 269 : 2015",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-11",
+        "text": "Code of practice for plain and reinforced concrete design an...",
+        "expected_standard": "IS 456",
+        "candidate_standard": "IS 783 : 1985",
+        "evidence_standard": "IS 783 : 1985",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-12",
+        "text": "Coarse and fine aggregates from natural sources for concrete...",
+        "expected_standard": "IS 383",
+        "candidate_standard": "SP 34 : 1987",
+        "evidence_standard": "SP 34 : 1987",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-13",
+        "text": "Methods of sampling and analysis of concrete for slump test ...",
+        "expected_standard": "IS 1199",
+        "candidate_standard": "IS 101 : 2019",
+        "evidence_standard": "IS 101 : 2019",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-14",
+        "text": "Methods of test for strength of concrete compressive strengt...",
+        "expected_standard": "IS 516",
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "ambiguity_state": "NO_RELIABLE_MATCH",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-15",
+        "text": "Criteria for earthquake resistant design of structures gener...",
+        "expected_standard": "IS 1893 (Part 1)",
+        "candidate_standard": "IS 2491 : 2024",
+        "evidence_standard": "IS 2491 : 2024",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-16",
+        "text": "Ductile detailing of reinforced concrete structures subjecte...",
+        "expected_standard": "IS 13920",
+        "candidate_standard": "SP 34 : 1987",
+        "evidence_standard": "SP 34 : 1987",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-17",
+        "text": "Common burnt clay building bricks of compressive strength cl...",
+        "expected_standard": "IS 1077",
+        "candidate_standard": "IS 6283 : 2023",
+        "evidence_standard": "IS 6283 : 2023",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-18",
+        "text": "Pressed ceramic tiles vitrified floor tiles group B1a for co...",
+        "expected_standard": "IS 15622",
+        "candidate_standard": "IS 15622 : 2017",
+        "evidence_standard": "IS 15622 : 2017",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": true
+      },
+      {
+        "id": "BENCH-19",
+        "text": "Vitreous china wash basins with pedestal flat back pattern s...",
+        "expected_standard": "IS 2556 (Part 4)",
+        "candidate_standard": "IS 781 : 1984",
+        "evidence_standard": "IS 781 : 1984",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-20",
+        "text": "Precast concrete pipes with and without reinforcement for dr...",
+        "expected_standard": "IS 458",
+        "candidate_standard": "IS 458 : 2021",
+        "evidence_standard": "IS 458 : 2021",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": true
+      },
+      {
+        "id": "BENCH-21",
+        "text": "PVC insulated copper conductor single core unsheathed wires ...",
+        "expected_standard": "IS 694",
+        "candidate_standard": "IS 432 : 2026",
+        "evidence_standard": "IS 432 : 2026",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-22",
+        "text": "Cross-linked polyethylene (XLPE) insulated PVC sheathed powe...",
+        "expected_standard": "IS 7098 (Part 1)",
+        "candidate_standard": "IS 1255 : 1983",
+        "evidence_standard": "IS 1255 : 1983",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-23",
+        "text": "11 kV grade XLPE insulated aluminium conductor armoured medi...",
+        "expected_standard": "IS 7098 (Part 2)",
+        "candidate_standard": "IS 1255 : 1983",
+        "evidence_standard": "IS 1255 : 1983",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-24",
+        "text": "Code of practice for installation and maintenance of power c...",
+        "expected_standard": "IS 1255",
+        "candidate_standard": "IS 7098 (Part 1) : 1988",
+        "evidence_standard": "IS 7098 (Part 1) : 1988",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-25",
+        "text": "Code of practice for earthing and lightning protection for e...",
+        "expected_standard": "IS 3043",
+        "candidate_standard": "IS 3043 : 2018",
+        "evidence_standard": "IS 3043 : 2018",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": true
+      },
+      {
+        "id": "BENCH-26",
+        "text": "Energy efficient three phase squirrel cage induction motors ...",
+        "expected_standard": "IS 12615",
+        "candidate_standard": "IS/IEC 60034-1 : 2017",
+        "evidence_standard": "IS/IEC 60034-1 : 2017",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-27",
+        "text": "Outdoor type three phase oil immersed distribution transform...",
+        "expected_standard": "IS 1180 (Part 1)",
+        "candidate_standard": "IS 5039 : 1983",
+        "evidence_standard": "IS 5039 : 1983",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-28",
+        "text": "Low-voltage switchgear and controlgear assemblies power swit...",
+        "expected_standard": "IS/IEC 61439-2",
+        "candidate_standard": "IS/IEC 61800-2 : 2015",
+        "evidence_standard": "IS/IEC 61800-2 : 2015",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-29",
+        "text": "Circuit breakers for overcurrent protection for household an...",
+        "expected_standard": "IS/IEC 60898-1",
+        "candidate_standard": "IS 302 : 2008",
+        "evidence_standard": "IS 302 : 2008",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-30",
+        "text": "Residual current operated circuit breakers without integral ...",
+        "expected_standard": "IS/IEC 61008-1",
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "ambiguity_state": "NO_RELIABLE_MATCH",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-31",
+        "text": "Self-ballasted LED lamps for general lighting services safet...",
+        "expected_standard": "IS 16102 (Part 1)",
+        "candidate_standard": "IS 302 : 2024",
+        "evidence_standard": "IS 302 : 2024",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-32",
+        "text": "Fixed general purpose LED luminaires and street lighting fit...",
+        "expected_standard": "IS 10322 (Part 5/Sec 1)",
+        "candidate_standard": "IS 10322 (Part 5 / Sec 5) : 2013",
+        "evidence_standard": "IS 10322 (Part 5 / Sec 5) : 2013",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-33",
+        "text": "Electronic controlgear for LED modules DC supplied electroni...",
+        "expected_standard": "IS 15885 (Part 2/Sec 13)",
+        "candidate_standard": "IS/IEC 61439-2 : 2011",
+        "evidence_standard": "IS/IEC 61439-2 : 2011",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-34",
+        "text": "Crystalline silicon terrestrial photovoltaic (PV) modules de...",
+        "expected_standard": "IS 14286",
+        "candidate_standard": "IS 2491 : 2024",
+        "evidence_standard": "IS 2491 : 2024",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-35",
+        "text": "Photovoltaic module safety qualification requirements for co...",
+        "expected_standard": "IS/IEC 61730-1",
+        "candidate_standard": "IS 302 : 2024",
+        "evidence_standard": "IS 302 : 2024",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-36",
+        "text": "Information technology equipment safety general requirements...",
+        "expected_standard": "IS 13252 (Part 1)",
+        "candidate_standard": "IS 302 : 2024",
+        "evidence_standard": "IS 302 : 2024",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-37",
+        "text": "Secondary cells and batteries containing alkaline or other n...",
+        "expected_standard": "IS 16046 (Part 2)",
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "ambiguity_state": "NO_RELIABLE_MATCH",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-38",
+        "text": "Uninterruptible power systems (UPS) general and safety requi...",
+        "expected_standard": "IS 16242 (Part 1)",
+        "candidate_standard": "IS 302 : 2024",
+        "evidence_standard": "IS 302 : 2024",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-39",
+        "text": "A.C. static direct connected watt-hour smart meter class 1 a...",
+        "expected_standard": "IS 16444 (Part 1)",
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "ambiguity_state": "NO_RELIABLE_MATCH",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-40",
+        "text": "Electric ceiling fans and regulators energy efficient BLDC c...",
+        "expected_standard": "IS 374",
+        "candidate_standard": "IS 302 : 2026",
+        "evidence_standard": "IS 302 : 2026",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-41",
+        "text": "Portable fire extinguishers performance and construction sto...",
+        "expected_standard": "IS 15683",
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "ambiguity_state": "NO_RELIABLE_MATCH",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-42",
+        "text": "Selection, installation and maintenance of first-aid fire ex...",
+        "expected_standard": "IS 2190",
+        "candidate_standard": "IS 9694 : 2023",
+        "evidence_standard": "IS 9694 : 2023",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-43",
+        "text": "Internal fire hydrants and hose reels on premises code of pr...",
+        "expected_standard": "IS 3844",
+        "candidate_standard": "IS 2491 : 2024",
+        "evidence_standard": "IS 2491 : 2024",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-44",
+        "text": "Electric traction passenger lifts car sling guide rails and ...",
+        "expected_standard": "IS 14665 (Part 1)",
+        "candidate_standard": "IS 589 : 1961",
+        "evidence_standard": "IS 589 : 1961",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-45",
+        "text": "Centrifugal pumps for clear cold water single stage monobloc...",
+        "expected_standard": "IS 1520",
+        "candidate_standard": "IS 9694 : 2023",
+        "evidence_standard": "IS 9694 : 2023",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-46",
+        "text": "Submersible pumpsets for deep well water supply borehole ins...",
+        "expected_standard": "IS 8034",
+        "candidate_standard": "SP 57 (QAWSM) : 1993",
+        "evidence_standard": "SP 57 (QAWSM) : 1993",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-47",
+        "text": "Supply of 22 carat gold jewellery and coins with mandatory B...",
+        "expected_standard": "IS 1417",
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "ambiguity_state": "NO_RELIABLE_MATCH",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-48",
+        "text": "Silver medals and jewellery artefacts fineness marking and a...",
+        "expected_standard": "IS 2112",
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "ambiguity_state": "NO_RELIABLE_MATCH",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-49",
+        "text": "Enamel synthetic exterior undercoating and finishing paint g...",
+        "expected_standard": "IS 2932",
+        "candidate_standard": "IS 101 : 1988",
+        "evidence_standard": "IS 101 : 1988",
+        "ambiguity_state": "CLEAR",
+        "is_preserved": false
+      },
+      {
+        "id": "BENCH-50",
+        "text": "Providing catering snacks and tea concession stall in transi...",
+        "expected_standard": "ABSTAIN",
+        "candidate_standard": "IS 2491 : 2024",
+        "evidence_standard": "IS 2491 : 2024",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": false
+      }
+    ]
+  }
+}
