@@ -64,7 +64,7 @@ DOMAINS_TEST_CASES = [
     },
     {
         "domain": "Electronics / IT Equipment (CRS)",
-        "query": "Supply of laptop computers and notebooks for engineering design office",
+        "query": "Supply of information technology equipment including laptop computers and notebooks for engineering design office",
         "expected_standard": "IS 13252",
         "expected_qco": "NOT_IDENTIFIED",
         "expected_cert": "NOT_IDENTIFIED",
