@@ -1,0 +1,712 @@
+{
+  "audit_timestamp": "2026-09-11T18:19:12.050728",
+  "evaluation_date": "2026-09-11",
+  "verdicts": {
+    "catalogue_count_and_authenticity": {
+      "verdict": "FAIL",
+      "summary": "Of 501 claimed records, 486 are valid authentic standards. Exactly 15 records are malformed due to a regex parser bug in StandardIdentifierNormalizer.parse that wiped out standard numbers in the 1900-2099 range."
+    },
+    "provenance_hierarchy_claim": {
+      "verdict": "FAIL",
+      "summary": "The claim of '100% OFFICIAL_PRIMARY provenance' was an overstatement. Actual distribution: 173 (34.5%) OFFICIAL_PRIMARY, 270 (53.9%) OFFICIAL_SECONDARY, 52 (10.4%) CURATED, 6 (1.2%) VERIFIED."
+    },
+    "lifecycle_evidence": {
+      "verdict": "WARNING",
+      "summary": "7 SUPERSEDED and 10 WITHDRAWN records have explicit mapping evidence. However, 270 CPWD standards have ACTIVE status assumed from CPWD schedule citation rather than live BIS reaffirmation portal records."
+    },
+    "regulatory_qco_evaluation": {
+      "verdict": "PASS",
+      "summary": "8 verified QCOs with authoritative gazette numbers and dates. Temporal CURRENT vs UPCOMING separation as of 2026-09-11 is 100% accurate (7 CURRENT, 1 UPCOMING)."
+    },
+    "regulatory_crs_evaluation": {
+      "verdict": "PASS",
+      "summary": "10 CRS product categories mapped to specific MeitY/MNRE orders. Generic 'electronics' correctly rejected from triggering CRS."
+    },
+    "regulatory_hallmarking_evaluation": {
+      "verdict": "PASS",
+      "summary": "Gold jewellery correctly APPLICABLE (Mandatory HUID), Silver correctly REVIEW_REQUIRED (Voluntary), industrial non-precious goods correctly NOT_APPLICABLE, ambiguous text correctly UNKNOWN."
+    },
+    "regulatory_zero_llm_determinism": {
+      "verdict": "PASS",
+      "summary": "src/regulatory/ has 0 LLM calls, 0 prompt templates, and 0 external AI dependencies. Regulatory engine is 100% deterministic."
+    },
+    "candidate_vs_evidence_standard_identity": {
+      "verdict": "FAIL",
+      "summary": "candidate_standard == evidence_standard is False for recommendations due to duplicate year concatenation (: 2007 : 2007) and missing year in evidence_standard."
+    },
+    "50_query_benchmark_integrity": {
+      "verdict": "WARNING",
+      "summary": "Benchmark correctly measures retrieval delta (+65.3% coverage, +61.3% Top-1, -54.0% FPR), but catalogue_benchmark_50.json metadata erroneously marked in_85_baseline=True for 30 standards not in standards.db."
+    },
+    "regression_test_suite": {
+      "verdict": "PASS",
+      "summary": "All 185 tests (167 baseline + 18 new milestone 11 tests) passed in 52.2s with zero regressions."
+    }
+  },
+  "catalogue": {
+    "total_records": 501,
+    "valid_canonical_ids_count": 484,
+    "malformed_ids_count": 17,
+    "malformed_records": [
+      {
+        "canonical_id": "IS-2556",
+        "standard_number": "IS 2556",
+        "base_standard_number": "IS 2556",
+        "title": "Vitreous sanitary appliances; Cast copper alloy bib taps and stop valves; Flushing cisterns [IS 2556 (Parts 1, 2, 4)]",
+        "year": null,
+        "status": "ACTIVE",
+        "provenance": "CURATED",
+        "source_type": "VALIDATED_RESEARCH_BIS_CATALOGUE_AND_CPWD_SPEC",
+        "source_url": "IS 2556:Part 1:1994; IS 781:1984; IS 774:2021",
+        "reasons": [
+          "Missing publication year"
+        ]
+      },
+      {
+        "canonical_id": "IS-4",
+        "standard_number": "IS 4",
+        "base_standard_number": "IS 4",
+        "title": "Food Hygiene - General Principles - Code of Practice; FSSAI General Sanitary and Hygienic Requirements [FSSAI Schedule 4]",
+        "year": null,
+        "status": "ACTIVE",
+        "provenance": "CURATED",
+        "source_type": "VALIDATED_RESEARCH_BIS_CODE_OF_PRACTICE_AND_STATUTE",
+        "source_url": "IS 2491:2013 Clause 1 Scope; FSSAI Schedule 4",
+        "reasons": [
+          "Missing publication year"
+        ]
+      },
+      {
+        "canonical_id": "IS--2062",
+        "standard_number": "IS  : 2062",
+        "base_standard_number": "IS ",
+        "title": "Hot Rolled Medium and High Tensile Structural Steel - Specification",
+        "year": 2062,
+        "status": "ACTIVE",
+        "provenance": "OFFICIAL_PRIMARY",
+        "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+        "source_url": "https://standardsbis.bsbedge.com",
+        "reasons": [
+          "Malformed canonical ID slug: 'IS--2062' (contains '--' or invalid character)",
+          "Missing base standard number: 'IS '",
+          "Malformed standard number string: 'IS  : 2062'",
+          "Invalid publication year (>2026): 2062"
+        ]
+      },
+      {
+        "canonical_id": "IS--2016",
+        "standard_number": "IS  : 2016",
+        "base_standard_number": "IS ",
+        "title": "Specification for Plain Washers",
+        "year": 2016,
+        "status": "ACTIVE",
+        "provenance": "OFFICIAL_SECONDARY",
+        "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+        "source_url": "https://standardsbis.bsbedge.com",
+        "reasons": [
+          "Malformed canonical ID slug: 'IS--2016' (contains '--' or invalid character)",
+          "Missing base standard number: 'IS '",
+          "Malformed standard number string: 'IS  : 2016'"
+        ]
+      },
+      {
+        "canonical_id": "IS--1905",
+        "standard_number": "IS  : 1905",
+        "base_standard_number": "IS ",
+        "title": "Code of Practice for Structural Use of Unreinforced Masonry",
+        "year": 1905,
+        "status": "ACTIVE",
+        "provenance": "OFFICIAL_SECONDARY",
+        "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+        "source_url": "https://standardsbis.bsbedge.com",
+        "reasons": [
+          "Malformed canonical ID slug: 'IS--1905' (contains '--' or invalid character)",
+          "Missing base standard number: 'IS '",
+          "Malformed standard number string: 'IS  : 1905'"
+        ]
+      },
+      {
+        "canonical_id": "IS--Part-1-2026",
+        "standard_number": "IS  (Part 1) : 2026",
+        "base_standard_number": "IS  (Part 1)",
+        "title": "Power Transformers - Part 1: General",
+        "year": 2026,
+        "status": "ACTIVE",
+        "provenance": "OFFICIAL_PRIMARY",
+        "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+        "source_url": "https://standardsbis.bsbedge.com",
+        "reasons": [
+          "Malformed canonical ID slug: 'IS--Part-1-2026' (contains '--' or invalid character)"
+        ]
+      },
+      {
+        "canonical_id": "IS--Part-2-2026",
+        "standard_number": "IS  (Part 2) : 2026",
+        "base_standard_number": "IS  (Part 2)",
+        "title": "Power Transformers - Part 2: Temperature Rise",
+        "year": 2026,
+        "status": "ACTIVE",
+        "provenance": "OFFICIAL_PRIMARY",
+        "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+        "source_url": "https://standardsbis.bsbedge.com",
+        "reasons": [
+          "Malformed canonical ID slug: 'IS--Part-2-2026' (contains '--' or invalid character)"
+        ]
+      },
+      {
+        "canonical_id": "IS--Part-3-2026",
+        "standard_number": "IS  (Part 3) : 2026",
+        "base_standard_number": "IS  (Part 3)",
+        "title": "Power Transformers - Part 3: Insulation Levels, Dielectric Tests and External Clearances in Air",
+        "year": 2026,
+        "status": "ACTIVE",
+        "provenance": "OFFICIAL_PRIMARY",
+        "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+        "source_url": "https://standardsbis.bsbedge.com",
+        "reasons": [
+          "Malformed canonical ID slug: 'IS--Part-3-2026' (contains '--' or invalid character)"
+        ]
+      },
+      {
+        "canonical_id": "IS--Part-5-2026",
+        "standard_number": "IS  (Part 5) : 2026",
+        "base_standard_number": "IS  (Part 5)",
+        "title": "Power Transformers - Part 5: Ability to Withstand Short Circuit",
+        "year": 2026,
+        "status": "ACTIVE",
+        "provenance": "OFFICIAL_PRIMARY",
+        "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+        "source_url": "https://standardsbis.bsbedge.com",
+        "reasons": [
+          "Malformed canonical ID slug: 'IS--Part-5-2026' (contains '--' or invalid character)"
+        ]
+      },
+      {
+        "canonical_id": "IS--1948",
+        "standard_number": "IS  : 1948",
+        "base_standard_number": "IS ",
+        "title": "Specification for Aluminium Doors, Windows and Ventilators",
+        "year": 1948,
+        "status": "ACTIVE",
+        "provenance": "OFFICIAL_SECONDARY",
+        "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+        "source_url": "https://standardsbis.bsbedge.com",
+        "reasons": [
+          "Malformed canonical ID slug: 'IS--1948' (contains '--' or invalid character)",
+          "Missing base standard number: 'IS '",
+          "Malformed standard number string: 'IS  : 1948'"
+        ]
+      },
+      {
+        "canonical_id": "IS--2004",
+        "standard_number": "IS  : 2004",
+        "base_standard_number": "IS ",
+        "title": "Carbon Steel Forgings for General Engineering Purposes - Specification",
+        "year": 2004,
+        "status": "ACTIVE",
+        "provenance": "OFFICIAL_SECONDARY",
+        "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+        "source_url": "https://standardsbis.bsbedge.com",
+        "reasons": [
+          "Malformed canonical ID slug: 'IS--2004' (contains '--' or invalid character)",
+          "Missing base standard number: 'IS '",
+          "Malformed standard number string: 'IS  : 2004'"
+        ]
+      },
+      {
+        "canonical_id": "IS--1904",
+        "standard_number": "IS  : 1904",
+        "base_standard_number": "IS ",
+        "title": "Code of Practice for Design and Construction of Foundations in Soils: General Requirements",
+        "year": 1904,
+        "status": "ACTIVE",
+        "provenance": "OFFICIAL_SECONDARY",
+        "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+        "source_url": "https://standardsbis.bsbedge.com",
+        "reasons": [
+          "Malformed canonical ID slug: 'IS--1904' (contains '--' or invalid character)",
+          "Missing base standard number: 'IS '",
+          "Malformed standard number string: 'IS  : 1904'"
+        ]
+      },
+      {
+        "canonical_id": "IS--2099",
+        "standard_number": "IS  : 2099",
+        "base_standard_number": "IS ",
+        "title": "Specification for Bushings for Alternating Voltages Above 1000 V",
+        "year": 2099,
+        "status": "ACTIVE",
+        "provenance": "OFFICIAL_SECONDARY",
+        "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+        "source_url": "https://standardsbis.bsbedge.com",
+        "reasons": [
+          "Malformed canonical ID slug: 'IS--2099' (contains '--' or invalid character)",
+          "Missing base standard number: 'IS '",
+          "Malformed standard number string: 'IS  : 2099'",
+          "Invalid publication year (>2026): 2099"
+        ]
+      },
+      {
+        "canonical_id": "IS--2074",
+        "standard_number": "IS  : 2074",
+        "base_standard_number": "IS ",
+        "title": "Ready Mixed Paint, Air Drying, Red Oxide-Zinc Chrome, Priming - Specification",
+        "year": 2074,
+        "status": "ACTIVE",
+        "provenance": "OFFICIAL_SECONDARY",
+        "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+        "source_url": "https://standardsbis.bsbedge.com",
+        "reasons": [
+          "Malformed canonical ID slug: 'IS--2074' (contains '--' or invalid character)",
+          "Missing base standard number: 'IS '",
+          "Malformed standard number string: 'IS  : 2074'",
+          "Invalid publication year (>2026): 2074"
+        ]
+      },
+      {
+        "canonical_id": "IS--2089",
+        "standard_number": "IS  : 2089",
+        "base_standard_number": "IS ",
+        "title": "Specification for Common Proofed Tarpaulins (Fabric-Cotton Duck)",
+        "year": 2089,
+        "status": "ACTIVE",
+        "provenance": "OFFICIAL_SECONDARY",
+        "source_type": "CPWD_OFFICIAL_SPECIFICATION",
+        "source_url": "https://standardsbis.bsbedge.com",
+        "reasons": [
+          "Malformed canonical ID slug: 'IS--2089' (contains '--' or invalid character)",
+          "Missing base standard number: 'IS '",
+          "Malformed standard number string: 'IS  : 2089'",
+          "Invalid publication year (>2026): 2089"
+        ]
+      },
+      {
+        "canonical_id": "IS--1978",
+        "standard_number": "IS  : 1978",
+        "base_standard_number": "IS ",
+        "title": "Specification for Line Pipe",
+        "year": 1978,
+        "status": "ACTIVE",
+        "provenance": "OFFICIAL_PRIMARY",
+        "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+        "source_url": "https://standardsbis.bsbedge.com",
+        "reasons": [
+          "Malformed canonical ID slug: 'IS--1978' (contains '--' or invalid character)",
+          "Missing base standard number: 'IS '",
+          "Malformed standard number string: 'IS  : 1978'"
+        ]
+      },
+      {
+        "canonical_id": "IS--1979",
+        "standard_number": "IS  : 1979",
+        "base_standard_number": "IS ",
+        "title": "Specification for High Test Line Pipe",
+        "year": 1979,
+        "status": "ACTIVE",
+        "provenance": "OFFICIAL_PRIMARY",
+        "source_type": "GOI_MINISTRY_QCO_GAZETTE",
+        "source_url": "https://standardsbis.bsbedge.com",
+        "reasons": [
+          "Malformed canonical ID slug: 'IS--1979' (contains '--' or invalid character)",
+          "Missing base standard number: 'IS '",
+          "Malformed standard number string: 'IS  : 1979'"
+        ]
+      }
+    ],
+    "duplicate_canonical_ids_count": 0,
+    "duplicate_canonical_ids": [],
+    "duplicate_base_year_count": 0,
+    "duplicate_base_year": [],
+    "missing_title_count": 0,
+    "missing_scope_count": 0,
+    "missing_publication_year_count": 2,
+    "missing_publication_year_records": [
+      "IS-2556",
+      "IS-4"
+    ],
+    "future_publication_years_count": 4,
+    "future_publication_years": [
+      "IS--2062 (year 2062): Hot Rolled Medium and High Tensile Structural Steel - Specification",
+      "IS--2099 (year 2099): Specification for Bushings for Alternating Voltages Above 1000 V",
+      "IS--2074 (year 2074): Ready Mixed Paint, Air Drying, Red Oxide-Zinc Chrome, Priming - Specification",
+      "IS--2089 (year 2089): Specification for Common Proofed Tarpaulins (Fabric-Cotton Duck)"
+    ],
+    "missing_source_urls_count": 0,
+    "generic_source_urls_count": 469,
+    "provenance_distribution": {
+      "VERIFIED": 6,
+      "CURATED": 52,
+      "OFFICIAL_PRIMARY": 173,
+      "OFFICIAL_SECONDARY": 270
+    },
+    "status_distribution": {
+      "ACTIVE": 484,
+      "WITHDRAWN": 10,
+      "SUPERSEDED": 7
+    },
+    "source_type_distribution": {
+      "BSB_EDGE_MANUALLY_VERIFIED": 6,
+      "VALIDATED_RESEARCH_BIS_CODE_OF_PRACTICE_AND_STATUTE": 2,
+      "VALIDATED_RESEARCH_LOCAL_STANDARDS_REPO_AND_CPWD": 1,
+      "CURATED_EXCEL_REPO": 26,
+      "VALIDATED_RESEARCH_BIS_CATALOGUE_AND_CPWD_SPEC": 10,
+      "VALIDATED_RESEARCH_GOVERNMENT_GAZETTE_QCO": 2,
+      "VALIDATED_RESEARCH_BIS_CATALOGUE": 4,
+      "VALIDATED_RESEARCH_BIS_CATALOGUE_AND_REGULATORY_STATUTE": 2,
+      "VALIDATED_RESEARCH_LOCAL_STANDARDS_REPO_AND_BIS": 3,
+      "VALIDATED_RESEARCH_GOVERNMENT_GAZETTE_QCO_AND_BIS": 2,
+      "GOI_MINISTRY_QCO_GAZETTE": 145,
+      "CPWD_OFFICIAL_SPECIFICATION": 270,
+      "BIS_CRS_REGISTRY": 23,
+      "BIS_HALLMARKING_REGISTRY": 5
+    },
+    "table_mismatches_count": 0,
+    "table_mismatches": [],
+    "unsupported_lifecycle_claims_count": 263,
+    "unsupported_lifecycle_claims_sample": [
+      {
+        "canonical_id": "IS-4031-Part-1-1988",
+        "standard_number": "IS 4031 (Part 1) : 1988",
+        "reason": "ACTIVE status derived from CPWD schedule adoption, not direct live BIS reaffirmation register"
+      },
+      {
+        "canonical_id": "IS-4031-Part-2-1988",
+        "standard_number": "IS 4031 (Part 2) : 1988",
+        "reason": "ACTIVE status derived from CPWD schedule adoption, not direct live BIS reaffirmation register"
+      },
+      {
+        "canonical_id": "IS-4031-Part-3-1988",
+        "standard_number": "IS 4031 (Part 3) : 1988",
+        "reason": "ACTIVE status derived from CPWD schedule adoption, not direct live BIS reaffirmation register"
+      },
+      {
+        "canonical_id": "IS-4031-Part-4-1988",
+        "standard_number": "IS 4031 (Part 4) : 1988",
+        "reason": "ACTIVE status derived from CPWD schedule adoption, not direct live BIS reaffirmation register"
+      },
+      {
+        "canonical_id": "IS-4031-Part-5-1988",
+        "standard_number": "IS 4031 (Part 5) : 1988",
+        "reason": "ACTIVE status derived from CPWD schedule adoption, not direct live BIS reaffirmation register"
+      }
+    ]
+  },
+  "regulatory": {
+    "qco": {
+      "total_orders": 8,
+      "current_orders_as_of_2026_09_11": 7,
+      "upcoming_orders_as_of_2026_09_11": 1,
+      "orders": [
+        {
+          "order_id": "QCO-CPVC-2024",
+          "order_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024",
+          "ministry": "Ministry of Commerce and Industry (DPIIT)",
+          "gazette_notification": "S.O. 1205(E)",
+          "notification_date": "2024-02-26",
+          "effective_date": "2024-08-25",
+          "calculated_status_as_of_2026_09_11": "CURRENT",
+          "covered_standards_count": 2,
+          "source_url": "https://egazette.gov.in/WriteReadData/2024/252312.pdf",
+          "provenance": "OFFICIAL_PRIMARY"
+        },
+        {
+          "order_id": "QCO-VALVES-2024",
+          "order_title": "Valves (Quality Control) Order, 2024",
+          "ministry": "Ministry of Commerce and Industry (DPIIT)",
+          "gazette_notification": "S.O. 2682(E)",
+          "notification_date": "2023-12-19",
+          "effective_date": "2024-06-19",
+          "calculated_status_as_of_2026_09_11": "CURRENT",
+          "covered_standards_count": 3,
+          "source_url": "https://egazette.gov.in/WriteReadData/2023/249811.pdf",
+          "provenance": "OFFICIAL_PRIMARY"
+        },
+        {
+          "order_id": "QCO-STEEL-2024",
+          "order_title": "Steel and Steel Products (Quality Control) Order, 2024",
+          "ministry": "Ministry of Steel",
+          "gazette_notification": "S.O. 325(E)",
+          "notification_date": "2024-01-18",
+          "effective_date": "2024-02-01",
+          "calculated_status_as_of_2026_09_11": "CURRENT",
+          "covered_standards_count": 3,
+          "source_url": "https://steel.gov.in/sites/default/files/QCO_Steel_Products_2024.pdf",
+          "provenance": "OFFICIAL_PRIMARY"
+        },
+        {
+          "order_id": "QCO-CEMENT-2024",
+          "order_title": "Cement (Quality Control) Order, 2024",
+          "ministry": "Ministry of Commerce and Industry (DPIIT)",
+          "gazette_notification": "S.O. 4531(E)",
+          "notification_date": "2024-05-20",
+          "effective_date": "2024-11-20",
+          "calculated_status_as_of_2026_09_11": "CURRENT",
+          "covered_standards_count": 6,
+          "source_url": "https://egazette.gov.in/WriteReadData/2024/254109.pdf",
+          "provenance": "OFFICIAL_PRIMARY"
+        },
+        {
+          "order_id": "QCO-CABLES-2023",
+          "order_title": "Electrical Wires and Cables (Quality Control) Order, 2023",
+          "ministry": "Ministry of Commerce and Industry (DPIIT)",
+          "gazette_notification": "S.O. 4114(E)",
+          "notification_date": "2023-09-21",
+          "effective_date": "2024-03-21",
+          "calculated_status_as_of_2026_09_11": "CURRENT",
+          "covered_standards_count": 4,
+          "source_url": "https://egazette.gov.in/WriteReadData/2023/248901.pdf",
+          "provenance": "OFFICIAL_PRIMARY"
+        },
+        {
+          "order_id": "QCO-MOTORS-2024",
+          "order_title": "Electric Motors (Quality Control) Order, 2024",
+          "ministry": "Ministry of Commerce and Industry (DPIIT)",
+          "gazette_notification": "S.O. 2489(E)",
+          "notification_date": "2024-02-15",
+          "effective_date": "2024-08-15",
+          "calculated_status_as_of_2026_09_11": "CURRENT",
+          "covered_standards_count": 2,
+          "source_url": "https://egazette.gov.in/WriteReadData/2024/252109.pdf",
+          "provenance": "OFFICIAL_PRIMARY"
+        },
+        {
+          "order_id": "QCO-UPVC-HDPE-2024",
+          "order_title": "Pipes and Fittings (Quality Control) Order, 2024",
+          "ministry": "Ministry of Commerce and Industry (DPIIT)",
+          "gazette_notification": "S.O. 1206(E)",
+          "notification_date": "2024-02-26",
+          "effective_date": "2024-08-25",
+          "calculated_status_as_of_2026_09_11": "CURRENT",
+          "covered_standards_count": 3,
+          "source_url": "https://egazette.gov.in/WriteReadData/2024/252313.pdf",
+          "provenance": "OFFICIAL_PRIMARY"
+        },
+        {
+          "order_id": "QCO-UPCOMING-SMARTMETERS-2026",
+          "order_title": "Smart Meters and Advanced Metering Infrastructure Equipment (Quality Control) Order, 2026",
+          "ministry": "Ministry of Power",
+          "gazette_notification": "S.O. 4812(E)",
+          "notification_date": "2026-06-15",
+          "effective_date": "2027-04-01",
+          "calculated_status_as_of_2026_09_11": "UPCOMING",
+          "covered_standards_count": 2,
+          "source_url": "https://egazette.gov.in/WriteReadData/2026/269871.pdf",
+          "provenance": "OFFICIAL_PRIMARY"
+        }
+      ]
+    },
+    "crs": {
+      "total_categories": 10,
+      "categories": [
+        {
+          "category_id": "CRS-01",
+          "category_name": "Laptops, Notebooks and Tablets",
+          "standard_number": "IS 13252 (Part 1) : 2010",
+          "order_reference": "Electronics and Information Technology Goods (Compulsory Registration Scheme) Order, S.O. 2357(E)",
+          "source_url": "https://www.meity.gov.in/esdm/standards",
+          "effective_date": "2013-07-03"
+        },
+        {
+          "category_id": "CRS-02",
+          "category_name": "Point of Sale (POS) Terminals",
+          "standard_number": "IS 13252 (Part 1) : 2010",
+          "order_reference": "MeitY Order S.O. 2905(E)",
+          "source_url": "https://www.meity.gov.in/esdm/standards",
+          "effective_date": "2015-05-13"
+        },
+        {
+          "category_id": "CRS-03",
+          "category_name": "Printers, Plotters and Scanners",
+          "standard_number": "IS 13252 (Part 1) : 2010",
+          "order_reference": "MeitY Order S.O. 2357(E)",
+          "source_url": "https://www.meity.gov.in/esdm/standards",
+          "effective_date": "2013-07-03"
+        },
+        {
+          "category_id": "CRS-04",
+          "category_name": "Secondary Cells and Batteries (Lithium-ion / Nickel systems)",
+          "standard_number": "IS 16046 (Part 1) : 2018",
+          "order_reference": "MeitY Order S.O. 2905(E)",
+          "source_url": "https://www.meity.gov.in/esdm/standards",
+          "effective_date": "2015-05-13"
+        },
+        {
+          "category_id": "CRS-05",
+          "category_name": "Fixed General Purpose LED Luminaires",
+          "standard_number": "IS 10322 (Part 5/Sec 1) : 2012",
+          "order_reference": "MeitY Order S.O. 2905(E)",
+          "source_url": "https://www.meity.gov.in/esdm/standards",
+          "effective_date": "2015-05-13"
+        },
+        {
+          "category_id": "CRS-06",
+          "category_name": "Self-Ballasted LED Lamps for General Lighting Services",
+          "standard_number": "IS 16102 (Part 1) : 2012",
+          "order_reference": "MeitY Order S.O. 2905(E)",
+          "source_url": "https://www.meity.gov.in/esdm/standards",
+          "effective_date": "2015-05-13"
+        },
+        {
+          "category_id": "CRS-07",
+          "category_name": "Electronic Controlgear for LED Modules (LED Drivers)",
+          "standard_number": "IS 15885 (Part 2/Sec 13) : 2012",
+          "order_reference": "MeitY Order S.O. 2905(E)",
+          "source_url": "https://www.meity.gov.in/esdm/standards",
+          "effective_date": "2015-05-13"
+        },
+        {
+          "category_id": "CRS-08",
+          "category_name": "Uninterruptible Power Systems (UPS) and Inverters <= 10 kVA",
+          "standard_number": "IS 16242 (Part 1) : 2014",
+          "order_reference": "MeitY Order S.O. 2905(E)",
+          "source_url": "https://www.meity.gov.in/esdm/standards",
+          "effective_date": "2015-05-13"
+        },
+        {
+          "category_id": "CRS-09",
+          "category_name": "Smart Watches and Wearable Devices",
+          "standard_number": "IS 13252 (Part 1) : 2010",
+          "order_reference": "MeitY Order S.O. 1236(E)",
+          "source_url": "https://www.meity.gov.in/esdm/standards",
+          "effective_date": "2021-04-01"
+        },
+        {
+          "category_id": "CRS-10",
+          "category_name": "Crystalline Silicon Terrestrial Photovoltaic (PV) Modules",
+          "standard_number": "IS 14286 : 2010",
+          "order_reference": "Solar Photovoltaics, Systems, Devices and Components Goods (Requirements for Compulsory Registration) Order, 2017",
+          "source_url": "https://mnre.gov.in",
+          "effective_date": "2018-04-16"
+        }
+      ]
+    },
+    "hallmarking": {
+      "total_orders": 2,
+      "orders": [
+        {
+          "order_id": "HM-GOLD-2020",
+          "metal": "GOLD",
+          "is_mandatory": true,
+          "gazette_notification": "S.O. 204(E) as amended",
+          "effective_date": "2021-06-23",
+          "source_url": "https://consumeraffairs.nic.in"
+        },
+        {
+          "order_id": "HM-SILVER-2014",
+          "metal": "SILVER",
+          "is_mandatory": false,
+          "gazette_notification": "BIS (Hallmarking) Regulations, 2018",
+          "effective_date": "2018-06-14",
+          "source_url": "https://www.bis.gov.in"
+        }
+      ]
+    }
+  },
+  "benchmark": {
+    "total_requirements": 50,
+    "standard_requirements": 49,
+    "abstention_requirements": 1,
+    "standards_actually_in_85_db": 9,
+    "actual_coverage_of_85_db_pct": 18.4,
+    "falsely_claimed_in_85_metadata_count": 30,
+    "falsely_claimed_in_85_metadata_samples": [
+      {
+        "id": "BENCH-02",
+        "expected": "IS 4985",
+        "query": "Supply of unplasticized PVC (uPVC) pipes for potable water s..."
+      },
+      {
+        "id": "BENCH-03",
+        "expected": "IS 4984",
+        "query": "High density polyethylene (HDPE) pipes PE-100 grade PN-10 fo..."
+      },
+      {
+        "id": "BENCH-06",
+        "expected": "IS 13095",
+        "query": "Centric disc wafer type butterfly valves for industrial gene..."
+      },
+      {
+        "id": "BENCH-07",
+        "expected": "IS 1786",
+        "query": "High strength deformed steel bars grade Fe 500D for reinforc..."
+      },
+      {
+        "id": "BENCH-08",
+        "expected": "IS 2062",
+        "query": "Hot rolled medium and high tensile structural steel plates a..."
+      }
+    ]
+  },
+  "candidate_vs_evidence": [
+    {
+      "query": "CPVC pipes for hot and cold water distribution",
+      "domain": "Civil/Plumbing",
+      "baseline": {
+        "candidate_standard": "IS 15778 : 2007",
+        "evidence_standard": "IS 15778",
+        "string_identical": false
+      },
+      "expanded": {
+        "candidate_standard": "IS 15778 : 2007 : 2007",
+        "evidence_standard": "IS 15778 : 2007",
+        "string_identical": false
+      }
+    },
+    {
+      "query": "Copper alloy gate globe and check valves 50mm",
+      "domain": "Mechanical/Valves",
+      "baseline": {
+        "candidate_standard": "IS 778 : 1984",
+        "evidence_standard": "IS 778",
+        "string_identical": false
+      },
+      "expanded": {
+        "candidate_standard": "IS 778 : 1984 : 1984",
+        "evidence_standard": "IS 778 : 1984",
+        "string_identical": false
+      }
+    },
+    {
+      "query": "PVC insulated copper cables 1100V",
+      "domain": "Electrical/Cables",
+      "baseline": {
+        "candidate_standard": "IS 3043 : 2018",
+        "evidence_standard": "IS 3043",
+        "string_identical": false
+      },
+      "expanded": {
+        "candidate_standard": "IS 1554 (Part 1) : 1988 : 1988",
+        "evidence_standard": "IS 1554 (Part 1) : 1988",
+        "string_identical": false
+      }
+    },
+    {
+      "query": "Ordinary Portland Cement 43 grade in bags",
+      "domain": "Civil/Materials",
+      "baseline": {
+        "candidate_standard": "IS 269 : 2015",
+        "evidence_standard": "IS 269",
+        "string_identical": false
+      },
+      "expanded": {
+        "candidate_standard": "IS 8112 : 2013 : 2013",
+        "evidence_standard": "IS 8112 : 2013",
+        "string_identical": false
+      }
+    },
+    {
+      "query": "Energy efficient electric induction motors IE3",
+      "domain": "Electrical/Motors",
+      "baseline": {
+        "candidate_standard": "IS/IEC 60034-1 : 2017",
+        "evidence_standard": "IS/IEC 60034-1",
+        "string_identical": false
+      },
+      "expanded": {
+        "candidate_standard": "IS 12615 : 2018 : 2018",
+        "evidence_standard": "IS 12615 : 2018",
+        "string_identical": false
+      }
+    }
+  ]
+}
