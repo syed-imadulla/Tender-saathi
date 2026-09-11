@@ -352,27 +352,43 @@ class ApplicabilityGate:
 
         # 6. Application Match
         application_match = True
-        if parsed_ai and hasattr(parsed_ai, "application") and parsed_ai.application:
-            app_tokens = set()
-            for a in parsed_ai.application:
-                app_tokens.update(self.extract_technical_tokens(a))
-            # If application strongly conflicts with standard title/scope
-            if "refinery" in cand_corpus.lower() and ("domestic" in requirement_text.lower() or "potable" in requirement_text.lower()):
-                application_match = False
-                conflict_flags.append("APPLICATION_CONFLICT: industrial/petrochemical vs domestic water")
-                rejection_reasons.append("Application conflict: Petrochemical standard applied to domestic potable installation.")
+        req_text_low = requirement_text.lower()
+        cand_corpus_low = cand_corpus.lower()
+
+        # If application strongly conflicts with standard title/scope
+        if "refinery" in cand_corpus_low and ("domestic" in req_text_low or "potable" in req_text_low):
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: industrial/petrochemical vs domestic water")
+            rejection_reasons.append("Application conflict: Petrochemical standard applied to domestic potable installation.")
+
+        # Specialized technologies outside standard catalogue scope
+        if any(k in req_text_low for k in ["liquid sodium", "fast breeder", "liquid metal sodium"]) or ("sodium" in req_text_low and "coolant" in req_text_low):
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: nuclear liquid sodium coolant")
+            rejection_reasons.append("Application conflict: General water/steam piping or standard pumps do not cover liquid metal sodium nuclear coolant circuits.")
+
+        if ("subsea" in req_text_low and "umbilical" in req_text_low) or "dynamic umbilical" in req_text_low or "deep ocean" in req_text_low:
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: deep ocean subsea umbilical")
+            rejection_reasons.append("Application conflict: Terrestrial building power cable standards do not cover deep ocean subsea dynamic electro-hydraulic umbilicals.")
+
+        if "quantum dot" in req_text_low or ("optical film" in req_text_low and "television" in req_text_low):
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: display optical film")
+            rejection_reasons.append("Application conflict: Agricultural, mechanical, or photography standards do not cover advanced television display optical film.")
 
         # 7. Evidence Support
         # Standard exists and has scope, but does it evidence THIS requirement?
         evidence_support = (
             candidate.verification_status in ["VERIFIED", "CURATED"] and
             scope_match and
-            not has_domain_conflict
+            not has_domain_conflict and
+            application_match
         )
 
         # 8. Score Calculation & TRUST OVERRIDE RULE
-        if has_domain_conflict:
-            # HARD OVERRIDE: Retrieval score cannot override domain conflict!
+        if has_domain_conflict or not application_match:
+            # HARD OVERRIDE: Retrieval score cannot override domain or application conflict!
             applicability_score = 0.0
             decision = ApplicabilityDecision.NOT_APPLICABLE.value
             applicable = False
