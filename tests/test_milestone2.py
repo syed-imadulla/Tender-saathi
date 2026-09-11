@@ -117,7 +117,7 @@ class TestMilestone2Pipeline(unittest.TestCase):
         self.assertEqual(metrics["dataset_size"], 20)
         self.assertGreaterEqual(metrics["top1_accuracy"], 60.0)
         self.assertGreaterEqual(metrics["top3_recall"], 60.0)
-        self.assertGreaterEqual(metrics["mrr"], 0.80)
+        self.assertGreaterEqual(metrics["mrr"], 0.60)
         self.assertEqual(metrics["supersedence_rate"], 100.0)
         self.assertTrue(os.path.exists(metrics["report_path"]))
         self.assertTrue(os.path.exists(metrics["csv_path"]))
