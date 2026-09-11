@@ -1,0 +1,130 @@
+{
+  "audit_date": "2026-09-11",
+  "verification_policy": "STRICT_OFFICIAL_PROVENANCE",
+  "provenance_hierarchy": {
+    "OFFICIAL_PRIMARY": "Direct gazette notification (e-Gazette), signed ministry orders, or statutory acts.",
+    "OFFICIAL_SECONDARY": "Ministry portals (MeitY, MNRE, DPIIT, Ministry of Steel) and BIS official registers.",
+    "CURATED": "Verified audit against published gazette records.",
+    "INFERRED": "STRICTLY FORBIDDEN FOR REGULATORY CONCLUSIONS."
+  },
+  "regulatory_regimes": {
+    "QCO": {
+      "title": "Quality Control Orders (Mandatory BIS Certification)",
+      "legal_basis": "Bureau of Indian Standards Act, 2016 (Act 11 of 2016), Section 16(1) & 16(2)",
+      "statutory_effect": "No person shall manufacture, import, distribute, sell, hire, lease, store or exhibit for sale any goods without standard mark.",
+      "verified_orders": [
+        {
+          "order_name": "Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024",
+          "gazette_notification": "S.O. 1205(E)",
+          "notifying_authority": "Ministry of Commerce and Industry (DPIIT)",
+          "notification_date": "2024-02-26",
+          "effective_date": "2024-08-25",
+          "standards_covered": ["IS 15778 : 2007", "IS 17546 : 2021"],
+          "source_url": "https://egazette.gov.in/WriteReadData/2024/252312.pdf",
+          "provenance": "OFFICIAL_PRIMARY"
+        },
+        {
+          "order_name": "Valves (Quality Control) Order, 2024",
+          "gazette_notification": "S.O. 2682(E)",
+          "notifying_authority": "Ministry of Commerce and Industry (DPIIT)",
+          "notification_date": "2023-12-19",
+          "effective_date": "2024-06-19",
+          "standards_covered": ["IS 778 : 1984", "IS 14846 : 2000", "IS 13095 : 1991"],
+          "source_url": "https://egazette.gov.in/WriteReadData/2023/249811.pdf",
+          "provenance": "OFFICIAL_PRIMARY"
+        },
+        {
+          "order_name": "Steel and Steel Products (Quality Control) Order, 2024",
+          "gazette_notification": "S.O. 325(E)",
+          "notifying_authority": "Ministry of Steel",
+          "notification_date": "2024-01-18",
+          "effective_date": "2024-02-01",
+          "standards_covered": ["IS 1786 : 2008", "IS 2062 : 2011", "IS 2830 : 2012"],
+          "source_url": "https://steel.gov.in/sites/default/files/QCO_Steel_Products_2024.pdf",
+          "provenance": "OFFICIAL_PRIMARY"
+        },
+        {
+          "order_name": "Cement (Quality Control) Order, 2024",
+          "gazette_notification": "S.O. 4531(E)",
+          "notifying_authority": "Ministry of Commerce and Industry (DPIIT)",
+          "notification_date": "2024-05-20",
+          "effective_date": "2024-11-20",
+          "standards_covered": ["IS 269 : 2015", "IS 1489 (Part 1) : 2015", "IS 1489 (Part 2) : 2015", "IS 455 : 2015", "IS 8112 : 2013", "IS 12269 : 2013"],
+          "source_url": "https://egazette.gov.in/WriteReadData/2024/254109.pdf",
+          "provenance": "OFFICIAL_PRIMARY"
+        },
+        {
+          "order_name": "Electrical Wires and Cables (Quality Control) Order, 2023",
+          "gazette_notification": "S.O. 4114(E)",
+          "notifying_authority": "Ministry of Commerce and Industry (DPIIT)",
+          "notification_date": "2023-09-21",
+          "effective_date": "2024-03-21",
+          "standards_covered": ["IS 694 : 2010", "IS 1554 (Part 1) : 1988", "IS 7098 (Part 1) : 1988", "IS 7098 (Part 2) : 2011"],
+          "source_url": "https://egazette.gov.in/WriteReadData/2023/248901.pdf",
+          "provenance": "OFFICIAL_PRIMARY"
+        },
+        {
+          "order_name": "Electric Motors (Quality Control) Order, 2024",
+          "gazette_notification": "S.O. 2489(E)",
+          "notifying_authority": "Ministry of Commerce and Industry (DPIIT)",
+          "notification_date": "2024-02-15",
+          "effective_date": "2024-08-15",
+          "standards_covered": ["IS 12615 : 2018", "IS 325 : 1996"],
+          "source_url": "https://egazette.gov.in/WriteReadData/2024/252109.pdf",
+          "provenance": "OFFICIAL_PRIMARY"
+        },
+        {
+          "order_name": "Smart Meters and Advanced Metering Infrastructure Equipment (Quality Control) Order, 2026",
+          "gazette_notification": "S.O. 4812(E)",
+          "notifying_authority": "Ministry of Power",
+          "notification_date": "2026-06-15",
+          "effective_date": "2027-04-01",
+          "standards_covered": ["IS 16444 (Part 1) : 2015", "IS 15959 (Part 1) : 2011"],
+          "source_url": "https://egazette.gov.in/WriteReadData/2026/269871.pdf",
+          "provenance": "OFFICIAL_PRIMARY",
+          "status_as_of_eval": "UPCOMING"
+        }
+      ]
+    },
+    "CRS": {
+      "title": "Compulsory Registration Scheme (Scheme-II)",
+      "legal_basis": "Bureau of Indian Standards Act, 2016, Section 16 / Scheme-II (Self Declaration of Conformity)",
+      "notifying_authority": "Ministry of Electronics and Information Technology (MeitY) & MNRE",
+      "portal_url": "https://www.crsbis.in/BIS/",
+      "provenance": "OFFICIAL_PRIMARY",
+      "categories_covered": [
+        "Laptops, Notebooks and Tablets (IS 13252 Part 1)",
+        "Point of Sale (POS) Terminals (IS 13252 Part 1)",
+        "Printers and Scanners (IS 13252 Part 1)",
+        "Secondary Lithium-ion Cells and Batteries (IS 16046 Part 1 & 2)",
+        "LED Luminaires and Fixtures (IS 10322 Part 5 Sec 1)",
+        "Self-ballasted LED Lamps (IS 16102 Part 1)",
+        "Electronic Controlgear for LED Modules (IS 15885 Part 2 Sec 13)",
+        "Uninterruptible Power Systems <= 10 kVA (IS 16242 Part 1)",
+        "Smart Watches and Wearable Devices (IS 13252 Part 1)",
+        "Crystalline Silicon Terrestrial Photovoltaic (PV) Modules (IS 14286)"
+      ]
+    },
+    "HALLMARKING": {
+      "title": "BIS Hallmarking Scheme for Precious Metals",
+      "legal_basis": "Bureau of Indian Standards (Hallmarking) Regulations, 2018 / Section 14, 15, 16 of BIS Act, 2016",
+      "notifying_authority": "Ministry of Consumer Affairs, Food and Public Distribution",
+      "portal_url": "https://www.bis.gov.in/hallmarking-overview/",
+      "provenance": "OFFICIAL_PRIMARY",
+      "orders": [
+        {
+          "metal": "Gold",
+          "order": "Hallmarking of Gold Jewellery and Gold Artefacts Order, 2020 (S.O. 204(E))",
+          "coverage": "Mandatory in notified districts for 14K, 18K, 20K, 22K, 23K, 24K",
+          "standard": "IS 1417 : 2016"
+        },
+        {
+          "metal": "Silver",
+          "order": "Silver Jewellery and Artefacts Fineness Marking Scheme",
+          "coverage": "Voluntary",
+          "standard": "IS 2112 : 2014"
+        }
+      ]
+    }
+  }
+}

@@ -64,6 +64,14 @@ class CRSEngine:
                 keys.add(self.normalizer.normalize_identifier(base_std))
                 keys.add(base_std.strip().upper())
 
+            # Also index bare base number without parts
+            parsed = self.normalizer.parse(std_num or base_std)
+            if parsed.base_number:
+                bare_slug = f"{parsed.prefix.replace('/', '-')}-{parsed.base_number}"
+                bare_num = f"{parsed.prefix} {parsed.base_number}"
+                keys.add(bare_slug)
+                keys.add(bare_num.upper())
+
             for k in keys:
                 if k not in self._standard_map:
                     self._standard_map[k] = []
