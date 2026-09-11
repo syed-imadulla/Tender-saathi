@@ -387,7 +387,7 @@ class AmbiguityEngine:
             for c_j in top_pool:
                 delta = round(abs(top_cand.final_score - c_j.final_score), 3)
                 if delta < self.separation_threshold:
-                    is_mat, param = self._check_material_competition(top_cand, c_j, text)
+                    is_mat, param = self._are_candidates_competing(top_cand, c_j, completeness_report)
                     if is_mat:
                         competing_found = True
                         chosen_c1 = top_cand
@@ -648,95 +648,63 @@ class AmbiguityEngine:
     # Helper Methods
     # -----------------------------------------------------------------------
 
-    def _check_material_competition(
+    def _are_candidates_competing(
         self,
         c1: SearchResult,
         c2: SearchResult,
-        text: str
+        completeness_report: Optional[SpecificationCompletenessReport]
     ) -> Tuple[bool, str]:
-        """Determines if two candidates represent distinct, mutually exclusive options."""
+        """Generic determination of whether two candidates represent distinct, mutually exclusive options."""
         t1 = c1.full_title.lower()
         t2 = c2.full_title.lower()
-        text_low = text.lower()
 
-        def is_choice_undecided(opt1_terms: List[str], opt2_terms: List[str]) -> bool:
-            has_opt1 = any(t in text_low for t in opt1_terms)
-            has_opt2 = any(t in text_low for t in opt2_terms)
-            if not has_opt1 and not has_opt2:
-                return True
-            if has_opt1 and has_opt2:
-                return True
-            ambiguity_markers = ["without specifying", "without defining", "unspecified", " or ", " vs ", " vs. ", "either"]
-            if any(m in text_low for m in ambiguity_markers):
-                return True
-            return False
+        # 1. Complementary check (not competing)
+        c1_is_cop = "code of practice" in t1 or "installation" in t1
+        c2_is_cop = "code of practice" in t2 or "installation" in t2
+        if c1_is_cop != c2_is_cop:
+            return False, ""
 
-        # Cables: PVC vs XLPE
-        is_c1_pvc = "pvc" in t1 or "694" in c1.standard_number
-        is_c2_xlpe = "crosslinked" in t2 or "xlpe" in t2 or "7098" in c2.standard_number
-        if (is_c1_pvc and is_c2_xlpe) or (("7098" in c1.standard_number) and ("694" in c2.standard_number)):
-            if is_choice_undecided(["pvc"], ["xlpe", "crosslinked"]):
-                return True, "cable insulation material (PVC conforming to IS 694 vs XLPE conforming to IS 7098)"
+        c1_is_test = "method of test" in t1 or "methods of test" in t1 or "testing" in t1
+        c2_is_test = "method of test" in t2 or "methods of test" in t2 or "testing" in t2
+        if c1_is_test != c2_is_test:
+            return False, ""
+            
+        c1_is_gloss = "glossary" in t1 or "vocabulary" in t1
+        c2_is_gloss = "glossary" in t2 or "vocabulary" in t2
+        if c1_is_gloss != c2_is_gloss:
+            return False, ""
+            
+        # 2. Domain Match Check (Generic Semantic Overlap)
+        # Extract significant tokens from titles to ensure they belong to the same core product family.
+        stopwords = {
+            "for", "of", "and", "the", "in", "to", "with", "a", "an", "is", "on", 
+            "specification", "code", "practice", "part", "general", "methods", "test",
+            "testing", "requirements", "guidelines", "method", "measurement", "determination",
+            "glossary", "vocabulary", "installation", "selection", "operation", "maintenance",
+            "types", "type", "dimensions", "up", "including", "non", "use", "used",
+            "water", "works", "purposes", "purpose", "industrial", "domestic", "applications",
+            "equipment", "apparatus", "accessories", "fittings", "system", "systems", "products"
+        }
+                     
+        def get_significant_tokens(title: str) -> set:
+            import re
+            words = re.findall(r'\b[a-z]{3,}\b', title.lower())
+            return {w for w in words if w not in stopwords}
+            
+        t1_tokens = get_significant_tokens(t1)
+        t2_tokens = get_significant_tokens(t2)
+        
+        shared_domain = bool(t1_tokens & t2_tokens)
+        
+        if not shared_domain:
+            return False, ""
 
-        # Valves: Bronze/Copper alloy vs Cast Iron / Ductile Iron
-        is_c1_bronze = "copper alloy" in t1 or "bronze" in t1 or "778" in c1.standard_number
-        is_c2_iron = "cast iron" in t2 or "sluice" in t2 or "14846" in c2.standard_number or "ductile" in t2
-        if (is_c1_bronze and is_c2_iron) or (("14846" in c1.standard_number) and ("778" in c2.standard_number)):
-            if is_choice_undecided(["bronze", "gunmetal", "copper alloy"], ["cast iron", "di", "sluice"]):
-                return True, "valve metallurgy (Copper Alloy IS 778 vs Cast Iron IS 14846)"
-
-        # Cement: OPC vs PPC
-        is_c1_opc = "portland cement" in t1 and "pozzolana" not in t1
-        is_c2_ppc = "pozzolana" in t2
-        if (is_c1_opc and is_c2_ppc) or ("269" in c1.standard_number and "1489" in c2.standard_number):
-            if is_choice_undecided(["opc", "ordinary portland"], ["ppc", "pozzolana"]):
-                return True, "cement grade / type (Ordinary Portland Cement IS 269 vs Portland Pozzolana Cement IS 1489)"
-
-        # Food Hygiene: General Principles (IS 2491) vs HACCP (IS 15000) vs FSSAI
-        is_c1_food = any(k in c1.standard_number for k in ["2491", "15000"]) or "fssai" in c1.standard_number.lower()
-        is_c2_food = any(k in c2.standard_number for k in ["2491", "15000"]) or "fssai" in c2.standard_number.lower()
-        if is_c1_food and is_c2_food:
-            if is_choice_undecided(["is 2491", "general principles"], ["is 15000", "haccp"]):
-                return True, "food hygiene compliance framework (General Principles of Food Hygiene IS 2491 vs HACCP Certification IS 15000)"
-
-        # Pipes: Precast Concrete (IS 458) vs Structured Wall Polyethylene (IS 14333)
-        is_c1_conc = "458" in c1.standard_number
-        is_c2_poly = "14333" in c2.standard_number or "4984" in c2.standard_number
-        if (is_c1_conc and is_c2_poly) or ("14333" in c1.standard_number and "458" in c2.standard_number):
-            if is_choice_undecided(["concrete", "rcc"], ["polyethylene", "hdpe", "structured wall"]):
-                return True, "piping material (Precast Concrete IS 458 vs Polyethylene IS 14333)"
-
-        # Pipes: Steel (IS 1239 / IS 3589) vs Ductile Iron (IS 8329)
-        is_c1_steel = "1239" in c1.standard_number or "3589" in c1.standard_number
-        is_c2_steel = "1239" in c2.standard_number or "3589" in c2.standard_number
-        is_c1_di = "8329" in c1.standard_number
-        is_c2_di = "8329" in c2.standard_number
-        if (is_c1_steel and is_c2_di) or (is_c1_di and is_c2_steel):
-            if is_choice_undecided(["steel", "ms", "galvanized steel"], ["ductile iron", "di"]):
-                return True, "pipe material (Mild Steel IS 1239 vs Ductile Iron IS 8329)"
-
-        # Transformers: Oil Immersed (IS 1180) vs Dry Type (IS 2026)
-        is_c1_dist = "1180" in c1.standard_number
-        is_c2_power = "2026" in c2.standard_number
-        if (is_c1_dist and is_c2_power) or ("2026" in c1.standard_number and "1180" in c2.standard_number):
-            if is_choice_undecided(["oil", "oil immersed"], ["dry", "dry type"]):
-                return True, "transformer cooling mechanism (Oil Immersed IS 1180 vs Dry Type IS 2026)"
-
-        # Rubber Sealing Gaskets: Natural rubber (IS 5382) vs Synthetic / Elastomeric (IS 11149)
-        is_c1_gask = "5382" in c1.standard_number or "11149" in c1.standard_number or "gasket" in t1
-        is_c2_gask = "5382" in c2.standard_number or "11149" in c2.standard_number or "gasket" in t2
-        if is_c1_gask and is_c2_gask:
-            if is_choice_undecided(["natural rubber", "is 5382"], ["synthetic", "is 11149", "elastomeric"]):
-                return True, "gasket rubber polymer compound (Natural Rubber IS 5382 vs Synthetic Rubber IS 11149)"
-
-        # Structural Steel: Cold Formed (IS 801) vs Hot Rolled (IS 800 / IS 808 / IS 432)
-        is_c1_cold = "801" in c1.standard_number or "cold formed" in t1
-        is_c2_hot = any(k in c2.standard_number for k in ["800", "808", "432"]) or "hot rolled" in t2
-        if (is_c1_cold and is_c2_hot) or ("801" in c2.standard_number and any(k in c1.standard_number for k in ["800", "808", "432"])):
-            if is_choice_undecided(["cold formed", "light gauge"], ["hot rolled"]):
-                return True, "structural steel section forming method (Cold Formed IS 801 vs Hot Rolled IS 800 / IS 808)"
-
-        return False, "distinguishing technical specification"
+        # 3. Identify distinguishing parameter
+        distinguishing_param = "technical specification (e.g., material, grade, voltage, or type)"
+        if completeness_report and completeness_report.potentially_missing_parameters:
+            distinguishing_param = " or ".join(completeness_report.potentially_missing_parameters[:2])
+            
+        return True, distinguishing_param
 
     def _summarize_interpretation(self, cand: SearchResult) -> str:
         """Generates a concise plain-English interpretation for a candidate standard."""

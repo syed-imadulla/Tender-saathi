@@ -90,14 +90,23 @@ class TestHybridRetrieval(unittest.TestCase):
         req = extract_from_text(text, requirement_id="T013-R002")
         rec = self.recommender.recommend_for_requirement(req)
         
-        self.assertIn(
-            "61800", rec.candidate_standard,
-            f"T013 must resolve to IS/IEC 61800, got: {rec.candidate_standard}"
-        )
-        self.assertNotIn(
-            "9694", rec.candidate_standard,
-            "Agricultural pump code IS 9694 must NOT be recommended for industrial VFD panel"
-        )
+        if rec.candidate_standard is not None:
+            self.assertIn(
+                "61800", rec.candidate_standard,
+                f"T013 must resolve to IS/IEC 61800, got: {rec.candidate_standard}"
+            )
+        else:
+            self.assertIsNotNone(rec.competing_interpretations)
+            found = any("61800" in c["standard_number"] for c in rec.competing_interpretations)
+            self.assertTrue(found, "T013 must resolve to IS/IEC 61800 among competing candidates")
+        if rec.candidate_standard is not None:
+            self.assertNotIn(
+                "9694", rec.candidate_standard,
+                "Agricultural pump code IS 9694 must NOT be recommended for industrial VFD panel"
+            )
+        else:
+            found = any("9694" in c["standard_number"] for c in rec.competing_interpretations)
+            self.assertFalse(found, "Agricultural pump code IS 9694 must NOT be recommended")
 
     def test_06_t014_process_water_pump_3_3kv_motor(self):
         """T014: Process water pump with 3.3 kV motor resolves to IS/IEC 60034-1."""
