@@ -3,8 +3,8 @@
   "sweep_results": [
     {
       "threshold": 0.03,
-      "accuracy": 55.00000000000001,
-      "correct_state": 22,
+      "accuracy": 80.0,
+      "correct_state": 32,
       "total_cases": 40,
       "invariant_violations": 0,
       "by_state": {
@@ -15,13 +15,13 @@
         },
         "INCOMPLETE": {
           "total": 10,
-          "correct": 4,
-          "accuracy": 40.0
+          "correct": 10,
+          "accuracy": 100.0
         },
         "AMBIGUOUS": {
           "total": 10,
-          "correct": 1,
-          "accuracy": 10.0
+          "correct": 2,
+          "accuracy": 20.0
         },
         "CONFLICTING": {
           "total": 5,
@@ -30,16 +30,16 @@
         },
         "NO_RELIABLE_MATCH": {
           "total": 5,
-          "correct": 2,
-          "accuracy": 40.0
+          "correct": 5,
+          "accuracy": 100.0
         }
       },
-      "elapsed_sec": 6.31
+      "elapsed_sec": 7.09
     },
     {
       "threshold": 0.05,
-      "accuracy": 55.00000000000001,
-      "correct_state": 22,
+      "accuracy": 80.0,
+      "correct_state": 32,
       "total_cases": 40,
       "invariant_violations": 0,
       "by_state": {
@@ -50,13 +50,13 @@
         },
         "INCOMPLETE": {
           "total": 10,
-          "correct": 4,
-          "accuracy": 40.0
+          "correct": 10,
+          "accuracy": 100.0
         },
         "AMBIGUOUS": {
           "total": 10,
-          "correct": 1,
-          "accuracy": 10.0
+          "correct": 2,
+          "accuracy": 20.0
         },
         "CONFLICTING": {
           "total": 5,
@@ -65,16 +65,16 @@
         },
         "NO_RELIABLE_MATCH": {
           "total": 5,
-          "correct": 2,
-          "accuracy": 40.0
+          "correct": 5,
+          "accuracy": 100.0
         }
       },
-      "elapsed_sec": 6.26
+      "elapsed_sec": 6.36
     },
     {
       "threshold": 0.08,
-      "accuracy": 55.00000000000001,
-      "correct_state": 22,
+      "accuracy": 80.0,
+      "correct_state": 32,
       "total_cases": 40,
       "invariant_violations": 0,
       "by_state": {
@@ -85,13 +85,13 @@
         },
         "INCOMPLETE": {
           "total": 10,
-          "correct": 4,
-          "accuracy": 40.0
+          "correct": 10,
+          "accuracy": 100.0
         },
         "AMBIGUOUS": {
           "total": 10,
-          "correct": 1,
-          "accuracy": 10.0
+          "correct": 2,
+          "accuracy": 20.0
         },
         "CONFLICTING": {
           "total": 5,
@@ -100,16 +100,16 @@
         },
         "NO_RELIABLE_MATCH": {
           "total": 5,
-          "correct": 2,
-          "accuracy": 40.0
+          "correct": 5,
+          "accuracy": 100.0
         }
       },
-      "elapsed_sec": 6.43
+      "elapsed_sec": 6.34
     },
     {
       "threshold": 0.1,
-      "accuracy": 55.00000000000001,
-      "correct_state": 22,
+      "accuracy": 80.0,
+      "correct_state": 32,
       "total_cases": 40,
       "invariant_violations": 0,
       "by_state": {
@@ -120,13 +120,13 @@
         },
         "INCOMPLETE": {
           "total": 10,
-          "correct": 4,
-          "accuracy": 40.0
+          "correct": 10,
+          "accuracy": 100.0
         },
         "AMBIGUOUS": {
           "total": 10,
-          "correct": 1,
-          "accuracy": 10.0
+          "correct": 2,
+          "accuracy": 20.0
         },
         "CONFLICTING": {
           "total": 5,
@@ -135,18 +135,18 @@
         },
         "NO_RELIABLE_MATCH": {
           "total": 5,
-          "correct": 2,
-          "accuracy": 40.0
+          "correct": 5,
+          "accuracy": 100.0
         }
       },
-      "elapsed_sec": 6.09
+      "elapsed_sec": 6.55
     }
   ],
   "ambiguity_benchmark": {
     "threshold": 0.03,
     "total_cases": 40,
-    "correct_state": 22,
-    "accuracy": 55.00000000000001,
+    "correct_state": 32,
+    "accuracy": 80.0,
     "by_state": {
       "CLEAR": {
         "total": 10,
@@ -155,13 +155,13 @@
       },
       "INCOMPLETE": {
         "total": 10,
-        "correct": 4,
-        "accuracy": 40.0
+        "correct": 10,
+        "accuracy": 100.0
       },
       "AMBIGUOUS": {
         "total": 10,
-        "correct": 1,
-        "accuracy": 10.0
+        "correct": 2,
+        "accuracy": 20.0
       },
       "CONFLICTING": {
         "total": 5,
@@ -170,8 +170,8 @@
       },
       "NO_RELIABLE_MATCH": {
         "total": 5,
-        "correct": 2,
-        "accuracy": 40.0
+        "correct": 5,
+        "accuracy": 100.0
       }
     },
     "invariant_violations": 0,
@@ -362,30 +362,30 @@
         "category": "Electrical/Cables",
         "text": "Supply and laying of electrical power cables for factory electrification....",
         "expected_state": "INCOMPLETE",
-        "predicted_state": "REVIEW_REQUIRED",
-        "state_match": false,
-        "candidate_standard": "IS 1255 : 1983",
-        "evidence_standard": "IS 1255 : 1983",
+        "predicted_state": "INCOMPLETE",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
         "human_review_required": true,
         "expected_review_required": true,
         "review_match": true,
         "separation_margin": null,
-        "reason": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Insulation Material; "
+        "reason": "Tender requirement specifies 'cable' equipment but omits critical discriminating technical parameter"
       },
       {
         "id": "AMB-INC-04",
         "category": "Mechanical/Pumps",
         "text": "Supply and installation of water pumps for public water works system....",
         "expected_state": "INCOMPLETE",
-        "predicted_state": "REVIEW_REQUIRED",
-        "state_match": false,
-        "candidate_standard": "IS 9694 : 2023",
-        "evidence_standard": "IS 9694 : 2023",
+        "predicted_state": "INCOMPLETE",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
         "human_review_required": true,
         "expected_review_required": true,
         "review_match": true,
         "separation_margin": null,
-        "reason": "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total "
+        "reason": "Tender requirement specifies 'pump' equipment but omits critical discriminating technical parameters"
       },
       {
         "id": "AMB-INC-05",
@@ -422,60 +422,60 @@
         "category": "Civil/Piping",
         "text": "Laying of underground sewerage pipeline without defining pipe material or class....",
         "expected_state": "INCOMPLETE",
-        "predicted_state": "REVIEW_REQUIRED",
-        "state_match": false,
-        "candidate_standard": "IS 14333 : 1996",
-        "evidence_standard": "IS 14333 : 1996",
+        "predicted_state": "INCOMPLETE",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
         "human_review_required": true,
         "expected_review_required": true,
         "review_match": true,
         "separation_margin": null,
-        "reason": "Potentially missing engineering parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressu"
+        "reason": "Tender requirement specifies 'pipe' equipment but omits critical discriminating technical parameters"
       },
       {
         "id": "AMB-INC-08",
         "category": "Electrical/Switchgear",
         "text": "Supply and erection of electrical distribution panels for administrative complex...",
         "expected_state": "INCOMPLETE",
-        "predicted_state": "CLEAR",
-        "state_match": false,
-        "candidate_standard": "IS 5039 : 1983",
-        "evidence_standard": "IS 5039 : 1983",
-        "human_review_required": false,
+        "predicted_state": "INCOMPLETE",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "human_review_required": true,
         "expected_review_required": true,
-        "review_match": false,
+        "review_match": true,
         "separation_margin": null,
-        "reason": "Authoritative active standard IS 5039 : 1983 verified against scope with Medium confidence."
+        "reason": "Tender requirement specifies 'general' equipment but omits critical discriminating technical paramet"
       },
       {
         "id": "AMB-INC-09",
         "category": "Civil/Sanitary",
         "text": "Procurement of sanitary drainage pipes and accessories for residential quarters....",
         "expected_state": "INCOMPLETE",
-        "predicted_state": "REVIEW_REQUIRED",
-        "state_match": false,
-        "candidate_standard": "IS 15905 : 2011",
-        "evidence_standard": "IS 15905 : 2011",
+        "predicted_state": "INCOMPLETE",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
         "human_review_required": true,
         "expected_review_required": true,
         "review_match": true,
         "separation_margin": null,
-        "reason": "Potentially missing engineering parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressu"
+        "reason": "Tender requirement specifies 'pipe' equipment but omits critical discriminating technical parameters"
       },
       {
         "id": "AMB-INC-10",
         "category": "Civil/Materials",
         "text": "Supply of standard cement bags for general concrete construction works....",
         "expected_state": "INCOMPLETE",
-        "predicted_state": "REVIEW_REQUIRED",
-        "state_match": false,
-        "candidate_standard": "IS 458 : 2021",
-        "evidence_standard": "IS 458 : 2021",
+        "predicted_state": "INCOMPLETE",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
         "human_review_required": true,
         "expected_review_required": true,
         "review_match": true,
         "separation_margin": null,
-        "reason": "Authoritative active standard IS 458 : 2021 verified against scope with High confidence."
+        "reason": "Tender requirement specifies 'general' equipment but omits critical discriminating technical paramet"
       },
       {
         "id": "AMB-AMB-01",
@@ -527,15 +527,15 @@
         "category": "Civil/Piping",
         "text": "Sewerage pipeline construction without specifying pipe material (concrete IS 458...",
         "expected_state": "AMBIGUOUS",
-        "predicted_state": "REVIEW_REQUIRED",
-        "state_match": false,
-        "candidate_standard": "IS 14333 : 1996",
-        "evidence_standard": "IS 14333 : 1996",
+        "predicted_state": "AMBIGUOUS",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
         "human_review_required": true,
         "expected_review_required": true,
         "review_match": true,
         "separation_margin": null,
-        "reason": "Primary applicable standard IS 14333 is clearly identifiable and sufficiently supported."
+        "reason": "Multiple competing Indian Standards (IS 14333 and IS 458) have comparable applicability (score delta"
       },
       {
         "id": "AMB-AMB-05",
@@ -722,45 +722,45 @@
         "category": "Nuclear/Equipment",
         "text": "Supply of liquid metal sodium primary coolant circulation pump for sodium-cooled...",
         "expected_state": "NO_RELIABLE_MATCH",
-        "predicted_state": "INCOMPLETE",
-        "state_match": false,
+        "predicted_state": "NO_RELIABLE_MATCH",
+        "state_match": true,
         "candidate_standard": null,
         "evidence_standard": null,
         "human_review_required": true,
         "expected_review_required": true,
         "review_match": true,
         "separation_margin": null,
-        "reason": "Tender requirement specifies 'pump' equipment but omits critical discriminating technical parameters"
+        "reason": "No reliable Indian Standard match found. We could not establish a sufficiently supported Indian Stan"
       },
       {
         "id": "AMB-NOM-03",
         "category": "Electronics/Display",
         "text": "Supply of quantum dot photoresist color filter optical film for 8K ultra high de...",
         "expected_state": "NO_RELIABLE_MATCH",
-        "predicted_state": "CLEAR",
-        "state_match": false,
-        "candidate_standard": "IS/ISO 516 : 2019",
-        "evidence_standard": "IS/ISO 516 : 2019",
-        "human_review_required": false,
-        "expected_review_required": true,
-        "review_match": false,
-        "separation_margin": null,
-        "reason": "Authoritative active standard IS/ISO 516 : 2019 verified against scope with Medium confidence."
-      },
-      {
-        "id": "AMB-NOM-04",
-        "category": "Marine/Offshore",
-        "text": "Procurement of deep ocean subsea electro-hydraulic dynamic umbilical cable for o...",
-        "expected_state": "NO_RELIABLE_MATCH",
-        "predicted_state": "INCOMPLETE",
-        "state_match": false,
+        "predicted_state": "NO_RELIABLE_MATCH",
+        "state_match": true,
         "candidate_standard": null,
         "evidence_standard": null,
         "human_review_required": true,
         "expected_review_required": true,
         "review_match": true,
         "separation_margin": null,
-        "reason": "Tender requirement specifies 'cable' equipment but omits critical discriminating technical parameter"
+        "reason": "No reliable Indian Standard match found. We could not establish a sufficiently supported Indian Stan"
+      },
+      {
+        "id": "AMB-NOM-04",
+        "category": "Marine/Offshore",
+        "text": "Procurement of deep ocean subsea electro-hydraulic dynamic umbilical cable for o...",
+        "expected_state": "NO_RELIABLE_MATCH",
+        "predicted_state": "NO_RELIABLE_MATCH",
+        "state_match": true,
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "human_review_required": true,
+        "expected_review_required": true,
+        "review_match": true,
+        "separation_margin": null,
+        "reason": "No reliable Indian Standard match found. We could not establish a sufficiently supported Indian Stan"
       },
       {
         "id": "AMB-NOM-05",
@@ -778,7 +778,7 @@
         "reason": "No reliable Indian Standard match found. We could not establish a sufficiently supported Indian Stan"
       }
     ],
-    "elapsed_sec": 6.31
+    "elapsed_sec": 7.09
   },
   "catalogue_preservation": {
     "total_queries": 50,

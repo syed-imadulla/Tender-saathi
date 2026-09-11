@@ -264,8 +264,8 @@ class ConflictRegistry:
 class AmbiguityEngine:
     """Deterministic ambiguity analyzer executing the strict 8-stage pipeline."""
 
-    def __init__(self, separation_threshold: float = 0.08):
-        # Configurable candidate separation threshold
+    def __init__(self, separation_threshold: float = 0.03):
+        # Configurable candidate separation threshold (default 0.03)
         self.separation_threshold = separation_threshold
 
     def evaluate(
@@ -334,23 +334,121 @@ class AmbiguityEngine:
             )
 
         # -------------------------------------------------------------------
-        # Stage 3: Specification Completeness
-        # Evaluates whether critical discriminating technical parameters are missing.
+        # Stage 3: Candidate Applicability Gate
+        # Eliminates out-of-domain / uncatalogued technologies before generic completeness checks.
+        # Examples: liquid sodium pump, deep subsea umbilical -> NO_RELIABLE_MATCH.
+        # -------------------------------------------------------------------
+        if not applicable_candidates:
+            return AmbiguityReport(
+                ambiguity_state=AmbiguityState.NO_RELIABLE_MATCH,
+                ambiguity_reason="Retrieved candidates did not pass the domain/product applicability checks.",
+                retrieval_status="CANDIDATES_FOUND",
+                applicability_status="ALL_REJECTED",
+                evidence_status="INSUFFICIENT",
+                human_review_required=True,
+                suggested_clarification_question=(
+                    "Retrieved standards belong to incompatible product domains. Please specify the "
+                    "applicable Indian Standard or exact technical classification for this item."
+                ),
+                decision_confidence="High"
+            )
+
+        primary_crit = getattr(critic_outcome, "primary_critique", None)
+        crit_decision = getattr(primary_crit, "decision", "") if primary_crit else ""
+        if crit_decision in ["REJECT", "REJECT_NO_MATCH"]:
+            return AmbiguityReport(
+                ambiguity_state=AmbiguityState.NO_RELIABLE_MATCH,
+                ambiguity_reason="Retrieved candidates were evaluated and rejected due to technical mismatch or domain conflict.",
+                retrieval_status="CANDIDATES_FOUND",
+                applicability_status="ALL_REJECTED",
+                evidence_status="INSUFFICIENT",
+                human_review_required=True,
+                suggested_clarification_question=(
+                    "Retrieved standards do not reliably cover this requirement. Please specify the "
+                    "applicable Indian Standard or exact technical classification for this item."
+                ),
+                decision_confidence="High"
+            )
+
+        # -------------------------------------------------------------------
+        # Stage 4: Candidate Competition & Disambiguation (AMBIGUOUS)
+        # Evaluates whether the catalogue has established multiple viable, materially different
+        # candidate interpretations whose selection depends on a missing discriminating parameter.
+        # -------------------------------------------------------------------
+        if len(applicable_candidates) >= 2 and len(explicit_standards) != 1:
+            competing_found = False
+            chosen_c1 = None
+            chosen_c2 = None
+            chosen_param = None
+            chosen_delta = 0.0
+
+            top_cand = applicable_candidates[0]
+            top_pool = applicable_candidates[1:4]
+            for c_j in top_pool:
+                delta = round(abs(top_cand.final_score - c_j.final_score), 3)
+                if delta < self.separation_threshold:
+                    is_mat, param = self._check_material_competition(top_cand, c_j, text)
+                    if is_mat:
+                        competing_found = True
+                        chosen_c1 = top_cand
+                        chosen_c2 = c_j
+                        chosen_param = param
+                        chosen_delta = delta
+                        break
+
+            if competing_found and chosen_c1 and chosen_c2:
+                competing = [
+                    CompetingInterpretation(
+                        standard_number=chosen_c1.standard_number,
+                        title=chosen_c1.full_title,
+                        interpretation=self._summarize_interpretation(chosen_c1),
+                        relevance_score=chosen_c1.final_score,
+                        distinguishing_parameter_needed=chosen_param
+                    ).to_dict(),
+                    CompetingInterpretation(
+                        standard_number=chosen_c2.standard_number,
+                        title=chosen_c2.full_title,
+                        interpretation=self._summarize_interpretation(chosen_c2),
+                        relevance_score=chosen_c2.final_score,
+                        distinguishing_parameter_needed=chosen_param
+                    ).to_dict()
+                ]
+                return AmbiguityReport(
+                    ambiguity_state=AmbiguityState.AMBIGUOUS,
+                    ambiguity_reason=(
+                        f"Multiple competing Indian Standards ({chosen_c1.standard_number} and {chosen_c2.standard_number}) "
+                        f"have comparable applicability (score delta: {chosen_delta:.3f} < {self.separation_threshold:.2f}). "
+                        f"The tender does not contain distinguishing specifications to select between them."
+                    ),
+                    retrieval_status="CANDIDATES_FOUND",
+                    applicability_status="VIABLE_CANDIDATE",
+                    evidence_status="VALID",
+                    competing_interpretations=competing,
+                    separation_margin=chosen_delta,
+                    missing_information=[chosen_param],
+                    human_review_required=True,
+                    suggested_clarification_question=(
+                        f"Which standard or specification is intended: {chosen_c1.standard_number} or {chosen_c2.standard_number}? "
+                        f"Please specify {chosen_param}."
+                    ),
+                    decision_confidence="High"
+                )
+
+        # -------------------------------------------------------------------
+        # Stage 5: Specification Completeness (INCOMPLETE)
+        # Evaluates whether critical discriminating technical parameters are missing when
+        # no competing candidate interpretations were established in Stage 4.
         # -------------------------------------------------------------------
         if completeness_report and not explicit_standards:
-            crit_missing = getattr(completeness_report, "critical_missing_count", 0)
-            missing_params = completeness_report.potentially_missing_parameters or []
             domain = completeness_report.domain
-
-            # Check if critical parameters are absent in recognized domain
             is_critically_incomplete = False
             domain_discrim_needed = []
 
             if domain == "cable":
                 has_volt = any(p in completeness_report.parameters and completeness_report.parameters[p].status == "KNOWN" for p in ["voltage_rating"])
                 has_ins = any(p in completeness_report.parameters and completeness_report.parameters[p].status == "KNOWN" for p in ["insulation_type"]) or any(k in text.lower() for k in ["paper", "pilc", "rubber", "mineral", "telephone", "optical"])
-                has_context = any(k in text.lower() for k in ["power cable", "control cable", "underground cable", "submersible", "dg set", "amf", "main supply", "transmission", "overhead", "wiring"])
-                if not has_volt and not has_ins and not has_context:
+                has_app = any(k in text.lower() for k in ["amf", "dg set", "generator", "stp", "substation", "switchyard", "underground"])
+                if not has_volt and not has_ins and not has_app:
                     is_critically_incomplete = True
                     domain_discrim_needed = ["voltage rating (e.g. 1.1 kV / 11 kV)", "conductor material", "insulation type (PVC / XLPE)"]
 
@@ -368,17 +466,18 @@ class AmbiguityEngine:
 
             elif domain == "pipe":
                 has_mat = any(p in completeness_report.parameters and completeness_report.parameters[p].status == "KNOWN" for p in ["material"])
-                has_app = any(p in completeness_report.parameters and completeness_report.parameters[p].status == "KNOWN" for p in ["application"]) or any(k in text.lower() for k in ["sewerage", "drainage", "water supply", "potable", "sanitary", "plumbing", "irrigation"])
-                if not has_mat and not has_app:
+                if not has_mat:
                     is_critically_incomplete = True
                     domain_discrim_needed = ["pipe material (CPVC/uPVC/HDPE/DI/GI/Concrete)", "application environment"]
 
             elif domain == "pump":
-                has_type = any(p in completeness_report.parameters and completeness_report.parameters[p].status == "KNOWN" for p in ["pump_type"])
-                has_app = any(p in completeness_report.parameters and completeness_report.parameters[p].status == "KNOWN" for p in ["application"]) or any(k in text.lower() for k in ["water", "sewage", "slurry", "drainage", "chemical", "effluent", "irrigation"])
-                if not has_type and not has_app:
+                has_type = (
+                    any(p in completeness_report.parameters and completeness_report.parameters[p].status == "KNOWN" for p in ["pump_type", "motor_details"])
+                    or any(k in text.lower() for k in ["3.3 kv", "415 v", "11 kv", "coupled with", "vfd", "centrifugal", "submersible", "monobloc"])
+                )
+                if not has_type:
                     is_critically_incomplete = True
-                    domain_discrim_needed = ["pump mechanism (centrifugal/submersible/monobloc)", "process application or medium"]
+                    domain_discrim_needed = ["pump mechanism (centrifugal/submersible/monobloc)", "operating discharge (Q) and head (H)"]
 
             elif domain == "motor":
                 has_volt = any(p in completeness_report.parameters and completeness_report.parameters[p].status == "KNOWN" for p in ["voltage_rating"])
@@ -386,6 +485,18 @@ class AmbiguityEngine:
                 if not has_volt and not has_power:
                     is_critically_incomplete = True
                     domain_discrim_needed = ["operating voltage (LT/HT)", "rated output / power (kW/HP)"]
+
+            elif domain in ["panel", "switchgear", "distribution_board"] or any(k in text.lower() for k in ["distribution panel", "distribution board", "switchboard", "mccb panel"]):
+                has_rating = any(k in text.lower() for k in ["ampere", " amp", "415v", "11kv", "fault rating", "form 4", "ip54", "ip55", "ip65", "distribution board", "feeder pillar"])
+                if not has_rating:
+                    is_critically_incomplete = True
+                    domain_discrim_needed = ["voltage rating", "busbar current rating (Amperes)", "short-circuit fault rating (kA)", "enclosure IP rating"]
+
+            elif domain == "cement" or any(k in text.lower() for k in ["cement bags", "supply of cement", "standard cement"]):
+                has_grade = any(k in text.lower() for k in ["43 grade", "53 grade", "33 grade", "opc", "ppc", "psc", "pozzolana", "slag"])
+                if not has_grade:
+                    is_critically_incomplete = True
+                    domain_discrim_needed = ["cement type (Ordinary Portland Cement vs Portland Pozzolana Cement)", "strength grade (33 / 43 / 53)"]
 
             if is_critically_incomplete:
                 question = self._build_incomplete_clarification_question(domain, domain_discrim_needed)
@@ -409,100 +520,6 @@ class AmbiguityEngine:
                     missing_information=domain_discrim_needed,
                     human_review_required=True,
                     suggested_clarification_question=question,
-                    decision_confidence="High"
-                )
-
-        # -------------------------------------------------------------------
-        # Stage 4: Candidate Applicability
-        # Evaluates domain, product, scope, and applicability rules.
-        # Does NOT evaluate evidence strength or provenance.
-        # -------------------------------------------------------------------
-        if not applicable_candidates:
-            return AmbiguityReport(
-                ambiguity_state=AmbiguityState.NO_RELIABLE_MATCH,
-                ambiguity_reason="Retrieved candidates did not pass the domain/product applicability checks.",
-                retrieval_status="CANDIDATES_FOUND",
-                applicability_status="ALL_REJECTED",
-                evidence_status="INSUFFICIENT",
-                human_review_required=True,
-                suggested_clarification_question=(
-                    "Retrieved standards belong to incompatible product domains. Please specify the "
-                    "applicable Indian Standard or exact technical classification for this item."
-                ),
-                decision_confidence="High"
-            )
-
-        # If primary candidate was rejected by Critic due to low relevance / scope mismatch
-        primary_crit = getattr(critic_outcome, "primary_critique", None)
-        crit_decision = getattr(primary_crit, "decision", "") if primary_crit else ""
-        if crit_decision in ["REJECT", "REJECT_NO_MATCH"]:
-            return AmbiguityReport(
-                ambiguity_state=AmbiguityState.NO_RELIABLE_MATCH,
-                ambiguity_reason="Retrieved candidates were evaluated and rejected due to technical mismatch or domain conflict.",
-                retrieval_status="CANDIDATES_FOUND",
-                applicability_status="ALL_REJECTED",
-                evidence_status="INSUFFICIENT",
-                human_review_required=True,
-                suggested_clarification_question=(
-                    "Retrieved standards do not reliably cover this requirement. Please specify the "
-                    "applicable Indian Standard or exact technical classification for this item."
-                ),
-                decision_confidence="High"
-            )
-
-        # -------------------------------------------------------------------
-        # Stage 5: Candidate Competition & Separation
-        # Evaluates the 4-condition Ambiguity Test with separation threshold.
-        # -------------------------------------------------------------------
-        if len(applicable_candidates) >= 2 and not explicit_standards:
-            cand1 = applicable_candidates[0]
-            cand2 = applicable_candidates[1]
-
-            score_delta = round(cand1.final_score - cand2.final_score, 3)
-
-            # Check if candidates represent materially different options in same broad domain
-            is_materially_competing, discrim_param = self._check_material_competition(cand1, cand2, text)
-
-            if is_materially_competing and score_delta < self.separation_threshold:
-                # All 4 conditions met:
-                # 1. Multiple applicable candidates
-                # 2. Materially different options
-                # 3. Score margin within threshold (delta < threshold)
-                # 4. Tender lacks the distinguishing parameter
-                competing = [
-                    CompetingInterpretation(
-                        standard_number=cand1.standard_number,
-                        title=cand1.full_title,
-                        interpretation=self._summarize_interpretation(cand1),
-                        relevance_score=cand1.final_score,
-                        distinguishing_parameter_needed=discrim_param
-                    ).to_dict(),
-                    CompetingInterpretation(
-                        standard_number=cand2.standard_number,
-                        title=cand2.full_title,
-                        interpretation=self._summarize_interpretation(cand2),
-                        relevance_score=cand2.final_score,
-                        distinguishing_parameter_needed=discrim_param
-                    ).to_dict()
-                ]
-                return AmbiguityReport(
-                    ambiguity_state=AmbiguityState.AMBIGUOUS,
-                    ambiguity_reason=(
-                        f"Multiple competing Indian Standards ({cand1.standard_number} and {cand2.standard_number}) "
-                        f"have comparable applicability (score delta: {score_delta:.3f} < {self.separation_threshold:.2f}). "
-                        f"The tender does not contain distinguishing specifications to select between them."
-                    ),
-                    retrieval_status="CANDIDATES_FOUND",
-                    applicability_status="VIABLE_CANDIDATE",
-                    evidence_status="VALID",
-                    competing_interpretations=competing,
-                    separation_margin=score_delta,
-                    missing_information=[discrim_param],
-                    human_review_required=True,
-                    suggested_clarification_question=(
-                        f"Which standard or specification is intended: {cand1.standard_number} or {cand2.standard_number}? "
-                        f"Please specify {discrim_param}."
-                    ),
                     decision_confidence="High"
                 )
 
@@ -642,39 +659,51 @@ class AmbiguityEngine:
         t2 = c2.full_title.lower()
         text_low = text.lower()
 
+        def is_choice_undecided(opt1_terms: List[str], opt2_terms: List[str]) -> bool:
+            has_opt1 = any(t in text_low for t in opt1_terms)
+            has_opt2 = any(t in text_low for t in opt2_terms)
+            if not has_opt1 and not has_opt2:
+                return True
+            if has_opt1 and has_opt2:
+                return True
+            ambiguity_markers = ["without specifying", "without defining", "unspecified", " or ", " vs ", " vs. ", "either"]
+            if any(m in text_low for m in ambiguity_markers):
+                return True
+            return False
+
         # Cables: PVC vs XLPE
         is_c1_pvc = "pvc" in t1 or "694" in c1.standard_number
         is_c2_xlpe = "crosslinked" in t2 or "xlpe" in t2 or "7098" in c2.standard_number
         if (is_c1_pvc and is_c2_xlpe) or (("7098" in c1.standard_number) and ("694" in c2.standard_number)):
-            if "pvc" not in text_low and "xlpe" not in text_low and "crosslinked" not in text_low:
+            if is_choice_undecided(["pvc"], ["xlpe", "crosslinked"]):
                 return True, "cable insulation material (PVC conforming to IS 694 vs XLPE conforming to IS 7098)"
 
-        # Valves: Bronze vs Cast Iron / Ductile Iron
+        # Valves: Bronze/Copper alloy vs Cast Iron / Ductile Iron
         is_c1_bronze = "copper alloy" in t1 or "bronze" in t1 or "778" in c1.standard_number
         is_c2_iron = "cast iron" in t2 or "sluice" in t2 or "14846" in c2.standard_number or "ductile" in t2
         if (is_c1_bronze and is_c2_iron) or (("14846" in c1.standard_number) and ("778" in c2.standard_number)):
-            if "bronze" not in text_low and "gunmetal" not in text_low and "cast iron" not in text_low and "di" not in text_low:
+            if is_choice_undecided(["bronze", "gunmetal", "copper alloy"], ["cast iron", "di", "sluice"]):
                 return True, "valve metallurgy (Copper Alloy IS 778 vs Cast Iron IS 14846)"
 
         # Cement: OPC vs PPC
         is_c1_opc = "portland cement" in t1 and "pozzolana" not in t1
         is_c2_ppc = "pozzolana" in t2
         if (is_c1_opc and is_c2_ppc) or ("269" in c1.standard_number and "1489" in c2.standard_number):
-            if "opc" not in text_low and "ppc" not in text_low and "pozzolana" not in text_low:
+            if is_choice_undecided(["opc", "ordinary portland"], ["ppc", "pozzolana"]):
                 return True, "cement grade / type (Ordinary Portland Cement IS 269 vs Portland Pozzolana Cement IS 1489)"
 
         # Food Hygiene: General Principles (IS 2491) vs HACCP (IS 15000) vs FSSAI
         is_c1_food = any(k in c1.standard_number for k in ["2491", "15000"]) or "fssai" in c1.standard_number.lower()
         is_c2_food = any(k in c2.standard_number for k in ["2491", "15000"]) or "fssai" in c2.standard_number.lower()
         if is_c1_food and is_c2_food:
-            if "haccp" not in text_low and "is 2491" not in text_low and "is 15000" not in text_low:
+            if is_choice_undecided(["is 2491", "general principles"], ["is 15000", "haccp"]):
                 return True, "food hygiene compliance framework (General Principles of Food Hygiene IS 2491 vs HACCP Certification IS 15000)"
 
         # Pipes: Precast Concrete (IS 458) vs Structured Wall Polyethylene (IS 14333)
         is_c1_conc = "458" in c1.standard_number
         is_c2_poly = "14333" in c2.standard_number or "4984" in c2.standard_number
         if (is_c1_conc and is_c2_poly) or ("14333" in c1.standard_number and "458" in c2.standard_number):
-            if "concrete" not in text_low and "rcc" not in text_low and "polyethylene" not in text_low and "hdpe" not in text_low:
+            if is_choice_undecided(["concrete", "rcc"], ["polyethylene", "hdpe", "structured wall"]):
                 return True, "piping material (Precast Concrete IS 458 vs Polyethylene IS 14333)"
 
         # Pipes: Steel (IS 1239 / IS 3589) vs Ductile Iron (IS 8329)
@@ -683,15 +712,29 @@ class AmbiguityEngine:
         is_c1_di = "8329" in c1.standard_number
         is_c2_di = "8329" in c2.standard_number
         if (is_c1_steel and is_c2_di) or (is_c1_di and is_c2_steel):
-            if "steel" not in text_low and "ms" not in text_low and "ductile iron" not in text_low and "di" not in text_low:
+            if is_choice_undecided(["steel", "ms", "galvanized steel"], ["ductile iron", "di"]):
                 return True, "pipe material (Mild Steel IS 1239 vs Ductile Iron IS 8329)"
 
         # Transformers: Oil Immersed (IS 1180) vs Dry Type (IS 2026)
         is_c1_dist = "1180" in c1.standard_number
         is_c2_power = "2026" in c2.standard_number
         if (is_c1_dist and is_c2_power) or ("2026" in c1.standard_number and "1180" in c2.standard_number):
-            if "oil" not in text_low and "dry" not in text_low:
+            if is_choice_undecided(["oil", "oil immersed"], ["dry", "dry type"]):
                 return True, "transformer cooling mechanism (Oil Immersed IS 1180 vs Dry Type IS 2026)"
+
+        # Rubber Sealing Gaskets: Natural rubber (IS 5382) vs Synthetic / Elastomeric (IS 11149)
+        is_c1_gask = "5382" in c1.standard_number or "11149" in c1.standard_number or "gasket" in t1
+        is_c2_gask = "5382" in c2.standard_number or "11149" in c2.standard_number or "gasket" in t2
+        if is_c1_gask and is_c2_gask:
+            if is_choice_undecided(["natural rubber", "is 5382"], ["synthetic", "is 11149", "elastomeric"]):
+                return True, "gasket rubber polymer compound (Natural Rubber IS 5382 vs Synthetic Rubber IS 11149)"
+
+        # Structural Steel: Cold Formed (IS 801) vs Hot Rolled (IS 800 / IS 808 / IS 432)
+        is_c1_cold = "801" in c1.standard_number or "cold formed" in t1
+        is_c2_hot = any(k in c2.standard_number for k in ["800", "808", "432"]) or "hot rolled" in t2
+        if (is_c1_cold and is_c2_hot) or ("801" in c2.standard_number and any(k in c1.standard_number for k in ["800", "808", "432"])):
+            if is_choice_undecided(["cold formed", "light gauge"], ["hot rolled"]):
+                return True, "structural steel section forming method (Cold Formed IS 801 vs Hot Rolled IS 800 / IS 808)"
 
         return False, "distinguishing technical specification"
 

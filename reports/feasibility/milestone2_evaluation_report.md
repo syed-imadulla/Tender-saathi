@@ -14,13 +14,13 @@ The end-to-end prototype was benchmarked against all **20 human-verifiable procu
 | Evaluation Metric | Hybrid Pipeline | Industry Benchmark / Baseline | Status |
 |---|---|---|---|
 | **Benchmark Dataset Size** | **20 Requirements** | Real Tender Specifications | Verified |
-| **Top-1 Recommendation Accuracy** | **95.0%** (19/20) | Keyword Search Baseline (~35%) | **High Feasibility** |
-| **Top-3 Retrieval Recall** | **100.0%** (20/20) | Classical BM25 (~55%) | **High Feasibility** |
-| **Mean Reciprocal Rank (MRR)** | **0.975** | IR Standard Target (>0.70) | **Excellent** |
+| **Top-1 Recommendation Accuracy** | **90.0%** (18/20) | Keyword Search Baseline (~35%) | **High Feasibility** |
+| **Top-3 Retrieval Recall** | **95.0%** (19/20) | Classical BM25 (~55%) | **High Feasibility** |
+| **Mean Reciprocal Rank (MRR)** | **0.925** | IR Standard Target (>0.70) | **Excellent** |
 | **Supersedence Detection Rate** | **100.0%** | Generic LLMs (~10-20%) | **Authoritative** |
 | **Ambiguity Detection Recall** | **100.0%** | Human Engineer Gating | **Zero Guessing** |
 | **Ambiguity Precision** | **14.3%** | Balanced Flagging | **Robust** |
-| **Query Latency (Avg)** | **212.8 ms** | Real-time Search (<200ms) | **Optimal** |
+| **Query Latency (Avg)** | **243.0 ms** | Real-time Search (<200ms) | **Optimal** |
 
 ---
 
@@ -30,11 +30,11 @@ Comparison of individual retrieval mechanisms against the hybrid ensemble and ne
 
 | Retrieval Architecture | Top-1 Accuracy | Top-3 Recall | MRR | Avg Latency | T013-R002 (VFD Panel) | T014-R002 (Process Pump) |
 |---|---|---|---|---|---|---|
-| **A. Deterministic / Heuristic Alone** | 95.0% | 100.0% | 0.975 | 176.8 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **B. Okapi BM25 Alone** | 95.0% | 100.0% | 0.975 | 115.8 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **C. Semantic Alone (`all-MiniLM-L6-v2`)** | 85.0% | 90.0% | 0.887 | 137.8 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `None` (MISS) |
-| **D. Hybrid Retrieval Ensemble** | **95.0%** | **100.0%** | **0.975** | **212.8 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **E. Hybrid + Cross-Encoder Reranker** | **95.0%** | **100.0%** | **0.975** | **636.4 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **A. Deterministic / Heuristic Alone** | 90.0% | 95.0% | 0.925 | 139.1 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **B. Okapi BM25 Alone** | 90.0% | 95.0% | 0.925 | 143.6 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **C. Semantic Alone (`all-MiniLM-L6-v2`)** | 80.0% | 85.0% | 0.838 | 189.0 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `None` (MISS) |
+| **D. Hybrid Retrieval Ensemble** | **90.0%** | **95.0%** | **0.925** | **243.0 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **E. Hybrid + Cross-Encoder Reranker** | **90.0%** | **95.0%** | **0.925** | **800.6 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
 
 
 ---
@@ -55,7 +55,7 @@ Comparison of individual retrieval mechanisms against the hybrid ensemble and ne
 | **`T006-R001`** | `material` | UPVC Partition Wall Work for Conversion ... | IS 16088 : 2016 | **IS 16088 : 2016** | `TOP1_HIT` | ✅ Direct Rec |
 | **`T007-R003`** | `general_specification` | Low-Oil Food Outlet on BOT | IS 2491 : 2013; IS 15000 : 2013 | **IS 302 : 1994** | `TOP3_HIT` | ⚠️ Flagged |
 | **`T009-R001`** | `installation_execution` | Annual Repairs and Maintenance Contract ... | SP 30 : 2023; IS 732 : 2019 | **IS 732 : 2019** | `TOP1_HIT` | ✅ Direct Rec |
-| **`T010-R001`** | `material` | Sewerage Pipeline works from Collection ... | IS 458 : 2021; IS 783 : 1985; IS 14... | **IS 14333 : 2022** | `TOP1_HIT` | ⚠️ Flagged |
+| **`T010-R001`** | `material` | Sewerage Pipeline works from Collection ... | IS 458 : 2021; IS 783 : 1985; IS 14... | **None** | `MISS` | ⚠️ Flagged |
 | **`T011-R001`** | `material` | Providing and laying underground cable f... | IS 7098 (Part 1) : 1988; IS 1255 : ... | **IS 7098 (Part 1) : 1988** | `TOP1_HIT` | ⚠️ Flagged |
 | **`T012-R002`** | `installation_execution` | Plaster Repairing | IS 1661 : 1972; IS 269 : 2015 | **IS 1661 : 1972** | `TOP1_HIT` | ✅ Direct Rec |
 | **`T012-R003`** | `product_equipment` | Plumbing Fittings | IS 1239 (Part 2) : 1992; IS 778 : 1... | **IS 1239 (Part 2) : 1992** | `TOP1_HIT` | ✅ Direct Rec |
