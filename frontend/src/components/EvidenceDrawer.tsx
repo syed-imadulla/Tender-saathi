@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import './EvidenceDrawer.css';
 import type { Requirement } from '../types';
+import { areStandardsEquivalent } from './RequirementCard';
 
 interface EvidenceDrawerProps {
   req: Requirement;
@@ -203,7 +204,9 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
             <section className="drawer-section">
               <span className="drawer-section__label">4. Evidence</span>
               <blockquote className="drawer-evidence-quote">
-                "{req.evidence}"
+                "{req.evidence_standard && !areStandardsEquivalent(req.candidate_standard, req.evidence_standard)
+                  ? 'Match identified from the requirement context; supporting evidence needs review.'
+                  : req.evidence}"
               </blockquote>
             </section>
           )}
@@ -270,8 +273,68 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
             </section>
           )}
 
-          {/* 9. Technical Details (Collapsed by default) */}
-          <CollapseSection title="9. Technical Details" defaultOpen={false}>
+          {/* 9. Standards Dependencies & Ecosystem Coverage (Milestone 10) */}
+          {((req.dependencies && req.dependencies.length > 0) || req.standards_coverage) && (
+            <section className="drawer-section">
+              <span className="drawer-section__label">9. Standards Ecosystem & Dependencies</span>
+              <div className="drawer-coverage-summary" style={{ marginTop: '0.5rem' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '0.75rem' }}>
+                  <span className="badge badge--active" style={{ fontSize: '0.75rem' }}>
+                    ✓ Primary: {req.candidate_standard || 'Standard Identified'}
+                  </span>
+                  {req.standards_coverage?.coverage_summary && (
+                    <>
+                      <span className="badge badge--low" style={{ fontSize: '0.75rem' }}>
+                        {req.standards_coverage.coverage_summary.total_dependencies} Dependencies Mapped
+                      </span>
+                      {req.standards_coverage.coverage_summary.covered_in_tender > 0 && (
+                        <span className="badge badge--active" style={{ fontSize: '0.75rem' }}>
+                          {req.standards_coverage.coverage_summary.covered_in_tender} Cited in Tender
+                        </span>
+                      )}
+                      {(req.standards_coverage.coverage_summary.potentially_missing + req.standards_coverage.coverage_summary.verified_missing) > 0 && (
+                        <span className="badge badge--superseded" style={{ fontSize: '0.75rem' }}>
+                          {req.standards_coverage.coverage_summary.potentially_missing + req.standards_coverage.coverage_summary.verified_missing} Potential Gaps
+                        </span>
+                      )}
+                    </>
+                  )}
+                </div>
+
+                <div className="drawer-dependencies-list" style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                  {(req.dependencies || []).map((dep, idx) => (
+                    <div
+                      key={idx}
+                      style={{
+                        background: '#f9fafb',
+                        border: '1px solid #e5e7eb',
+                        borderRadius: '6px',
+                        padding: '0.65rem 0.75rem',
+                        fontSize: '0.85rem'
+                      }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+                        <strong style={{ color: '#1a1f36' }}>{dep.standard_number}</strong>
+                        <div style={{ display: 'flex', gap: '0.3rem', alignItems: 'center' }}>
+                          <span className="badge badge--low" style={{ fontSize: '0.65rem', padding: '1px 6px' }}>
+                            {dep.relationship_type.replace(/_/g, ' ')}
+                          </span>
+                          <span className="badge badge--active" style={{ fontSize: '0.65rem', padding: '1px 6px' }}>
+                            {dep.provenance}
+                          </span>
+                        </div>
+                      </div>
+                      <div style={{ color: '#4b5563', fontSize: '0.8rem', marginBottom: '0.35rem' }}>{dep.title}</div>
+                      <div style={{ color: '#6b7280', fontSize: '0.78rem', lineHeight: '1.4' }}>{dep.why_related}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* 10. Technical Details (Collapsed by default) */}
+          <CollapseSection title="10. Technical Details" defaultOpen={false}>
             <div className="score-breakdown-list">
               <ScoreBar label="BM25" value={req.scores?.deterministic === 1.0 ? 'Not used' : req.scores?.bm25} />
               <ScoreBar label="Semantic" value={req.scores?.deterministic === 1.0 ? 'Not used' : req.scores?.semantic} />
@@ -281,6 +344,7 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
               )}
               <ScoreBar label="Final Score" value={req.scores?.final} />
             </div>
+
 
             <p className="score-formula-note">
               Relevance score σ(logit) = 1 / (1 + exp(-logit)). Combines BM25 lexical matching,
@@ -315,8 +379,8 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
             )}
           </CollapseSection>
 
-          {/* 10. AI Understanding (Collapsed by default) */}
-          <CollapseSection title="10. AI Understanding" defaultOpen={false}>
+          {/* 11. AI Understanding (Collapsed by default) */}
+          <CollapseSection title="11. AI Requirement Understanding" defaultOpen={false}>
             <div className="drawer-ai-facets">
               {FACET_KEYS.map(({ key, label }) => {
                 const val = ai.facets ? ai.facets[key] : null;

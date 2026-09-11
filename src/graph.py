@@ -21,6 +21,27 @@ from src.standards import StandardsDatabase
 from src.validate import validate_standard_status, StandardValidationResult
 
 
+SUPPORTED_RELATIONSHIP_TYPES = {
+    "SUPERSEDES",
+    "AMENDS",
+    "REFERENCES",
+    "NORMATIVE_REFERENCE",
+    "TEST_METHOD",
+    "CODE_OF_PRACTICE",
+    "INSTALLATION_STANDARD",
+    "TERMINOLOGY_STANDARD",
+    "SAFETY_STANDARD",
+    "ALLIED_STANDARD",
+    "CERTIFICATION_RELATED",
+    "QCO_RELATED",
+    "RELATED_FOR_REVIEW",
+    # Legacy / aliases preserved for backward compatibility
+    "CODE_OF_PRACTICE_FOR",
+    "IDENTICAL_ADOPTION",
+    "SUPERSEDED_BY"
+}
+
+
 # ---------------------------------------------------------------------------
 # Graph Data Models
 # ---------------------------------------------------------------------------
@@ -30,12 +51,13 @@ class StandardRelationship:
     """Represents a directed evidentiary relationship between two standards."""
     source_standard: str                  # Canonical or display representation of source
     target_standard: str                  # Canonical or display representation of target
-    relationship_type: str                # SUPERSEDES, REFERENCES, CODE_OF_PRACTICE_FOR, IDENTICAL_ADOPTION, SUPERSEDED_BY
+    relationship_type: str                # Typed relationship (from SUPPORTED_RELATIONSHIP_TYPES)
     evidence: str                         # Verbatim clause / snippet or foreword statement
     provenance: str                       # VERIFIED, CURATED, INFERRED
     source_url: Optional[str] = None      # Portal URL if available
     confidence: float = 1.0               # 0.0 to 1.0
     direction: str = "OUTGOING"           # "OUTGOING" (source -> target) or "INCOMING" (target <- source)
+    source: str = "BIS_PORTAL"            # e.g. "BSB_EDGE_MANUALLY_VERIFIED", "BIS_PORTAL", "RELATIONSHIPS_JSON"
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -69,8 +91,26 @@ class StandardsGraph:
     Provides depth=1 relationship exploration without speculative hops or LLMs.
     """
 
-    def __init__(self, db: Optional[StandardsDatabase] = None):
+    def __init__(self, db: Optional[StandardsDatabase] = None, relationships_json_path: str = "data/standards/relationships.json"):
         self.db = db or StandardsDatabase()
+        self.relationships_json_path = relationships_json_path
+        self._cached_file_relationships: Optional[List[Dict[str, Any]]] = None
+
+    def _load_file_relationships(self) -> List[Dict[str, Any]]:
+        """Loads relationships from relationships.json if present."""
+        if self._cached_file_relationships is not None:
+            return self._cached_file_relationships
+        import json
+        import os
+        if os.path.exists(self.relationships_json_path):
+            try:
+                with open(self.relationships_json_path, "r", encoding="utf-8") as f:
+                    self._cached_file_relationships = json.load(f)
+            except Exception:
+                self._cached_file_relationships = []
+        else:
+            self._cached_file_relationships = []
+        return self._cached_file_relationships
 
     def _normalize_id(self, identifier: str) -> str:
         """Extracts core digits and prefix for flexible matching."""
@@ -91,7 +131,7 @@ class StandardsGraph:
     ) -> List[StandardRelationship]:
         """
         Retrieves all direct explicit relationships for a standard.
-        Strictly enforces depth = 1.
+        Strictly enforces depth = 1 by default.
         """
         if depth != 1:
             raise ValueError(f"Milestone 5 strictly supports depth = 1. Requested depth: {depth}")
@@ -99,6 +139,19 @@ class StandardsGraph:
         norm_id = self._normalize_id(standard_identifier)
         digits = self._extract_digits(norm_id)
         relationships: List[StandardRelationship] = []
+        seen_keys: Set[tuple] = set()
+
+        # Helper to deduplicate
+        def add_rel(rel: StandardRelationship):
+            key = (
+                self._extract_digits(rel.source_standard),
+                self._extract_digits(rel.target_standard),
+                rel.relationship_type,
+                rel.direction
+            )
+            if key not in seen_keys:
+                seen_keys.add(key)
+                relationships.append(rel)
 
         with self.db._get_connection() as conn:
             cursor = conn.cursor()
@@ -114,7 +167,7 @@ class StandardsGraph:
 
             for row in cursor.fetchall():
                 src_repr = f"{row['src_num']} : {row['src_yr']}" if row['src_yr'] else row['src_num']
-                relationships.append(StandardRelationship(
+                add_rel(StandardRelationship(
                     source_standard=src_repr,
                     target_standard=row['target_standard'],
                     relationship_type=row['relationship_type'],
@@ -122,7 +175,8 @@ class StandardsGraph:
                     provenance=row['verification_status'] or "CURATED",
                     source_url=row['source_url'],
                     confidence=1.0 if row['verification_status'] == "VERIFIED" else 0.85,
-                    direction="OUTGOING"
+                    direction="OUTGOING",
+                    source="SQLITE_DB"
                 ))
 
             # 2. Outgoing Normative References from standard_references table
@@ -138,7 +192,7 @@ class StandardsGraph:
                 src_repr = f"{row['src_num']} : {row['src_yr']}" if row['src_yr'] else row['src_num']
                 tgt_repr = f"{row['referenced_standard_number']} : {row['referenced_year']}" if row['referenced_year'] else row['referenced_standard_number']
                 clause_info = row['citing_clause'] or "Normative References"
-                relationships.append(StandardRelationship(
+                add_rel(StandardRelationship(
                     source_standard=src_repr,
                     target_standard=tgt_repr,
                     relationship_type="REFERENCES",
@@ -146,11 +200,11 @@ class StandardsGraph:
                     provenance=row['verification_status'] or "VERIFIED",
                     source_url=row['source_url'],
                     confidence=0.95 if row['verification_status'] == "VERIFIED" else 0.80,
-                    direction="OUTGOING"
+                    direction="OUTGOING",
+                    source="SQLITE_DB"
                 ))
 
             # 3. Incoming relationships from standard_relationships table
-            # (Where this standard is the target_standard)
             cursor.execute("""
             SELECT s.standard_number AS src_num, s.year AS src_yr, s.verification_status, s.source_url,
                    r.target_standard, r.relationship_type, r.evidence
@@ -161,9 +215,8 @@ class StandardsGraph:
 
             for row in cursor.fetchall():
                 src_repr = f"{row['src_num']} : {row['src_yr']}" if row['src_yr'] else row['src_num']
-                # Avoid self-referencing duplicates
                 if src_repr != norm_id:
-                    relationships.append(StandardRelationship(
+                    add_rel(StandardRelationship(
                         source_standard=src_repr,
                         target_standard=row['target_standard'],
                         relationship_type=row['relationship_type'],
@@ -171,7 +224,8 @@ class StandardsGraph:
                         provenance=row['verification_status'] or "CURATED",
                         source_url=row['source_url'],
                         confidence=1.0 if row['verification_status'] == "VERIFIED" else 0.85,
-                        direction="INCOMING"
+                        direction="INCOMING",
+                        source="SQLITE_DB"
                     ))
 
             # 4. Incoming references from standard_references table
@@ -188,7 +242,7 @@ class StandardsGraph:
                 tgt_repr = f"{row['referenced_standard_number']} : {row['referenced_year']}" if row['referenced_year'] else row['referenced_standard_number']
                 if src_repr != norm_id:
                     clause_info = row['citing_clause'] or "Normative References"
-                    relationships.append(StandardRelationship(
+                    add_rel(StandardRelationship(
                         source_standard=src_repr,
                         target_standard=tgt_repr,
                         relationship_type="REFERENCES",
@@ -196,8 +250,48 @@ class StandardsGraph:
                         provenance=row['verification_status'] or "VERIFIED",
                         source_url=row['source_url'],
                         confidence=0.90 if row['verification_status'] == "VERIFIED" else 0.75,
-                        direction="INCOMING"
+                        direction="INCOMING",
+                        source="SQLITE_DB"
                     ))
+
+        # 5. Supplementary relationships from relationships.json
+        file_rels = self._load_file_relationships()
+        for fr in file_rels:
+            src_str = fr.get("source_standard") or fr.get("source", "")
+            tgt_str = fr.get("target_standard") or fr.get("target", "")
+            rel_type = fr.get("relationship_type", "REFERENCES")
+            ev_str = fr.get("evidence", "")
+            prov = fr.get("provenance", "CURATED")
+            conf = fr.get("confidence", 0.9)
+            src_source = fr.get("evidence_source") or fr.get("source_dataset", "RELATIONSHIPS_JSON")
+
+            src_digits = self._extract_digits(src_str)
+            tgt_digits = self._extract_digits(tgt_str)
+
+            # Match outgoing (query is source)
+            if (digits and src_digits and digits == src_digits) or (norm_id and norm_id in src_str.upper()):
+                add_rel(StandardRelationship(
+                    source_standard=src_str,
+                    target_standard=tgt_str,
+                    relationship_type=rel_type,
+                    evidence=ev_str,
+                    provenance=prov,
+                    confidence=conf,
+                    direction="OUTGOING",
+                    source=src_source
+                ))
+            # Match incoming (query is target)
+            elif (digits and tgt_digits and digits == tgt_digits) or (norm_id and norm_id in tgt_str.upper()):
+                add_rel(StandardRelationship(
+                    source_standard=src_str,
+                    target_standard=tgt_str,
+                    relationship_type=rel_type,
+                    evidence=ev_str,
+                    provenance=prov,
+                    confidence=conf,
+                    direction="INCOMING",
+                    source=src_source
+                ))
 
         return relationships
 
@@ -236,34 +330,49 @@ class StandardsGraph:
             std_info = self._resolve_standard_info(clean_name)
 
             # Determine evidence strength of the relationship
-            # Graph connectivity does NOT independently create STRONG evidence for tender applicability
             if rel.provenance == "VERIFIED":
-                ev_strength = "STRONG" if rel.relationship_type in ["SUPERSEDES", "CODE_OF_PRACTICE_FOR"] else "MODERATE"
+                ev_strength = "STRONG" if rel.relationship_type in ["SUPERSEDES", "CODE_OF_PRACTICE", "CODE_OF_PRACTICE_FOR"] else "MODERATE"
             elif rel.provenance == "CURATED":
                 ev_strength = "MODERATE"
             else:
                 ev_strength = "WEAK"
 
             # Create explanatory review note based on relationship type
-            if rel.relationship_type == "SUPERSEDES":
+            # NOTE: Every note MUST contain the word 'review' for consistent advisory semantics
+            if rel.relationship_type in ["SUPERSEDES", "SUPERSEDED_BY"]:
                 if rel.direction == "OUTGOING":
                     note = f"Authoritative successor standard supersedes {clean_name}. Review legacy specifications."
                 else:
-                    note = f"Authoritative replacement standard is {clean_name}. Current cited standard is obsolete."
-            elif rel.relationship_type == "REFERENCES":
+                    note = f"Authoritative replacement standard is {clean_name}. Current cited standard is obsolete. Review replacement."
+            elif rel.relationship_type in ["REFERENCES", "NORMATIVE_REFERENCE"]:
                 if rel.direction == "OUTGOING":
                     note = f"Normative reference cited within primary standard. Review for co-application."
                 else:
                     note = f"Primary standard is cited by {clean_name}. Review for broader installation context."
-            elif rel.relationship_type == "CODE_OF_PRACTICE_FOR":
+            elif rel.relationship_type in ["CODE_OF_PRACTICE", "CODE_OF_PRACTICE_FOR"]:
                 if rel.direction == "OUTGOING":
-                    note = f"Laying / civil installation code of practice associated with {clean_name}."
+                    note = f"Laying / civil installation code of practice associated with {clean_name}. Review for installation compliance."
                 else:
-                    note = f"Product manufacturing standard associated with installation code {clean_name}."
+                    note = f"Product manufacturing standard associated with installation code {clean_name}. Review for manufacturing specs."
+            elif rel.relationship_type == "TEST_METHOD":
+                note = f"Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance."
+            elif rel.relationship_type == "INSTALLATION_STANDARD":
+                note = f"Installation, laying, and jointing standard associated with {clean_name}. Review for installation execution."
+            elif rel.relationship_type == "TERMINOLOGY_STANDARD":
+                note = f"Terminology and vocabulary standard. Review for technical definitions."
+            elif rel.relationship_type == "SAFETY_STANDARD":
+                note = f"Operational or personal safety standard. Review for mandatory safety protocol compliance."
+            elif rel.relationship_type == "ALLIED_STANDARD":
+                note = f"Allied product or component standard. Review for equipment interface compatibility."
+            elif rel.relationship_type == "CERTIFICATION_RELATED":
+                note = f"Certification and conformity assessment standard. Review for quality verification."
+            elif rel.relationship_type == "QCO_RELATED":
+                note = f"Quality Control Order related standard. Review for statutory compliance."
             elif rel.relationship_type == "IDENTICAL_ADOPTION":
-                note = f"Identical international standard adoption (ISO/IEC)."
+                note = f"Identical international standard adoption (ISO/IEC). Review for international equivalence."
             else:
                 note = "Related standard in official BIS catalogue for review."
+
 
             results.append(RelatedStandardResult(
                 standard_number=clean_name,

@@ -70,11 +70,23 @@ class TenderAuditResult:
         "Standards review readiness assessment for procurement officers. "
         "Does NOT constitute legal compliance certification."
     )
+    # Milestone 10 Standards Dependency & Coverage metrics:
+    dependency_count: int = 0
+    normative_reference_count: int = 0
+    allied_standard_count: int = 0
+    test_standard_count: int = 0
+    installation_standard_count: int = 0
+    verified_missing_count: int = 0
+    potentially_missing_count: int = 0
+    related_for_review_count: int = 0
+    standards_coverage: Dict[str, Any] = field(default_factory=dict)
+    gap_summary: Dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         d = asdict(self)
         d["review_queue"] = [item.to_dict() for item in self.review_queue]
         return d
+
 
 
 # ---------------------------------------------------------------------------
@@ -219,6 +231,37 @@ class TenderAuditEngine:
                     priority=priority_val
                 ))
 
+        # Aggregate Milestone 10 Standards Dependency & Coverage metrics
+        dependency_count = 0
+        normative_ref_count = 0
+        allied_std_count = 0
+        test_std_count = 0
+        install_std_count = 0
+        ver_missing_count = 0
+        pot_missing_count = 0
+        rel_review_count = 0
+
+        for r in results:
+            deps = getattr(r, "dependencies", []) or []
+            dependency_count += len(deps)
+            for d in deps:
+                rtype = d.get("relationship_type", "")
+                if rtype in ["NORMATIVE_REFERENCE", "REFERENCES"]:
+                    normative_ref_count += 1
+                elif rtype == "TEST_METHOD":
+                    test_std_count += 1
+                elif rtype in ["INSTALLATION_STANDARD", "CODE_OF_PRACTICE", "CODE_OF_PRACTICE_FOR"]:
+                    install_std_count += 1
+                elif rtype == "ALLIED_STANDARD":
+                    allied_std_count += 1
+
+            vm = getattr(r, "verified_missing", []) or []
+            pm = getattr(r, "potentially_missing", []) or []
+            rr = getattr(r, "related_for_review", []) or []
+            ver_missing_count += len(vm)
+            pot_missing_count += len(pm)
+            rel_review_count += len(rr)
+
         # Sort Review Queue: CRITICAL (1) -> HIGH (2) -> MEDIUM (3) -> LOW (4)
         # Secondary sort: Evidence severity (NONE -> WEAK -> MODERATE -> STRONG)
         # Tertiary sort: Completeness severity (UNKNOWN -> POTENTIALLY_MISSING -> NOT_APPLICABLE -> KNOWN)
@@ -248,6 +291,30 @@ class TenderAuditEngine:
             completeness_dist=completeness_dist
         )
 
+        # Standards coverage map summary
+        covered_deps = sum(
+            1 for r in results
+            for d in (getattr(r, "standards_coverage", {}) or {}).get("dependencies_coverage", [])
+            if d.get("coverage_status") == "COVERED_IN_TENDER"
+        )
+        standards_coverage = {
+            "direct_standards_identified": recommendations_count + review_required_count,
+            "total_dependencies": dependency_count,
+            "normative_references": normative_ref_count,
+            "testing_dependencies": test_std_count,
+            "installation_dependencies": install_std_count,
+            "allied_standards": allied_std_count,
+            "covered_in_tender": covered_deps,
+            "potential_gaps": pot_missing_count,
+            "verified_gaps": ver_missing_count,
+            "items_requiring_review": review_required_count
+        }
+        gap_summary = {
+            "verified_missing_count": ver_missing_count,
+            "potentially_missing_count": pot_missing_count,
+            "related_for_review_count": rel_review_count
+        }
+
         return TenderAuditResult(
             tender_id=tender_id,
             requirements_analyzed=requirements_analyzed,
@@ -265,8 +332,19 @@ class TenderAuditEngine:
             related_standards_count=related_standards_count,
             review_queue=review_queue,
             publication_readiness=readiness,
-            readiness_reasons=readiness_reasons
+            readiness_reasons=readiness_reasons,
+            dependency_count=dependency_count,
+            normative_reference_count=normative_ref_count,
+            allied_standard_count=allied_std_count,
+            test_standard_count=test_std_count,
+            installation_standard_count=install_std_count,
+            verified_missing_count=ver_missing_count,
+            potentially_missing_count=pot_missing_count,
+            related_for_review_count=rel_review_count,
+            standards_coverage=standards_coverage,
+            gap_summary=gap_summary
         )
+
 
     def audit_report(self, report: TenderRecommendationReport) -> TenderAuditResult:
         """Audits a TenderRecommendationReport produced by the recommendation pipeline."""
@@ -338,12 +416,20 @@ class TenderAuditEngine:
         ev_strength: str
     ) -> str:
         """Synthesizes an explainable, fact-based reason for human review."""
+        vm = getattr(r, "verified_missing", []) or []
+        if vm:
+            std_num = vm[0].get("standard_number") or "standard"
+            return f"Verified missing standard dependency '{std_num}' required for specification."
         if r.risk_reasons:
             return r.risk_reasons[0]
         if life_status == "Superseded":
             return f"Tender cited or recommended superseded standard '{r.candidate_standard}'."
         if life_status == "Withdrawn":
             return f"Standard '{r.candidate_standard}' is withdrawn in official BIS catalogue."
+        pm = getattr(r, "potentially_missing", []) or []
+        if pm and not r.risk_reasons:
+            std_num = pm[0].get("standard_number") or "standard"
+            return f"Evidence-backed dependency '{std_num}' is potentially missing from tender."
         if comp_label == "POTENTIALLY_MISSING":
             spec_comp = getattr(r, "specification_completeness", None) or {}
             missing = spec_comp.get("potentially_missing_parameters", [])

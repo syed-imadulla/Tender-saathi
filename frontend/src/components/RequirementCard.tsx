@@ -2,22 +2,27 @@
 import './RequirementCard.css';
 import type { Requirement, RelatedStandard } from '../types';
 
+export function areStandardsEquivalent(std1?: string | null, std2?: string | null): boolean {
+  if (!std1 || !std2) return false;
+  const norm = (s: string) => s.split(':')[0].trim().toUpperCase().replace(/\s+/g, ' ');
+  return norm(std1) === norm(std2);
+}
+
 export function getWhyItMatches(req: Requirement): string {
   if (!req.candidate_standard || req.candidate_standard === 'INSUFFICIENT_INFORMATION' || req.candidate_standard === 'NONE') {
     return 'No reliable standard match found in the available catalogue.';
   }
 
-  // Check explicit citation in requirement text
-  const stdClean = req.candidate_standard.replace(/[^0-9]/g, '');
-  const textHasExplicitCitation = stdClean && req.text.replace(/[^0-9]/g, '').includes(stdClean);
-
-  if (textHasExplicitCitation && req.candidate_standard.includes('15778')) {
-    return 'The tender explicitly cites IS 15778 and the standard covers CPVC pipes for potable hot and cold water supplies.';
+  // EVIDENCE CONSISTENCY RULE:
+  // Before displaying evidence, validate: evidence.standard_number == candidate_standard
+  // If this cannot be established, do NOT display candidate-specific evidence.
+  if (req.evidence_standard && !areStandardsEquivalent(req.candidate_standard, req.evidence_standard)) {
+    return 'Match identified from the requirement context; supporting evidence needs review.';
   }
 
-  // If IS 778 valve requirement
-  if (req.candidate_standard.includes('778')) {
-    return 'The standard directly covers gate, globe and check valves for waterworks purposes.';
+  // Use backend validated why_it_matches if provided
+  if (req.why_it_matches && req.why_it_matches.trim().length > 0) {
+    return req.why_it_matches.trim();
   }
 
   // Look in why_this array from backend
@@ -32,12 +37,10 @@ export function getWhyItMatches(req: Requirement): string {
       const cleaned = scopeItem
         .replace(/^Authoritative scope explicitly covers application:\s*["']?/, '')
         .replace(/["']?\s*$/, '')
+        .replace(/^(Exact Match:\s*|Direct Match:\s*)/i, '')
         .trim();
 
-      if (cleaned.length > 10) {
-        if (cleaned.startsWith('Tender explicitly') && req.evidence && req.evidence.toLowerCase() !== 'none') {
-          return req.evidence.replace(/^(Exact Match:\s*|Direct Match:\s*)/i, '').trim();
-        }
+      if (cleaned.length > 10 && !cleaned.toLowerCase().startsWith('insufficient')) {
         return cleaned;
       }
     }
@@ -59,7 +62,7 @@ export function getWhyItMatches(req: Requirement): string {
   }
 
   if (req.title) {
-    return `Covers ${req.title.toLowerCase()} for procurement specifications.`;
+    return `Official title aligns with specification: "${req.title}".`;
   }
 
   return 'Verified match with active Indian Standard catalogue.';
@@ -127,6 +130,30 @@ export function RecommendationCard({ req, isPrimary = false, onOpenEvidence }: R
         <span className="rec-card__why-label">Why it matches:</span>
         <p className="rec-card__why-text">{whyMatches}</p>
       </div>
+
+      {req.dependencies && req.dependencies.length > 0 && (
+        <div className="rec-card__coverage-bar" style={{ marginTop: '0.75rem', paddingTop: '0.625rem', borderTop: '1px solid #f1f5f9', display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', fontSize: '0.8125rem' }}>
+          <span style={{ fontWeight: 600, color: '#475569' }}>Standards Coverage:</span>
+          <span style={{ color: '#059669', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>✓ Primary standard</span>
+          {req.potentially_missing && req.potentially_missing.length > 0 && (
+            <span style={{ color: '#d97706', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+              ⚠ {req.potentially_missing.length} potential {req.potentially_missing.length === 1 ? 'dependency' : 'dependencies'}
+            </span>
+          )}
+          {req.missing_parameters && req.missing_parameters.length > 0 && (
+            <span style={{ color: '#d97706', display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
+              ⚠ Specification gap
+            </span>
+          )}
+          <button
+            type="button"
+            onClick={() => onOpenEvidence(req)}
+            style={{ marginLeft: 'auto', background: 'none', border: 'none', color: '#2563eb', cursor: 'pointer', fontWeight: 500, fontSize: '0.8125rem', padding: 0 }}
+          >
+            Review dependencies ({req.dependencies.length}) →
+          </button>
+        </div>
+      )}
     </article>
   );
 }

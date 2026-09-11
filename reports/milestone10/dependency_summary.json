@@ -1,0 +1,216 @@
+{
+  "tender_count": 20,
+  "total_requirements": 72,
+  "direct_standards_identified": 68,
+  "dependencies_identified": 215,
+  "normative_dependencies": 176,
+  "testing_dependencies": 6,
+  "installation_dependencies": 9,
+  "allied_dependencies": 24,
+  "potential_gaps": 17,
+  "verified_gaps": 0,
+  "human_review_items": 237,
+  "false_positive_dependency_findings": 0,
+  "tender_summaries": [
+    {
+      "tender_id": "T001",
+      "requirement_count": 5,
+      "direct_standards": 5,
+      "dependencies": 7,
+      "potential_gaps": 2,
+      "verified_gaps": 0,
+      "review_items": 6,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T002",
+      "requirement_count": 4,
+      "direct_standards": 4,
+      "dependencies": 75,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "review_items": 78,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T003",
+      "requirement_count": 4,
+      "direct_standards": 3,
+      "dependencies": 3,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "review_items": 4,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T004",
+      "requirement_count": 6,
+      "direct_standards": 6,
+      "dependencies": 2,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "review_items": 6,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T005",
+      "requirement_count": 4,
+      "direct_standards": 4,
+      "dependencies": 0,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "review_items": 3,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T006",
+      "requirement_count": 5,
+      "direct_standards": 4,
+      "dependencies": 7,
+      "potential_gaps": 1,
+      "verified_gaps": 0,
+      "review_items": 7,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T007",
+      "requirement_count": 4,
+      "direct_standards": 3,
+      "dependencies": 2,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "review_items": 6,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T008",
+      "requirement_count": 4,
+      "direct_standards": 4,
+      "dependencies": 75,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "review_items": 78,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T009",
+      "requirement_count": 2,
+      "direct_standards": 2,
+      "dependencies": 2,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "review_items": 2,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T010",
+      "requirement_count": 2,
+      "direct_standards": 2,
+      "dependencies": 14,
+      "potential_gaps": 2,
+      "verified_gaps": 0,
+      "review_items": 14,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T011",
+      "requirement_count": 2,
+      "direct_standards": 2,
+      "dependencies": 0,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "review_items": 2,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T012",
+      "requirement_count": 6,
+      "direct_standards": 6,
+      "dependencies": 0,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "review_items": 3,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T013",
+      "requirement_count": 6,
+      "direct_standards": 6,
+      "dependencies": 6,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "review_items": 10,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T014",
+      "requirement_count": 3,
+      "direct_standards": 3,
+      "dependencies": 4,
+      "potential_gaps": 2,
+      "verified_gaps": 0,
+      "review_items": 5,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T015",
+      "requirement_count": 2,
+      "direct_standards": 2,
+      "dependencies": 0,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "review_items": 0,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T016",
+      "requirement_count": 2,
+      "direct_standards": 2,
+      "dependencies": 1,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "review_items": 2,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T017",
+      "requirement_count": 3,
+      "direct_standards": 3,
+      "dependencies": 6,
+      "potential_gaps": 4,
+      "verified_gaps": 0,
+      "review_items": 4,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T018",
+      "requirement_count": 2,
+      "direct_standards": 2,
+      "dependencies": 1,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "review_items": 2,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T019",
+      "requirement_count": 2,
+      "direct_standards": 2,
+      "dependencies": 1,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "review_items": 1,
+      "cited_in_tender_count": 0
+    },
+    {
+      "tender_id": "T020",
+      "requirement_count": 4,
+      "direct_standards": 3,
+      "dependencies": 9,
+      "potential_gaps": 6,
+      "verified_gaps": 0,
+      "review_items": 4,
+      "cited_in_tender_count": 0
+    }
+  ]
+}

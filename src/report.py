@@ -196,6 +196,17 @@ class TenderReviewReport:
         md.append(f"- **Specification Review Completeness:** KNOWN: `{comp_dist.get('KNOWN', 0)}` | POTENTIALLY_MISSING: `{comp_dist.get('POTENTIALLY_MISSING', 0)}` | UNKNOWN: `{comp_dist.get('UNKNOWN', 0)}` | NOT_APPLICABLE: `{comp_dist.get('NOT_APPLICABLE', 0)}`")
         md.append(f"- **Risk Distribution:** CRITICAL: `{risk_dist.get('CRITICAL', 0)}` | HIGH: `{risk_dist.get('HIGH', 0)}` | MEDIUM: `{risk_dist.get('MEDIUM', 0)}` | LOW: `{risk_dist.get('LOW', 0)}`\n")
 
+        # Milestone 10: Standards Ecosystem & Coverage Overview
+        cov = es.get("standards_coverage", {})
+        md.append("### Standards Ecosystem & Dependency Coverage\n")
+        md.append(f"- **Normative References:** `{cov.get('normative_references', 0)}`")
+        md.append(f"- **Testing Method Dependencies:** `{cov.get('testing_dependencies', 0)}`")
+        md.append(f"- **Installation / Laying Standards:** `{cov.get('installation_dependencies', 0)}`")
+        md.append(f"- **Allied Standards:** `{cov.get('allied_standards', 0)}`")
+        md.append(f"- **Potential Standard Gaps:** `{cov.get('potential_gaps', 0)}`")
+        md.append(f"- **Verified Standard Gaps:** `{cov.get('verified_gaps', 0)}`\n")
+
+
         # 5. Human Review Queue
         md.append("## 4. Prioritized Human Review Queue\n")
         if not self.review_queue:
