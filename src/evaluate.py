@@ -314,6 +314,116 @@ Comparison of individual retrieval mechanisms against the hybrid ensemble and ne
     }
 
 
+# ---------------------------------------------------------------------------
+# Milestone 9: Negative / Abstention Benchmark
+# ---------------------------------------------------------------------------
+
+NEGATIVE_BENCHMARK_CASES = [
+    {
+        "id": "NEG-001",
+        "description": "crane rail track vs valve standard",
+        "requirement_text": "REPLACEMENT OF CRANE RAIL TRACK FOR RMQC (RAIL MOUNTED QUAY CRANE) INCLUDING ALLIED WORKS AT BERTH NO. 11 and 12 IN DOCK AREA, H.D.C, HALDIA",
+        "unrelated_standards": ["IS/ISO 10434", "IS 778", "IS 10611", "IS 14846"],
+        "expected_abstain": True
+    },
+    {
+        "id": "NEG-002",
+        "description": "electrical cable vs food standard",
+        "requirement_text": "Supply and laying of 1.1 kV grade copper conductor armored power and control cables for substation automation system.",
+        "unrelated_standards": ["IS 2491", "IS 15000", "IS 778"],
+        "expected_abstain": True
+    },
+    {
+        "id": "NEG-003",
+        "description": "water pump vs tile standard",
+        "requirement_text": "Procurement and commissioning of heavy duty submersible slurry pumps for thermal power station ash handling plant.",
+        "unrelated_standards": ["IS 15622", "IS 4457", "IS/ISO 10434"],
+        "expected_abstain": True
+    },
+    {
+        "id": "NEG-004",
+        "description": "structural steel vs valve standard",
+        "requirement_text": "Design, fabrication and erection of structural steel roof trusses and purlins for industrial workshop shed.",
+        "unrelated_standards": ["IS/ISO 10434", "IS 778", "IS 14846"],
+        "expected_abstain": True
+    },
+    {
+        "id": "NEG-005",
+        "description": "random/nonsense requirement",
+        "requirement_text": "xyz abc 123 invalid requirement gibberish text 9999",
+        "unrelated_standards": ["IS 15778", "IS/ISO 10434", "IS 778"],
+        "expected_abstain": True
+    }
+]
+
+
+def evaluate_negative_benchmark(recommender: StandardsRecommender) -> Dict[str, Any]:
+    """
+    Evaluates the Applicability Gate against negative benchmark cases.
+    Measures:
+    - False Positive Rate (% of negative cases where an unrelated standard was recommended)
+    - Negative Rejection Rate (% of cases where unrelated candidates were correctly rejected)
+    - Abstention Accuracy (% of cases where the engine correctly abstained)
+    """
+    total = len(NEGATIVE_BENCHMARK_CASES)
+    false_positives = 0
+    correct_abstentions = 0
+    correct_rejections = 0
+    case_results = []
+
+    for case in NEGATIVE_BENCHMARK_CASES:
+        req_obj = extract_from_text(case["requirement_text"], requirement_id=case["id"])
+        rec_res = recommender.recommend_for_requirement(req_obj)
+
+        top_std = rec_res.candidate_standard
+        decision = (rec_res.critic_result or {}).get("decision", "")
+
+        is_abstained = (
+            top_std is None or
+            top_std == "INSUFFICIENT_INFORMATION" or
+            decision in ["NO_RELIABLE_MATCH", "INSUFFICIENT_EVIDENCE"] or
+            rec_res.human_review_required and top_std is None
+        )
+
+        has_unrelated_rec = False
+        if top_std:
+            for u in case["unrelated_standards"]:
+                if u.lower() in top_std.lower():
+                    has_unrelated_rec = True
+                    break
+
+        if has_unrelated_rec and decision in ["RECOMMEND", "RECOMMEND_WITH_REVIEW"]:
+            false_positives += 1
+        else:
+            correct_rejections += 1
+
+        if is_abstained:
+            correct_abstentions += 1
+
+        case_results.append({
+            "id": case["id"],
+            "description": case["description"],
+            "recommended_standard": top_std,
+            "decision": decision,
+            "abstained": is_abstained,
+            "false_positive": has_unrelated_rec,
+            "rejection_reasons": rec_res.why_not
+        })
+
+    fp_rate = round((false_positives / total) * 100.0, 2)
+    neg_rejection_rate = round((correct_rejections / total) * 100.0, 2)
+    abstention_acc = round((correct_abstentions / total) * 100.0, 2)
+
+    return {
+        "total_cases": total,
+        "false_positive_count": false_positives,
+        "false_positive_rate": fp_rate,
+        "negative_rejection_rate": neg_rejection_rate,
+        "abstention_accuracy": abstention_acc,
+        "case_results": case_results
+    }
+
+
 def main():
     print("Running SIH26108 Milestone 2 Evaluation Harness...")
     metrics = evaluate_benchmark(run_ablation=True)
@@ -334,9 +444,26 @@ def main():
     print("=" * 78)
     print(f"Detailed Markdown Report  : {metrics['report_path']}")
     print(f"Evaluation CSV            : {metrics['csv_path']}")
+    print("=" * 78)
+
+    print("\n" + "=" * 78)
+    print("             SIH26108 NEGATIVE / UNRELATED BENCHMARK RESULTS             ")
+    print("=" * 78)
+    rec_neg = StandardsRecommender(retrieval_mode="hybrid+rerank")
+    neg_metrics = evaluate_negative_benchmark(rec_neg)
+    print(f"Total Negative Cases      : {neg_metrics['total_cases']}")
+    print(f"False Positive Count      : {neg_metrics['false_positive_count']}")
+    print(f"False Positive Rate       : {neg_metrics['false_positive_rate']:.1f}%")
+    print(f"Negative Rejection Rate   : {neg_metrics['negative_rejection_rate']:.1f}%")
+    print(f"Abstention Accuracy       : {neg_metrics['abstention_accuracy']:.1f}%")
+    print("-" * 78)
+    for cr in neg_metrics["case_results"]:
+        status_label = "REJECTED (SAFE)" if not cr["false_positive"] else "FALSE POSITIVE"
+        print(f"[{cr['id']}] {cr['description'][:40]:<40} -> {cr['recommended_standard'] or 'None (Abstained)'} [{status_label}]")
     print("=" * 78 + "\n")
 
 
 if __name__ == "__main__":
     main()
+
 

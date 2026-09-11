@@ -27,6 +27,7 @@ from src.validate import validate_standard_status, StandardValidationResult
 from src.decompose import RequirementComponent
 from src.completeness import SpecificationCompletenessReport, DomainCompletenessAnalyzer
 from src.graph import StandardsGraph
+from src.applicability import GENERIC_STOPWORDS
 
 
 @dataclass
@@ -183,8 +184,8 @@ class EvidenceAwareCritic:
         has_scope = scope and len(scope.strip()) > 15 and "insufficient" not in scope.lower()
         if has_scope:
             full_evidence_corpus = f"{scope} {std.get('full_title', '')}"
-            req_words = set(re.findall(r'\b\w{3,}\b', requirement_text.lower()))
-            ev_words = set(re.findall(r'\b\w{3,}\b', full_evidence_corpus.lower()))
+            req_words = {w for w in re.findall(r'\b\w{3,}\b', requirement_text.lower()) if w not in GENERIC_STOPWORDS}
+            ev_words = {w for w in re.findall(r'\b\w{3,}\b', full_evidence_corpus.lower()) if w not in GENERIC_STOPWORDS}
             overlap = req_words.intersection(ev_words)
 
             if len(overlap) >= 1:

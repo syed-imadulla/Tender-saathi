@@ -28,6 +28,7 @@ from src.completeness import DomainCompletenessAnalyzer, SpecificationCompletene
 from src.critic import EvidenceAwareCritic, CandidateCritique, DecisionOutcome
 from src.graph import StandardsGraph, RelatedStandardResult
 from src.audit import TenderAuditEngine, TenderAuditResult
+from src.applicability import ApplicabilityGate, ApplicabilityResult, ApplicabilityDecision
 
 
 # ---------------------------------------------------------------------------
@@ -51,6 +52,7 @@ class StandardRecommendation:
     deterministic_score: float = 0.0
     reranker_score: Optional[float] = None
     final_score: float = 0.0
+    applicability: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -62,7 +64,7 @@ class RequirementRecommendationResult:
     requirement_text: str
     category: str
     explicit_standards_found: List[str]
-    candidate_standard: str               # Top-1 candidate
+    candidate_standard: Optional[str]     # Top-1 candidate or None
     title: str
     status: str
     version_role: str
@@ -94,6 +96,8 @@ class RequirementRecommendationResult:
     deterministic_score: float = 0.0
     reranker_score: Optional[float] = None
     final_score: float = 0.0
+    # Milestone 9 Applicability Gate fields:
+    applicability: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -148,6 +152,7 @@ class StandardsRecommender:
         self.critic = EvidenceAwareCritic(self.db)
         self.graph = StandardsGraph(self.db)
         self.audit_engine = TenderAuditEngine()
+        self.applicability_gate = ApplicabilityGate()
         from src.ai_understanding import AIRequirementParser
         self.ai_parser = ai_parser or AIRequirementParser(enabled=ai_enabled)
 
@@ -263,19 +268,94 @@ class StandardsRecommender:
                 ambiguity_reason = reason_desc
                 break
 
-        # Step 4: Run Critic across Candidate Pool
+        # Step 3.5: NEW APPLICABILITY GATE (Milestone 9)
+        # Evaluate each candidate independently through the Applicability Gate
+        applicable_candidates: List[SearchResult] = []
+        rejected_candidates: List[Tuple[SearchResult, ApplicabilityResult]] = []
+        candidate_applicability_map: Dict[str, ApplicabilityResult] = {}
+
+        for cand in search_results:
+            is_explicit = any(exp in cand.relevance_reason or exp in cand.standard_number for exp in explicit_stds)
+            app_res = self.applicability_gate.evaluate_candidate(
+                candidate=cand,
+                requirement_text=text,
+                components=req.components,
+                parsed_ai=parsed_ai,
+                is_explicitly_cited=is_explicit
+            )
+            candidate_applicability_map[cand.standard_number] = app_res
+            if app_res.applicable:
+                applicable_candidates.append(cand)
+            else:
+                rejected_candidates.append((cand, app_res))
+
+        # If ALL candidates fail the applicability gate: ABSTAIN cleanly
+        if not applicable_candidates:
+            why_not_reasons = []
+            for cand, app_res in rejected_candidates[:3]:
+                reasons_str = "; ".join(app_res.rejection_reasons) if app_res.rejection_reasons else "Insufficient domain applicability"
+                why_not_reasons.append(f"Standard {cand.standard_number} ({cand.full_title}) rejected: {reasons_str}")
+
+            primary_app_res = rejected_candidates[0][1].to_dict() if rejected_candidates else None
+            user_facing_explanation = (
+                "No reliable Indian Standard match found. "
+                "We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue. "
+                "Human review required."
+            )
+
+            return RequirementRecommendationResult(
+                requirement_id=req_id,
+                requirement_text=text,
+                category=cat,
+                explicit_standards_found=explicit_stds,
+                candidate_standard=None,
+                title="No Reliable Indian Standard Match Found",
+                status="Unknown",
+                version_role="UNKNOWN",
+                relevance_score=0.0,
+                confidence="Low",
+                evidence="We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue.",
+                provenance="UNKNOWN",
+                human_review_required=True,
+                reason=user_facing_explanation,
+                recommendations=[],
+                alternatives=[],
+                decomposed_components=[c.to_dict() if hasattr(c, "to_dict") else c for c in getattr(req, "components", [])],
+                critic_result={
+                    "decision": "NO_RELIABLE_MATCH",
+                    "reasons": ["All candidates rejected by Applicability Gate."],
+                    "risk_level": "HIGH",
+                    "risk_reasons": ["No reliable Indian Standard match found in available catalogue."]
+                },
+                why_this=[],
+                why_not=why_not_reasons,
+                risk_level="HIGH",
+                risk_reasons=["No reliable Indian Standard match found in available catalogue."],
+                specification_completeness=completeness_report.to_dict(),
+                ai_understanding=parsed_ai.to_dict(),
+                ai_provider=parsed_ai.ai_provider,
+                ai_model=parsed_ai.ai_model,
+                is_ai_fallback=parsed_ai.is_fallback,
+                bm25_score=0.0,
+                semantic_score=0.0,
+                deterministic_score=0.0,
+                reranker_score=None,
+                final_score=0.0,
+                applicability=primary_app_res
+            )
+
+        # Step 4: Run Critic across Applicable Candidate Pool
         critic_outcome = self.critic.evaluate_candidates(
-            candidates=search_results,
+            candidates=applicable_candidates,
             requirement_text=text,
             components=req.components,
             completeness=completeness_report
         )
 
         # Step 5: Validate and Ground Candidates
-        # Validate and Ground Candidates
         recommendations: List[StandardRecommendation] = []
 
-        for sr in search_results:
+        for sr in applicable_candidates:
             # Avoid duplicate standard numbers
             if any(r.standard_number == sr.standard_number for r in recommendations):
                 continue
@@ -309,6 +389,8 @@ class StandardsRecommender:
             if hasattr(sr, "_explicit_successor_warning"):
                 warning = getattr(sr, "_explicit_successor_warning")
 
+            app_dict = candidate_applicability_map.get(sr.standard_number).to_dict() if sr.standard_number in candidate_applicability_map else None
+
             recommendations.append(StandardRecommendation(
                 standard_number=f"{sr.standard_number} : {sr.year}" if sr.year else sr.standard_number,
                 title=sr.full_title,
@@ -324,45 +406,9 @@ class StandardsRecommender:
                 semantic_score=round(sr.semantic_score, 3),
                 deterministic_score=round(sr.deterministic_score, 3),
                 reranker_score=round(sr.reranker_score, 3) if sr.reranker_score is not None else None,
-                final_score=round(sr.final_score, 3)
+                final_score=round(sr.final_score, 3),
+                applicability=app_dict
             ))
-
-        # Step 6: Format Final Result and Human-Review Gating
-        if not recommendations:
-            return RequirementRecommendationResult(
-                requirement_id=req_id,
-                requirement_text=text,
-                category=cat,
-                explicit_standards_found=explicit_stds,
-                candidate_standard="INSUFFICIENT_INFORMATION",
-                title="No Applicable Standard in Local Database",
-                status="Unknown",
-                version_role="UNKNOWN",
-                relevance_score=0.0,
-                confidence="Low",
-                evidence="Insufficient evidence from the retrieved BIS standards to establish applicability.",
-                provenance="UNKNOWN",
-                human_review_required=True,
-                reason=ambiguity_reason if ambiguity_flag else "No matching standard with sufficient confidence found in local catalogue. Requires BIS portal search.",
-                recommendations=[],
-                alternatives=[],
-                decomposed_components=[c.to_dict() if hasattr(c, "to_dict") else c for c in getattr(req, "components", [])],
-                critic_result=critic_outcome.primary_critique.to_dict(),
-                why_this=critic_outcome.why_this,
-                why_not=critic_outcome.why_not,
-                risk_level=critic_outcome.risk_level,
-                risk_reasons=critic_outcome.risk_reasons,
-                specification_completeness=completeness_report.to_dict(),
-                ai_understanding=parsed_ai.to_dict(),
-                ai_provider=parsed_ai.ai_provider,
-                ai_model=parsed_ai.ai_model,
-                is_ai_fallback=parsed_ai.is_fallback,
-                bm25_score=0.0,
-                semantic_score=0.0,
-                deterministic_score=0.0,
-                reranker_score=None,
-                final_score=0.0
-            )
 
         top_rec = recommendations[0]
         alternatives = [r.standard_number for r in recommendations[1:4]]
@@ -458,7 +504,8 @@ class StandardsRecommender:
             semantic_score=top_rec.semantic_score,
             deterministic_score=top_rec.deterministic_score,
             reranker_score=top_rec.reranker_score,
-            final_score=top_rec.final_score
+            final_score=top_rec.final_score,
+            applicability=top_rec.applicability
         )
 
     def recommend_for_text(self, text: str, req_id: str = "REQ-001") -> RequirementRecommendationResult:

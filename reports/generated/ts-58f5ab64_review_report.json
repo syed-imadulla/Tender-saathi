@@ -1,0 +1,167 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-58F5AB64",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "text input",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "REVIEW_REQUIRED",
+  "readiness_reasons": [
+    "1 requirement(s) cite or match superseded standard(s).",
+    "1 requirement(s) flagged with CRITICAL risk.",
+    "1 requirement(s) require technical engineer review.",
+    "1 requirement(s) have potentially missing specification parameters."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-58F5AB64",
+    "requirements_analyzed": 1,
+    "recommendations_count": 0,
+    "review_required_count": 1,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 1,
+    "withdrawn_count": 0,
+    "active_count": 0,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 1,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 0
+    },
+    "risk_distribution": {
+      "LOW": 0,
+      "MEDIUM": 0,
+      "HIGH": 0,
+      "CRITICAL": 1
+    },
+    "lifecycle_distribution": {
+      "Active": 0,
+      "Superseded": 1,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 1,
+    "review_queue": [
+      {
+        "requirement_id": "REQ-001",
+        "requirement_text": "Supply of bolted bonnet steel gate valves as per IS 10611:1983 for refinery flow",
+        "risk_level": "CRITICAL",
+        "decision": "REVIEW_REQUIRED",
+        "candidate_standard": "IS/ISO 10434 : 2020",
+        "evidence_strength": "STRONG",
+        "primary_reason": "Tender explicitly cited a superseded standard requiring replacement verification.",
+        "priority": 1
+      }
+    ],
+    "publication_readiness": "REVIEW_REQUIRED",
+    "readiness_reasons": [
+      "1 requirement(s) cite or match superseded standard(s).",
+      "1 requirement(s) flagged with CRITICAL risk.",
+      "1 requirement(s) require technical engineer review.",
+      "1 requirement(s) have potentially missing specification parameters."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification."
+  },
+  "requirements": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "Supply of bolted bonnet steel gate valves as per IS 10611:1983 for refinery flow",
+      "category": "product_equipment",
+      "components": [
+        {
+          "text": "gate valves",
+          "component_type": "product",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "category": "flow_control_valve"
+          }
+        }
+      ],
+      "recommended_standard": "IS/ISO 10434 : 2020",
+      "recommended_title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+      "relevance_score": 1.0,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": "IS 10611 1983",
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends.",
+      "evidence_source": "BSB Edge Portal",
+      "why_this": [
+        "Recommended authoritative active successor standard recorded in BIS database."
+      ],
+      "why_not": [
+        "Original cited standard is superseded/obsolete."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Nominal Size / Diameter (DN)",
+        "Pressure Rating (PN / Class)",
+        "Body Metallurgy / Material",
+        "Fluid Medium / Service"
+      ],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 10611 : 1983",
+          "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "relationship_type": "SUPERSEDES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS%2fISO+10434&id=45967",
+          "review_note": "Authoritative successor standard supersedes IS 10611 : 1983. Review legacy specifications."
+        }
+      ],
+      "decision": "REVIEW_REQUIRED",
+      "risk_level": "CRITICAL",
+      "risk_reasons": [
+        "Tender explicitly cited a superseded standard requiring replacement verification."
+      ],
+      "human_review_required": true,
+      "confidence": "High",
+      "review_reason": "Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement."
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "Supply of bolted bonnet steel gate valves as per IS 10611:1983 for refinery flow",
+      "risk_level": "CRITICAL",
+      "decision": "REVIEW_REQUIRED",
+      "candidate_standard": "IS/ISO 10434 : 2020",
+      "evidence_strength": "STRONG",
+      "primary_reason": "Tender explicitly cited a superseded standard requiring replacement verification.",
+      "priority": 1
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 1,
+      "CURATED": 0,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}

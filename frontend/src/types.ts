@@ -24,12 +24,28 @@ export interface AIUnderstanding {
   is_fallback: boolean;
 }
 
+export interface ApplicabilityData {
+  standard_number?: string;
+  title?: string;
+  applicable?: boolean;
+  decision?: 'APPLICABLE' | 'REVIEW_REQUIRED' | 'NOT_APPLICABLE' | string;
+  applicability_score?: number;
+  domain_match?: boolean;
+  product_match?: boolean;
+  scope_match?: boolean;
+  application_match?: boolean;
+  evidence_support?: boolean;
+  conflict_flags?: string[];
+  reasons?: string[];
+  rejection_reasons?: string[];
+}
+
 export interface Requirement {
   id: string;
   text: string;
   category: string;
   // Standard
-  candidate_standard: string;
+  candidate_standard: string | null;
   title: string;
   lifecycle_status: string;
   successor_standard: string | null;
@@ -59,6 +75,8 @@ export interface Requirement {
   ai_understanding: AIUnderstanding;
   // Scores
   scores: ScoreBreakdown;
+  // Applicability (Milestone 9)
+  applicability?: ApplicabilityData | null;
 }
 
 export interface AnalysisSummary {

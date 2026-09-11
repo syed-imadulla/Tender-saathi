@@ -1,0 +1,388 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-76E13A81",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "eProcurement System Government of India4.pdf",
+    "date": null,
+    "requirements_analyzed": 2
+  },
+  "publication_readiness": "REVIEW_REQUIRED",
+  "readiness_reasons": [
+    "2 requirement(s) require technical engineer review."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-76E13A81",
+    "requirements_analyzed": 2,
+    "recommendations_count": 0,
+    "review_required_count": 2,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 0,
+    "withdrawn_count": 0,
+    "active_count": 2,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 2,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 0,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 2
+    },
+    "risk_distribution": {
+      "LOW": 0,
+      "MEDIUM": 2,
+      "HIGH": 0,
+      "CRITICAL": 0
+    },
+    "lifecycle_distribution": {
+      "Active": 2,
+      "Superseded": 0,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 4,
+    "review_queue": [
+      {
+        "requirement_id": "TS-76E13A81-R001",
+        "requirement_text": "Replacement / repair of distribution boards and defective lights at various locations in main sports stadium and elesewhere in IIT Kanpur",
+        "risk_level": "MEDIUM",
+        "decision": "RECOMMEND_WITH_REVIEW",
+        "candidate_standard": "IS/IEC 61439-3 : 2012",
+        "evidence_strength": "MODERATE",
+        "primary_reason": "Authoritative active standard IS/IEC 61439-3 : 2012 verified against scope with Medium confidence.",
+        "priority": 3
+      },
+      {
+        "requirement_id": "TS-76E13A81-R002",
+        "requirement_text": "Replacement / repair of distribution boards and defective lights at various locations in main sports stadium and elsewhere in IIT Kanpur",
+        "risk_level": "MEDIUM",
+        "decision": "RECOMMEND_WITH_REVIEW",
+        "candidate_standard": "IS/IEC 61439-3 : 2012",
+        "evidence_strength": "MODERATE",
+        "primary_reason": "Authoritative active standard IS/IEC 61439-3 : 2012 verified against scope with Medium confidence.",
+        "priority": 3
+      }
+    ],
+    "publication_readiness": "REVIEW_REQUIRED",
+    "readiness_reasons": [
+      "2 requirement(s) require technical engineer review."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification."
+  },
+  "requirements": [
+    {
+      "requirement_id": "TS-76E13A81-R001",
+      "requirement_text": "Replacement / repair of distribution boards and defective lights at various locations in main sports stadium and elesewhere in IIT Kanpur",
+      "category": "product_equipment",
+      "components": [
+        {
+          "text": "Replacement",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "replacement"
+          }
+        },
+        {
+          "text": "repair",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "repair"
+          }
+        },
+        {
+          "text": "defective lights",
+          "component_type": "equipment",
+          "domain": "electrical",
+          "extracted_attributes": {
+            "category": "illumination",
+            "standard_focus": "IS 10322"
+          }
+        },
+        {
+          "text": "sports stadium",
+          "component_type": "application",
+          "domain": "infrastructure",
+          "extracted_attributes": {
+            "facility_type": "sports stadium"
+          }
+        },
+        {
+          "text": "distribution board",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "light",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "IIT Kanpur",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        }
+      ],
+      "recommended_standard": "IS/IEC 61439-3 : 2012",
+      "recommended_title": "Low-voltage switchgear assemblies - Part 3: Distribution boards (DBO); Luminaires - Part 5 Sec 5: Floodlights [IS/IEC 61439-3]",
+      "relevance_score": 0.945,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "evidence_text": "Partial Match: Proposed standard covers only the distribution boards. Defective sports lights are governed by floodlight luminaire standard IS 10322.",
+      "evidence_source": "BIS Standards Catalogue",
+      "why_this": [
+        "Standard title directly matches requirement component(s): 'distribution board, light'.",
+        "Authoritative scope explicitly covers application: \"Partial Match: Proposed standard covers only the distribution boards. Defective sports lights are governed by floodlight...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BIS Standards Catalogue (CURATED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
+      ],
+      "why_not": [
+        "Alternative standard IS 10322 (Part 5 / Sec 5) scored lower across the 5-dimension critic evaluation."
+      ],
+      "completeness_label": "NOT_APPLICABLE",
+      "potentially_missing_parameters": [],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 8623",
+          "title": "Low-voltage switchgear assemblies - Part 3: Distribution boards (DBO); Luminaires - Part 5 Sec 5: Floodlights [IS/IEC 61439-3]",
+          "relationship_type": "SUPERSEDES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Authoritative record for IS/IEC 61439-3 explicitly supersedes earlier standard IS 8623.",
+          "source_url": "IS/IEC 61439-3 Clause 1; IS 10322 (Part 5/Sec 5) Clause 1",
+          "review_note": "Authoritative successor standard supersedes IS 8623. Review legacy specifications."
+        },
+        {
+          "standard_number": "IS 13947",
+          "title": "Adjustable speed AC power drive systems; Low-voltage switchgear and controlgear assemblies - Part 2: Power switchgear assemblies [IS/IEC 61800-2]",
+          "relationship_type": "SUPERSEDES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Authoritative record for IS/IEC 61439-2 explicitly supersedes earlier standard IS 13947.",
+          "source_url": "IS/IEC 61800-2 Clause 1; IS/IEC 61439-2 Clause 1",
+          "review_note": "Authoritative successor standard supersedes IS 13947. Review legacy specifications."
+        }
+      ],
+      "decision": "REVIEW_REQUIRED",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "Medium",
+      "review_reason": "Authoritative active standard IS/IEC 61439-3 : 2012 verified against scope with Medium confidence."
+    },
+    {
+      "requirement_id": "TS-76E13A81-R002",
+      "requirement_text": "Replacement / repair of distribution boards and defective lights at various locations in main sports stadium and elsewhere in IIT Kanpur",
+      "category": "product_equipment",
+      "components": [
+        {
+          "text": "Replacement",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "replacement"
+          }
+        },
+        {
+          "text": "repair",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "repair"
+          }
+        },
+        {
+          "text": "defective lights",
+          "component_type": "equipment",
+          "domain": "electrical",
+          "extracted_attributes": {
+            "category": "illumination",
+            "standard_focus": "IS 10322"
+          }
+        },
+        {
+          "text": "sports stadium",
+          "component_type": "application",
+          "domain": "infrastructure",
+          "extracted_attributes": {
+            "facility_type": "sports stadium"
+          }
+        },
+        {
+          "text": "distribution board",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "lighting fixture",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "IIT Kanpur",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "testing",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        }
+      ],
+      "recommended_standard": "IS/IEC 61439-3 : 2012",
+      "recommended_title": "Low-voltage switchgear assemblies - Part 3: Distribution boards (DBO); Luminaires - Part 5 Sec 5: Floodlights [IS/IEC 61439-3]",
+      "relevance_score": 0.941,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "evidence_text": "Partial Match: Proposed standard covers only the distribution boards. Defective sports lights are governed by floodlight luminaire standard IS 10322.",
+      "evidence_source": "BIS Standards Catalogue",
+      "why_this": [
+        "Standard title directly matches requirement component(s): 'distribution board'.",
+        "Authoritative scope explicitly covers application: \"Partial Match: Proposed standard covers only the distribution boards. Defective sports lights are governed by floodlight...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BIS Standards Catalogue (CURATED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
+      ],
+      "why_not": [
+        "Alternative standard IS 10322 (Part 5 / Sec 5) scored lower across the 5-dimension critic evaluation."
+      ],
+      "completeness_label": "NOT_APPLICABLE",
+      "potentially_missing_parameters": [],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 8623",
+          "title": "Low-voltage switchgear assemblies - Part 3: Distribution boards (DBO); Luminaires - Part 5 Sec 5: Floodlights [IS/IEC 61439-3]",
+          "relationship_type": "SUPERSEDES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Authoritative record for IS/IEC 61439-3 explicitly supersedes earlier standard IS 8623.",
+          "source_url": "IS/IEC 61439-3 Clause 1; IS 10322 (Part 5/Sec 5) Clause 1",
+          "review_note": "Authoritative successor standard supersedes IS 8623. Review legacy specifications."
+        },
+        {
+          "standard_number": "IS 13947",
+          "title": "Adjustable speed AC power drive systems; Low-voltage switchgear and controlgear assemblies - Part 2: Power switchgear assemblies [IS/IEC 61800-2]",
+          "relationship_type": "SUPERSEDES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Authoritative record for IS/IEC 61439-2 explicitly supersedes earlier standard IS 13947.",
+          "source_url": "IS/IEC 61800-2 Clause 1; IS/IEC 61439-2 Clause 1",
+          "review_note": "Authoritative successor standard supersedes IS 13947. Review legacy specifications."
+        }
+      ],
+      "decision": "REVIEW_REQUIRED",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "Medium",
+      "review_reason": "Authoritative active standard IS/IEC 61439-3 : 2012 verified against scope with Medium confidence."
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "TS-76E13A81-R001",
+      "requirement_text": "Replacement / repair of distribution boards and defective lights at various locations in main sports stadium and elesewhere in IIT Kanpur",
+      "risk_level": "MEDIUM",
+      "decision": "RECOMMEND_WITH_REVIEW",
+      "candidate_standard": "IS/IEC 61439-3 : 2012",
+      "evidence_strength": "MODERATE",
+      "primary_reason": "Authoritative active standard IS/IEC 61439-3 : 2012 verified against scope with Medium confidence.",
+      "priority": 3
+    },
+    {
+      "requirement_id": "TS-76E13A81-R002",
+      "requirement_text": "Replacement / repair of distribution boards and defective lights at various locations in main sports stadium and elsewhere in IIT Kanpur",
+      "risk_level": "MEDIUM",
+      "decision": "RECOMMEND_WITH_REVIEW",
+      "candidate_standard": "IS/IEC 61439-3 : 2012",
+      "evidence_strength": "MODERATE",
+      "primary_reason": "Authoritative active standard IS/IEC 61439-3 : 2012 verified against scope with Medium confidence.",
+      "priority": 3
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 2,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 0,
+      "CURATED": 2,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}
