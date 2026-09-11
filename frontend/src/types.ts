@@ -86,6 +86,31 @@ export interface Requirement {
   verified_missing?: GapItem[];
   potentially_missing?: GapItem[];
   related_for_review?: GapItem[];
+  // Milestone 11: Regulatory & Certification Intelligence
+  regulatory?: RegulatoryData | null;
+}
+
+export interface RegulatoryItem {
+  category: 'BIS_PRODUCT_CERTIFICATION' | 'QCO' | 'CRS' | 'HALLMARKING' | string;
+  status: 'CURRENT' | 'UPCOMING' | 'APPLICABLE' | 'NOT_IDENTIFIED' | 'REVIEW_REQUIRED' | 'NOT_APPLICABLE' | 'UNKNOWN' | string;
+  matched_product: string;
+  standard_number: string;
+  legal_basis: string;
+  source: string;
+  source_url?: string;
+  effective_date?: string | null;
+  provenance: string;
+  confidence: number;
+  human_review_required: boolean;
+  explanation: string;
+  additional_metadata?: Record<string, any>;
+}
+
+export interface RegulatoryData {
+  certification?: RegulatoryItem;
+  qco?: RegulatoryItem;
+  crs?: RegulatoryItem;
+  hallmarking?: RegulatoryItem;
 }
 
 export interface DependencyItem {

@@ -13,10 +13,20 @@ from src.regulatory.provenance import (
     RegulatoryStatus,
     RegulatoryApplicabilityResult,
 )
+from src.regulatory.certification import BISCertificationEngine
+from src.regulatory.qco import QCOEngine
+from src.regulatory.crs import CRSEngine
+from src.regulatory.hallmarking import HallmarkingEngine
+from src.regulatory.regulatory_engine import RegulatoryEngine
 
 __all__ = [
     "RegulatoryProvenanceLevel",
     "RegulatoryCategory",
     "RegulatoryStatus",
     "RegulatoryApplicabilityResult",
+    "BISCertificationEngine",
+    "QCOEngine",
+    "CRSEngine",
+    "HallmarkingEngine",
+    "RegulatoryEngine",
 ]

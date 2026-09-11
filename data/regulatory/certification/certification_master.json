@@ -1,0 +1,147 @@
+{
+  "version": "2026-09-11",
+  "provenance": "OFFICIAL_PRIMARY",
+  "source_description": "Authoritative BIS Product Certification (Scheme-I / ISI Mark) Registry of Mandatory and Voluntary Product Lists",
+  "mandatory_scheme_i_standards": [
+    {
+      "standard_number": "IS 15778 : 2007",
+      "base_standard": "IS 15778",
+      "product_name": "CPVC Pipes for Potable Hot and Cold Water Supplies",
+      "scheme": "Scheme-I (ISI Mark)",
+      "mandate_type": "MANDATORY",
+      "governing_order": "Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024 (S.O. 1205(E))",
+      "legal_basis": "Section 16, BIS Act, 2016",
+      "source_url": "https://www.manakonline.in"
+    },
+    {
+      "standard_number": "IS 778 : 1984",
+      "base_standard": "IS 778",
+      "product_name": "Copper Alloy Gate, Globe and Check Valves",
+      "scheme": "Scheme-I (ISI Mark)",
+      "mandate_type": "MANDATORY",
+      "governing_order": "Valves (Quality Control) Order, 2024 (S.O. 2682(E))",
+      "legal_basis": "Section 16, BIS Act, 2016",
+      "source_url": "https://www.manakonline.in"
+    },
+    {
+      "standard_number": "IS 14846 : 2000",
+      "base_standard": "IS 14846",
+      "product_name": "Sluice Valves for Waterworks Purposes",
+      "scheme": "Scheme-I (ISI Mark)",
+      "mandate_type": "MANDATORY",
+      "governing_order": "Valves (Quality Control) Order, 2024 (S.O. 2682(E))",
+      "legal_basis": "Section 16, BIS Act, 2016",
+      "source_url": "https://www.manakonline.in"
+    },
+    {
+      "standard_number": "IS 1786 : 2008",
+      "base_standard": "IS 1786",
+      "product_name": "High Strength Deformed Steel Bars (TMT)",
+      "scheme": "Scheme-I (ISI Mark)",
+      "mandate_type": "MANDATORY",
+      "governing_order": "Steel and Steel Products (Quality Control) Order, 2024",
+      "legal_basis": "Section 16, BIS Act, 2016",
+      "source_url": "https://www.manakonline.in"
+    },
+    {
+      "standard_number": "IS 2062 : 2011",
+      "base_standard": "IS 2062",
+      "product_name": "Hot Rolled Medium and High Tensile Structural Steel",
+      "scheme": "Scheme-I (ISI Mark)",
+      "mandate_type": "MANDATORY",
+      "governing_order": "Steel and Steel Products (Quality Control) Order, 2024",
+      "legal_basis": "Section 16, BIS Act, 2016",
+      "source_url": "https://www.manakonline.in"
+    },
+    {
+      "standard_number": "IS 269 : 2015",
+      "base_standard": "IS 269",
+      "product_name": "Ordinary Portland Cement",
+      "scheme": "Scheme-I (ISI Mark)",
+      "mandate_type": "MANDATORY",
+      "governing_order": "Cement (Quality Control) Order, 2024",
+      "legal_basis": "Section 16, BIS Act, 2016",
+      "source_url": "https://www.manakonline.in"
+    },
+    {
+      "standard_number": "IS 8112 : 2013",
+      "base_standard": "IS 8112",
+      "product_name": "43 Grade Ordinary Portland Cement",
+      "scheme": "Scheme-I (ISI Mark)",
+      "mandate_type": "MANDATORY",
+      "governing_order": "Cement (Quality Control) Order, 2024",
+      "legal_basis": "Section 16, BIS Act, 2016",
+      "source_url": "https://www.manakonline.in"
+    },
+    {
+      "standard_number": "IS 12269 : 2013",
+      "base_standard": "IS 12269",
+      "product_name": "53 Grade Ordinary Portland Cement",
+      "scheme": "Scheme-I (ISI Mark)",
+      "mandate_type": "MANDATORY",
+      "governing_order": "Cement (Quality Control) Order, 2024",
+      "legal_basis": "Section 16, BIS Act, 2016",
+      "source_url": "https://www.manakonline.in"
+    },
+    {
+      "standard_number": "IS 694 : 2010",
+      "base_standard": "IS 694",
+      "product_name": "PVC Insulated Cables for Working Voltages up to 1100V",
+      "scheme": "Scheme-I (ISI Mark)",
+      "mandate_type": "MANDATORY",
+      "governing_order": "Electrical Wires and Cables (Quality Control) Order, 2023",
+      "legal_basis": "Section 16, BIS Act, 2016",
+      "source_url": "https://www.manakonline.in"
+    },
+    {
+      "standard_number": "IS 7098 (Part 1) : 1988",
+      "base_standard": "IS 7098 Part 1",
+      "product_name": "XLPE Insulated PVC Sheathed Cables up to 1100V",
+      "scheme": "Scheme-I (ISI Mark)",
+      "mandate_type": "MANDATORY",
+      "governing_order": "Electrical Wires and Cables (Quality Control) Order, 2023",
+      "legal_basis": "Section 16, BIS Act, 2016",
+      "source_url": "https://www.manakonline.in"
+    },
+    {
+      "standard_number": "IS 12615 : 2018",
+      "base_standard": "IS 12615",
+      "product_name": "Energy Efficient Three Phase AC Motors",
+      "scheme": "Scheme-I (ISI Mark)",
+      "mandate_type": "MANDATORY",
+      "governing_order": "Electric Motors (Quality Control) Order, 2024",
+      "legal_basis": "Section 16, BIS Act, 2016",
+      "source_url": "https://www.manakonline.in"
+    },
+    {
+      "standard_number": "IS 4985 : 2021",
+      "base_standard": "IS 4985",
+      "product_name": "uPVC Pipes for Potable Water Supplies",
+      "scheme": "Scheme-I (ISI Mark)",
+      "mandate_type": "MANDATORY",
+      "governing_order": "Pipes and Fittings (Quality Control) Order, 2024",
+      "legal_basis": "Section 16, BIS Act, 2016",
+      "source_url": "https://www.manakonline.in"
+    },
+    {
+      "standard_number": "IS 4984 : 2016",
+      "base_standard": "IS 4984",
+      "product_name": "HDPE Pipes for Water Supply",
+      "scheme": "Scheme-I (ISI Mark)",
+      "mandate_type": "MANDATORY",
+      "governing_order": "Pipes and Fittings (Quality Control) Order, 2024",
+      "legal_basis": "Section 16, BIS Act, 2016",
+      "source_url": "https://www.manakonline.in"
+    },
+    {
+      "standard_number": "IS 15683 : 2018",
+      "base_standard": "IS 15683",
+      "product_name": "Portable Fire Extinguishers",
+      "scheme": "Scheme-I (ISI Mark)",
+      "mandate_type": "MANDATORY",
+      "governing_order": "Fire Fighting Equipment (Quality Control) Order, 2023",
+      "legal_basis": "Section 16, BIS Act, 2016",
+      "source_url": "https://www.manakonline.in"
+    }
+  ]
+}

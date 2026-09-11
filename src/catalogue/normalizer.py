@@ -178,3 +178,18 @@ class StandardIdentifierNormalizer:
                 return parsed_a.year == parsed_b.year
 
         return True
+
+    @classmethod
+    def normalize_identifier(cls, standard_str: str) -> str:
+        """Returns canonical ID slug, e.g. 'IS-15778-2007'."""
+        return cls.parse(standard_str).canonical_id
+
+    @classmethod
+    def to_canonical_number(cls, standard_str: str) -> str:
+        """Returns canonical number string, e.g. 'IS 15778 : 2007'."""
+        return cls.parse(standard_str).canonical_number
+
+    @classmethod
+    def to_base_standard_number(cls, standard_str: str) -> str:
+        """Returns base standard number without year, e.g. 'IS 15778'."""
+        return cls.parse(standard_str).base_standard_number

@@ -381,6 +381,106 @@
   margin-top: 2px;
 }
 
+/* ─── Regulatory & Certification Section ────────────────────────────────── */
+.drawer-regulatory-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+@media (max-width: 480px) {
+  .drawer-regulatory-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.regulatory-status-card {
+  padding: 10px 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.regulatory-status-card__header {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #475569;
+}
+
+.regulatory-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.regulatory-badge--applicable,
+.regulatory-badge--current {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.regulatory-badge--upcoming,
+.regulatory-badge--review_required {
+  background: #fffbeb;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.regulatory-badge--not_identified,
+.regulatory-badge--not_applicable {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+}
+
+.regulatory-badge--unknown {
+  background: #f8fafc;
+  color: #64748b;
+  border: 1px dashed #94a3b8;
+}
+
+.regulatory-detail-box {
+  margin-top: 10px;
+  padding: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: #334155;
+}
+
+.regulatory-detail-row {
+  margin-bottom: 6px;
+  line-height: 1.45;
+}
+
+.regulatory-detail-label {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.regulatory-disclaimer {
+  margin-top: 12px;
+  font-size: 0.72rem;
+  color: #64748b;
+  line-height: 1.4;
+  border-left: 2px solid #cbd5e1;
+  padding-left: 8px;
+  font-style: italic;
+}
+
 /* ─── Mobile: bottom sheet ──────────────────────────────────────────────── */
 @media (max-width: 640px) {
   .drawer {
