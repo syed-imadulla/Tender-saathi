@@ -1,0 +1,184 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-5B946E11",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "eProcurement System Government of India20.pdf",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "REVIEW_REQUIRED",
+  "readiness_reasons": [
+    "1 requirement(s) require technical engineer review."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-5B946E11",
+    "requirements_analyzed": 1,
+    "recommendations_count": 0,
+    "review_required_count": 1,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 0,
+    "withdrawn_count": 0,
+    "active_count": 1,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 0,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 1
+    },
+    "risk_distribution": {
+      "LOW": 0,
+      "MEDIUM": 1,
+      "HIGH": 0,
+      "CRITICAL": 0
+    },
+    "lifecycle_distribution": {
+      "Active": 1,
+      "Superseded": 0,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 1,
+    "review_queue": [
+      {
+        "requirement_id": "TS-5B946E11-R001",
+        "requirement_text": "Consultancy services for Authority s Engineer for Supervision of Construction of 4 Lane Access Controlled Bypass to Tiruvannamalai Town starting from Design km 135.796 of NH-234 (km 75.150 of new NH-38) and ending at Design km 158.506 of NH-234(km 88",
+        "risk_level": "MEDIUM",
+        "decision": "RECOMMEND_WITH_REVIEW",
+        "candidate_standard": "IS 2491 : 2024",
+        "evidence_strength": "STRONG",
+        "primary_reason": "Authoritative active standard IS 2491 : 2024 verified against scope with Medium confidence.",
+        "priority": 3
+      }
+    ],
+    "publication_readiness": "REVIEW_REQUIRED",
+    "readiness_reasons": [
+      "1 requirement(s) require technical engineer review."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 1,
+    "normative_reference_count": 1,
+    "allied_standard_count": 0,
+    "test_standard_count": 0,
+    "installation_standard_count": 0,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 0,
+    "related_for_review_count": 1,
+    "standards_coverage": {
+      "direct_standards_identified": 1,
+      "total_dependencies": 1,
+      "normative_references": 1,
+      "testing_dependencies": 0,
+      "installation_dependencies": 0,
+      "allied_standards": 0,
+      "covered_in_tender": 0,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "items_requiring_review": 1
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 0,
+      "related_for_review_count": 1
+    },
+    "certification_checks": 1,
+    "qco_checks": 1,
+    "crs_checks": 1,
+    "hallmarking_checks": 1,
+    "regulatory_review_items": 1,
+    "unknown_regulatory_items": 0,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 0,
+    "mandatory_certification_count": 0,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
+  },
+  "requirements": [
+    {
+      "requirement_id": "TS-5B946E11-R001",
+      "requirement_text": "Consultancy services for Authority s Engineer for Supervision of Construction of 4 Lane Access Controlled Bypass to Tiruvannamalai Town starting from Design km 135.796 of NH-234 (km 75.150 of new NH-38) and ending at Design km 158.506 of NH-234(km 88",
+      "category": "installation_execution",
+      "components": [],
+      "recommended_standard": "IS 2491 : 2024",
+      "recommended_title": "Food Hygiene - General Principles - Code of Practice",
+      "relevance_score": 0.447,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "Fourth revision covering general principles of food hygiene for premises design, food preparation, cleaning, and personal hygiene in catering and food establishments.",
+      "evidence_source": "BSB Edge Portal",
+      "why_this": [
+        "Official title aligns with specification: 'Food Hygiene - General Principles - Code of Practice'.",
+        "Authoritative scope explicitly covers application: \"Fourth revision covering general principles of food hygiene for premises design, food preparation, cleaning, and persona...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BSB Edge Portal (VERIFIED)."
+      ],
+      "why_not": [
+        "Alternative standard IS 601 has lifecycle limitations (status: REJECT)."
+      ],
+      "completeness_label": "NOT_APPLICABLE",
+      "potentially_missing_parameters": [],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 15000 : 2024",
+          "title": "Hazard Analysis and Critical Control Point (HACCP) - Requirements for Any Organization in the Food Chain",
+          "relationship_type": "REFERENCES",
+          "direction": "INCOMING",
+          "lifecycle_status": "Active",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Clause 2 Reference in IS 15000:2024 explicitly cites IS 2491 : 2024 Food hygiene - General principles - Code of practice (fourth revision).",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+15000&id=51300",
+          "review_note": "Primary standard is cited by IS 15000 : 2024. Review for broader installation context."
+        }
+      ],
+      "decision": "REVIEW_REQUIRED",
+      "risk_level": "MEDIUM",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "Medium",
+      "review_reason": "Authoritative active standard IS 2491 : 2024 verified against scope with Medium confidence."
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "TS-5B946E11-R001",
+      "requirement_text": "Consultancy services for Authority s Engineer for Supervision of Construction of 4 Lane Access Controlled Bypass to Tiruvannamalai Town starting from Design km 135.796 of NH-234 (km 75.150 of new NH-38) and ending at Design km 158.506 of NH-234(km 88",
+      "risk_level": "MEDIUM",
+      "decision": "RECOMMEND_WITH_REVIEW",
+      "candidate_standard": "IS 2491 : 2024",
+      "evidence_strength": "STRONG",
+      "primary_reason": "Authoritative active standard IS 2491 : 2024 verified against scope with Medium confidence.",
+      "priority": 3
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 1,
+      "CURATED": 0,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}

@@ -198,11 +198,11 @@ def main():
 
     recommender = StandardsRecommender(retrieval_mode="hybrid")
 
-    # Sweep thresholds: 0.03, 0.05, 0.08, 0.10
-    sweep_thresholds = [0.03, 0.05, 0.08, 0.10]
+    # Sweep thresholds: 0.03, 0.05, 0.08, 0.10, 0.15
+    sweep_thresholds = [0.03, 0.05, 0.08, 0.10, 0.15]
     sweep_results = []
 
-    print("\n--- Running Separation Threshold Sweep over Δ in {0.03, 0.05, 0.08, 0.10} ---")
+    print("\n--- Running Separation Threshold Sweep over Δ in {0.03, 0.05, 0.08, 0.10, 0.15} ---")
     for delta in sweep_thresholds:
         t0 = time.time()
         res = run_ambiguity_benchmark(recommender, ambiguity_bm_path, threshold=delta)

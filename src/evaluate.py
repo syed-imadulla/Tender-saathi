@@ -50,6 +50,8 @@ def evaluate_single_mode(recommender: StandardsRecommender, df_gt: pd.DataFrame)
     ambiguity_fp = 0
     ambiguity_fn = 0
     ambiguity_tn = 0
+    safe_abstention_count = 0
+    retrieval_miss_count = 0
 
     key_cases = {}
 
@@ -107,6 +109,18 @@ def evaluate_single_mode(recommender: StandardsRecommender, df_gt: pd.DataFrame)
             top1_hits += 1
         if top3_hit:
             top3_hits += 1
+
+        if top1_hit:
+            match_type = "TOP1_HIT"
+        elif top3_hit:
+            match_type = "TOP3_HIT"
+        elif (rec_res.candidate_standard is None or rec_res.candidate_standard in ("", "INSUFFICIENT_INFORMATION", "UNKNOWN")) and rec_res.human_review_required:
+            match_type = "SAFE_ABSTENTION"
+            safe_abstention_count += 1
+        else:
+            match_type = "RETRIEVAL_MISS"
+            retrieval_miss_count += 1
+
         rrs.append(rr)
 
         if gt_requires_review:
@@ -119,8 +133,6 @@ def evaluate_single_mode(recommender: StandardsRecommender, df_gt: pd.DataFrame)
                 ambiguity_fp += 1
             else:
                 ambiguity_tn += 1
-
-        match_type = "TOP1_HIT" if top1_hit else ("TOP3_HIT" if top3_hit else "MISS")
 
         results.append({
             "requirement_id": req_id,
@@ -146,10 +158,18 @@ def evaluate_single_mode(recommender: StandardsRecommender, df_gt: pd.DataFrame)
             }
 
     total_reqs = len(df_gt)
+    actionable_reqs = total_reqs - safe_abstention_count
+    actionable_top1_accuracy = (top1_hits / actionable_reqs * 100.0) if actionable_reqs > 0 else 0.0
+    safe_abstention_rate = (safe_abstention_count / total_reqs * 100.0) if total_reqs > 0 else 0.0
+
     return {
         "results": results,
         "total_reqs": total_reqs,
         "top1_accuracy": (top1_hits / total_reqs) * 100.0,
+        "actionable_top1_accuracy": actionable_top1_accuracy,
+        "safe_abstention_rate": safe_abstention_rate,
+        "safe_abstention_count": safe_abstention_count,
+        "retrieval_miss_count": retrieval_miss_count,
         "top3_recall": (top3_hits / total_reqs) * 100.0,
         "mrr": sum(rrs) / max(total_reqs, 1),
         "top1_hits": top1_hits,
@@ -226,6 +246,9 @@ The end-to-end prototype was benchmarked against all **20 human-verifiable procu
 |---|---|---|---|
 | **Benchmark Dataset Size** | **{hybrid_eval['total_reqs']} Requirements** | Real Tender Specifications | Verified |
 | **Top-1 Recommendation Accuracy** | **{hybrid_eval['top1_accuracy']:.1f}%** ({hybrid_eval['top1_hits']}/{hybrid_eval['total_reqs']}) | Keyword Search Baseline (~35%) | **High Feasibility** |
+| **Actionable Top-1 Accuracy** | **{hybrid_eval['actionable_top1_accuracy']:.1f}%** ({hybrid_eval['top1_hits']}/{max(1, hybrid_eval['total_reqs'] - hybrid_eval['safe_abstention_count'])}) | Excluding Safe Abstentions | **High Precision** |
+| **Safe Abstention Rate** | **{hybrid_eval['safe_abstention_rate']:.1f}%** ({hybrid_eval['safe_abstention_count']}/{hybrid_eval['total_reqs']}) | Legitimate Abstentions (Gated) | **Safety Compliant** |
+| **Retrieval Miss Count** | **{hybrid_eval['retrieval_miss_count']}** | Incorrect Predictions | **Audited** |
 | **Top-3 Retrieval Recall** | **{hybrid_eval['top3_recall']:.1f}%** ({hybrid_eval['top3_hits']}/{hybrid_eval['total_reqs']}) | Classical BM25 (~55%) | **High Feasibility** |
 | **Mean Reciprocal Rank (MRR)** | **{hybrid_eval['mrr']:.3f}** | IR Standard Target (>0.70) | **Excellent** |
 | **Supersedence Detection Rate** | **{supersedence_rate:.1f}%** | Generic LLMs (~10-20%) | **Authoritative** |
@@ -302,6 +325,10 @@ Comparison of individual retrieval mechanisms against the hybrid ensemble and ne
     return {
         "dataset_size": hybrid_eval["total_reqs"],
         "top1_accuracy": hybrid_eval["top1_accuracy"],
+        "actionable_top1_accuracy": hybrid_eval["actionable_top1_accuracy"],
+        "safe_abstention_rate": hybrid_eval["safe_abstention_rate"],
+        "safe_abstention_count": hybrid_eval["safe_abstention_count"],
+        "retrieval_miss_count": hybrid_eval["retrieval_miss_count"],
         "top3_recall": hybrid_eval["top3_recall"],
         "mrr": hybrid_eval["mrr"],
         "supersedence_rate": supersedence_rate,

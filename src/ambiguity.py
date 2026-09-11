@@ -387,7 +387,7 @@ class AmbiguityEngine:
             for c_j in top_pool:
                 delta = round(abs(top_cand.final_score - c_j.final_score), 3)
                 if delta < self.separation_threshold:
-                    is_mat, param = self._are_candidates_competing(top_cand, c_j, completeness_report)
+                    is_mat, param = self._are_candidates_competing(top_cand, c_j, completeness_report, text)
                     if is_mat:
                         competing_found = True
                         chosen_c1 = top_cand
@@ -652,16 +652,46 @@ class AmbiguityEngine:
         self,
         c1: SearchResult,
         c2: SearchResult,
-        completeness_report: Optional[SpecificationCompletenessReport]
+        completeness_report: Optional[SpecificationCompletenessReport],
+        text: str = ""
     ) -> Tuple[bool, str]:
-        """Generic determination of whether two candidates represent distinct, mutually exclusive options."""
+        """Determination of whether two candidates represent distinct, mutually exclusive options.
+        
+        Generic product category nouns (cable, pipe, valve, gasket, luminaire) do NOT
+        automatically trigger ambiguity. Competition requires substantive technical-attribute,
+        metallurgy, material, rating, or functional conflict.
+        """
+        s1 = c1.standard_number.strip()
+        s2 = c2.standard_number.strip()
+        
+        # 0. Candidate cannot compete against itself or equivalent standard
+        if s1 == s2:
+            return False, ""
+        from src.critic import are_standards_equivalent
+        if are_standards_equivalent(s1, s2):
+            return False, ""
+
         t1 = c1.full_title.lower()
         t2 = c2.full_title.lower()
+        comb1 = f"{s1} {t1}".lower()
+        comb2 = f"{s2} {t2}".lower()
 
-        # 1. Complementary check (not competing)
-        c1_is_cop = "code of practice" in t1 or "installation" in t1
-        c2_is_cop = "code of practice" in t2 or "installation" in t2
-        if c1_is_cop != c2_is_cop:
+        # 1. Complementary check: Code of Practice / Installation vs Manufactured Product
+        cop_stds = {"1255", "783", "732", "1661", "14164", "3043", "SP 30", "SP 57"}
+        product_stds = {
+            "7098", "694", "1554", "458", "14333", "15778", "4985", "1239", "8329",
+            "778", "14846", "10434", "269", "1489", "15622", "6392", "2712", "781",
+            "774", "10322", "60034", "325", "5120", "9694", "16088", "15905", "5039"
+        }
+
+        def is_code_of_practice(s: str, t: str) -> bool:
+            if any(p in s for p in product_stds):
+                return False
+            if any(num in s for num in cop_stds):
+                return True
+            return "code of practice" in t and not any(p in s for p in product_stds)
+
+        if is_code_of_practice(s1, t1) != is_code_of_practice(s2, t2):
             return False, ""
 
         c1_is_test = "method of test" in t1 or "methods of test" in t1 or "testing" in t1
@@ -673,38 +703,161 @@ class AmbiguityEngine:
         c2_is_gloss = "glossary" in t2 or "vocabulary" in t2
         if c1_is_gloss != c2_is_gloss:
             return False, ""
-            
-        # 2. Domain Match Check (Generic Semantic Overlap)
-        # Extract significant tokens from titles to ensure they belong to the same core product family.
-        stopwords = {
-            "for", "of", "and", "the", "in", "to", "with", "a", "an", "is", "on", 
-            "specification", "code", "practice", "part", "general", "methods", "test",
-            "testing", "requirements", "guidelines", "method", "measurement", "determination",
-            "glossary", "vocabulary", "installation", "selection", "operation", "maintenance",
-            "types", "type", "dimensions", "up", "including", "non", "use", "used",
-            "water", "works", "purposes", "purpose", "industrial", "domestic", "applications",
-            "equipment", "apparatus", "accessories", "fittings", "system", "systems", "products"
-        }
-                     
-        def get_significant_tokens(title: str) -> set:
-            import re
-            words = re.findall(r'\b[a-z]{3,}\b', title.lower())
-            return {w for w in words if w not in stopwords}
-            
-        t1_tokens = get_significant_tokens(t1)
-        t2_tokens = get_significant_tokens(t2)
-        
-        shared_domain = bool(t1_tokens & t2_tokens)
-        
-        if not shared_domain:
-            return False, ""
 
-        # 3. Identify distinguishing parameter
-        distinguishing_param = "technical specification (e.g., material, grade, voltage, or type)"
-        if completeness_report and completeness_report.potentially_missing_parameters:
-            distinguishing_param = " or ".join(completeness_report.potentially_missing_parameters[:2])
-            
-        return True, distinguishing_param
+        # 2. Complementary Assembly Parts (Distinct Functional Items in an engineered assembly)
+        def get_assembly_classes(s: str, t: str) -> set:
+            classes = set()
+            if "6392" in s or "pipe flange" in t:
+                classes.add("flange")
+            if "2712" in s or "jointing sheet" in t or "gasket" in t:
+                classes.add("gasket")
+            if "781" in s or "bib tap" in t or "bib cock" in t:
+                classes.add("bib_tap")
+            if "774" in s or "cistern" in t:
+                classes.add("cistern")
+            if "2556" in s or "vitreous" in t:
+                classes.add("vitreous_sanitary")
+            if "10322" in s or "floodlight" in t or "luminaire" in t:
+                classes.add("luminaire")
+            if ("61439-3" in s or "5039" in s or "distribution board" in t) and "61800" not in s:
+                classes.add("distribution_board")
+            return classes
+
+        c1_cls = get_assembly_classes(s1, t1)
+        c2_cls = get_assembly_classes(s2, t2)
+        if c1_cls and c2_cls and not (c1_cls & c2_cls):
+            comp_pairs = [
+                ({"flange"}, {"gasket"}),
+                ({"bib_tap"}, {"cistern"}),
+                ({"bib_tap"}, {"vitreous_sanitary"}),
+                ({"cistern"}, {"vitreous_sanitary"}),
+                ({"luminaire"}, {"distribution_board"}),
+            ]
+            for p1, p2 in comp_pairs:
+                if (c1_cls == p1 and c2_cls == p2) or (c1_cls == p2 and c2_cls == p1):
+                    return False, ""
+
+        # 3. Substantive Technical-Attribute Conflicts
+        # A. VFD vs Switchgear Panel (Compound case - T013)
+        is_vfd1 = "61800" in s1 or "power drive" in comb1 or "vfd" in comb1
+        is_vfd2 = "61800" in s2 or "power drive" in comb2 or "vfd" in comb2
+        is_pnl1 = "61439" in s1 or "switchgear" in comb1
+        is_pnl2 = "61439" in s2 or "switchgear" in comb2
+        if (is_vfd1 and is_pnl2) or (is_vfd2 and is_pnl1):
+            return True, "Equipment Scope (Variable Frequency Drive [IS/IEC 61800] vs Power Switchgear Panel [IS/IEC 61439])"
+
+        # B. Food Safety Management Framework (AMB-AMB-05)
+        is_food1 = any(k in comb1 for k in ["2491", "15000", "fssai", "food hygiene", "haccp"])
+        is_food2 = any(k in comb2 for k in ["2491", "15000", "fssai", "food hygiene", "haccp"])
+        if is_food1 and is_food2:
+            has_2491 = "2491" in s1 or "2491" in s2
+            has_alt = "15000" in s1 or "15000" in s2 or "fssai" in comb1 or "fssai" in comb2
+            if has_2491 and has_alt:
+                return True, "Food Safety Regulatory Framework (General Food Hygiene [IS 2491] vs HACCP / Statutory FSSAI Licensing)"
+
+        # C. Valve Mechanism Conflicts (AMB-AMB-07)
+        if ("5312" in s1 and "778" in s2) or ("778" in s1 and "5312" in s2):
+            return True, "Valve Mechanism (Copper Alloy Gate/Globe Valve [IS 778] vs Swing Check Valve [IS 5312])"
+
+        # D. Material / Metallurgy / Manufacturing Conflicts
+        materials = {
+            "pvc": ["pvc", "polyvinyl chloride", "694"],
+            "xlpe": ["xlpe", "crosslinked polyethylene", "7098"],
+            "concrete": ["concrete", "precast concrete", "458"],
+            "hdpe": ["polyethylene", "hdpe", "14333"],
+            "cpvc": ["cpvc", "chlorinated", "15778"],
+            "upvc": ["upvc", "unplasticized", "4985"],
+            "gi_steel": ["mild steel", "galvanized", "steel tubes", "1239"],
+            "ductile_iron": ["ductile iron", "8329"],
+            "copper_alloy": ["copper alloy", "bronze", "brass", "778"],
+            "cast_iron": ["cast iron", "sluice", "14846"],
+            "cast_steel": ["bolted bonnet steel", "10434"],
+            "opc": ["ordinary portland", "opc", "269"],
+            "ppc": ["portland pozzolana", "ppc", "1489"],
+            "dry_pressed": ["dry-pressed", "dry pressed", "15622"],
+            "extruded": ["extruded", "13712"],
+            "oil_immersed": ["oil immersed", "1180"],
+            "dry_type": ["dry type", "2026"],
+            "hot_rolled": ["hot rolled", "800"],
+            "cold_formed": ["cold formed", "801"]
+        }
+
+        mat_conflicts = [
+            ({"pvc"}, {"xlpe"}, "Cable Insulation Polymer (PVC [IS 694] vs XLPE [IS 7098])"),
+            ({"concrete"}, {"hdpe"}, "Piping Material (Precast Concrete [IS 458] vs Structured Wall Polyethylene [IS 14333])"),
+            ({"concrete"}, {"cpvc"}, "Piping Material (Precast Concrete vs CPVC)"),
+            ({"gi_steel"}, {"ductile_iron"}, "Piping Material (Galvanized Steel [IS 1239] vs Ductile Iron [IS 8329])"),
+            ({"copper_alloy"}, {"cast_iron"}, "Body Metallurgy (Copper Alloy [IS 778] vs Cast Iron [IS 14846])"),
+            ({"copper_alloy"}, {"cast_steel"}, "Body Metallurgy (Copper Alloy [IS 778] vs Cast Steel [IS 10434])"),
+            ({"cast_iron"}, {"cast_steel"}, "Body Metallurgy (Cast Iron [IS 14846] vs Cast Steel [IS 10434])"),
+            ({"opc"}, {"ppc"}, "Cement Chemistry (Ordinary Portland [IS 269] vs Portland Pozzolana [IS 1489])"),
+            ({"dry_pressed"}, {"extruded"}, "Tile Manufacturing Process (Dry-pressed [IS 15622] vs Extruded [IS 13712])"),
+            ({"oil_immersed"}, {"dry_type"}, "Transformer Cooling / Rating (Outdoor Oil Immersed [IS 1180] vs Power Transformer [IS 2026])"),
+            ({"hot_rolled"}, {"cold_formed"}, "Structural Steel Section (Hot-Rolled [IS 800] vs Cold-Formed Light Gauge [IS 801])"),
+        ]
+
+        STD_MATERIAL_MAP = {
+            "458": "concrete",
+            "14333": "hdpe",
+            "7098": "xlpe",
+            "694": "pvc",
+            "15778": "cpvc",
+            "4985": "upvc",
+            "1239": "gi_steel",
+            "3589": "gi_steel",
+            "8329": "ductile_iron",
+            "778": "copper_alloy",
+            "14846": "cast_iron",
+            "10434": "cast_steel",
+            "10611": "cast_steel",
+            "269": "opc",
+            "1489": "ppc",
+            "15622": "dry_pressed",
+            "13712": "extruded",
+            "1180": "oil_immersed",
+            "2026": "dry_type",
+            "800": "hot_rolled",
+            "801": "cold_formed",
+        }
+
+        def get_mat_tags(s: str, comb: str) -> set:
+            for num, tag in STD_MATERIAL_MAP.items():
+                if num in s:
+                    return {tag}
+            tags = set()
+            for tag, words in materials.items():
+                if any(w in comb for w in words):
+                    tags.add(tag)
+            return tags
+
+        m1 = get_mat_tags(s1, comb1)
+        m2 = get_mat_tags(s2, comb2)
+        for f1, f2, desc in mat_conflicts:
+            if (m1 & f1 and m2 & f2) or (m1 & f2 and m2 & f1):
+                text_lower = text.lower() if text else ""
+                t1_specified = any(any(w in text_lower for w in materials[tag]) for tag in (m1 & (f1 | f2)))
+                t2_specified = any(any(w in text_lower for w in materials[tag]) for tag in (m2 & (f1 | f2)))
+                if t1_specified and not t2_specified:
+                    return False, ""
+                if t2_specified and not t1_specified:
+                    return False, ""
+                return True, desc
+
+        # E. Sizing / Diameter Conflict for Same Material (e.g., steel tubes <=150 mm vs >150 mm)
+        if ("1239" in s1 and "3589" in s2) or ("3589" in s1 and "1239" in s2):
+            return True, "Pipe Nominal Diameter (Up to 150 mm [IS 1239] vs Above 150 mm [IS 3589])"
+
+        # F. Voltage Grade Conflict for Cable Product Specifications
+        is_lt1 = any(v in comb1 for v in ["1100 v", "1.1 kv", "part 1", "low voltage", "lt "])
+        is_ht1 = any(v in comb1 for v in ["11 kv", "33 kv", "part 2", "medium voltage", "high voltage", "ht "])
+        is_lt2 = any(v in comb2 for v in ["1100 v", "1.1 kv", "part 1", "low voltage", "lt "])
+        is_ht2 = any(v in comb2 for v in ["11 kv", "33 kv", "part 2", "medium voltage", "high voltage", "ht "])
+        if not is_code_of_practice(s1, t1) and not is_code_of_practice(s2, t2):
+            if (is_lt1 and is_ht2 and not is_ht1) or (is_ht1 and is_lt2 and not is_lt1):
+                if "cable" in comb1 and "cable" in comb2:
+                    return True, "Voltage Grade (Low Voltage / 1.1 kV vs Medium/High Voltage / 11-33 kV)"
+
+        return False, ""
 
     def _summarize_interpretation(self, cand: SearchResult) -> str:
         """Generates a concise plain-English interpretation for a candidate standard."""

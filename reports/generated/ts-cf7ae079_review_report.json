@@ -1,0 +1,242 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-CF7AE079",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "eProcurement System Government of India5.pdf",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "REVIEW_REQUIRED",
+  "readiness_reasons": [
+    "1 requirement(s) flagged with HIGH risk.",
+    "1 requirement(s) require technical engineer review."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-CF7AE079",
+    "requirements_analyzed": 1,
+    "recommendations_count": 0,
+    "review_required_count": 1,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 0,
+    "withdrawn_count": 0,
+    "active_count": 1,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 1,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 0,
+      "UNKNOWN": 1,
+      "NOT_APPLICABLE": 0
+    },
+    "risk_distribution": {
+      "LOW": 0,
+      "MEDIUM": 0,
+      "HIGH": 1,
+      "CRITICAL": 0
+    },
+    "lifecycle_distribution": {
+      "Active": 1,
+      "Superseded": 0,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 0,
+    "review_queue": [
+      {
+        "requirement_id": "TS-CF7AE079-R001",
+        "requirement_text": "Dismantling,Shifting and reinstallation of feeder pillar, power cables from outside of electrical room to AMF room, internal electrical maintenance work at common coridoor, toilets, replacement of faulty 2x2 celing light of seminar and multipurpose",
+        "risk_level": "HIGH",
+        "decision": "REVIEW_REQUIRED",
+        "candidate_standard": "IS 5039 : 1983",
+        "evidence_strength": "MODERATE",
+        "primary_reason": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Insulation Material",
+        "priority": 2
+      }
+    ],
+    "publication_readiness": "REVIEW_REQUIRED",
+    "readiness_reasons": [
+      "1 requirement(s) flagged with HIGH risk.",
+      "1 requirement(s) require technical engineer review."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 0,
+    "normative_reference_count": 0,
+    "allied_standard_count": 0,
+    "test_standard_count": 0,
+    "installation_standard_count": 0,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 0,
+    "related_for_review_count": 0,
+    "standards_coverage": {
+      "direct_standards_identified": 1,
+      "total_dependencies": 0,
+      "normative_references": 0,
+      "testing_dependencies": 0,
+      "installation_dependencies": 0,
+      "allied_standards": 0,
+      "covered_in_tender": 0,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "items_requiring_review": 1
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 0,
+      "related_for_review_count": 0
+    },
+    "certification_checks": 1,
+    "qco_checks": 1,
+    "crs_checks": 1,
+    "hallmarking_checks": 1,
+    "regulatory_review_items": 1,
+    "unknown_regulatory_items": 0,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 0,
+    "mandatory_certification_count": 0,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
+  },
+  "requirements": [
+    {
+      "requirement_id": "TS-CF7AE079-R001",
+      "requirement_text": "Dismantling,Shifting and reinstallation of feeder pillar, power cables from outside of electrical room to AMF room, internal electrical maintenance work at common coridoor, toilets, replacement of faulty 2x2 celing light of seminar and multipurpose",
+      "category": "material",
+      "components": [
+        {
+          "text": "Dismantling",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "dismantling"
+          }
+        },
+        {
+          "text": "Shifting",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "shifting"
+          }
+        },
+        {
+          "text": "reinstallation",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "reinstallation"
+          }
+        },
+        {
+          "text": "feeder pillar",
+          "component_type": "electrical",
+          "domain": "electrical",
+          "extracted_attributes": {
+            "category": "switchgear_enclosure",
+            "standard_focus": "IS/IEC 61439"
+          }
+        },
+        {
+          "text": "power cables",
+          "component_type": "material",
+          "domain": "electrical",
+          "extracted_attributes": {
+            "category": "cable_distribution",
+            "standard_focus": "IS 7098 / IS 1554"
+          }
+        },
+        {
+          "text": "maintenance",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "maintenance"
+          }
+        },
+        {
+          "text": "replacement",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "replacement"
+          }
+        }
+      ],
+      "recommended_standard": "IS 5039 : 1983",
+      "recommended_title": "Distribution Pillars for Voltages Not Exceeding 1000 V AC and 1200 V DC - Specification",
+      "relevance_score": 0.761,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "evidence_text": "Exact Match: IS 5039 is the dedicated Indian Standard for outdoor electrical feeder distribution pillars.",
+      "evidence_source": "BIS Standards Catalogue",
+      "why_this": [
+        "Official title aligns with specification: 'Distribution Pillars for Voltages Not Exceeding 1000 V AC and 1200 V DC - Specification'.",
+        "Authoritative scope explicitly covers application: \"Exact Match: IS 5039 is the dedicated Indian Standard for outdoor electrical feeder distribution pillars.\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BIS Standards Catalogue (CURATED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
+      ],
+      "why_not": [
+        "Alternative standard IS 1255 has lower composite relevance (0.514 vs 0.761).",
+        "Alternative IS 1255 is a general code of practice/handbook rather than a direct manufacturing product specification."
+      ],
+      "completeness_label": "UNKNOWN",
+      "potentially_missing_parameters": [
+        "Voltage Grade",
+        "Conductor Material",
+        "Insulation Material",
+        "Number of Cores & Cross-section",
+        "Armouring Type"
+      ],
+      "known_parameters": {},
+      "related_standards": [],
+      "decision": "REVIEW_REQUIRED",
+      "risk_level": "HIGH",
+      "risk_reasons": [
+        "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Insulation Material"
+      ],
+      "human_review_required": true,
+      "confidence": "High",
+      "review_reason": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Insulation Material; Specification lacks key parameters (Voltage Grade, Conductor Material, Insulation Material). Human review recommended."
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "TS-CF7AE079-R001",
+      "requirement_text": "Dismantling,Shifting and reinstallation of feeder pillar, power cables from outside of electrical room to AMF room, internal electrical maintenance work at common coridoor, toilets, replacement of faulty 2x2 celing light of seminar and multipurpose",
+      "risk_level": "HIGH",
+      "decision": "REVIEW_REQUIRED",
+      "candidate_standard": "IS 5039 : 1983",
+      "evidence_strength": "MODERATE",
+      "primary_reason": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Insulation Material",
+      "priority": 2
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 1,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 0,
+      "CURATED": 1,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}

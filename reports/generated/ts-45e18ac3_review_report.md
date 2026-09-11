@@ -1,0 +1,116 @@
+# TenderSaathi Evidence-Backed Indian Standards Review Report
+
+**Standards review aid for procurement specifications**
+
+> [!NOTE]
+> This report is a standards-review aid and does not constitute legal compliance certification.
+
+---
+
+## 1. Tender Information
+
+- **Tender ID:** `TS-45E18AC3`
+- **Source File:** `eProcurement System Government of India19.pdf`
+- **Requirements Analysed:** 2
+
+## 2. Publication Readiness
+
+**Status:** 🟡 REVIEW_REQUIRED
+
+### Key Observations:
+- 1 requirement(s) require technical engineer review.
+
+## 3. Executive Summary
+
+| Metric | Count / Distribution | Notes |
+|---|---|---|
+| **Requirements Analysed** | 2 | Total clauses extracted |
+| **Direct Recommendations** | 1 | Active standards grounded in evidence |
+| **Review Required** | 1 | Flagged for engineering attention |
+| **Insufficient Evidence** | 0 | No reliable standard matched |
+| **Active Standards** | 2 | Verified current in BIS catalogue |
+| **Superseded Standards** | 0 | Outdated standards identified |
+| **Withdrawn Standards** | 0 | Cancelled standards |
+| **Unknown Lifecycle** | 0 | Unindexed in local catalogue |
+| **Related Standards to Review** | 0 | Discovered via relationship graph (depth=1) |
+
+### Governance Distributions
+
+- **Evidence Strength:** STRONG: `0` | MODERATE: `2` | WEAK: `0` | NONE: `0`
+- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `0` | UNKNOWN: `0` | NOT_APPLICABLE: `2`
+- **Risk Distribution:** CRITICAL: `0` | HIGH: `0` | MEDIUM: `1` | LOW: `1`
+
+### Standards Ecosystem & Dependency Coverage
+
+- **Normative References:** `0`
+- **Testing Method Dependencies:** `0`
+- **Installation / Laying Standards:** `0`
+- **Allied Standards:** `0`
+- **Potential Standard Gaps:** `0`
+- **Verified Standard Gaps:** `0`
+
+## 4. Prioritized Human Review Queue
+
+| # | Priority | Requirement ID | Candidate Standard | Issue / Primary Reason |
+|---|---|---|---|---|
+| 1 | **MEDIUM** | `TS-45E18AC3-R002` | `SP 30 : 2023` | Authoritative active standard SP 30 : 2023 verified against scope with Medium confidence. |
+
+## 5. Requirement-by-Requirement Review
+
+### 5.1 Requirement `TS-45E18AC3-R001` [INSTALLATION_EXECUTION]
+
+**Original Requirement Text:**
+> "Construction of 01 No Surveillance Cum OP Shelter G1 at BOP Rana of 160 Bn Now 50 Bn BSF under SHQ BSF Abohar Sub Head Electrical"
+
+- **Recommended Standard:** **SP 62 : 1997** — *Handbook on Building Construction Practices (Excluding Electrical Work)*
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.517`
+- **Evidence Strength:** `MODERATE` | **Provenance:** `CURATED`
+- **Verbatim Evidence (BIS Standards Catalogue):** "Curated reference standard for Handbook on Building Construction Practices (Excluding Electrical Work)"
+- **Why This Standard?:**
+  - Official title aligns with specification: 'Handbook on Building Construction Practices (Excluding Electrical Work)'.
+  - Authoritative scope explicitly covers application: "Curated reference standard for Handbook on Building Construction Practices (Excluding Electrical Work)"
+  - Standard is currently active in the BIS repository with verified currency.
+  - Provenance established via BIS Standards Catalogue (CURATED).
+- **Why Not Alternatives?:**
+  - Alternative standard IS 603 has lower composite relevance (0.380 vs 0.517).
+  - Alternative standard IS 603 has lifecycle limitations (status: REJECT).
+- **Specification Review Completeness:** `NOT_APPLICABLE`
+- **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `Medium`
+
+---
+
+### 5.2 Requirement `TS-45E18AC3-R002` [INSTALLATION_EXECUTION]
+
+**Original Requirement Text:**
+> "Construction of 01 No Surveillance Cum OP Shelter G1 at BOP Rana of 160 Bn Now 50 Bn BSF under SHQ BSF Abohar Sub Head Electrical 9/4/26, 10:26 AM eProcurement System Government of India https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SCNYNIbmlU… 1/2"
+
+- **Recommended Standard:** **SP 30 : 2023** — *National Electrical Code of India 2023; Code of practice for electrical wiring installations [SP 30]*
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.654`
+- **Evidence Strength:** `MODERATE` | **Provenance:** `CURATED`
+- **Verbatim Evidence (BIS Standards Catalogue):** "Exact Match: SP 30 Section 3 specifically establishes national guidelines for electrical installation, inspection, and maintenance in storage and warehousing facilities (FSD)."
+- **Why This Standard?:**
+  - Official title aligns with specification: 'National Electrical Code of India 2023; Code of practice for electrical wiring installations [SP 30]'.
+  - Authoritative scope explicitly covers application: "Exact Match: SP 30 Section 3 specifically establishes national guidelines for electrical installation, inspection, and m..."
+  - Standard is currently active in the BIS repository with verified currency.
+  - Provenance established via BIS Standards Catalogue (CURATED).
+- **Why Not Alternatives?:**
+  - Alternative standard IS 732 scored lower across the 5-dimension critic evaluation.
+- **Specification Review Completeness:** `NOT_APPLICABLE`
+- **Standards Review Decision:** `REVIEW_REQUIRED` | **Risk Level:** `MEDIUM` | **Confidence:** `Medium`
+
+---
+
+## 6. Evidence & Provenance Governance Summary
+
+> [!IMPORTANT]
+> AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance.
+
+| Provenance Tier | Criteria | Count in Tender | Evidence Strength Produced |
+|---|---|---|---|
+| **VERIFIED** | Authoritative BSB Edge / BIS portal record manually verified | 0 | `STRONG` |
+| **CURATED** | Loaded from official BIS Standards Catalogues / Excel indices | 2 | `MODERATE` |
+| **INFERRED** | Contextual heuristic or tender co-citation (strictly unverified) | 0 | `WEAK` |
+
+## 7. Officer Notice & Disclaimer
+
+TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority.
