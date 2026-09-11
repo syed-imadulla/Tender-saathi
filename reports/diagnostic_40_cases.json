@@ -1,28 +1,28 @@
 {
   "confusion_matrix": {
     "CLEAR": {
-      "CLEAR": 10,
+      "CLEAR": 8,
       "AMBIGUOUS": 0,
       "INCOMPLETE": 0,
       "CONFLICTING": 0,
       "NO_RELIABLE_MATCH": 0,
-      "REVIEW_REQUIRED": 0
+      "REVIEW_REQUIRED": 2
     },
     "AMBIGUOUS": {
-      "CLEAR": 5,
-      "AMBIGUOUS": 1,
+      "CLEAR": 4,
+      "AMBIGUOUS": 3,
       "INCOMPLETE": 1,
       "CONFLICTING": 0,
       "NO_RELIABLE_MATCH": 0,
-      "REVIEW_REQUIRED": 3
+      "REVIEW_REQUIRED": 2
     },
     "INCOMPLETE": {
-      "CLEAR": 1,
-      "AMBIGUOUS": 0,
-      "INCOMPLETE": 4,
+      "CLEAR": 0,
+      "AMBIGUOUS": 3,
+      "INCOMPLETE": 7,
       "CONFLICTING": 0,
       "NO_RELIABLE_MATCH": 0,
-      "REVIEW_REQUIRED": 5
+      "REVIEW_REQUIRED": 0
     },
     "CONFLICTING": {
       "CLEAR": 0,
@@ -33,11 +33,11 @@
       "REVIEW_REQUIRED": 0
     },
     "NO_RELIABLE_MATCH": {
-      "CLEAR": 1,
+      "CLEAR": 0,
       "AMBIGUOUS": 0,
-      "INCOMPLETE": 2,
+      "INCOMPLETE": 0,
       "CONFLICTING": 0,
-      "NO_RELIABLE_MATCH": 2,
+      "NO_RELIABLE_MATCH": 5,
       "REVIEW_REQUIRED": 0
     },
     "REVIEW_REQUIRED": {
@@ -82,10 +82,10 @@
       "expected": "CLEAR",
       "predicted": "CLEAR",
       "match": true,
-      "candidate": "IS 7098 (Part 1) : 1988",
-      "evidence_standard": "IS 7098 (Part 1) : 1988",
+      "candidate": "IS 3043 : 2018",
+      "evidence_standard": "IS 3043 : 2018",
       "human_review": false,
-      "reason": "Primary applicable standard IS 7098 (Part 1) is clearly identifiable and sufficiently supported.",
+      "reason": "Primary applicable standard IS 3043 is clearly identifiable and sufficiently supported.",
       "competing": [],
       "missing": []
     },
@@ -108,10 +108,10 @@
       "expected": "CLEAR",
       "predicted": "CLEAR",
       "match": true,
-      "candidate": "IS 14333 : 2022",
-      "evidence_standard": "IS 14333 : 2022",
+      "candidate": "IS 15778 : 2007",
+      "evidence_standard": "IS 15778 : 2007",
       "human_review": false,
-      "reason": "Primary applicable standard IS 14333 is clearly identifiable and sufficiently supported.",
+      "reason": "Primary applicable standard IS 15778 is clearly identifiable and sufficiently supported.",
       "competing": [],
       "missing": []
     },
@@ -145,12 +145,12 @@
       "id": "AMB-CLR-08",
       "text": "Supply of structural steel standard quality Fe 410 WA plates 20 mm thickness conforming to IS 2062.",
       "expected": "CLEAR",
-      "predicted": "CLEAR",
-      "match": true,
+      "predicted": "REVIEW_REQUIRED",
+      "match": false,
       "candidate": "IS 432 : 2026",
       "evidence_standard": "IS 432 : 2026",
-      "human_review": false,
-      "reason": "Primary applicable standard IS 432 is clearly identifiable and sufficiently supported.",
+      "human_review": true,
+      "reason": "Technical review required prior to procurement.",
       "competing": [],
       "missing": []
     },
@@ -158,12 +158,12 @@
       "id": "AMB-CLR-09",
       "text": "Supply and laying of precast reinforced concrete pipes NP3 class 600 mm internal diameter for non-pressure underground sewerage and drainage conforming to IS 458.",
       "expected": "CLEAR",
-      "predicted": "CLEAR",
-      "match": true,
-      "candidate": "IS 14333 : 1996",
-      "evidence_standard": "IS 14333 : 1996",
-      "human_review": false,
-      "reason": "Primary applicable standard IS 14333 is clearly identifiable and sufficiently supported.",
+      "predicted": "REVIEW_REQUIRED",
+      "match": false,
+      "candidate": "IS 458 : 2021",
+      "evidence_standard": "IS 458 : 2021",
+      "human_review": true,
+      "reason": "Primary applicable standard IS 458 is clearly identifiable and sufficiently supported.",
       "competing": [],
       "missing": []
     },
@@ -218,27 +218,61 @@
       "id": "AMB-INC-03",
       "text": "Supply and laying of electrical power cables for factory electrification.",
       "expected": "INCOMPLETE",
-      "predicted": "REVIEW_REQUIRED",
+      "predicted": "AMBIGUOUS",
       "match": false,
-      "candidate": "IS 1255 : 1983",
-      "evidence_standard": "IS 1255 : 1983",
+      "candidate": null,
+      "evidence_standard": null,
       "human_review": true,
-      "reason": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Insulation Material; Ambiguous choice between IS 1255 and IS 7098 (Part 1) due to missing distinguishing parameters; Specification lacks key parameters (Voltage Grade, Conductor Material, Insulation Material). Human review recommended.",
-      "competing": [],
-      "missing": []
+      "reason": "Multiple competing Indian Standards (IS 1255 and IS 7098 (Part 1)) have comparable applicability (score delta: 0.006 < 0.03). The tender does not contain distinguishing specifications to select between them.",
+      "competing": [
+        {
+          "standard_number": "IS 1255",
+          "title": "Crosslinked Polyethylene Insulated Cables - Part 1: Up to 1100 V; Code of Practice for Installation of Power Cables [IS 1255]",
+          "interpretation": "Crosslinked Polyethylene Insulated Cables - Part 1: Up to 1100 V; Code of Practice for Ins...",
+          "relevance_score": 0.577,
+          "distinguishing_parameter_needed": "Voltage Grade or Conductor Material"
+        },
+        {
+          "standard_number": "IS 7098 (Part 1)",
+          "title": "Crosslinked Polyethylene Insulated Cables - Part 1: Up to 1100 V; Code of Practice for Installation of Power Cables [IS 7098 (Part 1)]",
+          "interpretation": "Crosslinked Polyethylene (XLPE) Insulated Thermoplastic Sheathed Cables",
+          "relevance_score": 0.571,
+          "distinguishing_parameter_needed": "Voltage Grade or Conductor Material"
+        }
+      ],
+      "missing": [
+        "Voltage Grade or Conductor Material"
+      ]
     },
     {
       "id": "AMB-INC-04",
       "text": "Supply and installation of water pumps for public water works system.",
       "expected": "INCOMPLETE",
-      "predicted": "REVIEW_REQUIRED",
+      "predicted": "AMBIGUOUS",
       "match": false,
-      "candidate": "IS 9694 : 2023",
-      "evidence_standard": "IS 9694 : 2023",
+      "candidate": null,
+      "evidence_standard": null,
       "human_review": true,
-      "reason": "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H); Ambiguous choice between IS 9694 and IS 9694 due to missing distinguishing parameters; Specification lacks key parameters (Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)). Human review recommended.",
-      "competing": [],
-      "missing": []
+      "reason": "Multiple competing Indian Standards (IS 9694 and IS 9694) have comparable applicability (score delta: 0.000 < 0.03). The tender does not contain distinguishing specifications to select between them.",
+      "competing": [
+        {
+          "standard_number": "IS 9694",
+          "title": "Selection, Installation, Operation And Maintenance Of Horizontal Centrifugal Pumps For Agriculture Application \u2014 Code Of Practice - Part 1 Selection",
+          "interpretation": "PVC Insulated Cables for working voltages up to and including 1100 V",
+          "relevance_score": 0.528,
+          "distinguishing_parameter_needed": "Pump Mechanism / Type or Discharge / Flow Rate (Q)"
+        },
+        {
+          "standard_number": "IS 9694",
+          "title": "Selection, Installation, Operation And Maintenance Of Horizontal Centrifugal Pumps For Agriculture Application \u2013 Code Of Practice - Part 2 Installation",
+          "interpretation": "PVC Insulated Cables for working voltages up to and including 1100 V",
+          "relevance_score": 0.528,
+          "distinguishing_parameter_needed": "Pump Mechanism / Type or Discharge / Flow Rate (Q)"
+        }
+      ],
+      "missing": [
+        "Pump Mechanism / Type or Discharge / Flow Rate (Q)"
+      ]
     },
     {
       "id": "AMB-INC-05",
@@ -249,82 +283,108 @@
       "candidate": null,
       "evidence_standard": null,
       "human_review": true,
-      "reason": "Tender requirement specifies 'pump' equipment but omits critical discriminating technical parameters (pump mechanism (centrifugal/submersible/monobloc), process application or medium). A specific Indian Standard cannot be safely selected without guessing.",
+      "reason": "Tender requirement specifies 'pump' equipment but omits critical discriminating technical parameters (pump mechanism (centrifugal/submersible/monobloc), operating discharge (Q) and head (H)). A specific Indian Standard cannot be safely selected without guessing.",
       "competing": [],
       "missing": [
         "pump mechanism (centrifugal/submersible/monobloc)",
-        "process application or medium"
+        "operating discharge (Q) and head (H)"
       ]
     },
     {
       "id": "AMB-INC-06",
       "text": "Replacement of damaged valves in pumping station.",
       "expected": "INCOMPLETE",
-      "predicted": "INCOMPLETE",
-      "match": true,
+      "predicted": "AMBIGUOUS",
+      "match": false,
       "candidate": null,
       "evidence_standard": null,
       "human_review": true,
-      "reason": "Tender specifies valve work without defining valve nominal diameter (DN), pressure rating (PN), body metallurgy (cast iron vs bronze vs forged steel), or process medium.",
-      "competing": [],
+      "reason": "Multiple competing Indian Standards (IS/ISO 10434 and IS 778) have comparable applicability (score delta: 0.023 < 0.03). The tender does not contain distinguishing specifications to select between them.",
+      "competing": [
+        {
+          "standard_number": "IS/ISO 10434",
+          "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "interpretation": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "relevance_score": 0.498,
+          "distinguishing_parameter_needed": "Valve Type or Nominal Size / Diameter (DN)"
+        },
+        {
+          "standard_number": "IS 778",
+          "title": "Specification for Copper Alloy Gate, Globe and Check Valves for Waterworks Purposes",
+          "interpretation": "Copper Alloy Gate, Globe and Check Valves for waterworks",
+          "relevance_score": 0.475,
+          "distinguishing_parameter_needed": "Valve Type or Nominal Size / Diameter (DN)"
+        }
+      ],
       "missing": [
-        "valve nominal diameter (DN)",
-        "pressure rating (PN)",
-        "body metallurgy (cast iron vs bronze vs forged steel)",
-        "process medium"
+        "Valve Type or Nominal Size / Diameter (DN)"
       ]
     },
     {
       "id": "AMB-INC-07",
       "text": "Laying of underground sewerage pipeline without defining pipe material or class.",
       "expected": "INCOMPLETE",
-      "predicted": "REVIEW_REQUIRED",
-      "match": false,
-      "candidate": "IS 14333 : 1996",
-      "evidence_standard": "IS 14333 : 1996",
+      "predicted": "INCOMPLETE",
+      "match": true,
+      "candidate": null,
+      "evidence_standard": null,
       "human_review": true,
-      "reason": "Potentially missing engineering parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR; Specification lacks key parameters (Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR). Human review recommended.",
+      "reason": "Tender requirement specifies 'pipe' equipment but omits critical discriminating technical parameters (pipe material (CPVC/uPVC/HDPE/DI/GI/Concrete), application environment). A specific Indian Standard cannot be safely selected without guessing.",
       "competing": [],
-      "missing": []
+      "missing": [
+        "pipe material (CPVC/uPVC/HDPE/DI/GI/Concrete)",
+        "application environment"
+      ]
     },
     {
       "id": "AMB-INC-08",
       "text": "Supply and erection of electrical distribution panels for administrative complex.",
       "expected": "INCOMPLETE",
-      "predicted": "CLEAR",
-      "match": false,
-      "candidate": "IS 5039 : 1983",
-      "evidence_standard": "IS 5039 : 1983",
-      "human_review": false,
-      "reason": "Primary applicable standard IS 5039 is clearly identifiable and sufficiently supported.",
+      "predicted": "INCOMPLETE",
+      "match": true,
+      "candidate": null,
+      "evidence_standard": null,
+      "human_review": true,
+      "reason": "Tender requirement specifies 'general' equipment but omits critical discriminating technical parameters (voltage rating, busbar current rating (Amperes), short-circuit fault rating (kA), enclosure IP rating). A specific Indian Standard cannot be safely selected without guessing.",
       "competing": [],
-      "missing": []
+      "missing": [
+        "voltage rating",
+        "busbar current rating (Amperes)",
+        "short-circuit fault rating (kA)",
+        "enclosure IP rating"
+      ]
     },
     {
       "id": "AMB-INC-09",
       "text": "Procurement of sanitary drainage pipes and accessories for residential quarters.",
       "expected": "INCOMPLETE",
-      "predicted": "REVIEW_REQUIRED",
-      "match": false,
-      "candidate": "IS 15905 : 2011",
-      "evidence_standard": "IS 15905 : 2011",
+      "predicted": "INCOMPLETE",
+      "match": true,
+      "candidate": null,
+      "evidence_standard": null,
       "human_review": true,
-      "reason": "Potentially missing engineering parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR; Specification lacks key parameters (Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR). Human review recommended.",
+      "reason": "Tender requirement specifies 'pipe' equipment but omits critical discriminating technical parameters (pipe material (CPVC/uPVC/HDPE/DI/GI/Concrete), application environment). A specific Indian Standard cannot be safely selected without guessing.",
       "competing": [],
-      "missing": []
+      "missing": [
+        "pipe material (CPVC/uPVC/HDPE/DI/GI/Concrete)",
+        "application environment"
+      ]
     },
     {
       "id": "AMB-INC-10",
       "text": "Supply of standard cement bags for general concrete construction works.",
       "expected": "INCOMPLETE",
-      "predicted": "REVIEW_REQUIRED",
-      "match": false,
-      "candidate": "IS 458 : 2021",
-      "evidence_standard": "IS 458 : 2021",
+      "predicted": "INCOMPLETE",
+      "match": true,
+      "candidate": null,
+      "evidence_standard": null,
       "human_review": true,
-      "reason": "Primary applicable standard IS 458 is clearly identifiable and sufficiently supported.",
+      "reason": "Tender requirement specifies 'general' equipment but omits critical discriminating technical parameters (cement type (Ordinary Portland Cement vs Portland Pozzolana Cement), strength grade (33 / 43 / 53)). A specific Indian Standard cannot be safely selected without guessing.",
       "competing": [],
-      "missing": []
+      "missing": [
+        "cement type (Ordinary Portland Cement vs Portland Pozzolana Cement)",
+        "strength grade (33 / 43 / 53)"
+      ]
     },
     {
       "id": "AMB-AMB-01",
@@ -356,27 +416,61 @@
       "id": "AMB-AMB-03",
       "text": "Supply of 1.1 kV insulated power cables for internal building wiring without defining insulation polymer (PVC vs XLPE).",
       "expected": "AMBIGUOUS",
-      "predicted": "CLEAR",
-      "match": false,
-      "candidate": "IS 1255 : 1983",
-      "evidence_standard": "IS 1255 : 1983",
-      "human_review": false,
-      "reason": "Primary applicable standard IS 1255 is clearly identifiable and sufficiently supported.",
-      "competing": [],
-      "missing": []
+      "predicted": "AMBIGUOUS",
+      "match": true,
+      "candidate": null,
+      "evidence_standard": null,
+      "human_review": true,
+      "reason": "Multiple competing Indian Standards (IS 1255 and IS 7098 (Part 1)) have comparable applicability (score delta: 0.006 < 0.03). The tender does not contain distinguishing specifications to select between them.",
+      "competing": [
+        {
+          "standard_number": "IS 1255",
+          "title": "Crosslinked Polyethylene Insulated Cables - Part 1: Up to 1100 V; Code of Practice for Installation of Power Cables [IS 1255]",
+          "interpretation": "Crosslinked Polyethylene Insulated Cables - Part 1: Up to 1100 V; Code of Practice for Ins...",
+          "relevance_score": 0.596,
+          "distinguishing_parameter_needed": "Conductor Material or Number of Cores & Cross-section"
+        },
+        {
+          "standard_number": "IS 7098 (Part 1)",
+          "title": "Crosslinked Polyethylene Insulated Cables - Part 1: Up to 1100 V; Code of Practice for Installation of Power Cables [IS 7098 (Part 1)]",
+          "interpretation": "Crosslinked Polyethylene (XLPE) Insulated Thermoplastic Sheathed Cables",
+          "relevance_score": 0.59,
+          "distinguishing_parameter_needed": "Conductor Material or Number of Cores & Cross-section"
+        }
+      ],
+      "missing": [
+        "Conductor Material or Number of Cores & Cross-section"
+      ]
     },
     {
       "id": "AMB-AMB-04",
       "text": "Sewerage pipeline construction without specifying pipe material (concrete IS 458 vs structured wall polyethylene IS 14333).",
       "expected": "AMBIGUOUS",
-      "predicted": "REVIEW_REQUIRED",
-      "match": false,
-      "candidate": "IS 14333 : 1996",
-      "evidence_standard": "IS 14333 : 1996",
+      "predicted": "AMBIGUOUS",
+      "match": true,
+      "candidate": null,
+      "evidence_standard": null,
       "human_review": true,
-      "reason": "Primary applicable standard IS 14333 is clearly identifiable and sufficiently supported.",
-      "competing": [],
-      "missing": []
+      "reason": "Multiple competing Indian Standards (IS 14333 and IS 14333) have comparable applicability (score delta: 0.020 < 0.03). The tender does not contain distinguishing specifications to select between them.",
+      "competing": [
+        {
+          "standard_number": "IS 14333",
+          "title": "Precast Concrete Pipes; Laying Concrete Pipes; HDPE Pipes for Sewerage [IS 14333]",
+          "interpretation": "High Density Polyethylene (HDPE) Pipes for Sewerage",
+          "relevance_score": 1.0,
+          "distinguishing_parameter_needed": "Diameter / Nominal Bore (DN/OD) or Pressure Class / Schedule / SDR"
+        },
+        {
+          "standard_number": "IS 14333",
+          "title": "Polyethylene Pipes for Sewerage and Industrial Chemicals and Effluent - Specification",
+          "interpretation": "High Density Polyethylene (HDPE) Pipes for Sewerage",
+          "relevance_score": 0.98,
+          "distinguishing_parameter_needed": "Diameter / Nominal Bore (DN/OD) or Pressure Class / Schedule / SDR"
+        }
+      ],
+      "missing": [
+        "Diameter / Nominal Bore (DN/OD) or Pressure Class / Schedule / SDR"
+      ]
     },
     {
       "id": "AMB-AMB-05",
@@ -387,25 +481,25 @@
       "candidate": null,
       "evidence_standard": null,
       "human_review": true,
-      "reason": "Multiple competing Indian Standards (IS 2491 and FSSAI Schedule 4) have comparable applicability (score delta: 0.006 < 0.03). The tender does not contain distinguishing specifications to select between them.",
+      "reason": "Multiple competing Indian Standards (IS 2491 and FSSAI Schedule 4) have comparable applicability (score delta: 0.019 < 0.03). The tender does not contain distinguishing specifications to select between them.",
       "competing": [
         {
           "standard_number": "IS 2491",
           "title": "Food Hygiene - General Principles - Code of Practice; FSSAI General Sanitary and Hygienic Requirements [IS 2491]",
           "interpretation": "Food Hygiene - General Principles - Code of Practice",
-          "relevance_score": 0.602,
-          "distinguishing_parameter_needed": "food hygiene compliance framework (General Principles of Food Hygiene IS 2491 vs HACCP Certification IS 15000)"
+          "relevance_score": 0.512,
+          "distinguishing_parameter_needed": "Food Preparation Scope or Regulatory Hygiene Framework"
         },
         {
           "standard_number": "FSSAI Schedule 4",
           "title": "Food Hygiene - General Principles - Code of Practice; FSSAI General Sanitary and Hygienic Requirements [FSSAI Schedule 4]",
           "interpretation": "Food Hygiene - General Principles - Code of Practice; FSSAI General Sanitary and Hygienic ...",
-          "relevance_score": 0.596,
-          "distinguishing_parameter_needed": "food hygiene compliance framework (General Principles of Food Hygiene IS 2491 vs HACCP Certification IS 15000)"
+          "relevance_score": 0.493,
+          "distinguishing_parameter_needed": "Food Preparation Scope or Regulatory Hygiene Framework"
         }
       ],
       "missing": [
-        "food hygiene compliance framework (General Principles of Food Hygiene IS 2491 vs HACCP Certification IS 15000)"
+        "Food Preparation Scope or Regulatory Hygiene Framework"
       ]
     },
     {
@@ -440,10 +534,10 @@
       "expected": "AMBIGUOUS",
       "predicted": "REVIEW_REQUIRED",
       "match": false,
-      "candidate": "IS 5039 : 1983",
-      "evidence_standard": "IS 5039 : 1983",
+      "candidate": "IS/IEC 61439-3 : 2012",
+      "evidence_standard": "IS/IEC 61439-3 : 2012",
       "human_review": true,
-      "reason": "Primary applicable standard IS 5039 is clearly identifiable and sufficiently supported.",
+      "reason": "Technical review required prior to procurement.",
       "competing": [],
       "missing": []
     },
@@ -558,28 +652,25 @@
       "id": "AMB-NOM-02",
       "text": "Supply of liquid metal sodium primary coolant circulation pump for sodium-cooled fast breeder reactor.",
       "expected": "NO_RELIABLE_MATCH",
-      "predicted": "INCOMPLETE",
-      "match": false,
+      "predicted": "NO_RELIABLE_MATCH",
+      "match": true,
       "candidate": null,
       "evidence_standard": null,
       "human_review": true,
-      "reason": "Tender requirement specifies 'pump' equipment but omits critical discriminating technical parameters (pump mechanism (centrifugal/submersible/monobloc), process application or medium). A specific Indian Standard cannot be safely selected without guessing.",
+      "reason": "Retrieved candidates did not pass the domain/product applicability checks.",
       "competing": [],
-      "missing": [
-        "pump mechanism (centrifugal/submersible/monobloc)",
-        "process application or medium"
-      ]
+      "missing": []
     },
     {
       "id": "AMB-NOM-03",
       "text": "Supply of quantum dot photoresist color filter optical film for 8K ultra high definition television displays.",
       "expected": "NO_RELIABLE_MATCH",
-      "predicted": "CLEAR",
-      "match": false,
-      "candidate": "IS/ISO 516 : 2019",
-      "evidence_standard": "IS/ISO 516 : 2019",
-      "human_review": false,
-      "reason": "Primary applicable standard IS/ISO 516 is clearly identifiable and sufficiently supported.",
+      "predicted": "NO_RELIABLE_MATCH",
+      "match": true,
+      "candidate": null,
+      "evidence_standard": null,
+      "human_review": true,
+      "reason": "Retrieved candidates did not pass the domain/product applicability checks.",
       "competing": [],
       "missing": []
     },
@@ -587,18 +678,14 @@
       "id": "AMB-NOM-04",
       "text": "Procurement of deep ocean subsea electro-hydraulic dynamic umbilical cable for offshore oil exploration.",
       "expected": "NO_RELIABLE_MATCH",
-      "predicted": "INCOMPLETE",
-      "match": false,
+      "predicted": "NO_RELIABLE_MATCH",
+      "match": true,
       "candidate": null,
       "evidence_standard": null,
       "human_review": true,
-      "reason": "Tender requirement specifies 'cable' equipment but omits critical discriminating technical parameters (voltage rating (e.g. 1.1 kV / 11 kV), conductor material, insulation type (PVC / XLPE)). A specific Indian Standard cannot be safely selected without guessing.",
+      "reason": "Retrieved candidates did not pass the domain/product applicability checks.",
       "competing": [],
-      "missing": [
-        "voltage rating (e.g. 1.1 kV / 11 kV)",
-        "conductor material",
-        "insulation type (PVC / XLPE)"
-      ]
+      "missing": []
     },
     {
       "id": "AMB-NOM-05",
@@ -616,74 +703,22 @@
   ],
   "mismatches": [
     {
-      "id": "AMB-INC-03",
-      "text": "Supply and laying of electrical power cables for factory electrification.",
-      "expected": "INCOMPLETE",
+      "id": "AMB-CLR-08",
+      "text": "Supply of structural steel standard quality Fe 410 WA plates 20 mm thickness conforming to IS 2062.",
+      "expected": "CLEAR",
       "predicted": "REVIEW_REQUIRED",
       "match": false,
-      "candidate": "IS 1255 : 1983",
-      "evidence_standard": "IS 1255 : 1983",
+      "candidate": "IS 432 : 2026",
+      "evidence_standard": "IS 432 : 2026",
       "human_review": true,
-      "reason": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Insulation Material; Ambiguous choice between IS 1255 and IS 7098 (Part 1) due to missing distinguishing parameters; Specification lacks key parameters (Voltage Grade, Conductor Material, Insulation Material). Human review recommended.",
+      "reason": "Technical review required prior to procurement.",
       "competing": [],
       "missing": []
     },
     {
-      "id": "AMB-INC-04",
-      "text": "Supply and installation of water pumps for public water works system.",
-      "expected": "INCOMPLETE",
-      "predicted": "REVIEW_REQUIRED",
-      "match": false,
-      "candidate": "IS 9694 : 2023",
-      "evidence_standard": "IS 9694 : 2023",
-      "human_review": true,
-      "reason": "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H); Ambiguous choice between IS 9694 and IS 9694 due to missing distinguishing parameters; Specification lacks key parameters (Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)). Human review recommended.",
-      "competing": [],
-      "missing": []
-    },
-    {
-      "id": "AMB-INC-07",
-      "text": "Laying of underground sewerage pipeline without defining pipe material or class.",
-      "expected": "INCOMPLETE",
-      "predicted": "REVIEW_REQUIRED",
-      "match": false,
-      "candidate": "IS 14333 : 1996",
-      "evidence_standard": "IS 14333 : 1996",
-      "human_review": true,
-      "reason": "Potentially missing engineering parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR; Specification lacks key parameters (Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR). Human review recommended.",
-      "competing": [],
-      "missing": []
-    },
-    {
-      "id": "AMB-INC-08",
-      "text": "Supply and erection of electrical distribution panels for administrative complex.",
-      "expected": "INCOMPLETE",
-      "predicted": "CLEAR",
-      "match": false,
-      "candidate": "IS 5039 : 1983",
-      "evidence_standard": "IS 5039 : 1983",
-      "human_review": false,
-      "reason": "Primary applicable standard IS 5039 is clearly identifiable and sufficiently supported.",
-      "competing": [],
-      "missing": []
-    },
-    {
-      "id": "AMB-INC-09",
-      "text": "Procurement of sanitary drainage pipes and accessories for residential quarters.",
-      "expected": "INCOMPLETE",
-      "predicted": "REVIEW_REQUIRED",
-      "match": false,
-      "candidate": "IS 15905 : 2011",
-      "evidence_standard": "IS 15905 : 2011",
-      "human_review": true,
-      "reason": "Potentially missing engineering parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR; Specification lacks key parameters (Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR). Human review recommended.",
-      "competing": [],
-      "missing": []
-    },
-    {
-      "id": "AMB-INC-10",
-      "text": "Supply of standard cement bags for general concrete construction works.",
-      "expected": "INCOMPLETE",
+      "id": "AMB-CLR-09",
+      "text": "Supply and laying of precast reinforced concrete pipes NP3 class 600 mm internal diameter for non-pressure underground sewerage and drainage conforming to IS 458.",
+      "expected": "CLEAR",
       "predicted": "REVIEW_REQUIRED",
       "match": false,
       "candidate": "IS 458 : 2021",
@@ -692,6 +727,96 @@
       "reason": "Primary applicable standard IS 458 is clearly identifiable and sufficiently supported.",
       "competing": [],
       "missing": []
+    },
+    {
+      "id": "AMB-INC-03",
+      "text": "Supply and laying of electrical power cables for factory electrification.",
+      "expected": "INCOMPLETE",
+      "predicted": "AMBIGUOUS",
+      "match": false,
+      "candidate": null,
+      "evidence_standard": null,
+      "human_review": true,
+      "reason": "Multiple competing Indian Standards (IS 1255 and IS 7098 (Part 1)) have comparable applicability (score delta: 0.006 < 0.03). The tender does not contain distinguishing specifications to select between them.",
+      "competing": [
+        {
+          "standard_number": "IS 1255",
+          "title": "Crosslinked Polyethylene Insulated Cables - Part 1: Up to 1100 V; Code of Practice for Installation of Power Cables [IS 1255]",
+          "interpretation": "Crosslinked Polyethylene Insulated Cables - Part 1: Up to 1100 V; Code of Practice for Ins...",
+          "relevance_score": 0.577,
+          "distinguishing_parameter_needed": "Voltage Grade or Conductor Material"
+        },
+        {
+          "standard_number": "IS 7098 (Part 1)",
+          "title": "Crosslinked Polyethylene Insulated Cables - Part 1: Up to 1100 V; Code of Practice for Installation of Power Cables [IS 7098 (Part 1)]",
+          "interpretation": "Crosslinked Polyethylene (XLPE) Insulated Thermoplastic Sheathed Cables",
+          "relevance_score": 0.571,
+          "distinguishing_parameter_needed": "Voltage Grade or Conductor Material"
+        }
+      ],
+      "missing": [
+        "Voltage Grade or Conductor Material"
+      ]
+    },
+    {
+      "id": "AMB-INC-04",
+      "text": "Supply and installation of water pumps for public water works system.",
+      "expected": "INCOMPLETE",
+      "predicted": "AMBIGUOUS",
+      "match": false,
+      "candidate": null,
+      "evidence_standard": null,
+      "human_review": true,
+      "reason": "Multiple competing Indian Standards (IS 9694 and IS 9694) have comparable applicability (score delta: 0.000 < 0.03). The tender does not contain distinguishing specifications to select between them.",
+      "competing": [
+        {
+          "standard_number": "IS 9694",
+          "title": "Selection, Installation, Operation And Maintenance Of Horizontal Centrifugal Pumps For Agriculture Application \u2014 Code Of Practice - Part 1 Selection",
+          "interpretation": "PVC Insulated Cables for working voltages up to and including 1100 V",
+          "relevance_score": 0.528,
+          "distinguishing_parameter_needed": "Pump Mechanism / Type or Discharge / Flow Rate (Q)"
+        },
+        {
+          "standard_number": "IS 9694",
+          "title": "Selection, Installation, Operation And Maintenance Of Horizontal Centrifugal Pumps For Agriculture Application \u2013 Code Of Practice - Part 2 Installation",
+          "interpretation": "PVC Insulated Cables for working voltages up to and including 1100 V",
+          "relevance_score": 0.528,
+          "distinguishing_parameter_needed": "Pump Mechanism / Type or Discharge / Flow Rate (Q)"
+        }
+      ],
+      "missing": [
+        "Pump Mechanism / Type or Discharge / Flow Rate (Q)"
+      ]
+    },
+    {
+      "id": "AMB-INC-06",
+      "text": "Replacement of damaged valves in pumping station.",
+      "expected": "INCOMPLETE",
+      "predicted": "AMBIGUOUS",
+      "match": false,
+      "candidate": null,
+      "evidence_standard": null,
+      "human_review": true,
+      "reason": "Multiple competing Indian Standards (IS/ISO 10434 and IS 778) have comparable applicability (score delta: 0.023 < 0.03). The tender does not contain distinguishing specifications to select between them.",
+      "competing": [
+        {
+          "standard_number": "IS/ISO 10434",
+          "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "interpretation": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "relevance_score": 0.498,
+          "distinguishing_parameter_needed": "Valve Type or Nominal Size / Diameter (DN)"
+        },
+        {
+          "standard_number": "IS 778",
+          "title": "Specification for Copper Alloy Gate, Globe and Check Valves for Waterworks Purposes",
+          "interpretation": "Copper Alloy Gate, Globe and Check Valves for waterworks",
+          "relevance_score": 0.475,
+          "distinguishing_parameter_needed": "Valve Type or Nominal Size / Diameter (DN)"
+        }
+      ],
+      "missing": [
+        "Valve Type or Nominal Size / Diameter (DN)"
+      ]
     },
     {
       "id": "AMB-AMB-01",
@@ -716,32 +841,6 @@
       "evidence_standard": "IS 15778 : 2007",
       "human_review": false,
       "reason": "Primary applicable standard IS 15778 is clearly identifiable and sufficiently supported.",
-      "competing": [],
-      "missing": []
-    },
-    {
-      "id": "AMB-AMB-03",
-      "text": "Supply of 1.1 kV insulated power cables for internal building wiring without defining insulation polymer (PVC vs XLPE).",
-      "expected": "AMBIGUOUS",
-      "predicted": "CLEAR",
-      "match": false,
-      "candidate": "IS 1255 : 1983",
-      "evidence_standard": "IS 1255 : 1983",
-      "human_review": false,
-      "reason": "Primary applicable standard IS 1255 is clearly identifiable and sufficiently supported.",
-      "competing": [],
-      "missing": []
-    },
-    {
-      "id": "AMB-AMB-04",
-      "text": "Sewerage pipeline construction without specifying pipe material (concrete IS 458 vs structured wall polyethylene IS 14333).",
-      "expected": "AMBIGUOUS",
-      "predicted": "REVIEW_REQUIRED",
-      "match": false,
-      "candidate": "IS 14333 : 1996",
-      "evidence_standard": "IS 14333 : 1996",
-      "human_review": true,
-      "reason": "Primary applicable standard IS 14333 is clearly identifiable and sufficiently supported.",
       "competing": [],
       "missing": []
     },
@@ -777,10 +876,10 @@
       "expected": "AMBIGUOUS",
       "predicted": "REVIEW_REQUIRED",
       "match": false,
-      "candidate": "IS 5039 : 1983",
-      "evidence_standard": "IS 5039 : 1983",
+      "candidate": "IS/IEC 61439-3 : 2012",
+      "evidence_standard": "IS/IEC 61439-3 : 2012",
       "human_review": true,
-      "reason": "Primary applicable standard IS 5039 is clearly identifiable and sufficiently supported.",
+      "reason": "Technical review required prior to procurement.",
       "competing": [],
       "missing": []
     },
@@ -811,52 +910,6 @@
       "missing": [
         "pipe material (CPVC/uPVC/HDPE/DI/GI/Concrete)",
         "application environment"
-      ]
-    },
-    {
-      "id": "AMB-NOM-02",
-      "text": "Supply of liquid metal sodium primary coolant circulation pump for sodium-cooled fast breeder reactor.",
-      "expected": "NO_RELIABLE_MATCH",
-      "predicted": "INCOMPLETE",
-      "match": false,
-      "candidate": null,
-      "evidence_standard": null,
-      "human_review": true,
-      "reason": "Tender requirement specifies 'pump' equipment but omits critical discriminating technical parameters (pump mechanism (centrifugal/submersible/monobloc), process application or medium). A specific Indian Standard cannot be safely selected without guessing.",
-      "competing": [],
-      "missing": [
-        "pump mechanism (centrifugal/submersible/monobloc)",
-        "process application or medium"
-      ]
-    },
-    {
-      "id": "AMB-NOM-03",
-      "text": "Supply of quantum dot photoresist color filter optical film for 8K ultra high definition television displays.",
-      "expected": "NO_RELIABLE_MATCH",
-      "predicted": "CLEAR",
-      "match": false,
-      "candidate": "IS/ISO 516 : 2019",
-      "evidence_standard": "IS/ISO 516 : 2019",
-      "human_review": false,
-      "reason": "Primary applicable standard IS/ISO 516 is clearly identifiable and sufficiently supported.",
-      "competing": [],
-      "missing": []
-    },
-    {
-      "id": "AMB-NOM-04",
-      "text": "Procurement of deep ocean subsea electro-hydraulic dynamic umbilical cable for offshore oil exploration.",
-      "expected": "NO_RELIABLE_MATCH",
-      "predicted": "INCOMPLETE",
-      "match": false,
-      "candidate": null,
-      "evidence_standard": null,
-      "human_review": true,
-      "reason": "Tender requirement specifies 'cable' equipment but omits critical discriminating technical parameters (voltage rating (e.g. 1.1 kV / 11 kV), conductor material, insulation type (PVC / XLPE)). A specific Indian Standard cannot be safely selected without guessing.",
-      "competing": [],
-      "missing": [
-        "voltage rating (e.g. 1.1 kV / 11 kV)",
-        "conductor material",
-        "insulation type (PVC / XLPE)"
       ]
     }
   ]

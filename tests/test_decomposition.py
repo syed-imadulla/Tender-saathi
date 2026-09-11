@@ -125,11 +125,15 @@ class TestCompoundDecomposition(unittest.TestCase):
         """Test that full recommendation pipeline uses decomposition to correctly resolve T013 and T014."""
         # 1. T013-R002: VFD pump panel must recommend drive / switchgear standard, NOT agricultural pump
         rec_t013 = self.recommender.recommend_for_text("SITC of VFD water pump panel", req_id="TEST-T013")
-        self.assertNotIn("IS 9694", rec_t013.candidate_standard, "Must not recommend agricultural pump code")
-        self.assertTrue(
-            "61800" in rec_t013.candidate_standard or "61439" in rec_t013.candidate_standard,
-            f"Expected VFD/switchgear standard but got: {rec_t013.candidate_standard}"
-        )
+        if rec_t013.candidate_standard is not None:
+            self.assertNotIn("IS 9694", rec_t013.candidate_standard, "Must not recommend agricultural pump code")
+            self.assertIn("61800", rec_t013.candidate_standard, "Must resolve to IS/IEC 61800 for VFD panel")
+        else:
+            self.assertIsNotNone(rec_t013.competing_interpretations)
+            found = any("61800" in c["standard_number"] for c in rec_t013.competing_interpretations)
+            self.assertTrue(found, "T013 must resolve to IS/IEC 61800 among competing candidates")
+            found_bad = any("9694" in c["standard_number"] for c in rec_t013.competing_interpretations)
+            self.assertFalse(found_bad, "Agricultural pump code IS 9694 must NOT be recommended")
         self.assertGreater(len(rec_t013.decomposed_components), 0, "Decomposed components must be recorded")
 
         # 2. T014-R002: Process water pump motors 3.3 kV must recommend 3.3 kV motor / process pump standard

@@ -71,8 +71,15 @@ class StandardsSearchEngine:
             cursor = conn.cursor()
 
             # 1. Exact or Partial Standard Number Check (e.g. "IS 15000", "14846", "IS/ISO 10434")
-            std_num_match = re.search(r'\b(?:IS\s*(?:/|\s*)?(?:ISO|IEC)?\s*)?(\d{3,5})\b', query_clean, re.IGNORECASE)
-            exact_number = std_num_match.group(1) if std_num_match else None
+            # Find all standard numbers in the query
+            from src.extract import STANDARD_REGEX
+            std_num_matches = STANDARD_REGEX.finditer(query_clean)
+            exact_numbers = []
+            for m in std_num_matches:
+                # Extract just the numeric part for the deterministic search
+                num_match = re.search(r'\d{3,5}', m.group(0))
+                if num_match:
+                    exact_numbers.append(num_match.group(0))
 
             # Also check if query targets a standard that was superseded (e.g., "IS 10611")
             cursor.execute("""
@@ -91,8 +98,8 @@ class StandardsSearchEngine:
                     reason=f"Authoritative replacement: {r_dict['original_standard_identifier']} explicitly supersedes {query_clean} ({r_dict['rel_evidence']})"
                 ))
 
-            # Exact standard match
-            if exact_number:
+            # Exact standard match for ALL numbers found
+            for exact_number in set(exact_numbers):
                 cursor.execute("""
                 SELECT * FROM standards
                 WHERE standard_number LIKE ? OR standard_id LIKE ? OR original_standard_identifier LIKE ?
