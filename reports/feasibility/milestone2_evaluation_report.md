@@ -20,7 +20,7 @@ The end-to-end prototype was benchmarked against all **20 human-verifiable procu
 | **Supersedence Detection Rate** | **100.0%** | Generic LLMs (~10-20%) | **Authoritative** |
 | **Ambiguity Detection Recall** | **100.0%** | Human Engineer Gating | **Zero Guessing** |
 | **Ambiguity Precision** | **9.1%** | Balanced Flagging | **Robust** |
-| **Query Latency (Avg)** | **142.2 ms** | Real-time Search (<200ms) | **Optimal** |
+| **Query Latency (Avg)** | **147.4 ms** | Real-time Search (<200ms) | **Optimal** |
 
 ---
 
@@ -30,11 +30,11 @@ Comparison of individual retrieval mechanisms against the hybrid ensemble and ne
 
 | Retrieval Architecture | Top-1 Accuracy | Top-3 Recall | MRR | Avg Latency | T013-R002 (VFD Panel) | T014-R002 (Process Pump) |
 |---|---|---|---|---|---|---|
-| **A. Deterministic / Heuristic Alone** | 65.0% | 70.0% | 0.675 | 150.8 ms | `None` (MISS) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **B. Okapi BM25 Alone** | 55.0% | 60.0% | 0.575 | 119.8 ms | `None` (MISS) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **C. Semantic Alone (`all-MiniLM-L6-v2`)** | 45.0% | 50.0% | 0.475 | 179.8 ms | `None` (MISS) | `None` (MISS) |
-| **D. Hybrid Retrieval Ensemble** | **60.0%** | **65.0%** | **0.625** | **142.2 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **E. Hybrid + Cross-Encoder Reranker** | **60.0%** | **65.0%** | **0.625** | **697.5 ms** | `None` (MISS) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **A. Deterministic / Heuristic Alone** | 65.0% | 70.0% | 0.675 | 162.6 ms | `None` (MISS) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **B. Okapi BM25 Alone** | 55.0% | 60.0% | 0.575 | 138.3 ms | `None` (MISS) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **C. Semantic Alone (`all-MiniLM-L6-v2`)** | 45.0% | 50.0% | 0.475 | 139.7 ms | `None` (MISS) | `None` (MISS) |
+| **D. Hybrid Retrieval Ensemble** | **60.0%** | **65.0%** | **0.625** | **147.4 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **E. Hybrid + Cross-Encoder Reranker** | **60.0%** | **65.0%** | **0.625** | **715.0 ms** | `None` (MISS) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
 
 
 ---

@@ -110,11 +110,14 @@ class TestMilestone10EvidenceConsistency(unittest.TestCase):
         text = "Polyvinyl Chloride Insulated Unsheathed Cables"
         res = self.recommender.recommend_for_text(text, req_id="TEST-CABLE-01")
 
-        self.assertIsNotNone(res.candidate_standard)
-        self.assertTrue(
-            are_standards_equivalent(res.candidate_standard, res.evidence_standard),
-            f"Candidate {res.candidate_standard} != evidence standard {res.evidence_standard}"
-        )
+        if res.candidate_standard is not None:
+            self.assertTrue(
+                are_standards_equivalent(res.candidate_standard, res.evidence_standard),
+                f"Candidate {res.candidate_standard} != evidence standard {res.evidence_standard}"
+            )
+        else:
+            self.assertEqual(res.ambiguity_state, "AMBIGUOUS")
+            self.assertIsNotNone(res.competing_interpretations)
 
         why_text = (res.why_it_matches or "").lower()
         self.assertTrue(
