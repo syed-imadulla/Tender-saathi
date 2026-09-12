@@ -145,8 +145,23 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
           {/* 1. Requirement */}
           <section className="drawer-section">
             <span className="drawer-section__label">1. Requirement</span>
-            <div className="drawer-section__value drawer-section__value--req">{req.text}</div>
+            <div className="drawer-section__value drawer-section__value--req">
+              <div>
+                <strong>Tender Text:</strong> {req.multilingual?.original_text || req.text}
+              </div>
+              {req.multilingual?.is_multilingual && (
+                <div style={{ marginTop: '0.5rem', padding: '0.5rem 0.75rem', background: '#f8fafc', borderRadius: '4px', borderLeft: '3px solid #3b82f6' }}>
+                  <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#475569', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
+                    System interpretation ({req.multilingual.detected_language === 'hi' ? 'Hindi → English' : req.multilingual.detected_language === 'kn' ? 'Kannada → English' : req.multilingual.detected_language === 'ta' ? 'Tamil → English' : 'Mixed → English'}):
+                  </div>
+                  <div style={{ color: '#1e293b', fontStyle: 'italic' }}>
+                    "{req.multilingual.canonical_text}"
+                  </div>
+                </div>
+              )}
+            </div>
           </section>
+
 
           {/* 2. Indian Standard */}
           <section className="drawer-section">

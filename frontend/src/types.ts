@@ -56,10 +56,27 @@ export interface CompetingInterpretation {
   distinguishing_parameter_needed?: string;
 }
 
+export interface MultilingualMetadata {
+  is_multilingual: boolean;
+  detected_language: string;
+  original_text: string;
+  canonical_text: string;
+  language_confidence: number;
+  normalization_confidence: number;
+  entity_preservation_status: string;
+  is_translated: boolean;
+  human_review_required: boolean;
+  normalization_method: string;
+  missing_entities?: string[];
+  notes?: string[];
+}
+
 export interface Requirement {
   id: string;
   text: string;
+  multilingual?: MultilingualMetadata;
   category: string;
+
   // Standard
   candidate_standard: string | null;
   title: string;
