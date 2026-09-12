@@ -82,7 +82,7 @@ GENERIC_STOPWORDS: Set[str] = {
     "to", "by", "from", "an", "as", "is", "are", "was", "were", "be", "been",
     "has", "have", "had", "do", "does", "did", "can", "could", "should", "would",
     "may", "might", "must", "new", "old", "used", "nos", "no", "berths", "tender",
-    "item", "items", "etc", "such", "than", "or", "not", "only", "both", "all"
+    "item", "items", "etc", "such", "than", "or", "not", "only", "both", "all", "without"
 }
 
 
@@ -385,6 +385,57 @@ class ApplicabilityGate:
             application_match = False
             conflict_flags.append("EQUIPMENT_MISMATCH: power drive system vs switchgear assembly")
             rejection_reasons.append("Equipment mismatch: Standard covers adjustable speed power drive systems (VFD), but requirement specifies switchgear/controlgear assembly without power drive system.")
+
+        # Product boundary gates (Section 10 critical safety tests):
+        # 1. XLPE Cable Voltage Tier Gate: IS 7098 Part 1 (<= 1100 V) vs Part 2 (3.3 kV to 33 kV)
+        is_7098 = "7098" in std_num
+        if is_7098:
+            has_mv_or_ht = bool(re.search(r'\b(?:11\s*kv|33\s*kv|3\.3\s*kv|6\.6\s*kv|22\s*kv|ht\s+cable|medium\s+voltage|high\s+voltage)\b', req_text_low))
+            has_lv_or_lt = bool(re.search(r'\b(?:1\.1\s*kv|1100\s*v|lt\s+cable|low\s+voltage)\b', req_text_low))
+            is_part_1 = "part 1" in std_num.lower() or "part-1" in std_num.lower() or "part 1" in cand_corpus_low
+            is_part_2 = "part 2" in std_num.lower() or "part-2" in std_num.lower() or "part 2" in cand_corpus_low
+
+            if is_part_1 and has_mv_or_ht and not has_lv_or_lt:
+                application_match = False
+                conflict_flags.append("VOLTAGE_CONFLICT: 11 kV / HT cable exceeds IS 7098 Part 1 maximum voltage rating (1.1 kV / 1100 V)")
+                rejection_reasons.append("Voltage rating conflict: IS 7098 (Part 1) only covers working voltages up to and including 1100 V (1.1 kV). For medium/high voltage (e.g. 11 kV), applicable standard is IS 7098 (Part 2).")
+            elif is_part_2 and has_lv_or_lt and not has_mv_or_ht:
+                application_match = False
+                conflict_flags.append("VOLTAGE_CONFLICT: LT / 1.1 kV cable is below IS 7098 Part 2 minimum voltage rating (3.3 kV)")
+                rejection_reasons.append("Voltage rating conflict: IS 7098 (Part 2) covers voltages from 3.3 kV up to 33 kV. For low voltage / 1.1 kV, applicable standard is IS 7098 (Part 1).")
+
+        # 2. Steel Reinforcement Process & Grade Gate: IS 432 (Mild steel) vs IS 1786 (High strength deformed / TMT)
+        is_432 = "432" in std_num
+        has_tmt_or_deformed = bool(re.search(r'\b(?:fe\s*500d?|fe\s*415|fe\s*550d?|fe\s*600|tmt|thermo\s*mechanically\s*treated|high\s+strength\s+deformed|deformed\s+bar|ctd)\b', req_text_low))
+        if is_432 and has_tmt_or_deformed:
+            application_match = False
+            conflict_flags.append("GRADE_OR_PROCESS_CONFLICT: Fe 500D / TMT vs mild steel IS 432")
+            rejection_reasons.append("Grade/process conflict: Requirement specifies high strength deformed / TMT reinforcement steel bars (Fe 500/500D), but IS 432 covers only mild steel (Fe 250) and medium tensile steel bars. Applicable standard is IS 1786.")
+
+        # 3. Piping Application Gate: IS 4985 (Potable water pressure) vs IS 15328 (Underground drainage/sewerage)
+        is_4985 = "4985" in std_num
+        has_drainage_or_sewer = bool(re.search(r'\b(?:drainage|sewerage|sewer|underground\s+drainage|gravity\s+drainage|non-pressure\s+drainage)\b', req_text_low))
+        if is_4985 and has_drainage_or_sewer:
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: underground drainage/sewerage vs potable water supply IS 4985")
+            rejection_reasons.append("Application conflict: Requirement specifies underground drainage/sewerage piping, but IS 4985 covers unplasticized PVC pipes for potable water supplies. Applicable standard for underground drainage/sewerage is IS 15328.")
+
+        # 4. Equipment Type Gate: IS 5039 (Distribution pillars / junction boxes) vs IS 1180 (Distribution transformers)
+        is_5039 = "5039" in std_num
+        has_transformer = bool(re.search(r'\b(?:transformer|transformers|distribution\s+transformer|kva|mva|oil\s+immersed\s+transformer)\b', req_text_low))
+        if is_5039 and has_transformer:
+            application_match = False
+            conflict_flags.append("EQUIPMENT_MISMATCH: distribution transformer vs distribution pillar IS 5039")
+            rejection_reasons.append("Equipment mismatch: Requirement specifies outdoor oil-immersed distribution transformer, but IS 5039 covers distribution pillars (feeder pillars / junction boxes). Applicable standard is IS 1180 (Part 1).")
+
+        # 5. Pump Type Gate: IS 8034 specifically covers submersible pumpsets
+        is_8034 = "8034" in std_num
+        is_pump_req = bool(re.search(r'\b(?:pump|pumps|pumpset|pumpsets)\b', req_text_low))
+        has_submersible = bool(re.search(r'\b(?:submersible|borewell|deep\s*well|submerged)\b', req_text_low))
+        if is_8034 and is_pump_req and not has_submersible:
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: non-submersible pump vs submersible pumpset IS 8034")
+            rejection_reasons.append("Application conflict: IS 8034 specifically covers submersible pumpsets. Requirement specifies a non-submersible / surface coupled process pump.")
 
         # 7. Evidence Support
         # Standard exists and has scope, but does it evidence THIS requirement?
