@@ -1,8 +1,8 @@
-/* UnifiedInput.css — Modern unified AI-style input bar */
+/* UnifiedInput.css — Modern unified AI-style input bar matching reference */
 
 .unified-input-wrapper {
   width: 100%;
-  max-width: 820px;
+  max-width: 940px;
   margin: 0 auto;
   position: relative;
 }
@@ -11,25 +11,32 @@
   width: 100%;
   background: #ffffff;
   border: 1.5px solid #e2e8f0;
-  border-radius: 24px;
-  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.02);
-  padding: 12px 14px;
+  border-radius: 9999px;
+  box-shadow: 0 10px 32px -4px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.02);
+  padding: 10px 14px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+  gap: 6px;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
   position: relative;
+  box-sizing: border-box;
 }
 
 .unified-input-container:focus-within {
   border-color: #ff5a36;
-  box-shadow: 0 12px 36px -4px rgba(255, 90, 54, 0.12), 0 0 0 3px rgba(255, 90, 54, 0.08);
+  box-shadow: 0 16px 44px -4px rgba(255, 90, 54, 0.16), 0 0 0 3px rgba(255, 90, 54, 0.08);
 }
 
 .unified-input-container--dragover {
   border-color: #ff5a36;
-  background-color: #fff9f7;
-  box-shadow: 0 12px 36px -4px rgba(255, 90, 54, 0.16);
+  background-color: #fffaf8;
+  box-shadow: 0 16px 44px rgba(255, 90, 54, 0.2);
+}
+
+.unified-input-container--has-attachments {
+  border-radius: 24px;
+  padding: 12px 14px 10px;
+  gap: 10px;
 }
 
 .unified-input-container--disabled {
@@ -39,12 +46,13 @@
 
 /* ── Attachments Area ─────────────────────────────────────────────────── */
 .unified-input__attachments {
-  padding: 4px 6px 6px;
+  padding: 2px 4px 10px;
   border-bottom: 1px solid #f1f5f9;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
+  width: 100%;
 }
 
 /* PDF Chip */
@@ -55,13 +63,21 @@
   background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
-  padding: 6px 12px;
+  padding: 6px 12px 6px 8px;
   max-width: 100%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
 .attachment-chip__icon {
-  font-size: 1.3rem;
-  line-height: 1;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #fff1ee;
+  color: #ff5a36;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .attachment-chip__info {
@@ -72,21 +88,22 @@
 
 .attachment-chip__name {
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 650;
   color: #0f172a;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 320px;
+  max-width: 380px;
 }
 
 .attachment-chip__size {
   font-size: 0.72rem;
   color: #64748b;
+  margin-top: 1px;
 }
 
 .attachment-chip__remove {
-  background: #f1f5f9;
+  background: #edf2f7;
   border: none;
   border-radius: 50%;
   width: 22px;
@@ -97,7 +114,7 @@
   color: #64748b;
   cursor: pointer;
   transition: all 120ms ease;
-  margin-left: 4px;
+  margin-left: 8px;
 }
 
 .attachment-chip__remove:hover {
@@ -115,8 +132,8 @@
 
 .image-thumb-card {
   position: relative;
-  width: 52px;
-  height: 52px;
+  width: 48px;
+  height: 48px;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid #e2e8f0;
@@ -169,8 +186,8 @@
 }
 
 .image-thumb-add-btn {
-  width: 52px;
-  height: 52px;
+  width: 48px;
+  height: 48px;
   border-radius: 10px;
   border: 1.5px dashed #cbd5e1;
   background: #f8fafc;
@@ -194,11 +211,11 @@
 }
 
 .attachment-images__badge {
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 700;
   color: #ff5a36;
   background: #fff1ee;
-  padding: 4px 10px;
+  padding: 3px 10px;
   border-radius: 9999px;
   margin-left: 4px;
 }
@@ -207,7 +224,7 @@
 .unified-input__main-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   width: 100%;
 }
 
@@ -218,15 +235,15 @@
 }
 
 .unified-input__plus-btn {
-  width: 42px;
-  height: 42px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: #f1f5f9;
-  border: 1px solid #e2e8f0;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #475569;
+  color: #334155;
   cursor: pointer;
   transition: all 160ms ease;
 }
@@ -237,41 +254,32 @@
 }
 
 .unified-input__plus-btn--active {
-  background: #ffebe6;
-  border-color: #ffd2c7;
-  color: #ff5a36;
+  background: #e2e8f0;
+  color: #0f172a;
 }
 
-.plus-icon {
-  transition: transform 180ms ease;
-}
-
-.plus-icon--rotated {
-  transform: rotate(45deg);
-}
-
-/* Plus Menu Popover */
+/* Plus Menu Popover - positioned below + button */
 .plus-menu-popover {
   position: absolute;
-  bottom: calc(100% + 10px);
+  top: calc(100% + 14px);
   left: 0;
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  box-shadow: 0 16px 36px -6px rgba(15, 23, 42, 0.16), 0 2px 6px rgba(15, 23, 42, 0.04);
-  padding: 8px;
-  width: 280px;
+  border: 1px solid #edf0f3;
+  border-radius: 20px;
+  box-shadow: 0 20px 48px -8px rgba(15, 23, 42, 0.14), 0 4px 14px rgba(15, 23, 42, 0.04);
+  padding: 10px;
+  width: 290px;
   z-index: 200;
-  animation: popoverFadeUp 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  animation: popoverFadeDown 160ms cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-@keyframes popoverFadeUp {
+@keyframes popoverFadeDown {
   from {
     opacity: 0;
-    transform: translateY(8px) scale(0.96);
+    transform: translateY(-6px) scale(0.97);
   }
   to {
     opacity: 1;
@@ -279,27 +287,18 @@
   }
 }
 
-.plus-menu-header {
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: #94a3b8;
-  padding: 6px 10px 4px;
-  text-transform: uppercase;
-}
-
 .plus-menu-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 12px;
+  gap: 14px;
+  padding: 11px 14px;
   background: transparent;
   border: none;
-  border-radius: 10px;
+  border-radius: 14px;
   cursor: pointer;
   text-align: left;
   font-family: inherit;
-  transition: background 120ms ease;
+  transition: background 140ms ease;
   width: 100%;
 }
 
@@ -310,10 +309,11 @@
 }
 
 .plus-menu-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: #f1f5f9;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #fff2ef;
+  border: 1px solid #ffe2db;
   color: #ff5a36;
   display: flex;
   align-items: center;
@@ -327,15 +327,17 @@
 }
 
 .plus-menu-title {
-  font-size: 0.88rem;
+  font-size: 0.94rem;
   font-weight: 700;
   color: #0f172a;
+  line-height: 1.25;
 }
 
 .plus-menu-desc {
-  font-size: 0.74rem;
+  font-size: 0.78rem;
   color: #64748b;
-  line-height: 1.3;
+  line-height: 1.35;
+  margin-top: 2px;
 }
 
 /* ── Textarea ─────────────────────────────────────────────────────────── */
@@ -343,21 +345,22 @@
   flex: 1;
   display: flex;
   align-items: center;
+  padding: 0 4px;
 }
 
 .unified-input__textarea {
   width: 100%;
   border: none;
   background: transparent;
-  padding: 8px 4px;
+  padding: 8px 6px;
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 1.15rem;
   font-weight: 450;
   color: #0f172a;
-  line-height: 1.5;
+  line-height: 1.48;
   resize: none;
   outline: none;
-  min-height: 28px;
+  min-height: 32px;
   max-height: 130px;
 }
 
@@ -368,40 +371,34 @@
 
 /* ── Submit Arrow Button ──────────────────────────────────────────────── */
 .unified-input__submit-btn {
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  background: #f1f5f9;
+  background: #ff5a36;
   border: none;
-  color: #94a3b8;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: not-allowed;
+  cursor: pointer;
   transition: all 160ms ease;
   flex-shrink: 0;
+  box-shadow: 0 3px 12px rgba(255, 90, 54, 0.35);
 }
 
-.unified-input__submit-btn--ready {
-  background: #ff5a36;
-  color: #ffffff;
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(255, 90, 54, 0.35);
-}
-
-.unified-input__submit-btn--ready:hover {
-  background: #e84c28;
+.unified-input__submit-btn:hover {
+  background: #ea4c25;
   transform: translateY(-1px);
   box-shadow: 0 6px 18px rgba(255, 90, 54, 0.45);
 }
 
-.unified-input__submit-btn--ready:active {
+.unified-input__submit-btn:active {
   transform: translateY(0);
 }
 
 /* ── Error notice ─────────────────────────────────────────────────────── */
 .unified-input__error {
-  margin-top: 8px;
+  margin-top: 10px;
   background: #fef2f2;
   border: 1px solid #fecaca;
   color: #b91c1c;
@@ -417,22 +414,23 @@
 
 @media (max-width: 640px) {
   .unified-input-container {
-    border-radius: 20px;
-    padding: 10px 12px;
+    border-radius: 30px;
+    padding: 6px 8px;
   }
   .unified-input__plus-btn {
     width: 38px;
     height: 38px;
   }
   .unified-input__submit-btn {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
   }
   .unified-input__textarea {
     font-size: 0.95rem;
   }
   .plus-menu-popover {
-    width: calc(100vw - 48px);
-    max-width: 290px;
+    width: calc(100vw - 44px);
+    max-width: 280px;
   }
 }
+

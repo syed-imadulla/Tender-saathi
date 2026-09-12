@@ -230,11 +230,15 @@ export default function UnifiedInput({
     el.style.height = `${Math.min(el.scrollHeight, 120)}px`;
   };
 
+  const hasAttachments = Boolean(pdfFile || images.length > 0);
+
   return (
     <div className="unified-input-wrapper">
       <div
         ref={containerRef}
-        className={`unified-input-container${dragOver ? ' unified-input-container--dragover' : ''}${
+        className={`unified-input-container${
+          hasAttachments ? ' unified-input-container--has-attachments' : ''
+        }${dragOver ? ' unified-input-container--dragover' : ''}${
           disabled ? ' unified-input-container--disabled' : ''
         }`}
         onDragOver={handleDragOver}
@@ -244,12 +248,19 @@ export default function UnifiedInput({
         aria-label="Tender specification input"
       >
         {/* Attachments Area (inside input bar) */}
-        {(pdfFile || images.length > 0) && (
+        {hasAttachments && (
           <div className="unified-input__attachments">
             {/* PDF Attachment Pill */}
             {pdfFile && (
               <div className="attachment-chip attachment-chip--pdf">
-                <span className="attachment-chip__icon" aria-hidden="true">📄</span>
+                <span className="attachment-chip__icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                  </svg>
+                </span>
                 <div className="attachment-chip__info">
                   <span className="attachment-chip__name" title={pdfFile.name}>
                     {pdfFile.name}
@@ -365,7 +376,7 @@ export default function UnifiedInput({
                 strokeWidth="2.4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className={`plus-icon${isPlusMenuOpen ? ' plus-icon--rotated' : ''}`}
+                className="plus-icon"
               >
                 <line x1="12" y1="5" x2="12" y2="19" />
                 <line x1="5" y1="12" x2="19" y2="12" />
@@ -380,8 +391,6 @@ export default function UnifiedInput({
                 role="menu"
                 aria-label="Upload document options"
               >
-                <div className="plus-menu-header">Upload document</div>
-
                 <button
                   type="button"
                   className="plus-menu-item"
@@ -391,14 +400,16 @@ export default function UnifiedInput({
                   }}
                 >
                   <span className="plus-menu-icon" aria-hidden="true">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                       <polyline points="14 2 14 8 20 8" />
+                      <line x1="16" y1="13" x2="8" y2="13" />
+                      <line x1="16" y1="17" x2="8" y2="17" />
                     </svg>
                   </span>
                   <div className="plus-menu-text">
-                    <span className="plus-menu-title">PDF Document</span>
-                    <span className="plus-menu-desc">Tender notices, NITs, specs (PDF, DOCX)</span>
+                    <span className="plus-menu-title">Upload PDF</span>
+                    <span className="plus-menu-desc">Tender documents, NITs, specs</span>
                   </div>
                 </button>
 
@@ -411,15 +422,15 @@ export default function UnifiedInput({
                   }}
                 >
                   <span className="plus-menu-icon" aria-hidden="true">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="3" y="3" width="18" height="18" rx="2" />
                       <circle cx="8.5" cy="8.5" r="1.5" />
                       <polyline points="21 15 16 10 5 21" />
                     </svg>
                   </span>
                   <div className="plus-menu-text">
-                    <span className="plus-menu-title">Image / Photos</span>
-                    <span className="plus-menu-desc">Scanned pages &amp; photos (OCR-assisted)</span>
+                    <span className="plus-menu-title">Upload images</span>
+                    <span className="plus-menu-desc">Scanned pages &amp; photos (OCR)</span>
                   </div>
                 </button>
 
@@ -432,14 +443,14 @@ export default function UnifiedInput({
                   }}
                 >
                   <span className="plus-menu-icon" aria-hidden="true">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
                       <circle cx="12" cy="13" r="4" />
                     </svg>
                   </span>
                   <div className="plus-menu-text">
                     <span className="plus-menu-title">Take a photo</span>
-                    <span className="plus-menu-desc">Camera capture for documents &amp; schedules</span>
+                    <span className="plus-menu-desc">Camera capture for documents</span>
                   </div>
                 </button>
               </div>
@@ -457,7 +468,7 @@ export default function UnifiedInput({
                   ? 'PDF attached. Press ↑ to analyze or add notes...'
                   : images.length > 0
                   ? `${images.length} image(s) ready. Press ↑ to analyze...`
-                  : 'Tell us what you need to check... or press + to attach a document'
+                  : 'Tell us what you need to check...'
               }
               value={text}
               onChange={(e) => {
@@ -476,9 +487,8 @@ export default function UnifiedInput({
             type="button"
             className={`unified-input__submit-btn${canSubmit ? ' unified-input__submit-btn--ready' : ''}`}
             onClick={handleSubmit}
-            disabled={!canSubmit}
             aria-label="Start analysis"
-            title="Start analysis (Enter)"
+            title={canSubmit ? 'Start analysis (Enter)' : 'Type requirement or attach document'}
           >
             <svg
               width="20"
