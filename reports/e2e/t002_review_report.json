@@ -9,10 +9,9 @@
     "date": null,
     "requirements_analyzed": 1
   },
-  "publication_readiness": "REVIEW_REQUIRED",
+  "publication_readiness": "INSUFFICIENT_EVIDENCE",
   "readiness_reasons": [
-    "1 requirement(s) flagged with HIGH risk.",
-    "1 requirement(s) require technical engineer review."
+    "1 of 1 requirements lack verified standards evidence."
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
@@ -23,13 +22,13 @@
     "insufficient_evidence_count": 0,
     "superseded_count": 0,
     "withdrawn_count": 0,
-    "active_count": 1,
-    "unknown_lifecycle_count": 0,
+    "active_count": 0,
+    "unknown_lifecycle_count": 1,
     "evidence_distribution": {
       "STRONG": 0,
-      "MODERATE": 1,
+      "MODERATE": 0,
       "WEAK": 0,
-      "NONE": 0
+      "NONE": 1
     },
     "completeness_distribution": {
       "KNOWN": 0,
@@ -44,30 +43,65 @@
       "CRITICAL": 0
     },
     "lifecycle_distribution": {
-      "Active": 1,
+      "Active": 0,
       "Superseded": 0,
       "Withdrawn": 0,
-      "Unknown": 0
+      "Unknown": 1
     },
-    "related_standards_count": 2,
+    "related_standards_count": 0,
     "review_queue": [
       {
         "requirement_id": "T002-R001",
         "requirement_text": "Annual Rate Contract for Execution of Mechanical Maintenance Works including Pumps, Valve Replacement, Flange Joint Maintenance, Heat Exchanger Maintenance, NDT and Allied Mechanical Works at Heavy Water Board Facilities, Vadodara.",
         "risk_level": "HIGH",
         "decision": "REVIEW_REQUIRED",
-        "candidate_standard": "IS 2712 : 2020",
-        "evidence_strength": "MODERATE",
-        "primary_reason": "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)",
+        "candidate_standard": "NONE",
+        "evidence_strength": "NONE",
+        "primary_reason": "Tender requirement specifies 'valve' equipment but omits critical discriminating technical parameters (material, valve type). A specific Indian Standard cannot be safely selected without guessing.",
         "priority": 2
       }
     ],
-    "publication_readiness": "REVIEW_REQUIRED",
+    "publication_readiness": "INSUFFICIENT_EVIDENCE",
     "readiness_reasons": [
-      "1 requirement(s) flagged with HIGH risk.",
-      "1 requirement(s) require technical engineer review."
+      "1 of 1 requirements lack verified standards evidence."
     ],
-    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification."
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 0,
+    "normative_reference_count": 0,
+    "allied_standard_count": 0,
+    "test_standard_count": 0,
+    "installation_standard_count": 0,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 0,
+    "related_for_review_count": 0,
+    "standards_coverage": {
+      "direct_standards_identified": 1,
+      "total_dependencies": 0,
+      "normative_references": 0,
+      "testing_dependencies": 0,
+      "installation_dependencies": 0,
+      "allied_standards": 0,
+      "covered_in_tender": 0,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "items_requiring_review": 1
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 0,
+      "related_for_review_count": 0
+    },
+    "certification_checks": 1,
+    "qco_checks": 1,
+    "crs_checks": 1,
+    "hallmarking_checks": 1,
+    "regulatory_review_items": 1,
+    "unknown_regulatory_items": 1,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 0,
+    "mandatory_certification_count": 0,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
   },
   "requirements": [
     {
@@ -116,65 +150,23 @@
             "category": "flange_jointing",
             "standard_focus": "IS 6392 / IS 2712"
           }
-        },
-        {
-          "text": "valves",
-          "component_type": "equipment",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "domain": "mechanical"
-          }
-        },
-        {
-          "text": "flange joints",
-          "component_type": "equipment",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "domain": "mechanical"
-          }
-        },
-        {
-          "text": "heat exchangers",
-          "component_type": "equipment",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "domain": "mechanical"
-          }
-        },
-        {
-          "text": "mechanical maintenance",
-          "component_type": "application",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "is_process": false
-          }
-        },
-        {
-          "text": "testing",
-          "component_type": "action",
-          "domain": "general",
-          "extracted_attributes": {}
         }
       ],
-      "recommended_standard": "IS 2712 : 2020",
-      "recommended_title": "Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 2712]",
-      "relevance_score": 0.646,
-      "lifecycle_status": "Active",
+      "recommended_standard": "NONE",
+      "recommended_title": "Requirement Specification Incomplete - Clarification Required",
+      "relevance_score": 0.0,
+      "lifecycle_status": "Unknown",
       "successor_standard": null,
       "superseded_citation": null,
-      "evidence_strength": "MODERATE",
-      "provenance": "CURATED",
-      "evidence_text": "Partial Match: IS 6392 covers circular steel flanges, but flange joint maintenance inherently requires gasket replacement sheets governed by IS 2712.",
-      "evidence_source": "BIS Standards Catalogue",
+      "evidence_strength": "NONE",
+      "provenance": "UNKNOWN",
+      "evidence_text": "We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue.",
+      "evidence_source": null,
       "why_this": [
-        "Standard title directly matches requirement component(s): 'Flange'.",
-        "Authoritative scope explicitly covers application: \"Partial Match: IS 6392 covers circular steel flanges, but flange joint maintenance inherently requires gasket replacemen...\"",
-        "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via BIS Standards Catalogue (CURATED).",
-        "Candidate addresses multiple decomposed technical aspects of the requirement."
+        "Tender requirement specifies 'valve' equipment but omits critical discriminating technical parameters (material, valve type). A specific Indian Standard cannot be safely selected without guessing."
       ],
       "why_not": [
-        "Alternative standard IS 6392 scored lower across the 5-dimension critic evaluation."
+        "Specification omits critical discriminating parameters: material, valve type."
       ],
       "completeness_label": "UNKNOWN",
       "potentially_missing_parameters": [
@@ -185,41 +177,15 @@
         "Process Application"
       ],
       "known_parameters": {},
-      "related_standards": [
-        {
-          "standard_number": "IS 778 : 1984",
-          "title": "Specification for Copper Alloy Gate, Globe and Check Valves for Waterworks Purposes",
-          "relationship_type": "REFERENCES",
-          "direction": "INCOMING",
-          "lifecycle_status": "Active",
-          "provenance": "VERIFIED",
-          "evidence_strength": "MODERATE",
-          "evidence_text": "Cited as normative reference in IS 778 : 1984 (Clause 2 References).",
-          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+778&id=0",
-          "review_note": "Primary standard is cited by IS 778 : 1984. Review for broader installation context."
-        },
-        {
-          "standard_number": "IS 14846 : 2000",
-          "title": "Sluice Valve for Water Works Purposes (50 to 1200 mm Size) - Specification",
-          "relationship_type": "REFERENCES",
-          "direction": "INCOMING",
-          "lifecycle_status": "Active",
-          "provenance": "VERIFIED",
-          "evidence_strength": "MODERATE",
-          "evidence_text": "Cited as normative reference in IS 14846 : 2000 (Clause 2 References).",
-          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+14846+%3a+2000&id=0",
-          "review_note": "Primary standard is cited by IS 14846 : 2000. Review for broader installation context."
-        }
-      ],
-      "decision": "REVIEW_REQUIRED",
+      "related_standards": [],
+      "decision": "INSUFFICIENT_EVIDENCE",
       "risk_level": "HIGH",
       "risk_reasons": [
-        "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)",
-        "Ambiguous choice between IS 2712 and IS 6392 due to missing distinguishing parameters"
+        "Tender requirement specifies 'valve' equipment but omits critical discriminating technical parameters (material, valve type). A specific Indian Standard cannot be safely selected without guessing."
       ],
       "human_review_required": true,
       "confidence": "Low",
-      "review_reason": "Tender specifies valve work without defining valve nominal diameter (DN), pressure rating (PN), body metallurgy (cast iron vs bronze vs forged steel), or process medium."
+      "review_reason": "Tender requirement specifies 'valve' equipment but omits critical discriminating technical parameters (material, valve type). A specific Indian Standard cannot be safely selected without guessing."
     }
   ],
   "review_queue": [
@@ -228,24 +194,24 @@
       "requirement_text": "Annual Rate Contract for Execution of Mechanical Maintenance Works including Pumps, Valve Replacement, Flange Joint Maintenance, Heat Exchanger Maintenance, NDT and Allied Mechanical Works at Heavy Water Board Facilities, Vadodara.",
       "risk_level": "HIGH",
       "decision": "REVIEW_REQUIRED",
-      "candidate_standard": "IS 2712 : 2020",
-      "evidence_strength": "MODERATE",
-      "primary_reason": "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)",
+      "candidate_standard": "NONE",
+      "evidence_strength": "NONE",
+      "primary_reason": "Tender requirement specifies 'valve' equipment but omits critical discriminating technical parameters (material, valve type). A specific Indian Standard cannot be safely selected without guessing.",
       "priority": 2
     }
   ],
   "evidence_summary": {
     "evidence_distribution": {
       "STRONG": 0,
-      "MODERATE": 1,
+      "MODERATE": 0,
       "WEAK": 0,
-      "NONE": 0
+      "NONE": 1
     },
     "provenance_distribution": {
       "VERIFIED": 0,
-      "CURATED": 1,
+      "CURATED": 0,
       "INFERRED": 0,
-      "UNKNOWN": 0
+      "UNKNOWN": 1
     },
     "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
   },

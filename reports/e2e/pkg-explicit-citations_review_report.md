@@ -38,13 +38,22 @@
 | **Superseded Standards** | 1 | Outdated standards identified |
 | **Withdrawn Standards** | 0 | Cancelled standards |
 | **Unknown Lifecycle** | 0 | Unindexed in local catalogue |
-| **Related Standards to Review** | 7 | Discovered via relationship graph (depth=1) |
+| **Related Standards to Review** | 10 | Discovered via relationship graph (depth=1) |
 
 ### Governance Distributions
 
-- **Evidence Strength:** STRONG: `3` | MODERATE: `1` | WEAK: `0` | NONE: `0`
+- **Evidence Strength:** STRONG: `4` | MODERATE: `0` | WEAK: `0` | NONE: `0`
 - **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `4` | UNKNOWN: `0` | NOT_APPLICABLE: `0`
 - **Risk Distribution:** CRITICAL: `1` | HIGH: `1` | MEDIUM: `0` | LOW: `2`
+
+### Standards Ecosystem & Dependency Coverage
+
+- **Normative References:** `26`
+- **Testing Method Dependencies:** `1`
+- **Installation / Laying Standards:** `5`
+- **Allied Standards:** `1`
+- **Potential Standard Gaps:** `2`
+- **Verified Standard Gaps:** `0`
 
 ## 4. Prioritized Human Review Queue
 
@@ -60,7 +69,7 @@
 **Original Requirement Text:**
 > "Procurement of steel gate valves conforming to IS 10611"
 
-- **Decomposed Technical Components:** `general: gate valves`, `general: steel gate valve`
+- **Decomposed Technical Components:** `general: gate valves`
 - **Recommended Standard:** **IS/ISO 10434 : 2020** — *Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries*
 - **Lifecycle Status:** **ACTIVE** (Active successor replacing cited superseded `IS 10611`) | **Composite Relevance Score:** `1.000`
 - **Evidence Strength:** `STRONG` | **Provenance:** `VERIFIED`
@@ -82,19 +91,18 @@
 **Original Requirement Text:**
 > "Food establishment hygiene management in accordance with IS 15000"
 
-- **Decomposed Technical Components:** `general: food establishment hygiene management`
 - **Recommended Standard:** **IS 15000 : 2024** — *Hazard Analysis and Critical Control Point (HACCP) - Requirements for Any Organization in the Food Chain*
-- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.980`
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `1.000`
 - **Evidence Strength:** `STRONG` | **Provenance:** `VERIFIED`
-- **Verbatim Evidence (BSB Edge Portal):** "This standard sets out the principles of the hazard analysis and critical control point (HACCP) system and provides general guidelines for the application of these principles, while recognizing that the details of application may vary depending on the circumstances of the food operation."
+- **Verbatim Evidence (Tender Document):** "Tender explicitly requires compliance with IS 15000."
 - **Why This Standard?:**
   - Official title aligns with specification: 'Hazard Analysis and Critical Control Point (HACCP) - Requirements for Any Organization in the Food Chain'.
-  - Authoritative scope explicitly covers application: "This standard sets out the principles of the hazard analysis and critical control point (HACCP) system and provides gene..."
+  - Authoritative scope explicitly covers application: "Tender explicitly requires compliance with IS 15000."
   - Standard is currently active in the BIS repository with verified currency.
-  - Provenance established via BSB Edge Portal (VERIFIED).
+  - Provenance established via Tender Document (VERIFIED).
   - Cites normative reference IS 2491 : 2024 (Food Hygiene - General Principles - Code of Practice).
 - **Why Not Alternatives?:**
-  - Alternative standard IS 2491 has lower composite relevance (0.842 vs 0.980).
+  - Alternative standard IS 2491 has lower composite relevance (0.842 vs 1.000).
 - **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Food Establishment Type)
 - **Related Standards Identified for Review (Graph Depth = 1):**
   - [→ REFERENCES] `IS 2491 : 2024` — *Food Hygiene - General Principles - Code of Practice* (Active) — *Note:* Normative reference cited within primary standard. Review for co-application.
@@ -107,21 +115,20 @@
 **Original Requirement Text:**
 > "Sluice valves for water works conforming to IS 780"
 
-- **Decomposed Technical Components:** `general: Sluice valves`, `general: sluice valve`, `general: water works`, `general: supply`
+- **Decomposed Technical Components:** `general: Sluice valves`
 - **Recommended Standard:** **IS 14846 : 2000** — *Sluice Valve for Water Works Purposes (50 to 1200 mm Size) - Specification*
-- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.980`
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.884`
 - **Evidence Strength:** `STRONG` | **Provenance:** `VERIFIED`
 - **Verbatim Evidence (BSB Edge Portal):** "This standard covers requirements for non-rising stem typesluice valves from 50 to 1200 mm sizes used for water supply up to 45 deg C and having double flanged ends forconnections."
 - **Why This Standard?:**
-  - Standard title directly matches requirement component(s): 'sluice valve, water works'.
+  - Official title aligns with specification: 'Sluice Valve for Water Works Purposes (50 to 1200 mm Size) - Specification'.
   - Authoritative scope explicitly covers application: "This standard covers requirements for non-rising stem typesluice valves from 50 to 1200 mm sizes used for water supply u..."
   - Standard is currently active in the BIS repository with verified currency.
   - Provenance established via BSB Edge Portal (VERIFIED).
-  - Candidate addresses multiple decomposed technical aspects of the requirement.
   - Cites normative reference IS 778 : 1984 (Specification for Copper Alloy Gate, Globe and Check Valves for Waterworks Purposes).
   - Cites normative reference IS 28 : 1982 (Title not in local index).
 - **Why Not Alternatives?:**
-  - Alternative standard IS 778 has lower composite relevance (0.387 vs 0.980).
+  - Alternative standard IS 778 has lower composite relevance (0.388 vs 0.884).
 - **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material, Fluid Medium / Service)
 - **Related Standards Identified for Review (Graph Depth = 1):**
   - [→ REFERENCES] `IS 778 : 1984` — *Specification for Copper Alloy Gate, Globe and Check Valves for Waterworks Purposes* (Active) — *Note:* Normative reference cited within primary standard. Review for co-application.
@@ -129,8 +136,8 @@
   - [→ REFERENCES] `IS 210 : 1993` — *Title not in local index* (Unknown) — *Note:* Normative reference cited within primary standard. Review for co-application.
   - [→ REFERENCES] `IS 318 : 1981` — *Title not in local index* (Unknown) — *Note:* Normative reference cited within primary standard. Review for co-application.
   - [→ REFERENCES] `IS 320 : 1980` — *Title not in local index* (Unknown) — *Note:* Normative reference cited within primary standard. Review for co-application.
-- **Standards Review Decision:** `REVIEW_REQUIRED` | **Risk Level:** `HIGH` | **Confidence:** `Low`
-- ⚠ **Human Technical Review Required:** Strong evidence grounded in BSB Edge Portal (VERIFIED)
+- **Standards Review Decision:** `REVIEW_REQUIRED` | **Risk Level:** `HIGH` | **Confidence:** `High`
+- ⚠ **Human Technical Review Required:** Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).
 
 ---
 
@@ -139,20 +146,23 @@
 **Original Requirement Text:**
 > "CPVC pipes conforming to IS 15778 for domestic plumbing"
 
-- **Decomposed Technical Components:** `general: CPVC pipes`, `general: domestic plumbing`, `general: supply`
+- **Decomposed Technical Components:** `general: CPVC pipes`
 - **Recommended Standard:** **IS 15778 : 2007** — *Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*
-- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.980`
-- **Evidence Strength:** `MODERATE` | **Provenance:** `CURATED`
-- **Verbatim Evidence (BIS Standards Catalogue):** "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `1.000`
+- **Evidence Strength:** `STRONG` | **Provenance:** `CURATED`
+- **Verbatim Evidence (Tender Document):** "Tender explicitly requires compliance with IS 15778."
 - **Why This Standard?:**
   - Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.
-  - Authoritative scope explicitly covers application: "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
+  - Authoritative scope explicitly covers application: "Tender explicitly requires compliance with IS 15778."
   - Standard is currently active in the BIS repository with verified currency.
-  - Provenance established via BIS Standards Catalogue (CURATED).
-  - Candidate addresses multiple decomposed technical aspects of the requirement.
+  - Provenance established via Tender Document (VERIFIED).
 - **Why Not Alternatives?:**
-  - Alternative standard IS 14333 has lower composite relevance (0.301 vs 0.980).
+  - Alternative standard IS 14333 has lower composite relevance (0.298 vs 1.000).
 - **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
+- **Related Standards Identified for Review (Graph Depth = 1):**
+  - [→ TEST_METHOD] `IS 12235 : 2004` — *Title not in local index* (Unknown) — *Note:* Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance.
+  - [→ INSTALLATION_STANDARD] `IS 7634 (Part 3) : 2003` — *Title not in local index* (Unknown) — *Note:* Installation, laying, and jointing standard associated with IS 7634 (Part 3) : 2003. Review for installation execution.
+  - [→ ALLIED_STANDARD] `IS 4985 : 2000` — *Title not in local index* (Unknown) — *Note:* Allied product or component standard. Review for equipment interface compatibility.
 - **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `High`
 
 ---

@@ -29,8 +29,8 @@
     "active_count": 3,
     "unknown_lifecycle_count": 0,
     "evidence_distribution": {
-      "STRONG": 3,
-      "MODERATE": 1,
+      "STRONG": 4,
+      "MODERATE": 0,
       "WEAK": 0,
       "NONE": 0
     },
@@ -52,7 +52,7 @@
       "Withdrawn": 0,
       "Unknown": 0
     },
-    "related_standards_count": 7,
+    "related_standards_count": 10,
     "review_queue": [
       {
         "requirement_id": "CITE-001",
@@ -83,7 +83,43 @@
       "2 requirement(s) require technical engineer review.",
       "4 requirement(s) have potentially missing specification parameters."
     ],
-    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification."
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 34,
+    "normative_reference_count": 26,
+    "allied_standard_count": 1,
+    "test_standard_count": 1,
+    "installation_standard_count": 5,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 2,
+    "related_for_review_count": 27,
+    "standards_coverage": {
+      "direct_standards_identified": 4,
+      "total_dependencies": 34,
+      "normative_references": 26,
+      "testing_dependencies": 1,
+      "installation_dependencies": 5,
+      "allied_standards": 1,
+      "covered_in_tender": 1,
+      "potential_gaps": 2,
+      "verified_gaps": 0,
+      "items_requiring_review": 2
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 2,
+      "related_for_review_count": 27
+    },
+    "certification_checks": 4,
+    "qco_checks": 4,
+    "crs_checks": 4,
+    "hallmarking_checks": 4,
+    "regulatory_review_items": 4,
+    "unknown_regulatory_items": 0,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 2,
+    "mandatory_certification_count": 2,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
   },
   "requirements": [
     {
@@ -97,14 +133,6 @@
           "domain": "mechanical",
           "extracted_attributes": {
             "category": "flow_control_valve"
-          }
-        },
-        {
-          "text": "steel gate valve",
-          "component_type": "equipment",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "domain": "mechanical"
           }
         }
       ],
@@ -159,35 +187,26 @@
       "requirement_id": "CITE-002",
       "requirement_text": "Food establishment hygiene management in accordance with IS 15000",
       "category": "general_specification",
-      "components": [
-        {
-          "text": "food establishment hygiene management",
-          "component_type": "application",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "is_process": false
-          }
-        }
-      ],
+      "components": [],
       "recommended_standard": "IS 15000 : 2024",
       "recommended_title": "Hazard Analysis and Critical Control Point (HACCP) - Requirements for Any Organization in the Food Chain",
-      "relevance_score": 0.98,
+      "relevance_score": 1.0,
       "lifecycle_status": "Active",
       "successor_standard": null,
       "superseded_citation": null,
       "evidence_strength": "STRONG",
       "provenance": "VERIFIED",
-      "evidence_text": "This standard sets out the principles of the hazard analysis and critical control point (HACCP) system and provides general guidelines for the application of these principles, while recognizing that the details of application may vary depending on the circumstances of the food operation.",
-      "evidence_source": "BSB Edge Portal",
+      "evidence_text": "Tender explicitly requires compliance with IS 15000.",
+      "evidence_source": "Tender Document",
       "why_this": [
         "Official title aligns with specification: 'Hazard Analysis and Critical Control Point (HACCP) - Requirements for Any Organization in the Food Chain'.",
-        "Authoritative scope explicitly covers application: \"This standard sets out the principles of the hazard analysis and critical control point (HACCP) system and provides gene...\"",
+        "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 15000.\"",
         "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via BSB Edge Portal (VERIFIED).",
+        "Provenance established via Tender Document (VERIFIED).",
         "Cites normative reference IS 2491 : 2024 (Food Hygiene - General Principles - Code of Practice)."
       ],
       "why_not": [
-        "Alternative standard IS 2491 has lower composite relevance (0.842 vs 0.980)."
+        "Alternative standard IS 2491 has lower composite relevance (0.842 vs 1.000)."
       ],
       "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [
@@ -227,33 +246,11 @@
           "extracted_attributes": {
             "category": "flow_control_valve"
           }
-        },
-        {
-          "text": "sluice valve",
-          "component_type": "equipment",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "domain": "mechanical"
-          }
-        },
-        {
-          "text": "water works",
-          "component_type": "application",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "is_process": false
-          }
-        },
-        {
-          "text": "supply",
-          "component_type": "action",
-          "domain": "general",
-          "extracted_attributes": {}
         }
       ],
       "recommended_standard": "IS 14846 : 2000",
       "recommended_title": "Sluice Valve for Water Works Purposes (50 to 1200 mm Size) - Specification",
-      "relevance_score": 0.98,
+      "relevance_score": 0.884,
       "lifecycle_status": "Active",
       "successor_standard": null,
       "superseded_citation": null,
@@ -262,16 +259,15 @@
       "evidence_text": "This standard covers requirements for non-rising stem typesluice valves from 50 to 1200 mm sizes used for water supply up to 45 deg C and having double flanged ends forconnections.",
       "evidence_source": "BSB Edge Portal",
       "why_this": [
-        "Standard title directly matches requirement component(s): 'sluice valve, water works'.",
+        "Official title aligns with specification: 'Sluice Valve for Water Works Purposes (50 to 1200 mm Size) - Specification'.",
         "Authoritative scope explicitly covers application: \"This standard covers requirements for non-rising stem typesluice valves from 50 to 1200 mm sizes used for water supply u...\"",
         "Standard is currently active in the BIS repository with verified currency.",
         "Provenance established via BSB Edge Portal (VERIFIED).",
-        "Candidate addresses multiple decomposed technical aspects of the requirement.",
         "Cites normative reference IS 778 : 1984 (Specification for Copper Alloy Gate, Globe and Check Valves for Waterworks Purposes).",
         "Cites normative reference IS 28 : 1982 (Title not in local index)."
       ],
       "why_not": [
-        "Alternative standard IS 778 has lower composite relevance (0.387 vs 0.980)."
+        "Alternative standard IS 778 has lower composite relevance (0.388 vs 0.884)."
       ],
       "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [
@@ -349,8 +345,8 @@
         "Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material"
       ],
       "human_review_required": true,
-      "confidence": "Low",
-      "review_reason": "Strong evidence grounded in BSB Edge Portal (VERIFIED)"
+      "confidence": "High",
+      "review_reason": "Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel)."
     },
     {
       "requirement_id": "CITE-004",
@@ -364,41 +360,26 @@
           "extracted_attributes": {
             "category": "pipe_material"
           }
-        },
-        {
-          "text": "domestic plumbing",
-          "component_type": "application",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "is_process": false
-          }
-        },
-        {
-          "text": "supply",
-          "component_type": "action",
-          "domain": "general",
-          "extracted_attributes": {}
         }
       ],
       "recommended_standard": "IS 15778 : 2007",
       "recommended_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
-      "relevance_score": 0.98,
+      "relevance_score": 1.0,
       "lifecycle_status": "Active",
       "successor_standard": null,
       "superseded_citation": null,
-      "evidence_strength": "MODERATE",
+      "evidence_strength": "STRONG",
       "provenance": "CURATED",
-      "evidence_text": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.",
-      "evidence_source": "BIS Standards Catalogue",
+      "evidence_text": "Tender explicitly requires compliance with IS 15778.",
+      "evidence_source": "Tender Document",
       "why_this": [
         "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.",
-        "Authoritative scope explicitly covers application: \"Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.\"",
+        "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 15778.\"",
         "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via BIS Standards Catalogue (CURATED).",
-        "Candidate addresses multiple decomposed technical aspects of the requirement."
+        "Provenance established via Tender Document (VERIFIED)."
       ],
       "why_not": [
-        "Alternative standard IS 14333 has lower composite relevance (0.301 vs 0.980)."
+        "Alternative standard IS 14333 has lower composite relevance (0.298 vs 1.000)."
       ],
       "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [
@@ -406,7 +387,44 @@
         "Pressure Class / Schedule / SDR"
       ],
       "known_parameters": {},
-      "related_standards": [],
+      "related_standards": [
+        {
+          "standard_number": "IS 12235 : 2004",
+          "title": "Title not in local index",
+          "relationship_type": "TEST_METHOD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
+          "source_url": null,
+          "review_note": "Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance."
+        },
+        {
+          "standard_number": "IS 7634 (Part 3) : 2003",
+          "title": "Title not in local index",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+          "source_url": null,
+          "review_note": "Installation, laying, and jointing standard associated with IS 7634 (Part 3) : 2003. Review for installation execution."
+        },
+        {
+          "standard_number": "IS 4985 : 2000",
+          "title": "Title not in local index",
+          "relationship_type": "ALLIED_STANDARD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+          "source_url": null,
+          "review_note": "Allied product or component standard. Review for equipment interface compatibility."
+        }
+      ],
       "decision": "RECOMMEND",
       "risk_level": "LOW",
       "risk_reasons": [],
@@ -439,8 +457,8 @@
   ],
   "evidence_summary": {
     "evidence_distribution": {
-      "STRONG": 3,
-      "MODERATE": 1,
+      "STRONG": 4,
+      "MODERATE": 0,
       "WEAK": 0,
       "NONE": 0
     },

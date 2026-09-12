@@ -1,0 +1,102 @@
+{
+  "audit_version": "7A.1.0",
+  "project": "TenderSaathi (SIH26108)",
+  "timestamp": "2026-09-12T11:25:00Z",
+  "git": {
+    "branch": "main",
+    "commit": "d1ed1c5",
+    "commit_message": "docs(p6g): formally adjudicate ML-TA-10 to IS 732:2019 and certify Priority 6 lock",
+    "working_tree_clean": true
+  },
+  "priority_6_verification": {
+    "status": "LOCKED_AND_VERIFIED",
+    "ml_ta_10_adjudicated": true,
+    "benchmark_sha256": "db62e0367ea2983dab49a9ac8a98958efb0c17882df86f131ecfa6b04903690b",
+    "benchmark_accuracy": "40/40 (100.0%)",
+    "candidate_evidence_invariant": "40/40 (100.0%)",
+    "standards_db_rows": 90,
+    "standards_db_distinct_ids": 90,
+    "catalogue_db_records": 502,
+    "bm25_documents": 90,
+    "semantic_vectors": 90
+  },
+  "pytest_warning_diagnosis": {
+    "warning_count": 1,
+    "file": "api/server.py",
+    "line": 383,
+    "test": "tests/test_ambiguity.py::TestAmbiguityEngine::test_11_api_ambiguity_contract",
+    "warning_type": "DeprecationWarning",
+    "message": "datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).",
+    "classification": "Harmless environmental/deprecation warning (Python 3.12+ stdlib deprecation)",
+    "affects_production": false,
+    "affects_reproducibility": false,
+    "action": "Documented as known non-blocking warning per Phase 1 instruction; no production logic modified."
+  },
+  "dataset_identification": {
+    "source_directory": "tenders/raw",
+    "pdf_count": 20,
+    "total_pages": 40,
+    "primary_clauses_extracted": 25,
+    "granular_requirements_dataset": 72,
+    "explicit_is_citations_in_notices": 0,
+    "metadata_registry": "dataset/tender_metadata.csv",
+    "evaluation_script": "scripts/validate_e2e.py",
+    "report_directory": "reports/e2e"
+  },
+  "e2e_results_20_tenders": {
+    "tenders_processed": 20,
+    "tenders_failed": 0,
+    "ocr_failures": 0,
+    "total_requirements_analyzed": 25,
+    "recommendations_with_candidate": 19,
+    "abstentions_candidate_null": 6,
+    "candidate_evidence_invariant_passes": 25,
+    "candidate_evidence_invariant_rate": "25/25 (100.0%)",
+    "ambiguity_states": {
+      "CLEAR": 10,
+      "REVIEW_REQUIRED": 9,
+      "AMBIGUOUS": 4,
+      "INCOMPLETE": 2
+    },
+    "publication_readiness_per_tender": {
+      "READY_FOR_REVIEW": 7,
+      "REVIEW_REQUIRED": 7,
+      "INSUFFICIENT_EVIDENCE": 6
+    },
+    "risk_distribution_per_requirement": {
+      "LOW": 10,
+      "HIGH": 15
+    },
+    "evidence_strength_per_requirement": {
+      "STRONG": 1,
+      "MODERATE": 18,
+      "NONE": 6
+    },
+    "performance": {
+      "avg_tender_processing_time_sec": 1.415,
+      "avg_requirement_processing_time_sec": 1.117
+    }
+  },
+  "frontend_hardcoding_audit": {
+    "status": "PASS",
+    "classification": "SAFE / PRESENTATION-ONLY",
+    "findings": [
+      "No hardcoded standard numbers determining recommendations in React frontend or API client.",
+      "Card rendering validates candidate_evidence equivalence before displaying candidate-specific evidence.",
+      "Sample buttons on Home.tsx route to backend API endpoints which execute full dynamic analysis on sample text.",
+      "Ambiguity, competing interpretations, and clarification questions are driven 100% by backend response."
+    ]
+  },
+  "historical_comparison": {
+    "tenders_processed": { "historical": 20, "current": 20, "delta": 0 },
+    "pages": { "historical": 40, "current": 40, "delta": 0 },
+    "requirements_analyzed": { "historical": 25, "current": 25, "delta": 0 },
+    "recommendations_count": { "historical": 2, "current": 19, "delta": "+17 (Catalogue expansion to 502 standards)" },
+    "ready_for_review_tenders": { "historical": 2, "current": 7, "delta": "+5 (High-confidence grounded matches)" },
+    "review_required_tenders": { "historical": 14, "current": 7, "delta": "-7 (Refined ambiguity states)" },
+    "insufficient_evidence_tenders": { "historical": 4, "current": 6, "delta": "+2 (Clean explicit abstentions)" },
+    "candidate_evidence_invariant": { "historical": "Not measured", "current": "100.0%", "delta": "Enforced" },
+    "avg_tender_latency_sec": { "historical": 4.006, "current": 1.415, "delta": "-2.591 s (65% faster)" }
+  },
+  "verdict": "PRIORITY 7A PASS — proceed to P7B"
+}

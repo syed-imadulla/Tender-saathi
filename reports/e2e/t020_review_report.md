@@ -34,13 +34,22 @@
 | **Superseded Standards** | 0 | Outdated standards identified |
 | **Withdrawn Standards** | 0 | Cancelled standards |
 | **Unknown Lifecycle** | 0 | Unindexed in local catalogue |
-| **Related Standards to Review** | 0 | Discovered via relationship graph (depth=1) |
+| **Related Standards to Review** | 3 | Discovered via relationship graph (depth=1) |
 
 ### Governance Distributions
 
 - **Evidence Strength:** STRONG: `0` | MODERATE: `1` | WEAK: `0` | NONE: `0`
 - **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `1` | UNKNOWN: `0` | NOT_APPLICABLE: `0`
 - **Risk Distribution:** CRITICAL: `0` | HIGH: `0` | MEDIUM: `0` | LOW: `1`
+
+### Standards Ecosystem & Dependency Coverage
+
+- **Normative References:** `0`
+- **Testing Method Dependencies:** `1`
+- **Installation / Laying Standards:** `1`
+- **Allied Standards:** `1`
+- **Potential Standard Gaps:** `2`
+- **Verified Standard Gaps:** `0`
 
 ## 4. Prioritized Human Review Queue
 
@@ -53,7 +62,7 @@
 **Original Requirement Text:**
 > "Repair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn"
 
-- **Decomposed Technical Components:** `general: Repair`, `general: maint`, `general: CPVC pipe`, `general: GI pipe`, `general: plumbing`, `general: maintenance`, `general: replacement`, `general: installation`, `general: testing`
+- **Decomposed Technical Components:** `general: Repair`, `general: maint`, `general: CPVC pipe`, `general: GI pipe`, `general: plumbing`, `general: maintenance`, `general: installation`
 - **Recommended Standard:** **IS 15778 : 2007** — *Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*
 - **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.920`
 - **Evidence Strength:** `MODERATE` | **Provenance:** `CURATED`
@@ -65,8 +74,12 @@
   - Provenance established via BIS Standards Catalogue (CURATED).
   - Candidate addresses multiple decomposed technical aspects of the requirement.
 - **Why Not Alternatives?:**
-  - Alternative standard IS 1239 (Part 2) has lower composite relevance (0.459 vs 0.920).
+  - Alternative standard IS 1239 (Part 2) has lower composite relevance (0.461 vs 0.920).
 - **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
+- **Related Standards Identified for Review (Graph Depth = 1):**
+  - [→ TEST_METHOD] `IS 12235 : 2004` — *Title not in local index* (Unknown) — *Note:* Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance.
+  - [→ INSTALLATION_STANDARD] `IS 7634 (Part 3) : 2003` — *Title not in local index* (Unknown) — *Note:* Installation, laying, and jointing standard associated with IS 7634 (Part 3) : 2003. Review for installation execution.
+  - [→ ALLIED_STANDARD] `IS 4985 : 2000` — *Title not in local index* (Unknown) — *Note:* Allied product or component standard. Review for equipment interface compatibility.
 - **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `High`
 
 ---

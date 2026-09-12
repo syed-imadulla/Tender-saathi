@@ -11,8 +11,8 @@
   "ai_understanding": {
     "provider": "groq",
     "model": "openai/gpt-oss-120b",
-    "llm_success_count": 25,
-    "llm_fallback_count": 0,
+    "llm_success_count": 3,
+    "llm_fallback_count": 22,
     "llm_failure_count": 0
   },
   "retrieval": {
@@ -27,44 +27,44 @@
     "benchmark_warm_latency_reranker_ms": 488.1
   },
   "tender_audit_aggregates": {
-    "total_recommendations": 2,
-    "total_review_required": 17,
-    "total_insufficient_evidence": 6,
-    "total_active": 25,
+    "total_recommendations": 10,
+    "total_review_required": 14,
+    "total_insufficient_evidence": 1,
+    "total_active": 19,
     "total_superseded": 0,
     "total_withdrawn": 0,
-    "total_unknown_lifecycle": 0,
-    "total_related_standards": 22
+    "total_unknown_lifecycle": 6,
+    "total_related_standards": 18
   },
   "distributions": {
     "publication_readiness": {
-      "READY_FOR_REVIEW": 2,
-      "REVIEW_REQUIRED": 14,
-      "INSUFFICIENT_EVIDENCE": 4
+      "READY_FOR_REVIEW": 7,
+      "INSUFFICIENT_EVIDENCE": 6,
+      "REVIEW_REQUIRED": 7
     },
     "risk": {
-      "LOW": 2,
-      "MEDIUM": 4,
-      "HIGH": 19
+      "LOW": 10,
+      "HIGH": 15
     },
     "evidence": {
-      "STRONG": 4,
-      "MODERATE": 17,
-      "WEAK": 4,
-      "NONE": 0
+      "STRONG": 1,
+      "MODERATE": 18,
+      "WEAK": 0,
+      "NONE": 6
     },
     "completeness": {
       "KNOWN": 0,
-      "POTENTIALLY_MISSING": 9,
-      "UNKNOWN": 6,
+      "POTENTIALLY_MISSING": 8,
+      "UNKNOWN": 7,
       "NOT_APPLICABLE": 10
     },
     "lifecycle": {
-      "Active": 25
+      "Active": 19,
+      "Unknown": 6
     }
   },
   "performance": {
-    "avg_tender_processing_time_sec": 4.006,
-    "avg_requirement_processing_time_sec": 3.191
+    "avg_tender_processing_time_sec": 1.415,
+    "avg_requirement_processing_time_sec": 1.117
   }
 }

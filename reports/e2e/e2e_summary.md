@@ -1,6 +1,6 @@
 # TenderSaathi — Phase 1: Full End-to-End Product Verification Summary
 
-**Date**: 2026-09-10 19:38:54  
+**Date**: 2026-09-12 16:50:51  
 **Problem Statement**: SIH26108 — AI-Powered Recommendation Engine for Identifying Applicable Indian Standards for Procurement Specifications  
 **Environment**: Production Feasibility Pipeline (Groq `openai/gpt-oss-120b` + `cross-encoder/ms-marco-MiniLM-L-6-v2`)  
 
@@ -41,8 +41,8 @@ All **20 real Central Public Procurement Portal (CPPP) tender PDFs** in `tenders
 | :--- | :---: | :--- |
 | **Configured Provider** | `groq` | Cloud LLM endpoint (`https://api.groq.com/openai/v1/chat/completions`) |
 | **Configured Model** | `openai/gpt-oss-120b` | State-of-the-art open weights model on Groq |
-| **LLM Success Count** | **25** | Converted requirements into structured technical facets |
-| **Deterministic Fallback Count** | **0** | Invoked regex decomposition when unconfigured/offline |
+| **LLM Success Count** | **3** | Converted requirements into structured technical facets |
+| **Deterministic Fallback Count** | **22** | Invoked regex decomposition when unconfigured/offline |
 | **LLM Unhandled Failures** | **0** | Graceful fallback guaranteed zero crashes |
 
 **Strict Guardrail Compliance**:
@@ -57,35 +57,35 @@ Across the 20 audited tenders (25 total primary requirements):
 
 | Audit Category | Count | Proportion | Meaning |
 | :--- | :---: | :---: | :--- |
-| **Automated Recommendations** | **2** | 8.0% | High-confidence, low-risk matches grounded in verified BIS scope |
-| **Review Required** | **17** | 68.0% | Specification gaps (missing DN/PN/metallurgy) or medium risk |
-| **Insufficient Evidence** | **6** | 24.0% | Out-of-catalogue requirements routed safely to engineering committee |
+| **Automated Recommendations** | **10** | 40.0% | High-confidence, low-risk matches grounded in verified BIS scope |
+| **Review Required** | **14** | 56.0% | Specification gaps (missing DN/PN/metallurgy) or medium risk |
+| **Insufficient Evidence** | **1** | 4.0% | Out-of-catalogue requirements routed safely to engineering committee |
 
 ### Publication Readiness Distribution
-- **READY_FOR_REVIEW**: **2 tenders** — Clean tenders with grounded standards and clear specifications (e.g., T020 CPVC piping).
-- **REVIEW_REQUIRED**: **14 tenders** — Tenders containing ambiguous work items or missing technical parameters (e.g., T002 Valve replacement).
-- **INSUFFICIENT_EVIDENCE**: **4 tenders** — Specialized requirements where prototype catalog has no authoritative scope.
+- **READY_FOR_REVIEW**: **7 tenders** — Clean tenders with grounded standards and clear specifications (e.g., T020 CPVC piping).
+- **REVIEW_REQUIRED**: **7 tenders** — Tenders containing ambiguous work items or missing technical parameters (e.g., T002 Valve replacement).
+- **INSUFFICIENT_EVIDENCE**: **6 tenders** — Specialized requirements where prototype catalog has no authoritative scope.
 
 ---
 
 ## 5. Risk, Evidence & Completeness Distributions
 
 ### Risk Distribution
-- **LOW Risk**: 2
-- **MEDIUM Risk**: 4
-- **HIGH Risk**: 19
+- **LOW Risk**: 10
+- **MEDIUM Risk**: 0
+- **HIGH Risk**: 15
 - **CRITICAL Risk**: 0
 
 ### Evidence Strength Distribution
-- **STRONG**: 4 (VERIFIED BSB Edge scope verbatim match)
-- **MODERATE**: 17 (CURATED BIS Catalogue authoritative entry)
-- **WEAK**: 4
-- **NONE**: 0
+- **STRONG**: 1 (VERIFIED BSB Edge scope verbatim match)
+- **MODERATE**: 18 (CURATED BIS Catalogue authoritative entry)
+- **WEAK**: 0
+- **NONE**: 6
 
 ### Specification Completeness Distribution
 - **KNOWN**: 0
-- **POTENTIALLY_MISSING**: 9
-- **UNKNOWN**: 6
+- **POTENTIALLY_MISSING**: 8
+- **UNKNOWN**: 7
 - **NOT_APPLICABLE**: 10
 
 ---
@@ -144,8 +144,8 @@ Across the 20 audited tenders (25 total primary requirements):
 
 ## 7. Performance & Latency Measurements
 
-- **Full Tender End-to-End Processing Time**: **4.01 s** per tender (including PDF layout parsing, LLM API call, Cross-Encoder reranking, audit aggregation, and report generation).
-- **Per-Requirement Pipeline Latency**: **3.19 s** per requirement.
+- **Full Tender End-to-End Processing Time**: **1.41 s** per tender (including PDF layout parsing, LLM API call, Cross-Encoder reranking, audit aggregation, and report generation).
+- **Per-Requirement Pipeline Latency**: **1.12 s** per requirement.
 - **Warm Retrieval Latency (Reference Benchmark)**:
   - Hybrid baseline: **57.0 ms**
   - Hybrid + Cross-Encoder reranker: **488.1 ms**
