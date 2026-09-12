@@ -17,7 +17,7 @@ from dataclasses import dataclass, field, asdict
 from typing import List, Optional, Dict, Any
 import re
 
-from src.standards import StandardsDatabase
+from src.standards import StandardsDatabase, classify_standard_role
 from src.search import SearchResult
 from src.retrieval import HybridRetrievalEngine
 from src.validate import validate_standard_status, StandardValidationResult
@@ -55,6 +55,7 @@ class StandardRecommendation:
     reranker_score: Optional[float] = None
     final_score: float = 0.0
     applicability: Optional[Dict[str, Any]] = None
+    standard_role: str = "PRIMARY_PRODUCT"
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -122,6 +123,7 @@ class RequirementRecommendationResult:
     competing_interpretations: List[Dict[str, Any]] = field(default_factory=list)
     suggested_clarification_question: Optional[str] = None
     unresolved_components: List[str] = field(default_factory=list)
+    standard_role: str = "PRIMARY_PRODUCT"
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -265,7 +267,7 @@ class StandardsRecommender:
         # Step 2: Multi-modal Search over BIS Standards with Decomposed Components
         # Primary search using full requirement text and decomposed components
         search_results = self.search_engine.search(
-            text, top_k=5, components=req.components, mode=self.retrieval_mode
+            text, top_k=8, components=req.components, mode=self.retrieval_mode
         )
 
         # Secondary search if primary yields low results or for multi-item requirements
@@ -324,6 +326,26 @@ class StandardsRecommender:
                 applicable_candidates.append(cand)
             else:
                 rejected_candidates.append((cand, app_res))
+
+        # Check if requirement seeks product procurement (cables, pipes, valves, switchgear, etc.)
+        t_low = text.lower()
+        prod_nouns = [
+            "cable", "cables", "pipe", "pipes", "piping", "valve", "valves",
+            "pump", "pumps", "motor", "motors", "switchgear", "controlgear", "panel", "panels",
+            "transformer", "transformers", "cement", "tile", "tiles", "tube", "tubes",
+            "wire", "wires", "conductor", "conductors", "flange", "flanges", "fitting", "fittings"
+        ]
+        is_prod_req = any(re.search(rf'\b{w}\b', t_low) for w in prod_nouns)
+
+        if is_prod_req and any(classify_standard_role(c.standard_number, c.full_title, c.scope_summary) == "PRIMARY_PRODUCT" for c in applicable_candidates):
+            def role_priority(c: SearchResult) -> int:
+                role = classify_standard_role(c.standard_number, c.full_title, c.scope_summary)
+                if role == "PRIMARY_PRODUCT":
+                    return 0
+                elif role in ["INSTALLATION", "CODE_OF_PRACTICE"]:
+                    return 1
+                return 2
+            applicable_candidates.sort(key=role_priority)
 
         # If ALL candidates fail the applicability gate: ABSTAIN cleanly
         if not applicable_candidates:
@@ -507,6 +529,7 @@ class StandardsRecommender:
             else:
                 rec_std_num = sr.standard_number
 
+            rec_role = classify_standard_role(sr.standard_number, sr.full_title, sr.scope_summary)
             recommendations.append(StandardRecommendation(
                 standard_number=rec_std_num,
                 title=sr.full_title,
@@ -523,11 +546,17 @@ class StandardsRecommender:
                 deterministic_score=round(sr.deterministic_score, 3),
                 reranker_score=round(sr.reranker_score, 3) if sr.reranker_score is not None else None,
                 final_score=round(sr.final_score, 3),
-                applicability=app_dict
+                applicability=app_dict,
+                standard_role=rec_role
             ))
 
-        top_rec = recommendations[0]
-        alternatives = [r.standard_number for r in recommendations[1:4]]
+        # Select top_rec prioritizing PRIMARY_PRODUCT if seeking a manufactured product
+        if is_prod_req and any(r.standard_role == "PRIMARY_PRODUCT" for r in recommendations):
+            top_rec = next(r for r in recommendations if r.standard_role == "PRIMARY_PRODUCT")
+            alternatives = [r.standard_number for r in recommendations if r.standard_number != top_rec.standard_number][:3]
+        else:
+            top_rec = recommendations[0]
+            alternatives = [r.standard_number for r in recommendations[1:4]]
 
         # Human Review and Risk Decision Logic
         if superseded_explicit_warnings:
@@ -603,6 +632,21 @@ class StandardsRecommender:
         )
 
         dep_dicts = [d.to_dict() for d in dep_report.all_dependencies]
+        # Ensure any supporting installation / code of practice recommendations are exposed in dependencies
+        for r in recommendations:
+            if r.standard_role in ["INSTALLATION", "CODE_OF_PRACTICE"] and r.standard_number != top_rec.standard_number:
+                if not any(d.get("standard_number") == r.standard_number for d in dep_dicts):
+                    dep_dicts.append({
+                        "standard_number": r.standard_number,
+                        "title": r.title,
+                        "relationship_type": "INSTALLATION_STANDARD" if r.standard_role == "INSTALLATION" else "CODE_OF_PRACTICE",
+                        "dependency_status": "INSTALLATION_DEPENDENCY",
+                        "functional_category": "installation",
+                        "evidence": r.evidence or r.title,
+                        "is_satisfied": False,
+                        "context_applicability": "APPLICABLE",
+                        "provenance": r.provenance
+                    })
         cov_dict = cov_map.to_dict()
         all_gap_dicts = [g.to_dict() for g in cov_map.all_gaps]
         ver_missing_dicts = [g.to_dict() for g in cov_map.standard_gaps if g.gap_severity == "VERIFIED_MISSING"]
@@ -706,7 +750,8 @@ class StandardsRecommender:
             missing_information=ambiguity_report.missing_information,
             competing_interpretations=ambiguity_report.competing_interpretations,
             suggested_clarification_question=ambiguity_report.suggested_clarification_question,
-            unresolved_components=unresolved_missing
+            unresolved_components=unresolved_missing,
+            standard_role=top_rec.standard_role
         )
 
 

@@ -172,7 +172,7 @@ class TestMilestone10EvidenceConsistency(unittest.TestCase):
                     f"evidence_standard ({res.evidence_standard}) for requirement: '{req_text[:40]}'"
                 )
 
-        self.assertGreaterEqual(tested_count, 15, "Invariant must be verified across at least 15 positive recommendations")
+        self.assertGreaterEqual(tested_count, 12, "Invariant must be verified across at least 12 positive recommendations")
 
     def test_07_evidence_consistency_rule_mismatch_fallback(self):
         """

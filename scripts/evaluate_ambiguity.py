@@ -230,8 +230,14 @@ def main():
 
     # Re-run at selected threshold and test 50-query catalogue preservation
     recommender.ambiguity_engine.separation_threshold = selected_delta
-    print("\n--- Evaluating 50-Query Catalogue Recommendation Preservation ---")
-    pres_results = evaluate_recommendation_preservation(recommender, catalogue_bm_path)
+    cat_db_path = os.path.join(ROOT_DIR, "data", "catalogue", "catalogue.db")
+    if os.path.exists(cat_db_path):
+        from src.standards import StandardsDatabase
+        cat_recommender = StandardsRecommender(db=StandardsDatabase(cat_db_path), retrieval_mode="hybrid")
+        cat_recommender.ambiguity_engine.separation_threshold = selected_delta
+        pres_results = evaluate_recommendation_preservation(cat_recommender, catalogue_bm_path)
+    else:
+        pres_results = evaluate_recommendation_preservation(recommender, catalogue_bm_path)
     print(f"  Total Queries: {pres_results['total_queries']}")
     print(f"  Preserved Valid Recommendations: {pres_results['preserved_count']}/{pres_results['total_queries']} ({pres_results['preservation_rate']:.1f}%)")
     print(f"  Clean Abstentions: {pres_results['abstention_count']}")

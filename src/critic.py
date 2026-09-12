@@ -340,17 +340,22 @@ class EvidenceAwareCritic:
         # 5. Ambiguity / Conflict Score [0, 1]
         ambiguity_score = 1.0
         if alternative_candidate and candidate_rank == 1:
-            score_delta = candidate.relevance_score - alternative_candidate.relevance_score
-            if score_delta < 0.05 and candidate.relevance_score > 0.40:
-                ambiguity_score = 0.50
-                critique_reasons.append(
-                    f"Close competition with alternative {alternative_candidate.standard_number} (score delta: {score_delta:.3f})"
-                )
-                if not completeness.is_adequately_specified:
-                    ambiguity_score = 0.30
-                    risk_reasons.append(
-                        f"Ambiguous choice between {std_num} and {alternative_candidate.standard_number} due to missing distinguishing parameters"
+            from src.ambiguity import is_true_competing_interpretation
+            is_comp, discrim_desc, _ = is_true_competing_interpretation(
+                requirement_text, candidate, alternative_candidate, completeness
+            )
+            if is_comp:
+                score_delta = candidate.relevance_score - alternative_candidate.relevance_score
+                if score_delta < 0.05 and candidate.relevance_score > 0.40:
+                    ambiguity_score = 0.50
+                    critique_reasons.append(
+                        f"Close competition with alternative {alternative_candidate.standard_number} (score delta: {score_delta:.3f})"
                     )
+                    if not completeness.is_adequately_specified:
+                        ambiguity_score = 0.30
+                        risk_reasons.append(
+                            f"Ambiguous choice between {std_num} and {alternative_candidate.standard_number} due to missing distinguishing parameters: {discrim_desc or 'missing specification'}"
+                        )
 
         # Check domain conflicts
         t_low = requirement_text.lower()
