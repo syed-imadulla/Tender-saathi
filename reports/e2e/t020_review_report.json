@@ -48,13 +48,49 @@
       "Withdrawn": 0,
       "Unknown": 0
     },
-    "related_standards_count": 0,
+    "related_standards_count": 3,
     "review_queue": [],
     "publication_readiness": "READY_FOR_REVIEW",
     "readiness_reasons": [
       "All 1 requirement(s) have grounded standards evidence with no critical or high risk flags."
     ],
-    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification."
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 3,
+    "normative_reference_count": 0,
+    "allied_standard_count": 1,
+    "test_standard_count": 1,
+    "installation_standard_count": 1,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 2,
+    "related_for_review_count": 1,
+    "standards_coverage": {
+      "direct_standards_identified": 1,
+      "total_dependencies": 3,
+      "normative_references": 0,
+      "testing_dependencies": 1,
+      "installation_dependencies": 1,
+      "allied_standards": 1,
+      "covered_in_tender": 0,
+      "potential_gaps": 2,
+      "verified_gaps": 0,
+      "items_requiring_review": 0
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 2,
+      "related_for_review_count": 1
+    },
+    "certification_checks": 1,
+    "qco_checks": 1,
+    "crs_checks": 1,
+    "hallmarking_checks": 1,
+    "regulatory_review_items": 1,
+    "unknown_regulatory_items": 0,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 1,
+    "mandatory_certification_count": 1,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
   },
   "requirements": [
     {
@@ -109,19 +145,7 @@
           "extracted_attributes": {}
         },
         {
-          "text": "replacement",
-          "component_type": "action",
-          "domain": "general",
-          "extracted_attributes": {}
-        },
-        {
           "text": "installation",
-          "component_type": "action",
-          "domain": "general",
-          "extracted_attributes": {}
-        },
-        {
-          "text": "testing",
           "component_type": "action",
           "domain": "general",
           "extracted_attributes": {}
@@ -145,7 +169,7 @@
         "Candidate addresses multiple decomposed technical aspects of the requirement."
       ],
       "why_not": [
-        "Alternative standard IS 1239 (Part 2) has lower composite relevance (0.459 vs 0.920)."
+        "Alternative standard IS 1239 (Part 2) has lower composite relevance (0.461 vs 0.920)."
       ],
       "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [
@@ -153,7 +177,44 @@
         "Pressure Class / Schedule / SDR"
       ],
       "known_parameters": {},
-      "related_standards": [],
+      "related_standards": [
+        {
+          "standard_number": "IS 12235 : 2004",
+          "title": "Title not in local index",
+          "relationship_type": "TEST_METHOD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
+          "source_url": null,
+          "review_note": "Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance."
+        },
+        {
+          "standard_number": "IS 7634 (Part 3) : 2003",
+          "title": "Title not in local index",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+          "source_url": null,
+          "review_note": "Installation, laying, and jointing standard associated with IS 7634 (Part 3) : 2003. Review for installation execution."
+        },
+        {
+          "standard_number": "IS 4985 : 2000",
+          "title": "Title not in local index",
+          "relationship_type": "ALLIED_STANDARD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+          "source_url": null,
+          "review_note": "Allied product or component standard. Review for equipment interface compatibility."
+        }
+      ],
       "decision": "RECOMMEND",
       "risk_level": "LOW",
       "risk_reasons": [],
