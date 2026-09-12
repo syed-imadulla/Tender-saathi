@@ -124,8 +124,10 @@ class RequirementRecommendationResult:
     suggested_clarification_question: Optional[str] = None
     unresolved_components: List[str] = field(default_factory=list)
     standard_role: str = "PRIMARY_PRODUCT"
+    multilingual: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
+
         return asdict(self)
 
 
@@ -190,6 +192,8 @@ class StandardsRecommender:
         self.ai_parser = ai_parser or AIRequirementParser(enabled=ai_enabled)
         from src.ambiguity import AmbiguityEngine
         self.ambiguity_engine = ambiguity_engine or AmbiguityEngine()
+        from src.multilingual import MultilingualTechnicalNormalizer
+        self.multilingual_normalizer = MultilingualTechnicalNormalizer()
 
 
     def recommend_for_requirement(self, req: Any, tender_cited_standards: Optional[List[str]] = None) -> RequirementRecommendationResult:
@@ -200,12 +204,22 @@ class StandardsRecommender:
         req_id = req.requirement_id
         cat = req.category
 
+        # Step -1: Multilingual Preprocessing & Normalization
+        norm_result = self.multilingual_normalizer.normalize(text)
+        working_text = norm_result.canonical_text if norm_result.is_multilingual and norm_result.canonical_text else text
+        multilingual_payload = norm_result.to_dict()
+
+        # Augment explicit standards if multilingual extraction found explicit IS numbers not caught by initial regex
+        for ent in norm_result.extracted_entities:
+            if re.match(r"^(?:IS|SP)\s*(?:/|\s*)?\d+", ent, re.IGNORECASE) and ent not in req.explicit_standards:
+                req.explicit_standards.append(ent)
+
         # Step 0: AI Requirement Understanding (converts natural text to structured facets)
-        parsed_ai = self.ai_parser.parse(text)
+        parsed_ai = self.ai_parser.parse(working_text)
 
         # Decompose requirement if components not already present
         if not getattr(req, "components", None):
-            decomp = self.decomposer.decompose(text)
+            decomp = self.decomposer.decompose(working_text)
             req.components = decomp.components
             req.decomposition_confidence = decomp.decomposition_confidence
 
@@ -218,9 +232,9 @@ class StandardsRecommender:
                     req.components.append(ac)
                     existing_texts.add(ac.text.lower())
 
-
         # Analyze specification completeness across engineering domain
-        completeness_report = self.completeness_analyzer.analyze(text, req.components)
+        completeness_report = self.completeness_analyzer.analyze(working_text, req.components)
+
 
         # Step 1: Detect explicit standards mentioned and validate status
         explicit_stds = req.explicit_standards or []
@@ -267,7 +281,7 @@ class StandardsRecommender:
         # Step 2: Multi-modal Search over BIS Standards with Decomposed Components
         # Primary search using full requirement text and decomposed components
         search_results = self.search_engine.search(
-            text, top_k=8, components=req.components, mode=self.retrieval_mode
+            working_text, top_k=8, components=req.components, mode=self.retrieval_mode
         )
 
         # Secondary search if primary yields low results or for multi-item requirements
@@ -275,7 +289,7 @@ class StandardsRecommender:
             # Extract key noun chunks from components or text
             sub_queries = [c.text for c in req.components if c.component_type in ["material", "product", "equipment", "control", "electrical"]]
             if not sub_queries:
-                sub_queries = self._extract_subqueries(text)
+                sub_queries = self._extract_subqueries(working_text)
             for sq in sub_queries:
                 extra_hits = self.search_engine.search(
                     sq, top_k=3, components=req.components, mode=self.retrieval_mode
@@ -301,8 +315,9 @@ class StandardsRecommender:
         ambiguity_flag = False
         ambiguity_reason = ""
         for pattern_kw, pattern_full, reason_desc in AMBIGUITY_PATTERNS:
-            if re.search(pattern_kw, text, re.IGNORECASE) and re.search(pattern_full, text, re.IGNORECASE):
+            if re.search(pattern_kw, working_text, re.IGNORECASE) and re.search(pattern_full, working_text, re.IGNORECASE):
                 ambiguity_flag = True
+
                 ambiguity_reason = reason_desc
                 break
 
@@ -316,7 +331,7 @@ class StandardsRecommender:
             is_explicit = any(exp in cand.relevance_reason or exp in cand.standard_number for exp in explicit_stds)
             app_res = self.applicability_gate.evaluate_candidate(
                 candidate=cand,
-                requirement_text=text,
+                requirement_text=working_text,
                 components=req.components,
                 parsed_ai=parsed_ai,
                 is_explicitly_cited=is_explicit
@@ -328,7 +343,7 @@ class StandardsRecommender:
                 rejected_candidates.append((cand, app_res))
 
         # Check if requirement seeks product procurement (cables, pipes, valves, switchgear, etc.)
-        t_low = text.lower()
+        t_low = working_text.lower()
         prod_nouns = [
             "cable", "cables", "pipe", "pipes", "piping", "valve", "valves",
             "pump", "pumps", "motor", "motors", "switchgear", "controlgear", "panel", "panels",
@@ -359,14 +374,14 @@ class StandardsRecommender:
         if applicable_candidates:
             critic_outcome = self.critic.evaluate_candidates(
                 candidates=applicable_candidates,
-                requirement_text=text,
+                requirement_text=working_text,
                 components=req.components,
                 completeness=completeness_report
             )
 
         # Ambiguity Engine Evaluation across strict 8-stage decision pipeline
         ambiguity_report = self.ambiguity_engine.evaluate(
-            requirement_text=text,
+            requirement_text=working_text,
             decomposed_components=req.components,
             completeness_report=completeness_report,
             retrieved_candidates=search_results,
@@ -473,7 +488,7 @@ class StandardsRecommender:
                 applicability=primary_app_res,
                 evidence_standard=None,
                 why_it_matches=why_it_matches,
-                regulatory=self.regulatory_engine.evaluate_to_dict(None, text),
+                regulatory=self.regulatory_engine.evaluate_to_dict(None, working_text),
                 ambiguity_state=ambiguity_report.ambiguity_state.value,
                 ambiguity_reason=ambiguity_report.ambiguity_reason,
                 retrieval_status=ambiguity_report.retrieval_status,
@@ -482,7 +497,8 @@ class StandardsRecommender:
                 missing_information=ambiguity_report.missing_information,
                 competing_interpretations=ambiguity_report.competing_interpretations,
                 suggested_clarification_question=ambiguity_report.suggested_clarification_question,
-                unresolved_components=ambiguity_report.unresolved_components
+                unresolved_components=ambiguity_report.unresolved_components,
+                multilingual=multilingual_payload
             )
 
         # Step 5: Validate and Ground Candidates
@@ -694,7 +710,7 @@ class StandardsRecommender:
 
         # Re-evaluate with any auxiliary/unresolved missing gaps
         unresolved_missing = [(g.title or g.description or g.standard_number or "unspecified") for g in cov_map.standard_gaps if g.gap_severity == "VERIFIED_MISSING"]
-        if unresolved_missing:
+        if unresolved_missing or norm_result.human_review_required or (norm_result.is_multilingual and norm_result.normalization_confidence < 0.60):
             human_review_required = True
             ambiguity_state_val = "REVIEW_REQUIRED"
 
@@ -741,7 +757,7 @@ class StandardsRecommender:
             related_for_review=rel_review_dicts,
             evidence_standard=evidence_std,
             why_it_matches=why_it_matches,
-            regulatory=self.regulatory_engine.evaluate_to_dict(top_rec.standard_number, text),
+            regulatory=self.regulatory_engine.evaluate_to_dict(top_rec.standard_number, working_text),
             ambiguity_state=ambiguity_state_val,
             ambiguity_reason=ambiguity_report.ambiguity_reason,
             retrieval_status=ambiguity_report.retrieval_status,
@@ -751,8 +767,10 @@ class StandardsRecommender:
             competing_interpretations=ambiguity_report.competing_interpretations,
             suggested_clarification_question=ambiguity_report.suggested_clarification_question,
             unresolved_components=unresolved_missing,
-            standard_role=top_rec.standard_role
+            standard_role=top_rec.standard_role,
+            multilingual=multilingual_payload
         )
+
 
 
     def recommend_for_text(self, text: str, req_id: str = "REQ-001") -> RequirementRecommendationResult:

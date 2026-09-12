@@ -126,7 +126,19 @@ export function RecommendationCard({ req, isPrimary = false, onOpenEvidence }: R
         <h4 className="rec-card__title">{req.title}</h4>
       )}
 
+      {req.multilingual?.is_multilingual && (
+        <div className="rec-card__multilingual-block" style={{ margin: '0.5rem 0', padding: '0.4rem 0.6rem', background: '#f0fdf4', borderRadius: '4px', fontSize: '0.8125rem', borderLeft: '3px solid #10b981' }}>
+          <span style={{ fontWeight: 600, color: '#166534', display: 'block', fontSize: '0.75rem' }}>
+            🌐 System interpretation ({req.multilingual.detected_language === 'hi' ? 'Hindi → English' : req.multilingual.detected_language === 'kn' ? 'Kannada → English' : req.multilingual.detected_language === 'ta' ? 'Tamil → English' : 'Mixed → English'}):
+          </span>
+          <span style={{ color: '#14532d', fontStyle: 'italic' }}>
+            "{req.multilingual.canonical_text}"
+          </span>
+        </div>
+      )}
+
       <div className="rec-card__why-block">
+
         <span className="rec-card__why-label">Why it matches:</span>
         <p className="rec-card__why-text">{whyMatches}</p>
       </div>
@@ -251,8 +263,17 @@ export function AttentionCard({ req, onOpenEvidence }: AttentionCardProps) {
             <p className="attention-card__clause">
               "{req.text.length > 130 ? `${req.text.slice(0, 127)}...` : req.text}"
             </p>
+            {req.multilingual?.is_multilingual && (
+              <div style={{ marginTop: '4px', fontSize: '0.8rem', color: '#0369a1', background: '#f0f9ff', padding: '3px 8px', borderRadius: '4px', borderLeft: '3px solid #0284c7' }}>
+                <span style={{ fontWeight: 600 }}>
+                  🌐 System interpretation ({req.multilingual.detected_language === 'hi' ? 'Hindi → English' : req.multilingual.detected_language === 'kn' ? 'Kannada → English' : req.multilingual.detected_language === 'ta' ? 'Tamil → English' : 'Mixed → English'}):
+                </span>{' '}
+                <span style={{ fontStyle: 'italic' }}>"{req.multilingual.canonical_text}"</span>
+              </div>
+            )}
           </div>
         </div>
+
 
         <button
           type="button"

@@ -288,9 +288,23 @@ def _normalize_result(
             "competing_interpretations": getattr(r, "competing_interpretations", []) or [],
             "suggested_clarification_question": getattr(r, "suggested_clarification_question", None),
             "unresolved_components": getattr(r, "unresolved_components", []) or [],
+            # Milestone 13: Multilingual Provenance
+            "multilingual": getattr(r, "multilingual", None) or {
+                "is_multilingual": False,
+                "detected_language": "en",
+                "original_text": r.requirement_text,
+                "canonical_text": r.requirement_text,
+                "language_confidence": 1.0,
+                "normalization_confidence": 1.0,
+                "entity_preservation_status": "N/A",
+                "is_translated": False,
+                "human_review_required": False,
+                "normalization_method": "fast_path",
+            },
         }
 
         all_reqs.append(req_dict)
+
 
         # Classify into sections
         decision = req_dict["decision"]
@@ -344,7 +358,12 @@ def _normalize_result(
             "no_reliable_match": sum(1 for req in all_reqs if req.get("ambiguity_state") == "NO_RELIABLE_MATCH"),
             "review_required": sum(1 for req in all_reqs if req.get("ambiguity_state") == "REVIEW_REQUIRED"),
         },
+        "multilingual_summary": {
+            "total_multilingual": sum(1 for req in all_reqs if req.get("multilingual", {}).get("is_multilingual", False)),
+            "languages_detected": sorted(list({req.get("multilingual", {}).get("detected_language") for req in all_reqs if req.get("multilingual", {}).get("detected_language")})),
+        },
     }
+
 
 
     # Determine AI attribution from first non-fallback result
