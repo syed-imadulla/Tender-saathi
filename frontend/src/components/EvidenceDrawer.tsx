@@ -61,6 +61,48 @@ function EvBadge({ strength }: { strength: string }) {
   );
 }
 
+function getProvenanceDetails(provenance?: string): { label: string; description: string; badgeClass: string } {
+  const p = (provenance || '').toUpperCase();
+  switch (p) {
+    case 'OFFICIAL_PRIMARY':
+      return {
+        label: 'Verified Official Primary Source',
+        description: 'Gazette notification, Ministry QCO order, or statutory BIS core registry.',
+        badgeClass: 'badge--active',
+      };
+    case 'OFFICIAL_SECONDARY':
+      return {
+        label: 'Official Secondary Source',
+        description: 'Ministry or departmental procurement catalogue / public sector schedule.',
+        badgeClass: 'badge--active',
+      };
+    case 'VERIFIED':
+      return {
+        label: 'Verified Official Source',
+        description: 'Cross-verified active record in Bureau of Indian Standards catalogue.',
+        badgeClass: 'badge--active',
+      };
+    case 'CURATED':
+      return {
+        label: 'Curated Technical Source',
+        description: 'Expert-compiled engineering standard repository verified against domain specifications.',
+        badgeClass: 'badge--low',
+      };
+    case 'INFERRED':
+      return {
+        label: 'Inferred / Derived',
+        description: 'Heuristic specification mapping requiring human technical review.',
+        badgeClass: 'badge--review',
+      };
+    default:
+      return {
+        label: p || 'Unverified Source',
+        description: 'Source metadata awaiting formal verification.',
+        badgeClass: 'badge--low',
+      };
+  }
+}
+
 function ScoreBar({
   label,
   value,
@@ -113,6 +155,7 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
       : 'badge--low';
 
   const isNoMatch = !req.candidate_standard || req.candidate_standard === 'INSUFFICIENT_INFORMATION' || req.candidate_standard === 'NONE' || req.decision === 'NO_RELIABLE_MATCH';
+  const prov = getProvenanceDetails(req.provenance);
 
   return (
     <>
@@ -227,29 +270,54 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
           )}
 
           {/* 5. Source / Provenance */}
-          <section className="drawer-section drawer-section--row">
-            <div>
+          <section className="drawer-section">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
               <span className="drawer-section__label">5. Source / Provenance</span>
-              <span className="badge badge--low">{req.provenance || 'CURATED'}</span>
-            </div>
-            <div>
-              <span className="drawer-section__label">Evidence Strength</span>
               <EvBadge strength={req.evidence_strength} />
+            </div>
+            <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '10px 12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                <span className={`badge ${prov.badgeClass}`}>{prov.label}</span>
+              </div>
+              <p style={{ fontSize: '0.8rem', color: '#475569', margin: '4px 0 0 0', lineHeight: '1.4' }}>
+                {prov.description}
+              </p>
+              {(req.source || req.source_url) && (
+                <div style={{ marginTop: '8px', paddingTop: '6px', borderTop: '1px solid #e2e8f0', fontSize: '0.78rem', color: '#64748b' }}>
+                  <strong>Origin / Citation:</strong> {req.source || 'BIS Official Catalogue'}
+                  {req.source_url && (
+                    <div style={{ wordBreak: 'break-all', marginTop: '2px', color: '#0369a1' }}>
+                      Ref: {req.source_url}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </section>
 
           {/* 6. Lifecycle */}
-          <section className="drawer-section drawer-section--row">
-            <div>
+          <section className="drawer-section">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
               <span className="drawer-section__label">6. Lifecycle Status</span>
               <span className={`badge ${lifecycleClass}`}>
                 {req.lifecycle_status || 'Unknown'}
               </span>
             </div>
-            {req.successor_standard && (
-              <div>
-                <span className="drawer-section__label">Current Successor</span>
-                <span className="drawer-successor-num">{req.successor_standard}</span>
+            {Boolean(req.superseded_citation || lifecycle === 'superseded') && (
+              <div style={{ padding: '10px 12px', background: '#fffbeb', border: '1px solid #fde68a', borderRadius: '8px', fontSize: '0.82rem', color: '#92400e', marginTop: '6px' }}>
+                <div style={{ fontWeight: 700, marginBottom: '2px' }}>⚠️ Lifecycle Advisory</div>
+                <div>
+                  Your tender references <strong>{req.superseded_citation || req.candidate_standard}</strong>, which appears superseded.
+                  {req.successor_standard && (
+                    <span> Recommended current active successor: <strong>{req.successor_standard}</strong>.</span>
+                  )}
+                  <span> Technical officer verification is required before tender finalization.</span>
+                </div>
+              </div>
+            )}
+            {req.successor_standard && !req.superseded_citation && lifecycle !== 'superseded' && (
+              <div style={{ marginTop: '6px', fontSize: '0.82rem', color: '#475569' }}>
+                <strong>Current Successor:</strong> <span className="drawer-successor-num">{req.successor_standard}</span>
               </div>
             )}
           </section>

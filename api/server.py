@@ -238,6 +238,8 @@ def _normalize_result(
             "evidence": r.evidence or "",
             "evidence_strength": ev_strength,
             "provenance": r.provenance or "UNKNOWN",
+            "source": ev.get("evidence_source") or (r.provenance or "BIS Official Catalogue"),
+            "source_url": ev.get("source_url"),
             "evidence_standard": ev_std,
             "why_it_matches": why_it_matches,
             # Quality
