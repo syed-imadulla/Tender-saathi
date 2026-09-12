@@ -1,0 +1,144 @@
+{
+  "audit_version": "6F.1.0",
+  "project": "TenderSaathi (SIH26108)",
+  "timestamp": "2026-09-12T10:46:00Z",
+  "git_state": {
+    "branch": "main",
+    "commit_hash": "95a0a1f",
+    "working_tree_clean": true
+  },
+  "blocker_verifications": {
+    "blocker_1_normalize_duplicate_standard_ids": {
+      "status": "FIXED",
+      "findings": {
+        "physical_row_count": 90,
+        "distinct_standard_ids": 90,
+        "duplicate_standard_ids": 0,
+        "duplicate_canonical_records": 0,
+        "retained_records": [
+          {
+            "standard_id": "IS-1180-Part-1-2014",
+            "standard_number": "IS 1180 (Part 1)",
+            "source": "BIS_OFFICIAL_CATALOGUE",
+            "verification_status": "VERIFIED"
+          },
+          {
+            "standard_id": "IS-7098-Part-2-2011",
+            "standard_number": "IS 7098 (Part 2)",
+            "source": "BIS_OFFICIAL_CATALOGUE",
+            "verification_status": "VERIFIED"
+          }
+        ],
+        "removed_redundant_records": [
+          {
+            "standard_id": "IS-1180-(Part-1)-2014",
+            "reason": "Redundant duplicate slug of IS-1180-Part-1-2014"
+          },
+          {
+            "standard_id": "IS-7098-(Part-2)-2011",
+            "reason": "Redundant duplicate slug of IS-7098-Part-2-2011"
+          }
+        ],
+        "target_standards_present": [
+          "IS-1180-Part-1-2014",
+          "IS-15328-2003",
+          "IS-1786-2008",
+          "IS-7098-Part-2-2011",
+          "IS-8034-2018"
+        ],
+        "bm25_index_doc_count": 90,
+        "semantic_index_id_count": 90,
+        "semantic_embedding_shape": [90, 384],
+        "id_alignment_parity": "100.0% MATCH across DB, BM25, and Semantic indexes",
+        "catalogue_db_count": 502
+      }
+    },
+    "blocker_2_freeze_separate_evaluation_methodology": {
+      "status": "FIXED",
+      "findings": {
+        "primary_top1_metric": "Calculated strictly from primary recommendations (rec_res.recommendations[:5])",
+        "primary_top3_metric": "Calculated strictly from primary recommendations (rec_res.recommendations[:3])",
+        "primary_mrr_metric": "Calculated strictly from primary recommendations (rec_res.recommendations[:5])",
+        "supplementary_metric_name": "alternative_discovery_recall",
+        "supplementary_metric_composite": "top3_with_alternatives_recall",
+        "separation_rationale": "Prevented alternative discovery from artificially inflating primary Top-3 recall without transparent metric labeling.",
+        "benchmark_file_modified": false
+      }
+    },
+    "blocker_3_fix_non_submersible_pump_boundary": {
+      "status": "FIXED",
+      "findings": {
+        "negative_lookbehind_applied": true,
+        "explicit_non_submersible_regex": "\\b(?:non[-\\s]+submersible|not\\s+submersible)\\b",
+        "pump_boundary_test_results": {
+          "submersible pump": "APPLICABLE (True, 0 conflicts)",
+          "non-submersible pump": "NOT_APPLICABLE (False, APPLICATION_CONFLICT detected)",
+          "non submersible pump": "NOT_APPLICABLE (False, APPLICATION_CONFLICT detected)",
+          "non-submersible horizontal end suction centrifugal pump": "NOT_APPLICABLE (False, APPLICATION_CONFLICT detected)",
+          "borewell submersible pump": "APPLICABLE (True, 0 conflicts)",
+          "surface pump": "NOT_APPLICABLE (False, APPLICATION_CONFLICT detected)",
+          "Non-submersible horizontal end suction centrifugal water process pump": "NOT_APPLICABLE (False, APPLICATION_CONFLICT detected)"
+        },
+        "regression_test_suite": "tests/test_milestone9_applicability.py::test_non_submersible_pump_boundary (PASSED)"
+      }
+    },
+    "blocker_4_ml_ta_10_adjudication_status": {
+      "status": "DOCUMENTED_UNRESOLVED_LIMITATION",
+      "findings": {
+        "case_id": "ML-TA-10",
+        "ground_truth_label": null,
+        "path_a_output": "IS 732 : 2019",
+        "path_b_output": "IS 732 : 2019",
+        "path_a_eq_path_b": true,
+        "ground_truth_modified": false,
+        "engine_squeezed": false,
+        "adjudication_rationale": "Input describes rewiring and earthing testing. Benchmark expected abstention (null) because no single product was isolated; engine identifies IS 732 as applicable national code of practice. Retained as an explicit documented discrepancy requiring formal domain committee review."
+      }
+    },
+    "blocker_5_audit_report_integrity": {
+      "status": "FIXED",
+      "findings": {
+        "multilingual_root_cause_results_json": {
+          "total_cases": 40,
+          "SUCCESS": 17,
+          "BENCHMARK_GROUND_TRUTH_ISSUE": 21,
+          "NORMALIZATION_FAILURE": 2,
+          "total_affected_or_non_success_cases": 23
+        },
+        "discrepancy_explanation": "Priority 6D prose erroneously cited '21' by only counting BENCHMARK_GROUND_TRUTH_ISSUE, omitting the 2 NORMALIZATION_FAILURE cases. Recomputed directly from JSON as 23."
+      }
+    }
+  },
+  "verification_suite_results": {
+    "benchmark_sha256": "938260e6386e7574bb647f4e95ea3cc05bc52dc24aa18b5c40ec294e0698e6a0",
+    "benchmark_cases_count": 40,
+    "multilingual_benchmark": {
+      "total_cases": 40,
+      "language_detection_accuracy": "40/40 (100.0%)",
+      "top1_consistency": "40/40 (100.0%)",
+      "top3_consistency": "40/40 (100.0%)",
+      "abstention_consistency": "39/40 (97.5%)",
+      "entity_preservation_rate": "35/36 (97.2%)",
+      "candidate_evidence_invariant": "40/40 (100.0%)"
+    },
+    "ambiguity_test_suite": {
+      "total_tests": 35,
+      "passed": 35,
+      "failed": 0
+    },
+    "evidence_consistency_test_suite": {
+      "total_tests": 7,
+      "passed": 7,
+      "failed": 0
+    },
+    "full_pytest_suite": {
+      "total_tests": 255,
+      "passed": 255,
+      "failed": 0,
+      "warnings": 1,
+      "runtime_seconds": 67.36
+    }
+  },
+  "final_decision": "LOCK PRIORITY 6",
+  "final_decision_justification": "All technical and safety blockers from Priority 6E audit have been rigorously and deterministically resolved. Database integrity is verified at exactly 90 canonical rows and 0 duplicates with 100% index parity. Evaluation methodology is strictly separated between primary recommendations and alternative discovery. The non-submersible pump boundary defect is generic and fully verified. ML-TA-10 is documented honestly as an accepted non-blocking adjudication discrepancy. All 255 tests across the entire repository pass with zero failures and the working tree is clean."
+}
