@@ -46,7 +46,7 @@
 
 - **Normative References:** `0`
 - **Testing Method Dependencies:** `1`
-- **Installation / Laying Standards:** `1`
+- **Installation / Laying Standards:** `2`
 - **Allied Standards:** `1`
 - **Potential Standard Gaps:** `2`
 - **Verified Standard Gaps:** `0`
@@ -62,7 +62,7 @@
 **Original Requirement Text:**
 > "Repair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn"
 
-- **Decomposed Technical Components:** `general: Repair`, `general: maint`, `general: CPVC pipe`, `general: GI pipe`, `general: plumbing`, `general: maintenance`, `general: installation`
+- **Decomposed Technical Components:** `general: Repair`, `general: maint`, `general: CPVC pipe`, `general: GI pipe`
 - **Recommended Standard:** **IS 15778 : 2007** — *Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*
 - **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.920`
 - **Evidence Strength:** `MODERATE` | **Provenance:** `CURATED`
@@ -74,8 +74,8 @@
   - Provenance established via BIS Standards Catalogue (CURATED).
   - Candidate addresses multiple decomposed technical aspects of the requirement.
 - **Why Not Alternatives?:**
-  - Alternative standard IS 1239 (Part 2) has lower composite relevance (0.461 vs 0.920).
-- **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
+  - Alternative standard IS 1239 (Part 2) has lower composite relevance (0.440 vs 0.920).
+- **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR, Piping Application / Service)
 - **Related Standards Identified for Review (Graph Depth = 1):**
   - [→ TEST_METHOD] `IS 12235 : 2004` — *Title not in local index* (Unknown) — *Note:* Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance.
   - [→ INSTALLATION_STANDARD] `IS 7634 (Part 3) : 2003` — *Title not in local index* (Unknown) — *Note:* Installation, laying, and jointing standard associated with IS 7634 (Part 3) : 2003. Review for installation execution.

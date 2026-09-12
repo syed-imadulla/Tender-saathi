@@ -11,8 +11,8 @@
   "ai_understanding": {
     "provider": "groq",
     "model": "openai/gpt-oss-120b",
-    "llm_success_count": 3,
-    "llm_fallback_count": 22,
+    "llm_success_count": 0,
+    "llm_fallback_count": 25,
     "llm_failure_count": 0
   },
   "retrieval": {
@@ -64,7 +64,7 @@
     }
   },
   "performance": {
-    "avg_tender_processing_time_sec": 1.415,
-    "avg_requirement_processing_time_sec": 1.117
+    "avg_tender_processing_time_sec": 1.25,
+    "avg_requirement_processing_time_sec": 0.985
   }
 }

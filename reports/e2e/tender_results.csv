@@ -1,7 +1,7 @@
 tender_id,filename,requirements_analyzed,recommendations,review_required,insufficient_evidence,active,superseded,withdrawn,unknown_lifecycle,related_standards,strong_evidence,moderate_evidence,weak_evidence,no_evidence,known_completeness,potentially_missing,unknown_completeness,critical_risk,high_risk,medium_risk,low_risk,publication_readiness,llm_provider,llm_success,llm_fallback
-T020,eProcurement System Government of India.pdf,1,1,0,0,1,0,0,0,3,0,1,0,0,0,1,0,0,0,0,1,READY_FOR_REVIEW,groq,1,0
-T009,eProcurement System Government of India10.pdf,1,1,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,1,READY_FOR_REVIEW,groq,1,0
-T010,eProcurement System Government of India11.pdf,2,0,2,0,0,0,0,2,0,0,0,0,2,0,2,0,0,2,0,0,INSUFFICIENT_EVIDENCE,groq,1,1
+T020,eProcurement System Government of India.pdf,1,1,0,0,1,0,0,0,3,0,1,0,0,0,1,0,0,0,0,1,READY_FOR_REVIEW,groq,0,1
+T009,eProcurement System Government of India10.pdf,1,1,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,1,READY_FOR_REVIEW,groq,0,1
+T010,eProcurement System Government of India11.pdf,2,0,2,0,0,0,0,2,0,0,0,0,2,0,2,0,0,2,0,0,INSUFFICIENT_EVIDENCE,groq,0,2
 T011,eProcurement System Government of India12.pdf,1,0,1,0,0,0,0,1,0,0,0,0,1,0,0,1,0,1,0,0,INSUFFICIENT_EVIDENCE,groq,0,1
 T012,eProcurement System Government of India13.pdf,1,0,1,0,1,0,0,0,0,0,1,0,0,0,0,1,0,1,0,0,REVIEW_REQUIRED,groq,0,1
 T013,eProcurement System Government of India14.pdf,2,0,2,0,2,0,0,0,4,0,2,0,0,0,2,0,0,2,0,0,REVIEW_REQUIRED,groq,0,2
