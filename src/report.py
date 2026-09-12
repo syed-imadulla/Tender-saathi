@@ -74,6 +74,13 @@ class RequirementReviewSection:
     human_review_required: bool = False
     confidence: str = "Low"
     review_reason: Optional[str] = None
+    candidate_standard: Optional[str] = None
+    evidence_standard: Optional[str] = None
+    why_it_matches: Optional[str] = None
+    dependencies: List[Dict[str, Any]] = field(default_factory=list)
+    regulatory: Optional[Dict[str, Any]] = None
+    ambiguity_state: str = "CLEAR"
+    ambiguity_reason: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -240,6 +247,13 @@ class TenderReviewReport:
 
             # Recommended Standard & Lifecycle
             md.append(f"- **Recommended Standard:** **{req.recommended_standard}** — *{req.recommended_title}*")
+            if req.candidate_standard:
+                ev_match_note = " (Candidate == Evidence Grounding Established)" if req.candidate_standard == req.evidence_standard else ""
+                md.append(f"- **Candidate Standard:** `{req.candidate_standard}` | **Evidence Standard:** `{req.evidence_standard or req.candidate_standard}`{ev_match_note}")
+            else:
+                md.append(f"- **Candidate Standard:** `None (Abstained)` | **Evidence Standard:** `None` (Safe Abstention)")
+            if req.why_it_matches:
+                md.append(f"- **Why It Matches:** {req.why_it_matches}")
             status_upper = req.lifecycle_status.upper()
             status_badge = f"**{status_upper}**"
             if status_upper == "SUPERSEDED" and req.successor_standard:
@@ -249,6 +263,8 @@ class TenderReviewReport:
             elif req.successor_standard and req.successor_standard != req.recommended_standard:
                 status_badge += f" (Superseded by `{req.successor_standard}`)"
             md.append(f"- **Lifecycle Status:** {status_badge} | **Composite Relevance Score:** `{req.relevance_score:.3f}`")
+            if req.ambiguity_state:
+                md.append(f"- **Ambiguity & Verification State:** `{req.ambiguity_state}`" + (f" — *Reason:* {req.ambiguity_reason}" if req.ambiguity_reason else ""))
 
             # Evidence & Provenance
             md.append(f"- **Evidence Strength:** `{req.evidence_strength}` | **Provenance:** `{req.provenance}`")
@@ -288,6 +304,24 @@ class TenderReviewReport:
                     rel_stat = rel.get("lifecycle_status", "Active")
                     rel_note = rel.get("review_note", "Related standard to review")
                     md.append(f"  - [{dir_sym} {rel_type}] `{rel_num}` — *{rel_title}* ({rel_stat}) — *Note:* {rel_note}")
+
+            # Standards Dependencies (Milestone 10)
+            if req.dependencies:
+                md.append(f"- **Standards Dependencies Mapped ({len(req.dependencies)}):**")
+                for dep in req.dependencies:
+                    dep_num = dep.get("standard_number", "")
+                    dep_rel = dep.get("relationship_type", "DEPENDENCY").replace("_", " ")
+                    dep_title = dep.get("title", "")
+                    dep_why = dep.get("why_related", "")
+                    md.append(f"  - [{dep_rel}] `{dep_num}` — *{dep_title}* ({dep_why})")
+
+            # Regulatory Intelligence (Milestone 11)
+            if req.regulatory:
+                reg_cert = req.regulatory.get("certification", {}).get("status", "NOT_IDENTIFIED")
+                reg_qco = req.regulatory.get("qco", {}).get("status", "NOT_IDENTIFIED")
+                reg_crs = req.regulatory.get("crs", {}).get("status", "NOT_IDENTIFIED")
+                reg_hall = req.regulatory.get("hallmarking", {}).get("status", "NOT_APPLICABLE")
+                md.append(f"- **Regulatory & Statutory Intelligence:** Product Certification: `{reg_cert}` | QCO: `{reg_qco}` | CRS: `{reg_crs}` | Hallmarking: `{reg_hall}`")
 
             # Decision & Risk
             md.append(f"- **Standards Review Decision:** `{req.decision}` | **Risk Level:** `{req.risk_level}` | **Confidence:** `{req.confidence}`")
@@ -372,8 +406,11 @@ class ReportGenerator:
             ev_dict = crit_res.get("evidence") or {}
             ev_strength = ev_dict.get("evidence_strength")
             if not ev_strength:
-                # Fallback to provenance mapping
-                ev_strength = "STRONG" if prov == "VERIFIED" else ("MODERATE" if prov == "CURATED" else ("WEAK" if prov == "INFERRED" else "NONE"))
+                if not r.candidate_standard or r.candidate_standard in ["NONE", "INSUFFICIENT_INFORMATION", "", "UNKNOWN"]:
+                    ev_strength = "NONE"
+                else:
+                    # Fallback to provenance mapping
+                    ev_strength = "STRONG" if prov == "VERIFIED" else ("MODERATE" if prov == "CURATED" else ("WEAK" if prov == "INFERRED" else "NONE"))
 
             ev_text = ev_dict.get("evidence_text") or r.evidence or ""
             ev_src = ev_dict.get("evidence_source") or ("BSB Edge Portal" if prov == "VERIFIED" else ("BIS Standards Catalogue" if prov == "CURATED" else None))
@@ -433,6 +470,24 @@ class ReportGenerator:
                 decision = "REVIEW_REQUIRED"
             else:
                 decision = "RECOMMEND"
+            # Candidate and Evidence standard handling (strict candidate==evidence invariant)
+            cand_std = r.candidate_standard if r.candidate_standard not in ["INSUFFICIENT_INFORMATION", "", "UNKNOWN", "NONE", None] else None
+            ev_std = getattr(r, "evidence_standard", None)
+            if cand_std is None:
+                ev_std = None
+            elif ev_std is None:
+                ev_std = cand_std
+
+            why_it_matches = getattr(r, "why_it_matches", None)
+            if not why_it_matches and cand_std:
+                why_it_matches = r.reason or (r.why_this[0] if getattr(r, "why_this", None) else "Verified match against active BIS catalogue standards.")
+            elif not why_it_matches:
+                why_it_matches = "No reliable Indian Standard match found in the available catalogue."
+
+            deps = getattr(r, "dependencies", []) or []
+            reg = getattr(r, "regulatory", None) or {}
+            amb_state = getattr(r, "ambiguity_state", "CLEAR") or "CLEAR"
+            amb_reason = getattr(r, "ambiguity_reason", "") or ""
 
             req_sections.append(RequirementReviewSection(
                 requirement_id=r.requirement_id,
@@ -460,7 +515,14 @@ class ReportGenerator:
                 risk_reasons=getattr(r, "risk_reasons", []) or [],
                 human_review_required=r.human_review_required,
                 confidence=r.confidence or "Low",
-                review_reason=r.reason
+                review_reason=r.reason,
+                candidate_standard=cand_std,
+                evidence_standard=ev_std,
+                why_it_matches=why_it_matches,
+                dependencies=deps,
+                regulatory=reg,
+                ambiguity_state=amb_state,
+                ambiguity_reason=amb_reason,
             ))
 
         # 4. Evidence Summary

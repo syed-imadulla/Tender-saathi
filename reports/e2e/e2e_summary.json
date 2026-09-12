@@ -64,7 +64,7 @@
     }
   },
   "performance": {
-    "avg_tender_processing_time_sec": 1.237,
-    "avg_requirement_processing_time_sec": 0.976
+    "avg_tender_processing_time_sec": 1.211,
+    "avg_requirement_processing_time_sec": 0.954
   }
 }

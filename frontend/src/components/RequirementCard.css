@@ -96,6 +96,30 @@
   border: 1px solid #fed7aa;
 }
 
+.rec-badge--strong {
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+}
+
+.rec-badge--moderate {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.rec-badge--active {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+.rec-badge--qco {
+  background: #f5f3ff;
+  color: #6d28d9;
+  border: 1px solid #ddd6fe;
+}
+
 .rec-card__title {
   font-size: 0.98rem;
   font-weight: 600;

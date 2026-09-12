@@ -68,7 +68,10 @@
 
 - **Decomposed Technical Components:** `general: inspection`, `general: supply, installation, testing and commissioning`, `general: Process Water Pump`, `general: motors`, `general: 3.3 kV`
 - **Recommended Standard:** **IS/IEC 60034-1 : 2017** — *Rotating Electrical Machines - Part 1: Rating and Performance*
+- **Candidate Standard:** `IS/IEC 60034-1 : 2017` | **Evidence Standard:** `IS/IEC 60034-1 : 2017` (Candidate == Evidence Grounding Established)
+- **Why It Matches:** IS/IEC 60034-1 is the authoritative Indian Standard governing rating, temperature rise limits, dielectric t...
 - **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.805`
+- **Ambiguity & Verification State:** `REVIEW_REQUIRED` — *Reason:* Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H); Specification lacks key parameters (Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)). Human review recommended.
 - **Evidence Strength:** `MODERATE` | **Provenance:** `CURATED`
 - **Verbatim Evidence (BIS Standards Catalogue):** "Exact Match: IS/IEC 60034-1 is the authoritative Indian Standard governing rating, temperature rise limits, dielectric tests, and performance of 3.3 kV rotating electric motors."
 - **Why This Standard?:**
@@ -83,6 +86,11 @@
 - **Related Standards Identified for Review (Graph Depth = 1):**
   - [→ ALLIED_STANDARD] `IS 12615 : 2018` — *Title not in local index* (Unknown) — *Note:* Allied product or component standard. Review for equipment interface compatibility.
   - [→ SAFETY_STANDARD] `IS 12065 : 1987` — *Title not in local index* (Unknown) — *Note:* Operational or personal safety standard. Review for mandatory safety protocol compliance.
+- **Standards Dependencies Mapped (3):**
+  - [ALLIED STANDARD] `IS 12615 : 2018` — *Title not in local index* (IS 12615 : 2018 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS/IEC 60034-1 : 2017. Evidence: National Annex and committee MED 06 correlate rotating electrical machines with IS 12615 energy efficiency class requirements (IE2/IE3). [Provenance: CURATED].)
+  - [SAFETY STANDARD] `IS 12065 : 1987` — *Title not in local index* (IS 12065 : 1987 (Title not in local index) is identified as an evidence-backed mandatory safety or protection standard associated with IS/IEC 60034-1 : 2017. Evidence: Clause 2 References cites IS 12065 for permissible limits of noise levels for rotating electrical machines. [Provenance: CURATED].)
+  - [INSTALLATION STANDARD] `IS 732 : 2019` — *National Electrical Code of India 2023; Code of practice for electrical wiring installations [IS 732]* ()
+- **Regulatory & Statutory Intelligence:** Product Certification: `NOT_IDENTIFIED` | QCO: `NOT_IDENTIFIED` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
 - **Standards Review Decision:** `REVIEW_REQUIRED` | **Risk Level:** `HIGH` | **Confidence:** `High`
 - ⚠ **Human Technical Review Required:** Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H); Specification lacks key parameters (Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)). Human review recommended.
 

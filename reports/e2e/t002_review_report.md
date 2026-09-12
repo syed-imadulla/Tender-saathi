@@ -66,7 +66,10 @@
 
 - **Decomposed Technical Components:** `general: Maintenance`, `general: Pumps`, `general: Valve`, `general: Replacement`, `general: Flange`
 - **Recommended Standard:** **NONE** — *Requirement Specification Incomplete - Clarification Required*
+- **Candidate Standard:** `None (Abstained)` | **Evidence Standard:** `None` (Safe Abstention)
+- **Why It Matches:** Tender specification omits critical discriminating parameters required to identify an applicable Indian Standard.
 - **Lifecycle Status:** **UNKNOWN** | **Composite Relevance Score:** `0.000`
+- **Ambiguity & Verification State:** `INCOMPLETE` — *Reason:* Tender requirement specifies 'valve' equipment but omits critical discriminating technical parameters (material, valve type). A specific Indian Standard cannot be safely selected without guessing.
 - **Evidence Strength:** `NONE` | **Provenance:** `UNKNOWN`
 - **Verbatim Evidence:** "We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue."
 - **Why This Standard?:**
@@ -74,6 +77,7 @@
 - **Why Not Alternatives?:**
   - Specification omits critical discriminating parameters: material, valve type.
 - **Specification Review Completeness:** `UNKNOWN` (Potentially missing: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover, Process Application)
+- **Regulatory & Statutory Intelligence:** Product Certification: `UNKNOWN` | QCO: `NOT_IDENTIFIED` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
 - **Standards Review Decision:** `INSUFFICIENT_EVIDENCE` | **Risk Level:** `HIGH` | **Confidence:** `Low`
 - ⚠ **Human Technical Review Required:** Tender requirement specifies 'valve' equipment but omits critical discriminating technical parameters (material, valve type). A specific Indian Standard cannot be safely selected without guessing.
 
