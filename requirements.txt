@@ -5,3 +5,7 @@ openpyxl>=3.1.0
 sentence-transformers>=2.2.0
 torch>=2.0.0
 python-dotenv>=1.0.0
+flask>=3.0.0
+flask-cors>=4.0.0
+pillow>=9.0.0
+# pytesseract>=0.3.10  # Optional: requires system binary (sudo apt install tesseract-ocr)

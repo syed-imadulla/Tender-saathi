@@ -150,3 +150,38 @@ body {
   font-size: 0.8rem;
 }
 .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+/* ─── Global Mobile Breakpoints ────────────────────────────────────────── */
+@media (max-width: 768px) {
+  :root {
+    --radius-card: 10px;
+  }
+
+  /* Cards should take full width on tablet */
+  .card {
+    border-radius: var(--radius-card);
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 15px;
+  }
+
+  /* Reduce card padding on small screens */
+  .card {
+    padding: 16px;
+  }
+
+  /* Ensure interactive elements are touch-friendly (min 44px) */
+  .btn {
+    min-height: 44px;
+    padding: 10px 18px;
+  }
+
+  /* Evidence drawer should be full-screen on mobile */
+  /* (EvidenceDrawer.css handles internal layout; this sets outer context) */
+  body {
+    overflow-x: hidden;
+  }
+}

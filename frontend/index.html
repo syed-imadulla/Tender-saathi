@@ -3,11 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta -->
     <title>TenderSaathi — Indian Standards for Better Procurement</title>
     <meta name="description" content="Upload your tender or type a requirement and TenderSaathi will find relevant Indian Standards, check outdated references, and show what needs your review." />
+    <meta name="keywords" content="BIS, Indian Standards, tender, procurement, IS standards, compliance, specification review" />
+    <meta name="author" content="TenderSaathi — SIH 2026" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#1a1f36" />
+    <meta name="background-color" content="#f8f8f6" />
+
+    <!-- Apple / iOS PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="TenderSaathi" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512.png" />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js').then(
+            function (reg) {
+              console.log('[TenderSaathi] Service worker registered:', reg.scope);
+            },
+            function (err) {
+              console.warn('[TenderSaathi] Service worker registration failed:', err);
+            }
+          );
+        });
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

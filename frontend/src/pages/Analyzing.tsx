@@ -1,9 +1,16 @@
-// Analyzing.tsx — State 2: In-place analyzing animation matching Reference Image 2
+// Analyzing.tsx — State 2: In-place analyzing animation
+// Accepts an optional `steps` prop so different input modes can show
+// different step sequences (e.g., image upload adds an OCR step).
 import { useEffect, useState } from 'react';
 import './Analyzing.css';
 import Header from '../components/Header';
 
-const STEPS = [
+export interface AnalyzingStep {
+  label: string;
+  durationMs: number;
+}
+
+const DEFAULT_STEPS: AnalyzingStep[] = [
   { label: 'Reading document', durationMs: 700 },
   { label: 'Understanding requirements', durationMs: 1400 },
   { label: 'Finding Indian Standards', durationMs: 1800 },
@@ -11,22 +18,35 @@ const STEPS = [
   { label: 'Preparing review', durationMs: 1000 },
 ];
 
-export default function Analyzing() {
+export const OCR_STEPS: AnalyzingStep[] = [
+  { label: 'Reading image', durationMs: 600 },
+  { label: 'Extracting text via OCR', durationMs: 1200 },
+  { label: 'Understanding requirements', durationMs: 1400 },
+  { label: 'Finding Indian Standards', durationMs: 1800 },
+  { label: 'Checking evidence and lifecycle', durationMs: 1500 },
+  { label: 'Preparing review', durationMs: 1000 },
+];
+
+interface AnalyzingProps {
+  steps?: AnalyzingStep[];
+}
+
+export default function Analyzing({ steps = DEFAULT_STEPS }: AnalyzingProps) {
   const [activeStep, setActiveStep] = useState(0);
 
   // Progressive checklist animation
   useEffect(() => {
     let idx = 0;
     const advance = () => {
-      if (idx < STEPS.length - 1) {
+      if (idx < steps.length - 1) {
         idx++;
         setActiveStep(idx);
-        setTimeout(advance, STEPS[idx].durationMs);
+        setTimeout(advance, steps[idx].durationMs);
       }
     };
-    const t = setTimeout(advance, STEPS[0].durationMs);
+    const t = setTimeout(advance, steps[0].durationMs);
     return () => clearTimeout(t);
-  }, []);
+  }, [steps]);
 
   return (
     <div className="analyzing">
@@ -39,7 +59,7 @@ export default function Analyzing() {
           </h2>
 
           <ol className="analyzing__steps">
-            {STEPS.map((step, i) => {
+            {steps.map((step, i) => {
               const isDone = i < activeStep;
               const isActive = i === activeStep;
               return (
