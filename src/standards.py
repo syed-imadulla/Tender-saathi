@@ -86,6 +86,61 @@ class BISStandardRecord:
     evidence: Optional[str] = None            # Description of evidentiary source (e.g. screenshot)
 
 
+
+def classify_standard_role(standard_number: str, title: Optional[str] = None, scope: Optional[str] = None) -> str:
+    """Classifies a standard into its primary functional role:
+    - PRIMARY_PRODUCT: Manufacturing / specification for a product, item, or equipment
+    - INSTALLATION: Laying, installation, erection, and execution code of practice
+    - CODE_OF_PRACTICE: General engineering code of practice or design standard
+    - TEST_METHOD: Testing, sampling, or test procedure standard
+    - SAFETY: Safety requirements or fire safety code
+    - ALLIED: Terminology, symbols, dimensions, or allied reference standard
+    - NORMATIVE_DEPENDENCY: General referenced normative standard
+    """
+    s = str(standard_number or "").upper()
+    t = str(title or "").lower()
+    sc = str(scope or "").lower()
+
+    # Product specifications take precedence over concatenated title annotations
+    product_stds = {
+        "7098", "694", "1554", "458", "14333", "15778", "4984", "4985", "1239", "3589", "8329",
+        "778", "14846", "10434", "10611", "269", "1489", "15622", "13712", "1180", "2026",
+        "800", "801", "808", "2062", "61439", "61800", "60034", "325", "12615", "5120", "9694",
+        "16088", "15905", "5039", "12615", "9079", "1520", "6595"
+    }
+    is_known_product = any(re.search(r'\b' + re.escape(p) + r'\b', s) for p in product_stds)
+
+    cop_nums = {"1255", "783", "732", "1661", "14164", "3043", "SP 30", "SP 57"}
+    is_cop_num = any(re.search(r'\b' + re.escape(c) + r'\b', s) for c in cop_nums)
+
+    if is_known_product and not is_cop_num:
+        return "PRIMARY_PRODUCT"
+
+    # 1. Code of Practice / Installation / Management Systems
+    if "code of practice" in t or "code of practice" in s or is_cop_num or "haccp" in t or "haccp" in s or "guidelines" in t:
+        if any(w in t or w in sc for w in ["installation", "laying", "erection", "fixing", "maintenance", "jointing", "execution"]):
+            return "INSTALLATION"
+        return "CODE_OF_PRACTICE"
+
+    if any(w in t for w in ["installation and maintenance", "installation of", "laying of", "code of practice for laying"]):
+        return "INSTALLATION"
+
+    # 2. Test Methods
+    if any(w in t for w in ["method of test", "methods of test", "test method", "methods for test", "sampling and test", "sampling and methods of test"]):
+        return "TEST_METHOD"
+
+    # 3. Safety Standards
+    if any(w in t for w in ["safety requirements", "code of safety", "safety code", "fire safety"]):
+        return "SAFETY"
+
+    # 4. Allied / Terminology
+    if any(w in t for w in ["glossary of terms", "terminology", "vocabulary", "symbols"]):
+        return "ALLIED"
+
+    # 5. Default is primary product specification
+    return "PRIMARY_PRODUCT"
+
+
 # ---------------------------------------------------------------------------
 # Database Storage & Graph Engine
 # ---------------------------------------------------------------------------

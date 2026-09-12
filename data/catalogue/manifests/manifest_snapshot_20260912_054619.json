@@ -1,0 +1,19 @@
+{
+  "snapshot_id": "snapshot_20260912_054619",
+  "source": "OFFLINE_IMPORT:batch_2.json",
+  "retrieved_at": "2026-09-12T05:46:19.641377+00:00",
+  "record_count": 3,
+  "new_records": 1,
+  "updated_records": 1,
+  "unchanged_records": 1,
+  "removed_records": 0,
+  "validation_errors": 0,
+  "error_details": [],
+  "metadata": {
+    "record_ids": [
+      "IS-15778-2007",
+      "IS-4985-2021",
+      "IS-14846-2000"
+    ]
+  }
+}

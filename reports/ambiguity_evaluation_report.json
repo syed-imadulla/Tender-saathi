@@ -1,17 +1,17 @@
 {
-  "selected_threshold": 0.03,
+  "selected_threshold": 0.08,
   "sweep_results": [
     {
       "threshold": 0.03,
-      "accuracy": 77.5,
-      "correct_state": 31,
+      "accuracy": 72.5,
+      "correct_state": 29,
       "total_cases": 40,
       "invariant_violations": 0,
       "by_state": {
         "CLEAR": {
           "total": 10,
-          "correct": 9,
-          "accuracy": 90.0
+          "correct": 8,
+          "accuracy": 80.0
         },
         "INCOMPLETE": {
           "total": 10,
@@ -20,8 +20,8 @@
         },
         "AMBIGUOUS": {
           "total": 10,
-          "correct": 2,
-          "accuracy": 20.0
+          "correct": 1,
+          "accuracy": 10.0
         },
         "CONFLICTING": {
           "total": 5,
@@ -34,19 +34,19 @@
           "accuracy": 100.0
         }
       },
-      "elapsed_sec": 11.06
+      "elapsed_sec": 1.36
     },
     {
       "threshold": 0.05,
-      "accuracy": 77.5,
-      "correct_state": 31,
+      "accuracy": 72.5,
+      "correct_state": 29,
       "total_cases": 40,
       "invariant_violations": 0,
       "by_state": {
         "CLEAR": {
           "total": 10,
-          "correct": 9,
-          "accuracy": 90.0
+          "correct": 8,
+          "accuracy": 80.0
         },
         "INCOMPLETE": {
           "total": 10,
@@ -55,8 +55,8 @@
         },
         "AMBIGUOUS": {
           "total": 10,
-          "correct": 2,
-          "accuracy": 20.0
+          "correct": 1,
+          "accuracy": 10.0
         },
         "CONFLICTING": {
           "total": 5,
@@ -69,7 +69,7 @@
           "accuracy": 100.0
         }
       },
-      "elapsed_sec": 10.76
+      "elapsed_sec": 1.47
     },
     {
       "threshold": 0.08,
@@ -80,13 +80,13 @@
       "by_state": {
         "CLEAR": {
           "total": 10,
-          "correct": 9,
-          "accuracy": 90.0
+          "correct": 8,
+          "accuracy": 80.0
         },
         "INCOMPLETE": {
           "total": 10,
-          "correct": 9,
-          "accuracy": 90.0
+          "correct": 10,
+          "accuracy": 100.0
         },
         "AMBIGUOUS": {
           "total": 10,
@@ -104,24 +104,24 @@
           "accuracy": 100.0
         }
       },
-      "elapsed_sec": 16.62
+      "elapsed_sec": 1.42
     },
     {
       "threshold": 0.1,
-      "accuracy": 72.5,
-      "correct_state": 29,
+      "accuracy": 75.0,
+      "correct_state": 30,
       "total_cases": 40,
       "invariant_violations": 0,
       "by_state": {
         "CLEAR": {
           "total": 10,
-          "correct": 9,
-          "accuracy": 90.0
+          "correct": 8,
+          "accuracy": 80.0
         },
         "INCOMPLETE": {
           "total": 10,
-          "correct": 8,
-          "accuracy": 80.0
+          "correct": 10,
+          "accuracy": 100.0
         },
         "AMBIGUOUS": {
           "total": 10,
@@ -139,24 +139,24 @@
           "accuracy": 100.0
         }
       },
-      "elapsed_sec": 9.65
+      "elapsed_sec": 1.22
     },
     {
       "threshold": 0.15,
-      "accuracy": 72.5,
-      "correct_state": 29,
+      "accuracy": 75.0,
+      "correct_state": 30,
       "total_cases": 40,
       "invariant_violations": 0,
       "by_state": {
         "CLEAR": {
           "total": 10,
-          "correct": 9,
-          "accuracy": 90.0
+          "correct": 8,
+          "accuracy": 80.0
         },
         "INCOMPLETE": {
           "total": 10,
-          "correct": 8,
-          "accuracy": 80.0
+          "correct": 10,
+          "accuracy": 100.0
         },
         "AMBIGUOUS": {
           "total": 10,
@@ -174,19 +174,19 @@
           "accuracy": 100.0
         }
       },
-      "elapsed_sec": 11.54
+      "elapsed_sec": 1.2
     }
   ],
   "ambiguity_benchmark": {
-    "threshold": 0.03,
+    "threshold": 0.08,
     "total_cases": 40,
-    "correct_state": 31,
-    "accuracy": 77.5,
+    "correct_state": 30,
+    "accuracy": 75.0,
     "by_state": {
       "CLEAR": {
         "total": 10,
-        "correct": 9,
-        "accuracy": 90.0
+        "correct": 8,
+        "accuracy": 80.0
       },
       "INCOMPLETE": {
         "total": 10,
@@ -279,13 +279,13 @@
         "expected_state": "CLEAR",
         "predicted_state": "CLEAR",
         "state_match": true,
-        "candidate_standard": "IS 14333 : 2022",
-        "evidence_standard": "IS 14333 : 2022",
+        "candidate_standard": "IS 15778 : 2007",
+        "evidence_standard": "IS 15778 : 2007",
         "human_review_required": false,
         "expected_review_required": false,
         "review_match": true,
         "separation_margin": null,
-        "reason": "Authoritative active standard IS 14333 : 2022 verified against scope with High confidence."
+        "reason": "Authoritative active standard IS 15778 : 2007 verified against scope with Medium confidence."
       },
       {
         "id": "AMB-CLR-06",
@@ -300,7 +300,7 @@
         "expected_review_required": false,
         "review_match": true,
         "separation_margin": null,
-        "reason": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
+        "reason": "Authoritative active standard IS 15778 : 2007 verified against scope with Medium confidence."
       },
       {
         "id": "AMB-CLR-07",
@@ -322,15 +322,15 @@
         "category": "Civil/Materials",
         "text": "Supply of structural steel standard quality Fe 410 WA plates 20 mm thickness con...",
         "expected_state": "CLEAR",
-        "predicted_state": "CLEAR",
-        "state_match": true,
+        "predicted_state": "REVIEW_REQUIRED",
+        "state_match": false,
         "candidate_standard": "IS 432 : 2026",
         "evidence_standard": "IS 432 : 2026",
-        "human_review_required": false,
+        "human_review_required": true,
         "expected_review_required": false,
-        "review_match": true,
+        "review_match": false,
         "separation_margin": null,
-        "reason": "Authoritative active standard IS 432 : 2026 verified against scope with Medium confidence."
+        "reason": "Technical review required prior to procurement."
       },
       {
         "id": "AMB-CLR-09",
@@ -345,7 +345,7 @@
         "expected_review_required": false,
         "review_match": false,
         "separation_margin": null,
-        "reason": "Authoritative active standard IS 458 : 2021 verified against scope with Medium confidence."
+        "reason": "Authoritative active standard IS 458 : 2021 verified against scope with High confidence."
       },
       {
         "id": "AMB-CLR-10",
@@ -525,7 +525,7 @@
         "expected_review_required": true,
         "review_match": false,
         "separation_margin": null,
-        "reason": "Authoritative active standard IS 778 : 1984 verified against scope with High confidence."
+        "reason": "Authoritative active standard IS 778 : 1984 verified against scope with Medium confidence."
       },
       {
         "id": "AMB-AMB-02",
@@ -540,7 +540,7 @@
         "expected_review_required": true,
         "review_match": false,
         "separation_margin": null,
-        "reason": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
+        "reason": "Authoritative active standard IS 15778 : 2007 verified against scope with Medium confidence."
       },
       {
         "id": "AMB-AMB-03",
@@ -549,13 +549,13 @@
         "expected_state": "AMBIGUOUS",
         "predicted_state": "CLEAR",
         "state_match": false,
-        "candidate_standard": "IS 1255 : 1983",
-        "evidence_standard": "IS 1255 : 1983",
+        "candidate_standard": "IS 7098 (Part 1) : 1988",
+        "evidence_standard": "IS 7098 (Part 1) : 1988",
         "human_review_required": false,
         "expected_review_required": true,
         "review_match": false,
         "separation_margin": null,
-        "reason": "Authoritative active standard IS 1255 : 1983 verified against scope with Medium confidence."
+        "reason": "Authoritative active standard IS 7098 (Part 1) : 1988 verified against scope with Medium confidence."
       },
       {
         "id": "AMB-AMB-04",
@@ -585,7 +585,7 @@
         "expected_review_required": true,
         "review_match": true,
         "separation_margin": null,
-        "reason": "Multiple competing Indian Standards (IS 2491 and FSSAI Schedule 4) have comparable applicability (sc"
+        "reason": "Multiple competing Indian Standards (IS 2491 and IS 15000) have comparable applicability (score delt"
       },
       {
         "id": "AMB-AMB-06",
@@ -600,7 +600,7 @@
         "expected_review_required": true,
         "review_match": false,
         "separation_margin": null,
-        "reason": "Authoritative active standard IS 15622 : 2017 verified against scope with High confidence."
+        "reason": "Authoritative active standard IS 15622 : 2017 verified against scope with Medium confidence."
       },
       {
         "id": "AMB-AMB-07",
@@ -624,13 +624,13 @@
         "expected_state": "AMBIGUOUS",
         "predicted_state": "REVIEW_REQUIRED",
         "state_match": false,
-        "candidate_standard": "IS 5039 : 1983",
-        "evidence_standard": "IS 5039 : 1983",
+        "candidate_standard": "IS/IEC 61439-3 : 2012",
+        "evidence_standard": "IS/IEC 61439-3 : 2012",
         "human_review_required": true,
         "expected_review_required": true,
         "review_match": true,
         "separation_margin": null,
-        "reason": "Low confidence retrieval match (<0.35 score). Technical engineer verification required."
+        "reason": "Technical review required prior to procurement."
       },
       {
         "id": "AMB-AMB-09",
@@ -645,7 +645,7 @@
         "expected_review_required": true,
         "review_match": false,
         "separation_margin": null,
-        "reason": "Authoritative active standard IS 432 : 2026 verified against scope with High confidence."
+        "reason": "Authoritative active standard IS 432 : 2026 verified against scope with Medium confidence."
       },
       {
         "id": "AMB-AMB-10",
@@ -813,14 +813,14 @@
         "reason": "No reliable Indian Standard match found. We could not establish a sufficiently supported Indian Stan"
       }
     ],
-    "elapsed_sec": 11.06
+    "elapsed_sec": 1.42
   },
   "catalogue_preservation": {
     "total_queries": 50,
-    "preserved_count": 6,
-    "preservation_rate": 12.0,
-    "abstention_count": 8,
-    "candidate_evidence_matches": 42,
+    "preserved_count": 35,
+    "preservation_rate": 70.0,
+    "abstention_count": 2,
+    "candidate_evidence_matches": 48,
     "records": [
       {
         "id": "BENCH-01",
@@ -835,144 +835,144 @@
         "id": "BENCH-02",
         "text": "Supply of unplasticized PVC (uPVC) pipes for potable water s...",
         "expected_standard": "IS 4985",
-        "candidate_standard": "IS 15778 : 2007",
-        "evidence_standard": "IS 15778 : 2007",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 4985 : 2021",
+        "evidence_standard": "IS 4985 : 2021",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-03",
         "text": "High density polyethylene (HDPE) pipes PE-100 grade PN-10 fo...",
         "expected_standard": "IS 4984",
-        "candidate_standard": "IS 14333 : 1996",
-        "evidence_standard": "IS 14333 : 1996",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 4984 : 2016",
+        "evidence_standard": "IS 4984 : 2016",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-04",
         "text": "Providing cast iron sluice valves for waterworks purposes 20...",
         "expected_standard": "IS 14846",
-        "candidate_standard": "IS 14846 : 2000",
-        "evidence_standard": "IS 14846 : 2000",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": true
+        "candidate_standard": "IS 9338 : 1989",
+        "evidence_standard": "IS 9338 : 1989",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": false
       },
       {
         "id": "BENCH-05",
         "text": "Copper alloy gate globe and check valves 50mm nominal bore f...",
         "expected_standard": "IS 778",
-        "candidate_standard": "IS 778 : 1984",
-        "evidence_standard": "IS 778 : 1984",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": true
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "ambiguity_state": "AMBIGUOUS",
+        "is_preserved": false
       },
       {
         "id": "BENCH-06",
         "text": "Centric disc wafer type butterfly valves for industrial gene...",
         "expected_standard": "IS 13095",
-        "candidate_standard": "IS 14846 : 2000",
-        "evidence_standard": "IS 14846 : 2000",
+        "candidate_standard": "IS 13095 : 1991",
+        "evidence_standard": "IS 13095 : 1991",
         "ambiguity_state": "REVIEW_REQUIRED",
-        "is_preserved": false
+        "is_preserved": true
       },
       {
         "id": "BENCH-07",
         "text": "High strength deformed steel bars grade Fe 500D for reinforc...",
         "expected_standard": "IS 1786",
-        "candidate_standard": "IS 432 : 2026",
-        "evidence_standard": "IS 432 : 2026",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 1786 : 2008",
+        "evidence_standard": "IS 1786 : 2008",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-08",
         "text": "Hot rolled medium and high tensile structural steel plates a...",
         "expected_standard": "IS 2062",
-        "candidate_standard": "IS 432 : 2026",
-        "evidence_standard": "IS 432 : 2026",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 2062 : 2011",
+        "evidence_standard": "IS 2062 : 2011",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-09",
         "text": "Ordinary Portland Cement 43 grade for structural concrete wo...",
         "expected_standard": "IS 8112",
-        "candidate_standard": "IS 269 : 2015",
-        "evidence_standard": "IS 269 : 2015",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 8112 : 2013",
+        "evidence_standard": "IS 8112 : 2013",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-10",
         "text": "Portland Pozzolana Cement fly ash based conforming to standa...",
         "expected_standard": "IS 1489 (Part 1)",
-        "candidate_standard": "IS 269 : 2015",
-        "evidence_standard": "IS 269 : 2015",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 1489 (Part 1) : 2015",
+        "evidence_standard": "IS 1489 (Part 1) : 2015",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-11",
         "text": "Code of practice for plain and reinforced concrete design an...",
         "expected_standard": "IS 456",
-        "candidate_standard": "IS 783 : 1985",
-        "evidence_standard": "IS 783 : 1985",
+        "candidate_standard": "IS 456 : 2000",
+        "evidence_standard": "IS 456 : 2000",
         "ambiguity_state": "REVIEW_REQUIRED",
-        "is_preserved": false
+        "is_preserved": true
       },
       {
         "id": "BENCH-12",
         "text": "Coarse and fine aggregates from natural sources for concrete...",
         "expected_standard": "IS 383",
-        "candidate_standard": "SP 34 : 1987",
-        "evidence_standard": "SP 34 : 1987",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 383 : 2016",
+        "evidence_standard": "IS 383 : 2016",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-13",
         "text": "Methods of sampling and analysis of concrete for slump test ...",
         "expected_standard": "IS 1199",
-        "candidate_standard": "IS 101 : 2019",
-        "evidence_standard": "IS 101 : 2019",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 1199 : 1959",
+        "evidence_standard": "IS 1199 : 1959",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-14",
         "text": "Methods of test for strength of concrete compressive strengt...",
         "expected_standard": "IS 516",
-        "candidate_standard": null,
-        "evidence_standard": null,
-        "ambiguity_state": "NO_RELIABLE_MATCH",
-        "is_preserved": false
+        "candidate_standard": "IS 516 : 1959",
+        "evidence_standard": "IS 516 : 1959",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-15",
         "text": "Criteria for earthquake resistant design of structures gener...",
         "expected_standard": "IS 1893 (Part 1)",
-        "candidate_standard": "IS 2491 : 2024",
-        "evidence_standard": "IS 2491 : 2024",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 1893 (Part 1) : 2016",
+        "evidence_standard": "IS 1893 (Part 1) : 2016",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-16",
         "text": "Ductile detailing of reinforced concrete structures subjecte...",
         "expected_standard": "IS 13920",
-        "candidate_standard": "SP 34 : 1987",
-        "evidence_standard": "SP 34 : 1987",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 13920 : 2016",
+        "evidence_standard": "IS 13920 : 2016",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-17",
         "text": "Common burnt clay building bricks of compressive strength cl...",
         "expected_standard": "IS 1077",
-        "candidate_standard": "IS 6283 : 2023",
-        "evidence_standard": "IS 6283 : 2023",
-        "ambiguity_state": "CLEAR",
+        "candidate_standard": "IS 3495 (Part 1) : 1992",
+        "evidence_standard": "IS 3495 (Part 1) : 1992",
+        "ambiguity_state": "REVIEW_REQUIRED",
         "is_preserved": false
       },
       {
@@ -988,10 +988,10 @@
         "id": "BENCH-19",
         "text": "Vitreous china wash basins with pedestal flat back pattern s...",
         "expected_standard": "IS 2556 (Part 4)",
-        "candidate_standard": "IS 781 : 1984",
-        "evidence_standard": "IS 781 : 1984",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 2556 (Part 4) : 2004",
+        "evidence_standard": "IS 2556 (Part 4) : 2004",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-20",
@@ -1006,28 +1006,28 @@
         "id": "BENCH-21",
         "text": "PVC insulated copper conductor single core unsheathed wires ...",
         "expected_standard": "IS 694",
-        "candidate_standard": "IS 432 : 2026",
-        "evidence_standard": "IS 432 : 2026",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 694 : 2010",
+        "evidence_standard": "IS 694 : 2010",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-22",
         "text": "Cross-linked polyethylene (XLPE) insulated PVC sheathed powe...",
         "expected_standard": "IS 7098 (Part 1)",
-        "candidate_standard": "IS 1255 : 1983",
-        "evidence_standard": "IS 1255 : 1983",
-        "ambiguity_state": "CLEAR",
+        "candidate_standard": null,
+        "evidence_standard": null,
+        "ambiguity_state": "AMBIGUOUS",
         "is_preserved": false
       },
       {
         "id": "BENCH-23",
         "text": "11 kV grade XLPE insulated aluminium conductor armoured medi...",
         "expected_standard": "IS 7098 (Part 2)",
-        "candidate_standard": "IS 1255 : 1983",
-        "evidence_standard": "IS 1255 : 1983",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 7098 (Part 2) : 2011",
+        "evidence_standard": "IS 7098 (Part 2) : 2011",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-24",
@@ -1042,179 +1042,179 @@
         "id": "BENCH-25",
         "text": "Code of practice for earthing and lightning protection for e...",
         "expected_standard": "IS 3043",
-        "candidate_standard": "IS 3043 : 2018",
-        "evidence_standard": "IS 3043 : 2018",
+        "candidate_standard": "IS 732 : 2019",
+        "evidence_standard": "IS 732 : 2019",
         "ambiguity_state": "CLEAR",
-        "is_preserved": true
+        "is_preserved": false
       },
       {
         "id": "BENCH-26",
         "text": "Energy efficient three phase squirrel cage induction motors ...",
         "expected_standard": "IS 12615",
-        "candidate_standard": "IS/IEC 60034-1 : 2017",
-        "evidence_standard": "IS/IEC 60034-1 : 2017",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 12615 : 2018",
+        "evidence_standard": "IS 12615 : 2018",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-27",
         "text": "Outdoor type three phase oil immersed distribution transform...",
         "expected_standard": "IS 1180 (Part 1)",
-        "candidate_standard": "IS 5039 : 1983",
-        "evidence_standard": "IS 5039 : 1983",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 1180 (Part 1) : 2014",
+        "evidence_standard": "IS 1180 (Part 1) : 2014",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-28",
         "text": "Low-voltage switchgear and controlgear assemblies power swit...",
         "expected_standard": "IS/IEC 61439-2",
-        "candidate_standard": null,
-        "evidence_standard": null,
-        "ambiguity_state": "AMBIGUOUS",
+        "candidate_standard": "IS/IEC 62271 (Part 200) : 2011",
+        "evidence_standard": "IS/IEC 62271 (Part 200) : 2011",
+        "ambiguity_state": "REVIEW_REQUIRED",
         "is_preserved": false
       },
       {
         "id": "BENCH-29",
         "text": "Circuit breakers for overcurrent protection for household an...",
         "expected_standard": "IS/IEC 60898-1",
-        "candidate_standard": "IS 302 : 2008",
-        "evidence_standard": "IS 302 : 2008",
-        "ambiguity_state": "CLEAR",
+        "candidate_standard": "IS/IEC 60898 (Part 1) : 2015",
+        "evidence_standard": "IS/IEC 60898 (Part 1) : 2015",
+        "ambiguity_state": "REVIEW_REQUIRED",
         "is_preserved": false
       },
       {
         "id": "BENCH-30",
         "text": "Residual current operated circuit breakers without integral ...",
         "expected_standard": "IS/IEC 61008-1",
-        "candidate_standard": null,
-        "evidence_standard": null,
-        "ambiguity_state": "NO_RELIABLE_MATCH",
+        "candidate_standard": "IS 12640 (Part 1) : 2016",
+        "evidence_standard": "IS 12640 (Part 1) : 2016",
+        "ambiguity_state": "REVIEW_REQUIRED",
         "is_preserved": false
       },
       {
         "id": "BENCH-31",
         "text": "Self-ballasted LED lamps for general lighting services safet...",
         "expected_standard": "IS 16102 (Part 1)",
-        "candidate_standard": "IS 302 : 2024",
-        "evidence_standard": "IS 302 : 2024",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 16102 (Part 1) : 2012",
+        "evidence_standard": "IS 16102 (Part 1) : 2012",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-32",
         "text": "Fixed general purpose LED luminaires and street lighting fit...",
         "expected_standard": "IS 10322 (Part 5/Sec 1)",
-        "candidate_standard": "IS 10322 (Part 5 / Sec 5) : 2013",
-        "evidence_standard": "IS 10322 (Part 5 / Sec 5) : 2013",
-        "ambiguity_state": "CLEAR",
+        "candidate_standard": "IS 10322 (Part 5) (Sec 1) : 2012",
+        "evidence_standard": "IS 10322 (Part 5) (Sec 1) : 2012",
+        "ambiguity_state": "REVIEW_REQUIRED",
         "is_preserved": false
       },
       {
         "id": "BENCH-33",
         "text": "Electronic controlgear for LED modules DC supplied electroni...",
         "expected_standard": "IS 15885 (Part 2/Sec 13)",
-        "candidate_standard": "IS/IEC 61439-2 : 2011",
-        "evidence_standard": "IS/IEC 61439-2 : 2011",
-        "ambiguity_state": "CLEAR",
+        "candidate_standard": "IS 15885 (Part 2) (Sec 13) : 2012",
+        "evidence_standard": "IS 15885 (Part 2) (Sec 13) : 2012",
+        "ambiguity_state": "REVIEW_REQUIRED",
         "is_preserved": false
       },
       {
         "id": "BENCH-34",
         "text": "Crystalline silicon terrestrial photovoltaic (PV) modules de...",
         "expected_standard": "IS 14286",
-        "candidate_standard": "IS 2491 : 2024",
-        "evidence_standard": "IS 2491 : 2024",
+        "candidate_standard": "IS 14286 : 2010",
+        "evidence_standard": "IS 14286 : 2010",
         "ambiguity_state": "REVIEW_REQUIRED",
-        "is_preserved": false
+        "is_preserved": true
       },
       {
         "id": "BENCH-35",
         "text": "Photovoltaic module safety qualification requirements for co...",
         "expected_standard": "IS/IEC 61730-1",
-        "candidate_standard": "IS 302 : 2024",
-        "evidence_standard": "IS 302 : 2024",
-        "ambiguity_state": "CLEAR",
+        "candidate_standard": "IS/IEC 61730 (Part 1) : 2004",
+        "evidence_standard": "IS/IEC 61730 (Part 1) : 2004",
+        "ambiguity_state": "REVIEW_REQUIRED",
         "is_preserved": false
       },
       {
         "id": "BENCH-36",
         "text": "Information technology equipment safety general requirements...",
         "expected_standard": "IS 13252 (Part 1)",
-        "candidate_standard": "IS 302 : 2024",
-        "evidence_standard": "IS 302 : 2024",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 13252 (Part 1) : 2010",
+        "evidence_standard": "IS 13252 (Part 1) : 2010",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-37",
         "text": "Secondary cells and batteries containing alkaline or other n...",
         "expected_standard": "IS 16046 (Part 2)",
-        "candidate_standard": null,
-        "evidence_standard": null,
-        "ambiguity_state": "NO_RELIABLE_MATCH",
-        "is_preserved": false
+        "candidate_standard": "IS 16046 (Part 2) : 2018",
+        "evidence_standard": "IS 16046 (Part 2) : 2018",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-38",
         "text": "Uninterruptible power systems (UPS) general and safety requi...",
         "expected_standard": "IS 16242 (Part 1)",
-        "candidate_standard": "IS 302 : 2024",
-        "evidence_standard": "IS 302 : 2024",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 16242 (Part 1) : 2014",
+        "evidence_standard": "IS 16242 (Part 1) : 2014",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-39",
         "text": "A.C. static direct connected watt-hour smart meter class 1 a...",
         "expected_standard": "IS 16444 (Part 1)",
-        "candidate_standard": null,
-        "evidence_standard": null,
-        "ambiguity_state": "NO_RELIABLE_MATCH",
-        "is_preserved": false
+        "candidate_standard": "IS 16444 (Part 1) : 2015",
+        "evidence_standard": "IS 16444 (Part 1) : 2015",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-40",
         "text": "Electric ceiling fans and regulators energy efficient BLDC c...",
         "expected_standard": "IS 374",
-        "candidate_standard": "IS 302 : 2026",
-        "evidence_standard": "IS 302 : 2026",
-        "ambiguity_state": "CLEAR",
+        "candidate_standard": "IS 12615 : 2018",
+        "evidence_standard": "IS 12615 : 2018",
+        "ambiguity_state": "REVIEW_REQUIRED",
         "is_preserved": false
       },
       {
         "id": "BENCH-41",
         "text": "Portable fire extinguishers performance and construction sto...",
         "expected_standard": "IS 15683",
-        "candidate_standard": null,
-        "evidence_standard": null,
-        "ambiguity_state": "NO_RELIABLE_MATCH",
-        "is_preserved": false
+        "candidate_standard": "IS 15683 : 2018",
+        "evidence_standard": "IS 15683 : 2018",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-42",
         "text": "Selection, installation and maintenance of first-aid fire ex...",
         "expected_standard": "IS 2190",
-        "candidate_standard": "IS 9694 : 2023",
-        "evidence_standard": "IS 9694 : 2023",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 2190 : 2010",
+        "evidence_standard": "IS 2190 : 2010",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-43",
         "text": "Internal fire hydrants and hose reels on premises code of pr...",
         "expected_standard": "IS 3844",
-        "candidate_standard": "IS 2491 : 2024",
-        "evidence_standard": "IS 2491 : 2024",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 3844 : 1989",
+        "evidence_standard": "IS 3844 : 1989",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-44",
         "text": "Electric traction passenger lifts car sling guide rails and ...",
         "expected_standard": "IS 14665 (Part 1)",
-        "candidate_standard": "IS 589 : 1961",
-        "evidence_standard": "IS 589 : 1961",
+        "candidate_standard": "IS 14665 (Part 3) (Sec 1) : 2000",
+        "evidence_standard": "IS 14665 (Part 3) (Sec 1) : 2000",
         "ambiguity_state": "REVIEW_REQUIRED",
         "is_preserved": false
       },
@@ -1222,53 +1222,53 @@
         "id": "BENCH-45",
         "text": "Centrifugal pumps for clear cold water single stage monobloc...",
         "expected_standard": "IS 1520",
-        "candidate_standard": "IS 9694 : 2023",
-        "evidence_standard": "IS 9694 : 2023",
+        "candidate_standard": "IS 1520 : 1980",
+        "evidence_standard": "IS 1520 : 1980",
         "ambiguity_state": "REVIEW_REQUIRED",
-        "is_preserved": false
+        "is_preserved": true
       },
       {
         "id": "BENCH-46",
         "text": "Submersible pumpsets for deep well water supply borehole ins...",
         "expected_standard": "IS 8034",
-        "candidate_standard": "SP 57 (QAWSM) : 1993",
-        "evidence_standard": "SP 57 (QAWSM) : 1993",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 8034 : 2018",
+        "evidence_standard": "IS 8034 : 2018",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-47",
         "text": "Supply of 22 carat gold jewellery and coins with mandatory B...",
         "expected_standard": "IS 1417",
-        "candidate_standard": null,
-        "evidence_standard": null,
-        "ambiguity_state": "NO_RELIABLE_MATCH",
-        "is_preserved": false
+        "candidate_standard": "IS 1417 : 2016",
+        "evidence_standard": "IS 1417 : 2016",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-48",
         "text": "Silver medals and jewellery artefacts fineness marking and a...",
         "expected_standard": "IS 2112",
-        "candidate_standard": null,
-        "evidence_standard": null,
-        "ambiguity_state": "NO_RELIABLE_MATCH",
-        "is_preserved": false
+        "candidate_standard": "IS 2112 : 2014",
+        "evidence_standard": "IS 2112 : 2014",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-49",
         "text": "Enamel synthetic exterior undercoating and finishing paint g...",
         "expected_standard": "IS 2932",
-        "candidate_standard": "IS 101 : 1988",
-        "evidence_standard": "IS 101 : 1988",
-        "ambiguity_state": "CLEAR",
-        "is_preserved": false
+        "candidate_standard": "IS 2932 : 2003",
+        "evidence_standard": "IS 2932 : 2003",
+        "ambiguity_state": "REVIEW_REQUIRED",
+        "is_preserved": true
       },
       {
         "id": "BENCH-50",
         "text": "Providing catering snacks and tea concession stall in transi...",
         "expected_standard": "ABSTAIN",
-        "candidate_standard": "IS 2491 : 2024",
-        "evidence_standard": "IS 2491 : 2024",
+        "candidate_standard": "IS 2491 : 2013",
+        "evidence_standard": "IS 2491 : 2013",
         "ambiguity_state": "REVIEW_REQUIRED",
         "is_preserved": false
       }

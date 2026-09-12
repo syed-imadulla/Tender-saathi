@@ -377,6 +377,15 @@ class ApplicabilityGate:
             conflict_flags.append("APPLICATION_CONFLICT: display optical film")
             rejection_reasons.append("Application conflict: Agricultural, mechanical, or photography standards do not cover advanced television display optical film.")
 
+        # Equipment scope gate: Adjustable speed electrical power drives (IS/IEC 61800) vs Switchgear assemblies
+        is_cand_vfd = "61800" in std_num or "power drive" in cand_corpus_low
+        has_vfd_kw = bool(re.search(r'\b(?:vfd|variable\s+frequency|variable\s+speed|power\s+drive|frequency\s+converter|inverter\s+drive|ac\s+drive|drive\s+panel)\b', req_text_low))
+        is_swg_req = bool(re.search(r'\b(?:switchgear|controlgear)\b', req_text_low))
+        if is_cand_vfd and is_swg_req and not has_vfd_kw:
+            application_match = False
+            conflict_flags.append("EQUIPMENT_MISMATCH: power drive system vs switchgear assembly")
+            rejection_reasons.append("Equipment mismatch: Standard covers adjustable speed power drive systems (VFD), but requirement specifies switchgear/controlgear assembly without power drive system.")
+
         # 7. Evidence Support
         # Standard exists and has scope, but does it evidence THIS requirement?
         evidence_support = (
