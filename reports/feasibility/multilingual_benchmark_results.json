@@ -13,16 +13,16 @@
       "correct_lang": 10,
       "consistent": 10,
       "latencies": [
-        274.90437499727705,
-        381.50830499944277,
-        292.0910979992186,
-        240.01538100128528,
-        254.0639889994054,
-        251.25741100055166,
-        274.79316900280537,
-        258.32531600099173,
-        254.40264999997453,
-        532.8273119994265
+        284.18808700007503,
+        292.4544719971891,
+        288.92384699793183,
+        230.10545299985097,
+        603.8816800028144,
+        249.3499240008532,
+        253.8676479998685,
+        260.39382300223224,
+        274.144522001734,
+        261.2568389995431
       ]
     },
     "kn": {
@@ -30,16 +30,16 @@
       "correct_lang": 10,
       "consistent": 10,
       "latencies": [
-        417.4348119995557,
-        268.54243599882466,
-        235.98954300177866,
-        232.45049099932658,
-        251.40258200190146,
-        251.14453100104583,
-        242.5391109973134,
-        240.88507200212916,
-        243.69464499977767,
-        255.18422499953886
+        424.3805539990717,
+        271.2718209986633,
+        234.44195900083287,
+        226.9107130014163,
+        252.46448400139343,
+        244.19018399930792,
+        226.01643699817942,
+        268.747619997157,
+        279.74971100047696,
+        245.77815199882025
       ]
     },
     "ta": {
@@ -47,16 +47,16 @@
       "correct_lang": 10,
       "consistent": 10,
       "latencies": [
-        252.55639099850669,
-        304.34142500234884,
-        241.06672999914736,
-        228.9235220014234,
-        237.3163750016829,
-        241.96633500105236,
-        246.83766800080775,
-        263.7941819994012,
-        258.1235090001428,
-        273.28639199913596
+        297.51675100123975,
+        270.8753639999486,
+        251.67454300026293,
+        537.1017479992588,
+        268.6264240001037,
+        307.70231999849784,
+        239.82392299876665,
+        252.89343300028122,
+        256.6192920021422,
+        247.38207900009002
       ]
     },
     "mixed": {
@@ -64,16 +64,16 @@
       "correct_lang": 10,
       "consistent": 10,
       "latencies": [
-        256.11776399819064,
-        253.81150799876195,
-        253.2103979974636,
-        244.392644999607,
-        257.03436199910357,
-        235.5471890004992,
-        279.9671360007778,
-        229.8804639976879,
-        266.55941299759434,
-        228.30715400050394
+        239.89138799879584,
+        249.87281699941377,
+        308.8916060005431,
+        239.27198400269845,
+        288.0891429995245,
+        221.76138299982995,
+        263.0309429987392,
+        529.7957410002709,
+        263.0293410002196,
+        256.3477570001851
       ]
     }
   },
@@ -94,8 +94,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 274.9,
-      "eng_latency_ms": 154.46
+      "latency_ms": 284.19,
+      "eng_latency_ms": 146.3
     },
     {
       "id": "ML-HI-02",
@@ -113,8 +113,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 381.51,
-      "eng_latency_ms": 169.08
+      "latency_ms": 292.45,
+      "eng_latency_ms": 185.35
     },
     {
       "id": "ML-HI-03",
@@ -132,8 +132,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 292.09,
-      "eng_latency_ms": 179.51
+      "latency_ms": 288.92,
+      "eng_latency_ms": 184.82
     },
     {
       "id": "ML-HI-04",
@@ -151,8 +151,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 240.02,
-      "eng_latency_ms": 143.65
+      "latency_ms": 230.11,
+      "eng_latency_ms": 142.45
     },
     {
       "id": "ML-HI-05",
@@ -170,8 +170,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 254.06,
-      "eng_latency_ms": 171.13
+      "latency_ms": 603.88,
+      "eng_latency_ms": 159.8
     },
     {
       "id": "ML-HI-06",
@@ -189,8 +189,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 251.26,
-      "eng_latency_ms": 147.12
+      "latency_ms": 249.35,
+      "eng_latency_ms": 148.75
     },
     {
       "id": "ML-HI-07",
@@ -208,8 +208,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 274.79,
-      "eng_latency_ms": 154.84
+      "latency_ms": 253.87,
+      "eng_latency_ms": 159.03
     },
     {
       "id": "ML-HI-08",
@@ -227,8 +227,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 258.33,
-      "eng_latency_ms": 151.94
+      "latency_ms": 260.39,
+      "eng_latency_ms": 153.23
     },
     {
       "id": "ML-HI-09",
@@ -246,8 +246,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 254.4,
-      "eng_latency_ms": 168.18
+      "latency_ms": 274.14,
+      "eng_latency_ms": 169.45
     },
     {
       "id": "ML-HI-10",
@@ -265,8 +265,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 532.83,
-      "eng_latency_ms": 166.83
+      "latency_ms": 261.26,
+      "eng_latency_ms": 161.38
     },
     {
       "id": "ML-KN-01",
@@ -284,8 +284,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 417.43,
-      "eng_latency_ms": 166.57
+      "latency_ms": 424.38,
+      "eng_latency_ms": 246.48
     },
     {
       "id": "ML-KN-02",
@@ -303,8 +303,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 268.54,
-      "eng_latency_ms": 166.43
+      "latency_ms": 271.27,
+      "eng_latency_ms": 161.22
     },
     {
       "id": "ML-KN-03",
@@ -322,8 +322,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 235.99,
-      "eng_latency_ms": 146.39
+      "latency_ms": 234.44,
+      "eng_latency_ms": 150.29
     },
     {
       "id": "ML-KN-04",
@@ -341,8 +341,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 232.45,
-      "eng_latency_ms": 131.98
+      "latency_ms": 226.91,
+      "eng_latency_ms": 139.44
     },
     {
       "id": "ML-KN-05",
@@ -360,8 +360,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 251.4,
-      "eng_latency_ms": 167.42
+      "latency_ms": 252.46,
+      "eng_latency_ms": 141.88
     },
     {
       "id": "ML-KN-06",
@@ -379,8 +379,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 251.14,
-      "eng_latency_ms": 145.26
+      "latency_ms": 244.19,
+      "eng_latency_ms": 151.57
     },
     {
       "id": "ML-KN-07",
@@ -398,8 +398,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 242.54,
-      "eng_latency_ms": 163.63
+      "latency_ms": 226.02,
+      "eng_latency_ms": 144.29
     },
     {
       "id": "ML-KN-08",
@@ -417,8 +417,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 240.89,
-      "eng_latency_ms": 125.84
+      "latency_ms": 268.75,
+      "eng_latency_ms": 137.96
     },
     {
       "id": "ML-KN-09",
@@ -436,8 +436,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 243.69,
-      "eng_latency_ms": 156.05
+      "latency_ms": 279.75,
+      "eng_latency_ms": 161.28
     },
     {
       "id": "ML-KN-10",
@@ -455,8 +455,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 255.18,
-      "eng_latency_ms": 149.53
+      "latency_ms": 245.78,
+      "eng_latency_ms": 153.51
     },
     {
       "id": "ML-TA-01",
@@ -474,8 +474,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 252.56,
-      "eng_latency_ms": 176.3
+      "latency_ms": 297.52,
+      "eng_latency_ms": 184.47
     },
     {
       "id": "ML-TA-02",
@@ -493,8 +493,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 304.34,
-      "eng_latency_ms": 181.86
+      "latency_ms": 270.88,
+      "eng_latency_ms": 467.23
     },
     {
       "id": "ML-TA-03",
@@ -512,8 +512,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 241.07,
-      "eng_latency_ms": 139.46
+      "latency_ms": 251.67,
+      "eng_latency_ms": 145.55
     },
     {
       "id": "ML-TA-04",
@@ -531,8 +531,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 228.92,
-      "eng_latency_ms": 130.75
+      "latency_ms": 537.1,
+      "eng_latency_ms": 140.46
     },
     {
       "id": "ML-TA-05",
@@ -550,8 +550,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 237.32,
-      "eng_latency_ms": 137.12
+      "latency_ms": 268.63,
+      "eng_latency_ms": 150.85
     },
     {
       "id": "ML-TA-06",
@@ -569,8 +569,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 241.97,
-      "eng_latency_ms": 151.99
+      "latency_ms": 307.7,
+      "eng_latency_ms": 174.22
     },
     {
       "id": "ML-TA-07",
@@ -588,8 +588,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 246.84,
-      "eng_latency_ms": 156.2
+      "latency_ms": 239.82,
+      "eng_latency_ms": 161.44
     },
     {
       "id": "ML-TA-08",
@@ -607,8 +607,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 263.79,
-      "eng_latency_ms": 190.66
+      "latency_ms": 252.89,
+      "eng_latency_ms": 164.52
     },
     {
       "id": "ML-TA-09",
@@ -626,8 +626,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 258.12,
-      "eng_latency_ms": 159.51
+      "latency_ms": 256.62,
+      "eng_latency_ms": 312.84
     },
     {
       "id": "ML-TA-10",
@@ -645,8 +645,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 273.29,
-      "eng_latency_ms": 298.07
+      "latency_ms": 247.38,
+      "eng_latency_ms": 150.85
     },
     {
       "id": "ML-MX-01",
@@ -664,8 +664,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 256.12,
-      "eng_latency_ms": 139.34
+      "latency_ms": 239.89,
+      "eng_latency_ms": 144.29
     },
     {
       "id": "ML-MX-02",
@@ -683,8 +683,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 253.81,
-      "eng_latency_ms": 148.67
+      "latency_ms": 249.87,
+      "eng_latency_ms": 160.23
     },
     {
       "id": "ML-MX-03",
@@ -702,8 +702,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 253.21,
-      "eng_latency_ms": 165.61
+      "latency_ms": 308.89,
+      "eng_latency_ms": 217.73
     },
     {
       "id": "ML-MX-04",
@@ -721,8 +721,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 244.39,
-      "eng_latency_ms": 123.06
+      "latency_ms": 239.27,
+      "eng_latency_ms": 127.38
     },
     {
       "id": "ML-MX-05",
@@ -740,8 +740,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 257.03,
-      "eng_latency_ms": 157.33
+      "latency_ms": 288.09,
+      "eng_latency_ms": 147.17
     },
     {
       "id": "ML-MX-06",
@@ -759,8 +759,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 235.55,
-      "eng_latency_ms": 153.99
+      "latency_ms": 221.76,
+      "eng_latency_ms": 125.11
     },
     {
       "id": "ML-MX-07",
@@ -778,8 +778,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 279.97,
-      "eng_latency_ms": 141.91
+      "latency_ms": 263.03,
+      "eng_latency_ms": 159.68
     },
     {
       "id": "ML-MX-08",
@@ -797,8 +797,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 229.88,
-      "eng_latency_ms": 138.21
+      "latency_ms": 529.8,
+      "eng_latency_ms": 441.62
     },
     {
       "id": "ML-MX-09",
@@ -816,8 +816,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 266.56,
-      "eng_latency_ms": 164.58
+      "latency_ms": 263.03,
+      "eng_latency_ms": 158.9
     },
     {
       "id": "ML-MX-10",
@@ -835,8 +835,8 @@
       "invariant_passed": true,
       "same_as_english": true,
       "outcome_category": "SAME_RECOMMENDATION",
-      "latency_ms": 228.31,
-      "eng_latency_ms": 135.38
+      "latency_ms": 256.35,
+      "eng_latency_ms": 151.74
     }
   ]
 }
