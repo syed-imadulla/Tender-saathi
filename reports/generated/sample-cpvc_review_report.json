@@ -1,0 +1,394 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "SAMPLE-CPVC",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "Sample: cpvc",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "READY_FOR_REVIEW",
+  "readiness_reasons": [
+    "All 1 requirement(s) have grounded standards evidence with no critical or high risk flags."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "SAMPLE-CPVC",
+    "requirements_analyzed": 1,
+    "recommendations_count": 1,
+    "review_required_count": 0,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 0,
+    "withdrawn_count": 0,
+    "active_count": 1,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 1,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 0
+    },
+    "risk_distribution": {
+      "LOW": 1,
+      "MEDIUM": 0,
+      "HIGH": 0,
+      "CRITICAL": 0
+    },
+    "lifecycle_distribution": {
+      "Active": 1,
+      "Superseded": 0,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 3,
+    "review_queue": [],
+    "publication_readiness": "READY_FOR_REVIEW",
+    "readiness_reasons": [
+      "All 1 requirement(s) have grounded standards evidence with no critical or high risk flags."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 5,
+    "normative_reference_count": 0,
+    "allied_standard_count": 1,
+    "test_standard_count": 1,
+    "installation_standard_count": 3,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 2,
+    "related_for_review_count": 1,
+    "standards_coverage": {
+      "direct_standards_identified": 1,
+      "total_dependencies": 5,
+      "normative_references": 0,
+      "testing_dependencies": 1,
+      "installation_dependencies": 3,
+      "allied_standards": 1,
+      "covered_in_tender": 0,
+      "potential_gaps": 2,
+      "verified_gaps": 0,
+      "items_requiring_review": 0
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 2,
+      "related_for_review_count": 1
+    },
+    "certification_checks": 1,
+    "qco_checks": 1,
+    "crs_checks": 1,
+    "hallmarking_checks": 1,
+    "regulatory_review_items": 1,
+    "unknown_regulatory_items": 0,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 1,
+    "mandatory_certification_count": 1,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
+  },
+  "requirements": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
+      "category": "material",
+      "components": [
+        {
+          "text": "CPVC pipes",
+          "component_type": "material",
+          "domain": "piping",
+          "extracted_attributes": {
+            "category": "pipe_material"
+          }
+        },
+        {
+          "text": "CPVC fittings",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "domestic hot and cold water distribution",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        }
+      ],
+      "recommended_standard": "IS 15778 : 2007",
+      "recommended_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
+      "relevance_score": 1.0,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "STRONG",
+      "provenance": "CURATED",
+      "evidence_text": "Tender explicitly requires compliance with IS 15778.",
+      "evidence_source": "Tender Document",
+      "why_this": [
+        "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.",
+        "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 15778.\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via Tender Document (VERIFIED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
+      ],
+      "why_not": [
+        "Alternative standard IS 15905 has lower composite relevance (0.468 vs 1.000)."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Diameter / Nominal Bore (DN/OD)",
+        "Pressure Class / Schedule / SDR"
+      ],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 12235 : 2004",
+          "title": "Title not in local index",
+          "relationship_type": "TEST_METHOD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
+          "source_url": null,
+          "review_note": "Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance."
+        },
+        {
+          "standard_number": "IS 7634 (Part 3) : 2003",
+          "title": "Title not in local index",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+          "source_url": null,
+          "review_note": "Installation, laying, and jointing standard associated with IS 7634 (Part 3) : 2003. Review for installation execution."
+        },
+        {
+          "standard_number": "IS 4985 : 2000",
+          "title": "Title not in local index",
+          "relationship_type": "ALLIED_STANDARD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+          "source_url": null,
+          "review_note": "Allied product or component standard. Review for equipment interface compatibility."
+        }
+      ],
+      "decision": "RECOMMEND",
+      "risk_level": "LOW",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "High",
+      "review_reason": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence.",
+      "candidate_standard": "IS 15778 : 2007",
+      "evidence_standard": "IS 15778 : 2007",
+      "why_it_matches": "Tender explicitly requires compliance with IS 15778.",
+      "dependencies": [
+        {
+          "standard_number": "IS 12235 : 2004",
+          "title": "Title not in local index",
+          "relationship_type": "TEST_METHOD",
+          "dependency_status": "TEST_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
+          "source": "CURATED_STANDARDS_DOC",
+          "confidence": 0.95,
+          "why_related": "IS 12235 : 2004 (Title not in local index) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778 : 2007. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED].",
+          "functional_category": "testing",
+          "is_applicable_to_requirement": false,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "TEST_DEPENDENCY",
+          "evidence": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 12235 : 2004 (Title not in local index) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778 : 2007. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED]."
+        },
+        {
+          "standard_number": "IS 7634 (Part 3) : 2003",
+          "title": "Title not in local index",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+          "source": "CURATED_STANDARDS_DOC",
+          "confidence": 0.9,
+          "why_related": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed installation, laying, and execution standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
+          "functional_category": "installation",
+          "is_applicable_to_requirement": true,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "INSTALLATION_DEPENDENCY",
+          "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed installation, laying, and execution standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
+        },
+        {
+          "standard_number": "IS 4985 : 2000",
+          "title": "Title not in local index",
+          "relationship_type": "ALLIED_STANDARD",
+          "dependency_status": "ALLIED_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+          "source": "CURATED_STANDARDS_DOC",
+          "confidence": 0.85,
+          "why_related": "IS 4985 : 2000 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED].",
+          "functional_category": "allied",
+          "is_applicable_to_requirement": false,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "ALLIED_DEPENDENCY",
+          "evidence": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 4985 : 2000 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED]."
+        },
+        {
+          "standard_number": "SP 57 (QAWSM) : 1993",
+          "title": "Handbook on Pipes and Fittings for Drinking Water Supply",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Curated reference standard for Handbook on Pipes and Fittings for Drinking Water Supply",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "CURATED"
+        },
+        {
+          "standard_number": "IS 783 : 1985",
+          "title": "Code of Practice for Laying of Concrete Pipes",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "1.1 This standard covers recommended design practice for the laying of precast concrete pipes. It includes methods for calculating loads on pipes according to installation conditions and gives the corresponding load factors. 1.1.1 This standard is intended primarily for use in association with IS : ",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        }
+      ],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "APPLICABLE",
+          "matched_product": "CPVC Pipes for Potable Hot and Cold Water Supplies",
+          "standard_number": "IS 15778 : 2007",
+          "legal_basis": "Section 16, BIS Act, 2016",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS Product Certification (Scheme-I (ISI Mark)) applicable for CPVC Pipes for Potable Hot and Cold Water Supplies. Governing Order: Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024 (S.O. 1205(E)). Manufacturers must obtain a valid BIS licence before supply.",
+          "additional_metadata": {
+            "scheme": "Scheme-I (ISI Mark)",
+            "governing_order": "Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024 (S.O. 1205(E))",
+            "mandate_type": "MANDATORY"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "CURRENT",
+          "matched_product": "Chlorinated Polyvinyl Chloride (CPVC) Pipes",
+          "standard_number": "IS 15778 : 2007",
+          "legal_basis": "Sections 16, 17 and 25 of the Bureau of Indian Standards Act, 2016 (11 of 2016)",
+          "source": "https://egazette.gov.in/WriteReadData/2024/252312.pdf",
+          "source_url": "https://egazette.gov.in/WriteReadData/2024/252312.pdf",
+          "effective_date": "2024-08-25",
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": true,
+          "explanation": "Mandatory QCO in force: Covered under Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024 (S.O. 1205(E)) issued by Ministry of Commerce and Industry (DPIIT). Effective from 2024-08-25. Compliance and Standard Mark are mandatory under Section 16, BIS Act 2016.",
+          "additional_metadata": {
+            "order_id": "QCO-CPVC-2024",
+            "order_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024",
+            "ministry": "Ministry of Commerce and Industry (DPIIT)",
+            "gazette_notification": "S.O. 1205(E)",
+            "notification_date": "2024-02-26"
+          }
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 15778 : 2007",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS 15778 : 2007",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": false,
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (fittings, pipes); not applicable.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "CLEAR",
+      "ambiguity_reason": "Primary applicable standard IS 15778 is clearly identifiable and sufficiently supported."
+    }
+  ],
+  "review_queue": [],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 0,
+      "CURATED": 1,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}
