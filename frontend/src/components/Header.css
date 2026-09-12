@@ -4,24 +4,27 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 24px 20px 0;
+  padding: 28px 24px 0;
   position: relative;
   z-index: 50;
+  box-sizing: border-box;
 }
 
 .header {
   width: 100%;
-  max-width: 860px;
-  height: 56px;
+  max-width: 940px;
+  height: 58px;
   background: #ffffff;
   border-radius: 9999px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
-  border: 1px solid #f0f0ed;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.035), 0 1px 3px rgba(0, 0, 0, 0.02);
+  border: 1px solid #ebebe6;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 18px 0 24px;
+  padding: 0 14px 0 26px;
   position: relative;
+  transition: all 180ms ease;
+  box-sizing: border-box;
 }
 
 .header__logo {
@@ -32,10 +35,12 @@
 }
 
 .header__wordmark {
-  font-size: 1.25rem;
-  font-weight: 800;
+  font-size: 1.32rem;
+  font-weight: 850;
   color: #0f172a;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  display: flex;
+  align-items: center;
 }
 
 .header__wordmark span {
@@ -45,7 +50,7 @@
 .header__nav {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -54,10 +59,10 @@
 .nav-link-btn {
   background: transparent;
   border: none;
-  font-size: 0.88rem;
-  font-weight: 500;
+  font-size: 0.94rem;
+  font-weight: 550;
   color: #475569;
-  padding: 8px 16px;
+  padding: 8px 18px;
   border-radius: 9999px;
   cursor: pointer;
   transition: all 150ms ease;
@@ -70,22 +75,22 @@
 }
 
 .header__info-btn {
-  background: #f8fafc;
+  background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  width: 35px;
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #64748b;
   cursor: pointer;
   transition: all 150ms ease;
-  margin-left: 4px;
+  margin-left: 2px;
 }
 
 .header__info-btn:hover {
-  background: #f1f5f9;
+  background: #f8fafc;
   color: #0f172a;
   border-color: #cbd5e1;
 }
@@ -153,14 +158,18 @@
 
 @media (max-width: 640px) {
   .header-wrapper {
-    padding: 12px 14px 0;
+    padding: 12px 16px 0;
+    width: 100%;
+    box-sizing: border-box;
   }
   .header {
-    height: 50px;
-    padding: 0 10px 0 18px;
+    height: 48px;
+    padding: 0 12px 0 18px;
+    width: 100%;
+    box-sizing: border-box;
   }
   .header__wordmark {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
   .header__nav-desktop {
     display: none;
