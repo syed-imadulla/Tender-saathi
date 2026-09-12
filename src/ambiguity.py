@@ -191,7 +191,7 @@ class ConflictRegistry:
 
         # Rule CONF-04: Low-voltage wire/cable standard (IS 694) cited for MV/HV (3.3 kV to 33 kV)
         has_mv_hv_voltage = bool(re.search(r'\b(?:3\.3\s*kv|6\.6\s*kv|11\s*kv|22\s*kv|33\s*kv|66\s*kv|medium\s*voltage|mv\b|high\s*voltage|substation|transmission\s*line)\b', t_low))
-        has_is694 = bool(re.search(r'\bis\s*694\b', t_low)) or any("694" in c.standard_number for c in candidates[:3])
+        has_is694 = bool(re.search(r'\bis\s*694\b', t_low)) or any(bool(re.search(r'\b694\b', c.standard_number)) for c in candidates[:3])
         if has_mv_hv_voltage and has_is694:
             rule = cls.RULES["CONF-04-VOLTAGE-CONFLICT"]
             reason = (
@@ -202,7 +202,7 @@ class ConflictRegistry:
 
         # Rule CONF-05: Ceramic tile standard (IS 15622) cited for heavy machinery / crane rail track
         has_heavy_rail = any(kw in t_low for kw in ["crane rail", "crane rail track", "rmqc", "quay crane"])
-        has_tile = bool(re.search(r'\bis\s*15622\b', t_low)) or any("15622" in c.standard_number for c in candidates[:3])
+        has_tile = bool(re.search(r'\bis\s*15622\b', t_low)) or any(bool(re.search(r'\b15622\b', c.standard_number)) for c in candidates[:3])
         if has_heavy_rail and has_tile:
             rule = cls.RULES["CONF-05-TILE-CRANE-CONFLICT"]
             reason = (
