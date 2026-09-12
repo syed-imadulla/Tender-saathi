@@ -4,7 +4,7 @@
   "timestamp": "2026-09-12T11:35:00Z",
   "git": {
     "branch": "main",
-    "commit": "7e81c36",
+    "commit": "ac22e87",
     "working_tree_clean": true
   },
   "objective": "Audit whether the frontend and API preserve backend decision semantics exactly across all serialization layers, UI components, and audit indicators.",
