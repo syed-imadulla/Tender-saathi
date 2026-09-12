@@ -1,0 +1,137 @@
+{
+  "audit_type": "FINAL_SIH_FREEZE_CLAIM_INTEGRITY_AUDIT",
+  "project": "TenderSaathi",
+  "problem_statement": "SIH26108",
+  "date": "2026-09-12T19:22:00+05:30",
+  "git_head": "269d047e64625ceada824de102a73ef981343582",
+  "final_status": "TENDERSAATHI — SIH FINAL FREEZE COMPLETE",
+  "final_recommendation": "LOCK FOR SIH PRESENTATION",
+  "milestone_verdicts": {
+    "priority_6": "LOCK PRIORITY 6",
+    "priority_7": "LOCK_PRIORITY_7",
+    "priority_8": "PRIORITY 8 — FINAL SIH DEMO & PRESENTATION READY"
+  },
+  "regression_verification": {
+    "test_suite": {
+      "total_executed": 319,
+      "total_passed": 319,
+      "total_failed": 0,
+      "warnings": 47,
+      "warning_type": "DeprecationWarning: datetime.datetime.utcnow() in api/server.py",
+      "execution_time_seconds": 105.87
+    },
+    "e2e_real_tenders": {
+      "total_tenders_audited": 20,
+      "passed": 20,
+      "failed": 0,
+      "representative_reports_generated": 5,
+      "representative_reports": [
+        "reports/e2e/t020_review_report.md",
+        "reports/e2e/t002_review_report.md",
+        "reports/e2e/t001_review_report.md",
+        "reports/e2e/t014_review_report.md",
+        "reports/e2e/pkg-explicit-citations_review_report.md"
+      ]
+    },
+    "frontend_build": {
+      "command": "npm --prefix frontend run build",
+      "status": "PASS",
+      "typescript_errors": 0,
+      "build_duration_seconds": 1.07,
+      "output_artifacts": [
+        "frontend/dist/index.html",
+        "frontend/dist/assets/index-PVNusD6K.css",
+        "frontend/dist/assets/index-DUSSM8Jj.js"
+      ]
+    },
+    "database_parity": {
+      "standards_db": {
+        "path": "data/standards/standards.db",
+        "total_rows": 90,
+        "distinct_ids": 90,
+        "duplicates": 0,
+        "status": "PASS"
+      },
+      "catalogue_db": {
+        "path": "data/catalogue/catalogue.db",
+        "total_records": 502,
+        "status": "PASS"
+      }
+    },
+    "benchmark_integrity": {
+      "benchmark_path": "dataset/ground_truth/multilingual_benchmark.json",
+      "sha256": "db62e0367ea2983dab49a9ac8a98958efb0c17882df86f131ecfa6b04903690b",
+      "status": "FROZEN_UNCHANGED"
+    }
+  },
+  "verified_invariants": {
+    "candidate_equals_evidence_parity": true,
+    "abstention_null_equality": true,
+    "abstention_state": "candidate=null, evidence=null, human_review=true",
+    "domain_boundary_enforcement": true,
+    "non_submersible_boundary_gate": true,
+    "no_unsupported_recommendations": true
+  },
+  "claim_hardening_audit": {
+    "zero_hallucination_guarantee_removed": true,
+    "replaced_with": "evidence-grounded recommendations with safe abstention when supporting evidence is insufficient",
+    "scalability_claims_hardened": true,
+    "scalability_statement": "The architecture is designed to scale to a much larger catalogue. The current verified catalogue contains 502 records, with deep clause-level evidence populated for 90 core standards. Expanding to full 20,000+ BIS coverage requires ongoing document ingestion into our SQLite + BM25 + vector pipeline without architectural redesign.",
+    "latency_claims_hardened": true,
+    "latency_statement": "In repository benchmarks, warm audit execution averages under 1.5 seconds per tender (0.3s to 2.0s per tender, with initial model load ~8.9s), while single clauses process in ~300 milliseconds.",
+    "legal_authority_claims_hardened": true,
+    "legal_statement": "TenderSaathi is a decision-support and standards-review aid, not an autonomous legal certification or procurement approval system. Reports provide structured evidence for procurement review and record-keeping.",
+    "ocr_claims_hardened": true,
+    "ocr_statement": "The pipeline processes digital text-based PDFs directly; scanned or low-resolution documents require OCR preprocessing whose quality directly depends on scan legibility.",
+    "technology_names_verified": [
+      "BM25 Okapi",
+      "Sentence-Transformers all-MiniLM-L6-v2",
+      "Hybrid Retrieval",
+      "Applicability Gates",
+      "Evidence Grounding",
+      "Standards Graph",
+      "Ambiguity / Abstention",
+      "BIS Catalogue",
+      "Regulatory Checks",
+      "Human Review"
+    ]
+  },
+  "primary_demo_narratives": [
+    {
+      "name": "Demo 1: Clear Recommendation (Happy Path)",
+      "input": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
+      "candidate": "IS 15778 : 2007",
+      "evidence": "IS 15778 : 2007",
+      "parity": true,
+      "readiness": "READY_FOR_REVIEW"
+    },
+    {
+      "name": "Demo 2: Safe Abstention & Parameter Ambiguity",
+      "input": "Annual Rate Contract for Execution of Mechanical Maintenance Works including Pumps, Valve Replacement at Heavy Water Board Facilities (T002).",
+      "candidate": null,
+      "evidence": null,
+      "parity": true,
+      "readiness": "INSUFFICIENT_EVIDENCE / REVIEW_REQUIRED",
+      "action": "Emits targeted engineering parameter clarification questions"
+    },
+    {
+      "name": "Demo 3: Superseded Standard & Successor Recommendation",
+      "input": "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.",
+      "cited": "IS 10611 : 1983",
+      "lifecycle": "SUPERSEDED",
+      "successor": "IS/ISO 10434 : 2020",
+      "evidence": "IS/ISO 10434 : 2020",
+      "parity": true,
+      "readiness": "REVIEW_REQUIRED"
+    }
+  ],
+  "presentation_boundaries_and_limitations": [
+    "Deep clause-level verification currently covers 90 core standards.",
+    "Metadata catalogue currently contains 502 records.",
+    "Full 20,000+ BIS coverage is future expansion.",
+    "Human review remains necessary for ambiguous, unsupported, or uncertain cases.",
+    "OCR quality depends on document quality / OCR tooling.",
+    "Regulatory applicability must not be inferred when authoritative evidence is unavailable.",
+    "TenderSaathi is a decision-support / review aid, not an autonomous procurement approval system."
+  ]
+}

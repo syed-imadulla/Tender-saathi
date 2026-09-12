@@ -1,0 +1,276 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-3FCA9F57",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "text input",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "READY_FOR_REVIEW",
+  "readiness_reasons": [
+    "All 1 requirement(s) have grounded standards evidence with no critical or high risk flags."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-3FCA9F57",
+    "requirements_analyzed": 1,
+    "recommendations_count": 1,
+    "review_required_count": 0,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 0,
+    "withdrawn_count": 0,
+    "active_count": 1,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 1,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 0,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 1
+    },
+    "risk_distribution": {
+      "LOW": 1,
+      "MEDIUM": 0,
+      "HIGH": 0,
+      "CRITICAL": 0
+    },
+    "lifecycle_distribution": {
+      "Active": 1,
+      "Superseded": 0,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 1,
+    "review_queue": [],
+    "publication_readiness": "READY_FOR_REVIEW",
+    "readiness_reasons": [
+      "All 1 requirement(s) have grounded standards evidence with no critical or high risk flags."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 2,
+    "normative_reference_count": 1,
+    "allied_standard_count": 0,
+    "test_standard_count": 0,
+    "installation_standard_count": 1,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 0,
+    "related_for_review_count": 1,
+    "standards_coverage": {
+      "direct_standards_identified": 1,
+      "total_dependencies": 2,
+      "normative_references": 1,
+      "testing_dependencies": 0,
+      "installation_dependencies": 1,
+      "allied_standards": 0,
+      "covered_in_tender": 0,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "items_requiring_review": 0
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 0,
+      "related_for_review_count": 1
+    },
+    "certification_checks": 1,
+    "qco_checks": 1,
+    "crs_checks": 1,
+    "hallmarking_checks": 1,
+    "regulatory_review_items": 1,
+    "unknown_regulatory_items": 0,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 0,
+    "mandatory_certification_count": 0,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
+  },
+  "requirements": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "Installation of electrical wiring and safety equipment in office building.",
+      "category": "installation_execution",
+      "components": [
+        {
+          "text": "wiring",
+          "component_type": "material",
+          "domain": "electrical",
+          "extracted_attributes": {
+            "category": "cable_distribution",
+            "standard_focus": "IS 7098 / IS 1554"
+          }
+        }
+      ],
+      "recommended_standard": "IS 732 : 2019",
+      "recommended_title": "National Electrical Code of India 2023; Code of practice for electrical wiring installations [IS 732]",
+      "relevance_score": 0.706,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "evidence_text": "Exact Match: SP 30 Section 3 specifically establishes national guidelines for electrical installation, inspection, and maintenance in storage and warehousing facilities (FSD).",
+      "evidence_source": "BIS Standards Catalogue",
+      "why_this": [
+        "Standard title directly matches requirement component(s): 'wiring'.",
+        "Authoritative scope explicitly covers application: \"Exact Match: SP 30 Section 3 specifically establishes national guidelines for electrical installation, inspection, and m...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BIS Standards Catalogue (CURATED)."
+      ],
+      "why_not": [
+        "Alternative standard SP 30 scored lower across the 5-dimension critic evaluation."
+      ],
+      "completeness_label": "NOT_APPLICABLE",
+      "potentially_missing_parameters": [],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 14333 : 2022",
+          "title": "Polyethylene Pipes for Sewerage and Industrial Chemicals and Effluent - Specification",
+          "relationship_type": "REFERENCES",
+          "direction": "INCOMING",
+          "lifecycle_status": "Active",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Cited as normative reference in IS 14333 : 2022 (Clause 2 References).",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+14333&id=45935",
+          "review_note": "Primary standard is cited by IS 14333 : 2022. Review for broader installation context."
+        }
+      ],
+      "decision": "RECOMMEND",
+      "risk_level": "LOW",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "High",
+      "review_reason": "Authoritative active standard IS 732 : 2019 verified against scope with High confidence.",
+      "candidate_standard": "IS 732 : 2019",
+      "evidence_standard": "IS 732 : 2019",
+      "why_it_matches": "SP 30 Section 3 specifically establishes national guidelines for electrical installation, inspection, and m...",
+      "dependencies": [
+        {
+          "standard_number": "IS 14333 : 2022",
+          "title": "Polyethylene Pipes for Sewerage and Industrial Chemicals and Effluent - Specification",
+          "relationship_type": "REFERENCES",
+          "dependency_status": "NORMATIVE_DEPENDENCY",
+          "direction": "INCOMING",
+          "lifecycle_status": "Active",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "Cited as normative reference in IS 14333 : 2022 (Clause 2 References).",
+          "source": "SQLITE_DB",
+          "confidence": 0.9,
+          "why_related": "IS 14333 : 2022 (Polyethylene Pipes for Sewerage and Industrial Chemicals and Effluent - Specification) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 732 : 2019. Evidence: Cited as normative reference in IS 14333 : 2022 (Clause 2 References). [Provenance: VERIFIED].",
+          "functional_category": "normative",
+          "is_applicable_to_requirement": true,
+          "applicability_decision": "APPLICABLE",
+          "dependency_state": "NORMATIVE_DEPENDENCY",
+          "evidence": "Cited as normative reference in IS 14333 : 2022 (Clause 2 References).",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 14333 : 2022 (Polyethylene Pipes for Sewerage and Industrial Chemicals and Effluent - Specification) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 732 : 2019. Evidence: Cited as normative reference in IS 14333 : 2022 (Clause 2 References). [Provenance: VERIFIED]."
+        },
+        {
+          "standard_number": "SP 30 : 2023",
+          "title": "National Electrical Code of India 2023; Code of practice for electrical wiring installations [SP 30]",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Exact Match: SP 30 Section 3 specifically establishes national guidelines for electrical installation, inspection, and maintenance in storage and warehousing facilities (FSD).",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "CURATED"
+        }
+      ],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 732 : 2019",
+          "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS certification is NOT identified for IS 732 : 2019 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "additional_metadata": {
+            "mandate_type": "VOLUNTARY_OR_UNREGULATED"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 732 : 2019",
+          "legal_basis": "",
+          "source": "e-Gazette of India / DPIIT QCO Registry",
+          "source_url": "e-Gazette of India / DPIIT QCO Registry",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 732 : 2019. Verify ministry specific notifications.",
+          "additional_metadata": {}
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 732 : 2019",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS 732 : 2019",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs",
+          "source_url": "Ministry of Consumer Affairs",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": false,
+          "explanation": "Hallmarking is not applicable to this product category.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "CLEAR",
+      "ambiguity_reason": "Primary applicable standard IS 732 is clearly identifiable and sufficiently supported."
+    }
+  ],
+  "review_queue": [],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 1,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 0,
+      "CURATED": 1,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}

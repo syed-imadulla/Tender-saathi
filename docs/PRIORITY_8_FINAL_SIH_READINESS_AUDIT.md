@@ -128,7 +128,7 @@ All three primary demonstration paths were verified live against the Flask backe
 [Layer 4: Hard Applicability & Boundary Gates (Negative Lookahead, Invariant Checks)]
          │
          ▼
-[Layer 5: Evidence Grounding & Zero-Hallucination Critic (Candidate == Evidence)]
+[Layer 5: Evidence Grounding & Anti-Hallucination Critic (Candidate == Evidence)]
          │
          ▼
 [Layer 6: Standards Knowledge Graph & Dependency Resolution (M10)]
@@ -150,23 +150,23 @@ All three primary demonstration paths were verified live against the Flask backe
 
 1. **Extraction Layer:** Extracts clean textual clauses from unstructured tender PDFs. If formatting is irregular, normalizes whitespace and falls back to whole-text ingestion.
 2. **Decomposition Layer:** Isolates discrete components in multi-item packages. If decomposition finds no sub-items, defaults cleanly to whole-clause analysis.
-3. **Retrieval Layer:** Combines lexical BM25 (exact standard numbers) and dense semantic vectors (conceptual matching). If one fails, the other provides fallback recall.
+3. **Retrieval Layer:** Combines lexical BM25 Okapi (exact standard numbers) and dense semantic vectors (Sentence-Transformers all-MiniLM-L6-v2). If one fails, the other provides fallback recall.
 4. **Applicability Layer:** Enforces domain boundary rules (e.g., non-submersible pumps cannot match IS 8034). If a candidate violates scope boundaries, it is eliminated before ranking.
 5. **Evidence Grounding Layer:** Confirms verbatim text support from the standard. If no supporting clause exists, the candidate is dropped to `None`.
 6. **Knowledge Graph Layer:** Resolves normative references, test methods, and installation standards. If a standard has no indexed dependencies, it returns the primary standard safely without error.
 7. **Ambiguity Gate Layer:** Validates whether critical parameters (size, rating, metallurgy) are present. If missing, forces `human_review_required = True`.
 8. **Catalogue Layer:** Checks active/superseded status against the 502-record official BIS database. If a standard is superseded, maps to the active successor.
-9. **Decision Layer:** Aggregates findings into executive publication readiness and generates structured audit reports for legal procurement records.
+9. **Decision Layer:** Aggregates findings into executive publication readiness and generates structured audit reports for procurement record-keeping.
 
 ---
 
 ## 7. USP Defence — Answers to 13 Tough Judge Questions
 
 1. **Why not just use ChatGPT / Claude / Gemini?**  
-   *Answer:* General LLMs hallucinate non-existent Indian Standard numbers, have no real-time verification against the official BIS gazette, and cannot provide legally defensible, tamper-evident audit trails. TenderSaathi guarantees candidate-evidence parity.
+   *Answer:* General LLMs risk inventing standard numbers or hallucinating outdated citations, and cannot provide verifiable, clause-level grounding against official BIS gazette records. TenderSaathi enforces candidate-evidence parity: if evidence cannot be proven from standard text, the candidate is dropped to `None`.
 
 2. **How do you prevent hallucinations?**  
-   *Answer:* Our architecture enforces a mathematical invariant: `candidate_standard == evidence_standard`. If verifiable text evidence from the official BIS catalogue cannot be extracted for a candidate, the system returns `None`.
+   *Answer:* Our architecture enforces a strict invariant: `candidate_standard == evidence_standard`. If verifiable text evidence from the official BIS catalogue cannot be extracted for a candidate, the system returns `None` and routes to human review.
 
 3. **What happens if a tender has an ambiguous requirement?**  
    *Answer:* TenderSaathi does not guess. Our Ambiguity Engine inspects 5 mandatory engineering dimensions (type, size, rating, metallurgy, medium). If missing, it abstains, flags the tender as `REVIEW_REQUIRED`, and generates targeted clarification questions for the engineer.
@@ -175,19 +175,19 @@ All three primary demonstration paths were verified live against the Flask backe
    *Answer:* Our engine cross-references the official BIS catalogue. If a tender cites an obsolete standard (such as `IS 10611 : 1983`), it generates a warning and automatically surfaces the active successor standard (`IS/ISO 10434 : 2020`).
 
 5. **Is the system fast enough for live production use?**  
-   *Answer:* Yes. Complex multi-page tenders are audited in under 1.5 seconds, while single clauses process in under 300 milliseconds.
+   *Answer:* Yes. In repository benchmarks, warm audit execution averages under 1.5 seconds per tender (0.3s to 2.0s per tender, with initial model load ~8.9s), while single clauses process in ~300 milliseconds.
 
 6. **Can the engine handle multilingual tenders?**  
    *Answer:* Yes. We benchmarked 40 multilingual cases across Hindi, Tamil, and English, maintaining 40/40 language detection and zero cross-lingual hallucinations.
 
 7. **How does TenderSaathi scale to all 20,000+ BIS standards?**  
-   *Answer:* Our SQLite + BM25 + Vector embedding pipeline scales sub-linearly. The catalogue schema and SQLite FTS5 index handle tens of thousands of records with sub-100ms query latency.
+   *Answer:* The architecture is designed to scale to a much larger catalogue. The current verified catalogue contains 502 records, with deep clause-level evidence populated for 90 core standards. Expanding to full 20,000+ BIS coverage requires ongoing document ingestion into our SQLite + BM25 + vector pipeline without architectural redesign.
 
 8. **What if the PDF is scanned or poor quality?**  
-   *Answer:* The ingestion pipeline incorporates PyMuPDF text extraction with OCR fallback hooks, sanitizing artifacts before feeding downstream layers.
+   *Answer:* The pipeline processes digital text-based PDFs directly. For scanned or low-resolution documents, processing depends on external OCR legibility; unreadable text is safely flagged for manual review.
 
 9. **How do you verify statutory compliance?**  
-   *Answer:* Milestone 11 integrates Quality Control Orders (QCOs) issued by the Ministry of Commerce & Industry, verifying whether certification is legally mandatory.
+   *Answer:* Milestone 11 integrates Quality Control Orders (QCOs) issued by the Ministry of Commerce & Industry, verifying whether mandatory certification is notified under published schedules.
 
 10. **Does your tool replace procurement officers?**  
     *Answer:* No. TenderSaathi is explicitly designed as a *standards-review aid*. It organizes findings into a Prioritized Human Review Queue, augmenting human expertise without replacing human responsibility.

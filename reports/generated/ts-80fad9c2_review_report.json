@@ -2,10 +2,10 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "T020",
-    "tender_title": "Tender T020: Repair/maint of CPVC pipe in lieu of rusted GI pipe",
-    "organisation": "Assam Rifles / Ministry of Home Affairs",
-    "source_file": "eProcurement System Government of India.pdf",
+    "tender_id": "TS-80FAD9C2",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
@@ -15,7 +15,7 @@
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "T020",
+    "tender_id": "TS-80FAD9C2",
     "requirements_analyzed": 1,
     "recommendations_count": 1,
     "review_required_count": 0,
@@ -55,20 +55,20 @@
       "All 1 requirement(s) have grounded standards evidence with no critical or high risk flags."
     ],
     "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
-    "dependency_count": 3,
+    "dependency_count": 5,
     "normative_reference_count": 0,
     "allied_standard_count": 1,
     "test_standard_count": 1,
-    "installation_standard_count": 1,
+    "installation_standard_count": 3,
     "verified_missing_count": 0,
     "potentially_missing_count": 2,
     "related_for_review_count": 1,
     "standards_coverage": {
       "direct_standards_identified": 1,
-      "total_dependencies": 3,
+      "total_dependencies": 5,
       "normative_references": 0,
       "testing_dependencies": 1,
-      "installation_dependencies": 1,
+      "installation_dependencies": 3,
       "allied_standards": 1,
       "covered_in_tender": 0,
       "potential_gaps": 2,
@@ -94,66 +94,22 @@
   },
   "requirements": [
     {
-      "requirement_id": "T020-R001",
-      "requirement_text": "Repair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn",
+      "requirement_id": "REQ-001",
+      "requirement_text": "Supply and installation of CPVC pipes.",
       "category": "material",
       "components": [
         {
-          "text": "Repair",
-          "component_type": "installation",
-          "domain": "execution",
-          "extracted_attributes": {
-            "action": "repair"
-          }
-        },
-        {
-          "text": "maint",
-          "component_type": "installation",
-          "domain": "execution",
-          "extracted_attributes": {
-            "action": "maint"
-          }
-        },
-        {
-          "text": "CPVC pipe",
+          "text": "CPVC pipes",
           "component_type": "material",
           "domain": "piping",
           "extracted_attributes": {
             "category": "pipe_material"
           }
-        },
-        {
-          "text": "GI pipe",
-          "component_type": "material",
-          "domain": "piping",
-          "extracted_attributes": {
-            "category": "pipe_material"
-          }
-        },
-        {
-          "text": "plumbing",
-          "component_type": "application",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "is_process": false
-          }
-        },
-        {
-          "text": "maintenance",
-          "component_type": "action",
-          "domain": "general",
-          "extracted_attributes": {}
-        },
-        {
-          "text": "installation",
-          "component_type": "action",
-          "domain": "general",
-          "extracted_attributes": {}
         }
       ],
       "recommended_standard": "IS 15778 : 2007",
       "recommended_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
-      "relevance_score": 0.92,
+      "relevance_score": 0.862,
       "lifecycle_status": "Active",
       "successor_standard": null,
       "superseded_citation": null,
@@ -165,16 +121,16 @@
         "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.",
         "Authoritative scope explicitly covers application: \"Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.\"",
         "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via BIS Standards Catalogue (CURATED).",
-        "Candidate addresses multiple decomposed technical aspects of the requirement."
+        "Provenance established via BIS Standards Catalogue (CURATED)."
       ],
       "why_not": [
-        "Alternative standard IS 1239 (Part 2) has lower composite relevance (0.461 vs 0.920)."
+        "Alternative standard IS 14333 has lower composite relevance (0.322 vs 0.862)."
       ],
       "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [
         "Diameter / Nominal Bore (DN/OD)",
-        "Pressure Class / Schedule / SDR"
+        "Pressure Class / Schedule / SDR",
+        "Piping Application / Service"
       ],
       "known_parameters": {},
       "related_standards": [
@@ -290,6 +246,28 @@
           "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
           "applicability_assessment": "REVIEW_REQUIRED",
           "explanation": "IS 4985 : 2000 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED]."
+        },
+        {
+          "standard_number": "SP 57 (QAWSM) : 1993",
+          "title": "Handbook on Pipes and Fittings for Drinking Water Supply",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Curated reference standard for Handbook on Pipes and Fittings for Drinking Water Supply",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "CURATED"
+        },
+        {
+          "standard_number": "IS 783 : 1985",
+          "title": "Code of Practice for Laying of Concrete Pipes",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "1.1 This standard covers recommended design practice for the laying of precast concrete pipes. It includes methods for calculating loads on pipes according to installation conditions and gives the corresponding load factors. 1.1.1 This standard is intended primarily for use in association with IS : ",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
         }
       ],
       "regulatory": {
@@ -360,7 +338,7 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 1.0,
           "human_review_required": false,
-          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (pipe); not applicable.",
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (pipes); not applicable.",
           "additional_metadata": {}
         }
       },

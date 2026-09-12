@@ -65,7 +65,7 @@
   "invariants": {
     "candidate_equals_evidence_parity": true,
     "abstention_null_equality": true,
-    "zero_hallucination_guarantee": true,
+    "evidence_grounded_safe_abstention": true,
     "official_bis_catalogue_grounding": true
   },
   "limitations_adjudicated": [
