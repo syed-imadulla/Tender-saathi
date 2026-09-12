@@ -17,6 +17,7 @@ import re
 import json
 import openpyxl
 from datetime import datetime, timezone
+from src.catalogue.normalizer import StandardIdentifierNormalizer
 
 
 # ---------------------------------------------------------------------------
@@ -347,7 +348,8 @@ class StandardsDatabase:
                 continue
 
             # Standard slug creation
-            clean_id = str(std_raw).replace(" : ", "-").replace(" ", "-").replace("/", "-")
+            norm = StandardIdentifierNormalizer.parse(str(std_raw).strip())
+            clean_id = norm.canonical_id
             
             # Avoid overwriting already VERIFIED records with CURATED data
             existing = self.get_standard(clean_id)
@@ -434,7 +436,8 @@ class StandardsDatabase:
                     ym = re.search(r'\b(19\d\d|20\d\d)\b', s)
                     year = int(ym.group(1)) if ym else None
                     std_num = re.sub(r'\s*:\s*\d{4}.*$', '', s).strip()
-                    clean_id = re.sub(r'[\s:/]+', '-', s).strip('-')
+                    norm = StandardIdentifierNormalizer.parse(s.strip())
+                    clean_id = norm.canonical_id
 
                     existing = self.get_standard(clean_id)
                     if existing and existing["verification_status"] == "VERIFIED":
