@@ -47,7 +47,7 @@ export default function App() {
     <>
       {state === 'home' && (
         <Home
-          onStartAnalysis={(promise) => handleStartAnalysisWithMode(promise, activeMode)}
+          onStartAnalysis={(promise, mode) => handleStartAnalysisWithMode(promise, mode || activeMode)}
           errorMessage={error}
         />
       )}

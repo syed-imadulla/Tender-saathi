@@ -1,0 +1,1758 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-B8BCC0FC",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "TenderSaathi_Prototype_User_Manual.pdf",
+    "date": null,
+    "requirements_analyzed": 9
+  },
+  "publication_readiness": "REVIEW_REQUIRED",
+  "readiness_reasons": [
+    "3 requirement(s) cite or match superseded standard(s).",
+    "3 requirement(s) flagged with CRITICAL risk.",
+    "2 requirement(s) flagged with HIGH risk.",
+    "4 requirement(s) require technical engineer review.",
+    "1 requirement(s) have insufficient standards evidence.",
+    "2 requirement(s) have potentially missing specification parameters.",
+    "1 requirement(s) supported only by weak/unverified evidence."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-B8BCC0FC",
+    "requirements_analyzed": 9,
+    "recommendations_count": 4,
+    "review_required_count": 4,
+    "insufficient_evidence_count": 1,
+    "superseded_count": 3,
+    "withdrawn_count": 0,
+    "active_count": 4,
+    "unknown_lifecycle_count": 2,
+    "evidence_distribution": {
+      "STRONG": 4,
+      "MODERATE": 2,
+      "WEAK": 1,
+      "NONE": 2
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 2,
+      "UNKNOWN": 2,
+      "NOT_APPLICABLE": 5
+    },
+    "risk_distribution": {
+      "LOW": 4,
+      "MEDIUM": 0,
+      "HIGH": 2,
+      "CRITICAL": 3
+    },
+    "lifecycle_distribution": {
+      "Active": 4,
+      "Superseded": 3,
+      "Withdrawn": 0,
+      "Unknown": 2
+    },
+    "related_standards_count": 11,
+    "review_queue": [
+      {
+        "requirement_id": "TS-B8BCC0FC-R009",
+        "requirement_text": "Run superseded IS 10611. Show successor and REVIEW_REQUIRED.",
+        "risk_level": "CRITICAL",
+        "decision": "INSUFFICIENT_EVIDENCE",
+        "candidate_standard": "IS/ISO 10434 : 2020",
+        "evidence_strength": "WEAK",
+        "primary_reason": "Tender explicitly cited a superseded standard requiring replacement verification.",
+        "priority": 1
+      },
+      {
+        "requirement_id": "TS-B8BCC0FC-R002",
+        "requirement_text": "Use the sample containing IS 10611 : 1983. The system should surface the successor IS/ISO 10434 : 2020 and require",
+        "risk_level": "CRITICAL",
+        "decision": "RECOMMEND",
+        "candidate_standard": "IS/ISO 10434 : 2020",
+        "evidence_strength": "STRONG",
+        "primary_reason": "Tender explicitly cited a superseded standard requiring replacement verification.",
+        "priority": 1
+      },
+      {
+        "requirement_id": "TS-B8BCC0FC-R006",
+        "requirement_text": "“Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.”",
+        "risk_level": "CRITICAL",
+        "decision": "REVIEW_REQUIRED",
+        "candidate_standard": "IS/ISO 10434 : 2020",
+        "evidence_strength": "STRONG",
+        "primary_reason": "Tender explicitly cited a superseded standard requiring replacement verification.",
+        "priority": 1
+      },
+      {
+        "requirement_id": "TS-B8BCC0FC-R004",
+        "requirement_text": "“Annual Rate Contract for Mechanical Maintenance Works including Pumps, Valve Replacement, Flange",
+        "risk_level": "HIGH",
+        "decision": "REVIEW_REQUIRED",
+        "candidate_standard": "NONE",
+        "evidence_strength": "NONE",
+        "primary_reason": "Multiple competing Indian Standards (IS 14846 and IS 778) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (cast iron vs copper)) to select between them.",
+        "priority": 2
+      },
+      {
+        "requirement_id": "TS-B8BCC0FC-R005",
+        "requirement_text": "Missing parameters such as valve type, DN, PN and metallurgy can be surfaced",
+        "risk_level": "HIGH",
+        "decision": "REVIEW_REQUIRED",
+        "candidate_standard": "NONE",
+        "evidence_strength": "NONE",
+        "primary_reason": "Multiple competing Indian Standards (IS 14846 and IS 778) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (cast iron vs copper)) to select between them.",
+        "priority": 2
+      }
+    ],
+    "publication_readiness": "REVIEW_REQUIRED",
+    "readiness_reasons": [
+      "3 requirement(s) cite or match superseded standard(s).",
+      "3 requirement(s) flagged with CRITICAL risk.",
+      "2 requirement(s) flagged with HIGH risk.",
+      "4 requirement(s) require technical engineer review.",
+      "1 requirement(s) have insufficient standards evidence.",
+      "2 requirement(s) have potentially missing specification parameters.",
+      "1 requirement(s) supported only by weak/unverified evidence."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 13,
+    "normative_reference_count": 0,
+    "allied_standard_count": 2,
+    "test_standard_count": 2,
+    "installation_standard_count": 4,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 4,
+    "related_for_review_count": 4,
+    "standards_coverage": {
+      "direct_standards_identified": 8,
+      "total_dependencies": 13,
+      "normative_references": 0,
+      "testing_dependencies": 2,
+      "installation_dependencies": 4,
+      "allied_standards": 2,
+      "covered_in_tender": 3,
+      "potential_gaps": 4,
+      "verified_gaps": 0,
+      "items_requiring_review": 4
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 4,
+      "related_for_review_count": 4
+    },
+    "certification_checks": 9,
+    "qco_checks": 9,
+    "crs_checks": 9,
+    "hallmarking_checks": 9,
+    "regulatory_review_items": 9,
+    "unknown_regulatory_items": 2,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 2,
+    "mandatory_certification_count": 2,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
+  },
+  "requirements": [
+    {
+      "requirement_id": "TS-B8BCC0FC-R001",
+      "requirement_text": "Use the CPVC sample. The verified demo path returns IS 15778 : 2007 with matching candidate and evidence.",
+      "category": "material",
+      "components": [
+        {
+          "text": "CPVC sample",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "testing",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        }
+      ],
+      "recommended_standard": "IS 15778 : 2007",
+      "recommended_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
+      "relevance_score": 0.98,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "evidence_text": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.",
+      "evidence_source": "BIS Standards Catalogue",
+      "why_this": [
+        "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.",
+        "Authoritative scope explicitly covers application: \"Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BIS Standards Catalogue (CURATED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
+      ],
+      "why_not": [
+        "Alternative standard IS 932 has lower composite relevance (0.205 vs 0.980).",
+        "Alternative standard IS 932 has lifecycle limitations (status: REJECT)."
+      ],
+      "completeness_label": "NOT_APPLICABLE",
+      "potentially_missing_parameters": [],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 12235 : 2004",
+          "title": "Title not in local index",
+          "relationship_type": "TEST_METHOD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
+          "source_url": null,
+          "review_note": "Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance."
+        },
+        {
+          "standard_number": "IS 7634 (Part 3) : 2003",
+          "title": "Title not in local index",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+          "source_url": null,
+          "review_note": "Installation, laying, and jointing standard associated with IS 7634 (Part 3) : 2003. Review for installation execution."
+        },
+        {
+          "standard_number": "IS 4985 : 2000",
+          "title": "Title not in local index",
+          "relationship_type": "ALLIED_STANDARD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+          "source_url": null,
+          "review_note": "Allied product or component standard. Review for equipment interface compatibility."
+        }
+      ],
+      "decision": "RECOMMEND",
+      "risk_level": "LOW",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "High",
+      "review_reason": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence.",
+      "candidate_standard": "IS 15778 : 2007",
+      "evidence_standard": "IS 15778 : 2007",
+      "why_it_matches": "IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.",
+      "dependencies": [
+        {
+          "standard_number": "IS 12235 : 2004",
+          "title": "Title not in local index",
+          "relationship_type": "TEST_METHOD",
+          "dependency_status": "TEST_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
+          "source": "CURATED_STANDARDS_DOC",
+          "confidence": 0.95,
+          "why_related": "IS 12235 : 2004 (Title not in local index) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778 : 2007. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED].",
+          "functional_category": "testing",
+          "is_applicable_to_requirement": true,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "TEST_DEPENDENCY",
+          "evidence": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 12235 : 2004 (Title not in local index) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778 : 2007. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED]."
+        },
+        {
+          "standard_number": "IS 7634 (Part 3) : 2003",
+          "title": "Title not in local index",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+          "source": "CURATED_STANDARDS_DOC",
+          "confidence": 0.9,
+          "why_related": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed installation, laying, and execution standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
+          "functional_category": "installation",
+          "is_applicable_to_requirement": false,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "INSTALLATION_DEPENDENCY",
+          "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed installation, laying, and execution standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
+        },
+        {
+          "standard_number": "IS 4985 : 2000",
+          "title": "Title not in local index",
+          "relationship_type": "ALLIED_STANDARD",
+          "dependency_status": "ALLIED_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+          "source": "CURATED_STANDARDS_DOC",
+          "confidence": 0.85,
+          "why_related": "IS 4985 : 2000 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED].",
+          "functional_category": "allied",
+          "is_applicable_to_requirement": false,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "ALLIED_DEPENDENCY",
+          "evidence": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 4985 : 2000 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED]."
+        }
+      ],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "APPLICABLE",
+          "matched_product": "CPVC Pipes for Potable Hot and Cold Water Supplies",
+          "standard_number": "IS 15778 : 2007",
+          "legal_basis": "Section 16, BIS Act, 2016",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS Product Certification (Scheme-I (ISI Mark)) applicable for CPVC Pipes for Potable Hot and Cold Water Supplies. Governing Order: Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024 (S.O. 1205(E)). Manufacturers must obtain a valid BIS licence before supply.",
+          "additional_metadata": {
+            "scheme": "Scheme-I (ISI Mark)",
+            "governing_order": "Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024 (S.O. 1205(E))",
+            "mandate_type": "MANDATORY"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "CURRENT",
+          "matched_product": "Chlorinated Polyvinyl Chloride (CPVC) Pipes",
+          "standard_number": "IS 15778 : 2007",
+          "legal_basis": "Sections 16, 17 and 25 of the Bureau of Indian Standards Act, 2016 (11 of 2016)",
+          "source": "https://egazette.gov.in/WriteReadData/2024/252312.pdf",
+          "source_url": "https://egazette.gov.in/WriteReadData/2024/252312.pdf",
+          "effective_date": "2024-08-25",
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": true,
+          "explanation": "Mandatory QCO in force: Covered under Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024 (S.O. 1205(E)) issued by Ministry of Commerce and Industry (DPIIT). Effective from 2024-08-25. Compliance and Standard Mark are mandatory under Section 16, BIS Act 2016.",
+          "additional_metadata": {
+            "order_id": "QCO-CPVC-2024",
+            "order_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024",
+            "ministry": "Ministry of Commerce and Industry (DPIIT)",
+            "gazette_notification": "S.O. 1205(E)",
+            "notification_date": "2024-02-26"
+          }
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 15778 : 2007",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS 15778 : 2007",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs",
+          "source_url": "Ministry of Consumer Affairs",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": false,
+          "explanation": "Hallmarking is not applicable to this product category.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "CLEAR",
+      "ambiguity_reason": "Primary applicable standard IS 15778 is clearly identifiable and sufficiently supported."
+    },
+    {
+      "requirement_id": "TS-B8BCC0FC-R002",
+      "requirement_text": "Use the sample containing IS 10611 : 1983. The system should surface the successor IS/ISO 10434 : 2020 and require",
+      "category": "general_specification",
+      "components": [],
+      "recommended_standard": "IS/ISO 10434 : 2020",
+      "recommended_title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+      "relevance_score": 1.0,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": "IS 10611 1983",
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends.",
+      "evidence_source": "BSB Edge Portal",
+      "why_this": [
+        "Recommended authoritative active successor standard recorded in BIS database."
+      ],
+      "why_not": [
+        "Original cited standard is superseded/obsolete."
+      ],
+      "completeness_label": "NOT_APPLICABLE",
+      "potentially_missing_parameters": [],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 10611 : 1983",
+          "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "relationship_type": "SUPERSEDES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS%2fISO+10434&id=45967",
+          "review_note": "Authoritative successor standard supersedes IS 10611 : 1983. Review legacy specifications."
+        }
+      ],
+      "decision": "REVIEW_REQUIRED",
+      "risk_level": "CRITICAL",
+      "risk_reasons": [
+        "Tender explicitly cited a superseded standard requiring replacement verification."
+      ],
+      "human_review_required": true,
+      "confidence": "High",
+      "review_reason": "Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.",
+      "candidate_standard": "IS/ISO 10434 : 2020",
+      "evidence_standard": "IS/ISO 10434 : 2020",
+      "why_it_matches": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends.",
+      "dependencies": [
+        {
+          "standard_number": "IS 10611 : 1983",
+          "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "relationship_type": "SUPERSEDES",
+          "dependency_status": "RELATED_FOR_REVIEW",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "source": "SQLITE_DB",
+          "confidence": 1.0,
+          "why_related": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434 : 2020. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED].",
+          "functional_category": "lifecycle",
+          "is_applicable_to_requirement": false,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "RELATED_FOR_REVIEW",
+          "evidence": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434 : 2020. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED]."
+        }
+      ],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS certification is NOT identified for IS/ISO 10434 : 2020 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "additional_metadata": {
+            "mandate_type": "VOLUNTARY_OR_UNREGULATED"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "",
+          "source": "e-Gazette of India / DPIIT QCO Registry",
+          "source_url": "e-Gazette of India / DPIIT QCO Registry",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS/ISO 10434 : 2020. Verify ministry specific notifications.",
+          "additional_metadata": {}
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs",
+          "source_url": "Ministry of Consumer Affairs",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": false,
+          "explanation": "Hallmarking is not applicable to this product category.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_reason": "Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement."
+    },
+    {
+      "requirement_id": "TS-B8BCC0FC-R003",
+      "requirement_text": "“Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system,",
+      "category": "material",
+      "components": [
+        {
+          "text": "CPVC pipes",
+          "component_type": "material",
+          "domain": "piping",
+          "extracted_attributes": {
+            "category": "pipe_material"
+          }
+        },
+        {
+          "text": "CPVC fittings",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "domestic hot and cold water distribution system",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        }
+      ],
+      "recommended_standard": "IS 15778 : 2007",
+      "recommended_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
+      "relevance_score": 0.98,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "evidence_text": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.",
+      "evidence_source": "BIS Standards Catalogue",
+      "why_this": [
+        "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.",
+        "Authoritative scope explicitly covers application: \"Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BIS Standards Catalogue (CURATED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
+      ],
+      "why_not": [
+        "Alternative standard IS 15905 has lower composite relevance (0.486 vs 0.980)."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Diameter / Nominal Bore (DN/OD)",
+        "Pressure Class / Schedule / SDR"
+      ],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 12235 : 2004",
+          "title": "Title not in local index",
+          "relationship_type": "TEST_METHOD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
+          "source_url": null,
+          "review_note": "Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance."
+        },
+        {
+          "standard_number": "IS 7634 (Part 3) : 2003",
+          "title": "Title not in local index",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+          "source_url": null,
+          "review_note": "Installation, laying, and jointing standard associated with IS 7634 (Part 3) : 2003. Review for installation execution."
+        },
+        {
+          "standard_number": "IS 4985 : 2000",
+          "title": "Title not in local index",
+          "relationship_type": "ALLIED_STANDARD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+          "source_url": null,
+          "review_note": "Allied product or component standard. Review for equipment interface compatibility."
+        }
+      ],
+      "decision": "RECOMMEND",
+      "risk_level": "LOW",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "High",
+      "review_reason": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence.",
+      "candidate_standard": "IS 15778 : 2007",
+      "evidence_standard": "IS 15778 : 2007",
+      "why_it_matches": "IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.",
+      "dependencies": [
+        {
+          "standard_number": "IS 12235 : 2004",
+          "title": "Title not in local index",
+          "relationship_type": "TEST_METHOD",
+          "dependency_status": "TEST_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
+          "source": "CURATED_STANDARDS_DOC",
+          "confidence": 0.95,
+          "why_related": "IS 12235 : 2004 (Title not in local index) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778 : 2007. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED].",
+          "functional_category": "testing",
+          "is_applicable_to_requirement": false,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "TEST_DEPENDENCY",
+          "evidence": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 12235 : 2004 (Title not in local index) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778 : 2007. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED]."
+        },
+        {
+          "standard_number": "IS 7634 (Part 3) : 2003",
+          "title": "Title not in local index",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+          "source": "CURATED_STANDARDS_DOC",
+          "confidence": 0.9,
+          "why_related": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed installation, laying, and execution standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
+          "functional_category": "installation",
+          "is_applicable_to_requirement": true,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "INSTALLATION_DEPENDENCY",
+          "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed installation, laying, and execution standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
+        },
+        {
+          "standard_number": "IS 4985 : 2000",
+          "title": "Title not in local index",
+          "relationship_type": "ALLIED_STANDARD",
+          "dependency_status": "ALLIED_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+          "source": "CURATED_STANDARDS_DOC",
+          "confidence": 0.85,
+          "why_related": "IS 4985 : 2000 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED].",
+          "functional_category": "allied",
+          "is_applicable_to_requirement": false,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "ALLIED_DEPENDENCY",
+          "evidence": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 4985 : 2000 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED]."
+        },
+        {
+          "standard_number": "SP 57 (QAWSM) : 1993",
+          "title": "Handbook on Pipes and Fittings for Drinking Water Supply",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Curated reference standard for Handbook on Pipes and Fittings for Drinking Water Supply",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "CURATED"
+        },
+        {
+          "standard_number": "IS 783 : 1985",
+          "title": "Code of Practice for Laying of Concrete Pipes",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "1.1 This standard covers recommended design practice for the laying of precast concrete pipes. It includes methods for calculating loads on pipes according to installation conditions and gives the corresponding load factors. 1.1.1 This standard is intended primarily for use in association with IS : ",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        }
+      ],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "APPLICABLE",
+          "matched_product": "CPVC Pipes for Potable Hot and Cold Water Supplies",
+          "standard_number": "IS 15778 : 2007",
+          "legal_basis": "Section 16, BIS Act, 2016",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS Product Certification (Scheme-I (ISI Mark)) applicable for CPVC Pipes for Potable Hot and Cold Water Supplies. Governing Order: Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024 (S.O. 1205(E)). Manufacturers must obtain a valid BIS licence before supply.",
+          "additional_metadata": {
+            "scheme": "Scheme-I (ISI Mark)",
+            "governing_order": "Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024 (S.O. 1205(E))",
+            "mandate_type": "MANDATORY"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "CURRENT",
+          "matched_product": "Chlorinated Polyvinyl Chloride (CPVC) Pipes",
+          "standard_number": "IS 15778 : 2007",
+          "legal_basis": "Sections 16, 17 and 25 of the Bureau of Indian Standards Act, 2016 (11 of 2016)",
+          "source": "https://egazette.gov.in/WriteReadData/2024/252312.pdf",
+          "source_url": "https://egazette.gov.in/WriteReadData/2024/252312.pdf",
+          "effective_date": "2024-08-25",
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": true,
+          "explanation": "Mandatory QCO in force: Covered under Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024 (S.O. 1205(E)) issued by Ministry of Commerce and Industry (DPIIT). Effective from 2024-08-25. Compliance and Standard Mark are mandatory under Section 16, BIS Act 2016.",
+          "additional_metadata": {
+            "order_id": "QCO-CPVC-2024",
+            "order_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024",
+            "ministry": "Ministry of Commerce and Industry (DPIIT)",
+            "gazette_notification": "S.O. 1205(E)",
+            "notification_date": "2024-02-26"
+          }
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 15778 : 2007",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS 15778 : 2007",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": false,
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (fittings, pipes); not applicable.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "CLEAR",
+      "ambiguity_reason": "Primary applicable standard IS 15778 is clearly identifiable and sufficiently supported."
+    },
+    {
+      "requirement_id": "TS-B8BCC0FC-R004",
+      "requirement_text": "“Annual Rate Contract for Mechanical Maintenance Works including Pumps, Valve Replacement, Flange",
+      "category": "product_equipment",
+      "components": [
+        {
+          "text": "Maintenance",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "maintenance"
+          }
+        },
+        {
+          "text": "Pumps",
+          "component_type": "product",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "category": "pump_rotodynamic",
+            "is_process": false
+          }
+        },
+        {
+          "text": "Valve",
+          "component_type": "product",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "category": "flow_control_valve"
+          }
+        },
+        {
+          "text": "Replacement",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "replacement"
+          }
+        },
+        {
+          "text": "Flange",
+          "component_type": "material",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "category": "flange_jointing",
+            "standard_focus": "IS 6392 / IS 2712"
+          }
+        },
+        {
+          "text": "Valves",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "Flanges",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "Mechanical Maintenance",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        }
+      ],
+      "recommended_standard": "NONE",
+      "recommended_title": "Ambiguous Requirement - Multiple Competing Standards",
+      "relevance_score": 0.0,
+      "lifecycle_status": "Unknown",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "NONE",
+      "provenance": "UNKNOWN",
+      "evidence_text": "We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue.",
+      "evidence_source": null,
+      "why_this": [
+        "Multiple competing Indian Standards (IS 14846 and IS 778) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (cast iron vs copper)) to select between them."
+      ],
+      "why_not": [
+        "Candidate standard IS 14846 competes within separation threshold: material (cast iron vs copper).",
+        "Candidate standard IS 778 competes within separation threshold: material (cast iron vs copper)."
+      ],
+      "completeness_label": "UNKNOWN",
+      "potentially_missing_parameters": [
+        "Pump Mechanism / Type",
+        "Discharge / Flow Rate (Q)",
+        "Total Dynamic Head (H)",
+        "Motor Coupling / Prime Mover",
+        "Process Application"
+      ],
+      "known_parameters": {},
+      "related_standards": [],
+      "decision": "INSUFFICIENT_EVIDENCE",
+      "risk_level": "HIGH",
+      "risk_reasons": [
+        "Multiple competing Indian Standards (IS 14846 and IS 778) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (cast iron vs copper)) to select between them."
+      ],
+      "human_review_required": true,
+      "confidence": "Low",
+      "review_reason": "Multiple competing Indian Standards (IS 14846 and IS 778) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (cast iron vs copper)) to select between them.",
+      "candidate_standard": null,
+      "evidence_standard": null,
+      "why_it_matches": "Multiple candidate Indian Standards are applicable with close relevance scores; tender lacks distinguishing parameters.",
+      "dependencies": [],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "UNKNOWN",
+          "matched_product": "",
+          "standard_number": "",
+          "legal_basis": "Bureau of Indian Standards Act, 2016",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.5,
+          "human_review_required": true,
+          "explanation": "No Indian Standard provided to establish BIS Product Certification status.",
+          "additional_metadata": {}
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "",
+          "legal_basis": "",
+          "source": "",
+          "source_url": "",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": false,
+          "explanation": "No Indian Standard provided to evaluate Quality Control Order applicability.",
+          "additional_metadata": {}
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": false,
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (pumps, valve); not applicable.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "AMBIGUOUS",
+      "ambiguity_reason": "Multiple competing Indian Standards (IS 14846 and IS 778) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (cast iron vs copper)) to select between them."
+    },
+    {
+      "requirement_id": "TS-B8BCC0FC-R005",
+      "requirement_text": "Missing parameters such as valve type, DN, PN and metallurgy can be surfaced",
+      "category": "product_equipment",
+      "components": [
+        {
+          "text": "valve",
+          "component_type": "product",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "category": "flow_control_valve"
+          }
+        }
+      ],
+      "recommended_standard": "NONE",
+      "recommended_title": "Ambiguous Requirement - Multiple Competing Standards",
+      "relevance_score": 0.0,
+      "lifecycle_status": "Unknown",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "NONE",
+      "provenance": "UNKNOWN",
+      "evidence_text": "We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue.",
+      "evidence_source": null,
+      "why_this": [
+        "Multiple competing Indian Standards (IS 14846 and IS 778) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (cast iron vs copper)) to select between them."
+      ],
+      "why_not": [
+        "Candidate standard IS 14846 competes within separation threshold: material (cast iron vs copper).",
+        "Candidate standard IS 778 competes within separation threshold: material (cast iron vs copper)."
+      ],
+      "completeness_label": "UNKNOWN",
+      "potentially_missing_parameters": [
+        "Valve Type",
+        "Nominal Size / Diameter (DN)",
+        "Pressure Rating (PN / Class)",
+        "Body Metallurgy / Material",
+        "Fluid Medium / Service"
+      ],
+      "known_parameters": {},
+      "related_standards": [],
+      "decision": "INSUFFICIENT_EVIDENCE",
+      "risk_level": "HIGH",
+      "risk_reasons": [
+        "Multiple competing Indian Standards (IS 14846 and IS 778) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (cast iron vs copper)) to select between them."
+      ],
+      "human_review_required": true,
+      "confidence": "Low",
+      "review_reason": "Multiple competing Indian Standards (IS 14846 and IS 778) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (cast iron vs copper)) to select between them.",
+      "candidate_standard": null,
+      "evidence_standard": null,
+      "why_it_matches": "Multiple candidate Indian Standards are applicable with close relevance scores; tender lacks distinguishing parameters.",
+      "dependencies": [],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "UNKNOWN",
+          "matched_product": "",
+          "standard_number": "",
+          "legal_basis": "Bureau of Indian Standards Act, 2016",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.5,
+          "human_review_required": true,
+          "explanation": "No Indian Standard provided to establish BIS Product Certification status.",
+          "additional_metadata": {}
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "",
+          "legal_basis": "",
+          "source": "",
+          "source_url": "",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": false,
+          "explanation": "No Indian Standard provided to evaluate Quality Control Order applicability.",
+          "additional_metadata": {}
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": false,
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (valve); not applicable.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "AMBIGUOUS",
+      "ambiguity_reason": "Multiple competing Indian Standards (IS 14846 and IS 778) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (cast iron vs copper)) to select between them."
+    },
+    {
+      "requirement_id": "TS-B8BCC0FC-R006",
+      "requirement_text": "“Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.”",
+      "category": "product_equipment",
+      "components": [
+        {
+          "text": "gate valves",
+          "component_type": "product",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "category": "flow_control_valve"
+          }
+        }
+      ],
+      "recommended_standard": "IS/ISO 10434 : 2020",
+      "recommended_title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+      "relevance_score": 1.0,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": "IS 10611 1983",
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends.",
+      "evidence_source": "BSB Edge Portal",
+      "why_this": [
+        "Recommended authoritative active successor standard recorded in BIS database."
+      ],
+      "why_not": [
+        "Original cited standard is superseded/obsolete."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Nominal Size / Diameter (DN)",
+        "Pressure Rating (PN / Class)",
+        "Body Metallurgy / Material",
+        "Fluid Medium / Service"
+      ],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 10611 : 1983",
+          "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "relationship_type": "SUPERSEDES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS%2fISO+10434&id=45967",
+          "review_note": "Authoritative successor standard supersedes IS 10611 : 1983. Review legacy specifications."
+        }
+      ],
+      "decision": "REVIEW_REQUIRED",
+      "risk_level": "CRITICAL",
+      "risk_reasons": [
+        "Tender explicitly cited a superseded standard requiring replacement verification."
+      ],
+      "human_review_required": true,
+      "confidence": "High",
+      "review_reason": "Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.",
+      "candidate_standard": "IS/ISO 10434 : 2020",
+      "evidence_standard": "IS/ISO 10434 : 2020",
+      "why_it_matches": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends.",
+      "dependencies": [
+        {
+          "standard_number": "IS 10611 : 1983",
+          "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "relationship_type": "SUPERSEDES",
+          "dependency_status": "RELATED_FOR_REVIEW",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "source": "SQLITE_DB",
+          "confidence": 1.0,
+          "why_related": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434 : 2020. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED].",
+          "functional_category": "lifecycle",
+          "is_applicable_to_requirement": false,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "RELATED_FOR_REVIEW",
+          "evidence": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434 : 2020. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED]."
+        }
+      ],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS certification is NOT identified for IS/ISO 10434 : 2020 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "additional_metadata": {
+            "mandate_type": "VOLUNTARY_OR_UNREGULATED"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "",
+          "source": "e-Gazette of India / DPIIT QCO Registry",
+          "source_url": "e-Gazette of India / DPIIT QCO Registry",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS/ISO 10434 : 2020. Verify ministry specific notifications.",
+          "additional_metadata": {}
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": false,
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (steel, valves); not applicable.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_reason": "Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel)."
+    },
+    {
+      "requirement_id": "TS-B8BCC0FC-R007",
+      "requirement_text": "IS/ISO 10434 : 2020 in the verified demo flow",
+      "category": "general_specification",
+      "components": [],
+      "recommended_standard": "IS/ISO 10434 : 2020",
+      "recommended_title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+      "relevance_score": 0.98,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": "IS 10611 : 1983",
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends.",
+      "evidence_source": "BSB Edge Portal",
+      "why_this": [
+        "Official title aligns with specification: 'Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries'.",
+        "Authoritative scope explicitly covers application: \"This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petroc...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BSB Edge Portal (VERIFIED)."
+      ],
+      "why_not": [
+        "No alternative candidate standards met the retrieval threshold."
+      ],
+      "completeness_label": "NOT_APPLICABLE",
+      "potentially_missing_parameters": [],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 10611 : 1983",
+          "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "relationship_type": "SUPERSEDES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS%2fISO+10434&id=45967",
+          "review_note": "Authoritative successor standard supersedes IS 10611 : 1983. Review legacy specifications."
+        }
+      ],
+      "decision": "RECOMMEND",
+      "risk_level": "LOW",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "High",
+      "review_reason": "Authoritative active standard IS/ISO 10434 : 2020 verified against scope with High confidence.",
+      "candidate_standard": "IS/ISO 10434 : 2020",
+      "evidence_standard": "IS/ISO 10434 : 2020",
+      "why_it_matches": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petroc...",
+      "dependencies": [
+        {
+          "standard_number": "IS 10611 : 1983",
+          "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "relationship_type": "SUPERSEDES",
+          "dependency_status": "RELATED_FOR_REVIEW",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "source": "SQLITE_DB",
+          "confidence": 1.0,
+          "why_related": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434 : 2020. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED].",
+          "functional_category": "lifecycle",
+          "is_applicable_to_requirement": false,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "RELATED_FOR_REVIEW",
+          "evidence": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434 : 2020. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED]."
+        }
+      ],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS certification is NOT identified for IS/ISO 10434 : 2020 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "additional_metadata": {
+            "mandate_type": "VOLUNTARY_OR_UNREGULATED"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "",
+          "source": "e-Gazette of India / DPIIT QCO Registry",
+          "source_url": "e-Gazette of India / DPIIT QCO Registry",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS/ISO 10434 : 2020. Verify ministry specific notifications.",
+          "additional_metadata": {}
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs",
+          "source_url": "Ministry of Consumer Affairs",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": false,
+          "explanation": "Hallmarking is not applicable to this product category.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "CLEAR",
+      "ambiguity_reason": "Primary applicable standard IS/ISO 10434 is clearly identifiable and sufficiently supported."
+    },
+    {
+      "requirement_id": "TS-B8BCC0FC-R008",
+      "requirement_text": "Superseded case surfaces IS/ISO 10434:2020.",
+      "category": "general_specification",
+      "components": [],
+      "recommended_standard": "IS/ISO 10434 : 2020",
+      "recommended_title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+      "relevance_score": 0.98,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": "IS 10611 : 1983",
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends.",
+      "evidence_source": "BSB Edge Portal",
+      "why_this": [
+        "Official title aligns with specification: 'Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries'.",
+        "Authoritative scope explicitly covers application: \"This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petroc...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BSB Edge Portal (VERIFIED)."
+      ],
+      "why_not": [
+        "No alternative candidate standards met the retrieval threshold."
+      ],
+      "completeness_label": "NOT_APPLICABLE",
+      "potentially_missing_parameters": [],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 10611 : 1983",
+          "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "relationship_type": "SUPERSEDES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS%2fISO+10434&id=45967",
+          "review_note": "Authoritative successor standard supersedes IS 10611 : 1983. Review legacy specifications."
+        }
+      ],
+      "decision": "RECOMMEND",
+      "risk_level": "LOW",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "High",
+      "review_reason": "Authoritative active standard IS/ISO 10434 : 2020 verified against scope with High confidence.",
+      "candidate_standard": "IS/ISO 10434 : 2020",
+      "evidence_standard": "IS/ISO 10434 : 2020",
+      "why_it_matches": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petroc...",
+      "dependencies": [
+        {
+          "standard_number": "IS 10611 : 1983",
+          "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "relationship_type": "SUPERSEDES",
+          "dependency_status": "RELATED_FOR_REVIEW",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "source": "SQLITE_DB",
+          "confidence": 1.0,
+          "why_related": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434 : 2020. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED].",
+          "functional_category": "lifecycle",
+          "is_applicable_to_requirement": false,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "RELATED_FOR_REVIEW",
+          "evidence": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434 : 2020. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED]."
+        }
+      ],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS certification is NOT identified for IS/ISO 10434 : 2020 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "additional_metadata": {
+            "mandate_type": "VOLUNTARY_OR_UNREGULATED"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "",
+          "source": "e-Gazette of India / DPIIT QCO Registry",
+          "source_url": "e-Gazette of India / DPIIT QCO Registry",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS/ISO 10434 : 2020. Verify ministry specific notifications.",
+          "additional_metadata": {}
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs",
+          "source_url": "Ministry of Consumer Affairs",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": false,
+          "explanation": "Hallmarking is not applicable to this product category.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "CLEAR",
+      "ambiguity_reason": "Primary applicable standard IS/ISO 10434 is clearly identifiable and sufficiently supported."
+    },
+    {
+      "requirement_id": "TS-B8BCC0FC-R009",
+      "requirement_text": "Run superseded IS 10611. Show successor and REVIEW_REQUIRED.",
+      "category": "general_specification",
+      "components": [],
+      "recommended_standard": "IS/ISO 10434 : 2020",
+      "recommended_title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+      "relevance_score": 1.0,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": "IS 10611",
+      "evidence_strength": "WEAK",
+      "provenance": "VERIFIED",
+      "evidence_text": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends.",
+      "evidence_source": "BSB Edge Portal",
+      "why_this": [
+        "Recommended authoritative active successor standard recorded in BIS database."
+      ],
+      "why_not": [
+        "Original cited standard is superseded/obsolete."
+      ],
+      "completeness_label": "NOT_APPLICABLE",
+      "potentially_missing_parameters": [],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 10611 : 1983",
+          "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "relationship_type": "SUPERSEDES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS%2fISO+10434&id=45967",
+          "review_note": "Authoritative successor standard supersedes IS 10611 : 1983. Review legacy specifications."
+        }
+      ],
+      "decision": "INSUFFICIENT_EVIDENCE",
+      "risk_level": "CRITICAL",
+      "risk_reasons": [
+        "Tender explicitly cited a superseded standard requiring replacement verification."
+      ],
+      "human_review_required": true,
+      "confidence": "High",
+      "review_reason": "Tender cited superseded standard 'IS 10611'. Recommended current active replacement.",
+      "candidate_standard": "IS/ISO 10434 : 2020",
+      "evidence_standard": "IS/ISO 10434 : 2020",
+      "why_it_matches": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends.",
+      "dependencies": [
+        {
+          "standard_number": "IS 10611 : 1983",
+          "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "relationship_type": "SUPERSEDES",
+          "dependency_status": "RELATED_FOR_REVIEW",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "source": "SQLITE_DB",
+          "confidence": 1.0,
+          "why_related": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434 : 2020. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED].",
+          "functional_category": "lifecycle",
+          "is_applicable_to_requirement": false,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "RELATED_FOR_REVIEW",
+          "evidence": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434 : 2020. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED]."
+        }
+      ],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS certification is NOT identified for IS/ISO 10434 : 2020 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "additional_metadata": {
+            "mandate_type": "VOLUNTARY_OR_UNREGULATED"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "",
+          "source": "e-Gazette of India / DPIIT QCO Registry",
+          "source_url": "e-Gazette of India / DPIIT QCO Registry",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS/ISO 10434 : 2020. Verify ministry specific notifications.",
+          "additional_metadata": {}
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS/ISO 10434 : 2020",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs",
+          "source_url": "Ministry of Consumer Affairs",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": false,
+          "explanation": "Hallmarking is not applicable to this product category.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_reason": "Evidence grounding validation failed for IS/ISO 10434. Clause-level support could not be verified."
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "TS-B8BCC0FC-R009",
+      "requirement_text": "Run superseded IS 10611. Show successor and REVIEW_REQUIRED.",
+      "risk_level": "CRITICAL",
+      "decision": "INSUFFICIENT_EVIDENCE",
+      "candidate_standard": "IS/ISO 10434 : 2020",
+      "evidence_strength": "WEAK",
+      "primary_reason": "Tender explicitly cited a superseded standard requiring replacement verification.",
+      "priority": 1
+    },
+    {
+      "requirement_id": "TS-B8BCC0FC-R002",
+      "requirement_text": "Use the sample containing IS 10611 : 1983. The system should surface the successor IS/ISO 10434 : 2020 and require",
+      "risk_level": "CRITICAL",
+      "decision": "RECOMMEND",
+      "candidate_standard": "IS/ISO 10434 : 2020",
+      "evidence_strength": "STRONG",
+      "primary_reason": "Tender explicitly cited a superseded standard requiring replacement verification.",
+      "priority": 1
+    },
+    {
+      "requirement_id": "TS-B8BCC0FC-R006",
+      "requirement_text": "“Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.”",
+      "risk_level": "CRITICAL",
+      "decision": "REVIEW_REQUIRED",
+      "candidate_standard": "IS/ISO 10434 : 2020",
+      "evidence_strength": "STRONG",
+      "primary_reason": "Tender explicitly cited a superseded standard requiring replacement verification.",
+      "priority": 1
+    },
+    {
+      "requirement_id": "TS-B8BCC0FC-R004",
+      "requirement_text": "“Annual Rate Contract for Mechanical Maintenance Works including Pumps, Valve Replacement, Flange",
+      "risk_level": "HIGH",
+      "decision": "REVIEW_REQUIRED",
+      "candidate_standard": "NONE",
+      "evidence_strength": "NONE",
+      "primary_reason": "Multiple competing Indian Standards (IS 14846 and IS 778) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (cast iron vs copper)) to select between them.",
+      "priority": 2
+    },
+    {
+      "requirement_id": "TS-B8BCC0FC-R005",
+      "requirement_text": "Missing parameters such as valve type, DN, PN and metallurgy can be surfaced",
+      "risk_level": "HIGH",
+      "decision": "REVIEW_REQUIRED",
+      "candidate_standard": "NONE",
+      "evidence_strength": "NONE",
+      "primary_reason": "Multiple competing Indian Standards (IS 14846 and IS 778) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (cast iron vs copper)) to select between them.",
+      "priority": 2
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 4,
+      "MODERATE": 2,
+      "WEAK": 1,
+      "NONE": 2
+    },
+    "provenance_distribution": {
+      "VERIFIED": 5,
+      "CURATED": 2,
+      "INFERRED": 0,
+      "UNKNOWN": 2
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}

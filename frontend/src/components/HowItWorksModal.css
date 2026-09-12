@@ -1,0 +1,272 @@
+/* HowItWorksModal.css — Pipeline visualization modal styling */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+  animation: modalFadeIn 200ms ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.how-it-works-modal {
+  background: #ffffff;
+  border-radius: 20px;
+  max-width: 860px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.25), 0 0 0 1px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  animation: modalSlideUp 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.how-it-works-modal__header {
+  padding: 28px 32px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  background: #fafbfc;
+}
+
+.how-it-works-modal__badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #ff5a36;
+  background: #fff1ee;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  margin-bottom: 8px;
+}
+
+.how-it-works-modal__title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.02em;
+}
+
+.how-it-works-modal__subtitle {
+  font-size: 0.92rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.modal-close-btn {
+  background: #f1f5f9;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 150ms ease;
+  flex-shrink: 0;
+}
+
+.modal-close-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.how-it-works-modal__body {
+  padding: 24px 32px 32px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Pipeline summary bar */
+.pipeline-flow-pill {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #334155;
+}
+
+.pipeline-flow-arrow {
+  color: #ff5a36;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+/* 8-stage grid */
+.how-it-works-modal__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.pipeline-step-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 16px 18px;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.pipeline-step-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+.pipeline-step-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.pipeline-step-card__icon-wrap {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #fff1ee;
+  color: #ff5a36;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pipeline-step-card__num {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #94a3b8;
+  font-feature-settings: 'tnum';
+}
+
+.pipeline-step-card__title {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px 0;
+}
+
+.pipeline-step-card__desc {
+  font-size: 0.84rem;
+  color: #64748b;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Philosophy banner */
+.decision-safety-banner {
+  background: #0f172a;
+  border-radius: 16px;
+  padding: 20px 24px;
+  color: #ffffff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.decision-safety-banner__eyebrow {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.decision-safety-banner__pillars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.pillar-item {
+  color: #e2e8f0;
+}
+
+.pillar-item--accent {
+  color: #ff8566;
+}
+
+.pillar-dot {
+  color: #475569;
+}
+
+.decision-safety-banner__note {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  line-height: 1.45;
+  margin: 4px 0 0;
+}
+
+@media (max-width: 640px) {
+  .how-it-works-modal {
+    max-height: 95vh;
+    border-radius: 16px;
+  }
+  .how-it-works-modal__header {
+    padding: 20px;
+  }
+  .how-it-works-modal__body {
+    padding: 16px 20px 24px;
+    gap: 16px;
+  }
+  .how-it-works-modal__grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .pipeline-flow-pill {
+    font-size: 0.72rem;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  .decision-safety-banner__pillars {
+    font-size: 0.9rem;
+    gap: 6px;
+  }
+}
