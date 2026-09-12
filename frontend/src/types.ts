@@ -254,11 +254,33 @@ export interface AnalysisSummary {
 }
 
 
+export interface OcrPageResult {
+  page_number: number;
+  source_type: string;
+  extracted_text: string;
+  ocr_used: boolean;
+  language: string | null;
+  confidence: number | null;
+  ocr_quality_flag: string | null;
+}
+
+export interface OcrMetadata {
+  ocr_used: boolean;
+  ocr_pages: number;
+  total_pages: number;
+  any_low_quality: boolean;
+  pages: OcrPageResult[];
+}
+
 export interface TenderInfo {
   id: string;
   source: string;
   file_size: number;
   timestamp: string;
+  // Present for image uploads
+  source_type?: string;
+  ocr_metadata?: OcrMetadata;
+  ocr_quality_warning?: boolean;
 }
 
 export interface AnalysisResult {
@@ -281,6 +303,9 @@ export interface AnalysisResult {
 }
 
 export type AppState = 'home' | 'analyzing' | 'results';
+
+/** Which input mode is active on the Home page */
+export type InputMode = 'text' | 'pdf' | 'image';
 
 export interface AnalysisStep {
   label: string;

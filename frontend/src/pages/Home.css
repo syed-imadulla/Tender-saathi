@@ -230,3 +230,105 @@
     height: 42px;
   }
 }
+
+/* ─── Input Mode Tabs ────────────────────────────────────────────────── */
+.home__tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 36px;
+  background: #f1f5f9;
+  border-radius: 9999px;
+  padding: 4px;
+  width: fit-content;
+  align-self: center;
+}
+
+.home__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 20px;
+  border-radius: 9999px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease, box-shadow 150ms ease;
+  white-space: nowrap;
+}
+
+.home__tab--active {
+  background: #ffffff;
+  color: #1a1f36;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.home__tab:not(.home__tab--active):hover {
+  color: #1a1f36;
+}
+
+/* ─── PDF panel extras ───────────────────────────────────────────────── */
+.home__upload-bar--pdf {
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.home__pdf-hint {
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+.home__pdf-browse {
+  background: none;
+  border: none;
+  color: #e8610a;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+/* ─── Image analyze button ───────────────────────────────────────────── */
+.home__image-analyze-btn {
+  margin-top: 16px;
+  width: 100%;
+  padding: 14px;
+  background: #1a1f36;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.home__image-analyze-btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+/* ─── Mobile extra ───────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .home__tabs {
+    gap: 2px;
+  }
+  .home__tab {
+    padding: 6px 14px;
+    font-size: 0.82rem;
+  }
+  .home__headline {
+    font-size: clamp(2rem, 8vw, 2.6rem);
+  }
+  .home__subtext {
+    font-size: 0.95rem;
+  }
+}

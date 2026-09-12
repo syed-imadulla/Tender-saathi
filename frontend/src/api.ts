@@ -50,6 +50,19 @@ export async function analyzeSample(
   return handleResponse<AnalysisResult>(res);
 }
 
+export async function analyzeImages(files: File[]): Promise<AnalysisResult> {
+  if (files.length === 0) throw new Error('No images selected.');
+  const form = new FormData();
+  for (const file of files) {
+    form.append('files[]', file);
+  }
+  const res = await fetch(`${BASE}/analyze/image`, {
+    method: 'POST',
+    body: form,
+  });
+  return handleResponse<AnalysisResult>(res);
+}
+
 export async function downloadReport(
   tenderId: string,
   format: 'json' | 'markdown'

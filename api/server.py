@@ -43,6 +43,18 @@ from src.extract import extract_from_text, extract_from_pdf
 from src.audit import TenderAuditEngine, TenderAuditResult
 from src.report import ReportGenerator
 
+# Ingestion layer (image upload / OCR)
+try:
+    from api.ingestion import ImageProcessor, ImageValidationError, get_default_ocr_engine
+    _IMAGE_PROCESSOR = ImageProcessor()
+    _INGESTION_AVAILABLE = True
+except Exception as _ing_err:
+    _IMAGE_PROCESSOR = None  # type: ignore[assignment]
+    _INGESTION_AVAILABLE = False
+    logging.getLogger("tendersaathi.api").warning(
+        "Ingestion layer unavailable: %s", _ing_err
+    )
+
 # ---------------------------------------------------------------------------
 # Flask app
 # ---------------------------------------------------------------------------
@@ -598,6 +610,162 @@ def report_markdown_latest():
         return jsonify({"error": "No analysis results yet."}), 404
     tid = list(_report_cache.keys())[-1]
     return report_markdown(tid)
+
+
+
+# ---------------------------------------------------------------------------
+# Image analysis endpoint
+# ---------------------------------------------------------------------------
+
+# Accepted MIME types for image upload
+_ACCEPTED_IMAGE_MIMES = {"image/png", "image/jpeg", "image/webp"}
+_MAX_IMAGE_BYTES = 10 * 1024 * 1024   # 10 MB per image
+_MAX_IMAGES = 5
+
+
+@app.route("/api/analyze/image", methods=["POST"])
+def analyze_image():
+    """
+    POST /api/analyze/image
+
+    Accepts: multipart/form-data
+      files[]  — one or more image files (PNG, JPG, WEBP)
+
+    Returns the same normalized analysis response as /api/analyze/text.
+    The combined OCR text is passed through the same evidence pipeline.
+    OCR output is clearly flagged in the response; it is NOT authoritative.
+    """
+    if not _INGESTION_AVAILABLE or _IMAGE_PROCESSOR is None:
+        return jsonify({
+            "error": "Image analysis is not available on this server. "
+                     "The ingestion module could not be loaded."
+        }), 503
+
+    # Collect uploaded files from 'files[]' or single 'file'
+    uploaded = request.files.getlist("files[]") or request.files.getlist("file")
+    if not uploaded:
+        return jsonify({"error": "No image files uploaded. Use field name 'files[]'."}), 400
+
+    if len(uploaded) > _MAX_IMAGES:
+        return jsonify({
+            "error": f"Too many files: {len(uploaded)}. Maximum is {_MAX_IMAGES} images per request."
+        }), 400
+
+    # Read and validate each file
+    images: List[tuple] = []
+    total_bytes = 0
+    for f in uploaded:
+        if not f.filename:
+            return jsonify({"error": "One or more files has an empty filename."}), 400
+
+        # MIME / extension check
+        content_type = (f.content_type or "").split(";")[0].strip().lower()
+        fname_lower = f.filename.lower()
+        ext_ok = any(fname_lower.endswith(ext) for ext in (".png", ".jpg", ".jpeg", ".webp"))
+        mime_ok = content_type in _ACCEPTED_IMAGE_MIMES
+        if not ext_ok and not mime_ok:
+            return jsonify({
+                "error": f"Unsupported file type: '{f.filename}'. "
+                         f"Accepted formats: PNG, JPG, WEBP."
+            }), 400
+
+        data = f.read()
+        if len(data) > _MAX_IMAGE_BYTES:
+            mb = _MAX_IMAGE_BYTES // (1024 * 1024)
+            return jsonify({
+                "error": f"File too large: '{f.filename}'. Maximum image size is {mb} MB."
+            }), 400
+
+        total_bytes += len(data)
+        images.append((data, f.filename))
+
+    source_name = ", ".join(fname for _, fname in images)
+    tender_id = f"TS-{uuid.uuid4().hex[:8].upper()}"
+
+    try:
+        from api.ingestion import ImageValidationError as IVE
+        try:
+            document = _IMAGE_PROCESSOR.process_images(images, source_name=source_name)
+        except IVE as ve:
+            return jsonify({"error": str(ve)}), 400
+
+        ocr_summary = document.ocr_summary
+        combined = document.combined_text
+
+        # If no text extracted, still run analysis — pipeline will safely abstain
+        if not combined.strip():
+            logger.warning(
+                "Image upload produced no extractable text (tender_id=%s). "
+                "OCR may be unavailable or the image may be blank.",
+                tender_id,
+            )
+            combined = "[No text could be extracted from the uploaded image(s). Human review required.]"
+
+        result = _run_analysis(
+            texts=[combined],
+            tender_id=tender_id,
+            source_name=source_name,
+            file_size=total_bytes,
+        )
+
+        # Attach OCR metadata so the UI can inform the user
+        result["tender"]["source_type"] = document.metadata.source_type
+        result["tender"]["ocr_metadata"] = ocr_summary
+        result["tender"]["ocr_quality_warning"] = document.metadata.any_ocr_low_quality
+
+        return jsonify(result)
+
+    except Exception as e:
+        logger.error("analyze_image error: %s", traceback.format_exc())
+        return jsonify({"error": "Image analysis failed. Please try again.", "detail": str(e)}), 500
+
+
+# ---------------------------------------------------------------------------
+# Capabilities endpoint
+# ---------------------------------------------------------------------------
+
+@app.route("/api/capabilities", methods=["GET"])
+def capabilities():
+    """
+    GET /api/capabilities
+
+    Returns supported file types, size limits, and feature availability.
+    Safe to call without authentication.
+    """
+    ocr_available = False
+    if _INGESTION_AVAILABLE and _IMAGE_PROCESSOR is not None:
+        try:
+            ocr_available = _IMAGE_PROCESSOR._ocr.is_available()
+        except Exception:
+            ocr_available = False
+
+    return jsonify({
+        "supported_inputs": {
+            "text": {"available": True, "max_chars": 10_000},
+            "pdf": {"available": True, "max_bytes": 25 * 1024 * 1024, "formats": ["pdf"]},
+            "image": {
+                "available": _INGESTION_AVAILABLE,
+                "ocr_available": ocr_available,
+                "max_bytes_per_image": _MAX_IMAGE_BYTES,
+                "max_images": _MAX_IMAGES,
+                "max_dimension_px": 8000,
+                "formats": ["png", "jpg", "jpeg", "webp"],
+                "ocr_note": (
+                    "OCR-assisted extraction. "
+                    "OCR output is input text only — not authoritative evidence. "
+                    "Human review is required for OCR-derived analysis."
+                    if _INGESTION_AVAILABLE else
+                    "Image analysis module not available on this server."
+                ),
+            },
+        },
+        "analysis": {
+            "mode": "evidence-grounded",
+            "abstains_when_uncertain": True,
+            "human_review_required_for_ocr": True,
+        },
+        "version": "1.1.0",
+    })
 
 
 # ---------------------------------------------------------------------------
