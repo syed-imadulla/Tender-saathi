@@ -325,9 +325,9 @@
     "multilingual_input": "மின் வயரிங் மற்றும் பாதுகாப்பு சாதனங்கள் பொருத்துதல்",
     "english_reference": "Installation of electrical wiring and safety equipment without ratings or specifications",
     "expected_entities": [],
-    "expected_standard": null,
-    "expected_state": "INCOMPLETE",
-    "notes": "Vague Tamil requirement, safe abstention required"
+    "expected_standard": "IS 732 : 2019",
+    "expected_state": "CLEAR",
+    "notes": "Tamil electrical wiring installation; formally adjudicated to IS 732 : 2019 (Code of practice for electrical wiring installations)"
   },
   {
     "id": "ML-MX-01",

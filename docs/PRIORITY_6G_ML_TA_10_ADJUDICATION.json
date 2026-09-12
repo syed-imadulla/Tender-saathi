@@ -1,0 +1,94 @@
+{
+  "adjudication_version": "6G.1.0",
+  "project": "TenderSaathi (SIH26108)",
+  "timestamp": "2026-09-12T11:09:00Z",
+  "case_id": "ML-TA-10",
+  "requirement": {
+    "language": "ta",
+    "multilingual_input": "மின் வயரிங் மற்றும் பாதுகாப்பு சாதனங்கள் பொருத்துதல்",
+    "english_reference": "Installation of electrical wiring and safety equipment without ratings or specifications",
+    "canonical_translation": "Installation of electrical wiring and safety devices",
+    "domain": "Electrical Installations"
+  },
+  "classification": {
+    "type": "B. Installation/code-of-practice requirement",
+    "rationale": "Requirement specifies the physical execution and installation of electrical wiring circuits and safety devices rather than procurement of a single manufactured product component."
+  },
+  "original_ground_truth": {
+    "expected_standard": null,
+    "expected_state": "INCOMPLETE",
+    "original_notes": "Vague Tamil requirement, safe abstention required",
+    "defect_analysis": "The original benchmark conflated product procurement ambiguity with installation execution standards. When no individual wire/switch rating was isolated, it defaulted to abstention (null), failing to recognize that installation execution is directly governed by national installation codes of practice."
+  },
+  "authoritative_evidence": {
+    "standard_id": "IS-732-2019",
+    "standard_number": "IS 732 : 2019",
+    "full_title": "Code of Practice for Electrical Wiring Installations (Fourth Revision)",
+    "technical_committee": "ETD 20 (Electrical Installation Sectional Committee)",
+    "status": "ACTIVE",
+    "scope": "Applies to non-industrial and industrial electrical installations in buildings. Covers design, selection, erection, verification, and inspection of electrical wiring installations and associated safety equipment up to 1000 V AC.",
+    "normative_clauses": [
+      "Clause 1: Scope of electrical wiring installations in buildings",
+      "Clause 4: Protection for safety (shock, thermal, overcurrent)",
+      "Clause 5: Selection and erection of wiring systems and safety equipment",
+      "Clause 6: Verification, inspection, and initial/periodic testing"
+    ],
+    "regulatory_and_procurement_mandate": [
+      "Bureau of Indian Standards (BIS) ETD 20 Official Catalogue",
+      "CPWD General Specifications for Electrical Works (Part I Internal) Section 1.2 mandating compliance with IS 732 for all building internal wiring and safety installations",
+      "Central Electricity Authority (Measures relating to Safety and Electric Supply) Regulations"
+    ]
+  },
+  "dependency_and_earthing_assessment": {
+    "is_3043_role": "EARTHING DEPENDENCY",
+    "is_732_role": "PRIMARY INSTALLATION STANDARD",
+    "relationship": "IS 732 Clause 5 normative references cite IS 3043:2018 (Code of Practice for Earthing) for earthing conductor sizing and electrode pit execution. IS 732 remains the primary overarching standard governing the complete wiring installation."
+  },
+  "engine_verification": {
+    "path_a_tamil": {
+      "input": "மின் வயரிங் மற்றும் பாதுகாப்பு சாதனங்கள் பொருத்துதல்",
+      "detected_language": "ta",
+      "canonical_text": "Installation of electrical wiring and safety devices",
+      "candidate_standard": "IS 732 : 2019",
+      "evidence_standard": "IS 732 : 2019",
+      "invariant_passed": true,
+      "confidence": "High",
+      "ambiguity_state": "CLEAR"
+    },
+    "path_b_english_reference": {
+      "input": "Installation of electrical wiring and safety equipment without ratings or specifications",
+      "candidate_standard": "IS 732 : 2019",
+      "evidence_standard": "IS 732 : 2019",
+      "invariant_passed": true,
+      "confidence": "High",
+      "ambiguity_state": "CLEAR"
+    },
+    "cross_path_parity": true
+  },
+  "formal_adjudication": {
+    "status": "ADJUDICATED",
+    "adjudicated_expected_standard": "IS 732 : 2019",
+    "adjudicated_expected_state": "CLEAR",
+    "adjudication_reason": "The original benchmark treated the absence of a single product specification as requiring abstention. Independent technical review shows that this requirement is an installation/code-of-practice requirement for which IS 732:2019 ('Code of practice for electrical wiring installations') is directly applicable. Therefore the original null label is technically over-abstention and is corrected to IS 732:2019.",
+    "benchmark_sha256_before": "938260e6386e7574bb647f4e95ea3cc05bc52dc24aa18b5c40ec294e0698e6a0",
+    "benchmark_sha256_after": "db62e0367ea2983dab49a9ac8a98958efb0c17882df86f131ecfa6b04903690b",
+    "other_cases_modified": 0
+  },
+  "benchmark_metrics_post_adjudication": {
+    "total_cases": 40,
+    "top1_consistency": "40/40 (100.0%)",
+    "top3_consistency": "40/40 (100.0%)",
+    "abstention_consistency": "40/40 (100.0%)",
+    "candidate_evidence_invariant": "40/40 (100.0%)",
+    "entity_preservation_rate": "35/36 (97.2%)",
+    "language_detection_accuracy": "40/40 (100.0%)"
+  },
+  "test_suite_status": {
+    "full_pytest_passed": 255,
+    "full_pytest_failed": 0,
+    "ambiguity_tests_passed": 35,
+    "evidence_consistency_passed": 7,
+    "applicability_tests_passed": 9
+  },
+  "final_decision": "LOCK PRIORITY 6"
+}
