@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-CPVC`
-- **Source File:** `Sample: cpvc`
+- **Tender ID:** `TS-9EC57551`
+- **Source File:** `text input`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -36,7 +36,7 @@
 
 ### Governance Distributions
 
-- **Evidence Strength:** STRONG: `1` | MODERATE: `0` | WEAK: `0` | NONE: `0`
+- **Evidence Strength:** STRONG: `0` | MODERATE: `1` | WEAK: `0` | NONE: `0`
 - **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `1` | UNKNOWN: `0` | NOT_APPLICABLE: `0`
 - **Risk Distribution:** CRITICAL: `0` | HIGH: `0` | MEDIUM: `0` | LOW: `1`
 
@@ -58,24 +58,24 @@
 ### 5.1 Requirement `REQ-001` [MATERIAL]
 
 **Original Requirement Text:**
-> "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778."
+> "Chlorinated polyvinyl chloride CPVC pipes for potable water distribution."
 
-- **Decomposed Technical Components:** `general: CPVC pipes`, `general: CPVC fittings`, `general: domestic hot water distribution`, `general: domestic cold water distribution`, `general: supply`, `general: installation`
+- **Decomposed Technical Components:** `general: CPVC pipes`, `general: potable water`
 - **Recommended Standard:** **IS 15778 : 2007** — *Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*
 - **Candidate Standard:** `IS 15778 : 2007` | **Evidence Standard:** `IS 15778 : 2007` (Candidate == Evidence Grounding Established)
-- **Why It Matches:** Tender explicitly requires compliance with IS 15778.
-- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `1.000`
+- **Why It Matches:** IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.922`
 - **Ambiguity & Verification State:** `CLEAR` — *Reason:* Primary applicable standard IS 15778 is clearly identifiable and sufficiently supported.
-- **Evidence Strength:** `STRONG` | **Provenance:** `CURATED`
-- **Verbatim Evidence (Tender Document):** "Tender explicitly requires compliance with IS 15778."
+- **Evidence Strength:** `MODERATE` | **Provenance:** `CURATED`
+- **Verbatim Evidence (BIS Standards Catalogue):** "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
 - **Why This Standard?:**
   - Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.
-  - Authoritative scope explicitly covers application: "Tender explicitly requires compliance with IS 15778."
+  - Authoritative scope explicitly covers application: "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
   - Standard is currently active in the BIS repository with verified currency.
-  - Provenance established via Tender Document (VERIFIED).
+  - Provenance established via BIS Standards Catalogue (CURATED).
   - Candidate addresses multiple decomposed technical aspects of the requirement.
 - **Why Not Alternatives?:**
-  - Alternative standard IS 15905 has lower composite relevance (0.468 vs 1.000).
+  - Alternative standard IS 15328 has lower composite relevance (0.468 vs 0.922).
 - **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
 - **Related Standards Identified for Review (Graph Depth = 1):**
   - [→ TEST_METHOD] `IS 12235 : 2004` — *Title not in local index* (Unknown) — *Note:* Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance.

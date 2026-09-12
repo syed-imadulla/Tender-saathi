@@ -1,4 +1,5 @@
-/* Header.css — Floating pill header styling */
+/* Header.css — Minimal floating pill navigation */
+
 .header-wrapper {
   width: 100%;
   display: flex;
@@ -11,15 +12,16 @@
 .header {
   width: 100%;
   max-width: 860px;
-  height: 58px;
+  height: 56px;
   background: #ffffff;
   border-radius: 9999px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
   border: 1px solid #f0f0ed;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 14px 0 24px;
+  padding: 0 18px 0 24px;
+  position: relative;
 }
 
 .header__logo {
@@ -32,7 +34,7 @@
 .header__wordmark {
   font-size: 1.25rem;
   font-weight: 800;
-  color: #1a1f36;
+  color: #0f172a;
   letter-spacing: -0.02em;
 }
 
@@ -43,78 +45,127 @@
 .header__nav {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.nav-pill {
-  font-size: 0.9rem;
+.nav-link-btn {
+  background: transparent;
+  border: none;
+  font-size: 0.88rem;
   font-weight: 500;
-  color: #4b5563;
-  text-decoration: none;
+  color: #475569;
   padding: 8px 16px;
   border-radius: 9999px;
+  cursor: pointer;
   transition: all 150ms ease;
-  display: inline-block;
+  font-family: inherit;
 }
 
-.nav-pill:hover {
-  color: #1a1f36;
-  background: #f4f4f2;
+.nav-link-btn:hover {
+  color: #0f172a;
+  background: #f8fafc;
 }
 
-.nav-pill.active {
-  background: #ffebe6;
-  color: #ff5a36;
-  font-weight: 600;
+.header__info-btn {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 150ms ease;
+  margin-left: 4px;
 }
 
-.header__signin {
-  background: #ff5a36;
-  color: #ffffff;
+.header__info-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+/* Mobile Toggle */
+.header__mobile-toggle {
+  display: none;
+  background: transparent;
   border: none;
-  border-radius: 9999px;
-  padding: 8px 18px;
+  color: #475569;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.header__mobile-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+  z-index: 100;
+  animation: menuFadeIn 150ms ease-out;
+}
+
+@keyframes menuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header__mobile-item {
+  background: transparent;
+  border: none;
   font-size: 0.9rem;
   font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+  color: #334155;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-align: left;
   cursor: pointer;
-  transition: background 150ms ease, transform 100ms ease;
   font-family: inherit;
-  box-shadow: 0 2px 8px rgba(255, 90, 54, 0.25);
+  transition: background 120ms ease, color 120ms ease;
 }
 
-.header__signin:hover {
-  background: #e84c28;
-  transform: translateY(-1px);
-}
-
-.header__signin:active {
-  transform: translateY(0);
+.header__mobile-item:hover,
+.header__mobile-item:active {
+  background: #f1f5f9;
+  color: #0f172a;
 }
 
 @media (max-width: 640px) {
   .header-wrapper {
-    padding: 12px 12px 0;
+    padding: 12px 14px 0;
   }
   .header {
-    height: 52px;
-    padding: 0 10px 0 16px;
+    height: 50px;
+    padding: 0 10px 0 18px;
   }
   .header__wordmark {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
-  .nav-hide-mobile {
+  .header__nav-desktop {
     display: none;
   }
-  .nav-pill {
-    padding: 6px 12px;
-    font-size: 0.85rem;
-  }
-  .header__signin {
-    padding: 6px 14px;
-    font-size: 0.85rem;
+  .header__mobile-toggle {
+    display: flex;
   }
 }

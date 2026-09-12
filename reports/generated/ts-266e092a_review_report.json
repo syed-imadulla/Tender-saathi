@@ -2,10 +2,10 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-266E092A",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: cpvc",
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
@@ -15,7 +15,7 @@
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-266E092A",
     "requirements_analyzed": 1,
     "recommendations_count": 1,
     "review_required_count": 0,
@@ -95,52 +95,16 @@
   "requirements": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
+      "requirement_text": "Supply and installation of chlorinated polyvinyl chloride (CPVC) pipes conforming to IS 15778.",
       "category": "material",
       "components": [
         {
-          "text": "CPVC pipes",
+          "text": "pipes",
           "component_type": "material",
           "domain": "piping",
           "extracted_attributes": {
             "category": "pipe_material"
           }
-        },
-        {
-          "text": "CPVC fittings",
-          "component_type": "equipment",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "domain": "mechanical"
-          }
-        },
-        {
-          "text": "domestic hot water distribution",
-          "component_type": "application",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "is_process": false
-          }
-        },
-        {
-          "text": "domestic cold water distribution",
-          "component_type": "application",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "is_process": false
-          }
-        },
-        {
-          "text": "supply",
-          "component_type": "action",
-          "domain": "general",
-          "extracted_attributes": {}
-        },
-        {
-          "text": "installation",
-          "component_type": "action",
-          "domain": "general",
-          "extracted_attributes": {}
         }
       ],
       "recommended_standard": "IS 15778 : 2007",
@@ -154,19 +118,19 @@
       "evidence_text": "Tender explicitly requires compliance with IS 15778.",
       "evidence_source": "Tender Document",
       "why_this": [
-        "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.",
+        "Standard title directly matches requirement component(s): 'pipes'.",
         "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 15778.\"",
         "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via Tender Document (VERIFIED).",
-        "Candidate addresses multiple decomposed technical aspects of the requirement."
+        "Provenance established via Tender Document (VERIFIED)."
       ],
       "why_not": [
-        "Alternative standard IS 15905 has lower composite relevance (0.468 vs 1.000)."
+        "Alternative standard IS 14333 has lower composite relevance (0.621 vs 1.000)."
       ],
       "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [
         "Diameter / Nominal Bore (DN/OD)",
-        "Pressure Class / Schedule / SDR"
+        "Pressure Class / Schedule / SDR",
+        "Piping Application / Service"
       ],
       "known_parameters": {},
       "related_standards": [
@@ -284,17 +248,6 @@
           "explanation": "IS 4985 : 2000 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED]."
         },
         {
-          "standard_number": "SP 57 (QAWSM) : 1993",
-          "title": "Handbook on Pipes and Fittings for Drinking Water Supply",
-          "relationship_type": "CODE_OF_PRACTICE",
-          "dependency_status": "INSTALLATION_DEPENDENCY",
-          "functional_category": "installation",
-          "evidence": "Curated reference standard for Handbook on Pipes and Fittings for Drinking Water Supply",
-          "is_satisfied": false,
-          "context_applicability": "APPLICABLE",
-          "provenance": "CURATED"
-        },
-        {
           "standard_number": "IS 783 : 1985",
           "title": "Code of Practice for Laying of Concrete Pipes",
           "relationship_type": "INSTALLATION_STANDARD",
@@ -304,6 +257,17 @@
           "is_satisfied": false,
           "context_applicability": "APPLICABLE",
           "provenance": "VERIFIED"
+        },
+        {
+          "standard_number": "SP 57 (QAWSM) : 1993",
+          "title": "Handbook on Pipes and Fittings for Drinking Water Supply",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Curated reference standard for Handbook on Pipes and Fittings for Drinking Water Supply",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "CURATED"
         }
       ],
       "regulatory": {
@@ -374,7 +338,7 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 1.0,
           "human_review_required": false,
-          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (fittings, pipes); not applicable.",
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (pipes); not applicable.",
           "additional_metadata": {}
         }
       },

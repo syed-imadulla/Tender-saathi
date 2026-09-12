@@ -2,10 +2,10 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-C3C58088",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: cpvc",
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
@@ -15,7 +15,7 @@
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-C3C58088",
     "requirements_analyzed": 1,
     "recommendations_count": 1,
     "review_required_count": 0,
@@ -25,8 +25,8 @@
     "active_count": 1,
     "unknown_lifecycle_count": 0,
     "evidence_distribution": {
-      "STRONG": 1,
-      "MODERATE": 0,
+      "STRONG": 0,
+      "MODERATE": 1,
       "WEAK": 0,
       "NONE": 0
     },
@@ -95,7 +95,7 @@
   "requirements": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
+      "requirement_text": "Chlorinated polyvinyl chloride CPVC pipes for potable water distribution in building.",
       "category": "material",
       "components": [
         {
@@ -107,61 +107,33 @@
           }
         },
         {
-          "text": "CPVC fittings",
-          "component_type": "equipment",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "domain": "mechanical"
-          }
-        },
-        {
-          "text": "domestic hot water distribution",
+          "text": "potable water",
           "component_type": "application",
-          "domain": "mechanical",
+          "domain": "water_supply",
           "extracted_attributes": {
-            "is_process": false
+            "application_type": "drinking_water"
           }
-        },
-        {
-          "text": "domestic cold water distribution",
-          "component_type": "application",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "is_process": false
-          }
-        },
-        {
-          "text": "supply",
-          "component_type": "action",
-          "domain": "general",
-          "extracted_attributes": {}
-        },
-        {
-          "text": "installation",
-          "component_type": "action",
-          "domain": "general",
-          "extracted_attributes": {}
         }
       ],
       "recommended_standard": "IS 15778 : 2007",
       "recommended_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
-      "relevance_score": 1.0,
+      "relevance_score": 0.912,
       "lifecycle_status": "Active",
       "successor_standard": null,
       "superseded_citation": null,
-      "evidence_strength": "STRONG",
+      "evidence_strength": "MODERATE",
       "provenance": "CURATED",
-      "evidence_text": "Tender explicitly requires compliance with IS 15778.",
-      "evidence_source": "Tender Document",
+      "evidence_text": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.",
+      "evidence_source": "BIS Standards Catalogue",
       "why_this": [
         "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.",
-        "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 15778.\"",
+        "Authoritative scope explicitly covers application: \"Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.\"",
         "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via Tender Document (VERIFIED).",
+        "Provenance established via BIS Standards Catalogue (CURATED).",
         "Candidate addresses multiple decomposed technical aspects of the requirement."
       ],
       "why_not": [
-        "Alternative standard IS 15905 has lower composite relevance (0.468 vs 1.000)."
+        "Alternative standard IS 15328 has lower composite relevance (0.467 vs 0.912)."
       ],
       "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [
@@ -215,7 +187,7 @@
       "review_reason": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence.",
       "candidate_standard": "IS 15778 : 2007",
       "evidence_standard": "IS 15778 : 2007",
-      "why_it_matches": "Tender explicitly requires compliance with IS 15778.",
+      "why_it_matches": "IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.",
       "dependencies": [
         {
           "standard_number": "IS 12235 : 2004",
@@ -253,7 +225,7 @@
           "confidence": 0.9,
           "why_related": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed installation, laying, and execution standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
           "functional_category": "installation",
-          "is_applicable_to_requirement": true,
+          "is_applicable_to_requirement": false,
           "applicability_decision": "REVIEW_REQUIRED",
           "dependency_state": "INSTALLATION_DEPENDENCY",
           "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
@@ -374,7 +346,7 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 1.0,
           "human_review_required": false,
-          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (fittings, pipes); not applicable.",
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (pipes); not applicable.",
           "additional_metadata": {}
         }
       },
@@ -385,8 +357,8 @@
   "review_queue": [],
   "evidence_summary": {
     "evidence_distribution": {
-      "STRONG": 1,
-      "MODERATE": 0,
+      "STRONG": 0,
+      "MODERATE": 1,
       "WEAK": 0,
       "NONE": 0
     },
