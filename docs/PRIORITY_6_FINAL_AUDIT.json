@@ -1,0 +1,156 @@
+{
+  "audit_metadata": {
+    "timestamp": "2026-09-12T15:52:00+05:30",
+    "milestone": "PRIORITY_6E_FINAL_AUDIT_INTEGRITY_AND_ADJUDICATION",
+    "decision": "DO NOT LOCK PRIORITY 6",
+    "auditor": "Antigravity Autonomous Audit Subsystem"
+  },
+  "git_state": {
+    "branch": "main",
+    "head_commit": "cba2f965c5c1ad8938ce079fb4f6b80924fcec5a",
+    "working_tree_clean": false,
+    "status": "M data/standards/standards.db\n M reports/feasibility/milestone2_evaluation_report.md\n M reports/feasibility/multilingual_benchmark_results.json\n?? data/catalogue/manifests/manifest_snapshot_20260912_101939.json\n?? reports/generated/"
+  },
+  "database_integrity": {
+    "standards_db": {
+      "row_count": 92,
+      "distinct_standard_ids": 92,
+      "distinct_standard_numbers": 63,
+      "duplicate_primary_keys": [],
+      "duplicate_standard_numbers": [
+        [
+          "IS 101",
+          10
+        ],
+        [
+          "IS 1180 (Part 1)",
+          2
+        ],
+        [
+          "IS 14333",
+          2
+        ],
+        [
+          "IS 2491",
+          2
+        ],
+        [
+          "IS 302",
+          7
+        ],
+        [
+          "IS 404",
+          2
+        ],
+        [
+          "IS 432",
+          2
+        ],
+        [
+          "IS 6283",
+          2
+        ],
+        [
+          "IS 7098 (Part 2)",
+          2
+        ],
+        [
+          "IS 9694",
+          3
+        ],
+        [
+          "SP 18",
+          6
+        ]
+      ],
+      "critical_issue_a_verdict": "DATABASE INTEGRITY ISSUE: 92 rows found instead of 90 reported. Duplicate entries for IS 1180 (Part 1) and IS 7098 (Part 2) due to slug normalization divergence."
+    },
+    "catalogue_db": {
+      "row_count": 502,
+      "distinct_standard_ids": 502,
+      "distinct_standard_numbers": 501,
+      "duplicate_primary_keys": []
+    }
+  },
+  "index_integrity": {
+    "standards_bm25_count": 92,
+    "standards_semantic_embedding_shape": [
+      92,
+      384
+    ],
+    "catalogue_bm25_count": 502,
+    "catalogue_semantic_embedding_shape": [
+      502,
+      384
+    ],
+    "model": "all-MiniLM-L6-v2",
+    "index_database_count_parity": true
+  },
+  "benchmark_verification": {
+    "benchmark_sha256": "938260e6386e7574bb647f4e95ea3cc05bc52dc24aa18b5c40ec294e0698e6a0",
+    "benchmark_hash_unmodified": true,
+    "total_cases": 40,
+    "language_detection_accuracy": 40,
+    "path_a_eq_path_b_rate": 40,
+    "ground_truth_match_count": 39,
+    "ground_truth_match_rate": 0.975,
+    "candidate_eq_evidence_count": 40,
+    "abstention_match_count": 3,
+    "abstention_total_ground_truth": 4,
+    "historic_divergences_resolved": [
+      "ML-TA-08",
+      "ML-MX-07"
+    ],
+    "critical_issue_b_verdict": "REPORTING ERROR: Actual affected cases count in Priority 6B is 23 (21 benchmark ground truth missing catalogue + 2 normalization divergences), not 21."
+  },
+  "ml_ta_10_adjudication": {
+    "case_id": "ML-TA-10",
+    "language": "ta",
+    "ground_truth_expected": null,
+    "path_a_recommendation": "IS 732 : 2019",
+    "path_b_recommendation": "IS 732 : 2019",
+    "agreement": true,
+    "adjudication_status": "BENCHMARK ADJUDICATION REQUIRED",
+    "explanation": "IS 732 is Code of Practice for Electrical Wiring Installations. Tender specifies installation of wiring without parameters. Ground truth expected abstention, but engine Grounding in IS 732 is valid CPWD practice. Requires committee adjudication."
+  },
+  "is_8034_review_required": {
+    "cases": [
+      "ML-HI-06",
+      "ML-KN-05",
+      "ML-TA-05",
+      "ML-MX-05"
+    ],
+    "status": "APPLICABLE + REVIEW_REQUIRED",
+    "cause": "Specification Completeness Gate flagged missing operating parameters (Head H, Discharge Q, Prime Mover coupling). Not an ambiguity or catalogue error."
+  },
+  "code_modifications_audit": {
+    "evaluate_py": {
+      "change": "Fallback to rec_res.alternatives when rec_res.recommendations is empty",
+      "verdict": "Evaluation methodology changed for ambiguous/abstained queries."
+    },
+    "test_milestone10_evidence_consistency_py": {
+      "change": "Clarified query to 1.1 kV PVC insulated electric cable",
+      "verdict": "Legitimate clarification to prevent ambiguous inter-part trigger with newly added Part 2."
+    },
+    "applicability_py": {
+      "change": "Added 5 product boundary gates and without to stopwords",
+      "verdict": "Generic rules; no hardcoded benchmark IDs. Minor limitation on hyphenated non-submersible token boundary."
+    }
+  },
+  "pytest_regression": {
+    "total": 254,
+    "passed": 254,
+    "failed": 0,
+    "skipped": 0,
+    "warnings": 1,
+    "runtime_seconds": 76.17
+  },
+  "blocking_issues": [
+    "Duplicate records in standards.db for IS 1180 (Part 1) and IS 7098 (Part 2) due to slug format mismatch (92 rows vs 90 rows).",
+    "Priority 6D audit report incorrectly reported 90 rows / 90 vectors and loosely claimed 21 cases instead of 23.",
+    "Evaluation methodology in evaluate.py changed definition of Top-3 recall for ambiguous queries.",
+    "Pump boundary gate in applicability.py treats non-submersible as containing submersible due to regex boundary behavior.",
+    "ML-TA-10 benchmark discrepancy requires formal adjudication by domain committee."
+  ],
+  "final_recommendation": "DO NOT LOCK PRIORITY 6"
+}
