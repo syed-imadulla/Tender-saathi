@@ -1,0 +1,268 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-9D8CA711",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "eProcurement System Government of India11.pdf",
+    "date": null,
+    "requirements_analyzed": 2
+  },
+  "publication_readiness": "INSUFFICIENT_EVIDENCE",
+  "readiness_reasons": [
+    "2 of 2 requirements lack verified standards evidence."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-9D8CA711",
+    "requirements_analyzed": 2,
+    "recommendations_count": 0,
+    "review_required_count": 2,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 0,
+    "withdrawn_count": 0,
+    "active_count": 0,
+    "unknown_lifecycle_count": 2,
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 2
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 2,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 0
+    },
+    "risk_distribution": {
+      "LOW": 0,
+      "MEDIUM": 0,
+      "HIGH": 2,
+      "CRITICAL": 0
+    },
+    "lifecycle_distribution": {
+      "Active": 0,
+      "Superseded": 0,
+      "Withdrawn": 0,
+      "Unknown": 2
+    },
+    "related_standards_count": 0,
+    "review_queue": [
+      {
+        "requirement_id": "TS-9D8CA711-R001",
+        "requirement_text": "Electromechanical Works and Sewerage Pipeline works from Collection Chamber to STP",
+        "risk_level": "HIGH",
+        "decision": "REVIEW_REQUIRED",
+        "candidate_standard": "NONE",
+        "evidence_strength": "NONE",
+        "primary_reason": "Multiple competing Indian Standards (IS 15328 and IS 14333) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (pvc vs hdpe)) to select between them.",
+        "priority": 2
+      },
+      {
+        "requirement_id": "TS-9D8CA711-R002",
+        "requirement_text": "Electromechanical Works and Sewerage Pipeline works from Collection Chamber to STP 9/4/26, 10:22 AM eProcurement System Government of India https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SCm0Q8l4ILR… 1/2",
+        "risk_level": "HIGH",
+        "decision": "REVIEW_REQUIRED",
+        "candidate_standard": "NONE",
+        "evidence_strength": "NONE",
+        "primary_reason": "Multiple competing Indian Standards (IS 15328 and IS 14333) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (pvc vs hdpe)) to select between them.",
+        "priority": 2
+      }
+    ],
+    "publication_readiness": "INSUFFICIENT_EVIDENCE",
+    "readiness_reasons": [
+      "2 of 2 requirements lack verified standards evidence."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 0,
+    "normative_reference_count": 0,
+    "allied_standard_count": 0,
+    "test_standard_count": 0,
+    "installation_standard_count": 0,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 0,
+    "related_for_review_count": 0,
+    "standards_coverage": {
+      "direct_standards_identified": 2,
+      "total_dependencies": 0,
+      "normative_references": 0,
+      "testing_dependencies": 0,
+      "installation_dependencies": 0,
+      "allied_standards": 0,
+      "covered_in_tender": 0,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "items_requiring_review": 2
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 0,
+      "related_for_review_count": 0
+    },
+    "certification_checks": 2,
+    "qco_checks": 2,
+    "crs_checks": 2,
+    "hallmarking_checks": 2,
+    "regulatory_review_items": 2,
+    "unknown_regulatory_items": 2,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 0,
+    "mandatory_certification_count": 0,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
+  },
+  "requirements": [
+    {
+      "requirement_id": "TS-9D8CA711-R001",
+      "requirement_text": "Electromechanical Works and Sewerage Pipeline works from Collection Chamber to STP",
+      "category": "installation_execution",
+      "components": [
+        {
+          "text": "Sewerage Pipeline",
+          "component_type": "material",
+          "domain": "piping",
+          "extracted_attributes": {
+            "category": "pipe_material"
+          }
+        },
+        {
+          "text": "STP",
+          "component_type": "application",
+          "domain": "infrastructure",
+          "extracted_attributes": {
+            "facility_type": "stp"
+          }
+        }
+      ],
+      "recommended_standard": "NONE",
+      "recommended_title": "Ambiguous Requirement - Multiple Competing Standards",
+      "relevance_score": 0.0,
+      "lifecycle_status": "Unknown",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "NONE",
+      "provenance": "UNKNOWN",
+      "evidence_text": "We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue.",
+      "evidence_source": null,
+      "why_this": [
+        "Multiple competing Indian Standards (IS 15328 and IS 14333) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (pvc vs hdpe)) to select between them."
+      ],
+      "why_not": [
+        "Candidate standard IS 15328 competes within separation threshold: material (pvc vs hdpe).",
+        "Candidate standard IS 14333 competes within separation threshold: material (pvc vs hdpe)."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Piping Material",
+        "Diameter / Nominal Bore (DN/OD)",
+        "Pressure Class / Schedule / SDR"
+      ],
+      "known_parameters": {},
+      "related_standards": [],
+      "decision": "INSUFFICIENT_EVIDENCE",
+      "risk_level": "HIGH",
+      "risk_reasons": [
+        "Multiple competing Indian Standards (IS 15328 and IS 14333) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (pvc vs hdpe)) to select between them."
+      ],
+      "human_review_required": true,
+      "confidence": "Low",
+      "review_reason": "Multiple competing Indian Standards (IS 15328 and IS 14333) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (pvc vs hdpe)) to select between them."
+    },
+    {
+      "requirement_id": "TS-9D8CA711-R002",
+      "requirement_text": "Electromechanical Works and Sewerage Pipeline works from Collection Chamber to STP 9/4/26, 10:22 AM eProcurement System Government of India https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SCm0Q8l4ILR… 1/2",
+      "category": "installation_execution",
+      "components": [
+        {
+          "text": "Sewerage Pipeline",
+          "component_type": "material",
+          "domain": "piping",
+          "extracted_attributes": {
+            "category": "pipe_material"
+          }
+        },
+        {
+          "text": "STP",
+          "component_type": "application",
+          "domain": "infrastructure",
+          "extracted_attributes": {
+            "facility_type": "stp"
+          }
+        }
+      ],
+      "recommended_standard": "NONE",
+      "recommended_title": "Ambiguous Requirement - Multiple Competing Standards",
+      "relevance_score": 0.0,
+      "lifecycle_status": "Unknown",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "NONE",
+      "provenance": "UNKNOWN",
+      "evidence_text": "We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue.",
+      "evidence_source": null,
+      "why_this": [
+        "Multiple competing Indian Standards (IS 15328 and IS 14333) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (pvc vs hdpe)) to select between them."
+      ],
+      "why_not": [
+        "Candidate standard IS 15328 competes within separation threshold: material (pvc vs hdpe).",
+        "Candidate standard IS 14333 competes within separation threshold: material (pvc vs hdpe)."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Piping Material",
+        "Diameter / Nominal Bore (DN/OD)",
+        "Pressure Class / Schedule / SDR"
+      ],
+      "known_parameters": {},
+      "related_standards": [],
+      "decision": "INSUFFICIENT_EVIDENCE",
+      "risk_level": "HIGH",
+      "risk_reasons": [
+        "Multiple competing Indian Standards (IS 15328 and IS 14333) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (pvc vs hdpe)) to select between them."
+      ],
+      "human_review_required": true,
+      "confidence": "Low",
+      "review_reason": "Multiple competing Indian Standards (IS 15328 and IS 14333) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (pvc vs hdpe)) to select between them."
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "TS-9D8CA711-R001",
+      "requirement_text": "Electromechanical Works and Sewerage Pipeline works from Collection Chamber to STP",
+      "risk_level": "HIGH",
+      "decision": "REVIEW_REQUIRED",
+      "candidate_standard": "NONE",
+      "evidence_strength": "NONE",
+      "primary_reason": "Multiple competing Indian Standards (IS 15328 and IS 14333) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (pvc vs hdpe)) to select between them.",
+      "priority": 2
+    },
+    {
+      "requirement_id": "TS-9D8CA711-R002",
+      "requirement_text": "Electromechanical Works and Sewerage Pipeline works from Collection Chamber to STP 9/4/26, 10:22 AM eProcurement System Government of India https://eprocure.gov.in/eprocure/app?component=%24DirectLink&page=FrontEndTenderDetails&service=direct&session=T&sp=SCm0Q8l4ILR… 1/2",
+      "risk_level": "HIGH",
+      "decision": "REVIEW_REQUIRED",
+      "candidate_standard": "NONE",
+      "evidence_strength": "NONE",
+      "primary_reason": "Multiple competing Indian Standards (IS 15328 and IS 14333) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (pvc vs hdpe)) to select between them.",
+      "priority": 2
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 2
+    },
+    "provenance_distribution": {
+      "VERIFIED": 0,
+      "CURATED": 0,
+      "INFERRED": 0,
+      "UNKNOWN": 2
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}
