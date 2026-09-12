@@ -1,6 +1,6 @@
 # TenderSaathi — Phase 1: Full End-to-End Product Verification Summary
 
-**Date**: 2026-09-12 19:02:01  
+**Date**: 2026-09-12 19:11:40  
 **Problem Statement**: SIH26108 — AI-Powered Recommendation Engine for Identifying Applicable Indian Standards for Procurement Specifications  
 **Environment**: Production Feasibility Pipeline (Groq `openai/gpt-oss-120b` + `cross-encoder/ms-marco-MiniLM-L-6-v2`)  
 
@@ -41,8 +41,8 @@ All **20 real Central Public Procurement Portal (CPPP) tender PDFs** in `tenders
 | :--- | :---: | :--- |
 | **Configured Provider** | `groq` | Cloud LLM endpoint (`https://api.groq.com/openai/v1/chat/completions`) |
 | **Configured Model** | `openai/gpt-oss-120b` | State-of-the-art open weights model on Groq |
-| **LLM Success Count** | **0** | Converted requirements into structured technical facets |
-| **Deterministic Fallback Count** | **25** | Invoked regex decomposition when unconfigured/offline |
+| **LLM Success Count** | **1** | Converted requirements into structured technical facets |
+| **Deterministic Fallback Count** | **24** | Invoked regex decomposition when unconfigured/offline |
 | **LLM Unhandled Failures** | **0** | Graceful fallback guaranteed zero crashes |
 
 **Strict Guardrail Compliance**:
@@ -144,8 +144,8 @@ Across the 20 audited tenders (25 total primary requirements):
 
 ## 7. Performance & Latency Measurements
 
-- **Full Tender End-to-End Processing Time**: **1.26 s** per tender (including PDF layout parsing, LLM API call, Cross-Encoder reranking, audit aggregation, and report generation).
-- **Per-Requirement Pipeline Latency**: **0.99 s** per requirement.
+- **Full Tender End-to-End Processing Time**: **1.40 s** per tender (including PDF layout parsing, LLM API call, Cross-Encoder reranking, audit aggregation, and report generation).
+- **Per-Requirement Pipeline Latency**: **1.10 s** per requirement.
 - **Warm Retrieval Latency (Reference Benchmark)**:
   - Hybrid baseline: **57.0 ms**
   - Hybrid + Cross-Encoder reranker: **488.1 ms**

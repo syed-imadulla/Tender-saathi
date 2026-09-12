@@ -1,0 +1,229 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-EA2E1D66",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "text input",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "READY_FOR_REVIEW",
+  "readiness_reasons": [
+    "All 1 requirement(s) have grounded standards evidence with no critical or high risk flags."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-EA2E1D66",
+    "requirements_analyzed": 1,
+    "recommendations_count": 1,
+    "review_required_count": 0,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 0,
+    "withdrawn_count": 0,
+    "active_count": 1,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 1,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 0,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 1
+    },
+    "risk_distribution": {
+      "LOW": 1,
+      "MEDIUM": 0,
+      "HIGH": 0,
+      "CRITICAL": 0
+    },
+    "lifecycle_distribution": {
+      "Active": 1,
+      "Superseded": 0,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 0,
+    "review_queue": [],
+    "publication_readiness": "READY_FOR_REVIEW",
+    "readiness_reasons": [
+      "All 1 requirement(s) have grounded standards evidence with no critical or high risk flags."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 0,
+    "normative_reference_count": 0,
+    "allied_standard_count": 0,
+    "test_standard_count": 0,
+    "installation_standard_count": 0,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 0,
+    "related_for_review_count": 0,
+    "standards_coverage": {
+      "direct_standards_identified": 1,
+      "total_dependencies": 0,
+      "normative_references": 0,
+      "testing_dependencies": 0,
+      "installation_dependencies": 0,
+      "allied_standards": 0,
+      "covered_in_tender": 0,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "items_requiring_review": 0
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 0,
+      "related_for_review_count": 0
+    },
+    "certification_checks": 1,
+    "qco_checks": 1,
+    "crs_checks": 1,
+    "hallmarking_checks": 1,
+    "regulatory_review_items": 1,
+    "unknown_regulatory_items": 0,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 0,
+    "mandatory_certification_count": 0,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
+  },
+  "requirements": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "General unclassified masonry plastering work.",
+      "category": "installation_execution",
+      "components": [
+        {
+          "text": "plastering",
+          "component_type": "material",
+          "domain": "civil",
+          "extracted_attributes": {
+            "category": "cement_plaster",
+            "standard_focus": "IS 1661 / IS 269"
+          }
+        }
+      ],
+      "recommended_standard": "IS 1661 : 1972",
+      "recommended_title": "Code of Practice for Application of Cement and Cement-Lime Plaster Finishes",
+      "relevance_score": 0.646,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "evidence_text": "Exact Match: IS 1661 is the national standard governing execution, surface preparation, mortar mix proportions, and curing of cement plastering repairs.",
+      "evidence_source": "BIS Standards Catalogue",
+      "why_this": [
+        "Official title aligns with specification: 'Code of Practice for Application of Cement and Cement-Lime Plaster Finishes'.",
+        "Authoritative scope explicitly covers application: \"Exact Match: IS 1661 is the national standard governing execution, surface preparation, mortar mix proportions, and curi...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BIS Standards Catalogue (CURATED)."
+      ],
+      "why_not": [
+        "No alternative candidate standards met the retrieval threshold."
+      ],
+      "completeness_label": "NOT_APPLICABLE",
+      "potentially_missing_parameters": [],
+      "known_parameters": {},
+      "related_standards": [],
+      "decision": "RECOMMEND",
+      "risk_level": "LOW",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "Medium",
+      "review_reason": "Authoritative active standard IS 1661 : 1972 verified against scope with Medium confidence.",
+      "candidate_standard": "IS 1661 : 1972",
+      "evidence_standard": "IS 1661 : 1972",
+      "why_it_matches": "IS 1661 is the national standard governing execution, surface preparation, mortar mix proportions, and curi...",
+      "dependencies": [],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 1661 : 1972",
+          "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS certification is NOT identified for IS 1661 : 1972 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "additional_metadata": {
+            "mandate_type": "VOLUNTARY_OR_UNREGULATED"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 1661 : 1972",
+          "legal_basis": "",
+          "source": "e-Gazette of India / DPIIT QCO Registry",
+          "source_url": "e-Gazette of India / DPIIT QCO Registry",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 1661 : 1972. Verify ministry specific notifications.",
+          "additional_metadata": {}
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 1661 : 1972",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS 1661 : 1972",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": false,
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (masonry); not applicable.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "CLEAR",
+      "ambiguity_reason": "Primary applicable standard IS 1661 is clearly identifiable and sufficiently supported."
+    }
+  ],
+  "review_queue": [],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 1,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 0,
+      "CURATED": 1,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}
