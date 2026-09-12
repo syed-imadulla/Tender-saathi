@@ -23,9 +23,6 @@ class TestMilestone2Pipeline(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.db = StandardsDatabase()
-        cls.db.load_verified_json("data/standards/verified_standards.json")
-        cls.db.load_curated_excel("data/standards/standards.xlsx")
-        cls.db.load_validated_candidates("dataset/ground_truth/validated_candidates.csv")
         cls.recommender = StandardsRecommender(cls.db)
 
     def test_01_extract_from_text_categories(self):
