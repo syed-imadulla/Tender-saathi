@@ -268,5 +268,150 @@ class TestMultilingualBenchmark(unittest.TestCase):
 
 
 
+class TestPriority6AHardenedNormalization(unittest.TestCase):
+    """Priority 6A Focused Unit Tests for Hardened Normalization.
+
+    Covers:
+    A. Phrase normalization (multi-word Indic technical phrases)
+    B. Technical abbreviations (kV, kVA, mm, PN, CPVC, XLPE, Fe grades)
+    C. Entity preservation & corruption detection
+    D. Code mixing & technical Latin recognition
+    E. Residue detection (PARTIAL and FAILED honest quality assignment)
+    F. Safety invariants (zero fabricated standards, candidate == evidence)
+    G. English fast-path regression
+    """
+
+    def setUp(self):
+        self.normalizer = MultilingualTechnicalNormalizer(enabled=False)
+
+    # A. Multi-word technical phrase normalization
+    def test_phrase_normalization_kannada_sluice_valve(self):
+        text = "ನೀರು ಸರಬರಾಜು ಕಾರ್ಯಗಳಿಗಾಗಿ 100 ಮಿಮೀ ಎರಕಹೊಯ್ದ ಕಬ್ಬಿಣದ ಸ್ಲೂಯಿಸ್ ಕವಾಟ ಪಿಎನ್ 16"
+        res = self.normalizer.normalize(text)
+        self.assertEqual(res.normalization_quality, "FULL")
+        self.assertFalse(res.human_review_required)
+        self.assertIn("cast iron sluice valve", res.canonical_text)
+        self.assertIn("100 mm", res.canonical_text)
+        self.assertIn("PN 16", res.canonical_text)
+
+    def test_phrase_normalization_tamil_cpvc(self):
+        text = "குடிநீர் விநியோகத்திற்கு 25 மிமீ சிபிவیسی குழாய் வழங்கல்"
+        res = self.normalizer.normalize(text)
+        self.assertEqual(res.normalization_quality, "FULL")
+        self.assertFalse(res.human_review_required)
+        self.assertIn("CPVC pipe", res.canonical_text)
+        self.assertIn("25 mm", res.canonical_text)
+        self.assertIn("potable drinking water supply", res.canonical_text)
+
+    def test_phrase_normalization_hindi_transformer(self):
+        text = "11 केवी के 500 केवीए आउटडोर तेल निमज्जित वितरण ट्रांसफार्मर की आपूर्ति"
+        res = self.normalizer.normalize(text)
+        self.assertEqual(res.normalization_quality, "FULL")
+        self.assertFalse(res.human_review_required)
+        self.assertIn("outdoor oil immersed distribution transformer", res.canonical_text)
+        self.assertIn("11 kV", res.canonical_text)
+        self.assertIn("500 kVA", res.canonical_text)
+
+    # B. Technical abbreviations and units
+    def test_technical_abbreviations_indic_scripts(self):
+        # Test Hindi units
+        hi_text = "11 केवी 500 केवीए 185 वर्ग मिमी 25 मिमी पीएन 16 सीपीवीसी एक्सएलपीई"
+        res_hi, _, hits_hi = normalize_with_lexicon(hi_text)
+        self.assertIn("11 kV", res_hi)
+        self.assertIn("500 kVA", res_hi)
+        self.assertIn("185 sq mm", res_hi)
+        self.assertIn("25 mm", res_hi)
+        self.assertIn("PN 16", res_hi)
+        self.assertIn("CPVC", res_hi)
+        self.assertIn("XLPE", res_hi)
+
+        # Test Kannada units
+        kn_text = "11 ಕೆವಿ 500 ಕೆವಿಎ 185 ಚದರ ಮಿಮೀ 25 ಮಿಮೀ ಪಿಎನ್ 16 ಸಿಪಿವಿಸಿ ಎಕ್ಸ್‌ಎಲ್‌ಪಿಇ"
+        res_kn, _, hits_kn = normalize_with_lexicon(kn_text)
+        self.assertIn("11 kV", res_kn)
+        self.assertIn("500 kVA", res_kn)
+        self.assertIn("185 sq mm", res_kn)
+        self.assertIn("25 mm", res_kn)
+        self.assertIn("PN 16", res_kn)
+        self.assertIn("CPVC", res_kn)
+        self.assertIn("XLPE", res_kn)
+
+    # C. Entity preservation and semantic corruption detection
+    def test_entity_preservation_semantic_accuracy(self):
+        entities = ["11 केवी", "500 केवीए", "185 वर्ग मिमी", "PN 16", "Fe 500D", "IS 14846"]
+        # Semantically preserved text
+        canon_valid = "Supply of 11 kV 500 kVA transformer with 185 sq mm cable PN 16 Fe 500D conforming to IS 14846"
+        status, missing = self.normalizer._verify_entities(entities, canon_valid)
+        self.assertEqual(status, "PASS")
+        self.assertEqual(missing, [])
+
+        # Corrupted voltage (11 kV corrupted into 11 mm)
+        canon_corrupt = "Supply of 11 mm 500 kVA transformer with 185 sq mm cable PN 16 Fe 500D conforming to IS 14846"
+        status_corrupt, missing_corrupt = self.normalizer._verify_entities(entities, canon_corrupt)
+        self.assertEqual(status_corrupt, "PARTIAL")
+        self.assertIn("11 केवी", missing_corrupt)
+
+    # D. Code mixing & technical Latin recognition
+    def test_code_mixing_technical_latin_detection(self):
+        # Indic text with purely technical Latin token Fe 500D
+        hi_fe = "कंक्रीट सुदृढीकरण के लिए 16 मिमी टीएमटी स्टील सरिया Fe 500D की आपूर्ति"
+        res_hi = detect_script_and_language(hi_fe)
+        self.assertEqual(res_hi.detected_language, "hi")
+        self.assertEqual(res_hi.primary_script, "Devanagari")
+        self.assertTrue(res_hi.code_mixed)
+        self.assertTrue(res_hi.has_technical_latin)
+
+        # Kannada text with Fe 500D
+        kn_fe = "ಕಟ್ಟಡ ನಿರ್ಮಾಣಕ್ಕಾಗಿ 12 ಮಿಮೀ ಟಿಎಂಟಿ ಉಕ್ಕಿನ ಬಾರ್ Fe 500D ಸರಬರಾಜು"
+        res_kn = detect_script_and_language(kn_fe)
+        self.assertEqual(res_kn.detected_language, "kn")
+        self.assertEqual(res_kn.primary_script, "Kannada")
+        self.assertTrue(res_kn.code_mixed)
+        self.assertTrue(res_kn.has_technical_latin)
+
+        # Genuine vocabulary code mixing (English words 'Water works', 'provide')
+        mixed_text = "Water works ke liye 100 mm cast iron sluice valve PN 16 provide karna hoga"
+        res_mixed = detect_script_and_language(mixed_text)
+        self.assertEqual(res_mixed.detected_language, "mixed")
+        self.assertTrue(res_mixed.code_mixed)
+
+    # E. Residue detection: PARTIAL vs FAILED
+    def test_meaningful_residue_assigned_partial_quality(self):
+        # 100 mm valve translated, but untranslated Kannada residue remains
+        text = "100 ಮಿಮೀ ವಾಲ್ವ್ ಮತ್ತು ಅಜ್ಞಾತ ಪರಿಕರಗಳು"
+        res = self.normalizer.normalize(text)
+        self.assertEqual(res.normalization_quality, "PARTIAL")
+        self.assertTrue(res.human_review_required)
+        self.assertIn("100 mm valve", res.canonical_text)
+
+    def test_insufficient_technical_content_assigned_failed_quality(self):
+        # Generic non-technical requirement
+        text = "ಯೋಜನಾ ಸ್ಥಳಕ್ಕೆ ಸೂಕ್ತವಾದ ಕೆಲವು ಅನಿಶ್ಚಿತ ವಸ್ತುಗಳು"
+        res = self.normalizer.normalize(text)
+        self.assertEqual(res.normalization_quality, "FAILED")
+        self.assertTrue(res.human_review_required)
+        self.assertLessEqual(res.normalization_confidence, 0.35)
+
+    # F. Safety: Normalization failure never fabricates a standard
+    def test_normalization_failure_never_fabricates_standard(self):
+        recommender = StandardsRecommender()
+        nonsense_text = "ಯೋಜನಾ ಸ್ಥಳಕ್ಕೆ ಸೂಕ್ತವಾದ ಕೆಲವು ಅನಿಶ್ಚಿತ ವಸ್ತುಗಳು"
+        res = recommender.recommend_for_text(nonsense_text)
+        self.assertTrue(res.human_review_required)
+        # Should not fabricate a confident standard
+        if res.candidate_standard:
+            self.assertEqual(res.candidate_standard, res.evidence_standard)
+            self.assertIn(res.ambiguity_state, ["REVIEW_REQUIRED", "INCOMPLETE", "NO_RELIABLE_MATCH", "AMBIGUOUS"])
+
+    # G. Regression: English fast-path
+    def test_english_regression_fast_path(self):
+        text = "Supply of 11 kV 500 kVA outdoor distribution transformer"
+        res = self.normalizer.normalize(text)
+        self.assertEqual(res.normalization_method, "fast_path")
+        self.assertEqual(res.normalization_quality, "FULL")
+        self.assertFalse(res.human_review_required)
+        self.assertEqual(res.canonical_text, text)
+
+
 if __name__ == "__main__":
     unittest.main()

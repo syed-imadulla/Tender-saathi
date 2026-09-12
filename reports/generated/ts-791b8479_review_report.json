@@ -1,0 +1,199 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-791B8479",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "text input",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "READY_FOR_REVIEW",
+  "readiness_reasons": [
+    "All 1 requirement(s) have grounded standards evidence with no critical or high risk flags."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-791B8479",
+    "requirements_analyzed": 1,
+    "recommendations_count": 1,
+    "review_required_count": 0,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 0,
+    "withdrawn_count": 0,
+    "active_count": 1,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 1,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 0
+    },
+    "risk_distribution": {
+      "LOW": 1,
+      "MEDIUM": 0,
+      "HIGH": 0,
+      "CRITICAL": 0
+    },
+    "lifecycle_distribution": {
+      "Active": 1,
+      "Superseded": 0,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 3,
+    "review_queue": [],
+    "publication_readiness": "READY_FOR_REVIEW",
+    "readiness_reasons": [
+      "All 1 requirement(s) have grounded standards evidence with no critical or high risk flags."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 5,
+    "normative_reference_count": 0,
+    "allied_standard_count": 1,
+    "test_standard_count": 1,
+    "installation_standard_count": 3,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 2,
+    "related_for_review_count": 1,
+    "standards_coverage": {
+      "direct_standards_identified": 1,
+      "total_dependencies": 5,
+      "normative_references": 0,
+      "testing_dependencies": 1,
+      "installation_dependencies": 3,
+      "allied_standards": 1,
+      "covered_in_tender": 0,
+      "potential_gaps": 2,
+      "verified_gaps": 0,
+      "items_requiring_review": 0
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 2,
+      "related_for_review_count": 1
+    },
+    "certification_checks": 1,
+    "qco_checks": 1,
+    "crs_checks": 1,
+    "hallmarking_checks": 1,
+    "regulatory_review_items": 1,
+    "unknown_regulatory_items": 0,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 1,
+    "mandatory_certification_count": 1,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
+  },
+  "requirements": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "Supply and installation of chlorinated polyvinyl chloride (CPVC) pipes conforming to IS 15778.",
+      "category": "material",
+      "components": [
+        {
+          "text": "pipes",
+          "component_type": "material",
+          "domain": "piping",
+          "extracted_attributes": {
+            "category": "pipe_material"
+          }
+        }
+      ],
+      "recommended_standard": "IS 15778 : 2007",
+      "recommended_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
+      "relevance_score": 1.0,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "STRONG",
+      "provenance": "CURATED",
+      "evidence_text": "Tender explicitly requires compliance with IS 15778.",
+      "evidence_source": "Tender Document",
+      "why_this": [
+        "Standard title directly matches requirement component(s): 'pipes'.",
+        "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 15778.\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via Tender Document (VERIFIED)."
+      ],
+      "why_not": [
+        "Alternative standard IS 14333 has lower composite relevance (0.621 vs 1.000)."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Diameter / Nominal Bore (DN/OD)",
+        "Pressure Class / Schedule / SDR",
+        "Piping Application / Service"
+      ],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 12235 : 2004",
+          "title": "Title not in local index",
+          "relationship_type": "TEST_METHOD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
+          "source_url": null,
+          "review_note": "Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance."
+        },
+        {
+          "standard_number": "IS 7634 (Part 3) : 2003",
+          "title": "Title not in local index",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+          "source_url": null,
+          "review_note": "Installation, laying, and jointing standard associated with IS 7634 (Part 3) : 2003. Review for installation execution."
+        },
+        {
+          "standard_number": "IS 4985 : 2000",
+          "title": "Title not in local index",
+          "relationship_type": "ALLIED_STANDARD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+          "source_url": null,
+          "review_note": "Allied product or component standard. Review for equipment interface compatibility."
+        }
+      ],
+      "decision": "RECOMMEND",
+      "risk_level": "LOW",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "High",
+      "review_reason": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
+    }
+  ],
+  "review_queue": [],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 0,
+      "CURATED": 1,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}
