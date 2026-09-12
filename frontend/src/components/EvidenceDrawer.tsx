@@ -260,7 +260,11 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
           {/* 4. Evidence */}
           {req.evidence && (
             <section className="drawer-section">
-              <span className="drawer-section__label">4. Evidence</span>
+              <span className="drawer-section__label">
+                {req.evidence_strength === 'STRONG' && (req.provenance === 'VERIFIED' || req.provenance === 'OFFICIAL_PRIMARY')
+                  ? '4. Authoritative Evidence Quote'
+                  : '4. Supporting Evidence Quote'}
+              </span>
               <blockquote className="drawer-evidence-quote">
                 "{req.evidence_standard && !areStandardsEquivalent(req.candidate_standard, req.evidence_standard)
                   ? 'Match identified from the requirement context; supporting evidence needs review.'
@@ -272,7 +276,7 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
           {/* 5. Source / Provenance */}
           <section className="drawer-section">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <span className="drawer-section__label">5. Source / Provenance</span>
+              <span className="drawer-section__label">5. Record Provenance & Verification Source</span>
               <EvBadge strength={req.evidence_strength} />
             </div>
             <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', padding: '10px 12px' }}>
@@ -284,7 +288,12 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
               </p>
               {(req.source || req.source_url) && (
                 <div style={{ marginTop: '8px', paddingTop: '6px', borderTop: '1px solid #e2e8f0', fontSize: '0.78rem', color: '#64748b' }}>
-                  <strong>Origin / Citation:</strong> {req.source || 'BIS Official Catalogue'}
+                  <strong>Verification Source:</strong> {req.source || 'BIS Official Catalogue'}
+                  {req.provenance === 'CURATED' && (
+                    <span style={{ display: 'block', fontSize: '0.74rem', color: '#94a3b8', marginTop: '2px' }}>
+                      (Curated technical entry verified against standards scope; distinct from statutory primary gazette orders)
+                    </span>
+                  )}
                   {req.source_url && (
                     <div style={{ wordBreak: 'break-all', marginTop: '2px', color: '#0369a1' }}>
                       Ref: {req.source_url}

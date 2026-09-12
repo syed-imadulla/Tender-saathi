@@ -33,11 +33,22 @@ from src.applicability import GENERIC_STOPWORDS
 def are_standards_equivalent(std1: Optional[str], std2: Optional[str]) -> bool:
     """
     Validates whether two standard identifiers refer to the same Indian Standard.
-    Strips publication year (e.g., ': 2007') and normalizes whitespace and casing.
+    Uses canonical structural parsing where possible, falling back to base prefix matching.
     Returns False if either is empty/None or if the identifiers do not match.
     """
     if not std1 or not std2:
         return False
+    try:
+        from src.catalogue.normalizer import StandardIdentifierNormalizer
+        p1 = StandardIdentifierNormalizer.parse(std1)
+        p2 = StandardIdentifierNormalizer.parse(std2)
+        if p1.base_number and p2.base_number and p1.prefix and p2.prefix:
+            return (p1.prefix.upper().replace(" ", "") == p2.prefix.upper().replace(" ", "") and
+                    p1.base_number == p2.base_number and
+                    p1.part == p2.part and
+                    p1.section == p2.section)
+    except Exception:
+        pass
     base1 = std1.split(":")[0].strip().upper()
     base2 = std2.split(":")[0].strip().upper()
     return re.sub(r"\s+", " ", base1) == re.sub(r"\s+", " ", base2)

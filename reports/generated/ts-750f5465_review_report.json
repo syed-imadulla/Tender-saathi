@@ -1,0 +1,223 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-750F5465",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "text input",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "REVIEW_REQUIRED",
+  "readiness_reasons": [
+    "1 requirement(s) flagged with HIGH risk.",
+    "1 requirement(s) require technical engineer review."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-750F5465",
+    "requirements_analyzed": 1,
+    "recommendations_count": 0,
+    "review_required_count": 1,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 0,
+    "withdrawn_count": 0,
+    "active_count": 1,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 1,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 0,
+      "UNKNOWN": 1,
+      "NOT_APPLICABLE": 0
+    },
+    "risk_distribution": {
+      "LOW": 0,
+      "MEDIUM": 0,
+      "HIGH": 1,
+      "CRITICAL": 0
+    },
+    "lifecycle_distribution": {
+      "Active": 1,
+      "Superseded": 0,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 2,
+    "review_queue": [
+      {
+        "requirement_id": "REQ-001",
+        "requirement_text": "pipe replacement",
+        "risk_level": "HIGH",
+        "decision": "REVIEW_REQUIRED",
+        "candidate_standard": "IS 2712 : 2020",
+        "evidence_strength": "MODERATE",
+        "primary_reason": "Potentially missing engineering parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR",
+        "priority": 2
+      }
+    ],
+    "publication_readiness": "REVIEW_REQUIRED",
+    "readiness_reasons": [
+      "1 requirement(s) flagged with HIGH risk.",
+      "1 requirement(s) require technical engineer review."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 3,
+    "normative_reference_count": 2,
+    "allied_standard_count": 0,
+    "test_standard_count": 0,
+    "installation_standard_count": 1,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 0,
+    "related_for_review_count": 2,
+    "standards_coverage": {
+      "direct_standards_identified": 1,
+      "total_dependencies": 3,
+      "normative_references": 2,
+      "testing_dependencies": 0,
+      "installation_dependencies": 1,
+      "allied_standards": 0,
+      "covered_in_tender": 0,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "items_requiring_review": 1
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 0,
+      "related_for_review_count": 2
+    },
+    "certification_checks": 1,
+    "qco_checks": 1,
+    "crs_checks": 1,
+    "hallmarking_checks": 1,
+    "regulatory_review_items": 1,
+    "unknown_regulatory_items": 0,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 0,
+    "mandatory_certification_count": 0,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
+  },
+  "requirements": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "pipe replacement",
+      "category": "material",
+      "components": [
+        {
+          "text": "pipe",
+          "component_type": "material",
+          "domain": "piping",
+          "extracted_attributes": {
+            "category": "pipe_material"
+          }
+        },
+        {
+          "text": "replacement",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "replacement"
+          }
+        }
+      ],
+      "recommended_standard": "IS 2712 : 2020",
+      "recommended_title": "Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 2712]",
+      "relevance_score": 0.772,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "evidence_text": "Partial Match: IS 6392 covers circular steel flanges, but flange joint maintenance inherently requires gasket replacement sheets governed by IS 2712.",
+      "evidence_source": "BIS Standards Catalogue",
+      "why_this": [
+        "Standard title directly matches requirement component(s): 'pipe'.",
+        "Authoritative scope explicitly covers application: \"Partial Match: IS 6392 covers circular steel flanges, but flange joint maintenance inherently requires gasket replacemen...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BIS Standards Catalogue (CURATED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
+      ],
+      "why_not": [
+        "Alternative standard IS 6392 scored lower across the 5-dimension critic evaluation."
+      ],
+      "completeness_label": "UNKNOWN",
+      "potentially_missing_parameters": [
+        "Piping Material",
+        "Diameter / Nominal Bore (DN/OD)",
+        "Pressure Class / Schedule / SDR",
+        "Piping Application / Service"
+      ],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 778 : 1984",
+          "title": "Specification for Copper Alloy Gate, Globe and Check Valves for Waterworks Purposes",
+          "relationship_type": "REFERENCES",
+          "direction": "INCOMING",
+          "lifecycle_status": "Active",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Cited as normative reference in IS 778 : 1984 (Clause 2 References).",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+778&id=0",
+          "review_note": "Primary standard is cited by IS 778 : 1984. Review for broader installation context."
+        },
+        {
+          "standard_number": "IS 14846 : 2000",
+          "title": "Sluice Valve for Water Works Purposes (50 to 1200 mm Size) - Specification",
+          "relationship_type": "REFERENCES",
+          "direction": "INCOMING",
+          "lifecycle_status": "Active",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Cited as normative reference in IS 14846 : 2000 (Clause 2 References).",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+14846+%3a+2000&id=0",
+          "review_note": "Primary standard is cited by IS 14846 : 2000. Review for broader installation context."
+        }
+      ],
+      "decision": "REVIEW_REQUIRED",
+      "risk_level": "HIGH",
+      "risk_reasons": [
+        "Potentially missing engineering parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR"
+      ],
+      "human_review_required": true,
+      "confidence": "High",
+      "review_reason": "Potentially missing engineering parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR; Specification lacks key parameters (Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR). Human review recommended."
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "pipe replacement",
+      "risk_level": "HIGH",
+      "decision": "REVIEW_REQUIRED",
+      "candidate_standard": "IS 2712 : 2020",
+      "evidence_strength": "MODERATE",
+      "primary_reason": "Potentially missing engineering parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR",
+      "priority": 2
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 1,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 0,
+      "CURATED": 1,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}
