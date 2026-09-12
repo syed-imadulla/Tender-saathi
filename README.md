@@ -62,7 +62,7 @@ TenderSaathi Review Workflow:
 Tender Document → Requirement Understanding → Candidate Standards → Boundary & Applicability → Verbatim Evidence → Lifecycle Validation → Dependency Graph → Regulatory Signals → Human Review Queue → Readiness Report
 ```
 
-This ensures that technical specifications are checked systematically against authoritative standards before publishing, reducing pre-bid queries, specification disputes, and procurement rework.
+This provides a systematic pre-publication review of technical specifications against the standards evidence available to the system, helping procurement teams identify potential issues before tender publication.
 
 ---
 
@@ -94,7 +94,7 @@ Prioritized Human Review
 Tender Readiness Decision
 ```
 
-Existing tools either rely on basic keyword search (requiring the engineer to already know the exact standard number) or generic LLMs (which lack authoritative grounding and risk hallucinating plausible-sounding codes).
+Compared with a basic keyword lookup or a generic LLM workflow, TenderSaathi combines retrieval, applicability checks, evidence grounding, lifecycle analysis, dependencies, and human review in one pipeline.
 
 TenderSaathi is designed not merely to find a likely standard, but to **decide whether the evidence is sufficient to recommend one**. If evidence is insufficient, it safely abstains and asks the engineer the exact questions needed to resolve the ambiguity.
 
