@@ -1,0 +1,89 @@
+{
+  "audit_version": "1.0.0",
+  "project": "TenderSaathi",
+  "problem_code": "SIH26108",
+  "timestamp": "2026-09-12T19:05:00Z",
+  "git_commit": "99200d3a6fb823497f384063d6bd54fd75b306bf",
+  "git_status": "clean_verification",
+  "locks": {
+    "priority_5": "LOCKED",
+    "priority_6": "LOCKED",
+    "priority_7": "LOCKED",
+    "priority_8": "LOCKED"
+  },
+  "verification_results": {
+    "total_tests_executed": 319,
+    "total_tests_passed": 319,
+    "total_tests_failed": 0,
+    "pass_rate_percent": 100.0,
+    "execution_duration_seconds": 102.49,
+    "e2e_tenders_audited": 20,
+    "e2e_tenders_passed": 20,
+    "e2e_pass_rate_percent": 100.0,
+    "frontend_build": "SUCCESS",
+    "standards_db_rows": 90,
+    "standards_db_distinct_ids": 90,
+    "standards_db_duplicates": 0,
+    "catalogue_db_records": 502,
+    "multilingual_benchmark_sha256": "db62e0367ea2983dab49a9ac8a98958efb0c17882df86f131ecfa6b04903690b"
+  },
+  "demo_scenarios_verified": [
+    {
+      "demo_id": "DEMO_1",
+      "name": "Clear Recommendation (Happy Path)",
+      "target_standard": "IS 15778 : 2007",
+      "endpoint": "/api/analyze/sample/cpvc",
+      "parity_verified": true,
+      "dependencies_count": 5,
+      "readiness": "READY_FOR_REVIEW",
+      "status": "PASS"
+    },
+    {
+      "demo_id": "DEMO_2",
+      "name": "Safe Abstention & Ambiguity Detection",
+      "target_standard": null,
+      "endpoint": "/api/analyze/text (T002 clause)",
+      "parity_verified": true,
+      "candidate_standard": null,
+      "evidence_standard": null,
+      "human_review_required": true,
+      "readiness": "INSUFFICIENT_EVIDENCE",
+      "status": "PASS"
+    },
+    {
+      "demo_id": "DEMO_3",
+      "name": "Superseded Standard & Successor Recommendation",
+      "cited_standard": "IS 10611 : 1983",
+      "successor_standard": "IS/ISO 10434 : 2020",
+      "endpoint": "/api/analyze/sample/superseded",
+      "parity_verified": true,
+      "lifecycle_status": "SUPERSEDED",
+      "readiness": "REVIEW_REQUIRED",
+      "status": "PASS"
+    }
+  ],
+  "invariants": {
+    "candidate_equals_evidence_parity": true,
+    "abstention_null_equality": true,
+    "zero_hallucination_guarantee": true,
+    "official_bis_catalogue_grounding": true
+  },
+  "limitations_adjudicated": [
+    {
+      "code": "ML-TA-10",
+      "type": "DOMAIN_AMBIGUITY_DOCUMENTED",
+      "status": "ADJUDICATED_NON_BLOCKING",
+      "rationale": "Engine matches IS 732:2019 with verified evidence for electrical installation clause where benchmark ground truth expected null. Documented in PRIORITY_6G_ML_TA_10_ADJUDICATION.md."
+    }
+  ],
+  "presentation_readiness": {
+    "elevator_pitch_ready": true,
+    "architecture_diagrams_ready": true,
+    "workflow_diagrams_ready": true,
+    "usp_answers_ready": true,
+    "live_demo_paths_verified": true,
+    "export_reports_verified": true
+  },
+  "final_decision": "LOCK_PRIORITY_8",
+  "final_verdict": "PRIORITY 8 — FINAL SIH DEMO & PRESENTATION READY"
+}

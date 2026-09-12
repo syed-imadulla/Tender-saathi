@@ -1,0 +1,481 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-D9D7B60E",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "text input",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "READY_FOR_REVIEW",
+  "readiness_reasons": [
+    "All 1 requirement(s) have grounded standards evidence with no critical or high risk flags."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-D9D7B60E",
+    "requirements_analyzed": 1,
+    "recommendations_count": 1,
+    "review_required_count": 0,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 0,
+    "withdrawn_count": 0,
+    "active_count": 1,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 0,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 1
+    },
+    "risk_distribution": {
+      "LOW": 1,
+      "MEDIUM": 0,
+      "HIGH": 0,
+      "CRITICAL": 0
+    },
+    "lifecycle_distribution": {
+      "Active": 1,
+      "Superseded": 0,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 5,
+    "review_queue": [],
+    "publication_readiness": "READY_FOR_REVIEW",
+    "readiness_reasons": [
+      "All 1 requirement(s) have grounded standards evidence with no critical or high risk flags."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 8,
+    "normative_reference_count": 6,
+    "allied_standard_count": 0,
+    "test_standard_count": 0,
+    "installation_standard_count": 2,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 1,
+    "related_for_review_count": 6,
+    "standards_coverage": {
+      "direct_standards_identified": 1,
+      "total_dependencies": 8,
+      "normative_references": 6,
+      "testing_dependencies": 0,
+      "installation_dependencies": 2,
+      "allied_standards": 0,
+      "covered_in_tender": 0,
+      "potential_gaps": 1,
+      "verified_gaps": 0,
+      "items_requiring_review": 0
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 1,
+      "related_for_review_count": 6
+    },
+    "certification_checks": 1,
+    "qco_checks": 1,
+    "crs_checks": 1,
+    "hallmarking_checks": 1,
+    "regulatory_review_items": 1,
+    "unknown_regulatory_items": 0,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 0,
+    "mandatory_certification_count": 0,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
+  },
+  "requirements": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "Supply of unspecified high grade industrial compound with standard quality.",
+      "category": "installation_execution",
+      "components": [
+        {
+          "text": "grade industrial",
+          "component_type": "specification",
+          "domain": "civil",
+          "extracted_attributes": {
+            "spec_type": "material_grade",
+            "value": "grade industrial"
+          }
+        },
+        {
+          "text": "industrial compound",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "industrial",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        }
+      ],
+      "recommended_standard": "IS 14333 : 2022",
+      "recommended_title": "Polyethylene Pipes for Sewerage and Industrial Chemicals and Effluent - Specification",
+      "relevance_score": 0.615,
+      "lifecycle_status": "Active",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "1.1 This standard specifies the characteristics and requirements for polyethylene pipes intended to be used for following applications above or below ground: a) Sewerage (pressure or non-pressure); b) Industrial effluent; and c) Industrial chemicals. 1.2 This standard covers polyethylene pipes from 63 mm to 2 500 mm nominal diameter of pressure rating from 0.20 MPa (2.0 bar) to 2.0 MPa (20.0 bar).",
+      "evidence_source": "BSB Edge Portal",
+      "why_this": [
+        "Standard title directly matches requirement component(s): 'industrial'.",
+        "Authoritative scope explicitly covers application: \"1.1 This standard specifies the characteristics and requirements for polyethylene pipes intended to be used for followin...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BSB Edge Portal (VERIFIED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement.",
+        "Cites normative reference IS 4984 : 2016 (Title not in local index).",
+        "Cites normative reference IS 2530 : 1963 (Title not in local index)."
+      ],
+      "why_not": [
+        "Alternative standard IS 1786 has lower composite relevance (0.446 vs 0.615)."
+      ],
+      "completeness_label": "NOT_APPLICABLE",
+      "potentially_missing_parameters": [],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 4984 : 2016",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Clause 2 References and Notes 1 & 2 cite IS 4984 as baseline for allowable operating pressure.",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+14333&id=45935",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        },
+        {
+          "standard_number": "IS 2530 : 1963",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Cited under Clause 2 References in IS 14333 : 2022.",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+14333&id=45935",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        },
+        {
+          "standard_number": "IS 4905 : 2015",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Cited under Clause 2 References in IS 14333 : 2022.",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+14333&id=45935",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        },
+        {
+          "standard_number": "IS 7328 : 2020",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Cited under Clause 2 References in IS 14333 : 2022.",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+14333&id=45935",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        },
+        {
+          "standard_number": "IS 12235 (Part 18) : 2004",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Unknown",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Cited under Clause 2 References in IS 14333 : 2022.",
+          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS+14333&id=45935",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        }
+      ],
+      "decision": "RECOMMEND",
+      "risk_level": "LOW",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "Medium",
+      "review_reason": "Authoritative active standard IS 14333 : 2022 verified against scope with Medium confidence.",
+      "candidate_standard": "IS 14333 : 2022",
+      "evidence_standard": "IS 14333 : 2022",
+      "why_it_matches": "1.1 This standard specifies the characteristics and requirements for polyethylene pipes intended to be used for followin...",
+      "dependencies": [
+        {
+          "standard_number": "IS 4984 : 2016",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "dependency_status": "NORMATIVE_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "Clause 2 References and Notes 1 & 2 cite IS 4984 as baseline for allowable operating pressure.",
+          "source": "SQLITE_DB",
+          "confidence": 1.0,
+          "why_related": "IS 4984 : 2016 (Title not in local index) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 14333 : 2022. Evidence: Clause 2 References and Notes 1 & 2 cite IS 4984 as baseline for allowable operating pressure. [Provenance: VERIFIED].",
+          "functional_category": "normative",
+          "is_applicable_to_requirement": true,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "NORMATIVE_DEPENDENCY",
+          "evidence": "Clause 2 References and Notes 1 & 2 cite IS 4984 as baseline for allowable operating pressure.",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 4984 : 2016 (Title not in local index) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 14333 : 2022. Evidence: Clause 2 References and Notes 1 & 2 cite IS 4984 as baseline for allowable operating pressure. [Provenance: VERIFIED]."
+        },
+        {
+          "standard_number": "IS 2530 : 1963",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "dependency_status": "NORMATIVE_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "Cited under Clause 2 References in IS 14333 : 2022.",
+          "source": "SQLITE_DB",
+          "confidence": 0.95,
+          "why_related": "IS 2530 : 1963 (Title not in local index) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 14333 : 2022. Evidence: Cited under Clause 2 References in IS 14333 : 2022. [Provenance: VERIFIED].",
+          "functional_category": "normative",
+          "is_applicable_to_requirement": true,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "NORMATIVE_DEPENDENCY",
+          "evidence": "Cited under Clause 2 References in IS 14333 : 2022.",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 2530 : 1963 (Title not in local index) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 14333 : 2022. Evidence: Cited under Clause 2 References in IS 14333 : 2022. [Provenance: VERIFIED]."
+        },
+        {
+          "standard_number": "IS 4905 : 2015",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "dependency_status": "NORMATIVE_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "Cited under Clause 2 References in IS 14333 : 2022.",
+          "source": "SQLITE_DB",
+          "confidence": 0.95,
+          "why_related": "IS 4905 : 2015 (Title not in local index) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 14333 : 2022. Evidence: Cited under Clause 2 References in IS 14333 : 2022. [Provenance: VERIFIED].",
+          "functional_category": "normative",
+          "is_applicable_to_requirement": true,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "NORMATIVE_DEPENDENCY",
+          "evidence": "Cited under Clause 2 References in IS 14333 : 2022.",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 4905 : 2015 (Title not in local index) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 14333 : 2022. Evidence: Cited under Clause 2 References in IS 14333 : 2022. [Provenance: VERIFIED]."
+        },
+        {
+          "standard_number": "IS 7328 : 2020",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "dependency_status": "NORMATIVE_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "Cited under Clause 2 References in IS 14333 : 2022.",
+          "source": "SQLITE_DB",
+          "confidence": 0.95,
+          "why_related": "IS 7328 : 2020 (Title not in local index) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 14333 : 2022. Evidence: Cited under Clause 2 References in IS 14333 : 2022. [Provenance: VERIFIED].",
+          "functional_category": "normative",
+          "is_applicable_to_requirement": true,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "NORMATIVE_DEPENDENCY",
+          "evidence": "Cited under Clause 2 References in IS 14333 : 2022.",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 7328 : 2020 (Title not in local index) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 14333 : 2022. Evidence: Cited under Clause 2 References in IS 14333 : 2022. [Provenance: VERIFIED]."
+        },
+        {
+          "standard_number": "IS 12235 (Part 18) : 2004",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "dependency_status": "NORMATIVE_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "Cited under Clause 2 References in IS 14333 : 2022.",
+          "source": "SQLITE_DB",
+          "confidence": 0.95,
+          "why_related": "IS 12235 (Part 18) : 2004 (Title not in local index) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 14333 : 2022. Evidence: Cited under Clause 2 References in IS 14333 : 2022. [Provenance: VERIFIED].",
+          "functional_category": "normative",
+          "is_applicable_to_requirement": true,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "NORMATIVE_DEPENDENCY",
+          "evidence": "Cited under Clause 2 References in IS 14333 : 2022.",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 12235 (Part 18) : 2004 (Title not in local index) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 14333 : 2022. Evidence: Cited under Clause 2 References in IS 14333 : 2022. [Provenance: VERIFIED]."
+        },
+        {
+          "standard_number": "IS 16268 : 2017",
+          "title": "Title not in local index",
+          "relationship_type": "REFERENCES",
+          "dependency_status": "NORMATIVE_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "Cited under Clause 2 References in IS 14333 : 2022.",
+          "source": "SQLITE_DB",
+          "confidence": 0.95,
+          "why_related": "IS 16268 : 2017 (Title not in local index) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 14333 : 2022. Evidence: Cited under Clause 2 References in IS 14333 : 2022. [Provenance: VERIFIED].",
+          "functional_category": "normative",
+          "is_applicable_to_requirement": true,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "NORMATIVE_DEPENDENCY",
+          "evidence": "Cited under Clause 2 References in IS 14333 : 2022.",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 16268 : 2017 (Title not in local index) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 14333 : 2022. Evidence: Cited under Clause 2 References in IS 14333 : 2022. [Provenance: VERIFIED]."
+        },
+        {
+          "standard_number": "IS 7634 (Part 2) : 2012",
+          "title": "Title not in local index",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "dependency_status": "CODE_OF_PRACTICE",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Foreword recommends installation, laying, and jointing of polyethylene sewer pipes per IS 7634 Part 2.",
+          "source": "CURATED_STANDARDS_DOC",
+          "confidence": 0.9,
+          "why_related": "IS 7634 (Part 2) : 2012 (Title not in local index) is identified as an evidence-backed code of practice for installation and civil execution associated with IS 14333 : 2022. Evidence: Foreword recommends installation, laying, and jointing of polyethylene sewer pipes per IS 7634 Part 2. [Provenance: CURATED].",
+          "functional_category": "installation",
+          "is_applicable_to_requirement": true,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "CODE_OF_PRACTICE",
+          "evidence": "Foreword recommends installation, laying, and jointing of polyethylene sewer pipes per IS 7634 Part 2.",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 7634 (Part 2) : 2012 (Title not in local index) is identified as an evidence-backed code of practice for installation and civil execution associated with IS 14333 : 2022. Evidence: Foreword recommends installation, laying, and jointing of polyethylene sewer pipes per IS 7634 Part 2. [Provenance: CURATED]."
+        },
+        {
+          "standard_number": "IS 14164 : 2008",
+          "title": "Industrial Application and Finishing of Thermal Insulation Materials at Temperatures Above -40 deg C and Up to 700 deg C - Code of Practice (First Revision)",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Exact Match: IS 14164 is the primary national code of practice governing application, securing, vapor sealing, and protective cladding of pipe thermal insulation.",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "CURATED"
+        }
+      ],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 14333 : 2022",
+          "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS certification is NOT identified for IS 14333 : 2022 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "additional_metadata": {
+            "mandate_type": "VOLUNTARY_OR_UNREGULATED"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 14333 : 2022",
+          "legal_basis": "",
+          "source": "e-Gazette of India / DPIIT QCO Registry",
+          "source_url": "e-Gazette of India / DPIIT QCO Registry",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 14333 : 2022. Verify ministry specific notifications.",
+          "additional_metadata": {}
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 14333 : 2022",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS 14333 : 2022",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs",
+          "source_url": "Ministry of Consumer Affairs",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": false,
+          "explanation": "Hallmarking is not applicable to this product category.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "CLEAR",
+      "ambiguity_reason": "Primary applicable standard IS 14333 is clearly identifiable and sufficiently supported."
+    }
+  ],
+  "review_queue": [],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 1,
+      "CURATED": 0,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}

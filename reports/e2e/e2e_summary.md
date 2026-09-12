@@ -1,6 +1,6 @@
 # TenderSaathi — Phase 1: Full End-to-End Product Verification Summary
 
-**Date**: 2026-09-12 18:34:19  
+**Date**: 2026-09-12 19:02:01  
 **Problem Statement**: SIH26108 — AI-Powered Recommendation Engine for Identifying Applicable Indian Standards for Procurement Specifications  
 **Environment**: Production Feasibility Pipeline (Groq `openai/gpt-oss-120b` + `cross-encoder/ms-marco-MiniLM-L-6-v2`)  
 
@@ -144,8 +144,8 @@ Across the 20 audited tenders (25 total primary requirements):
 
 ## 7. Performance & Latency Measurements
 
-- **Full Tender End-to-End Processing Time**: **1.21 s** per tender (including PDF layout parsing, LLM API call, Cross-Encoder reranking, audit aggregation, and report generation).
-- **Per-Requirement Pipeline Latency**: **0.95 s** per requirement.
+- **Full Tender End-to-End Processing Time**: **1.26 s** per tender (including PDF layout parsing, LLM API call, Cross-Encoder reranking, audit aggregation, and report generation).
+- **Per-Requirement Pipeline Latency**: **0.99 s** per requirement.
 - **Warm Retrieval Latency (Reference Benchmark)**:
   - Hybrid baseline: **57.0 ms**
   - Hybrid + Cross-Encoder reranker: **488.1 ms**
