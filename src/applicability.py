@@ -431,7 +431,8 @@ class ApplicabilityGate:
         # 5. Pump Type Gate: IS 8034 specifically covers submersible pumpsets
         is_8034 = "8034" in std_num
         is_pump_req = bool(re.search(r'\b(?:pump|pumps|pumpset|pumpsets)\b', req_text_low))
-        has_submersible = bool(re.search(r'\b(?:submersible|borewell|deep\s*well|submerged)\b', req_text_low))
+        is_explicitly_non_submersible = bool(re.search(r'\b(?:non[-\s]+submersible|not\s+submersible)\b', req_text_low))
+        has_submersible = bool(re.search(r'(?<!\bnon-)(?<!\bnon\s)(?<!\bnot\s)\b(?:submersible|borewell|deep\s*well|submerged)\b', req_text_low)) and not is_explicitly_non_submersible
         if is_8034 and is_pump_req and not has_submersible:
             application_match = False
             conflict_flags.append("APPLICATION_CONFLICT: non-submersible pump vs submersible pumpset IS 8034")

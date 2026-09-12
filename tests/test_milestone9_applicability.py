@@ -267,3 +267,70 @@ def test_negative_benchmark_metrics(recommender):
     )
     assert metrics["false_positive_rate"] == 0.0
     assert metrics["negative_rejection_rate"] == 100.0
+
+
+# ---------------------------------------------------------------------------
+# 5. Non-Submersible Pump Boundary Tests (Blocker 3 Regression)
+# ---------------------------------------------------------------------------
+
+def test_non_submersible_pump_boundary(gate):
+    """
+    Verifies that 'non-submersible' or 'non submersible' pumps are NOT
+    treated as submersible pumps, preventing incorrect IS 8034 applicability.
+    """
+    is8034_cand = SearchResult(
+        standard_id="IS-8034-2018",
+        standard_number="IS 8034",
+        full_title="Submersible Pumpsets - Specification",
+        year="2018",
+        status="Active",
+        version_role="CURRENT_ACTIVE",
+        relevance_score=0.90,
+        relevance_reason="Submersible pumpset",
+        scope_summary="Submersible pumpsets for clear cold water",
+        bm25_score=0.90,
+        semantic_score=0.85,
+        deterministic_score=0.0,
+        reranker_score=0.88,
+        final_score=0.89
+    )
+
+    # 1. Submersible pump -> should be applicable to IS 8034
+    res1 = gate.evaluate_candidate(is8034_cand, "submersible pump")
+    assert res1.applicable is True
+    assert not any("submersible" in f.lower() for f in res1.conflict_flags)
+
+    # 2. Non-submersible pump -> must NOT be applicable, must flag conflict
+    res2 = gate.evaluate_candidate(is8034_cand, "non-submersible pump")
+    assert res2.applicable is False
+    assert res2.decision == ApplicabilityDecision.NOT_APPLICABLE.value
+    assert any("APPLICATION_CONFLICT" in f for f in res2.conflict_flags)
+
+    # 3. Non submersible pump (space separated) -> must NOT be applicable
+    res3 = gate.evaluate_candidate(is8034_cand, "non submersible pump")
+    assert res3.applicable is False
+    assert res3.decision == ApplicabilityDecision.NOT_APPLICABLE.value
+    assert any("APPLICATION_CONFLICT" in f for f in res3.conflict_flags)
+
+    # 4. Non-submersible horizontal end suction centrifugal pump -> must NOT be applicable
+    res4 = gate.evaluate_candidate(is8034_cand, "non-submersible horizontal end suction centrifugal pump")
+    assert res4.applicable is False
+    assert res4.decision == ApplicabilityDecision.NOT_APPLICABLE.value
+    assert any("APPLICATION_CONFLICT" in f for f in res4.conflict_flags)
+
+    # 5. Borewell submersible pump -> should be applicable
+    res5 = gate.evaluate_candidate(is8034_cand, "borewell submersible pump")
+    assert res5.applicable is True
+    assert not any("submersible" in f.lower() for f in res5.conflict_flags)
+
+    # 6. Surface pump -> must NOT be applicable to IS 8034
+    res6 = gate.evaluate_candidate(is8034_cand, "surface pump")
+    assert res6.applicable is False
+    assert any("APPLICATION_CONFLICT" in f for f in res6.conflict_flags)
+
+    # 7. Non-submersible horizontal end suction centrifugal water process pump
+    res7 = gate.evaluate_candidate(is8034_cand, "Non-submersible horizontal end suction centrifugal water process pump")
+    assert res7.applicable is False
+    assert res7.decision == ApplicabilityDecision.NOT_APPLICABLE.value
+    assert any("APPLICATION_CONFLICT" in f for f in res7.conflict_flags)
+

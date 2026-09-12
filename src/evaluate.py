@@ -42,6 +42,7 @@ def evaluate_single_mode(recommender: StandardsRecommender, df_gt: pd.DataFrame)
     results = []
     top1_hits = 0
     top3_hits = 0
+    alt_discovery_hits = 0
     rrs = []
     latencies = []
 
@@ -96,12 +97,9 @@ def evaluate_single_mode(recommender: StandardsRecommender, df_gt: pd.DataFrame)
                     top1_hit = True
                     break
 
-            candidates_to_check = [r.standard_number for r in rec_res.recommendations[:5]]
-            if not candidates_to_check and rec_res.alternatives:
-                candidates_to_check = rec_res.alternatives[:5]
-
-            for rank, std_name in enumerate(candidates_to_check, start=1):
-                p_tokens = extract_standard_tokens(std_name)
+            # Primary recommendations check for Top-3 and MRR (strictly primary recommendations)
+            for rank, r in enumerate(rec_res.recommendations[:5], start=1):
+                p_tokens = extract_standard_tokens(r.standard_number)
                 if any(any(p in g or g in p for g in gt_standards) for p in p_tokens):
                     if rank <= 3:
                         top3_hit = True
@@ -109,10 +107,21 @@ def evaluate_single_mode(recommender: StandardsRecommender, df_gt: pd.DataFrame)
                         rr = 1.0 / rank
                     break
 
+            # Supplementary metric: alternative discovery recall (when primary abstains but alternatives contain GT)
+            alt_discovery_hit = False
+            if not top3_hit and rec_res.alternatives:
+                for a_rank, alt_std in enumerate(rec_res.alternatives[:5], start=1):
+                    p_tokens = extract_standard_tokens(alt_std)
+                    if any(any(p in g or g in p for g in gt_standards) for p in p_tokens):
+                        alt_discovery_hit = True
+                        break
+
         if top1_hit:
             top1_hits += 1
         if top3_hit:
             top3_hits += 1
+        elif alt_discovery_hit:
+            alt_discovery_hits += 1
 
         if top1_hit:
             match_type = "TOP1_HIT"
@@ -175,6 +184,9 @@ def evaluate_single_mode(recommender: StandardsRecommender, df_gt: pd.DataFrame)
         "safe_abstention_count": safe_abstention_count,
         "retrieval_miss_count": retrieval_miss_count,
         "top3_recall": (top3_hits / total_reqs) * 100.0,
+        "alternative_discovery_hits": alt_discovery_hits,
+        "alternative_discovery_recall": (alt_discovery_hits / total_reqs) * 100.0,
+        "top3_with_alternatives_recall": ((top3_hits + alt_discovery_hits) / total_reqs) * 100.0,
         "mrr": sum(rrs) / max(total_reqs, 1),
         "top1_hits": top1_hits,
         "top3_hits": top3_hits,
@@ -334,6 +346,9 @@ Comparison of individual retrieval mechanisms against the hybrid ensemble and ne
         "safe_abstention_count": hybrid_eval["safe_abstention_count"],
         "retrieval_miss_count": hybrid_eval["retrieval_miss_count"],
         "top3_recall": hybrid_eval["top3_recall"],
+        "alternative_discovery_hits": hybrid_eval.get("alternative_discovery_hits", 0),
+        "alternative_discovery_recall": hybrid_eval.get("alternative_discovery_recall", 0.0),
+        "top3_with_alternatives_recall": hybrid_eval.get("top3_with_alternatives_recall", 0.0),
         "mrr": hybrid_eval["mrr"],
         "supersedence_rate": supersedence_rate,
         "ambiguity_precision": hybrid_eval["ambiguity_precision"],
