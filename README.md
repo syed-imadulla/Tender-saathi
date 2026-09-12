@@ -3,456 +3,416 @@
 **Evidence-backed Indian Standards validation for procurement specifications.**
 
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![Tests Passing](https://img.shields.io/badge/Tests-130%2F130%20Passing-brightgreen.svg)]()
-[![Top-1 Accuracy](https://img.shields.io/badge/Top--1%20Benchmark-95.0%25-success.svg)]()
-[![Top-3 Recall](https://img.shields.io/badge/Top--3%20Benchmark-100.0%25-success.svg)]()
-[![MRR](https://img.shields.io/badge/MRR-0.975-blueviolet.svg)]()
-[![Stage](https://img.shields.io/badge/Milestone-M8%20AI%20%2B%20Reranking-orange.svg)]()
+[![Tests Passing](https://img.shields.io/badge/Tests-319%2F319%20Passing-brightgreen.svg)]()
+[![SIH Problem](https://img.shields.io/badge/SIH%202026-SIH26108-orange.svg)]()
+[![Status](https://img.shields.io/badge/Status-Freeze%20Locked-success.svg)]()
 
-> **“AI interprets. Retrieval finds. Reranking prioritizes. Rules validate. Evidence supports. Humans decide.”**
-
-
----
-
-## SIH Problem Statement
-
-- **Hackathon**: Smart India Hackathon 2026
-- **Problem Statement ID**: SIH26108
-- **Title**: *AI-Powered Recommendation Engine for Identifying Applicable Indian Standards for Procurement Specifications*
-- **Theme**: Smart Automation / Public Procurement
-- **Team**: Base Case
-
-*Scope Note:*
-- **The Presentation (PPT)** outlines our complete solution vision, including full-scale BIS integration, hybrid retrieval, web interface, and platform connectors.
-- **This Repository** documents our validated core intelligence prototype, proving feasibility on real government tenders.
+> **"AI interprets. Rules validate. Evidence supports. Humans decide."**
 
 ---
 
 ## Problem
 
-In Indian public procurement (conducted through portals such as CPPP and GeM, and departments including CPWD, MES, and Indian Railways), technical specifications are expected to refer to national standards where available, in line with public procurement guidelines such as General Financial Rules (GFR) 2017 (Rule 144). In practice, procurement tenders routinely face three critical challenges:
+In Indian public procurement (conducted through portals such as CPPP and GeM, and departments including CPWD, MES, and Indian Railways), technical specifications are required to cite applicable national standards where available, in line with General Financial Rules (GFR) 2017 (Rule 144).
 
-1. **Omitted Standards**: Work items and materials (e.g., CPVC piping, sewerage lines, underground cables) are frequently specified without citing mandatory Indian Standard (`IS`) codes.
-2. **Obsolete & Superseded Citations**: Reused tender templates often cite withdrawn or replaced standards (e.g., citing `IS 10611` instead of `IS/ISO 10434`, or `IS 780` instead of `IS 14846`).
-3. **Ambiguous Specifications**: Clauses specify generic work (e.g., "valve replacement") while omitting essential engineering parameters (diameter/DN, pressure/PN, metallurgy, medium).
+In practice, tender specifications routinely encounter significant quality and compliance hurdles:
 
-### Why Existing Search and Generic AI Fall Short
-- **Standard Keyword Search**: Matches literal query terms without understanding missing-specification gaps, technical context, or standards lifecycle changes.
-- **Generic AI Chatbots**: Lack an authoritative standards database, hallucinate plausible but non-existent standard numbers, and cannot provide verifiable audit evidence.
+- **Omitted Standards**: Work items and materials (e.g., CPVC piping, sewerage lines, underground cables) are frequently specified without citing mandatory Indian Standard (`IS`) codes.
+- **Obsolete & Superseded Citations**: Reused tender templates often cite withdrawn or replaced standards (e.g., citing `IS 10611` instead of `IS/ISO 10434`, or `IS 780` instead of `IS 14846`).
+- **Incomplete Technical Parameters**: Clauses specify generic items (e.g., "valve replacement") while omitting essential engineering parameters (diameter/DN, pressure/PN, metallurgy, medium).
+- **Missing Related Standards & Dependencies**: Primary items are cited without cross-referencing necessary material test methods, installation codes of practice, or jointing guidelines.
+- **Regulatory & Certification Uncertainty**: Tender drafters often lack immediate clarity on whether cited products are governed by mandatory Quality Control Orders (QCOs) issued by line ministries.
+
+Manually verifying these requirements across tens of thousands of pages of BIS documentation and shifting gazette notifications is tedious, error-prone, and inconsistently performed.
 
 ---
 
-## Solution
+## What TenderSaathi Does
 
-TenderSaathi is an audit and recommendation system that starts directly from procurement requirements, identifies applicable Indian Standards, validates their active/superseded status, traces explicit relationships, presents supporting scope evidence, computes confidence, and routes ambiguous cases to human engineers.
+TenderSaathi is an intelligent technical specification review system that starts directly from procurement text or tender documents:
+
+1. **Extracts technical requirements** from text or uploaded tender PDFs, stripping administrative boilerplate.
+2. **Understands & decomposes** complex, compound requirements into structured engineering facets.
+3. **Searches the available Indian Standards catalogue** using hybrid lexical and semantic retrieval.
+4. **Checks applicability & domain boundaries** to prevent off-target recommendations.
+5. **Detects ambiguity & missing parameters**, identifying gaps in engineering specifications.
+6. **Grounds recommendations in verifiable evidence**, linking verbatim scope excerpts to each candidate standard.
+7. **Checks lifecycle status**, identifying active, superseded, or withdrawn standards and surfacing successors.
+8. **Surfaces related & dependency standards** via an explicit standards relationship graph.
+9. **Checks available regulatory information**, highlighting Quality Control Order (QCO) requirements where indexed.
+10. **Routes uncertain cases to human review**, categorizing findings into prioritized readiness states.
+11. **Produces structured audit reports** in clean interactive UI, JSON, and Markdown formats.
 
 > **"We don't just recommend standards. We audit the tender against the standards it should contain."**
 
 ---
 
-## Why TenderSaathi is Different
+## Trust Model
 
-| Dimension | Standard Keyword Search | Generic LLM Chat | TenderSaathi (Our Approach) |
-|---|---|---|---|
-| **Query Starting Point** | Requires knowing the IS number | Free-form prompt | Starts from tender requirement text |
-| **Lifecycle Awareness** | None (matches text blindly) | Outdated knowledge cutoffs | Validates Active, Superseded, Withdrawn |
-| **Supersedence Traversal** | Cannot resolve replacements | Inconsistent / Hallucinates | Resolves authoritative successors (`IS/ISO`) |
-| **Audit Evidence** | None (only highlights hits) | Cannot cite verified clauses | Verbatim scope excerpts + provenance source |
-| **Ambiguity Handling** | Returns irrelevant hits | Forces an ungrounded guess | Heuristic gating to human review |
-| **Fabrication Risk** | Low (keyword only) | High (hallucinates fake IS numbers) | Bounded (no fake IDs outside catalogue) |
+TenderSaathi is engineered around a strict decision-safety principle:
 
-> **"Finding a standard is not the same as validating a standard."**
+> **AI interprets. Rules validate. Evidence supports. Humans decide.**
+
+- **The LLM is NOT the source of truth.** It optionally assists with natural language requirement parsing, but never selects standards, invents standard numbers, or declares legal compliance.
+- **Standards are selected strictly from the verified catalogue.** The system cannot recommend fabricated or hallucinated standard numbers.
+- **Deterministic gates enforce domain boundaries.** Hard negative rules prevent cross-domain mismatch (e.g., preventing surface pump queries from matching borehole submersible standards).
+- **Evidence is strictly tied to the recommended standard.** Every positive recommendation is verified against authoritative scope text.
+- **Safe abstention over guessing.** When supporting evidence is insufficient or requirements are under-specified, the engine deliberately abstains rather than making an ungrounded guess.
+- **Human review is prioritized.** Complex, ambiguous, or superseded citations are routed to procurement engineers with targeted clarification questions.
+
+### Core Invariants
+
+For every positive recommendation:
+```text
+candidate_standard == evidence_standard
+```
+
+For every abstention:
+```text
+candidate_standard = null
+evidence_standard = null
+human_review_required = true
+```
+
+*Evidence-grounded recommendations with safe abstention when supporting evidence is insufficient.*
 
 ---
 
 ## How It Works
 
-The engine processes tenders through a multi-stage deterministic pipeline:
-
-1. **Extraction & Noise Removal**: Ingests tender PDFs/text, filters administrative boilerplate (EMD, fees, bidding rules), and isolates technical requirements.
-2. **Category Classification**: Classifies clauses into functional categories (`material`, `product_equipment`, `installation_execution`, `general_specification`).
-3. **Standards Retrieval**: Matches requirements against the standards catalogue using exact/partial numbers, title/scope matches, token overlap, and domain boosting.
-4. **Lifecycle & Relationship Validation**: Checks active status and resolves explicit relationships (`SUPERSEDES`, `REFERENCES`, `CODE_OF_PRACTICE_FOR`).
-5. **Evidence Grounding**: Retrieves verbatim scope text and assigns provenance from verified source records.
-6. **Ambiguity Gating**: Evaluates parameter sufficiency; routes under-specified cases to human engineers rather than guessing.
-
----
-
-## Technical Architecture
-
 ```text
-Tender Document (PDF / Plain Text)
-            ↓
-Document / Text Extraction (PyMuPDF Layout Parsing)
-            ↓
-Requirement Extraction & Noise Filtering (Boilerplate Stripping)
-            ↓
-Requirement Classification (Material / Product / Installation / General)
-            ↓
-Standards Retrieval (Number Match + Title/Scope Match + Token Overlap + Domain Boost)
-            ↓
-Lifecycle + Relationship Validation (Active / Superseded / Withdrawn Graph Traversal)
-            ↓
-Evidence Grounding (Verbatim Scope Excerpts & Provenance Tracking)
-            ↓
-Confidence / Ambiguity Analysis (Engineering Parameter Completeness Check)
-            ↓
-Decision Gate
-     ├── Sufficient Information  ──► Grounded Recommendation + Alternatives
-     └── Insufficient Parameters ──► Flagged for Human Engineer Review
+               Tender / PDF / Text
+                        ↓
+               Document Extraction
+                        ↓
+            Requirement Understanding
+                        ↓
+           Requirement Decomposition
+                        ↓
+                Hybrid Retrieval
+            (BM25 + Semantic Search)
+                        ↓
+         Applicability & Boundary Gates
+                        ↓
+        Ambiguity / Completeness Checks
+                        ↓
+               Evidence Grounding
+                        ↓
+           Standards Dependency Graph
+                        ↓
+                Lifecycle Checks
+                        ↓
+       Regulatory / Certification Checks
+                        ↓
+                  Human Review
+                        ↓
+             Tender Readiness Report
 ```
+
+1. **Extraction**: Ingests tender PDFs via PyMuPDF or plain text clauses, isolating technical requirements from bidding rules.
+2. **Decomposition**: Identifies equipment type, medium, pressure, diameter, and execution scope.
+3. **Retrieval**: Combines BM25 Okapi lexical matching with dense vector embeddings (`all-MiniLM-L6-v2`) via Reciprocal Rank Fusion.
+4. **Applicability Gating**: Filters candidates against deterministic engineering boundary rules.
+5. **Ambiguity Analysis**: Checks requirements against 5 essential parameters (type, size, rating, metallurgy, medium).
+6. **Evidence Critic**: Verifies clause-level text support, enforcing candidate-evidence consistency.
+7. **Graph Traversal**: Traverses normative references, testing codes, and installation standards.
+8. **Lifecycle & Regulatory**: Maps superseded standards to current active successors and checks QCO certification schedules.
+9. **Readiness Report**: Synthesizes the findings into clear states (`READY_FOR_REVIEW`, `REVIEW_REQUIRED`, `INSUFFICIENT_EVIDENCE`).
 
 ---
 
-## Current Prototype
+## Technical Stack
 
-The repository implements a functional feasibility prototype demonstrating the core intelligence layer:
+All listed technologies are actively implemented in the repository:
 
-- **PDF & Text Extraction** (`src/extract.py`): Ingests PDFs page-by-page via `pymupdf`, removes boilerplate clauses, segments technical text, and detects cited IS codes via regex.
-- **Classification Engine** (`src/extract.py`): Automatically assigns domain categories to target candidate search space.
-- **Standards Knowledge Base** (`data/standards/standards.db`): A local SQLite database indexing 85 curated Indian Standards across civil, mechanical, electrical, and food safety sectors.
-- **Retrieval Engine** (`src/search.py`): Deterministic multi-factor retrieval based on:
-  - Exact and partial standard number matching
-  - Direct supersedence lookup via graph relations
-  - Title and scope phrase matching
-  - Token overlap scoring with domain stop-word filtering
-  - Domain-specific keyword boosting (e.g., CPVC, sluice, earthing, XLPE cable, precast pipe)
-  - Generic handbook deprioritization (boosting product standards over general SP handbooks)
-- **Validation Engine** (`src/validate.py`): Checks `Active`, `Superseded`, `Withdrawn`, or `Unknown` states and retrieves documented successors.
-- **Evidence Engine** (`src/evidence.py`): Grounding against stored scope clauses and metadata; returns explicit notice of insufficient evidence when ungrounded.
-- **Recommender Pipeline** (`src/recommend.py`): Integrates all stages, scores confidence (High, Medium, Low), and applies heuristic ambiguity checks.
-- **Terminal CLI** (`scripts/demo.py`): Interactive presentation runner outputting structured evaluation cards.
-- **Evaluation Harness** (`src/evaluate.py`): Automated benchmark harness evaluating accuracy, recall, and MRR.
-
-*Current Retrieval vs. Future Vision:*
-The current prototype utilizes deterministic token overlap, title/scope phrase matching, domain-keyword boosting, and explicit graph traversal. Formal BM25 scoring, semantic vector embeddings, and an LLM explanation layer are planned for future phases.
-
----
-
-## Milestone 8: AI Requirement Understanding & Neural Candidate Reranking
-
-Milestone 8 evolves TenderSaathi from a hybrid retrieval + deterministic recommendation engine into an **Evidence-Grounded Hybrid AI Recommendation Engine**:
-
-```
-Tender language
-      ↓
-AI requirement understanding
-      ↓
-Structured technical facets
-      ↓
-Retrieval
-      ↓
-Candidate standards
-      ↓
-Cross-encoder reranking
-      ↓
-Evidence + lifecycle + graph
-      ↓
-Critic
-      ↓
-Human review
-```
-
-### 1. AI Requirement Understanding (`src/ai_understanding.py`)
-- **Core Role**: The LLM does not recommend the Indian Standard. It understands the procurement requirement and converts it into structured technical facets. Retrieval, evidence, lifecycle, graph, and critic layers determine the final recommendation.
-- **Architecture**: Groq (`openai/gpt-oss-120b`) (Fallback: Deterministic Requirement Decomposition). OpenRouter is an optional explicitly configured provider, not an automatic fallback.
-- **Fallback Behavior**:
-  - Primary provider: Groq (`openai/gpt-oss-120b`).
-  - If Groq is unavailable, disabled, unconfigured, times out, or returns malformed output, TenderSaathi falls back to the existing deterministic requirement decomposition.
-- **Function**: Converts messy natural-language tender clauses into strict structured technical fields (`equipment`, `control`, `electrical`, `voltage`, `application`, `work_type`).
-- **Critical Safety Guardrails**:
-  - The LLM **NEVER** selects an Indian Standard, invents an IS code, or declares compliance.
-  - The LLM **NEVER** generates evidence, lifecycle status, BIS relationships, or legal compliance decisions.
-  - The LLM is **NEVER** treated as:
-    - the source of truth
-    - the standards database
-    - the compliance authority
-    - the evidence generator
-    - the final decision maker
-  - Any standard numbers or IS codes in LLM outputs are automatically stripped and ignored.
-  - The system is **100% functional offline**.
-
-### 2. Second-Stage Neural Candidate Reranking (`src/reranker.py`)
-- **Model**: `cross-encoder/ms-marco-MiniLM-L-6-v2` (~90 MB, 22.7M parameters).
-- **Operation**: Operates over the candidate pool (~10 candidates) produced by Stage 1 (BM25 + `all-MiniLM-L6-v2` + Deterministic). Computes full token-level cross-attention over `(query, candidate_standard_metadata)`.
-- **Score Normalization**: Raw unbounded logits are normalized via standard logistic sigmoid:
-  `score = 1 / (1 + exp(-logit))` (or $\sigma(\text{logit}) = 1 / (1 + \exp(-\text{logit}))$)
-- **Score Transparency**: Tracks individual score contributions (`bm25_score`, `semantic_score`, `deterministic_score`, `reranker_score`, `final_score`). Retrieval scores represent relevance signals, **not evidence strength**.
-- **Exact Citation Protection**: Authoritative matches and explicitly cited IS numbers retain priority and cannot be displaced by neural reranker drift.
-- **Honest Latency & Tradeoff Disclosure**:
-  - *Warm Retrieval Latency*: Hybrid = **57.0 ms** | Hybrid + Cross-Encoder = **488.1 ms**.
-  - The Cross-Encoder is used only as a second-stage precision reranker over a small candidate pool. This increases warm retrieval latency compared with the hybrid baseline, but avoids running expensive cross-attention across the full standards catalogue.
-  - `ms-marco-MiniLM-L-6-v2` is a general-domain English passage ranking model pre-trained on MS MARCO. It is not pre-trained on BIS technical gazettes, and is benchmarked transparently.
-
-### 3. Milestone 8 Benchmark Ablation
-Milestone 8 preserved the existing benchmark accuracy while adding AI-based requirement understanding and neural candidate reranking.
-
-| Architecture | Top-1 | Top-3 | MRR | Warm Latency |
-|---|---|---|---|---|
-| Deterministic | 95.0% | 100.0% | 0.975 | 16.2 ms |
-| BM25 | 90.0% | 100.0% | 0.950 | 19.8 ms |
-| Semantic (`all-MiniLM-L6-v2`) | 85.0% | 95.0% | 0.912 | 46.3 ms |
-| Hybrid | 95.0% | 100.0% | 0.975 | 57.0 ms |
-| Hybrid + Cross-Encoder | 95.0% | 100.0% | 0.975 | 488.1 ms |
-
-### 4. Core Operating Principles
-> **“AI interprets. Retrieval finds. Reranking prioritizes. Rules validate. Evidence supports. Humans decide.”**
-
-- **LLM ≠ source of truth**
-- **Retrieval score ≠ evidence strength**
-- **Graph relationship ≠ applicability**
-
-### 5. Environment & Credential Security
-- Groq API key is stored in local `.env`.
-- `.env` is strictly ignored by Git (`.gitignore`).
-- `.env.example` contains placeholders only (`GROQ_API_KEY=<your-groq-api-key>`).
-- API keys are never hard-coded in source code.
-- Missing or empty API key triggers deterministic fallback without crashing or sending network traffic.
-- API keys and authorization headers are never logged or exposed in error messages.
-- No credentials are included in screenshots, tests, or documentation.
-
-| Variable | Default | Description |
+| Layer | Component | Verified Implementation |
 |---|---|---|
-| `GROQ_API_KEY` | *(empty)* | Groq API key for AI requirement understanding |
-| `TENDERSAATHI_LLM_ENABLED` | `false` | Enable/disable LLM requirement parser (`true` / `false`) |
-| `TENDERSAATHI_LLM_PROVIDER` | `groq` | LLM provider (`groq` or `openrouter`) |
-| `TENDERSAATHI_LLM_MODEL` | `openai/gpt-oss-120b` | Model identifier on configured provider |
+| **Core Runtime** | Python 3.10+ | Complete engine, extraction, search, and audit pipelines |
+| **Web API** | Flask 3.0+ & Flask-CORS | REST API serving analysis, PDF uploads, reports, and health checks |
+| **Frontend UI** | React 18, TypeScript, Vite | Modern web application with real-time audit cards and evidence drawer |
+| **Database** | SQLite 3 | Embedded store for standards metadata, scopes, relations, and catalogue |
+| **Lexical Retrieval** | BM25 Okapi (`rank_bm25`) | Tokenized exact/partial number and keyword matching |
+| **Semantic Retrieval** | Sentence-Transformers | Dense vector embeddings using `all-MiniLM-L6-v2` (384-dimensional) |
+| **Neural Reranking** | Cross-Encoder | Optional candidate reranking using `ms-marco-MiniLM-L-6-v2` |
+| **PDF Extraction** | PyMuPDF (`fitz`) | Multi-column layout text extraction and page segmentation |
+| **AI Parsing (Optional)** | Groq API | Optional LLM requirement understanding with 100% offline rule fallback |
+| **Test Suite** | Pytest | 319 automated unit, integration, contract, and safety tests |
 
 ---
 
+## Key Features
 
-## Evidence, Confidence & Human Review
-
-### Trust Model & Bounded Behavior
-TenderSaathi does not generate answers out of thin air:
-- **No fabricated standard IDs** are generated outside the bounded prototype catalogue.
-- Every recommendation is backed by a stored verbatim scope excerpt and provenance tag.
-- When evidence is insufficient or engineering parameters are missing, the system requests human review.
-
-### Evidence & Provenance Tiers
-Not every record in the 85-standard prototype database has undergone manual inspection. The system tracks provenance explicitly:
-- **`VERIFIED`**: Manually verified records and scope evidence (e.g., cross-checked against BSB Edge / official BIS portal records with full scope clauses).
-- **`CURATED`**: Records curated from available BIS and public catalogue information across core engineering sectors.
-- **`INFERRED`**: Relationships and candidate links derived from explicit normative references cited within standards.
-
-### Ambiguity Gating Protocol
-When critical technical parameters are omitted, the system flags the clause:
-- *Example*: An item specifying "valve replacement" lacks nominal diameter (DN), pressure rating (PN), body metallurgy, and fluid medium.
-- *System Action*: Lowers confidence, leaves the primary standard as an open candidate, and outputs `HUMAN VERIFICATION REQUIRED? >>> YES` with the specific parameters to inspect in the Bill of Quantities (BOQ).
+- **Evidence-Grounded Recommendations**: Every positive recommendation is validated against verified scope clauses.
+- **Safe Abstention**: Refuses to guess when requirements lack technical basis or supporting evidence.
+- **Applicability Gates**: Deterministic boundary rules prevent cross-domain mismatch.
+- **Ambiguity & Parameter Gap Detection**: Flags missing engineering attributes (DN, PN, metallurgy, medium).
+- **Candidate/Evidence Invariant**: Enforces `candidate_standard == evidence_standard` on all recommendations.
+- **Superseded Standard Detection**: Flags withdrawn or replaced standards from previous years.
+- **Successor Standard Surfacing**: Recommends the authoritative active replacement (e.g. `IS/ISO` standards).
+- **Standards Knowledge Graph**: Traces normative references, allied testing codes, and installation guidelines.
+- **Regulatory / QCO Intelligence**: Flags products requiring mandatory ISI certification under current government orders.
+- **Multilingual Technical Normalization**: Normalizes Hindi, Tamil, and English technical terms to canonical identifiers.
+- **Prioritized Human Review Queue**: Categorizes tender clauses into actionable readiness tiers.
+- **Multi-Format Reporting**: Generates interactive web dashboard summaries, structured JSON, and Markdown reports.
+- **Multi-Item Tender Handling**: Processes complete tender documents containing multiple distinct technical items.
 
 ---
 
-## Prototype Validation
+## Current Prototype Scope
 
-To evaluate the system, **20 real central government CPPP tender PDFs** were collected and processed, yielding an inventory of **72 candidate requirements** (`dataset/tender_requirements.jsonl`). From these, **20 representative requirements across 12 tenders** (spanning 10 procurement domains) were curated and locked into the formal evaluation benchmark (`dataset/ground_truth/ground_truth.csv`).
+The repository implements a fully validated, reproducible feasibility prototype:
 
-| Evaluation Dimension | Benchmark Metric | Operational Significance |
-|---|---|---|
-| **Source Tenders Collected** | 20 real CPPP PDFs | Real-world central government tender documents |
-| **Candidate Requirements Extracted** | 72 requirements | Total requirement inventory across all 20 processed tenders |
-| **Locked Benchmark Cases** | 20 requirements | Curated evaluation ground truth with human-verified standards |
-| **Tenders Represented in Benchmark** | 12 tenders | Benchmark requirements span 12 distinct tenders across 10 domains |
-| **Prototype Standards Catalogue** | 85 standards | Curated SQLite knowledge base across 5 domains |
-| **Top-1 Recommendation Accuracy** | **80.0%** (16/20) | Primary recommended standard matches ground truth |
-| **Top-3 Retrieval Recall** | **90.0%** (18/20) | Target standard appears within top 3 candidates |
-| **Mean Reciprocal Rank (MRR)** | **0.863** | Evaluates ranking position of the target standard |
-| **Supersedence Detection Rate** | **100.0%** (3/3) | Obsolete codes accurately mapped to active replacements |
-| **Ambiguity Detection Recall** | **100.0%** (1/1) | Under-specified benchmark cases routed to human review |
-| **Local Inference Latency** | **< 45 ms** | Sub-second real-time execution on commodity hardware |
-| **Automated Unit Tests** | **15 / 15 Passed** | Full regression coverage across schema, search, and logic |
+- **502 Catalogue Records**: Official Bureau of Indian Standards records indexed in `data/catalogue/catalogue.db`.
+- **90 Core Standards**: Deep clause-level scope text and relationship graphs indexed in `data/standards/standards.db` (90 distinct IDs, 0 duplicates).
+- **20 Real Government Tender PDFs**: Collected from central procurement portals and audited end-to-end (`tenders/T001.pdf` – `tenders/T020.pdf`).
+- **25 Extracted & Analyzed Requirements**: Detailed in representative multi-item end-to-end evaluation reports.
+- **40-Case Multilingual Benchmark**: Frozen benchmark dataset (`dataset/ground_truth/multilingual_benchmark.json`, SHA-256: `db62e0367ea2983dab49a9ac8a98958efb0c17882df86f131ecfa6b04903690b`).
+- **100% Candidate/Evidence Parity**: Verified across all recommendation pathways.
+- **319 / 319 Passing Automated Tests**: Full test suite passing with zero failures at final freeze audit.
 
 ---
 
-## Failure Analysis
+## Demo Scenarios
 
-Empirical transparency demonstrates authentic testing on real tenders. In our 20-requirement benchmark, exactly **2 requirements missed the top 3** (`T013-R002` and `T014-R002`):
+The web interface and API provide three verified demonstration scenarios:
 
-- **Observed Failure**:
-  - `T013-R002` (*"VFD water pump panel SITC"*) matched agricultural pump testing standard `IS 9694` instead of electrical drive panel standards (`IS/IEC 61800-2`, `IS/IEC 61439-2`).
-  - `T014-R002` (*"Submersible pumps supply"*) similarly favoured agricultural testing code `IS 9694` over industrial motor standards (`IS/IEC 60034-1`).
-- **Root Cause**: Lexical token matching gave heavy weight to the generic term *"water pump"*, causing agricultural pump codes to outrank industrial electromechanical drive standards.
-- **Planned Mitigation**: Implement compound requirement decomposition (separating pump, motor, and electrical panel into distinct sub-queries) and introduce industrial-versus-agricultural domain disambiguation.
+### 1. Clear Recommendation (Happy Path)
+- **Input**: *"Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778."*
+- **Recommendation**: `IS 15778 : 2007` (Chlorinated Polyvinyl Chloride Pipes for Potable Hot and Cold Water Distribution Supplies).
+- **Evidence**: Verbatim scope clause matches pipe specification.
+- **Dependencies**: Surfaced related testing standards (IS 4985, IS 12235 series).
+- **Parity**: `candidate == evidence` (`IS 15778 : 2007`).
+- **Readiness**: `READY_FOR_REVIEW`.
 
----
+### 2. Safe Abstention & Parameter Ambiguity
+- **Input (Real Tender T002)**: *"Annual Rate Contract for Execution of Mechanical Maintenance Works including Pumps, Valve Replacement at Heavy Water Board Facilities."*
+- **Behavior**: System identifies that "valve replacement" lacks valve type, nominal diameter (DN), pressure class (PN), body metallurgy, and fluid medium.
+- **Recommendation**: `candidate = null`, `evidence = null`, `human_review_required = true`.
+- **Action**: Emits targeted clarification questions for procurement officers rather than guessing an arbitrary valve standard.
+- **Readiness**: `INSUFFICIENT_EVIDENCE` / `REVIEW_REQUIRED`.
 
-## Demo
-
-The interactive CLI demo (`scripts/demo.py`) demonstrates three core scenarios:
-
-### 1. Superseded Standard Detection (OLD)
-Demonstrates catching an obsolete standard and providing its active replacement:
-```bash
-python3 scripts/demo.py --query "IS 10611"
-```
-*Result: Identifies that `IS 10611:1983` is superseded and outputs active replacement `IS/ISO 10434:2020` with foreword evidence.*
-
-### 2. Real Tender Processing (REAL)
-Demonstrates processing a real government tender PDF:
-```bash
-python3 scripts/demo.py --tender T020
-```
-*Result: Ingests tender `T020`, extracts the requirement ("Repair/ maint of CPVC pipe in lieu of rusted GI pipe"), and recommends `IS 15778:2007` with High confidence and scope excerpt.*
-
-### 3. Ambiguity & Human-Review Gating (UNCLEAR)
-Demonstrates conservative refusal to guess when parameters are missing:
-```bash
-python3 scripts/demo.py --query "valve replacement"
-```
-*Result: Detects missing parameters (valve type, size/DN, pressure rating, metallurgy, medium), sets confidence to Low, and flags: `HUMAN VERIFICATION REQUIRED? >>> YES`.*
+### 3. Superseded Standard Detection
+- **Input**: *"Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983."*
+- **Detection**: `IS 10611 : 1983` is identified as `SUPERSEDED`.
+- **Successor Surfaced**: Recommends current active successor `IS/ISO 10434 : 2020` (Bolted bonnet steel gate valves for petroleum, petrochemical and allied industries).
+- **Evidence**: Foreword and replacement clause from `IS/ISO 10434 : 2020`.
+- **Parity**: `candidate == evidence` (`IS/ISO 10434 : 2020`).
+- **Readiness**: `REVIEW_REQUIRED` (officer sign-off on code transition).
 
 ---
 
-## Tech Stack
-
-| Component | Technology | Implementation Role |
-|---|---|---|
-| **Core Runtime** | Python 3.10+ | Primary language across extraction, search, and validation |
-| **Database** | SQLite 3 | Embedded store for standards metadata, scopes, and graph edges |
-| **PDF Extraction** | PyMuPDF (`fitz`) | Text layout parsing and page-by-page tender ingestion |
-| **Data Processing** | Pandas, OpenPyXL | Ground-truth compilation, tabular reports, and dataset handling |
-| **Testing** | Python `unittest` | 15 automated unit and regression tests |
-| **Interface** | Terminal CLI | ANSI-formatted structured evaluation cards |
-
----
-
-## Repository Structure
-
-```text
-sih26108-feasibility/
-├── src/                               # Core recommendation engine modules
-│   ├── extract.py                     # PDF & text requirement extraction + noise filtering
-│   ├── standards.py                   # SQLite schema, data models & relationship graph
-│   ├── search.py                      # Retrieval engine (number, title, scope, token overlap)
-│   ├── validate.py                    # Lifecycle status & supersedence validation
-│   ├── evidence.py                    # Scope clause evidence grounding & provenance
-│   ├── recommend.py                   # Master recommender & ambiguity gating
-│   └── evaluate.py                    # Benchmark evaluation harness
-├── scripts/                           # Executables and utilities
-│   ├── demo.py                        # Presentation CLI demo runner
-│   ├── extract_text.py                # PDF layout text extraction tool
-│   ├── extract_requirements.py        # Requirement segmentation utility
-│   └── ingest_tenders.py              # Bulk tender ingestion runner
-├── data/                              # Standards knowledge base & raw tenders
-│   ├── standards/standards.db         # SQLite database with 85 curated standards
-│   └── tenders/                       # Source tender PDF documents (T001 - T020)
-├── dataset/                           # Feasibility dataset & benchmarks
-│   ├── ground_truth/ground_truth.csv  # 20-tender locked evaluation benchmark
-│   └── tender_requirements.jsonl      # 72 extracted requirements inventory
-├── tests/                             # Automated test suite
-│   ├── test_standards.py              # Schema, relations, & database tests (7 tests)
-│   └── test_milestone2.py             # Extraction, search, & pipeline tests (8 tests)
-└── reports/                           # Technical documentation & benchmark reports
-    └── feasibility/
-        └── milestone2_evaluation_report.md # Benchmark evaluation report
-```
-
----
-
-## Quick Start
+## Run Locally
 
 ### Prerequisites
-- Python 3.10 or higher
-- Standard libraries (`sqlite3`, `re`, `json`, `csv`, `pathlib`, `unittest`)
+- **Python**: 3.10 or higher
+- **Node.js**: 18 or higher (with `npm`)
 
-### Installation
+### 1. Installation
+
+Clone the repository and set up the Python environment:
 ```bash
-# 1. Clone the repository
+# Clone the repository
 git clone https://github.com/syed-imadulla/Tender-saathi.git
 cd Tender-saathi
 
-# 2. (Optional) Create and activate virtual environment
+# Create and activate a virtual environment
 python3 -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
-# 3. Install required packages
+# Install backend dependencies
 pip install -r requirements.txt
 ```
 
-### Environment Setup
-
-To enable optional AI requirement understanding, create a local `.env` file using the provided template:
+Install frontend dependencies:
 ```bash
-cp .env.example .env
+cd frontend
+npm install
+cd ..
 ```
 
-Configure your local `.env` file:
-```env
-GROQ_API_KEY=<your-groq-api-key>
-TENDERSAATHI_LLM_ENABLED=true
-TENDERSAATHI_LLM_PROVIDER=groq
-TENDERSAATHI_LLM_MODEL=openai/gpt-oss-120b
-```
+### 2. Start the Backend API Server
 
-> [!IMPORTANT]
-> **Never commit `.env` to Git.** The `.env` file is strictly ignored by `.gitignore`. The repository provides `.env.example` as a clean template. If no API key is provided, the system runs 100% offline using deterministic rule-based decomposition.
-
-### Run Demo Scenarios
 ```bash
-# Demo 1: Superseded Standard Query
+python3 -u api/server.py
+```
+The Flask API starts at `http://localhost:5000/`.
+
+### 3. Start the Frontend Development Server
+
+In a separate terminal:
+```bash
+cd frontend
+npm run dev
+```
+The React + Vite application will open at `http://localhost:5173/`.
+
+### 4. Interactive CLI Demo (Optional)
+
+You can also run demo scenarios directly from the command line:
+```bash
+# Demo 1: Clear CPVC query
+python3 scripts/demo.py --query "Supply and laying of CPVC pipes for potable water"
+
+# Demo 2: Superseded standard query
 python3 scripts/demo.py --query "IS 10611"
 
-# Demo 2: Real Tender PDF Processing
-python3 scripts/demo.py --tender T020
-
-# Demo 3: Ambiguous Requirement Query
+# Demo 3: Ambiguous requirement query
 python3 scripts/demo.py --query "valve replacement"
 
-# Demo 4: AI Requirement Understanding & Neural Reranking (loads key from .env)
-python3 scripts/demo.py --query "Supply, installation and commissioning of 3.3kV process water pump motors with starter panel" --llm --rerank
-
-# Custom Procurement Query
-python3 scripts/demo.py --query "Supply and laying of CPVC pipes for potable water" --rerank
+# Real tender PDF processing
+python3 scripts/demo.py --tender T020
 ```
 
-### Run Automated Tests & Evaluation
+### 5. Run the Automated Test Suite
+
 ```bash
-# Run all 130 unit tests
-python3 -m unittest discover -s tests -v
-
-# Run 20-tender benchmark evaluation across all retrieval modes
-python3 -m src.evaluate
+# Run the complete test suite (319 tests)
+pytest tests/ -q
 ```
+
+---
+
+## API Endpoints
+
+The Flask server provides the following endpoints (confirmed in `api/server.py`):
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/health` | Service health, model status, and indexed catalogue counts |
+| `POST` | `/api/analyze/text` | Audits plain text tender requirements (JSON body: `{"text": "..."}`) |
+| `POST` | `/api/analyze/pdf` | Audits an uploaded tender PDF file (`multipart/form-data`) |
+| `GET` | `/api/analyze/sample/<demo>` | Audits built-in demo cases: `cpvc`, `valve`, or `superseded` |
+| `GET` | `/api/report/<tender_id>/json` | Downloads structured JSON audit report for a given tender session |
+| `GET` | `/api/report/<tender_id>/markdown` | Downloads formatted Markdown audit report for a given tender session |
+| `GET` | `/api/report/json` | Downloads latest generated audit report as JSON |
+| `GET` | `/api/report/markdown` | Downloads latest generated audit report as Markdown |
+
+---
+
+## Project Structure
+
+```text
+.
+├── api/                  # Flask REST API server and endpoints
+│   └── server.py         # Main API server implementation
+├── src/                  # Core intelligence, retrieval, audit, and validation engine
+│   ├── ai_understanding.py # LLM requirement understanding (optional Groq / offline fallback)
+│   ├── applicability.py    # Deterministic boundary gates & applicability checks
+│   ├── audit.py            # Master TenderAuditEngine coordinating the multi-stage pipeline
+│   ├── evaluate.py         # Benchmark evaluation harness
+│   ├── evidence.py         # Scope clause evidence grounding & provenance
+│   ├── extract.py          # PDF layout extraction and requirement parsing
+│   ├── recommend.py        # StandardsRecommender combining search, graph, and gates
+│   ├── reranker.py         # Neural Cross-Encoder candidate reranker
+│   ├── search.py           # Hybrid BM25 + dense vector retrieval
+│   ├── standards.py        # SQLite schema, data models & relationship graph
+│   └── validate.py         # Lifecycle status & supersedence validation
+├── frontend/             # React + TypeScript + Vite web interface
+│   ├── src/              # UI components, audit cards, evidence drawer
+│   └── package.json      # Frontend dependencies and build scripts
+├── data/
+│   ├── standards/        # Working standards database (90 core standards) and vector indices
+│   ├── catalogue/        # Official BIS metadata catalogue (502 records)
+│   └── regulatory/       # Quality Control Orders (QCOs) and regulatory schedules
+├── dataset/
+│   └── ground_truth/     # Multilingual benchmark (40 cases) and test ground truth
+├── tenders/              # Real public procurement tender PDFs (T001 - T020)
+├── tests/                # Automated test suite (319 pytest tests)
+├── reports/              # Generated audit reports and E2E evaluation summaries
+│   ├── e2e/              # 20-tender end-to-end evaluation reports
+│   └── generated/        # Runtime session audit reports
+├── docs/                 # SIH presentation deck, audits, and technical specifications
+└── README.md             # Repository documentation
+```
+
+---
+
+## Validation
+
+The system has undergone systematic, independent audit verification:
+
+- **Automated Regression Suite**: **319 / 319 tests passing** across schema, search, applicability gates, evidence chains, adversarial safety, API-UI contracts, and failure states (`pytest tests/`).
+- **Real Tender E2E Validation**: **20 out of 20 real government tender PDFs** processed through the complete extraction, audit, and report generation pipeline with zero unhandled exceptions.
+- **Frontend Production Build**: The React + TypeScript web application compiles cleanly with zero TypeScript errors (`npm --prefix frontend run build`).
+- **Candidate-Evidence Parity**: 100% verified compliance with the invariant `candidate_standard == evidence_standard` across all positive recommendations.
+- **Adversarial Safety Testing**: Exhaustive tests confirm resistance to prompt injection, off-domain queries, malformed inputs, and non-submersible pump boundary conditions.
+- **Multilingual Benchmark**: 40 frozen cases across English, Hindi, and Tamil evaluated for language-invariant parity and abstention behavior.
+- **Database Integrity**: Exactly 90 rows, 90 distinct IDs, and 0 duplicates confirmed in `data/standards/standards.db`; 502 records confirmed in `data/catalogue/catalogue.db`.
 
 ---
 
 ## Current Limitations
 
-- **Bounded Standards Catalogue**: The database currently indexes 85 standards for feasibility demonstration; it does not yet encompass the full national catalogue of 20,000+ standards.
-- **No live BIS integration**: The current prototype operates offline on its local standards knowledge base. Integration with officially available BIS data sources is part of future development.
-- **Lexical Overlap in Compound Queries**: Multi-trade sentences (e.g., pump + motor + starter panel) can experience lexical bias without multi-token clause decomposition.
-- **Interface**: The current prototype is a terminal CLI application; the web interface is part of the future development phase.
-- **Relationship Coverage**: Graph edges are currently restricted to verified relationships present in our curated dataset.
+To maintain technical honesty and defensibility during judging and review:
+
+1. **Catalogue Boundaries**: Deep clause-level verification is currently populated for 90 core electromechanical, civil, and piping standards; catalogue metadata covers 502 official BIS records. Full 20,000+ BIS coverage is a roadmap ingestion phase.
+2. **Decision-Support Scope**: TenderSaathi is an assistive technical review and audit tool, not a statutory legal certification or autonomous procurement approval system.
+3. **Human Review Requirement**: Ambiguous, under-specified, or uncertain cases are intentionally routed to technical officers for human adjudication.
+4. **Scanned Documents**: The system directly processes text-based PDFs; scanned or degraded documents require OCR preprocessing whose accuracy depends on scan legibility.
+5. **Regulatory Scope**: Quality Control Order (QCO) verification covers sectors currently indexed in our regulatory database; unindexed sectors require officer verification.
+6. **E-Procurement Integration**: Direct API connectors to CPPP or GeM portals are architectural roadmap concepts requiring official government access and credentials.
 
 ---
 
-## Future Development
+## Roadmap
 
-### Next Stage (Product Development)
-- **Web UI Dashboard**: Browser dashboard for procurement officers to upload tender documents, inspect extracted clauses, review candidate standards, view evidence, and download audit/review reports.
-- **Catalogue Expansion**: Scaling the local SQLite/PostgreSQL store across all major BIS civil, mechanical, and electrical divisions.
-- **Hybrid Retrieval**: Implementing formal BM25 coupled with domain-tuned semantic embeddings for dense vector search.
-- **Compound Requirement Parsing**: Automated decomposition of composite tender clauses into discrete sub-queries.
-- **Expanded Relationships**: Indexing normative references, mandatory amendments, and specialized testing codes.
+Planned future developments building on the current verified architecture:
 
-### Future Vision (Full-Scale SIH Solution)
-- **Approved Data Ingestion Pipeline**: Ingesting official public BIS gazettes and portal updates to automatically detect revisions and status changes with human verification.
-- **Quality Control Order (QCO) Integration**: Flagging products where Indian Standards certification is legally mandatory under current government QCO notifications.
-- **E-Procurement Integration**: Direct integration with CPPP and GeM portals, subject to official access and approvals.
-- **Scalable Cloud Microservice**: Secure containerized deployment for departmental tender scrutiny committees.
+- **Catalogue Expansion**: Ingesting additional BIS engineering divisions into the SQLite + BM25 + vector index.
+- **Deeper Scope Ingestion**: Expanding clause-level scope text across the broader metadata catalogue.
+- **Comprehensive QCO Gazette Tracking**: Expanding automated mappings to Ministry Quality Control Order schedules.
+- **Enhanced OCR Preprocessing**: Integrating specialized layout-aware OCR for scanned and physical paper tenders.
+- **Broadened Multilingual Coverage**: Expanding technical normalizers to additional Indian regional languages.
+- **Containerized On-Premise Deployment**: Packaging Docker microservice containers for secure departmental intranet deployment.
+- **E-Procurement Workflow Integration**: Integrating with tender drafting workflows to assist technical officers prior to tender publishing.
 
 ---
 
-## Research & References
+## Why TenderSaathi?
 
-1. **General Financial Rules (GFR), 2017**: Rule 144 (Fundamental principles of public buying and technical specifications).
-2. **Bureau of Indian Standards Act, 2016**: Statutory framework governing mandatory standards, certification, and Quality Control Orders.
-3. **Central Public Procurement Portal (CPPP)**: Government of India e-procurement tender notices analyzed for prototype benchmarking.
-4. **BSB Edge Portal / BIS Catalogues**: Source documentation referenced for standard titles, publication years, forewords, and scope clauses.
+> **"We don't just recommend standards. We audit the tender against the standards it should contain."**
+
+Existing search tools require the user to already know the exact standard number, while generic AI tools lack authoritative grounding, risk hallucinating plausible codes, and cannot produce verifiable evidence.
+
+TenderSaathi is unique in delivering an integrated **decision-safety workflow**:
+
+```text
+Requirement Understanding
+         ↓
+Hybrid Retrieval
+         ↓
+Applicability Boundary Gates
+         ↓
+Ambiguity & Parameter Gap Detection
+         ↓
+Evidence Grounding Critic
+         ↓
+Lifecycle & Supersedence Traversal
+         ↓
+Dependency Graph Traversal
+         ↓
+Regulatory QCO Signals
+         ↓
+Prioritized Human Review
+```
+
+By placing deterministic validation and evidence grounding between AI interpretation and procurement decisions, TenderSaathi enables transparent, trustworthy, and auditable procurement review.
 
 ---
 
-## Team
+## Documentation
 
-- **Team Name**: Base Case
-- **Problem Statement ID**: SIH26108
-- **Repository**: [github.com/syed-imadulla/Tender-saathi](https://github.com/syed-imadulla/Tender-saathi)
+- [SIH Presentation Deck](docs/SIH_PRESENTATION_DECK.md) — Complete 10-slide competitive pitch deck
+- [Final SIH Freeze Audit](docs/FINAL_SIH_FREEZE_AUDIT.md) — Final claim integrity and repository freeze report
+- [Priority 7 Product Final Audit](docs/PRIORITY_7_PRODUCT_FINAL_AUDIT.md) — Verification of API, UI contracts, and E2E tenders
+- [Priority 8 Readiness Audit](docs/PRIORITY_8_FINAL_SIH_READINESS_AUDIT.md) — Demo readiness and presentation alignment audit
+- [Priority 6F Remediation Audit](docs/PRIORITY_6F_REMEDIATION_AUDIT.md) — Independent benchmark and engine audit
+- [E2E Evaluation Summary](reports/e2e/e2e_summary.md) — Summary of 20 real government tender audits
+
+---
+
+## Project Status
+
+- **Hackathon**: Smart India Hackathon 2026
+- **Problem Statement**: SIH26108 (*AI-Powered Recommendation Engine for Identifying Applicable Indian Standards for Procurement Specifications*)
+- **Status**: Verified SIH demo-ready prototype (Freeze Locked)
