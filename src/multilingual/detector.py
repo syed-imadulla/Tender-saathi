@@ -31,6 +31,8 @@ class DetectionResult:
     is_multilingual: bool = False   # True if Indic or code-mixed
     is_transliterated: bool = False # True if Latin script but Indic grammatical vocabulary
     human_review_required: bool = False
+    code_mixed: bool = False        # True if both Indic and Latin elements are present
+    has_technical_latin: bool = False # True if Latin tokens are purely technical specifications
     notes: List[str] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, object]:
@@ -43,6 +45,8 @@ class DetectionResult:
             "is_multilingual": self.is_multilingual,
             "is_transliterated": self.is_transliterated,
             "human_review_required": self.human_review_required,
+            "code_mixed": self.code_mixed,
+            "has_technical_latin": self.has_technical_latin,
             "notes": self.notes,
         }
 
@@ -71,6 +75,13 @@ KANGLISH_MARKERS: Set[str] = {
 TANGLISH_MARKERS: Set[str] = {
     "thevai", "vendam", "seiya", "vendum", "matrum", "udavudan", "poda", "aaga",
     "valanga", "seyya", "koodum",
+}
+
+# Controlled vocabulary of technical Latin words/acronyms that do NOT indicate language-mixing
+TECHNICAL_LATIN_WORDS: Set[str] = {
+    "fe", "d", "is", "part", "sec", "kv", "kva", "mva", "kw", "hp", "mm", "cm", "m",
+    "inch", "sq", "sqmm", "pn", "cpvc", "upvc", "pvc", "hdpe", "gi", "xlpe", "tmt",
+    "bar", "grade", "class", "sdr", "iso", "iec", "sp"
 }
 
 
@@ -162,6 +173,7 @@ def detect_script_and_language(text: str) -> DetectionResult:
                 script_counts=counts,
                 is_multilingual=True,
                 is_transliterated=True,
+                code_mixed=True,
                 human_review_required=False,
                 notes=[f"Transliterated Hindi (Hinglish) detected via tokens: {sorted(hinglish_hits)}"],
             )
@@ -174,6 +186,7 @@ def detect_script_and_language(text: str) -> DetectionResult:
                 script_counts=counts,
                 is_multilingual=True,
                 is_transliterated=True,
+                code_mixed=True,
                 human_review_required=False,
                 notes=[f"Transliterated Kannada (Kanglish) detected via tokens: {sorted(kanglish_hits)}"],
             )
@@ -186,6 +199,7 @@ def detect_script_and_language(text: str) -> DetectionResult:
                 script_counts=counts,
                 is_multilingual=True,
                 is_transliterated=True,
+                code_mixed=True,
                 human_review_required=False,
                 notes=[f"Transliterated Tamil (Tanglish) detected via tokens: {sorted(tanglish_hits)}"],
             )
@@ -200,6 +214,7 @@ def detect_script_and_language(text: str) -> DetectionResult:
             script_counts=counts,
             is_multilingual=False,
             is_transliterated=False,
+            code_mixed=False,
             human_review_required=False,
             notes=["Standard English in Latin script"],
         )
@@ -220,14 +235,32 @@ def detect_script_and_language(text: str) -> DetectionResult:
         "Tamil": "ta",
     }
     target_lang = script_lang_map.get(top_script, "unknown")
-
-    # Ratio of top Indic script vs all characters
-    indic_ratio = top_count / total_recognized
     latin_count = counts["Latin"]
 
-    # If both Indic and Latin are substantially present -> Code-Mixed
+    # When both Indic and Latin characters are present:
     if latin_count > 0 and top_count > 0:
-        # Code mixed requirement (e.g. Hindi sentence with 'transformer', '11 kV', 'CPVC')
+        latin_words = [w.lower() for w in re.findall(r"\b[a-zA-Z]+\b", cleaned)]
+        non_tech_latin = [w for w in latin_words if w not in TECHNICAL_LATIN_WORDS]
+
+        # If ALL Latin tokens are technical abbreviations (e.g. 'Fe 500D', '11 kV', 'CPVC', 'IS 14846')
+        # Do NOT force detected_language to 'mixed'; preserve dominant Indic language identity
+        if not non_tech_latin:
+            conf = min(0.98, top_count / (top_count + other_alpha_count))
+            return DetectionResult(
+                detected_language=target_lang,
+                primary_script=top_script,
+                confidence=conf,
+                detected_scripts=active_scripts,
+                script_counts=counts,
+                is_multilingual=True,
+                is_transliterated=False,
+                code_mixed=True,
+                has_technical_latin=True,
+                human_review_required=False,
+                notes=[f"Single-script {top_script} requirement with technical Latin specifications ({sorted(set(latin_words))})"],
+            )
+
+        # Genuine vocabulary mixing (e.g. Indic sentence with general English words)
         conf = min(0.96, (top_count + latin_count) / (total_recognized + other_alpha_count))
         return DetectionResult(
             detected_language="mixed",
@@ -237,11 +270,13 @@ def detect_script_and_language(text: str) -> DetectionResult:
             script_counts=counts,
             is_multilingual=True,
             is_transliterated=False,
+            code_mixed=True,
+            has_technical_latin=any(w in TECHNICAL_LATIN_WORDS for w in latin_words),
             human_review_required=False,
             notes=[f"Code-mixed requirement ({top_script} + Latin)", f"Underlying Indic language: {target_lang}"],
         )
 
-    # Pure or overwhelmingly single Indic script
+    # Pure single Indic script
     conf = min(0.98, top_count / (total_recognized + other_alpha_count))
     return DetectionResult(
         detected_language=target_lang,
@@ -251,6 +286,8 @@ def detect_script_and_language(text: str) -> DetectionResult:
         script_counts=counts,
         is_multilingual=True,
         is_transliterated=False,
+        code_mixed=False,
+        has_technical_latin=False,
         human_review_required=False,
         notes=[f"Single-script {top_script} requirement"],
     )
