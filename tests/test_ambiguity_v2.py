@@ -110,7 +110,7 @@ class TestAmbiguityEngineV2(unittest.TestCase):
         req = extract_from_text(text, requirement_id="V2-TEST-INC")
         res = self.recommender.recommend_for_requirement(req)
 
-        self.assertIn(res.ambiguity_state, ["INCOMPLETE", "AMBIGUOUS"])
+        self.assertEqual(res.ambiguity_state, "AMBIGUOUS")
         self.assertIsNone(res.candidate_standard)
         self.assertTrue(res.human_review_required)
         self.assertIsNotNone(res.suggested_clarification_question)
