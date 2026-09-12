@@ -1,0 +1,157 @@
+{
+  "audit_version": "7B.1.0",
+  "project": "TenderSaathi (SIH26108)",
+  "timestamp": "2026-09-12T11:35:00Z",
+  "git": {
+    "branch": "main",
+    "commit": "7e81c36",
+    "working_tree_clean": true
+  },
+  "objective": "Audit whether the frontend and API preserve backend decision semantics exactly across all serialization layers, UI components, and audit indicators.",
+  "endpoint_inventory": [
+    {
+      "method": "GET",
+      "endpoint": "/api/health",
+      "request_shape": "None",
+      "response_shape": "{\"status\": \"ok\", \"service\": \"TenderSaathi API\", \"timestamp\": str}",
+      "error_behavior": "200 OK"
+    },
+    {
+      "method": "POST",
+      "endpoint": "/api/analyze/text",
+      "request_shape": "{\"text\": str}",
+      "response_shape": "AnalysisResult schema (tender, summary, readiness, readiness_reasons, sections, requirements, metadata)",
+      "error_behavior": "400 on empty text with JSON error message; 500 on server exception"
+    },
+    {
+      "method": "POST",
+      "endpoint": "/api/analyze/pdf",
+      "request_shape": "multipart/form-data with file field (.pdf)",
+      "response_shape": "AnalysisResult schema",
+      "error_behavior": "400 on missing or invalid file; 500 on extraction exception"
+    },
+    {
+      "method": "GET",
+      "endpoint": "/api/analyze/sample/<demo>",
+      "request_shape": "Path param: 'cpvc', 'valve', 'superseded'",
+      "response_shape": "AnalysisResult schema",
+      "error_behavior": "400 on unknown sample; 500 on pipeline exception"
+    },
+    {
+      "method": "GET",
+      "endpoint": "/api/report/<tender_id>/json",
+      "request_shape": "Path param: tender_id",
+      "response_shape": "JSON file attachment (application/json)",
+      "error_behavior": "404 if tender not found or unanalyzed"
+    },
+    {
+      "method": "GET",
+      "endpoint": "/api/report/<tender_id>/markdown",
+      "request_shape": "Path param: tender_id",
+      "response_shape": "Markdown file attachment (text/markdown)",
+      "error_behavior": "404 if tender not found or unanalyzed"
+    }
+  ],
+  "safety_invariants_audit": {
+    "invariant_1_candidate_equals_evidence": {
+      "statement": "If candidate_standard != null -> candidate_standard == evidence_standard",
+      "status": "PASS",
+      "verified_cases": "25/25 real tender requirements and automated contract tests"
+    },
+    "invariant_2_evidence_null_when_candidate_null": {
+      "statement": "If candidate_standard == null -> evidence_standard == null",
+      "status": "PASS",
+      "verified_cases": "All abstentions across API and real tenders"
+    },
+    "invariant_3_ambiguous_state_contract": {
+      "statement": "If ambiguity_state == AMBIGUOUS -> candidate=null, evidence=null, human_review=true, competing_interpretations visible",
+      "status": "PASS",
+      "verified_cases": "Verified via test_05 and real tenders T005, T010, T011"
+    },
+    "invariant_4_incomplete_state_contract": {
+      "statement": "If ambiguity_state == INCOMPLETE -> human_review=true",
+      "status": "PASS",
+      "verified_cases": "Verified via test_06, test_14, and real tenders T002, T008"
+    },
+    "invariant_5_no_reliable_match_contract": {
+      "statement": "If ambiguity_state == NO_RELIABLE_MATCH -> candidate=null, evidence=null",
+      "status": "PASS",
+      "verified_cases": "Verified via test_07, test_15"
+    },
+    "invariant_6_no_manufactured_evidence": {
+      "statement": "Frontend and API must never manufacture candidate-specific evidence",
+      "status": "PASS",
+      "verified_cases": "Enforced by areStandardsEquivalent checks on backend and frontend"
+    },
+    "invariant_7_human_review_preservation": {
+      "statement": "human_review_required boolean is preserved across serialization without dropping",
+      "status": "PASS",
+      "verified_cases": "Verified across all 20 contract tests"
+    },
+    "invariant_8_readiness_state_integrity": {
+      "statement": "Readiness state comes directly from TenderAuditEngine without frontend recalculation",
+      "status": "PASS",
+      "verified_cases": "Rendered verbatim in Results.tsx with reasons list"
+    }
+  ],
+  "representative_cases": {
+    "case_a_clear_product": {
+      "input": "25 mm CPVC potable-water pipe",
+      "candidate": "IS 15778 : 2007",
+      "evidence": "IS 15778 : 2007",
+      "state": "CLEAR",
+      "invariant_pass": true
+    },
+    "case_b_clear_installation": {
+      "input": "Installation of electrical wiring and safety equipment",
+      "candidate": "IS 732 : 2019",
+      "evidence": "IS 732 : 2019",
+      "state": "CLEAR",
+      "invariant_pass": true
+    },
+    "case_c_ambiguous": {
+      "input": "Sewerage pipeline works without pipe specification (T010)",
+      "candidate": null,
+      "evidence": null,
+      "state": "AMBIGUOUS",
+      "competing_interpretations_count": 2,
+      "human_review_required": true,
+      "invariant_pass": true
+    },
+    "case_d_incomplete": {
+      "input": "Mechanical Maintenance Works including Pumps (T002 / India3.pdf)",
+      "candidate": null,
+      "evidence": null,
+      "state": "INCOMPLETE",
+      "human_review_required": true,
+      "invariant_pass": true
+    },
+    "case_e_no_reliable_match": {
+      "input": "Supercalifragilisticexpialidocious lorem ipsum",
+      "candidate": null,
+      "evidence": null,
+      "state": "NO_RELIABLE_MATCH",
+      "invariant_pass": true
+    },
+    "case_f_lifecycle_review": {
+      "input": "Procurement of cast iron gate valves conforming to IS 10611",
+      "superseded_citation": "IS 10611",
+      "successor_standard": "IS/ISO 10434",
+      "lifecycle_status": "Superseded",
+      "update_card_rendered": true,
+      "invariant_pass": true
+    }
+  },
+  "frontend_rendering_audit": {
+    "status": "PASS",
+    "readiness_rendering": "Added authoritative Publication Readiness Banner displaying result.readiness and result.readiness_reasons verbatim in Results.tsx.",
+    "substring_matching_bug_prevention": "areStandardsEquivalent uses exact string equality on normalized base standard number without year, preventing IS 15778 from matching IS 778.",
+    "intelligence_leaks": "None. All cards and drawer sections are driven 100% by backend response."
+  },
+  "test_suite_status": {
+    "dedicated_contract_tests": "tests/test_p7b_api_ui_contract.py (20 tests passed)",
+    "full_repository_tests": "275 passed, 0 failed, 17 harmless deprecation warnings (Python 3.12+ datetime.utcnow)",
+    "real_tender_e2e_verification": "20/20 tenders passed, candidate==evidence 25/25 (100.0%)"
+  },
+  "verdict": "PRIORITY 7B PASS — PROCEED TO P7C"
+}

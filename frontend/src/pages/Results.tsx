@@ -272,6 +272,54 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
           </div>
         </div>
 
+        {/* 2b. Publication Readiness Banner — Direct rendering of backend TenderAuditEngine verdict */}
+        <div className={`readiness-banner readiness-banner--${(result.readiness || 'review_required').toLowerCase()}`} style={{
+          padding: '14px 20px',
+          borderRadius: '10px',
+          marginBottom: '20px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '12px',
+          background: result.readiness === 'READY_FOR_REVIEW' ? '#f0fdf4' : result.readiness === 'INSUFFICIENT_EVIDENCE' ? '#fef2f2' : '#fffdf0',
+          border: `1px solid ${result.readiness === 'READY_FOR_REVIEW' ? '#bbf7d0' : result.readiness === 'INSUFFICIENT_EVIDENCE' ? '#fecaca' : '#fed7aa'}`,
+        }}>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{
+                fontWeight: 800,
+                fontSize: '0.82rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                color: result.readiness === 'READY_FOR_REVIEW' ? '#166534' : result.readiness === 'INSUFFICIENT_EVIDENCE' ? '#991b1b' : '#9a3412',
+              }}>
+                Publication Readiness:
+              </span>
+              <span style={{
+                fontWeight: 700,
+                fontSize: '0.85rem',
+                padding: '2px 8px',
+                borderRadius: '4px',
+                background: result.readiness === 'READY_FOR_REVIEW' ? '#dcfce7' : result.readiness === 'INSUFFICIENT_EVIDENCE' ? '#fee2e2' : '#ffedd5',
+                color: result.readiness === 'READY_FOR_REVIEW' ? '#15803d' : result.readiness === 'INSUFFICIENT_EVIDENCE' ? '#b91c1c' : '#c2410c',
+              }}>
+                {result.readiness === 'READY_FOR_REVIEW' ? 'READY FOR REVIEW' : result.readiness === 'INSUFFICIENT_EVIDENCE' ? 'INSUFFICIENT EVIDENCE' : 'REVIEW REQUIRED'}
+              </span>
+            </div>
+            {result.readiness_reasons && result.readiness_reasons.length > 0 && (
+              <ul style={{ margin: '6px 0 0 0', paddingLeft: '20px', fontSize: '0.82rem', color: '#475569' }}>
+                {result.readiness_reasons.map((reason, idx) => (
+                  <li key={idx}>{reason}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <span style={{ fontSize: '0.78rem', color: '#64748b', fontStyle: 'italic' }}>
+            Authoritative audit verdict from TenderAuditEngine
+          </span>
+        </div>
+
         {/* Ambiguity & Verification States Summary Bar */}
         <div className="ambiguity-summary-bar" style={{
           background: '#ffffff',
