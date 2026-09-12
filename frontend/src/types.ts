@@ -86,7 +86,9 @@ export interface Requirement {
   // Evidence
   evidence: string;
   evidence_strength: 'STRONG' | 'MODERATE' | 'WEAK' | 'NONE';
-  provenance: 'VERIFIED' | 'CURATED' | 'INFERRED' | 'UNKNOWN';
+  provenance: 'VERIFIED' | 'CURATED' | 'INFERRED' | 'UNKNOWN' | 'OFFICIAL_PRIMARY' | 'OFFICIAL_SECONDARY' | string;
+  source?: string | null;
+  source_url?: string | null;
   evidence_standard?: string | null;
   why_it_matches?: string;
   // Quality

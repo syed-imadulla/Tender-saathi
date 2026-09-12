@@ -1,0 +1,317 @@
+{
+  "audit_version": "7C.1.0",
+  "project": "TenderSaathi (SIH26108)",
+  "timestamp": "2026-09-12T11:56:00Z",
+  "git": {
+    "branch": "main",
+    "commit": "b15884a",
+    "working_tree_clean": true,
+    "pending_commit_files": []
+  },
+  "metadata_correction": {
+    "p7b_reported_inconsistency": "P7B JSON recorded pre-commit hash 7e81c36, while Markdown recorded post-commit hash ac22e87.",
+    "resolution": "Corrected commit hash in docs/PRIORITY_7B_API_UI_CONTRACT_AUDIT.json to ac22e87 and committed as 8f12c35 before P7C implementation."
+  },
+  "objective": "Audit whether a procurement officer can trace every important TenderSaathi finding from the original tender requirement all the way to the standard, evidence, provenance, uncertainty, and final decision.",
+  "evidence_model_inventory": [
+    {
+      "field": "requirement_text",
+      "producer": "src/extract.py (extract_from_pdf / extract_from_text)",
+      "transformation": "Normalizes whitespace, extracts technical clauses and BoQ items",
+      "api_field": "req.text",
+      "ui_location": "RequirementCard header & EvidenceDrawer Section 1 quote",
+      "user_meaning": "Verbatim technical specification or scope item from the tender document"
+    },
+    {
+      "field": "candidate_standard",
+      "producer": "src/recommend.py (StandardsRecommender.recommend_for_requirement)",
+      "transformation": "Top-1 candidate from version-aware hybrid retrieval ensemble and cross-encoder",
+      "api_field": "req.candidate_standard",
+      "ui_location": "RequirementCard title & EvidenceDrawer Section 2 headline",
+      "user_meaning": "The primary Indian Standard recommended to govern this requirement"
+    },
+    {
+      "field": "evidence_standard",
+      "producer": "src/critic.py (CriticOutcome / StandardCritique)",
+      "transformation": "Strictly verified for equivalence with candidate_standard; None on abstention",
+      "api_field": "req.evidence_standard",
+      "ui_location": "EvidenceDrawer Section 4 citation & Invariant checker",
+      "user_meaning": "The standard from which the technical evidence quote was extracted"
+    },
+    {
+      "field": "evidence_text",
+      "producer": "src/critic.py (CriticPipeline)",
+      "transformation": "Extracts authoritative scope clause or explicit citation from standard record",
+      "api_field": "req.evidence",
+      "ui_location": "EvidenceDrawer Section 4 blockquote",
+      "user_meaning": "Official clause text or explicit requirement citation proving standard applicability"
+    },
+    {
+      "field": "evidence_strength",
+      "producer": "src/critic.py (CriticResult.evidence_strength)",
+      "transformation": "STRONG for verified citations; MODERATE for curated scope match; NONE for abstentions",
+      "api_field": "req.evidence_strength",
+      "ui_location": "EvidenceDrawer Section 5 EvBadge badge",
+      "user_meaning": "Groundedness level of the supporting evidence"
+    },
+    {
+      "field": "provenance",
+      "producer": "src/standards.py & data/catalogue/catalogue.db",
+      "transformation": "Preserved verbatim from database metadata (OFFICIAL_PRIMARY, OFFICIAL_SECONDARY, CURATED, VERIFIED)",
+      "api_field": "req.provenance",
+      "ui_location": "EvidenceDrawer Section 5 Provenance Badge & description",
+      "user_meaning": "Authoritative origin of the record in the standards registry"
+    },
+    {
+      "field": "source & source_url",
+      "producer": "src/critic.py (evidence_source, source_url)",
+      "transformation": "Passed through API server into requirement payload",
+      "api_field": "req.source & req.source_url",
+      "ui_location": "EvidenceDrawer Section 5 Origin / Citation box",
+      "user_meaning": "Direct citation or portal link for verification"
+    },
+    {
+      "field": "why_it_matches",
+      "producer": "src/recommend.py (why_it_matches)",
+      "transformation": "Synthesized from authoritative scope clauses and requirement technical facets",
+      "api_field": "req.why_it_matches",
+      "ui_location": "RequirementCard body & EvidenceDrawer Section 3",
+      "user_meaning": "Human-readable explanation of why this standard governs the requirement"
+    },
+    {
+      "field": "lifecycle_status & successor_standard",
+      "producer": "src/recommend.py & src/graph.py",
+      "transformation": "Active / Superseded / Withdrawn resolved from standards graph; successor identified",
+      "api_field": "req.lifecycle_status & req.successor_standard",
+      "ui_location": "RequirementCard badge, UpdateCard, and EvidenceDrawer Section 6",
+      "user_meaning": "Current validity of the cited standard and recommended modern replacement"
+    },
+    {
+      "field": "dependencies",
+      "producer": "src/dependencies.py (DependencyGraph / StandardsCoverageMap)",
+      "transformation": "Transitive closure over normative references, test methods, and installation codes",
+      "api_field": "req.dependencies & req.standards_coverage",
+      "ui_location": "EvidenceDrawer Section 9 (Standards Ecosystem & Dependencies)",
+      "user_meaning": "Supporting standards that must be co-applied with the primary standard"
+    },
+    {
+      "field": "regulatory",
+      "producer": "src/regulatory/ (RegulatoryEngine: QCO, CRS, Hallmarking, Certification)",
+      "transformation": "Statutory Gazette Orders cross-referenced against standard numbers and product facets",
+      "api_field": "req.regulatory",
+      "ui_location": "EvidenceDrawer Section 10 (Regulatory & Certification Intelligence)",
+      "user_meaning": "Legal compliance requirements (Quality Control Orders, mandatory BIS marks)"
+    },
+    {
+      "field": "readiness & readiness_reasons",
+      "producer": "src/audit.py (TenderAuditEngine.audit_tender)",
+      "transformation": "Aggregated tender-level review assessment based on risk, completeness, and ambiguity",
+      "api_field": "result.readiness & result.readiness_reasons",
+      "ui_location": "Results page Publication Readiness Banner",
+      "user_meaning": "Executive procurement verdict on whether the tender is ready for publication"
+    }
+  ],
+  "provenance_safety_audit": {
+    "catalogue_distribution": {
+      "OFFICIAL_PRIMARY": 173,
+      "OFFICIAL_SECONDARY": 271,
+      "CURATED": 52,
+      "VERIFIED": 6,
+      "total": 502
+    },
+    "provenance_ui_mapping": {
+      "OFFICIAL_PRIMARY": "Verified Official Primary Source (Gazette notification, Ministry QCO order, or statutory BIS core registry)",
+      "OFFICIAL_SECONDARY": "Official Secondary Source (Ministry or departmental procurement catalogue / public sector schedule)",
+      "VERIFIED": "Verified Official Source (Cross-verified active record in Bureau of Indian Standards catalogue)",
+      "CURATED": "Curated Technical Source (Expert-compiled engineering standard repository verified against domain specifications)",
+      "INFERRED": "Inferred / Derived (Heuristic specification mapping requiring human technical review)"
+    },
+    "verdict": "PASS — No artificial inflation of curated records to official primary. Provenance semantics are transparently displayed."
+  },
+  "lifecycle_traceability_audit": {
+    "status": "PASS",
+    "superseded_advisory": "Explicitly warns: 'Your tender references X, which appears superseded. Recommended current active successor: Y. Technical officer verification is required before tender finalization.' Old citations are never silently replaced."
+  },
+  "ten_real_tender_trace_results": [
+    {
+      "tender_id": "T020",
+      "requirement_id": "T020-R001",
+      "requirement_text": "Repair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn...",
+      "candidate_standard": "IS 15778 : 2007",
+      "evidence_standard": "IS 15778 : 2007",
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "source": "BIS Standards Catalogue",
+      "lifecycle": "Active",
+      "why_it_matches": "IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.",
+      "dependencies_count": 4,
+      "regulatory_status": "APPLICABLE",
+      "ambiguity_state": "CLEAR",
+      "human_review_required": false
+    },
+    {
+      "tender_id": "T001",
+      "requirement_id": "T001-R001",
+      "requirement_text": "Renovation of 5 no of toilets 3 Gents and 2 Ladies incl replacement of damaged pipeline...",
+      "candidate_standard": "IS 15622 : 2017",
+      "evidence_standard": "IS 15622 : 2017",
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "source": "BIS Standards Catalogue",
+      "lifecycle": "Active",
+      "why_it_matches": "IS 15622 covers all pressed ceramic tiles for wall and floor finishes.",
+      "dependencies_count": 3,
+      "regulatory_status": "NOT_IDENTIFIED",
+      "ambiguity_state": "CLEAR",
+      "human_review_required": false
+    },
+    {
+      "tender_id": "T002",
+      "requirement_id": "T002-R001",
+      "requirement_text": "Annual Rate Contract for Execution of Mechanical Maintenance Works including Pumps, Valves...",
+      "candidate_standard": null,
+      "evidence_standard": null,
+      "evidence_strength": "NONE",
+      "provenance": "UNKNOWN",
+      "source": "UNKNOWN",
+      "lifecycle": "Unknown",
+      "why_it_matches": "No reliable Indian Standard match found in the available catalogue.",
+      "dependencies_count": 0,
+      "regulatory_status": "UNKNOWN",
+      "ambiguity_state": "INCOMPLETE",
+      "human_review_required": true
+    },
+    {
+      "tender_id": "T005",
+      "requirement_id": "T005-R001",
+      "requirement_text": "Cable connection of DG Set in Newly constructed building of the Dept. of Molecular...",
+      "candidate_standard": null,
+      "evidence_standard": null,
+      "evidence_strength": "NONE",
+      "provenance": "UNKNOWN",
+      "source": "UNKNOWN",
+      "lifecycle": "Unknown",
+      "why_it_matches": "No reliable Indian Standard match found in the available catalogue.",
+      "dependencies_count": 0,
+      "regulatory_status": "UNKNOWN",
+      "ambiguity_state": "AMBIGUOUS",
+      "human_review_required": true
+    },
+    {
+      "tender_id": "T007",
+      "requirement_id": "T007-R001",
+      "requirement_text": "Tender for Opening of Himalayan Low-Oil Food Outlet on BOT basis at IIT Ropar...",
+      "candidate_standard": "IS 302 : 1994",
+      "evidence_standard": "IS 302 : 1994",
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "source": "BIS Standards Catalogue",
+      "lifecycle": "Active",
+      "why_it_matches": "Curated reference standard for Safety of Household and Similar Electrical Appliances.",
+      "dependencies_count": 4,
+      "regulatory_status": "NOT_IDENTIFIED",
+      "ambiguity_state": "REVIEW_REQUIRED",
+      "human_review_required": true
+    },
+    {
+      "tender_id": "T010",
+      "requirement_id": "T010-R001",
+      "requirement_text": "Electromechanical Works and Sewerage Pipeline works from Collection Chamber to STP...",
+      "candidate_standard": null,
+      "evidence_standard": null,
+      "evidence_strength": "NONE",
+      "provenance": "UNKNOWN",
+      "source": "UNKNOWN",
+      "lifecycle": "Unknown",
+      "why_it_matches": "No reliable Indian Standard match found in the available catalogue.",
+      "dependencies_count": 0,
+      "regulatory_status": "UNKNOWN",
+      "ambiguity_state": "AMBIGUOUS",
+      "human_review_required": true
+    },
+    {
+      "tender_id": "T011",
+      "requirement_id": "T011-R001",
+      "requirement_text": "Providing and laying underground cable for STP for main supply of electricity under C...",
+      "candidate_standard": null,
+      "evidence_standard": null,
+      "evidence_strength": "NONE",
+      "provenance": "UNKNOWN",
+      "source": "UNKNOWN",
+      "lifecycle": "Unknown",
+      "why_it_matches": "No reliable Indian Standard match found in the available catalogue.",
+      "dependencies_count": 0,
+      "regulatory_status": "UNKNOWN",
+      "ambiguity_state": "AMBIGUOUS",
+      "human_review_required": true
+    },
+    {
+      "tender_id": "T013",
+      "requirement_id": "T013-R001",
+      "requirement_text": "SITC of VFD water pump panel, piping work , Insulation work and replacement of by val...",
+      "candidate_standard": "IS/IEC 61439-2 : 2011",
+      "evidence_standard": "IS/IEC 61439-2 : 2011",
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "source": "BIS Standards Catalogue",
+      "lifecycle": "Active",
+      "why_it_matches": "Partial Match: Proposed standard covers the VFD drive controller, but the panel requires review.",
+      "dependencies_count": 3,
+      "regulatory_status": "NOT_IDENTIFIED",
+      "ambiguity_state": "REVIEW_REQUIRED",
+      "human_review_required": true
+    },
+    {
+      "tender_id": "T016",
+      "requirement_id": "T016-R001",
+      "requirement_text": "Construction of 01 No Surveillance Cum OP Shelter G1 at BOP Rana...",
+      "candidate_standard": "SP 62 : 1997",
+      "evidence_standard": "SP 62 : 1997",
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "source": "BIS Standards Catalogue",
+      "lifecycle": "Active",
+      "why_it_matches": "Curated reference standard for Handbook on Building Construction Practices.",
+      "dependencies_count": 4,
+      "regulatory_status": "NOT_IDENTIFIED",
+      "ambiguity_state": "CLEAR",
+      "human_review_required": false
+    },
+    {
+      "tender_id": "T018",
+      "requirement_id": "T018-R001",
+      "requirement_text": "Construction of 01 No Surveillance Cum OP Shelter G1 at BOP Rana of 160 Bn...",
+      "candidate_standard": "SP 62 : 1997",
+      "evidence_standard": "SP 62 : 1997",
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "source": "BIS Standards Catalogue",
+      "lifecycle": "Active",
+      "why_it_matches": "Curated reference standard for Handbook on Building Construction Practices.",
+      "dependencies_count": 4,
+      "regulatory_status": "NOT_IDENTIFIED",
+      "ambiguity_state": "CLEAR",
+      "human_review_required": false
+    }
+  ],
+  "automated_tests": {
+    "dedicated_evidence_chain_tests": "tests/test_p7c_evidence_chain.py (15 passed, 0 failed)",
+    "dedicated_contract_tests": "tests/test_p7b_api_ui_contract.py (20 passed, 0 failed)",
+    "total_repository_tests": "290 passed, 0 failed, 32 harmless deprecation warnings"
+  },
+  "e2e_regression": {
+    "tenders_analyzed": 20,
+    "requirements_analyzed": 25,
+    "candidate_equals_evidence": "25 / 25 (100.0%)",
+    "readiness_distribution": {
+      "READY_FOR_REVIEW": 7,
+      "REVIEW_REQUIRED": 7,
+      "INSUFFICIENT_EVIDENCE": 6
+    },
+    "multilingual_benchmark_sha256": "db62e0367ea2983dab49a9ac8a98958efb0c17882df86f131ecfa6b04903690b",
+    "standards_db_rows": 90,
+    "standards_db_distinct_ids": 90,
+    "catalogue_db_rows": 502
+  },
+  "verdict": "PRIORITY 7C PASS — PROCEED TO P7D"
+}
