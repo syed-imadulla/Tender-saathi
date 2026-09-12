@@ -102,6 +102,7 @@ export interface Requirement {
   risk_level: 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW';
   risk_reasons: string[];
   decision: string;
+  review_reason?: string;
   // Completeness
   completeness_label: string;
   missing_parameters: string[];

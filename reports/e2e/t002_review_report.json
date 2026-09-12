@@ -185,7 +185,75 @@
       ],
       "human_review_required": true,
       "confidence": "Low",
-      "review_reason": "Tender requirement specifies 'valve' equipment but omits critical discriminating technical parameters (material, valve type). A specific Indian Standard cannot be safely selected without guessing."
+      "review_reason": "Tender requirement specifies 'valve' equipment but omits critical discriminating technical parameters (material, valve type). A specific Indian Standard cannot be safely selected without guessing.",
+      "candidate_standard": null,
+      "evidence_standard": null,
+      "why_it_matches": "Tender specification omits critical discriminating parameters required to identify an applicable Indian Standard.",
+      "dependencies": [],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "UNKNOWN",
+          "matched_product": "",
+          "standard_number": "",
+          "legal_basis": "Bureau of Indian Standards Act, 2016",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.5,
+          "human_review_required": true,
+          "explanation": "No Indian Standard provided to establish BIS Product Certification status.",
+          "additional_metadata": {}
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "",
+          "legal_basis": "",
+          "source": "",
+          "source_url": "",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": false,
+          "explanation": "No Indian Standard provided to evaluate Quality Control Order applicability.",
+          "additional_metadata": {}
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": false,
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (pumps, valve); not applicable.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "INCOMPLETE",
+      "ambiguity_reason": "Tender requirement specifies 'valve' equipment but omits critical discriminating technical parameters (material, valve type). A specific Indian Standard cannot be safely selected without guessing."
     }
   ],
   "review_queue": [

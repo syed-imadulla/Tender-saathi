@@ -1,0 +1,116 @@
+{
+  "audit_version": "1.0.0",
+  "project": "TenderSaathi",
+  "problem_statement": "SIH26108",
+  "milestone": "Priority 7 — Product Surface, Decision-Safety & Real-Tender Audit",
+  "audit_timestamp": "2026-09-12T18:35:00Z",
+  "final_verdict": "LOCK_PRIORITY_7",
+  "verdict_summary": "Priority 7 is fully verified, decision-safe, explainable, and ready for production lock. All 319 tests pass, candidate==evidence invariant holds at 100%, and all real tenders and demos operate reliably without regressions.",
+  "invariants": {
+    "candidate_equals_evidence_when_present": {
+      "status": "PASS",
+      "checked_count": 40,
+      "passed_count": 40,
+      "violation_count": 0
+    },
+    "evidence_null_when_candidate_null": {
+      "status": "PASS",
+      "checked_count": 40,
+      "passed_count": 40,
+      "violation_count": 0
+    },
+    "no_manufactured_evidence": {
+      "status": "PASS",
+      "checked_count": 40,
+      "passed_count": 40,
+      "violation_count": 0
+    },
+    "multilingual_benchmark_sha256": {
+      "status": "PASS",
+      "expected": "db62e0367ea2983dab49a9ac8a98958efb0c17882df86f131ecfa6b04903690b",
+      "actual": "db62e0367ea2983dab49a9ac8a98958efb0c17882df86f131ecfa6b04903690b"
+    },
+    "standards_database_row_count": {
+      "status": "PASS",
+      "expected": 90,
+      "actual": 90
+    },
+    "catalogue_database_record_count": {
+      "status": "PASS",
+      "expected": 502,
+      "actual": 502
+    }
+  },
+  "phase_verdicts": {
+    "phase_1_api_ui_contract": "PASS",
+    "phase_2_frontend_rendering": "PASS",
+    "phase_3_evidence_drawer": "PASS",
+    "phase_4_evidence_grounding": "PASS",
+    "phase_5_superseded_and_citations": "PASS",
+    "phase_6_multi_item_tenders": "PASS",
+    "phase_7_adversarial_inputs": "PASS",
+    "phase_8_executive_summary_and_export": "PASS",
+    "phase_9_failure_and_edge_states": "PASS",
+    "phase_10_real_tender_verification": "PASS",
+    "phase_11_demo_reliability": "PASS",
+    "phase_12_minimal_remediation": "PASS",
+    "phase_13_regression_verification": "PASS",
+    "phase_14_final_adjudication": "PASS"
+  },
+  "test_metrics": {
+    "total_tests_collected": 319,
+    "total_tests_passed": 319,
+    "total_tests_failed": 0,
+    "pass_rate_percentage": 100.0,
+    "targeted_suites": {
+      "test_p7b_api_ui_contract": "20/20 PASSED",
+      "test_p7c_evidence_chain": "15/15 PASSED",
+      "test_p7d_adversarial_safety": "15/15 PASSED",
+      "test_p7e_failure_and_edge_states": "14/14 PASSED",
+      "test_ambiguity": "19/19 PASSED",
+      "test_milestone7_report": "20/20 PASSED",
+      "test_standards": "8/8 PASSED"
+    }
+  },
+  "demo_verification": {
+    "sample_cpvc": {
+      "status": "200 OK",
+      "candidate_standard": "IS 15778 : 2007",
+      "evidence_standard": "IS 15778 : 2007",
+      "readiness": "READY_FOR_REVIEW",
+      "dependencies_count": 5,
+      "qco_status": "CURRENT"
+    },
+    "sample_valve": {
+      "status": "200 OK",
+      "candidate_standard": "IS/ISO 10434 : 2020",
+      "evidence_standard": "IS/ISO 10434 : 2020",
+      "readiness": "REVIEW_REQUIRED",
+      "dependencies_count": 1,
+      "qco_status": "NOT_IDENTIFIED"
+    },
+    "sample_superseded": {
+      "status": "200 OK",
+      "candidate_standard": "IS/ISO 10434 : 2020",
+      "evidence_standard": "IS/ISO 10434 : 2020",
+      "readiness": "REVIEW_REQUIRED",
+      "dependencies_count": 1,
+      "superseded_cited": "IS 10611"
+    }
+  },
+  "real_tender_benchmark": {
+    "tenders_analyzed": 20,
+    "requirements_extracted": 25,
+    "representative_cases_audited": [
+      {"id": "T020", "category": "CLEAR", "readiness": "READY_FOR_REVIEW", "candidate_standard": "IS 15778 : 2007", "evidence_standard": "IS 15778 : 2007"},
+      {"id": "T001", "category": "CLEAR", "readiness": "READY_FOR_REVIEW", "candidate_standard": "IS 15778 : 2007", "evidence_standard": "IS 15778 : 2007"},
+      {"id": "T002", "category": "ABSTENTION", "readiness": "INSUFFICIENT_EVIDENCE", "candidate_standard": null, "evidence_standard": null},
+      {"id": "T010", "category": "ABSTENTION", "readiness": "INSUFFICIENT_EVIDENCE", "candidate_standard": null, "evidence_standard": null},
+      {"id": "T012", "category": "REVIEW_REQUIRED", "readiness": "REVIEW_REQUIRED", "candidate_standard": "IS 1538 : 1993", "evidence_standard": "IS 1538 : 1993"},
+      {"id": "T014", "category": "REVIEW_REQUIRED", "readiness": "REVIEW_REQUIRED", "candidate_standard": "IS/IEC 60034-1 : 2017", "evidence_standard": "IS/IEC 60034-1 : 2017"},
+      {"id": "T013", "category": "LIFECYCLE_DEPENDENCY", "readiness": "REVIEW_REQUIRED", "dependencies_count": 4},
+      {"id": "T003", "category": "MIXED_MULTI_ITEM", "readiness": "READY_FOR_REVIEW", "requirements_count": 2},
+      {"id": "T016", "category": "MIXED_MULTI_ITEM", "readiness": "READY_FOR_REVIEW", "requirements_count": 2}
+    ]
+  }
+}

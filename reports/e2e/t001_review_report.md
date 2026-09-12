@@ -64,7 +64,10 @@
 
 - **Decomposed Technical Components:** `general: Renovation`, `general: replacement`, `general: pipelines`, `general: GI pipes`, `general: wall tiles`, `general: upgradation`, `general: sanitary fittings`
 - **Recommended Standard:** **IS 15622 : 2017** — *Pressed Ceramic Tiles - Specification (First Revision)*
+- **Candidate Standard:** `IS 15622 : 2017` | **Evidence Standard:** `IS 15622 : 2017` (Candidate == Evidence Grounding Established)
+- **Why It Matches:** IS 15622 covers all pressed ceramic tiles for wall and floor finishes (water absorption groups B Ia, B Ib,...
 - **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.578`
+- **Ambiguity & Verification State:** `CLEAR` — *Reason:* Primary applicable standard IS 15622 is clearly identifiable and sufficiently supported.
 - **Evidence Strength:** `MODERATE` | **Provenance:** `CURATED`
 - **Verbatim Evidence (BIS Standards Catalogue):** "Exact Match: IS 15622 covers all pressed ceramic tiles for wall and floor finishes (water absorption groups B Ia, B Ib, B IIa, B IIb, B III)."
 - **Why This Standard?:**
@@ -79,6 +82,11 @@
 - **Related Standards Identified for Review (Graph Depth = 1):**
   - [→ SUPERSEDES] `IS 13753` — *Pressed Ceramic Tiles - Specification (First Revision)* (Superseded) — *Note:* Authoritative successor standard supersedes IS 13753. Review legacy specifications.
   - [→ SUPERSEDES] `IS 13755` — *Pressed Ceramic Tiles - Specification (First Revision)* (Superseded) — *Note:* Authoritative successor standard supersedes IS 13755. Review legacy specifications.
+- **Standards Dependencies Mapped (3):**
+  - [SUPERSEDES] `IS 13753` — *Pressed Ceramic Tiles - Specification (First Revision)* (IS 13753 (Pressed Ceramic Tiles - Specification (First Revision)) is identified as an evidence-backed authoritative successor standard associated with IS 15622 : 2017. Evidence: Authoritative record for IS 15622 explicitly supersedes earlier standard IS 13753. [Provenance: CURATED].)
+  - [SUPERSEDES] `IS 13755` — *Pressed Ceramic Tiles - Specification (First Revision)* (IS 13755 (Pressed Ceramic Tiles - Specification (First Revision)) is identified as an evidence-backed authoritative successor standard associated with IS 15622 : 2017. Evidence: Foreword of IS 15622: supersedes earlier standards IS 13753 (wall tiles) and IS 13755 (floor tiles). [Provenance: CURATED].)
+  - [CODE OF PRACTICE] `SP 57 (QAWSM) : 1993` — *Handbook on Pipes and Fittings for Drinking Water Supply* ()
+- **Regulatory & Statutory Intelligence:** Product Certification: `NOT_IDENTIFIED` | QCO: `NOT_IDENTIFIED` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
 - **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `Medium`
 
 ---

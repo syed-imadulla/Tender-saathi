@@ -106,6 +106,19 @@ export function RecommendationCard({ req, isPrimary = false, onOpenEvidence }: R
             <h3 className="rec-card__standard-num">{req.candidate_standard}</h3>
             {isPrimary && <span className="rec-badge rec-badge--primary">Primary recommendation</span>}
             {isExplicitlyCited && <span className="rec-badge rec-badge--cited">Explicitly cited in tender</span>}
+            {req.evidence_strength && req.evidence_strength !== 'NONE' && (
+              <span className={`rec-badge ${req.evidence_strength === 'STRONG' ? 'rec-badge--strong' : 'rec-badge--moderate'}`}>
+                {req.evidence_strength === 'STRONG' ? 'Strong Evidence' : 'Supporting Evidence'}
+              </span>
+            )}
+            {req.lifecycle_status && (
+              <span className={`rec-badge ${req.lifecycle_status.toLowerCase() === 'active' ? 'rec-badge--active' : 'rec-badge--warning'}`}>
+                {req.lifecycle_status}
+              </span>
+            )}
+            {req.regulatory?.qco?.status === 'CURRENT' && (
+              <span className="rec-badge rec-badge--qco">Mandatory QCO</span>
+            )}
             {isPotentialMatch && (
               <span className="rec-badge rec-badge--warning">Potential match — human review required</span>
             )}
@@ -287,9 +300,9 @@ export function AttentionCard({ req, onOpenEvidence }: AttentionCardProps) {
 
       <div className="attention-card__body">
         {/* State description / reason */}
-        {req.ambiguity_reason && (
+        {(req.ambiguity_reason || req.review_reason || req.why_flagged || (req.risk_reasons && req.risk_reasons[0])) && (
           <p className="attention-card__desc" style={{ marginBottom: '8px', fontWeight: 500, color: '#334155' }}>
-            {req.ambiguity_reason}
+            {req.ambiguity_reason || req.review_reason || req.why_flagged || req.risk_reasons[0]}
           </p>
         )}
 

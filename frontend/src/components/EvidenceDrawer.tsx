@@ -207,16 +207,39 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
 
 
           {/* 2. Indian Standard */}
+          {/* 2. Indian Standard */}
           <section className="drawer-section">
-            <span className="drawer-section__label">2. Indian Standard</span>
+            <span className="drawer-section__label">2. Indian Standard & Grounding Integrity</span>
             {isNoMatch ? (
               <div className="drawer-section__value drawer-section__value--nomatch">
-                No reliable standard match found in catalogue
+                <div style={{ fontWeight: 700, color: '#475569', marginBottom: '4px' }}>
+                  No reliable standard match found in catalogue
+                </div>
+                <div style={{ fontSize: '0.8rem', color: '#64748b' }}>
+                  Candidate Standard: <span style={{ fontFamily: 'monospace' }}>None (Abstained)</span> · Evidence Standard: <span style={{ fontFamily: 'monospace' }}>None</span>
+                </div>
               </div>
             ) : (
               <div className="drawer-std-block">
-                <div className="drawer-section__value drawer-section__value--standard">
-                  {req.candidate_standard}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', marginBottom: '4px' }}>
+                  <div className="drawer-section__value drawer-section__value--standard">
+                    {req.candidate_standard}
+                  </div>
+                  {req.candidate_standard && req.evidence_standard && areStandardsEquivalent(req.candidate_standard, req.evidence_standard) ? (
+                    <span className="badge badge--active" style={{ fontSize: '0.72rem' }}>
+                      ✓ Grounding Established (Candidate == Evidence)
+                    </span>
+                  ) : req.candidate_standard && req.evidence_standard ? (
+                    <span className="badge badge--superseded" style={{ fontSize: '0.72rem' }}>
+                      ⚠ Evidence Review (Candidate ≠ Evidence)
+                    </span>
+                  ) : null}
+                </div>
+                <div style={{ fontSize: '0.8rem', color: '#475569', marginBottom: '4px' }}>
+                  <strong>Grounded Evidence Standard:</strong>{' '}
+                  <span style={{ fontFamily: 'monospace', fontWeight: 600, color: '#0f172a' }}>
+                    {req.evidence_standard || req.candidate_standard}
+                  </span>
                 </div>
                 {req.title && (
                   <div className="drawer-section__value drawer-section__value--title">
@@ -686,8 +709,8 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
             )}
           </CollapseSection>
 
-          {/* 12. AI Understanding (Collapsed by default) */}
-          <CollapseSection title="12. AI Requirement Understanding" defaultOpen={false}>
+          {/* 13. AI Understanding (Collapsed by default) */}
+          <CollapseSection title="13. AI Requirement Understanding" defaultOpen={false}>
             <div className="drawer-ai-facets">
               {FACET_KEYS.map(({ key, label }) => {
                 const val = ai.facets ? ai.facets[key] : null;

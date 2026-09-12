@@ -65,7 +65,7 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
     });
   }, [allReqs]);
 
-  // 2. Needs Attention: Actual missing parameters, ambiguity, or human review required
+  // 2. Needs Attention: Actual missing parameters, ambiguity, human review required, or safe abstentions
   const attentionList = useMemo(() => {
     return allReqs.filter((req) => {
       const hasMissing = req.missing_parameters && req.missing_parameters.length > 0;
@@ -73,7 +73,13 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
         req.decision === 'INSUFFICIENT_EVIDENCE' ||
         req.candidate_standard === 'INSUFFICIENT_INFORMATION';
       const needsHumanReview = req.human_review_required || req.decision === 'REVIEW_REQUIRED';
-      return hasMissing || isInsufficient || needsHumanReview;
+      const isAbstentionOrNonClear =
+        !req.candidate_standard ||
+        req.candidate_standard === 'NONE' ||
+        req.decision === 'NO_RELIABLE_MATCH' ||
+        req.decision === 'REJECT' ||
+        (req.ambiguity_state && req.ambiguity_state !== 'CLEAR');
+      return hasMissing || isInsufficient || needsHumanReview || isAbstentionOrNonClear;
     });
   }, [allReqs]);
 
