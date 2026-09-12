@@ -665,19 +665,6 @@ class AmbiguityEngine:
         if not same_procurement_object(attr1, attr2):
             return False, "", {}
             
-        # Hard safety override for VFD vs Switchgear since they share product family "panel" in our simple attribute extractor
-        if ("vfd" in t1 or "power drive" in t1) and ("switchgear" in t2 or "controlgear" in t2):
-            return False, "", {}
-        if ("vfd" in t2 or "power drive" in t2) and ("switchgear" in t1 or "controlgear" in t1):
-            return False, "", {}
-            
-        # Food safety edge case override
-        if "food" in t1 and "food" in t2:
-            has_haccp = "haccp" in text_lower or "15000" in text_lower
-            has_gen = "basic hygiene" in text_lower or "2491" in text_lower
-            if has_haccp != has_gen:
-                return False, "", {}
-
         # 4. Discriminator Detection
         discriminators = find_discriminators(attr1, attr2)
         if not discriminators:
