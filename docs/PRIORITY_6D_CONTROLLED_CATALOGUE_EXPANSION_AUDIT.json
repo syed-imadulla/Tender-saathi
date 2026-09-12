@@ -1,0 +1,506 @@
+{
+  "priority": "6D",
+  "title": "Controlled Catalogue Expansion & Multilingual Safety Regression Audit",
+  "timestamp": "2026-09-12T15:30:00Z",
+  "status": "PASS WITH LIMITATIONS \u2014 NOT YET LOCKED",
+  "git": {
+    "branch": "main",
+    "starting_commit": "4bb65e55841b5a0f30b55f5fd5f5ebc13dcb1c01",
+    "working_tree_clean_target": false
+  },
+  "catalogue_counts": {
+    "benchmark_db_before_6d": 85,
+    "benchmark_db_after_6d": 90,
+    "expanded_catalogue_before_6d": 501,
+    "expanded_catalogue_after_6d": 502,
+    "target_standards_added_to_benchmark_db": [
+      "IS 1180 (Part 1) : 2014",
+      "IS 15328 : 2003",
+      "IS 1786 : 2008",
+      "IS 7098 (Part 2) : 2011",
+      "IS 8034 : 2018"
+    ],
+    "target_standards_added_to_expanded_catalogue": [
+      "IS 15328 : 2003"
+    ],
+    "target_standards_already_in_expanded_catalogue": [
+      "IS 1180 (Part 1) : 2014",
+      "IS 1786 : 2008",
+      "IS 7098 (Part 2) : 2011",
+      "IS 8034 : 2018"
+    ]
+  },
+  "index_rebuild": {
+    "standards_bm25_count": 90,
+    "standards_embeddings_shape": [
+      90,
+      384
+    ],
+    "catalogue_bm25_count": 502,
+    "catalogue_embeddings_shape": [
+      502,
+      384
+    ],
+    "embedding_model": "all-MiniLM-L6-v2",
+    "status": "SUCCESS"
+  },
+  "direct_retrieval_tests": {
+    "cable_11kv": {
+      "query": "11 kV XLPE 3 core underground cable",
+      "candidate": "IS 7098 (Part 2) : 2011",
+      "expected": "IS 7098 (Part 2) : 2011",
+      "status": "PASS"
+    },
+    "transformer_11kv": {
+      "query": "11 kV 500 kVA outdoor oil immersed distribution transformer",
+      "candidate": "IS 1180 (Part 1) : 2014",
+      "expected": "IS 1180 (Part 1) : 2014",
+      "status": "PASS"
+    },
+    "drainage_110mm": {
+      "query": "110 mm PVC-U underground drainage pipe",
+      "candidate": "IS 15328 : 2003",
+      "expected": "IS 15328 : 2003",
+      "status": "PASS"
+    },
+    "reinforcement_fe500d": {
+      "query": "Fe 500D TMT reinforcement bars",
+      "candidate": "IS 1786 : 2008",
+      "expected": "IS 1786 : 2008",
+      "status": "PASS"
+    },
+    "submersible_pump": {
+      "query": "submersible pumpset",
+      "candidate": "IS 8034 : 2018",
+      "expected": "IS 8034 : 2018",
+      "status": "PASS"
+    }
+  },
+  "section_10_wrong_candidate_safety_tests": {
+    "test_a_xlpe_voltage": {
+      "candidate_part1_rejected": true,
+      "part2_recommended": true,
+      "status": "PASS"
+    },
+    "test_b_fe500d_rebar": {
+      "candidate_is432_rejected": true,
+      "is1786_recommended": true,
+      "status": "PASS"
+    },
+    "test_c_pvcu_drainage": {
+      "candidate_is4985_rejected": true,
+      "is15328_recommended": true,
+      "status": "PASS"
+    },
+    "test_d_transformer": {
+      "candidate_is5039_rejected": true,
+      "is1180_recommended": true,
+      "status": "PASS"
+    },
+    "test_e_submersible_pump": {
+      "generic_pump_rejected_if_submersible_missing": true,
+      "is8034_recommended_for_submersible": true,
+      "status": "PASS"
+    }
+  },
+  "benchmark_40_cases": {
+    "total_cases": 40,
+    "language_detection_accuracy": 100.0,
+    "normalization_quality_rate": 97.2,
+    "ab_agreement_rate": 100.0,
+    "expected_match_rate": 95.0,
+    "candidate_eq_evidence_invariant": 100.0,
+    "ab_divergences_count": 0
+  },
+  "divergences_investigation": {
+    "ML-TA-08": {
+      "before_6d": "DIVERGENT (Path A: IS 14333, Path B: IS 15905)",
+      "after_6d": "AGREE (Path A: IS 15328 : 2003, Path B: IS 15328 : 2003)",
+      "status": "RESOLVED"
+    },
+    "ML-MX-07": {
+      "before_6d": "DIVERGENT (Path A: IS 1239, Path B: IS 16088)",
+      "after_6d": "AGREE (Path A: IS 15328 : 2003, Path B: IS 15328 : 2003)",
+      "status": "RESOLVED"
+    }
+  },
+  "pytest_suite": {
+    "total": 254,
+    "passed": 254,
+    "failed": 0,
+    "skipped": 0,
+    "warnings": 1,
+    "runtime_seconds": 74.9
+  },
+  "affected_cases_21_table": [
+    {
+      "Case ID": "ML-HI-01",
+      "Language": "hi",
+      "Original input": "11 \u0915\u0947\u0935\u0940 3 \u0915\u094b\u0930 185 \u0935\u0930\u094d\u0917 \u092e\u093f\u092e\u0940 \u090f\u0915\u094d\u0938\u090f\u0932\u092a\u0940\u0908 \u0907\u0902\u0938\u0941\u0932\u0947\u091f\u0947\u0921 \u092d\u0942\u092e\u093f\u0917\u0924 \u0915\u0947\u092c\u0932 \u0915\u0940 \u0906\u092a\u0942\u0930\u094d\u0924\u093f \u0914\u0930 \u092c\u093f\u091b\u093e\u0928\u093e",
+      "Normalized input": "11 kV 3 core 185 sq mm XLPE insulated underground cable supply and laying",
+      "Expected standard": "IS 7098 (Part 2) : 2011",
+      "Path A": "IS 7098 (Part 2) : 2011",
+      "Path B": "IS 7098 (Part 2) : 2011",
+      "Final candidate": "IS 7098 (Part 2) : 2011",
+      "Evidence standard": "IS 7098 (Part 2) : 2011",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-HI-04",
+      "Language": "hi",
+      "Original input": "11 \u0915\u0947\u0935\u0940 \u0915\u0947 500 \u0915\u0947\u0935\u0940\u090f \u0906\u0909\u091f\u0921\u094b\u0930 \u0924\u0947\u0932 \u0928\u093f\u092e\u091c\u094d\u091c\u093f\u0924 \u0935\u093f\u0924\u0930\u0923 \u091f\u094d\u0930\u093e\u0902\u0938\u092b\u093e\u0930\u094d\u092e\u0930 \u0915\u0940 \u0906\u092a\u0942\u0930\u094d\u0924\u093f",
+      "Normalized input": "11 kV of 500 kVA outdoor oil immersed distribution transformer supply",
+      "Expected standard": "IS 1180 (Part 1) : 2014",
+      "Path A": "IS 1180 (Part 1) : 2014",
+      "Path B": "IS 1180 (Part 1) : 2014",
+      "Final candidate": "IS 1180 (Part 1) : 2014",
+      "Evidence standard": "IS 1180 (Part 1) : 2014",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-HI-05",
+      "Language": "hi",
+      "Original input": "\u092d\u0942\u092e\u093f\u0917\u0924 \u091c\u0932 \u0928\u093f\u0915\u093e\u0938 \u0915\u0947 \u0932\u093f\u090f 110 \u092e\u093f\u092e\u0940 \u0905\u0928\u092a\u094d\u0932\u093e\u0938\u094d\u091f\u093f\u0915\u093e\u0907\u091c\u094d\u0921 \u092a\u0940\u0935\u0940\u0938\u0940 \u092a\u093e\u0907\u092a",
+      "Normalized input": "for underground drainage and sewerage 110 mm unplasticized PVC pipe",
+      "Expected standard": "IS 15328 : 2003",
+      "Path A": "IS 15328 : 2003",
+      "Path B": "IS 15328 : 2003",
+      "Final candidate": "IS 15328 : 2003",
+      "Evidence standard": "IS 15328 : 2003",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-HI-06",
+      "Language": "hi",
+      "Original input": "\u0915\u0943\u0937\u093f \u091c\u0932 \u0906\u092a\u0942\u0930\u094d\u0924\u093f \u0915\u0947 \u0932\u093f\u090f 5 \u090f\u091a\u092a\u0940 \u0938\u092c\u092e\u0930\u094d\u0938\u093f\u092c\u0932 \u092a\u0902\u092a\u0938\u0947\u091f \u0915\u0940 \u0906\u092a\u0942\u0930\u094d\u0924\u093f",
+      "Normalized input": "for agricultural water supply 5 HP submersible pumpset supply",
+      "Expected standard": "IS 8034 : 2018",
+      "Path A": "IS 8034 : 2018",
+      "Path B": "IS 8034 : 2018",
+      "Final candidate": "IS 8034 : 2018",
+      "Evidence standard": "IS 8034 : 2018",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-HI-07",
+      "Language": "hi",
+      "Original input": "\u0915\u0902\u0915\u094d\u0930\u0940\u091f \u0938\u0941\u0926\u0943\u0922\u0940\u0915\u0930\u0923 \u0915\u0947 \u0932\u093f\u090f 16 \u092e\u093f\u092e\u0940 \u091f\u0940\u090f\u092e\u091f\u0940 \u0938\u094d\u091f\u0940\u0932 \u0938\u0930\u093f\u092f\u093e Fe 500D \u0915\u0940 \u0906\u092a\u0942\u0930\u094d\u0924\u093f",
+      "Normalized input": "for concrete reinforcement 16 mm TMT steel reinforcement bar Fe 500D supply",
+      "Expected standard": "IS 1786 : 2008",
+      "Path A": "IS 1786 : 2008",
+      "Path B": "IS 1786 : 2008",
+      "Final candidate": "IS 1786 : 2008",
+      "Evidence standard": "IS 1786 : 2008",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-KN-03",
+      "Language": "kn",
+      "Original input": "11 \u0c95\u0cc6\u0cb5\u0cbf 3 \u0c95\u0ccb\u0cb0\u0ccd 185 \u0c9a\u0ca6\u0cb0 \u0cae\u0cbf\u0cae\u0cc0 \u0c8e\u0c95\u0ccd\u0cb8\u0ccd\u200c\u0c8e\u0cb2\u0ccd\u200c\u0caa\u0cbf\u0c87 \u0cad\u0cc2\u0c97\u0ca4 \u0c95\u0cc7\u0cac\u0cb2\u0ccd \u0c85\u0cb3\u0cb5\u0ca1\u0cbf\u0c95\u0cc6",
+      "Normalized input": "11 kV 3 core 185 sq mm XLPE underground cable installation",
+      "Expected standard": "IS 7098 (Part 2) : 2011",
+      "Path A": "IS 7098 (Part 2) : 2011",
+      "Path B": "IS 7098 (Part 2) : 2011",
+      "Final candidate": "IS 7098 (Part 2) : 2011",
+      "Evidence standard": "IS 7098 (Part 2) : 2011",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-KN-04",
+      "Language": "kn",
+      "Original input": "11 \u0c95\u0cc6\u0cb5\u0cbf 500 \u0c95\u0cc6\u0cb5\u0cbf\u0c8e \u0cb9\u0cca\u0cb0\u0cbe\u0c82\u0c97\u0ca3 \u0ca4\u0cc8\u0cb2 \u0cae\u0cc1\u0cb3\u0cc1\u0c97\u0cbf\u0ca6 \u0cb5\u0cbf\u0ca4\u0cb0\u0ca3\u0cbe \u0caa\u0cb0\u0cbf\u0cb5\u0cb0\u0ccd\u0ca4\u0c95 \u0cb8\u0cb0\u0cac\u0cb0\u0cbe\u0c9c\u0cc1",
+      "Normalized input": "11 kV 500 kVA outdoor oil immersed distribution transformer supply",
+      "Expected standard": "IS 1180 (Part 1) : 2014",
+      "Path A": "IS 1180 (Part 1) : 2014",
+      "Path B": "IS 1180 (Part 1) : 2014",
+      "Final candidate": "IS 1180 (Part 1) : 2014",
+      "Evidence standard": "IS 1180 (Part 1) : 2014",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-KN-05",
+      "Language": "kn",
+      "Original input": "\u0cac\u0ccb\u0cb0\u0ccd\u200c\u0cb5\u0cc6\u0cb2\u0ccd \u0ca8\u0cc0\u0cb0\u0cc1 \u0cb8\u0cb0\u0cac\u0cb0\u0cbe\u0c9c\u0cbf\u0c97\u0cc6 5 \u0c8e\u0c9a\u0ccd\u200c\u0caa\u0cbf \u0cb8\u0cac\u0ccd\u200c\u0cae\u0cb0\u0ccd\u0cb8\u0cbf\u0cac\u0cb2\u0ccd \u0caa\u0c82\u0caa\u0ccd\u200c\u0cb8\u0cc6\u0c9f\u0ccd",
+      "Normalized input": "for borewell water supply 5 HP submersible pumpset",
+      "Expected standard": "IS 8034 : 2018",
+      "Path A": "IS 8034 : 2018",
+      "Path B": "IS 8034 : 2018",
+      "Final candidate": "IS 8034 : 2018",
+      "Evidence standard": "IS 8034 : 2018",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-KN-06",
+      "Language": "kn",
+      "Original input": "\u0cad\u0cc2\u0c97\u0ca4 \u0c92\u0cb3\u0c9a\u0cb0\u0c82\u0ca1\u0cbf\u0c97\u0cbe\u0c97\u0cbf 110 \u0cae\u0cbf\u0cae\u0cc0 \u0caa\u0cbf\u0cb5\u0cbf\u0cb8\u0cbf \u0caa\u0cc8\u0caa\u0ccd\u200c\u0c97\u0cb3\u0cc1",
+      "Normalized input": "for underground drainage and sewerage 110 mm PVC pipes",
+      "Expected standard": "IS 15328 : 2003",
+      "Path A": "IS 15328 : 2003",
+      "Path B": "IS 15328 : 2003",
+      "Final candidate": "IS 15328 : 2003",
+      "Evidence standard": "IS 15328 : 2003",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-KN-07",
+      "Language": "kn",
+      "Original input": "\u0c95\u0c9f\u0ccd\u0c9f\u0ca1 \u0ca8\u0cbf\u0cb0\u0ccd\u0cae\u0cbe\u0ca3\u0c95\u0ccd\u0c95\u0cbe\u0c97\u0cbf 12 \u0cae\u0cbf\u0cae\u0cc0 \u0c9f\u0cbf\u0c8e\u0c82\u0c9f\u0cbf \u0c89\u0c95\u0ccd\u0c95\u0cbf\u0ca8 \u0cac\u0cbe\u0cb0\u0ccd Fe 500D \u0cb8\u0cb0\u0cac\u0cb0\u0cbe\u0c9c\u0cc1",
+      "Normalized input": "for building construction 12 mm \u0c9f\u0cbf\u0c8e\u0c82\u0c9f\u0cbf \u0c89\u0c95\u0ccd\u0c95\u0cbf\u0ca8 bar Fe 500D supply",
+      "Expected standard": "IS 1786 : 2008",
+      "Path A": "IS 1786 : 2008",
+      "Path B": "IS 1786 : 2008",
+      "Final candidate": "IS 1786 : 2008",
+      "Evidence standard": "IS 1786 : 2008",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "REVIEW_REQUIRED",
+      "Human review": "True",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-TA-03",
+      "Language": "ta",
+      "Original input": "11 \u0b95\u0bc7\u0bb5\u0bbf 3 \u0b95\u0bcb\u0bb0\u0bcd 185 \u0b9a\u0ba4\u0bc1\u0bb0 \u0bae\u0bbf\u0bae\u0bc0 \u0b8e\u0b95\u0bcd\u0bb8\u0bcd\u0b8e\u0bb2\u0bcd\u0baa\u0bbf\u0b87 \u0baa\u0bc2\u0bae\u0bbf\u0b95\u0bcd\u0b95\u0b9f\u0bbf\u0baf\u0bbf\u0bb2\u0bcd \u0b95\u0bc7\u0baa\u0bbf\u0bb3\u0bcd \u0baa\u0ba4\u0bbf\u0ba4\u0bcd\u0ba4\u0bb2\u0bcd",
+      "Normalized input": "11 kV 3 core 185 \u0b9a\u0ba4\u0bc1\u0bb0 mm XLPE underground cable laying",
+      "Expected standard": "IS 7098 (Part 2) : 2011",
+      "Path A": "IS 7098 (Part 2) : 2011",
+      "Path B": "IS 7098 (Part 2) : 2011",
+      "Final candidate": "IS 7098 (Part 2) : 2011",
+      "Evidence standard": "IS 7098 (Part 2) : 2011",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "REVIEW_REQUIRED",
+      "Human review": "True",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-TA-04",
+      "Language": "ta",
+      "Original input": "11 \u0b95\u0bc7\u0bb5\u0bbf 500 \u0b95\u0bc7\u0bb5\u0bbf\u0b8f \u0b8e\u0ba3\u0bcd\u0ba3\u0bc6\u0baf\u0bcd \u0bae\u0bc2\u0bb4\u0bcd\u0b95\u0bbf\u0baf \u0bb5\u0bbf\u0ba8\u0bbf\u0baf\u0bcb\u0b95 \u0bae\u0bbf\u0ba9\u0bcd\u0bae\u0bbe\u0bb1\u0bcd\u0bb1\u0bbf \u0bb5\u0bbf\u0ba8\u0bbf\u0baf\u0bcb\u0b95\u0bae\u0bcd",
+      "Normalized input": "11 kV 500 kVA oil immersed distribution transformer supply",
+      "Expected standard": "IS 1180 (Part 1) : 2014",
+      "Path A": "IS 1180 (Part 1) : 2014",
+      "Path B": "IS 1180 (Part 1) : 2014",
+      "Final candidate": "IS 1180 (Part 1) : 2014",
+      "Evidence standard": "IS 1180 (Part 1) : 2014",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-TA-05",
+      "Language": "ta",
+      "Original input": "\u0bb5\u0bbf\u0bb5\u0b9a\u0bbe\u0baf \u0baa\u0bbe\u0b9a\u0ba9\u0ba4\u0bcd\u0ba4\u0bbf\u0bb1\u0bcd\u0b95\u0bc1 5 \u0b8e\u0b9a\u0bcd\u0baa\u0bbf \u0b9a\u0baa\u0bcd\u0bae\u0bc6\u0bb0\u0bcd\u0b9a\u0bbf\u0baa\u0bbf\u0bb3\u0bcd \u0baa\u0bae\u0bcd\u0baa\u0bcd \u0b9a\u0bc6\u0b9f\u0bcd",
+      "Normalized input": "for agricultural irrigation 5 HP submersible pump set",
+      "Expected standard": "IS 8034 : 2018",
+      "Path A": "IS 8034 : 2018",
+      "Path B": "IS 8034 : 2018",
+      "Final candidate": "IS 8034 : 2018",
+      "Evidence standard": "IS 8034 : 2018",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-TA-06",
+      "Language": "ta",
+      "Original input": "\u0b95\u0b9f\u0bcd\u0b9f\u0bc1\u0bae\u0bbe\u0ba9 \u0baa\u0ba3\u0bbf\u0b95\u0bcd\u0b95\u0bbe\u0b95 16 \u0bae\u0bbf\u0bae\u0bc0 \u0b9f\u0bbf\u0b8e\u0bae\u0bcd\u0b9f\u0bbf \u0b8e\u0b83\u0b95\u0bc1 \u0b95\u0bae\u0bcd\u0baa\u0bbf Fe 500D \u0bb5\u0bb4\u0b99\u0bcd\u0b95\u0bb2\u0bcd",
+      "Normalized input": "for construction works 16 mm TMT steel bar Fe 500D supply",
+      "Expected standard": "IS 1786 : 2008",
+      "Path A": "IS 1786 : 2008",
+      "Path B": "IS 1786 : 2008",
+      "Final candidate": "IS 1786 : 2008",
+      "Evidence standard": "IS 1786 : 2008",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-TA-08",
+      "Language": "ta",
+      "Original input": "\u0ba8\u0bbf\u0bb2\u0ba4\u0bcd\u0ba4\u0b9f\u0bbf \u0bb5\u0b9f\u0bbf\u0b95\u0bbe\u0bb2\u0bc1\u0b95\u0bcd\u0b95\u0bc1 110 \u0bae\u0bbf\u0bae\u0bc0 \u0baa\u0bbf\u0bb5\u0bbf\u0b9a\u0bbf \u0b95\u0bc1\u0bb4\u0bbe\u0baf\u0bcd\u0b95\u0bb3\u0bcd",
+      "Normalized input": "for underground drainage and sewerage 110 mm PVC pipes",
+      "Expected standard": "IS 15328 : 2003",
+      "Path A": "IS 15328 : 2003",
+      "Path B": "IS 15328 : 2003",
+      "Final candidate": "IS 15328 : 2003",
+      "Evidence standard": "IS 15328 : 2003",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-TA-09",
+      "Language": "ta",
+      "Original input": "\u0b90\u0b8e\u0bb8\u0bcd 7098 \u0baa\u0b95\u0bc1\u0ba4\u0bbf 2 \u0b87\u0ba9\u0bcd \u0baa\u0b9f\u0bbf 11 \u0b95\u0bc7\u0bb5\u0bbf \u0b8e\u0b95\u0bcd\u0bb8\u0bcd\u0b8e\u0bb2\u0bcd\u0baa\u0bbf\u0b87 \u0b95\u0bc7\u0baa\u0bbf\u0bb3\u0bcd",
+      "Normalized input": "IS 7098 Part 2 conforming to 11 kV XLPE cable",
+      "Expected standard": "IS 7098 (Part 2) : 2011",
+      "Path A": "IS 7098 (Part 2) : 2011",
+      "Path B": "IS 7098 (Part 2) : 2011",
+      "Final candidate": "IS 7098 (Part 2) : 2011",
+      "Evidence standard": "IS 7098 (Part 2) : 2011",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-TA-10",
+      "Language": "ta",
+      "Original input": "\u0bae\u0bbf\u0ba9\u0bcd \u0bb5\u0baf\u0bb0\u0bbf\u0b99\u0bcd \u0bae\u0bb1\u0bcd\u0bb1\u0bc1\u0bae\u0bcd \u0baa\u0bbe\u0ba4\u0bc1\u0b95\u0bbe\u0baa\u0bcd\u0baa\u0bc1 \u0b9a\u0bbe\u0ba4\u0ba9\u0b99\u0bcd\u0b95\u0bb3\u0bcd \u0baa\u0bca\u0bb0\u0bc1\u0ba4\u0bcd\u0ba4\u0bc1\u0ba4\u0bb2\u0bcd",
+      "Normalized input": "installation of electrical wiring and safety equipment",
+      "Expected standard": "None",
+      "Path A": "IS 732 : 2019",
+      "Path B": "IS 732 : 2019",
+      "Final candidate": "IS 732 : 2019",
+      "Evidence standard": "IS 732 : 2019",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "DISCREPANCY (GROUND_TRUTH)",
+      "Reason": "Both English and Tamil resolve to IS 732 (wiring installation code) for wiring requirement; GT marked null"
+    },
+    {
+      "Case ID": "ML-MX-01",
+      "Language": "mixed",
+      "Original input": "11 kV XLPE insulated underground cable ki supply aur laying karna hai",
+      "Normalized input": "11 kV XLPE insulated underground cable supply and laying to be executed",
+      "Expected standard": "IS 7098 (Part 2) : 2011",
+      "Path A": "IS 7098 (Part 2) : 2011",
+      "Path B": "IS 7098 (Part 2) : 2011",
+      "Final candidate": "IS 7098 (Part 2) : 2011",
+      "Evidence standard": "IS 7098 (Part 2) : 2011",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-MX-04",
+      "Language": "mixed",
+      "Original input": "11 kV 500 kVA outdoor oil immersed distribution transformer supply madabekagide",
+      "Normalized input": "11 kV 500 kVA outdoor oil immersed distribution transformer supply to be executed",
+      "Expected standard": "IS 1180 (Part 1) : 2014",
+      "Path A": "IS 1180 (Part 1) : 2014",
+      "Path B": "IS 1180 (Part 1) : 2014",
+      "Final candidate": "IS 1180 (Part 1) : 2014",
+      "Evidence standard": "IS 1180 (Part 1) : 2014",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-MX-05",
+      "Language": "mixed",
+      "Original input": "Agriculture irrigation ke liye 5 HP submersible pumpset supply and installation",
+      "Normalized input": "Agriculture irrigation for 5 HP submersible pumpset supply and installation",
+      "Expected standard": "IS 8034 : 2018",
+      "Path A": "IS 8034 : 2018",
+      "Path B": "IS 8034 : 2018",
+      "Final candidate": "IS 8034 : 2018",
+      "Evidence standard": "IS 8034 : 2018",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-MX-06",
+      "Language": "mixed",
+      "Original input": "16 mm TMT steel bars Fe 500D supply thevai for RCC works",
+      "Normalized input": "16 mm TMT steel bars Fe 500D supply required for RCC works",
+      "Expected standard": "IS 1786 : 2008",
+      "Path A": "IS 1786 : 2008",
+      "Path B": "IS 1786 : 2008",
+      "Final candidate": "IS 1786 : 2008",
+      "Evidence standard": "IS 1786 : 2008",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-MX-07",
+      "Language": "mixed",
+      "Original input": "110 mm uPVC pipe for underground drainage sarabaraju madabeku",
+      "Normalized input": "110 mm uPVC pipe for underground drainage supply to be executed",
+      "Expected standard": "IS 15328 : 2003",
+      "Path A": "IS 15328 : 2003",
+      "Path B": "IS 15328 : 2003",
+      "Final candidate": "IS 15328 : 2003",
+      "Evidence standard": "IS 15328 : 2003",
+      "Applicability": "APPLICABLE",
+      "Ambiguity": "CLEAR",
+      "Human review": "False",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    },
+    {
+      "Case ID": "ML-MX-10",
+      "Language": "mixed",
+      "Original input": "kuch bhi general samaan supply kar do bina kisi standard ke",
+      "Normalized input": "unspecified general goods supply kar do without any standard specification",
+      "Expected standard": "None",
+      "Path A": "None",
+      "Path B": "None",
+      "Final candidate": "None",
+      "Evidence standard": "None",
+      "Applicability": "NOT_APPLICABLE",
+      "Ambiguity": "NO_RELIABLE_MATCH",
+      "Human review": "True",
+      "Result": "PASS (MATCH)",
+      "Reason": "Catalogue coverage resolved candidate, applicability confirmed"
+    }
+  ],
+  "final_verdict": "PASS WITH LIMITATIONS \u2014 NOT YET LOCKED"
+}

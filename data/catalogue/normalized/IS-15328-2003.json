@@ -1,0 +1,30 @@
+{
+  "standard_number": "IS 15328 : 2003",
+  "title": "Plastics Piping Systems for Non-Pressure Underground Drainage and Sewerage - Unplasticized Poly(Vinyl Chloride) (PVC-U) Pipes - Specification",
+  "scope": "Indian Standard specification covering requirements, dimensions, sampling, and test methods for unplasticized poly(vinyl chloride) (PVC-U) pipes intended for non-pressure underground drainage and sewerage systems.",
+  "status": "ACTIVE",
+  "publication_year": 2003,
+  "reaffirmed_year": null,
+  "technical_committee": "CED 50",
+  "amendments": [],
+  "supersedes": [],
+  "superseded_by": [],
+  "references": [],
+  "product_domain": [
+    "Pipes",
+    "Drainage",
+    "Sewerage",
+    "uPVC Pipes",
+    "Plastics Piping"
+  ],
+  "certification": [],
+  "source": {
+    "source_type": "OFFICIAL_GOI_SPECIFICATION",
+    "source_url": "https://standardsbis.bsbedge.com",
+    "retrieved_at": "2026-09-12T09:30:00.000000+00:00",
+    "provenance": "OFFICIAL_SECONDARY",
+    "confidence": 0.95
+  },
+  "canonical_id": "IS-15328-2003",
+  "base_standard_number": "IS 15328"
+}

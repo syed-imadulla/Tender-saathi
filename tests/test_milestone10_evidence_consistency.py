@@ -107,7 +107,7 @@ class TestMilestone10EvidenceConsistency(unittest.TestCase):
 
     def test_04_electrical_cable_why_matches_correctness(self):
         """Electrical cable requirement must correspond to cable standard, not CPVC or valves."""
-        text = "PVC insulated electric cable"
+        text = "1.1 kV PVC insulated electric cable"
         res = self.recommender.recommend_for_text(text, req_id="TEST-CABLE-01")
 
         self.assertIsNotNone(res.candidate_standard)

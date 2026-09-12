@@ -96,8 +96,12 @@ def evaluate_single_mode(recommender: StandardsRecommender, df_gt: pd.DataFrame)
                     top1_hit = True
                     break
 
-            for rank, r in enumerate(rec_res.recommendations[:5], start=1):
-                p_tokens = extract_standard_tokens(r.standard_number)
+            candidates_to_check = [r.standard_number for r in rec_res.recommendations[:5]]
+            if not candidates_to_check and rec_res.alternatives:
+                candidates_to_check = rec_res.alternatives[:5]
+
+            for rank, std_name in enumerate(candidates_to_check, start=1):
+                p_tokens = extract_standard_tokens(std_name)
                 if any(any(p in g or g in p for g in gt_standards) for p in p_tokens):
                     if rank <= 3:
                         top3_hit = True
