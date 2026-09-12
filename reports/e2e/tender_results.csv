@@ -1,21 +1,26 @@
-tender_id,filename,requirements_analyzed,recommendations,review_required,insufficient_evidence,active,superseded,withdrawn,unknown_lifecycle,related_standards,strong_evidence,moderate_evidence,weak_evidence,no_evidence,known_completeness,potentially_missing,unknown_completeness,critical_risk,high_risk,medium_risk,low_risk,publication_readiness,llm_provider,llm_success,llm_fallback
-T020,eProcurement System Government of India.pdf,1,1,0,0,1,0,0,0,3,0,1,0,0,0,1,0,0,0,0,1,READY_FOR_REVIEW,groq,0,1
-T009,eProcurement System Government of India10.pdf,1,1,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,1,READY_FOR_REVIEW,groq,0,1
-T010,eProcurement System Government of India11.pdf,2,0,2,0,0,0,0,2,0,0,0,0,2,0,2,0,0,2,0,0,INSUFFICIENT_EVIDENCE,groq,0,2
-T011,eProcurement System Government of India12.pdf,1,0,1,0,0,0,0,1,0,0,0,0,1,0,0,1,0,1,0,0,INSUFFICIENT_EVIDENCE,groq,0,1
-T012,eProcurement System Government of India13.pdf,1,0,1,0,1,0,0,0,0,0,1,0,0,0,0,1,0,1,0,0,REVIEW_REQUIRED,groq,0,1
-T013,eProcurement System Government of India14.pdf,2,0,2,0,2,0,0,0,4,0,2,0,0,0,2,0,0,2,0,0,REVIEW_REQUIRED,groq,0,2
-T014,eProcurement System Government of India15.pdf,1,0,1,0,1,0,0,0,2,0,1,0,0,0,1,0,0,1,0,0,REVIEW_REQUIRED,groq,0,1
-T015,eProcurement System Government of India16.pdf,1,0,1,0,1,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,REVIEW_REQUIRED,groq,0,1
-T016,eProcurement System Government of India17.pdf,2,2,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0,2,READY_FOR_REVIEW,groq,0,2
-T017,eProcurement System Government of India18.pdf,1,0,1,0,1,0,0,0,3,0,1,0,0,0,0,1,0,1,0,0,REVIEW_REQUIRED,groq,0,1
-T018,eProcurement System Government of India19.pdf,2,2,0,0,2,0,0,0,0,0,2,0,0,0,0,0,0,0,0,2,READY_FOR_REVIEW,groq,0,2
-T001,eProcurement System Government of India2.pdf,1,1,0,0,1,0,0,0,2,0,1,0,0,0,1,0,0,0,0,1,READY_FOR_REVIEW,groq,0,1
-T019,eProcurement System Government of India20.pdf,1,0,0,1,1,0,0,0,1,1,0,0,0,0,0,0,0,1,0,0,INSUFFICIENT_EVIDENCE,groq,0,1
-T002,eProcurement System Government of India3.pdf,1,0,1,0,0,0,0,1,0,0,0,0,1,0,0,1,0,1,0,0,INSUFFICIENT_EVIDENCE,groq,0,1
-T003,eProcurement System Government of India4.pdf,2,2,0,0,2,0,0,0,2,0,2,0,0,0,0,0,0,0,0,2,READY_FOR_REVIEW,groq,0,2
-T004,eProcurement System Government of India5.pdf,1,0,1,0,1,0,0,0,0,0,1,0,0,0,0,1,0,1,0,0,REVIEW_REQUIRED,groq,0,1
-T005,eProcurement System Government of India6.pdf,1,0,1,0,0,0,0,1,0,0,0,0,1,0,0,1,0,1,0,0,INSUFFICIENT_EVIDENCE,groq,0,1
-T006,eProcurement System Government of India7.pdf,1,1,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,READY_FOR_REVIEW,groq,0,1
-T007,eProcurement System Government of India8.pdf,1,0,1,0,1,0,0,0,0,0,1,0,0,0,1,0,0,1,0,0,REVIEW_REQUIRED,groq,0,1
-T008,eProcurement System Government of India9.pdf,1,0,1,0,0,0,0,1,0,0,0,0,1,0,0,1,0,1,0,0,INSUFFICIENT_EVIDENCE,groq,0,1
+tender_id,filename,requirement_id,requirement_text,candidate_standard,evidence_standard,evidence_strength,provenance,status,ambiguity_state,human_review_required,publication_readiness
+T020,eProcurement System Government of India.pdf,T020-R001,Repair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn,IS 15778 : 2007,IS 15778 : 2007,MODERATE,CURATED,Active,CLEAR,False,READY_FOR_REVIEW
+T009,eProcurement System Government of India10.pdf,T009-R001,Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD Khar,IS 732 : 2019,IS 732 : 2019,MODERATE,CURATED,Active,CLEAR,False,READY_FOR_REVIEW
+T010,eProcurement System Government of India11.pdf,T010-R001,Electromechanical Works and Sewerage Pipeline works from Collection Chamber to STP,,,NONE,UNKNOWN,Unknown,AMBIGUOUS,True,INSUFFICIENT_EVIDENCE
+T010,eProcurement System Government of India11.pdf,T010-R002,"Electromechanical Works and Sewerage Pipeline works from Collection Chamber to STP 9/4/26, 10:22 AM eProcurement System",,,NONE,UNKNOWN,Unknown,AMBIGUOUS,True,INSUFFICIENT_EVIDENCE
+T011,eProcurement System Government of India12.pdf,T011-R001,Providing and laying underground cable for STP for main supply of electricity under CEDCO BSF Bangalore,,,NONE,UNKNOWN,Unknown,AMBIGUOUS,True,INSUFFICIENT_EVIDENCE
+T012,eProcurement System Government of India13.pdf,T012-R001,"Repair and CC Works, Plaster Repairing, Plumbing Fittings, Painting, Roofing and other allied works in Strom Water Pump",IS 1239 (Part 2) : 1992,IS 1239 (Part 2) : 1992,MODERATE,CURATED,Active,REVIEW_REQUIRED,True,REVIEW_REQUIRED
+T013,eProcurement System Government of India14.pdf,T013-R001,"SITC of VFD water pump panel, piping work , Insulation work and replacement of by valves at ESI, Hospital Durgapur, West",IS/IEC 61439-2 : 2011,IS/IEC 61439-2 : 2011,MODERATE,CURATED,Active,REVIEW_REQUIRED,True,REVIEW_REQUIRED
+T013,eProcurement System Government of India14.pdf,T013-R002,"SITC of VFD water pump panel, piping work , Insulation work and replacement of by valves at ESI Hospital Durgapur, West",IS/IEC 61439-2 : 2011,IS/IEC 61439-2 : 2011,MODERATE,CURATED,Active,REVIEW_REQUIRED,True,REVIEW_REQUIRED
+T014,eProcurement System Government of India15.pdf,T014-R001,"Design, manufacturing, inspection, supply, installation, testing and commissioning of three numbers of Process Water Pum",IS/IEC 60034-1 : 2017,IS/IEC 60034-1 : 2017,MODERATE,CURATED,Active,REVIEW_REQUIRED,True,REVIEW_REQUIRED
+T015,eProcurement System Government of India16.pdf,T015-R001,"Construction of shed for waste collection in CDH 1 and CDH 2 at IISER Campus, Vithura",IS 302 : 2026,IS 302 : 2026,MODERATE,CURATED,Active,REVIEW_REQUIRED,True,REVIEW_REQUIRED
+T016,eProcurement System Government of India17.pdf,T016-R001,Construction of 01 No Surveillance Cum OP Shelter G1 at BOP Rana of 160 Bn Now 50 Bn BSF under SHQ BSF Abohar Sub Head E,SP 62 : 1997,SP 62 : 1997,MODERATE,CURATED,Active,CLEAR,False,READY_FOR_REVIEW
+T016,eProcurement System Government of India17.pdf,T016-R002,Construction of 01 No Surveillance Cum OP Shelter G1 at BOP Rana of 160 Bn Now 50 Bn BSF under SHQ BSF Abohar Sub Head E,SP 30 : 2023,SP 30 : 2023,MODERATE,CURATED,Active,CLEAR,False,READY_FOR_REVIEW
+T017,eProcurement System Government of India18.pdf,T017-R001,COMPLETE DESIGN ENGINEERING PROCUREMENT FABRICATION CONSTRUCTION ERECTION TESTING COMMISSIONING OF RAW WATER PIPELINE FR,IS 15778 : 2007,IS 15778 : 2007,MODERATE,CURATED,Active,REVIEW_REQUIRED,True,REVIEW_REQUIRED
+T018,eProcurement System Government of India19.pdf,T018-R001,Construction of 01 No Surveillance Cum OP Shelter G1 at BOP Rana of 160 Bn Now 50 Bn BSF under SHQ BSF Abohar Sub Head E,SP 62 : 1997,SP 62 : 1997,MODERATE,CURATED,Active,CLEAR,False,READY_FOR_REVIEW
+T018,eProcurement System Government of India19.pdf,T018-R002,Construction of 01 No Surveillance Cum OP Shelter G1 at BOP Rana of 160 Bn Now 50 Bn BSF under SHQ BSF Abohar Sub Head E,SP 30 : 2023,SP 30 : 2023,MODERATE,CURATED,Active,CLEAR,False,READY_FOR_REVIEW
+T001,eProcurement System Government of India2.pdf,T001-R001,"Renovation of 5 no of toilets 3 Gents and 2 Ladies incl replacement of damaged pipelines by Hubless and GI pipes,replace",IS 15622 : 2017,IS 15622 : 2017,MODERATE,CURATED,Active,CLEAR,False,READY_FOR_REVIEW
+T019,eProcurement System Government of India20.pdf,T019-R001,Consultancy services for Authority s Engineer for Supervision of Construction of 4 Lane Access Controlled Bypass to Tiru,IS 2491 : 2024,IS 2491 : 2024,STRONG,VERIFIED,Active,REVIEW_REQUIRED,True,INSUFFICIENT_EVIDENCE
+T002,eProcurement System Government of India3.pdf,T002-R001,"Annual Rate Contract for Execution of Mechanical Maintenance Works including Pumps, Valve Replacement, Flange Joint Main",,,NONE,UNKNOWN,Unknown,INCOMPLETE,True,INSUFFICIENT_EVIDENCE
+T003,eProcurement System Government of India4.pdf,T003-R001,Replacement / repair of distribution boards and defective lights at various locations in main sports stadium and elesewh,IS 10322 (Part 5 / Sec 5) : 2013,IS 10322 (Part 5 / Sec 5) : 2013,MODERATE,CURATED,Active,CLEAR,False,READY_FOR_REVIEW
+T003,eProcurement System Government of India4.pdf,T003-R002,Replacement / repair of distribution boards and defective lights at various locations in main sports stadium and elsewhe,IS 10322 (Part 5 / Sec 5) : 2013,IS 10322 (Part 5 / Sec 5) : 2013,MODERATE,CURATED,Active,CLEAR,False,READY_FOR_REVIEW
+T004,eProcurement System Government of India5.pdf,T004-R001,"Dismantling,Shifting and reinstallation of feeder pillar, power cables from outside of electrical room to AMF room, inte",IS 5039 : 1983,IS 5039 : 1983,MODERATE,CURATED,Active,REVIEW_REQUIRED,True,REVIEW_REQUIRED
+T005,eProcurement System Government of India6.pdf,T005-R001,"Cable connection of DG Set in Newly constructed building of the Dept. of Molecular , Human Genetics and Electrical renov",,,NONE,UNKNOWN,Unknown,AMBIGUOUS,True,INSUFFICIENT_EVIDENCE
+T006,eProcurement System Government of India7.pdf,T006-R001,UPVC Partition Wall Work for Conversion of Seafood Authentication Laboratory into Conventional Microbiology Laboratory a,IS 16088 : 2016,IS 16088 : 2016,MODERATE,CURATED,Active,CLEAR,False,READY_FOR_REVIEW
+T007,eProcurement System Government of India8.pdf,T007-R001,Tender for Opening of Himalayan Low-Oil Food Outlet on BOT basis at IIT Ropar,IS 302 : 1994,IS 302 : 1994,MODERATE,CURATED,Active,REVIEW_REQUIRED,True,REVIEW_REQUIRED
+T008,eProcurement System Government of India9.pdf,T008-R001,"Annual Rate Contract for Execution of Mechanical Maintenance Works including Pumps, Valve Replacement, Flange Joint Main",,,NONE,UNKNOWN,Unknown,INCOMPLETE,True,INSUFFICIENT_EVIDENCE
