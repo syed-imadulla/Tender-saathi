@@ -68,6 +68,7 @@ def run_e2e_validation():
     per_req_timings = []
 
     tender_results_csv_rows = []
+    requirement_results_csv_rows = []
 
     print("\n--- Executing Full Tender Ingestion, Extraction & Audit ---")
     
@@ -142,20 +143,49 @@ def run_e2e_validation():
                 "llm_fallback": sum(1 for r in req_results_for_tender if getattr(r, "is_ai_fallback", False))
             })
 
+            # Per-requirement CSV compilation (25 requirements across 20 tenders)
+            for r_res in req_results_for_tender:
+                ev_str = audit_engine._extract_evidence_strength(r_res)
+                requirement_results_csv_rows.append({
+                    "tender_id": t_id,
+                    "filename": filename,
+                    "requirement_id": r_res.requirement_id,
+                    "requirement_text": r_res.requirement_text.replace("\n", " ")[:120].strip(),
+                    "candidate_standard": r_res.candidate_standard,
+                    "evidence_standard": r_res.evidence_standard,
+                    "evidence_strength": ev_str,
+                    "provenance": r_res.provenance,
+                    "status": r_res.status,
+                    "ambiguity_state": r_res.ambiguity_state,
+                    "human_review_required": r_res.human_review_required,
+                    "publication_readiness": audit_res.publication_readiness,
+                })
+
             print(f"[{t_id}] {filename[:38]}... | Reqs: {len(reqs)} | Readiness: {audit_res.publication_readiness} | Time: {t_duration:.2f}s")
 
         except Exception as e:
             print(f"FAILED [{t_id}] {filename}: {e}", file=sys.stderr)
 
-    # 2. Write CSV Report
+    # 2. Write CSV Reports
+    # A. Per-requirement results (25 rows) written to reports/e2e/tender_results.csv
     csv_path = "reports/e2e/tender_results.csv"
+    if requirement_results_csv_rows:
+        fieldnames = list(requirement_results_csv_rows[0].keys())
+        with open(csv_path, "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames, lineterminator="\n")
+            writer.writeheader()
+            writer.writerows(requirement_results_csv_rows)
+        print(f"\nSaved per-requirement audit CSV ({len(requirement_results_csv_rows)} rows) to: {csv_path}")
+
+    # B. Per-tender summary (20 rows) written to reports/e2e/tender_summary.csv
+    tender_summary_csv_path = "reports/e2e/tender_summary.csv"
     if tender_results_csv_rows:
         fieldnames = list(tender_results_csv_rows[0].keys())
-        with open(csv_path, "w", newline="", encoding="utf-8") as f:
-            writer = csv.DictWriter(f, fieldnames=fieldnames)
+        with open(tender_summary_csv_path, "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames, lineterminator="\n")
             writer.writeheader()
             writer.writerows(tender_results_csv_rows)
-        print(f"\nSaved per-tender audit CSV to: {csv_path}")
+        print(f"Saved per-tender summary CSV ({len(tender_results_csv_rows)} rows) to: {tender_summary_csv_path}")
 
     # 3. Generate Representative Review Reports
     # A. Straightforward technical tender: T020
