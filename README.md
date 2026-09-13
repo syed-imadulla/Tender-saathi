@@ -513,11 +513,6 @@ Planned future developments building on the current verified architecture:
 
 ## Documentation
 
-- [SIH Presentation Deck](docs/SIH_PRESENTATION_DECK.md) — 10-slide competitive pitch deck
-- [Final SIH Freeze Audit](docs/FINAL_SIH_FREEZE_AUDIT.md) — Final claim integrity and repository freeze report
-- [Priority 7 Product Final Audit](docs/PRIORITY_7_PRODUCT_FINAL_AUDIT.md) — Verification of API, UI contracts, and E2E tenders
-- [Priority 8 Readiness Audit](docs/PRIORITY_8_FINAL_SIH_READINESS_AUDIT.md) — Demo readiness and presentation alignment audit
-- [Priority 6F Remediation Audit](docs/PRIORITY_6F_REMEDIATION_AUDIT.md) — Independent benchmark and engine audit
 - [E2E Evaluation Summary](reports/e2e/e2e_summary.md) — Summary of 20 real government tender audits
 
 ---
