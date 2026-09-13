@@ -1,0 +1,294 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 660" width="100%" height="100%" style="background:#ffffff; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Drop Shadow Filter -->
+    <filter id="card-shadow" x="-8%" y="-8%" width="120%" height="125%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+    <filter id="soft-shadow" x="-5%" y="-5%" width="115%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#1e293b" flood-opacity="0.08"/>
+    </filter>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#1e40af" />
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#dc2626" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#16a34a" />
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#6366f1" />
+    </marker>
+  </defs>
+
+  <!-- Outer Canvas Border -->
+  <rect x="10" y="10" width="1300" height="640" rx="20" fill="#ffffff" stroke="#3b82f6" stroke-width="2.5"/>
+
+  <!-- ==================== HEADER ==================== -->
+  <text x="660" y="55" font-size="28" font-weight="900" text-anchor="middle" letter-spacing="1">
+    <tspan fill="#0f172a">TENDER </tspan>
+    <tspan fill="#2563eb">SAATHI</tspan>
+    <tspan fill="#0f172a"> — End-to-End Workflow</tspan>
+  </text>
+  
+  <rect x="360" y="70" width="600" height="30" rx="15" fill="#e0f2fe"/>
+  <text x="660" y="90" font-size="14" font-weight="600" fill="#0369a1" text-anchor="middle">
+    From Tender Document to Evidence-Backed Recommendations
+  </text>
+
+  <!-- ==================== LEFT COLUMN (INPUTS) ==================== -->
+  
+  <!-- Start Pill -->
+  <rect x="35" y="75" width="190" height="40" rx="20" fill="#fce7f3" stroke="#f472b6" stroke-width="1.5" filter="url(#card-shadow)"/>
+  <text x="130" y="101" font-size="16" font-weight="700" fill="#be185d" text-anchor="middle">Start</text>
+
+  <!-- Down Arrow 1 -->
+  <line x1="130" y1="115" x2="130" y2="148" stroke="#1e40af" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Card 1: Upload Tender Document -->
+  <g transform="translate(35, 152)">
+    <rect width="190" height="98" rx="12" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5" filter="url(#card-shadow)"/>
+    <!-- Icon Circle -->
+    <rect x="12" y="14" width="38" height="42" rx="8" fill="#3b82f6"/>
+    <path d="M 23 24 L 33 24 L 39 30 L 39 46 L 23 46 Z" fill="#ffffff" opacity="0.9"/>
+    <path d="M 31 38 L 31 43 M 28 40 L 31 37 L 34 40" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
+    <!-- Title & Desc -->
+    <text x="58" y="28" font-size="13" font-weight="700" fill="#1e3a8a">Upload Tender</text>
+    <text x="58" y="44" font-size="13" font-weight="700" fill="#1e3a8a">Document</text>
+    <text x="14" y="74" font-size="11" font-weight="500" fill="#3b82f6">PDF / Text / Image</text>
+    <text x="14" y="88" font-size="10.5" font-weight="500" fill="#64748b">(Scanned / Digital)</text>
+  </g>
+
+  <!-- Down Arrow 2 -->
+  <line x1="130" y1="250" x2="130" y2="280" stroke="#1e40af" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Card 2: Extract & Understand Requirements -->
+  <g transform="translate(35, 284)">
+    <rect width="190" height="104" rx="12" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5" filter="url(#card-shadow)"/>
+    <rect x="12" y="14" width="38" height="42" rx="8" fill="#3b82f6"/>
+    <path d="M 23 23 L 33 23 L 39 29 L 39 45 L 23 45 Z" fill="#ffffff" opacity="0.9"/>
+    <circle cx="36" cy="42" r="5" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+    <line x1="39" y1="45" x2="43" y2="49" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="58" y="28" font-size="13" font-weight="700" fill="#1e3a8a">Extract &amp; Understand</text>
+    <text x="58" y="44" font-size="13" font-weight="700" fill="#1e3a8a">Requirements</text>
+    <text x="14" y="74" font-size="11" font-weight="500" fill="#475569">Key clauses, parameters</text>
+    <text x="14" y="90" font-size="11" font-weight="500" fill="#475569">and context</text>
+  </g>
+
+  <!-- Down Arrow 3 -->
+  <line x1="130" y1="388" x2="130" y2="418" stroke="#1e40af" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Card 3: Standards Knowledge Base -->
+  <g transform="translate(35, 422)">
+    <rect width="190" height="110" rx="12" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5" filter="url(#card-shadow)"/>
+    <rect x="12" y="16" width="38" height="42" rx="8" fill="#2563eb"/>
+    <!-- DB Icon -->
+    <ellipse cx="31" cy="26" rx="10" ry="3" fill="#ffffff"/>
+    <path d="M 21 26 v 7 c 0 2 5 3 10 3 s 10 -1 10 -3 v -7" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+    <path d="M 21 33 v 7 c 0 2 5 3 10 3 s 10 -1 10 -3 v -7" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="58" y="30" font-size="13" font-weight="700" fill="#1e3a8a">Standards</text>
+    <text x="58" y="46" font-size="13" font-weight="700" fill="#1e3a8a">Knowledge Base</text>
+    <text x="14" y="76" font-size="11" font-weight="500" fill="#475569">Indian Standards,</text>
+    <text x="14" y="91" font-size="11" font-weight="500" fill="#475569">metadata, QCOs and</text>
+    <text x="14" y="105" font-size="11" font-weight="500" fill="#475569">relationships</text>
+  </g>
+
+  <!-- Bracket Line connecting Input Column into Main Pipeline -->
+  <path d="M 225 336 L 255 336 L 255 242 L 275 242" fill="none" stroke="#1e40af" stroke-width="2.5" marker-end="url(#arrow-blue)"/>
+  <path d="M 225 477 L 245 477 L 245 336" fill="none" stroke="#1e40af" stroke-width="2"/>
+
+  <!-- ==================== TOP HORIZONTAL PIPELINE ==================== -->
+
+  <!-- Card 4: AI Requirement Understanding -->
+  <g transform="translate(280, 160)">
+    <rect width="145" height="165" rx="12" fill="#f5f3ff" stroke="#c4b5fd" stroke-width="1.5" filter="url(#card-shadow)"/>
+    <!-- AI Brain/Chip Icon -->
+    <rect x="52" y="14" width="40" height="40" rx="8" fill="#7c3aed"/>
+    <text x="72" y="39" font-size="18" font-weight="900" fill="#ffffff" text-anchor="middle">AI</text>
+    <text x="72" y="72" font-size="12" font-weight="800" fill="#4c1d95" text-anchor="middle">AI Requirement</text>
+    <text x="72" y="87" font-size="12" font-weight="800" fill="#4c1d95" text-anchor="middle">Understanding</text>
+    <text x="72" y="102" font-size="11.5" font-weight="700" fill="#6d28d9" text-anchor="middle">(Groq LLM)</text>
+    <text x="72" y="124" font-size="10.5" font-weight="500" fill="#6b7280" text-anchor="middle">Reads tender and</text>
+    <text x="72" y="139" font-size="10.5" font-weight="500" fill="#6b7280" text-anchor="middle">identifies key</text>
+    <text x="72" y="153" font-size="10.5" font-weight="500" fill="#6b7280" text-anchor="middle">technical details</text>
+  </g>
+
+  <!-- Arrow: Card 4 -> Card 5 -->
+  <line x1="425" y1="242" x2="445" y2="242" stroke="#1e40af" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Card 5: Requirement Decomposition -->
+  <g transform="translate(450, 160)">
+    <rect width="145" height="165" rx="12" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.5" filter="url(#card-shadow)"/>
+    <!-- Checklist Icon -->
+    <rect x="52" y="14" width="40" height="40" rx="8" fill="#10b981"/>
+    <path d="M 60 26 h 5 M 69 26 h 12 M 60 33 h 5 M 69 33 h 12 M 60 40 h 5 M 69 40 h 12" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="72" y="74" font-size="12.5" font-weight="800" fill="#065f46" text-anchor="middle">Requirement</text>
+    <text x="72" y="90" font-size="12.5" font-weight="800" fill="#065f46" text-anchor="middle">Decomposition</text>
+    <text x="72" y="116" font-size="11" font-weight="600" fill="#374151" text-anchor="middle">Product • Material</text>
+    <text x="72" y="133" font-size="11" font-weight="600" fill="#374151" text-anchor="middle">Size • Rating</text>
+    <text x="72" y="150" font-size="11" font-weight="600" fill="#374151" text-anchor="middle">Application • Context</text>
+  </g>
+
+  <!-- Arrow: Card 5 -> Card 6 -->
+  <line x1="595" y1="242" x2="615" y2="242" stroke="#1e40af" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Card 6: Find Relevant Standards -->
+  <g transform="translate(620, 160)">
+    <rect width="145" height="165" rx="12" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5" filter="url(#card-shadow)"/>
+    <!-- Search Icon -->
+    <rect x="52" y="14" width="40" height="40" rx="8" fill="#f59e0b"/>
+    <circle cx="70" cy="32" r="7" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+    <line x1="75" y1="37" x2="82" y2="44" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="72" y="74" font-size="12.5" font-weight="800" fill="#92400e" text-anchor="middle">Find Relevant</text>
+    <text x="72" y="90" font-size="12.5" font-weight="800" fill="#92400e" text-anchor="middle">Standards</text>
+    <text x="72" y="118" font-size="11" font-weight="600" fill="#374151" text-anchor="middle">Hybrid Search</text>
+    <text x="72" y="135" font-size="11" font-weight="600" fill="#374151" text-anchor="middle">BM25 + Semantic</text>
+    <text x="72" y="151" font-size="11" font-weight="600" fill="#374151" text-anchor="middle">+ Deterministic</text>
+  </g>
+
+  <!-- Arrow: Card 6 -> Card 7 -->
+  <line x1="765" y1="242" x2="785" y2="242" stroke="#1e40af" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Card 7: Validate Standards -->
+  <g transform="translate(790, 160)">
+    <rect width="145" height="165" rx="12" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1.5" filter="url(#card-shadow)"/>
+    <!-- Shield Check Icon -->
+    <rect x="52" y="14" width="40" height="40" rx="8" fill="#0284c7"/>
+    <path d="M 64 25 L 72 22 L 80 25 V 34 C 80 40 72 44 72 44 C 72 44 64 40 64 34 Z" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <path d="M 69 33 L 71 35 L 76 30" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="72" y="74" font-size="12.5" font-weight="800" fill="#075985" text-anchor="middle">Validate Standards</text>
+    <text x="72" y="105" font-size="10.5" font-weight="500" fill="#475569" text-anchor="middle">Check applicability,</text>
+    <text x="72" y="120" font-size="10.5" font-weight="500" fill="#475569" text-anchor="middle">status, amendments,</text>
+    <text x="72" y="135" font-size="10.5" font-weight="500" fill="#475569" text-anchor="middle">supersession</text>
+    <text x="72" y="150" font-size="10.5" font-weight="500" fill="#475569" text-anchor="middle">and QCO</text>
+  </g>
+
+  <!-- Arrow: Card 7 -> Decision Diamond -->
+  <line x1="935" y1="242" x2="960" y2="242" stroke="#1e40af" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- ==================== DECISION DIAMOND ==================== -->
+  <g transform="translate(1015, 242)">
+    <!-- Rotated Square for Diamond -->
+    <rect x="-56" y="-56" width="112" height="112" rx="14" transform="rotate(45)" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2" filter="url(#soft-shadow)"/>
+    <!-- Centered Doc/Search Icon -->
+    <path d="M -10 -22 h 14 l 6 6 v 20 h -20 z" fill="#7c3aed" opacity="0.9"/>
+    <circle cx="5" cy="4" r="5" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+    <line x1="8" y1="7" x2="13" y2="12" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="0" y="-2" font-size="11" font-weight="800" fill="#3b0764" text-anchor="middle">Is there</text>
+    <text x="0" y="12" font-size="11" font-weight="800" fill="#3b0764" text-anchor="middle">sufficient and</text>
+    <text x="0" y="26" font-size="11" font-weight="800" fill="#3b0764" text-anchor="middle">unambiguous</text>
+    <text x="0" y="40" font-size="11" font-weight="800" fill="#3b0764" text-anchor="middle">evidence?</text>
+  </g>
+
+  <!-- ==================== BRANCH: NO (HUMAN REVIEW) ==================== -->
+
+  <!-- Red "No" Badge & Arrow -->
+  <line x1="1095" y1="242" x2="1145" y2="242" stroke="#dc2626" stroke-width="2.5" marker-end="url(#arrow-red)"/>
+  <rect x="1098" y="227" width="34" height="22" rx="11" fill="#dc2626"/>
+  <text x="1115" y="242" font-size="11" font-weight="800" fill="#ffffff" text-anchor="middle">No</text>
+
+  <!-- Card: Flag for Human Review -->
+  <g transform="translate(1150, 160)">
+    <rect width="145" height="165" rx="12" fill="#fff1f2" stroke="#fecdd3" stroke-width="1.5" filter="url(#card-shadow)"/>
+    <!-- User Red Icon -->
+    <rect x="52" y="14" width="40" height="40" rx="8" fill="#f43f5e"/>
+    <circle cx="72" cy="28" r="6" fill="#ffffff"/>
+    <path d="M 62 43 C 62 37 66 36 72 36 C 78 36 82 37 82 43 Z" fill="#ffffff"/>
+    <text x="72" y="74" font-size="12" font-weight="800" fill="#9f1239" text-anchor="middle">Flag for</text>
+    <text x="72" y="90" font-size="12" font-weight="800" fill="#9f1239" text-anchor="middle">Human Review</text>
+    <text x="72" y="112" font-size="10.5" font-weight="500" fill="#475569" text-anchor="middle">Missing parameters,</text>
+    <text x="72" y="127" font-size="10.5" font-weight="500" fill="#475569" text-anchor="middle">conflicting</text>
+    <text x="72" y="142" font-size="10.5" font-weight="500" fill="#475569" text-anchor="middle">information or</text>
+    <text x="72" y="157" font-size="10.5" font-weight="500" fill="#475569" text-anchor="middle">multiple standards</text>
+  </g>
+
+  <!-- Pill: Show Alternatives & Evidence -->
+  <rect x="1125" y="105" width="150" height="32" rx="8" fill="#e0e7ff" stroke="#a5b4fc" stroke-width="1.5"/>
+  <text x="1200" y="125" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">Show Alternatives</text>
+  <text x="1200" y="137" font-size="11" font-weight="700" fill="#3730a3" text-anchor="middle">&amp; Evidence</text>
+
+  <!-- Feedback Loop Arrow: Update requirements & re-run analysis -->
+  <path d="M 1295 242 L 1305 242 L 1305 85 L 350 85 L 350 152" fill="none" stroke="#4f46e5" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arrow-purple)"/>
+  <rect x="670" y="72" width="280" height="26" rx="6" fill="#e0e7ff" stroke="#818cf8" stroke-width="1"/>
+  <text x="810" y="89" font-size="11.5" font-weight="700" fill="#312e81" text-anchor="middle">Update requirements &amp; re-run analysis</text>
+
+  <!-- ==================== BRANCH: YES (RECOMMENDATION) ==================== -->
+
+  <!-- Green "Yes" Badge & Arrow -->
+  <line x1="1015" y1="322" x2="1015" y2="415" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+  <rect x="998" y="345" width="34" height="22" rx="11" fill="#16a34a"/>
+  <text x="1015" y="360" font-size="11" font-weight="800" fill="#ffffff" text-anchor="middle">Yes</text>
+
+  <!-- Optional officer review link to recommendation -->
+  <path d="M 1222 325 L 1222 475 L 1170 475" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow-blue)"/>
+
+  <!-- ==================== BOTTOM HORIZONTAL PIPELINE (RIGHT TO LEFT) ==================== -->
+
+  <!-- Card 8: Generate Recommendation -->
+  <g transform="translate(935, 420)">
+    <rect width="230" height="110" rx="12" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5" filter="url(#card-shadow)"/>
+    <rect x="14" y="16" width="38" height="42" rx="8" fill="#10b981"/>
+    <path d="M 23 26 h 8 M 23 33 h 12 M 23 40 h 12" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="36" cy="45" r="7" fill="#059669"/>
+    <path d="M 33 45 L 35 47 L 39 43" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="60" y="30" font-size="13" font-weight="800" fill="#065f46">Generate Recommendation</text>
+    <text x="60" y="52" font-size="11" font-weight="600" fill="#1f2937">Standard No., title, status,</text>
+    <text x="60" y="68" font-size="11" font-weight="600" fill="#1f2937">QCO details and confidence</text>
+    <text x="60" y="86" font-size="11" font-weight="700" fill="#059669">(with evidence)</text>
+  </g>
+
+  <!-- Left Arrow: Card 8 -> Card 9 -->
+  <line x1="935" y1="475" x2="905" y2="475" stroke="#1e40af" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Card 9: Create Standards Review Report -->
+  <g transform="translate(680, 420)">
+    <rect width="220" height="110" rx="12" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5" filter="url(#card-shadow)"/>
+    <rect x="14" y="16" width="38" height="42" rx="8" fill="#2563eb"/>
+    <path d="M 24 25 h 18 M 24 32 h 18 M 24 39 h 12 M 24 46 h 15" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+    <text x="60" y="30" font-size="13" font-weight="800" fill="#1e3a8a">Create Standards</text>
+    <text x="60" y="46" font-size="13" font-weight="800" fill="#1e3a8a">Review Report</text>
+    <text x="60" y="68" font-size="11" font-weight="500" fill="#475569">Applicable, superseded,</text>
+    <text x="60" y="84" font-size="11" font-weight="500" fill="#475569">allied standards, gaps,</text>
+    <text x="60" y="100" font-size="11" font-weight="500" fill="#475569">dependencies and evidence</text>
+  </g>
+
+  <!-- Left Arrow: Card 9 -> Card 10 -->
+  <line x1="680" y1="475" x2="650" y2="475" stroke="#1e40af" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Card 10: Export / Download -->
+  <g transform="translate(440, 420)">
+    <rect width="205" height="110" rx="12" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5" filter="url(#card-shadow)"/>
+    <rect x="14" y="16" width="38" height="42" rx="8" fill="#d97706"/>
+    <!-- Cloud Download Icon -->
+    <path d="M 24 42 c -2 0 -4 -2 -4 -4 c 0 -3 2 -5 5 -5 c 1 -4 4 -6 8 -6 c 4 0 7 3 8 7 c 3 0 5 2 5 5 c 0 3 -2 5 -5 5 Z" fill="#ffffff" opacity="0.9"/>
+    <path d="M 33 36 v 8 M 30 41 l 3 3 l 3 -3" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="60" y="30" font-size="13" font-weight="800" fill="#92400e">Export / Download</text>
+    <text x="60" y="52" font-size="11" font-weight="600" fill="#1f2937">PDF / DOCX / JSON</text>
+    <text x="60" y="74" font-size="11" font-weight="500" fill="#64748b">Ready for procurement</text>
+  </g>
+
+  <!-- Left Arrow: Card 10 -> Card 11 -->
+  <line x1="440" y1="475" x2="410" y2="475" stroke="#1e40af" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- Card 11: Officer Review -->
+  <g transform="translate(245, 420)">
+    <rect width="160" height="110" rx="12" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.5" filter="url(#card-shadow)"/>
+    <rect x="14" y="16" width="38" height="42" rx="8" fill="#7c3aed"/>
+    <circle cx="33" cy="30" r="5" fill="#ffffff"/>
+    <path d="M 25 44 C 25 39 28 38 33 38 C 38 38 41 39 41 44 Z" fill="#ffffff"/>
+    <circle cx="39" cy="45" r="5" fill="#10b981"/>
+    <path d="M 37 45 l 1.5 1.5 l 3 -3" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="60" y="30" font-size="13" font-weight="800" fill="#4c1d95">Officer Review</text>
+    <text x="60" y="52" font-size="11" font-weight="600" fill="#1f2937">Accept / Edit / Dismiss</text>
+    <text x="60" y="70" font-size="11" font-weight="500" fill="#64748b">Add comments</text>
+  </g>
+
+  <!-- Left Arrow: Card 11 -> End -->
+  <line x1="245" y1="475" x2="215" y2="475" stroke="#1e40af" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- End Pill -->
+  <rect x="50" y="455" width="160" height="40" rx="20" fill="#fce7f3" stroke="#f472b6" stroke-width="1.5" filter="url(#card-shadow)"/>
+  <text x="130" y="480" font-size="16" font-weight="700" fill="#be185d" text-anchor="middle">End</text>
+</svg>
