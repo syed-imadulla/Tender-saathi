@@ -4,14 +4,14 @@
     "requirement_text": "replacement of damaged pipelines by Hubless",
     "expected_standard": "IS 15905 : 2011; IS 1239 (Part 1) : 2004",
     "first_stage_rank": 1,
-    "final_recommended_standard": "IS 15905 : 2011",
-    "recommendation_correct": true,
+    "final_recommended_standard": "IS 10990 (Part 2) : 1992",
+    "recommendation_correct": false,
     "identity_correct": true,
     "applicability_valid": true,
     "applicability_decision": "APPLICABLE",
     "ambiguity_state": "REVIEW_REQUIRED",
-    "failure_taxonomy": null,
-    "taxonomy_reason": null
+    "failure_taxonomy": "C",
+    "taxonomy_reason": "Candidate entered ranking pool (rank 1) but reranked below competing candidate."
   },
   {
     "requirement_id": "T001-R003",

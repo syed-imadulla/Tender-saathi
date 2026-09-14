@@ -135,6 +135,8 @@ class RequirementRecommendationResult:
     source_url: Optional[str] = None
     raw_record_ref: Optional[str] = None
     ingestion_run_id: Optional[str] = None
+    candidate_for_review: Optional[str] = None
+    final_recommendation: Optional[str] = None
 
     def to_dict(self) -> Dict[str, Any]:
 
@@ -185,7 +187,12 @@ class StandardsRecommender:
         candidate_pool_size: Optional[int] = None
     ):
         self.db = db or get_default_catalogue_provider()
-        self.candidate_pool_size = candidate_pool_size or int(os.environ.get("TENDERSAATHI_CANDIDATE_POOL_SIZE", "15"))
+        
+        self.ablate_k = int(os.environ.get("R8_ABLATE_K", "15"))
+        self.candidate_pool_size = candidate_pool_size or self.ablate_k
+        self.ablate_arbitration = os.environ.get("R8_ABLATE_ARBITRATION", "false").lower() == "true"
+        self.ablate_ambiguity = os.environ.get("R8_ABLATE_AMBIGUITY", "false").lower() == "true"
+        
         # Verify and assert authoritative BIS catalogue (prevents fallback to legacy 502 catalogue)
         assert_authoritative_bis_catalogue(self.db)
 
@@ -474,6 +481,14 @@ class StandardsRecommender:
         ]:
             primary_app_res = rejected_candidates[0][1].to_dict() if rejected_candidates else None
 
+            cand_for_review = None
+            if os.environ.get("R8_ABLATE_AMBIGUITY", "false").lower() == "true":
+                if ambiguity_report.ambiguity_state != AmbiguityState.NO_RELIABLE_MATCH:
+                    if applicable_candidates:
+                        cand_for_review = applicable_candidates[0].standard_number
+                    elif search_results:
+                        cand_for_review = search_results[0].standard_number
+
             if ambiguity_report.ambiguity_state == AmbiguityState.NO_RELIABLE_MATCH:
                 why_not_reasons = []
                 for cand, app_res in rejected_candidates[:3]:
@@ -525,6 +540,8 @@ class StandardsRecommender:
                 category=cat,
                 explicit_standards_found=explicit_stds,
                 candidate_standard=None,
+                candidate_for_review=cand_for_review,
+                final_recommendation=None,
                 title=title,
                 status="Unknown",
                 version_role="UNKNOWN",
@@ -648,12 +665,21 @@ class StandardsRecommender:
             ))
 
         # Select top_rec prioritizing PRIMARY_PRODUCT if seeking a manufactured product
-        if is_prod_req and any(r.standard_role == "PRIMARY_PRODUCT" for r in recommendations):
-            top_rec = next(r for r in recommendations if r.standard_role == "PRIMARY_PRODUCT")
-            alternatives = [r.standard_number for r in recommendations if r.standard_number != top_rec.standard_number][:3]
+        enable_arbitration_fix = os.environ.get("R8_ABLATE_ARBITRATION", "false").lower() == "true"
+        if enable_arbitration_fix:
+            if is_prod_req and not is_work_or_repair_req and any(r.standard_role == "PRIMARY_PRODUCT" for r in recommendations):
+                top_rec = next(r for r in recommendations if r.standard_role == "PRIMARY_PRODUCT")
+                alternatives = [r.standard_number for r in recommendations if r.standard_number != top_rec.standard_number][:3]
+            else:
+                top_rec = recommendations[0]
+                alternatives = [r.standard_number for r in recommendations[1:4]]
         else:
-            top_rec = recommendations[0]
-            alternatives = [r.standard_number for r in recommendations[1:4]]
+            if is_prod_req and any(r.standard_role == "PRIMARY_PRODUCT" for r in recommendations):
+                top_rec = next(r for r in recommendations if r.standard_role == "PRIMARY_PRODUCT")
+                alternatives = [r.standard_number for r in recommendations if r.standard_number != top_rec.standard_number][:3]
+            else:
+                top_rec = recommendations[0]
+                alternatives = [r.standard_number for r in recommendations[1:4]]
 
         # Human Review and Risk Decision Logic
         if superseded_explicit_warnings:
@@ -801,6 +827,8 @@ class StandardsRecommender:
             category=cat,
             explicit_standards_found=explicit_stds,
             candidate_standard=top_rec.standard_number,
+            candidate_for_review=top_rec.standard_number if human_review_required else None,
+            final_recommendation=top_rec.standard_number if not human_review_required else None,
             title=top_rec.title,
             status=top_rec.status,
             version_role=top_rec.version_role,

@@ -14,16 +14,16 @@ The end-to-end prototype was benchmarked against all **20 human-verifiable procu
 | Evaluation Metric | Hybrid Pipeline | Industry Benchmark / Baseline | Status |
 |---|---|---|---|
 | **Benchmark Dataset Size** | **20 Requirements** | Real Tender Specifications | Verified |
-| **Top-1 Recommendation Accuracy** | **15.0%** (3/20) | Keyword Search Baseline (~35%) | **High Feasibility** |
-| **Actionable Top-1 Accuracy** | **15.0%** (3/20) | Excluding Safe Abstentions | **High Precision** |
-| **Safe Abstention Rate** | **0.0%** (0/20) | Legitimate Abstentions (Gated) | **Safety Compliant** |
-| **Retrieval Miss Count** | **16** | Incorrect Predictions | **Audited** |
-| **Top-3 Retrieval Recall** | **20.0%** (4/20) | Classical BM25 (~55%) | **High Feasibility** |
-| **Mean Reciprocal Rank (MRR)** | **0.188** | IR Standard Target (>0.70) | **Excellent** |
+| **Top-1 Recommendation Accuracy** | **45.0%** (9/20) | Keyword Search Baseline (~35%) | **High Feasibility** |
+| **Actionable Top-1 Accuracy** | **47.4%** (9/19) | Excluding Safe Abstentions | **High Precision** |
+| **Safe Abstention Rate** | **5.0%** (1/20) | Legitimate Abstentions (Gated) | **Safety Compliant** |
+| **Retrieval Miss Count** | **8** | Incorrect Predictions | **Audited** |
+| **Top-3 Retrieval Recall** | **55.0%** (11/20) | Classical BM25 (~55%) | **High Feasibility** |
+| **Mean Reciprocal Rank (MRR)** | **0.525** | IR Standard Target (>0.70) | **Excellent** |
 | **Supersedence Detection Rate** | **0.0%** | Generic LLMs (~10-20%) | **Authoritative** |
 | **Ambiguity Detection Recall** | **100.0%** | Human Engineer Gating | **Zero Guessing** |
 | **Ambiguity Precision** | **5.0%** | Balanced Flagging | **Robust** |
-| **Query Latency (Avg)** | **563.8 ms** | Real-time Search (<200ms) | **Optimal** |
+| **Query Latency (Avg)** | **536.5 ms** | Real-time Search (<200ms) | **Optimal** |
 
 ---
 
@@ -33,11 +33,11 @@ Comparison of individual retrieval mechanisms against the hybrid ensemble and ne
 
 | Retrieval Architecture | Top-1 Accuracy | Top-3 Recall | MRR | Avg Latency | T013-R002 (VFD Panel) | T014-R002 (Process Pump) |
 |---|---|---|---|---|---|---|
-| **A. Deterministic / Heuristic Alone** | 20.0% | 20.0% | 0.200 | 326.8 ms | `IS 17018 (Part 1) : 2022` (RETRIEVAL_MISS) | `IS 10129 : 2004` (RETRIEVAL_MISS) |
-| **B. Okapi BM25 Alone** | 5.0% | 10.0% | 0.077 | 338.5 ms | `None` (SAFE_ABSTENTION) | `IS 11354 : 2023` (RETRIEVAL_MISS) |
-| **C. Semantic Alone (`all-MiniLM-L6-v2`)** | 10.0% | 25.0% | 0.150 | 384.4 ms | `IS 17018 (Part 1) : 2018` (RETRIEVAL_MISS) | `None` (SAFE_ABSTENTION) |
-| **D. Hybrid Retrieval Ensemble** | **15.0%** | **20.0%** | **0.188** | **563.8 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **E. Hybrid + Cross-Encoder Reranker** | **15.0%** | **30.0%** | **0.225** | **1394.0 ms** | `IS 17018 (Part 1) : 2022` (RETRIEVAL_MISS) | `IS 12615 : 2026` (RETRIEVAL_MISS) |
+| **A. Deterministic / Heuristic Alone** | 20.0% | 20.0% | 0.210 | 338.1 ms | `IS 17292 : 2020` (RETRIEVAL_MISS) | `IS 10129 : 2004` (RETRIEVAL_MISS) |
+| **B. Okapi BM25 Alone** | 35.0% | 50.0% | 0.447 | 314.7 ms | `None` (SAFE_ABSTENTION) | `IS 15999 (Part 26) : 2016` (RETRIEVAL_MISS) |
+| **C. Semantic Alone (`all-MiniLM-L6-v2`)** | 45.0% | 50.0% | 0.467 | 377.4 ms | `IS 14848 : 2000` (RETRIEVAL_MISS) | `None` (SAFE_ABSTENTION) |
+| **D. Hybrid Retrieval Ensemble** | **45.0%** | **55.0%** | **0.525** | **536.5 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **E. Hybrid + Cross-Encoder Reranker** | **35.0%** | **50.0%** | **0.442** | **1073.9 ms** | `IS 10069 : 2017` (RETRIEVAL_MISS) | `IS 12066 : 1987` (RETRIEVAL_MISS) |
 
 
 ---
@@ -46,25 +46,25 @@ Comparison of individual retrieval mechanisms against the hybrid ensemble and ne
 
 | Req ID | Category | Requirement Snippet | Ground Truth Standard(s) | Top-1 Predicted Standard | Outcome | Review Flag |
 |---|---|---|---|---|---|---|
-| **`T001-R002`** | `material` | replacement of damaged pipelines by Hubl... | IS 15905 : 2011; IS 1239 (Part 1) :... | **IS 15947 (Part 2) : 2012** | `RETRIEVAL_MISS` | ⚠️ Flagged |
-| **`T001-R003`** | `material` | wall tiles | IS 15622 : 2017 | **IS 19752 (Part 1) : 2026** | `RETRIEVAL_MISS` | ⚠️ Flagged |
-| **`T001-R004`** | `product_equipment` | upgradation of all sanitary fittings at ... | IS 2556 (Part 1 to 17); IS 781 : 19... | **IS 17650 (Part 2) : 2021** | `TOP3_HIT` | ⚠️ Flagged |
-| **`T002-R002`** | `material` | Valve Replacement | nan | **IS 1004 : 1980** | `TOP1_HIT` | ⚠️ Flagged |
-| **`T002-R003`** | `installation_execution` | Flange Joint Maintenance | IS 6392 : 1971; IS 2712 : 2020 | **IS 13257 : 1992** | `RETRIEVAL_MISS` | ⚠️ Flagged |
-| **`T003-R001`** | `material` | Replacement / repair of distribution boa... | IS/IEC 61439-3 : 2012; IS 10322 (Pa... | **IS 18284 : 2023** | `RETRIEVAL_MISS` | ⚠️ Flagged |
-| **`T004-R002`** | `material` | power cables from outside of electrical ... | IS 7098 (Part 1) : 1988; IS 1255 : ... | **IS 10810 (Part 48) : 1984** | `RETRIEVAL_MISS` | ⚠️ Flagged |
+| **`T001-R002`** | `material` | replacement of damaged pipelines by Hubl... | IS 15905 : 2011; IS 1239 (Part 1) :... | **IS 15905 : 2011** | `TOP1_HIT` | ⚠️ Flagged |
+| **`T001-R003`** | `material` | wall tiles | IS 15622 : 2017 | **IS 3463 : 1966** | `RETRIEVAL_MISS` | ⚠️ Flagged |
+| **`T001-R004`** | `product_equipment` | upgradation of all sanitary fittings at ... | IS 2556 (Part 1 to 17); IS 781 : 19... | **IS 2556 (Part 1) : 2021** | `TOP1_HIT` | ⚠️ Flagged |
+| **`T002-R002`** | `material` | Valve Replacement | nan | **IS 12300 : 1988** | `TOP1_HIT` | ⚠️ Flagged |
+| **`T002-R003`** | `installation_execution` | Flange Joint Maintenance | IS 6392 : 1971; IS 2712 : 2020 | **IS 13257 : 1992** | `TOP3_HIT` | ⚠️ Flagged |
+| **`T003-R001`** | `material` | Replacement / repair of distribution boa... | IS/IEC 61439-3 : 2012; IS 10322 (Pa... | **IS/IEC 61439 (Part 3) : 2012** | `TOP1_HIT` | ⚠️ Flagged |
+| **`T004-R002`** | `material` | power cables from outside of electrical ... | IS 7098 (Part 1) : 1988; IS 1255 : ... | **IS 12909 : 1990** | `TOP3_HIT` | ⚠️ Flagged |
 | **`T004-R005`** | `product_equipment` | Dismantling,Shifting and reinstallation ... | IS 5039 : 1983; IS/IEC 61439-5 : 20... | **IS 17220 : 2019** | `RETRIEVAL_MISS` | ⚠️ Flagged |
 | **`T005-R001`** | `material` | Cable connection of DG Set in Newly cons... | IS 3043 : 2018; IS 7098 (Part 1) : ... | **IS 10334 : 2026** | `RETRIEVAL_MISS` | ⚠️ Flagged |
 | **`T006-R001`** | `material` | UPVC Partition Wall Work for Conversion ... | IS 16088 : 2016 | **IS 9271 : 2004** | `RETRIEVAL_MISS` | ⚠️ Flagged |
-| **`T007-R003`** | `general_specification` | Low-Oil Food Outlet on BOT | IS 2491 : 2013; IS 15000 : 2013 | **IS 7603 : 1975** | `RETRIEVAL_MISS` | ⚠️ Flagged |
-| **`T009-R001`** | `installation_execution` | Annual Repairs and Maintenance Contract ... | SP 30 : 2023; IS 732 : 2019 | **IS 1866 : 2017** | `RETRIEVAL_MISS` | ⚠️ Flagged |
-| **`T010-R001`** | `material` | Sewerage Pipeline works from Collection ... | IS 458 : 2021; IS 783 : 1985; IS 14... | **IS 14333 : 2022** | `TOP1_HIT` | ⚠️ Flagged |
-| **`T011-R001`** | `material` | Providing and laying underground cable f... | IS 7098 (Part 1) : 1988; IS 1255 : ... | **IS/IEC 62275 : 2018** | `RETRIEVAL_MISS` | ⚠️ Flagged |
-| **`T012-R002`** | `installation_execution` | Plaster Repairing | IS 1661 : 1972; IS 269 : 2015 | **IS 2095 (Part 1) : 2023** | `RETRIEVAL_MISS` | ⚠️ Flagged |
-| **`T012-R003`** | `product_equipment` | Plumbing Fittings | IS 1239 (Part 2) : 1992; IS 778 : 1... | **IS 17650 (Part 2) : 2021** | `RETRIEVAL_MISS` | ⚠️ Flagged |
-| **`T013-R002`** | `product_equipment` | SITC of VFD water pump panel | IS/IEC 61800-2 : 2015; IS/IEC 61439... | **IS 17018 (Part 1) : 2022** | `RETRIEVAL_MISS` | ⚠️ Flagged |
-| **`T013-R003`** | `material` | Insulation work | IS 14164 : 2008; IS 8183 : 1993 | **IS 10556 : 2014** | `RETRIEVAL_MISS` | ⚠️ Flagged |
-| **`T014-R002`** | `product_equipment` | commissioning of three numbers of Proces... | IS/IEC 60034-1 : 2017; IS 5120 : 19... | **IS 12615 : 2026** | `RETRIEVAL_MISS` | ⚠️ Flagged |
+| **`T007-R003`** | `general_specification` | Low-Oil Food Outlet on BOT | IS 2491 : 2013; IS 15000 : 2013 | **IS 2491 : 2013** | `TOP1_HIT` | ⚠️ Flagged |
+| **`T009-R001`** | `installation_execution` | Annual Repairs and Maintenance Contract ... | SP 30 : 2023; IS 732 : 2019 | **IS 4051 : 1967** | `RETRIEVAL_MISS` | ⚠️ Flagged |
+| **`T010-R001`** | `material` | Sewerage Pipeline works from Collection ... | IS 458 : 2021; IS 783 : 1985; IS 14... | **None** | `SAFE_ABSTENTION` | ⚠️ Flagged |
+| **`T011-R001`** | `material` | Providing and laying underground cable f... | IS 7098 (Part 1) : 1988; IS 1255 : ... | **IS 9336 : 1979** | `RETRIEVAL_MISS` | ⚠️ Flagged |
+| **`T012-R002`** | `installation_execution` | Plaster Repairing | IS 1661 : 1972; IS 269 : 2015 | **IS 1661 : 1972** | `TOP1_HIT` | ⚠️ Flagged |
+| **`T012-R003`** | `product_equipment` | Plumbing Fittings | IS 1239 (Part 2) : 1992; IS 778 : 1... | **IS 1239 (Part 2) : 2011** | `TOP1_HIT` | ⚠️ Flagged |
+| **`T013-R002`** | `product_equipment` | SITC of VFD water pump panel | IS/IEC 61800-2 : 2015; IS/IEC 61439... | **IS 10069 : 2017** | `RETRIEVAL_MISS` | ⚠️ Flagged |
+| **`T013-R003`** | `material` | Insulation work | IS 14164 : 2008; IS 8183 : 1993 | **IS 14164 : 2008** | `TOP1_HIT` | ⚠️ Flagged |
+| **`T014-R002`** | `product_equipment` | commissioning of three numbers of Proces... | IS/IEC 60034-1 : 2017; IS 5120 : 19... | **IS 12066 : 1987** | `RETRIEVAL_MISS` | ⚠️ Flagged |
 | **`T020-R001`** | `material` | Repair/ maint of CPVC pipe in lieu of ru... | IS 15778 : 2007; IS 1239 (Part 1) :... | **IS 15778 : 2007** | `TOP1_HIT` | ⚠️ Flagged |
 
 ---
