@@ -339,7 +339,9 @@ class HybridRetrievalEngine:
                 if unique_comp_matches >= 2:
                     rrf_score *= 1.10
 
-                cand.hybrid_score = round(rrf_score, 6)
+                MAX_RRF = 3.0 / (k_rrf + 1)
+                normalized_rrf = min(0.98, rrf_score / MAX_RRF)
+                cand.hybrid_score = round(normalized_rrf, 4)
             elif fusion_strategy == "candidate_preserving":
                 # Strategy C: Candidate-Preserving Union / CombMAX with consensus boost
                 # 1. Base CombMAX score across retrievers

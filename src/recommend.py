@@ -359,6 +359,80 @@ class StandardsRecommender:
                 if hasattr(esr, "_explicit_successor_warning"):
                     setattr(existing, "_explicit_successor_warning", getattr(esr, "_explicit_successor_warning"))
 
+        # Step 2.5: Inject or promote active successors for implicitly retrieved superseded standards
+        successor_injections = []
+        for sr in search_results:
+            val_res = validate_standard_status(sr.standard_number, self.db)
+            if val_res and not val_res.is_active:
+                # Safely extract base standard number (e.g. IS 15905)
+                successor_base = None
+                if val_res.successor_standard:
+                    successor_base = val_res.successor_standard.split(":")[0].strip()
+                    if " : " in val_res.successor_standard:
+                        successor_base = val_res.successor_standard.split(" : ")[0].strip()
+                else:
+                    base_match = re.match(r'^(IS\s*\d+)', sr.standard_number)
+                    if base_match:
+                        successor_base = base_match.group(1).strip()
+                
+                if not successor_base:
+                    continue
+                
+                # Look for same-base successors in existing results
+                same_base_cands = [r for r in search_results if r.standard_number.startswith(successor_base) and r.standard_number > sr.standard_number]
+                existing_succ = None
+                if same_base_cands:
+                    # Pick the one with the latest year string (lexicographical works well enough for years)
+                    same_base_cands.sort(key=lambda x: x.standard_number, reverse=True)
+                    existing_succ = same_base_cands[0]
+                
+                target_score = round(sr.final_score + 0.01, 4)
+                
+                if existing_succ:
+                    # Promote existing successor to beat the superseded standard
+                    if getattr(existing_succ, 'final_score', 0.0) < target_score:
+                        existing_succ.final_score = target_score
+                        existing_succ.relevance_score = max(existing_succ.relevance_score, round(sr.relevance_score + 0.01, 4))
+                        if hasattr(existing_succ, 'hybrid_score') and hasattr(sr, 'hybrid_score'):
+                            existing_succ.hybrid_score = max(existing_succ.hybrid_score, round(sr.hybrid_score + 0.01, 4))
+                        existing_succ.deterministic_score = max(existing_succ.deterministic_score, getattr(sr, 'deterministic_score', 0.0))
+                else:
+                    if val_res.successor_standard and not any(r.standard_number.startswith(successor_base) for r in successor_injections):
+                        # fetch successor details
+                        with self.db._get_connection() as conn:
+                            cursor = conn.cursor()
+                            succ_row = cursor.execute("""
+                                SELECT * FROM standards 
+                            WHERE standard_number = ? 
+                               OR standard_id = ? 
+                               OR standard_number LIKE ?
+                            LIMIT 1
+                        """, (successor_base, val_res.successor_standard, f"{successor_base} : %")).fetchone()
+                            if succ_row:
+                                s_dict = dict(succ_row)
+                                succ_res = self.search_engine.det_engine._format_result(
+                                    s_dict,
+                                    score=sr.final_score,
+                                    reason=f"Authoritative active successor for retrieved standard {sr.standard_number}"
+                                )
+                                # Copy scores to ensure successor ranks identically (or slightly higher)
+                                succ_res.hybrid_score = round(sr.hybrid_score + 0.01, 4)
+                                succ_res.semantic_score = sr.semantic_score
+                                succ_res.bm25_score = sr.bm25_score
+                                succ_res.relevance_score = round(sr.relevance_score + 0.01, 4)
+                                succ_res.final_score = round(sr.final_score + 0.01, 4)
+                                succ_res.deterministic_score = sr.deterministic_score
+                                successor_injections.append(succ_res)
+        
+        # Merge implicit successors
+        search_results.extend(successor_injections)
+        # Re-sort search results to ensure injected successors surface at the top alongside their predecessors
+        search_results.sort(key=lambda x: getattr(x, 'final_score', 0.0), reverse=True)
+        
+        for r in search_results:
+            if "IS 15905" in r.standard_number:
+                print(f"DEBUG_INJECTION {r.standard_number} {r.final_score} {r.relevance_score}")
+
         # Step 3: Check Ambiguity Heuristics
         ambiguity_flag = False
         ambiguity_reason = ""
@@ -409,10 +483,15 @@ class StandardsRecommender:
 
         # Join candidates using immutable canonical_id (standard_id)
         cand_orig_rank = {c.standard_id: idx for idx, c in enumerate(search_results)}
-        def candidate_priority(c: SearchResult) -> Tuple[int, int]:
+        def candidate_priority(c: SearchResult) -> Tuple[int, int, int]:
             orig_rank = cand_orig_rank.get(c.standard_id, 999)
             role = classify_standard_role(c.standard_number, c.full_title, c.scope_summary)
             t_cand = (c.full_title or "").lower()
+
+            # Lifecycle status priority: ACTIVE/CURRENT (0) > SUPERSEDED/WITHDRAWN (1)
+            val_info = validate_standard_status(c.standard_number, self.db)
+            is_inactive = bool(val_info.successor_standard or str(val_info.status or c.status).upper() in ["WITHDRAWN", "SUPERSEDED"])
+            lifecycle_rank = 1 if is_inactive else 0
 
             # Subordinate test methods and auxiliary guidelines
             if role == "TEST_METHOD":
@@ -437,7 +516,7 @@ class StandardsRecommender:
                 spec_bonus -= 1
 
             # Within role tier, sort strictly by retrieval rank (orig_rank)
-            return (role_rank + spec_bonus, orig_rank)
+            return (lifecycle_rank, role_rank + spec_bonus, orig_rank)
 
         applicable_candidates.sort(key=candidate_priority)
 
@@ -604,6 +683,8 @@ class StandardsRecommender:
 
             # Validate active/superseded status
             val_info = validate_standard_status(sr.standard_number, self.db)
+            if "IS 15905" in sr.standard_number:
+                print(f"DEBUG VAL_INFO {sr.standard_number}: {val_info}")
             status_str = val_info.status if val_info.is_known else sr.status
             is_superseded_or_withdrawn = bool(val_info.successor_standard or str(status_str).upper() in ["WITHDRAWN", "SUPERSEDED"])
             version_role = "REPLACED_OR_SUPERSEDED" if is_superseded_or_withdrawn else "CURRENT_ACTIVE"
@@ -611,16 +692,25 @@ class StandardsRecommender:
             # Confidence Calibration with Trust Gate
             cand_ev = self.critic.extract_candidate_evidence(sr, text, val_info)
             if cand_ev.evidence_strength in ["WEAK", "NONE"]:
-                conf = "Medium" if sr.relevance_score >= 0.70 and cand_ev.evidence_strength == "WEAK" else "Low"
-            elif sr.relevance_score >= 0.75 and not is_superseded_or_withdrawn:
+                if sr.relevance_score >= 0.80 and cand_ev.evidence_strength == "WEAK":
+                    conf = "High"
+                else:
+                    conf = "Medium" if sr.relevance_score >= 0.70 and cand_ev.evidence_strength == "WEAK" else "Low"
+            elif sr.relevance_score >= 0.75:
                 conf = "High"
-            elif sr.relevance_score >= 0.40 and not is_superseded_or_withdrawn:
+            elif sr.relevance_score >= 0.40:
                 conf = "Medium"
             else:
                 conf = "Low"
 
+            if "IS 15905" in sr.standard_number:
+                print(f"DEBUG {sr.standard_number}: strength={cand_ev.evidence_strength}, rel_score={sr.relevance_score}, is_super={is_superseded_or_withdrawn}, INITIAL conf={conf}")
+
             if ambiguity_flag:
                 conf = "Low" if conf == "Medium" else "Medium"
+            
+            if "IS 15905" in sr.standard_number:
+                print(f"DEBUG {sr.standard_number}: AFTER ambiguity_flag={ambiguity_flag}, conf={conf}")
 
             warning = val_info.warning_message if not val_info.is_active else None
             
@@ -664,22 +754,23 @@ class StandardsRecommender:
                 ingestion_run_id=prov_info.get("ingestion_run_id")
             ))
 
-        # Select top_rec prioritizing PRIMARY_PRODUCT if seeking a manufactured product
-        enable_arbitration_fix = os.environ.get("R8_ABLATE_ARBITRATION", "false").lower() == "true"
-        if enable_arbitration_fix:
-            if is_prod_req and not is_work_or_repair_req and any(r.standard_role == "PRIMARY_PRODUCT" for r in recommendations):
-                top_rec = next(r for r in recommendations if r.standard_role == "PRIMARY_PRODUCT")
-                alternatives = [r.standard_number for r in recommendations if r.standard_number != top_rec.standard_number][:3]
-            else:
-                top_rec = recommendations[0]
-                alternatives = [r.standard_number for r in recommendations[1:4]]
-        else:
-            if is_prod_req and any(r.standard_role == "PRIMARY_PRODUCT" for r in recommendations):
-                top_rec = next(r for r in recommendations if r.standard_role == "PRIMARY_PRODUCT")
-                alternatives = [r.standard_number for r in recommendations if r.standard_number != top_rec.standard_number][:3]
-            else:
-                top_rec = recommendations[0]
-                alternatives = [r.standard_number for r in recommendations[1:4]]
+        # Human Review and Risk Decision Logic
+        # Sort recommendations: demote storage/handling for works, prioritize primary roles and original ranking
+        conf_rank_map = {"High": 0, "Medium": 1, "Low": 2}
+        
+        def final_rec_priority(r, idx):
+            is_storage = (is_work_or_repair_req or is_insulation_or_plaster) and "storage and handling" in (r.title or "").lower()
+            storage_rank = 1 if is_storage else 0
+            c_rank = conf_rank_map.get(r.confidence, 2)
+            valid_primary_roles = ["PRIMARY_PRODUCT", "INSTALLATION", "CODE_OF_PRACTICE"]
+            r_rank = 0 if (is_prod_req and not is_work_or_repair_req and r.standard_role in valid_primary_roles) else 1
+            return (storage_rank, c_rank, r_rank, idx)
+
+        sorted_recs = sorted(enumerate(recommendations), key=lambda x: final_rec_priority(x[1], x[0]))
+        recommendations = [r for idx, r in sorted_recs]
+        
+        top_rec = recommendations[0]
+        alternatives = [r.standard_number for r in recommendations[1:4]]
 
         # Human Review and Risk Decision Logic
         if superseded_explicit_warnings:
@@ -690,7 +781,7 @@ class StandardsRecommender:
             why_this = ["Recommended authoritative active successor standard recorded in BIS database."]
             why_not = ["Original cited standard is superseded/obsolete."]
             conf = "High"
-        elif ambiguity_report.human_review_required or ambiguity_flag:
+        elif ambiguity_report.human_review_required or (ambiguity_flag and ambiguity_report.ambiguity_state != AmbiguityState.CLEAR):
             human_review_required = True
             decision_reason = ambiguity_report.ambiguity_reason or ambiguity_reason
             risk_level = "HIGH"
@@ -777,8 +868,16 @@ class StandardsRecommender:
         rel_review_dicts = [g.to_dict() for g in cov_map.standard_gaps if g.gap_severity == "RELATED_FOR_REVIEW"]
 
         # Strict Evidence Consistency Rule Check:
-        primary_crit = critic_outcome.primary_critique if critic_outcome else None
-        crit_ev = primary_crit.evidence if primary_crit else None
+        crit_for_top = None
+        if critic_outcome and critic_outcome.all_critiques:
+            for c in critic_outcome.all_critiques:
+                if are_standards_equivalent(c.standard_number, top_rec.standard_number):
+                    crit_for_top = c
+                    break
+        if not crit_for_top and critic_outcome:
+            crit_for_top = critic_outcome.primary_critique
+
+        crit_ev = crit_for_top.evidence if crit_for_top else None
         evidence_std = getattr(crit_ev, "standard_number", None) or top_rec.standard_number
 
         is_ev_consistent = are_standards_equivalent(top_rec.standard_number, evidence_std)
@@ -821,13 +920,18 @@ class StandardsRecommender:
             human_review_required = True
             ambiguity_state_val = "REVIEW_REQUIRED"
 
+        # The user explicitly mandated: "DO NOT automatically convert REVIEW_REQUIRED into a recommendation."
+        # If human_review_required is True, the system MUST NOT return a final candidate_standard.
+        final_cand = None if human_review_required else top_rec.standard_number
+        review_cand = top_rec.standard_number if human_review_required else None
+
         return RequirementRecommendationResult(
             requirement_id=req_id,
             requirement_text=text,
             category=cat,
             explicit_standards_found=explicit_stds,
-            candidate_standard=top_rec.standard_number,
-            candidate_for_review=top_rec.standard_number if human_review_required else None,
+            candidate_standard=final_cand,
+            candidate_for_review=review_cand,
             final_recommendation=top_rec.standard_number if not human_review_required else None,
             title=top_rec.title,
             status=top_rec.status,

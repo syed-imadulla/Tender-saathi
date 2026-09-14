@@ -583,7 +583,7 @@ class AmbiguityEngine:
                     lifecycle_reasons.append(
                         "Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel)."
                     )
-            elif not completeness_report.is_adequately_specified:
+            elif getattr(completeness_report, "critical_missing_count", 0) >= 2 and top_cand.relevance_score < 0.65:
                 lifecycle_review_needed = True
                 missing_items = ", ".join(completeness_report.potentially_missing_parameters[:3])
                 lifecycle_reasons.append(

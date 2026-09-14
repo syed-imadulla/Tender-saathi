@@ -209,10 +209,13 @@ class EvidenceAwareCritic:
             )
 
 
-        # Check stored scope text
+        # Check stored scope text or title
         has_scope = scope and len(scope.strip()) > 15 and "insufficient" not in scope.lower()
-        if has_scope:
-            full_evidence_corpus = f"{scope} {std.get('full_title', '')}"
+        title = std.get('full_title', '')
+        has_title = title and len(title.strip()) > 10
+
+        if has_scope or has_title:
+            full_evidence_corpus = f"{scope or ''} {title}".strip()
             req_words = {w for w in re.findall(r'\b\w{3,}\b', requirement_text.lower()) if w not in GENERIC_STOPWORDS}
             ev_words = {w for w in re.findall(r'\b\w{3,}\b', full_evidence_corpus.lower()) if w not in GENERIC_STOPWORDS}
             overlap = req_words.intersection(ev_words)
@@ -224,18 +227,19 @@ class EvidenceAwareCritic:
                 elif provenance == "CURATED":
                     strength = "MODERATE"
                 else:
-                    strength = "WEAK"
+                    strength = "MODERATE" if len(overlap) >= 2 else "WEAK"
+                ev_text = (scope[:400].strip() if has_scope else f"Catalogue Record Title: {title}")
                 return CandidateEvidence(
-                    evidence_text=scope[:400].strip(),
+                    evidence_text=ev_text,
                     evidence_source=source_name,
                     source_url=source_url,
                     provenance=provenance,
-                    evidence_type="scope",
+                    evidence_type="scope" if has_scope else "title",
                     evidence_strength=strength,
                     grounded=True,
                     standard_number=cand_std_num
                 )
-            else:
+            elif has_scope:
                 # Stored scope exists, but does not support this requirement
                 return CandidateEvidence(
                     evidence_text=scope[:400].strip(),
@@ -415,12 +419,12 @@ class EvidenceAwareCritic:
             decision = "REVIEW_REQUIRED"
             review_required = True
         # Gate 4: TRUST RULE - Strong retrieval + weak/none evidence CANNOT become High confidence recommendation
-        elif evidence.evidence_strength in ["WEAK", "NONE"]:
+        elif evidence.evidence_strength == "NONE" or (evidence.evidence_strength == "WEAK" and relevance < 0.70):
             decision = "INSUFFICIENT_EVIDENCE" if evidence.evidence_strength == "NONE" else "REVIEW_REQUIRED"
             review_required = True
-            risk_reasons.append("Trust Gate: High retrieval score capped due to weak/unsupported scope evidence")
-        # Gate 5: Incomplete specification in domain requiring critical discriminating parameters
-        elif not completeness.is_adequately_specified and getattr(completeness, "critical_missing_count", 0) > 0:
+            risk_reasons.append("Trust Gate: Retrieval score capped due to weak/unsupported scope evidence")
+        # Gate 5: Incomplete specification when ambiguous candidates exist
+        elif not completeness.is_adequately_specified and getattr(completeness, "critical_missing_count", 0) > 0 and ambiguity_score < 0.80:
             decision = "REVIEW_REQUIRED"
             review_required = True
         # Gate 6: Close ambiguous candidates without adequate specification

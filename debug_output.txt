@@ -1,0 +1,99 @@
+ID: T001-R003
+  Exp: IS 15622 : 2017
+  Rank: 7
+  Applicability: APPLICABLE
+  Ambiguity: REVIEW_REQUIRED
+  Reason: Candidate entered ranking pool (rank 7) but reranked below competing candidate.
+  Final: IS 3463 : 1966
+  Review Candidate: None
+----------------------------------------
+ID: T002-R003
+  Exp: IS 6392 : 1971; IS 2712 : 2020
+  Rank: 2
+  Applicability: APPLICABLE
+  Ambiguity: REVIEW_REQUIRED
+  Reason: Candidate entered ranking pool (rank 2) but reranked below competing candidate.
+  Final: IS 13257 : 1992
+  Review Candidate: None
+----------------------------------------
+ID: T004-R002
+  Exp: IS 7098 (Part 1) : 1988; IS 1255 : 1983
+  Rank: 1
+  Applicability: APPLICABLE
+  Ambiguity: REVIEW_REQUIRED
+  Reason: Candidate entered ranking pool (rank 1) but reranked below competing candidate.
+  Final: IS 12909 : 1990
+  Review Candidate: None
+----------------------------------------
+ID: T004-R005
+  Exp: IS 5039 : 1983; IS/IEC 61439-5 : 2014
+  Rank: 18
+  Applicability: APPLICABLE
+  Ambiguity: REVIEW_REQUIRED
+  Reason: Candidate entered ranking pool (rank 18) but reranked below competing candidate.
+  Final: IS 17220 : 2019
+  Review Candidate: None
+----------------------------------------
+ID: T005-R001
+  Exp: IS 3043 : 2018; IS 7098 (Part 1) : 1988; IS 1293 : 2019
+  Rank: 61
+  Applicability: APPLICABLE
+  Ambiguity: REVIEW_REQUIRED
+  Reason: Candidate was retrieved by first-stage at rank 61 but lost during top ranking fusion/filtering.
+  Final: IS 10334 : 2026
+  Review Candidate: None
+----------------------------------------
+ID: T006-R001
+  Exp: IS 16088 : 2016
+  Rank: None
+  Applicability: APPLICABLE
+  Ambiguity: REVIEW_REQUIRED
+  Reason: Expected candidate was never retrieved in first-stage retrieval pool (Top-100).
+  Final: IS 9271 : 2004
+  Review Candidate: None
+----------------------------------------
+ID: T009-R001
+  Exp: SP 30 : 2023; IS 732 : 2019
+  Rank: 10
+  Applicability: APPLICABLE
+  Ambiguity: REVIEW_REQUIRED
+  Reason: Candidate entered ranking pool (rank 10) but reranked below competing candidate.
+  Final: IS 4051 : 1967
+  Review Candidate: None
+----------------------------------------
+ID: T010-R001
+  Exp: IS 458 : 2021; IS 783 : 1985; IS 14333 : 1996
+  Rank: 1
+  Applicability: NOT_APPLICABLE
+  Ambiguity: AMBIGUOUS
+  Reason: Candidate ranked within Top-30 (rank 1) but rejected by applicability gate: ['Requirement specifies pumps/rotating machinery, but candidate standard covers pipes/fittings.'].
+  Final: None
+  Review Candidate: None
+----------------------------------------
+ID: T011-R001
+  Exp: IS 7098 (Part 1) : 1988; IS 1255 : 1983
+  Rank: 61
+  Applicability: APPLICABLE
+  Ambiguity: REVIEW_REQUIRED
+  Reason: Candidate was retrieved by first-stage at rank 61 but lost during top ranking fusion/filtering.
+  Final: IS 9336 : 1979
+  Review Candidate: None
+----------------------------------------
+ID: T013-R002
+  Exp: IS/IEC 61800-2 : 2015; IS/IEC 61439-2 : 2011
+  Rank: 4
+  Applicability: APPLICABLE
+  Ambiguity: REVIEW_REQUIRED
+  Reason: Candidate entered ranking pool (rank 4) but reranked below competing candidate.
+  Final: IS 14197 : 2023
+  Review Candidate: None
+----------------------------------------
+ID: T014-R002
+  Exp: IS/IEC 60034-1 : 2017; IS 5120 : 1977
+  Rank: 39
+  Applicability: APPLICABLE
+  Ambiguity: REVIEW_REQUIRED
+  Reason: Candidate was retrieved by first-stage at rank 39 but lost during top ranking fusion/filtering.
+  Final: IS 12066 : 1987
+  Review Candidate: None
+----------------------------------------

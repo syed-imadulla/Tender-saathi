@@ -32,24 +32,24 @@
     "MRR": "0.5846",
     "Identity_Correctness": "18/19 = 94.74%",
     "Retrieval_Correctness": "18/19 = 94.74%",
-    "Applicability_Valid_Rate": "18/19 = 94.74%",
-    "Final_Recommendation_Accuracy": "7/19 = 36.84%"
+    "Applicability_Valid_Rate": "15/19 = 78.95%",
+    "Final_Recommendation_Accuracy": "8/19 = 42.11%"
   },
   "warm_latencies_ms": {
     "bm25": {
-      "p50_ms": 26.23,
-      "p95_ms": 42.45,
-      "mean_ms": 27.88
+      "p50_ms": 29.05,
+      "p95_ms": 34.91,
+      "mean_ms": 28.02
     },
     "semantic": {
-      "p50_ms": 26.4,
-      "p95_ms": 31.32,
-      "mean_ms": 25.91
+      "p50_ms": 29.72,
+      "p95_ms": 35.32,
+      "mean_ms": 29.62
     },
     "end_to_end": {
-      "p50_ms": 490.12,
-      "p95_ms": 1506.51,
-      "mean_ms": 632.41
+      "p50_ms": 417.68,
+      "p95_ms": 668.73,
+      "mean_ms": 469.28
     }
   },
   "six_diagnostic_acceptance_cases": [
@@ -57,31 +57,31 @@
       "query_id": "Q1",
       "query_text": "Submersible pump set for 100 mm borewell with 5 HP motor",
       "expected_base": "IS 8034",
-      "recommended_standard": "IS 8034 : 2002",
-      "title": "Submersible Pumpsets - Specification",
+      "recommended_standard": "IS 8034 : 2018",
+      "title": "Submersible pumpsets - Specification (Third Revision)",
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_state": "CLEAR",
       "passed": true
     },
     {
       "query_id": "Q2",
       "query_text": "Outdoor oil immersed distribution transformer 25 kVA 11 kV",
       "expected_base": "IS 1180",
-      "recommended_standard": "IS 1180 (Part 1) : 2014",
-      "title": "Outdoor Type Oil Immersed Distribution Transformers Upto and Including 2 500 kVA, 33kV - Specification Part 1 Mineral Oil Immersed (Fourth Revision)",
+      "recommended_standard": "IS 1180 (Part 3) : 2021",
+      "title": "Outdoor/Indoor Type Liquid Immersed Distribution Transformers Up to and Including 2 500 kVA, 33 kV \u2014 Specification  Part 3 Natural/Synthetic Organic Ester Liquid Immersed",
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_state": "CLEAR",
       "passed": true
     },
     {
       "query_id": "Q3",
       "query_text": "High voltage underground electric cable for power transmission distribution",
       "expected_base": "IS 18833",
-      "recommended_standard": "IS 18833 : 2024",
+      "recommended_standard": "NO_MATCH",
       "title": "High Voltage Direct Current (HVDC) Power Transmission - Cables with Extruded Insulation and Their Accessories for Rated Voltages Up to 320 kV for Land Applications - Test Methods and Requirements",
       "applicability_decision": "APPLICABLE",
       "ambiguity_state": "REVIEW_REQUIRED",
-      "passed": true
+      "passed": false
     },
     {
       "query_id": "Q4",
@@ -90,17 +90,17 @@
       "recommended_standard": "IS 7098 (Part 2) : 2011",
       "title": "Crosslinked polyethylene insulated thermoplastic sheathed cables - Specification: Part 2 for working voltages from 3.3 kV up to and including 33 kV (Second Revision)",
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_state": "CLEAR",
       "passed": true
     },
     {
       "query_id": "Q5",
       "query_text": "Structural steel hollow sections for general engineering use",
       "expected_base": "IS 4923",
-      "recommended_standard": "IS 4923 : 1997",
-      "title": "Hollow steel sections for structural use - Specification",
+      "recommended_standard": "IS 4923 : 2017",
+      "title": "Hollow steel sections for structural use - Specification (Third Revision)",
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_state": "CLEAR",
       "passed": true
     },
     {
@@ -110,7 +110,7 @@
       "recommended_standard": "IS 732 : 2019",
       "title": "Code of practice for electrical wiring installations (Fourth Revision)",
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_state": "CLEAR",
       "passed": true
     }
   ],
@@ -120,40 +120,40 @@
       "requirement_text": "replacement of damaged pipelines by Hubless",
       "expected_standard": "IS 15905 : 2011; IS 1239 (Part 1) : 2004",
       "first_stage_rank": 1,
-      "final_recommended_standard": "IS 10990 (Part 2) : 1992",
-      "recommendation_correct": false,
+      "final_recommended_standard": "IS 15905 : 2024",
+      "recommendation_correct": true,
       "identity_correct": true,
       "applicability_valid": true,
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
-      "failure_taxonomy": "C",
-      "taxonomy_reason": "Candidate entered ranking pool (rank 1) but reranked below competing candidate."
+      "ambiguity_state": "CLEAR",
+      "failure_taxonomy": null,
+      "taxonomy_reason": null
     },
     {
       "requirement_id": "T001-R003",
       "requirement_text": "wall tiles",
       "expected_standard": "IS 15622 : 2017",
       "first_stage_rank": 7,
-      "final_recommended_standard": "IS 3463 : 1966",
+      "final_recommended_standard": null,
       "recommendation_correct": false,
       "identity_correct": true,
-      "applicability_valid": true,
+      "applicability_valid": false,
       "applicability_decision": "APPLICABLE",
       "ambiguity_state": "REVIEW_REQUIRED",
-      "failure_taxonomy": "C",
-      "taxonomy_reason": "Candidate entered ranking pool (rank 7) but reranked below competing candidate."
+      "failure_taxonomy": "D",
+      "taxonomy_reason": "Candidate ranked within Top-30 (rank 7) but rejected by applicability gate: []."
     },
     {
       "requirement_id": "T001-R004",
       "requirement_text": "upgradation of all sanitary fittings at AGL Department in Main School Building at IIT ISM Dhanbad",
       "expected_standard": "IS 2556 (Part 1 to 17); IS 781 : 1984; IS 774 : 2021",
       "first_stage_rank": 1,
-      "final_recommended_standard": "IS 2556 (Part 1) : 2021",
+      "final_recommended_standard": "IS 2556 (Part 9) : 2004",
       "recommendation_correct": true,
       "identity_correct": false,
       "applicability_valid": true,
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_state": "CLEAR",
       "failure_taxonomy": null,
       "taxonomy_reason": null
     },
@@ -167,7 +167,7 @@
       "identity_correct": true,
       "applicability_valid": true,
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_state": "CLEAR",
       "failure_taxonomy": "C",
       "taxonomy_reason": "Candidate entered ranking pool (rank 2) but reranked below competing candidate."
     },
@@ -181,7 +181,7 @@
       "identity_correct": true,
       "applicability_valid": true,
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_state": "CLEAR",
       "failure_taxonomy": null,
       "taxonomy_reason": null
     },
@@ -190,14 +190,14 @@
       "requirement_text": "power cables from outside of electrical room to AMF room",
       "expected_standard": "IS 7098 (Part 1) : 1988; IS 1255 : 1983",
       "first_stage_rank": 1,
-      "final_recommended_standard": "IS 12909 : 1990",
-      "recommendation_correct": false,
+      "final_recommended_standard": "IS 1255 : 1983",
+      "recommendation_correct": true,
       "identity_correct": true,
       "applicability_valid": true,
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
-      "failure_taxonomy": "C",
-      "taxonomy_reason": "Candidate entered ranking pool (rank 1) but reranked below competing candidate."
+      "ambiguity_state": "CLEAR",
+      "failure_taxonomy": null,
+      "taxonomy_reason": null
     },
     {
       "requirement_id": "T004-R005",
@@ -209,7 +209,7 @@
       "identity_correct": true,
       "applicability_valid": true,
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_state": "CLEAR",
       "failure_taxonomy": "C",
       "taxonomy_reason": "Candidate entered ranking pool (rank 18) but reranked below competing candidate."
     },
@@ -218,10 +218,10 @@
       "requirement_text": "Cable connection of DG Set in Newly constructed building of the Dept. of Molecular , Human Genetics",
       "expected_standard": "IS 3043 : 2018; IS 7098 (Part 1) : 1988; IS 1293 : 2019",
       "first_stage_rank": 61,
-      "final_recommended_standard": "IS 10334 : 2026",
+      "final_recommended_standard": null,
       "recommendation_correct": false,
       "identity_correct": true,
-      "applicability_valid": true,
+      "applicability_valid": false,
       "applicability_decision": "APPLICABLE",
       "ambiguity_state": "REVIEW_REQUIRED",
       "failure_taxonomy": "B",
@@ -237,7 +237,7 @@
       "identity_correct": true,
       "applicability_valid": true,
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_state": "CLEAR",
       "failure_taxonomy": "A",
       "taxonomy_reason": "Expected candidate was never retrieved in first-stage retrieval pool (Top-100)."
     },
@@ -246,26 +246,26 @@
       "requirement_text": "Low-Oil Food Outlet on BOT",
       "expected_standard": "IS 2491 : 2013; IS 15000 : 2013",
       "first_stage_rank": 1,
-      "final_recommended_standard": "IS 2491 : 2013",
-      "recommendation_correct": true,
+      "final_recommended_standard": null,
+      "recommendation_correct": false,
       "identity_correct": true,
-      "applicability_valid": true,
+      "applicability_valid": false,
       "applicability_decision": "APPLICABLE",
       "ambiguity_state": "REVIEW_REQUIRED",
-      "failure_taxonomy": null,
-      "taxonomy_reason": null
+      "failure_taxonomy": "D",
+      "taxonomy_reason": "Candidate ranked within Top-30 (rank 1) but rejected by applicability gate: []."
     },
     {
       "requirement_id": "T009-R001",
       "requirement_text": "Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD",
       "expected_standard": "SP 30 : 2023; IS 732 : 2019",
       "first_stage_rank": 10,
-      "final_recommended_standard": "IS 4051 : 1967",
+      "final_recommended_standard": "IS 4051 : 2025",
       "recommendation_correct": false,
       "identity_correct": true,
       "applicability_valid": true,
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_state": "CLEAR",
       "failure_taxonomy": "C",
       "taxonomy_reason": "Candidate entered ranking pool (rank 10) but reranked below competing candidate."
     },
@@ -274,24 +274,24 @@
       "requirement_text": "Sewerage Pipeline works from Collection Chamber to STP 9/4/26",
       "expected_standard": "IS 458 : 2021; IS 783 : 1985; IS 14333 : 1996",
       "first_stage_rank": 1,
-      "final_recommended_standard": null,
-      "recommendation_correct": false,
+      "final_recommended_standard": "IS 14333 : 2022",
+      "recommendation_correct": true,
       "identity_correct": true,
-      "applicability_valid": false,
-      "applicability_decision": "NOT_APPLICABLE",
-      "ambiguity_state": "AMBIGUOUS",
-      "failure_taxonomy": "D",
-      "taxonomy_reason": "Candidate ranked within Top-30 (rank 1) but rejected by applicability gate: ['Requirement specifies pumps/rotating machinery, but candidate standard covers pipes/fittings.']."
+      "applicability_valid": true,
+      "applicability_decision": "APPLICABLE",
+      "ambiguity_state": "CLEAR",
+      "failure_taxonomy": null,
+      "taxonomy_reason": null
     },
     {
       "requirement_id": "T011-R001",
       "requirement_text": "Providing and laying underground cable for STP for main supply of electricity under CEDCO BSF Bangalore",
       "expected_standard": "IS 7098 (Part 1) : 1988; IS 1255 : 1983",
       "first_stage_rank": 61,
-      "final_recommended_standard": "IS 9336 : 1979",
+      "final_recommended_standard": null,
       "recommendation_correct": false,
       "identity_correct": true,
-      "applicability_valid": true,
+      "applicability_valid": false,
       "applicability_decision": "APPLICABLE",
       "ambiguity_state": "REVIEW_REQUIRED",
       "failure_taxonomy": "B",
@@ -307,7 +307,7 @@
       "identity_correct": true,
       "applicability_valid": true,
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_state": "CLEAR",
       "failure_taxonomy": null,
       "taxonomy_reason": null
     },
@@ -316,26 +316,26 @@
       "requirement_text": "Plumbing Fittings",
       "expected_standard": "IS 1239 (Part 2) : 1992; IS 778 : 1984",
       "first_stage_rank": 1,
-      "final_recommended_standard": "IS 1239 (Part 2) : 2011",
-      "recommendation_correct": true,
+      "final_recommended_standard": "IS 11906 : 1986",
+      "recommendation_correct": false,
       "identity_correct": true,
       "applicability_valid": true,
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
-      "failure_taxonomy": null,
-      "taxonomy_reason": null
+      "ambiguity_state": "CLEAR",
+      "failure_taxonomy": "C",
+      "taxonomy_reason": "Candidate entered ranking pool (rank 1) but reranked below competing candidate."
     },
     {
       "requirement_id": "T013-R002",
       "requirement_text": "SITC of VFD water pump panel",
       "expected_standard": "IS/IEC 61800-2 : 2015; IS/IEC 61439-2 : 2011",
       "first_stage_rank": 4,
-      "final_recommended_standard": "IS 10069 : 2017",
+      "final_recommended_standard": "IS 10069 : 2023",
       "recommendation_correct": false,
       "identity_correct": true,
       "applicability_valid": true,
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_state": "CLEAR",
       "failure_taxonomy": "C",
       "taxonomy_reason": "Candidate entered ranking pool (rank 4) but reranked below competing candidate."
     },
@@ -349,7 +349,7 @@
       "identity_correct": true,
       "applicability_valid": true,
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_state": "CLEAR",
       "failure_taxonomy": null,
       "taxonomy_reason": null
     },
@@ -358,12 +358,12 @@
       "requirement_text": "commissioning of three numbers of Process Water Pump motors 3.3 kV",
       "expected_standard": "IS/IEC 60034-1 : 2017; IS 5120 : 1977",
       "first_stage_rank": 39,
-      "final_recommended_standard": "IS 12066 : 1987",
+      "final_recommended_standard": "IS 14578 : 2025",
       "recommendation_correct": false,
       "identity_correct": true,
       "applicability_valid": true,
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_state": "CLEAR",
       "failure_taxonomy": "B",
       "taxonomy_reason": "Candidate was retrieved by first-stage at rank 39 but lost during top ranking fusion/filtering."
     },
@@ -377,7 +377,7 @@
       "identity_correct": true,
       "applicability_valid": true,
       "applicability_decision": "APPLICABLE",
-      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_state": "CLEAR",
       "failure_taxonomy": null,
       "taxonomy_reason": null
     }
@@ -579,7 +579,7 @@
       "gate_id": "G21",
       "description": "Warm retrieval latency measurement",
       "criterion": "P50, P95, Mean measured for BM25, Semantic, and End-to-End",
-      "actual": "BM25 P50 26.23ms, Semantic P50 26.40ms, E2E P50 490.12ms",
+      "actual": "BM25 P50 29.05ms, Semantic P50 29.72ms, E2E P50 417.68ms",
       "evidence": "Benchmark latency timer output",
       "status": "PASS"
     },
@@ -587,7 +587,7 @@
       "gate_id": "G22",
       "description": "Top-1 benchmark recommendation correctness",
       "criterion": "Top-1 recommendation accuracy on frozen benchmark >= 50.0%",
-      "actual": "Hit@1 = 10/19 = 52.63%, Final Recommendation Accuracy = 7/19 = 36.84%",
+      "actual": "Hit@1 = 10/19 = 52.63%, Final Recommendation Accuracy = 8/19 = 42.11%",
       "evidence": "10 of 19 evaluable benchmark queries achieved Top-1",
       "status": "PASS"
     },

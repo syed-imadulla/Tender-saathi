@@ -1,0 +1,375 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-0CEB5EE1",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "eProcurement System Government of India3.pdf",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "REVIEW_REQUIRED",
+  "readiness_reasons": [
+    "1 requirement(s) cite or match superseded standard(s).",
+    "1 requirement(s) flagged with CRITICAL risk.",
+    "1 requirement(s) require technical engineer review."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-0CEB5EE1",
+    "requirements_analyzed": 1,
+    "recommendations_count": 0,
+    "review_required_count": 1,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 1,
+    "withdrawn_count": 0,
+    "active_count": 0,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 0,
+      "UNKNOWN": 1,
+      "NOT_APPLICABLE": 0
+    },
+    "risk_distribution": {
+      "LOW": 0,
+      "MEDIUM": 0,
+      "HIGH": 0,
+      "CRITICAL": 1
+    },
+    "lifecycle_distribution": {
+      "Active": 0,
+      "Superseded": 1,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 0,
+    "review_queue": [
+      {
+        "requirement_id": "TS-0CEB5EE1-R001",
+        "requirement_text": "Annual Rate Contract for Execution of Mechanical Maintenance Works including Pumps, Valve Replacement, Flange Joint Maintenance, Heat Exchanger Maintenance, NDT and Allied Mechanical Works at Heavy Water Board Facilities, Vadodara.",
+        "risk_level": "CRITICAL",
+        "decision": "RECOMMEND_WITH_REVIEW",
+        "candidate_standard": "IS 10596 (Part 4) : 2025",
+        "evidence_strength": "STRONG",
+        "primary_reason": "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)",
+        "priority": 1
+      }
+    ],
+    "publication_readiness": "REVIEW_REQUIRED",
+    "readiness_reasons": [
+      "1 requirement(s) cite or match superseded standard(s).",
+      "1 requirement(s) flagged with CRITICAL risk.",
+      "1 requirement(s) require technical engineer review."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 7,
+    "normative_reference_count": 0,
+    "allied_standard_count": 0,
+    "test_standard_count": 0,
+    "installation_standard_count": 7,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 0,
+    "related_for_review_count": 0,
+    "standards_coverage": {
+      "direct_standards_identified": 1,
+      "total_dependencies": 7,
+      "normative_references": 0,
+      "testing_dependencies": 0,
+      "installation_dependencies": 7,
+      "allied_standards": 0,
+      "covered_in_tender": 0,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "items_requiring_review": 1
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 0,
+      "related_for_review_count": 0
+    },
+    "certification_checks": 1,
+    "qco_checks": 1,
+    "crs_checks": 1,
+    "hallmarking_checks": 1,
+    "regulatory_review_items": 1,
+    "unknown_regulatory_items": 0,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 0,
+    "mandatory_certification_count": 0,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
+  },
+  "requirements": [
+    {
+      "requirement_id": "TS-0CEB5EE1-R001",
+      "requirement_text": "Annual Rate Contract for Execution of Mechanical Maintenance Works including Pumps, Valve Replacement, Flange Joint Maintenance, Heat Exchanger Maintenance, NDT and Allied Mechanical Works at Heavy Water Board Facilities, Vadodara.",
+      "category": "product_equipment",
+      "components": [
+        {
+          "text": "Maintenance",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "maintenance"
+          }
+        },
+        {
+          "text": "Pumps",
+          "component_type": "product",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "category": "pump_rotodynamic",
+            "is_process": false
+          }
+        },
+        {
+          "text": "Valve",
+          "component_type": "product",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "category": "flow_control_valve"
+          }
+        },
+        {
+          "text": "Replacement",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "replacement"
+          }
+        },
+        {
+          "text": "Flange",
+          "component_type": "material",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "category": "flange_jointing",
+            "standard_focus": "IS 6392 / IS 2712"
+          }
+        }
+      ],
+      "recommended_standard": "IS 10596 (Part 4) : 2025",
+      "recommended_title": "SELECTION, INSTALLATION, OPERATION AND MAINTENANCE OF PUMPS FOR INDUSTRIAL APPLICATIONS ï¿½  CODE OF PRACTICE   PART 4 MAINTENANCE",
+      "relevance_score": 0.789,
+      "lifecycle_status": "UNKNOWN",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "Catalogue Record Title: SELECTION, INSTALLATION, OPERATION AND MAINTENANCE OF PUMPS FOR INDUSTRIAL APPLICATIONS ï¿½  CODE OF PRACTICE   PART 4 MAINTENANCE",
+      "evidence_source": "BSB Edge Portal",
+      "why_this": [
+        "Standard title directly matches requirement component(s): 'Maintenance, Pumps'.",
+        "Authoritative scope explicitly covers application: \"Catalogue Record Title: SELECTION, INSTALLATION, OPERATION AND MAINTENANCE OF PUMPS FOR INDUSTRIAL APPLICATIONS ï¿½  COD...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BSB Edge Portal (VERIFIED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
+      ],
+      "why_not": [
+        "Alternative standard IS 14188 : 1994 has lower composite relevance (0.656 vs 0.789)."
+      ],
+      "completeness_label": "UNKNOWN",
+      "potentially_missing_parameters": [
+        "Pump Mechanism / Type",
+        "Discharge / Flow Rate (Q)",
+        "Total Dynamic Head (H)",
+        "Motor Coupling / Prime Mover",
+        "Process Application"
+      ],
+      "known_parameters": {},
+      "related_standards": [],
+      "decision": "REVIEW_REQUIRED",
+      "risk_level": "CRITICAL",
+      "risk_reasons": [
+        "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)"
+      ],
+      "human_review_required": false,
+      "confidence": "Medium",
+      "review_reason": "Authoritative active standard IS 10596 (Part 4) : 2025 verified against scope with Medium confidence.",
+      "candidate_standard": "IS 10596 (Part 4) : 2025",
+      "evidence_standard": "IS 10596 (Part 4) : 2025",
+      "why_it_matches": "Catalogue Record Title: SELECTION, INSTALLATION, OPERATION AND MAINTENANCE OF PUMPS FOR INDUSTRIAL APPLICATIONS ï¿½  COD...",
+      "dependencies": [
+        {
+          "standard_number": "IS 10596 (Part 4) : 1983",
+          "title": "Code of practice for selection, installation, operation and maintenance of pumps for industrial applications: Part 4 maintenance",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'Maintenance' in title; Component 'Pumps' in title; Domain keyword match: pump; 1 title keyword matches; BM25 match (norm: 0.85, terms: [maintenance, pumps, maintenance, maintenance]); Semantic similarity: 0.426",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        },
+        {
+          "standard_number": "IS 6070 : 1983",
+          "title": "Code of practice for selection, operation and maintenance of trailer fire pumps, portable pumps, water tenders and motor fire engines (First Revision)",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'Maintenance' in title; Component 'Pumps' in title; Domain keyword match: pump; 2 title keyword matches; BM25 match (norm: 0.82, terms: [maintenance, pumps, maintenance, maintenance])",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        },
+        {
+          "standard_number": "IS 10596 (Part 2) : 2025",
+          "title": "SELECTION, INSTALLATION, OPERATION AND MAINTENANCE OF PUMPS FOR INDUSTRIAL APPLICATIONS - CODE OF PRACTICE   PART 2  INSTALLATION",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'Maintenance' in title; Component 'Pumps' in title; Domain keyword match: pump; 1 title keyword matches; BM25 match (norm: 0.71, terms: [maintenance, pumps, maintenance, maintenance])",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        },
+        {
+          "standard_number": "IS 10596 (Part 3) : 2025",
+          "title": "SELECTION, INSTALLATION, OPERATION AND MAINTENANCE OF PUMPS FOR INDUSTRIAL APPLICATIONS ï¿½ CODE OF PRACTICE PART 3 OPERATION",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'Maintenance' in title; Component 'Pumps' in title; Domain keyword match: pump; 1 title keyword matches; BM25 match (norm: 0.71, terms: [maintenance, pumps, maintenance, maintenance])",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        },
+        {
+          "standard_number": "IS 15301 : 2003",
+          "title": "Installation and Maintenance of Fire Fighting Pumps - Code of Practice",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'Maintenance' in title; Component 'Pumps' in title; Domain keyword match: pump; 1 title keyword matches; BM25 match (norm: 0.80, terms: [maintenance, pumps, maintenance, maintenance])",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        },
+        {
+          "standard_number": "IS 10596 (Part 3) : 1983",
+          "title": "Code of practice for selection, installation, operation and maintenance of pumps for industrial applications: Part 3 operation",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'Maintenance' in title; Component 'Pumps' in title; Domain keyword match: pump; 1 title keyword matches; BM25 match (norm: 0.71, terms: [maintenance, pumps, maintenance, maintenance]); Semantic similarity: 0.401",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        },
+        {
+          "standard_number": "IS 11004 (Part 1) : 1992",
+          "title": "Code of Practice for Installation and Maintenance of Deepwell Hand Pumps Part 1 Installation",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'Maintenance' in title; Component 'Pumps' in title; Domain keyword match: pump; 1 title keyword matches; BM25 match (norm: 0.74, terms: [maintenance, pumps, maintenance, maintenance])",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        }
+      ],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 10596 (Part 4) : 2025",
+          "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS certification is NOT identified for IS 10596 (Part 4) : 2025 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "additional_metadata": {
+            "mandate_type": "VOLUNTARY_OR_UNREGULATED"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 10596 (Part 4) : 2025",
+          "legal_basis": "",
+          "source": "e-Gazette of India / DPIIT QCO Registry",
+          "source_url": "e-Gazette of India / DPIIT QCO Registry",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 10596 (Part 4) : 2025. Verify ministry specific notifications.",
+          "additional_metadata": {}
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 10596 (Part 4) : 2025",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS 10596 (Part 4) : 2025",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": false,
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (pumps, valve); not applicable.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "CLEAR",
+      "ambiguity_reason": "Primary applicable standard IS 10596 (Part 4) : 2025 is clearly identifiable and sufficiently supported."
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "TS-0CEB5EE1-R001",
+      "requirement_text": "Annual Rate Contract for Execution of Mechanical Maintenance Works including Pumps, Valve Replacement, Flange Joint Maintenance, Heat Exchanger Maintenance, NDT and Allied Mechanical Works at Heavy Water Board Facilities, Vadodara.",
+      "risk_level": "CRITICAL",
+      "decision": "RECOMMEND_WITH_REVIEW",
+      "candidate_standard": "IS 10596 (Part 4) : 2025",
+      "evidence_strength": "STRONG",
+      "primary_reason": "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)",
+      "priority": 1
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 1,
+      "CURATED": 0,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}
