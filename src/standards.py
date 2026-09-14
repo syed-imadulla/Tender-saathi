@@ -117,32 +117,37 @@ def classify_standard_role(standard_number: str, title: Optional[str] = None, sc
     if is_known_product and not is_cop_num:
         return "PRIMARY_PRODUCT"
 
-    # 1. Code of Practice / Installation / Management Systems / Rating Guides
-    if "code of practice" in t or "code of practice" in s or is_cop_num or "haccp" in t or "haccp" in s or "guidelines" in t or "current ratings" in t:
-        if any(w in t or w in sc for w in ["installation", "laying", "erection", "fixing", "maintenance", "jointing", "execution"]):
+    # 1. Pure Test Methods (prioritize over generic keyword overlap)
+    if any(w in t for w in ["method of test", "methods of test", "ethods of test", "test method", "methods for test", "sampling and test", "sampling and methods of test", "determination of", "measurement of"]):
+        if not any(w in t for w in ["specification", "requirements and test methods"]):
+            return "TEST_METHOD"
+
+    # 2. Code of Practice / Installation / Application / Maintenance
+    if any(w in t for w in ["code of practice for application", "application and finishing", "application and finishings", "code of practice for laying", "installation and maintenance", "installation of", "laying of"]):
+        return "INSTALLATION"
+
+    if "code of practice" in t or "code of practice" in s or is_cop_num or "haccp" in t or "haccp" in s or "current ratings" in t:
+        if any(w in t or w in sc for w in ["installation", "laying", "erection", "fixing", "maintenance", "jointing", "execution", "application"]):
             return "INSTALLATION"
         return "CODE_OF_PRACTICE"
 
-    if any(w in t for w in ["installation and maintenance", "installation of", "laying of", "code of practice for laying"]):
-        return "INSTALLATION"
+    # 3. Recommendations and Guides (Auxiliary)
+    if any(w in t for w in ["recommendations for", "recommendation for", "guide for repair", "guide for"]) and not any(w in t for w in ["specification"]):
+        return "ALLIED"
 
-    # Product specifications that include test methods
+    # 4. Product specifications that include test methods
     if any(w in t for w in ["requirements and test methods", "test methods and requirements", "specification"]):
         return "PRIMARY_PRODUCT"
 
-    # 2. Pure Test Methods
-    if any(w in t for w in ["method of test", "methods of test", "test method", "methods for test", "sampling and test", "sampling and methods of test"]):
-        return "TEST_METHOD"
-
-    # 3. Safety Standards
+    # 5. Safety Standards
     if any(w in t for w in ["safety requirements", "code of safety", "safety code", "fire safety"]):
         return "SAFETY"
 
-    # 4. Allied / Terminology
+    # 6. Allied / Terminology
     if any(w in t for w in ["glossary of terms", "terminology", "vocabulary", "symbols"]):
         return "ALLIED"
 
-    # 5. Default is primary product specification
+    # 7. Default is primary product specification
     return "PRIMARY_PRODUCT"
 
 

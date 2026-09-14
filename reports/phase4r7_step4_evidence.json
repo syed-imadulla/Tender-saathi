@@ -1,0 +1,1542 @@
+[
+  {
+    "index": 1,
+    "requirement_id": "T001-R002",
+    "query_text": "replacement of damaged pipelines by Hubless",
+    "expected_standard": "IS 15905 : 2011; IS 1239 (Part 1) : 2004",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "IS-15905-2011",
+        "standard_number": "IS 15905 : 2011",
+        "full_title": "Hubless centrifugally cast (Spun) iron pipes, fittings and accessories - Spigot series - Specification",
+        "status": "WITHDRAWN",
+        "tc": "MTD 06",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-15905-2024",
+        "standard_number": "IS 15905 : 2024",
+        "full_title": "Hubless Centrifugally Cast (Spun) Iron Pipes, Fittings and Accessories \u00e2\u20ac\u201d Spigot Series \u00e2\u20ac\u201d Specification  (First Revision)",
+        "status": "UNKNOWN",
+        "tc": "MTD 06",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-1239-Part-1-2004",
+        "standard_number": "IS 1239 (Part 1) : 2004",
+        "full_title": "Steel tubes, tubulars and other wrought steel fittings - Specification: Part 1 steel tubes (Sixth Revision)",
+        "status": "UNKNOWN",
+        "tc": "MTD 19",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "IS 15905 : 2011": [
+        "hubless"
+      ],
+      "IS 15905 : 2024": [
+        "hubless"
+      ],
+      "IS 1239 (Part 1) : 2004": []
+    },
+    "det_rank": 1,
+    "bm25_rank": 3,
+    "sem_rank": 48,
+    "fused_rank": 1,
+    "top_fused": [
+      [
+        "IS 15905 : 2011",
+        "Hubless centrifugally cast (Spun) iron p"
+      ],
+      [
+        "IS 10990 (Part 2) : 1992",
+        "Technical drawings - Simplified represen"
+      ],
+      [
+        "IS 8262 (Part 1) : 1976",
+        "Specification for quick - Release coupli"
+      ]
+    ]
+  },
+  {
+    "index": 2,
+    "requirement_id": "T001-R003",
+    "query_text": "wall tiles",
+    "expected_standard": "IS 15622 : 2017",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "IS-15622-2006",
+        "standard_number": "IS 15622 : 2006",
+        "full_title": "Pressed ceramic tiles - (Superseding IS 13753:1993, IS 13754:1993, IS 13755:1993 and IS 13756:1993)",
+        "status": "WITHDRAWN",
+        "tc": "CED 05",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-15622-2017",
+        "standard_number": "IS 15622 : 2017",
+        "full_title": "Pressed Ceramic Tiles - Specification (First Revision) Amendment - 2",
+        "status": "UNKNOWN",
+        "tc": "CED 05",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "IS 15622 : 2006": [
+        "tiles"
+      ],
+      "IS 15622 : 2017": [
+        "tiles"
+      ]
+    },
+    "det_rank": null,
+    "bm25_rank": 57,
+    "sem_rank": 41,
+    "fused_rank": 80,
+    "top_fused": [
+      [
+        "IS 3463 : 1966",
+        "Polystyrene Wall Tiles"
+      ],
+      [
+        "IS 4112 : 1967",
+        "Code of practice for fixing of polystyre"
+      ],
+      [
+        "IS 777 : 1988",
+        "Glazed earthenware wall tiles"
+      ]
+    ]
+  },
+  {
+    "index": 3,
+    "requirement_id": "T001-R004",
+    "query_text": "upgradation of all sanitary fittings at AGL Department in Main School Building at IIT ISM Dhanbad",
+    "expected_standard": "IS 2556 (Part 1 to 17); IS 781 : 1984; IS 774 : 2021",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "IS-2556-Part-10-1974",
+        "standard_number": "IS 2556 (Part 10) : 1974",
+        "full_title": "Vitreous Sanitary Appliances (vitreous China): Part 10 Specific Requirements Of Foot Rests",
+        "status": "WITHDRAWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-1-2021",
+        "standard_number": "IS 2556 (Part 1) : 2021",
+        "full_title": "Vitreous China sanitary appliances - Specification: Part 1 General requirements (fourth revision)",
+        "status": "UNKNOWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-6-2021",
+        "standard_number": "IS 2556 (Part 6) : 2021",
+        "full_title": "Vitreous China sanitary appliances - Specification: Part 6 Specific requirements of urinal and partition plates (fifth revision)",
+        "status": "UNKNOWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-15-2024",
+        "standard_number": "IS 2556 (Part 15) : 2024",
+        "full_title": "Vitreous China Sanitary Appliances \u00e2\u20ac\u201dSpecification            Part 15 Specific Requirements of Universal Water Closets                (Third Revision)",
+        "status": "UNKNOWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-16-2024",
+        "standard_number": "IS 2556 (Part 16) : 2024",
+        "full_title": "Vitreous China Sanitary Appliances \u00e2\u20ac\u201dSpecification    Part 16 Specific Requirements of Washdown Wall Mounted Water Closets       (First Revision)",
+        "status": "UNKNOWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-1-1994",
+        "standard_number": "IS 2556 (Part 1) : 1994",
+        "full_title": "Vitreous sanitary appliances (Vitreous China) - specification: Part 1 general requirements",
+        "status": "WITHDRAWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-14-1995",
+        "standard_number": "IS 2556 (Part 14) : 1995",
+        "full_title": "Vitreous sanitary appliances (Vitreous China) - specification: Part 14 Specific requirements of integrated squatting pans (first revision)",
+        "status": "WITHDRAWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-15-2004",
+        "standard_number": "IS 2556 (Part 15) : 2004",
+        "full_title": "Vitreous sanitary appliances (Vitreous China) - Specification: Part 15 Specific requirements of universal water closets (second revision)",
+        "status": "WITHDRAWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-16-2002",
+        "standard_number": "IS 2556 (Part 16) : 2002",
+        "full_title": "Vitreous sanitary appliances (Vitreous China) - Specification: Part 16 Specific requirements of wash down wall mounted water closets",
+        "status": "WITHDRAWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-17-2001",
+        "standard_number": "IS 2556 (Part 17) : 2001",
+        "full_title": "Vitreous sanitary appliances (Vitreous China) - Specification: Part 17 Specific requirements of wall mounted bidets",
+        "status": "UNKNOWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-14-2024",
+        "standard_number": "IS 2556 (Part 14) : 2024",
+        "full_title": "Vitreous China Sanitary Appliances - Specification  Part 14 Specific Requirements of Integrated Squatting Pans  (Second Revision)",
+        "status": "UNKNOWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-11-1979",
+        "standard_number": "IS 2556 (Part 11) : 1979",
+        "full_title": "Vitreous sanitary appliances (vitreous china): Part 11 Specific requirements for shower rose",
+        "status": "WITHDRAWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-12-1973",
+        "standard_number": "IS 2556 (Part 12) : 1973",
+        "full_title": "Vitreous sanitary appliances (vitreous china): Part 12 Specific requirements of floor traps",
+        "status": "WITHDRAWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-13-1973",
+        "standard_number": "IS 2556 (Part 13) : 1973",
+        "full_title": "Vitreous sanitary appliances (vitreous china): Part 13 Specific requirements of traps for squatting pans",
+        "status": "WITHDRAWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-2-2024",
+        "standard_number": "IS 2556 (Part 2) : 2024",
+        "full_title": "Vitreous China Sanitary Appliances - Specification   Part 2 Specific Requirements of Washdown Water Closets (sixth revision)",
+        "status": "UNKNOWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-2-2004",
+        "standard_number": "IS 2556 (Part 2) : 2004",
+        "full_title": "Vitreous sanitary appliances (Vitreous China) - specification: Part 2 Specific requirements of washdown water closets (fifth revision)",
+        "status": "WITHDRAWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-3-2004",
+        "standard_number": "IS 2556 (Part 3) : 2004",
+        "full_title": "Vitreous Sanitary Appliances (Vitreous China) - Specification - Part 3: Specific Requirements of Squatting Pans (fifth revision)",
+        "status": "WITHDRAWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-4-2004",
+        "standard_number": "IS 2556 (Part 4) : 2004",
+        "full_title": "Vitreous sanitary appliances (Vitreous China) - specification: Part 4 Specific requirements of wash basins (fourth revision)",
+        "status": "UNKNOWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-5-1994",
+        "standard_number": "IS 2556 (Part 5) : 1994",
+        "full_title": "Vitreous sanitary appliances (Vitreous China) - Specification: Part 5 Specific requirements of laboratory sinks (third revision)",
+        "status": "UNKNOWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-6-1995",
+        "standard_number": "IS 2556 (Part 6) : 1995",
+        "full_title": "Vitreous sanitary appliances (Vitreous China): Part 6 specific requirements of urinals and partition plates",
+        "status": "WITHDRAWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-7-1995",
+        "standard_number": "IS 2556 (Part 7) : 1995",
+        "full_title": "Vitreous sanitary appliances (Vitreous China) - Specification: Part 7 Specific requirements of accessories for sanitary appliances (third revision)",
+        "status": "UNKNOWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-8-2004",
+        "standard_number": "IS 2556 (Part 8) : 2004",
+        "full_title": "Vitreous sanitary appliances (Vitreous China) - Specification: Part 8 specific requirements of pedestal close coupled washdown and syphonic water closets (Fifth Revision)",
+        "status": "WITHDRAWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-9-2004",
+        "standard_number": "IS 2556 (Part 9) : 2004",
+        "full_title": "Vitreous sanitary appliances (Vitreous China) - Specification: Part 9 specific requirements of pedestal type bidets (Fifth Revision)",
+        "status": "UNKNOWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-3-2024",
+        "standard_number": "IS 2556 (Part 3) : 2024",
+        "full_title": "Vitreous China Sanitary Appliances - Specification Part 3 Specific Requirements of Squatting Pans (sixth revision)",
+        "status": "UNKNOWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2556-Part-8-2021",
+        "standard_number": "IS 2556 (Part 8) : 2021",
+        "full_title": "Vitreous China sanitary appliances - Specification: Part 8 Specific requirements of close coupled and one-piece, pedestal washdown and syphonic water closets (sixth revision)",
+        "status": "UNKNOWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-781-1984",
+        "standard_number": "IS 781 : 1984",
+        "full_title": "Specification for cast copper alloy screw down bib taps and stop valves for water services (Third Revision)",
+        "status": "UNKNOWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-774-2021",
+        "standard_number": "IS 774 : 2021",
+        "full_title": "Ceramic (Vitreous China) flushing cisterns for water closets and urinals - Specification (sixth revision)",
+        "status": "UNKNOWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-774-2004",
+        "standard_number": "IS 774 : 2004",
+        "full_title": "Flushing cisterns for water closets and urinals (Other Than Plastic Cisterns) - Specification (Fifth Revision)",
+        "status": "WITHDRAWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "IS 2556 (Part 10) : 1974": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 1) : 2021": [
+        "sanitary"
+      ],
+      "IS 2556 (Part 6) : 2021": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 15) : 2024": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 16) : 2024": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 1) : 1994": [
+        "sanitary"
+      ],
+      "IS 2556 (Part 14) : 1995": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 15) : 2004": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 16) : 2002": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 17) : 2001": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 14) : 2024": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 11) : 1979": [
+        "sanitary"
+      ],
+      "IS 2556 (Part 12) : 1973": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 13) : 1973": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 2) : 2024": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 2) : 2004": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 3) : 2004": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 4) : 2004": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 5) : 1994": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 6) : 1995": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 7) : 1995": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 8) : 2004": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 9) : 2004": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 3) : 2024": [
+        "sanitary",
+        "of"
+      ],
+      "IS 2556 (Part 8) : 2021": [
+        "sanitary",
+        "of"
+      ],
+      "IS 781 : 1984": [],
+      "IS 774 : 2021": [],
+      "IS 774 : 2004": []
+    },
+    "det_rank": 13,
+    "bm25_rank": 34,
+    "sem_rank": 5,
+    "fused_rank": 3,
+    "top_fused": [
+      [
+        "IS 17650 (Part 2) : 2021",
+        "Water efficient plumbing products - Requ"
+      ],
+      [
+        "IS 2064 : 1993",
+        "Selection, installation and maintenance "
+      ],
+      [
+        "IS 2556 (Part 1) : 2021",
+        "Vitreous China sanitary appliances - Spe"
+      ]
+    ]
+  },
+  {
+    "index": 4,
+    "requirement_id": "T002-R003",
+    "query_text": "Flange Joint Maintenance",
+    "expected_standard": "IS 6392 : 1971; IS 2712 : 2020",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "IS-6392-1971",
+        "standard_number": "IS 6392 : 1971",
+        "full_title": "Specification for steel pipe flanges",
+        "status": "WITHDRAWN",
+        "tc": "MTD 19",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-6392-2020",
+        "standard_number": "IS 6392 : 2020",
+        "full_title": "Steel Pipes Flanges \u2014 Specification ( First Revision )",
+        "status": "ACTIVE",
+        "tc": "MTD 19",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2712-2024",
+        "standard_number": "IS 2712 : 2024",
+        "full_title": "Gaskets and Packings  Compressed Asbestos Fibre Jointing  Specification",
+        "status": "UNKNOWN",
+        "tc": "MED 30",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2712-1998",
+        "standard_number": "IS 2712 : 1998",
+        "full_title": "Gaskets and packings - Compressed asbestos fibre jointing - Specification (Third Revision)",
+        "status": "WITHDRAWN",
+        "tc": "MED 30",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "IS 6392 : 1971": [],
+      "IS 6392 : 2020": [],
+      "IS 2712 : 2024": [],
+      "IS 2712 : 1998": []
+    },
+    "det_rank": 88,
+    "bm25_rank": null,
+    "sem_rank": 11,
+    "fused_rank": 53,
+    "top_fused": [
+      [
+        "IS 425 : 1953",
+        "Shellac adhesive for steam flange joints"
+      ],
+      [
+        "IS 13257 : 1992",
+        "Ring type joint gaskets and grooves for "
+      ],
+      [
+        "IS 11823 (Part 1) : 1986",
+        "Specification for couplings for disposal"
+      ]
+    ]
+  },
+  {
+    "index": 5,
+    "requirement_id": "T003-R001",
+    "query_text": "Replacement / repair of distribution boards and defective lights at various locations in main sports stadium",
+    "expected_standard": "IS/IEC 61439-3 : 2012; IS 10322 (Part 5 / Sec 5) : 2013",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "IS-IEC-61439-Part-3-2012",
+        "standard_number": "IS/IEC 61439 (Part 3) : 2012",
+        "full_title": "Low - Voltage switchgear and controlgear assemblies: Part 3 distribution boards intended to be operated by ordinary persons (Dbo)",
+        "status": "ACTIVE",
+        "tc": "ETD 07",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-IEC-61439-Part-3-2024",
+        "standard_number": "IS/IEC 61439 (Part 3) : 2024",
+        "full_title": "Low-voltage switchgear and controlgear assemblies  Part 3: Distribution boards intended to be operated by ordinary persons DBO First Revision",
+        "status": "UNKNOWN",
+        "tc": "ETD 07",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-10322-Part-5-Sec-5-2026",
+        "standard_number": "IS 10322 (Part 5) (Sec 5) : 2026",
+        "full_title": "Luminaires Part 5: Particular requirements Section 5: Floodlights  (Second Revision)",
+        "status": "UNKNOWN",
+        "tc": "ETD 49",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-10322-Part-5-Sec-5-2013",
+        "standard_number": "IS 10322 (Part 5) (Sec 5) : 2013",
+        "full_title": "Luminaires: Part 5 particular requirements: Sec 5 floodlights (First Revision)",
+        "status": "UNKNOWN",
+        "tc": "ETD 49",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "IS/IEC 61439 (Part 3) : 2012": [
+        "boards",
+        "distribution",
+        "and"
+      ],
+      "IS/IEC 61439 (Part 3) : 2024": [
+        "boards",
+        "distribution",
+        "and"
+      ],
+      "IS 10322 (Part 5) (Sec 5) : 2026": [],
+      "IS 10322 (Part 5) (Sec 5) : 2013": []
+    },
+    "det_rank": 1,
+    "bm25_rank": 10,
+    "sem_rank": 35,
+    "fused_rank": 7,
+    "top_fused": [
+      [
+        "IS 11214 : 1984",
+        "Guide for repair of printed wiring board"
+      ],
+      [
+        "IS 18284 : 2023",
+        "REPAIR OF DISTRIBUTION TRANSFORMERS - CO"
+      ],
+      [
+        "IS 15512 : 2004",
+        "Selection and use of various types of me"
+      ]
+    ]
+  },
+  {
+    "index": 6,
+    "requirement_id": "T004-R002",
+    "query_text": "power cables from outside of electrical room to AMF room",
+    "expected_standard": "IS 7098 (Part 1) : 1988; IS 1255 : 1983",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "IS-7098-Part-1-2025",
+        "standard_number": "IS 7098 (Part 1) : 2025",
+        "full_title": "Crosslinked Polyethylene Insulated Thermoplastic Sheathed Cables - Specification Part 1 For Working Voltages up to and Including 1 100 Volts (Second Revision)",
+        "status": "UNKNOWN",
+        "tc": "ETD 09",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-7098-Part-1-1988",
+        "standard_number": "IS 7098 (Part 1) : 1988",
+        "full_title": "Specification for crosslinked polyethylene insulated PVC sheathed cables: Part 1 for working voltages up to and including 1 100 volts (First Revision)",
+        "status": "WITHDRAWN",
+        "tc": "ETD 09",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-1255-1983",
+        "standard_number": "IS 1255 : 1983",
+        "full_title": "Code of practice for installation and maintenance of power cables up to and including 33 kV rating (Second Revision)",
+        "status": "UNKNOWN",
+        "tc": "ETD 09",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "IS 7098 (Part 1) : 2025": [
+        "cables",
+        "to"
+      ],
+      "IS 7098 (Part 1) : 1988": [
+        "to"
+      ],
+      "IS 1255 : 1983": [
+        "cables",
+        "to",
+        "of",
+        "power"
+      ]
+    },
+    "det_rank": 12,
+    "bm25_rank": 69,
+    "sem_rank": 25,
+    "fused_rank": 5,
+    "top_fused": [
+      [
+        "IS 10242 (Part 3) (Sec 19) : 1990",
+        "Electrical installation in ships: Part 3"
+      ],
+      [
+        "IS 10810 (Part 48) : 1984",
+        "Ethods of test for cables: Part 48 diele"
+      ],
+      [
+        "IS 10242 (Part 3) (Sec 11) : 1986",
+        "Specification for electrical installatio"
+      ]
+    ]
+  },
+  {
+    "index": 7,
+    "requirement_id": "T004-R005",
+    "query_text": "Dismantling,Shifting and reinstallation of feeder pillar, power",
+    "expected_standard": "IS 5039 : 1983; IS/IEC 61439-5 : 2014",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "IS-5039-1983",
+        "standard_number": "IS 5039 : 1983",
+        "full_title": "Specification for distribution pillars for voltages not exceeding 1000 V AC and 1200 V DC (First Revision)",
+        "status": "WITHDRAWN",
+        "tc": "ETD 07",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-IEC-61439-Part-5-2014",
+        "standard_number": "IS/IEC 61439 (Part 5) : 2014",
+        "full_title": "Low-Voltage Switchgear and Controlgear Assemblies Part 5 Assemblies for Power Distribution in Public Networks",
+        "status": "WITHDRAWN",
+        "tc": "ETD 07",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-IEC-61439-Part-5-2023",
+        "standard_number": "IS/IEC 61439 (Part 5) : 2023",
+        "full_title": "Low-voltage switchgear and controlgear assemblies  Part 5: Assemblies for power distribution in public networks First Revision",
+        "status": "UNKNOWN",
+        "tc": "ETD 07",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "IS 5039 : 1983": [
+        "and"
+      ],
+      "IS/IEC 61439 (Part 5) : 2014": [
+        "and",
+        "power"
+      ],
+      "IS/IEC 61439 (Part 5) : 2023": [
+        "and",
+        "power"
+      ]
+    },
+    "det_rank": 29,
+    "bm25_rank": null,
+    "sem_rank": null,
+    "fused_rank": 19,
+    "top_fused": [
+      [
+        "IS 17220 : 2019",
+        "Tools for Pressing \u00e2\u20ac\u201d Guide Pillar Moun"
+      ],
+      [
+        "IS 1795 : 1982",
+        "Specification for pillar taps for water "
+      ],
+      [
+        "IS 2425 : 1982",
+        "Test chart for pillar type vertical dril"
+      ]
+    ]
+  },
+  {
+    "index": 8,
+    "requirement_id": "T005-R001",
+    "query_text": "Cable connection of DG Set in Newly constructed building of the Dept. of Molecular , Human Genetics",
+    "expected_standard": "IS 3043 : 2018; IS 7098 (Part 1) : 1988; IS 1293 : 2019",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "IS-3043-2018",
+        "standard_number": "IS 3043 : 2018",
+        "full_title": "Code of practice for earthing (Second Revision)",
+        "status": "ACTIVE",
+        "tc": "ETD 20",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-7098-Part-1-2025",
+        "standard_number": "IS 7098 (Part 1) : 2025",
+        "full_title": "Crosslinked Polyethylene Insulated Thermoplastic Sheathed Cables - Specification Part 1 For Working Voltages up to and Including 1 100 Volts (Second Revision)",
+        "status": "UNKNOWN",
+        "tc": "ETD 09",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-7098-Part-1-1988",
+        "standard_number": "IS 7098 (Part 1) : 1988",
+        "full_title": "Specification for crosslinked polyethylene insulated PVC sheathed cables: Part 1 for working voltages up to and including 1 100 volts (First Revision)",
+        "status": "WITHDRAWN",
+        "tc": "ETD 09",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-1293-2005",
+        "standard_number": "IS 1293 : 2005",
+        "full_title": "Plugs and socket - Outlets of rated Voltage up to and including 250 Volts and rated current up to and including 16 amperes - Specification (Third Revision)",
+        "status": "WITHDRAWN",
+        "tc": "ETD 14",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-1293-2019",
+        "standard_number": "IS 1293 : 2019",
+        "full_title": "Plugs and Socket-Outlets for Household and Similar Purposes of Rated Voltage up to and Including 250 V and Rated Current up to and Including 16 A - Specification ( Fourth Revision )",
+        "status": "ACTIVE",
+        "tc": "ETD 14",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "IS 3043 : 2018": [
+        "of"
+      ],
+      "IS 7098 (Part 1) : 2025": [],
+      "IS 7098 (Part 1) : 1988": [],
+      "IS 1293 : 2005": [
+        "of"
+      ],
+      "IS 1293 : 2019": [
+        "of"
+      ]
+    },
+    "det_rank": null,
+    "bm25_rank": null,
+    "sem_rank": 40,
+    "fused_rank": 71,
+    "top_fused": [
+      [
+        "IS 10334 : 1982",
+        "Code of practice for selection, splicing"
+      ],
+      [
+        "IS 10334 : 2026",
+        "SELECTION SPLICING INSTALLATION AND PROV"
+      ],
+      [
+        "IS/IEC 62275 : 2018",
+        "Cable management systems - Cable ties fo"
+      ]
+    ]
+  },
+  {
+    "index": 9,
+    "requirement_id": "T006-R001",
+    "query_text": "UPVC Partition Wall Work for Conversion of Seafood Authentication Laboratory into Conventional Microbiology Laboratory",
+    "expected_standard": "IS 16088 : 2016",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "IS-16088-2012",
+        "standard_number": "IS 16088 : 2012",
+        "full_title": "Chlorinated polyvinyl chloride (CPVC) pipes for automatic sprinkler fire extinguishing system - Specification",
+        "status": "UNKNOWN",
+        "tc": "CED 22",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "IS 16088 : 2012": [
+        "for"
+      ]
+    },
+    "det_rank": null,
+    "bm25_rank": null,
+    "sem_rank": null,
+    "fused_rank": null,
+    "top_fused": [
+      [
+        "IS 9271 : 2004",
+        "Unplasticized Polyvinyl Chloride (UPVC) "
+      ],
+      [
+        "IS 17113 (Part 4) : 2022",
+        "Microbiology of the food chain  - Method"
+      ],
+      [
+        "IS 17113 (Part 3) : 2022",
+        "Microbiology of the food chain -  Method"
+      ]
+    ]
+  },
+  {
+    "index": 10,
+    "requirement_id": "T007-R003",
+    "query_text": "Low-Oil Food Outlet on BOT",
+    "expected_standard": "IS 2491 : 2013; IS 15000 : 2013",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "IS-2491-2013",
+        "standard_number": "IS 2491 : 2013",
+        "full_title": "Food hygiene - General principles - Code of practice (Third Revision)",
+        "status": "WITHDRAWN",
+        "tc": "FAD 15",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-2491-2024",
+        "standard_number": "IS 2491 : 2024",
+        "full_title": "Food Hygiene \u00e2\u20ac\u201d General Principles \u00e2\u20ac\u201d Code of Practice  (Fourth Revision)",
+        "status": "UNKNOWN",
+        "tc": "FAD 15",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-15000-2024",
+        "standard_number": "IS 15000 : 2024",
+        "full_title": "Hazard Analysis and Critical Control Point (HACCP) - Requirements for Any Organization in the Food Chain  (Second Revision)",
+        "status": "UNKNOWN",
+        "tc": "FAD 15",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-15000-2013",
+        "standard_number": "IS 15000 : 2013",
+        "full_title": "Hazard analysis and critical control point (HACCP) - Requirements for any organization in the food chain (First Revision)",
+        "status": "WITHDRAWN",
+        "tc": "FAD 15",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "IS 2491 : 2013": [
+        "food"
+      ],
+      "IS 2491 : 2024": [
+        "food"
+      ],
+      "IS 15000 : 2024": [
+        "food"
+      ],
+      "IS 15000 : 2013": [
+        "food"
+      ]
+    },
+    "det_rank": null,
+    "bm25_rank": null,
+    "sem_rank": null,
+    "fused_rank": null,
+    "top_fused": [
+      [
+        "IS 10563 : 1983",
+        "Specification for mineral oil, food grad"
+      ],
+      [
+        "IS 7603 : 1975",
+        "Specification for portable low speed foo"
+      ],
+      [
+        "IS 10563 : 2026",
+        "Mineral oil (medium viscosity and high v"
+      ]
+    ]
+  },
+  {
+    "index": 11,
+    "requirement_id": "T009-R001",
+    "query_text": "Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD",
+    "expected_standard": "SP 30 : 2023; IS 732 : 2019",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "SP-30-2011",
+        "standard_number": "SP 30 : 2011",
+        "full_title": "National electrical code 2011 (First Revision)",
+        "status": "WITHDRAWN",
+        "tc": "ETD 20",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "SP-30-2023",
+        "standard_number": "SP 30 : 2023",
+        "full_title": "NATIONAL ELECTRICAL CODE OF INDIA 2023 (Second Revision)",
+        "status": "UNKNOWN",
+        "tc": "ETD 20",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-732-2019",
+        "standard_number": "IS 732 : 2019",
+        "full_title": "Code of practice for electrical wiring installations (Fourth Revision)",
+        "status": "ACTIVE",
+        "tc": "ETD 20",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "SP 30 : 2011": [
+        "electrical"
+      ],
+      "SP 30 : 2023": [
+        "electrical"
+      ],
+      "IS 732 : 2019": [
+        "electrical",
+        "for"
+      ]
+    },
+    "det_rank": null,
+    "bm25_rank": null,
+    "sem_rank": null,
+    "fused_rank": null,
+    "top_fused": [
+      [
+        "IS 19529 : 2026",
+        "MAINTENANCE AND REPAIR SERVICES  REQUIRE"
+      ],
+      [
+        "IS 1866 : 2017",
+        "Mineral insulating oils in electrical eq"
+      ],
+      [
+        "IS 13450 (Part 1) (Sec 12) : 2024",
+        "Medical electrical equipment : Part 1 Ge"
+      ]
+    ]
+  },
+  {
+    "index": 12,
+    "requirement_id": "T010-R001",
+    "query_text": "Sewerage Pipeline works from Collection Chamber to STP 9/4/26",
+    "expected_standard": "IS 458 : 2021; IS 783 : 1985; IS 14333 : 1996",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "IS-458-2021",
+        "standard_number": "IS 458 : 2021",
+        "full_title": "Precast Concrete Pipes (with and without Reinforcement) -",
+        "status": "UNKNOWN",
+        "tc": "CED 53",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-458-2003",
+        "standard_number": "IS 458 : 2003",
+        "full_title": "Precast concrete pipes(With And Without Reinforcement) - Specification (Fourth Revision)",
+        "status": "WITHDRAWN",
+        "tc": "CED 53",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-783-1985",
+        "standard_number": "IS 783 : 1985",
+        "full_title": "Code of Practice for Laying of Concrete Pipes",
+        "status": "UNKNOWN",
+        "tc": "CED 53",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-14333-2022",
+        "standard_number": "IS 14333 : 2022",
+        "full_title": "Polyethylene Pipes for Sewerage and Industrial Chemicals and Effluent - Specification (First Revision)",
+        "status": "UNKNOWN",
+        "tc": "CED 50",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-14333-1996",
+        "standard_number": "IS 14333 : 1996",
+        "full_title": "High Density Polyethylene Pipe For Sewerage -",
+        "status": "WITHDRAWN",
+        "tc": "CED 50",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "IS 458 : 2021": [],
+      "IS 458 : 2003": [],
+      "IS 783 : 1985": [],
+      "IS 14333 : 2022": [
+        "sewerage"
+      ],
+      "IS 14333 : 1996": [
+        "sewerage"
+      ]
+    },
+    "det_rank": 10,
+    "bm25_rank": 4,
+    "sem_rank": 1,
+    "fused_rank": 1,
+    "top_fused": [
+      [
+        "IS 14333 : 1996",
+        "High Density Polyethylene Pipe For Sewer"
+      ],
+      [
+        "IS 14333 : 2022",
+        "Polyethylene Pipes for Sewerage and Indu"
+      ],
+      [
+        "IS 4111 (Part 4) : 1968",
+        "Code of practice for ancillary structure"
+      ]
+    ]
+  },
+  {
+    "index": 13,
+    "requirement_id": "T011-R001",
+    "query_text": "Providing and laying underground cable for STP for main supply of electricity under CEDCO BSF Bangalore",
+    "expected_standard": "IS 7098 (Part 1) : 1988; IS 1255 : 1983",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "IS-7098-Part-1-2025",
+        "standard_number": "IS 7098 (Part 1) : 2025",
+        "full_title": "Crosslinked Polyethylene Insulated Thermoplastic Sheathed Cables - Specification Part 1 For Working Voltages up to and Including 1 100 Volts (Second Revision)",
+        "status": "UNKNOWN",
+        "tc": "ETD 09",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-7098-Part-1-1988",
+        "standard_number": "IS 7098 (Part 1) : 1988",
+        "full_title": "Specification for crosslinked polyethylene insulated PVC sheathed cables: Part 1 for working voltages up to and including 1 100 volts (First Revision)",
+        "status": "WITHDRAWN",
+        "tc": "ETD 09",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-1255-1983",
+        "standard_number": "IS 1255 : 1983",
+        "full_title": "Code of practice for installation and maintenance of power cables up to and including 33 kV rating (Second Revision)",
+        "status": "UNKNOWN",
+        "tc": "ETD 09",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "IS 7098 (Part 1) : 2025": [
+        "for",
+        "and"
+      ],
+      "IS 7098 (Part 1) : 1988": [
+        "for",
+        "and"
+      ],
+      "IS 1255 : 1983": [
+        "of",
+        "for",
+        "and"
+      ]
+    },
+    "det_rank": null,
+    "bm25_rank": null,
+    "sem_rank": 14,
+    "fused_rank": 70,
+    "top_fused": [
+      [
+        "IS 14787 : 2000",
+        "Unplasticized PVC Pipes (Ducts) and Fitt"
+      ],
+      [
+        "IS 9336 : 1979",
+        "Specification for cotton yarn for underg"
+      ],
+      [
+        "IS 1026 : 1984",
+        "Flexible trailing cables for use in quar"
+      ]
+    ]
+  },
+  {
+    "index": 14,
+    "requirement_id": "T012-R002",
+    "query_text": "Plaster Repairing",
+    "expected_standard": "IS 1661 : 1972; IS 269 : 2015",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "IS-1661-1972",
+        "standard_number": "IS 1661 : 1972",
+        "full_title": "Code of practice for application of cement and cement - Lime plaster finishes (First Revision)",
+        "status": "UNKNOWN",
+        "tc": "CED 05",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-269-2013",
+        "standard_number": "IS 269 : 2013",
+        "full_title": "Ordinary Portland Cement, 33 Grade",
+        "status": "WITHDRAWN",
+        "tc": "CED 02",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-269-2015",
+        "standard_number": "IS 269 : 2015",
+        "full_title": "Ordinary portland cement - Specification (Sixth Revision)",
+        "status": "ACTIVE",
+        "tc": "CED 02",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "IS 1661 : 1972": [
+        "plaster"
+      ],
+      "IS 269 : 2013": [],
+      "IS 269 : 2015": []
+    },
+    "det_rank": 20,
+    "bm25_rank": 49,
+    "sem_rank": 16,
+    "fused_rank": 28,
+    "top_fused": [
+      [
+        "IS 2095 (Part 1) : 2011",
+        "Gypsum plaster boards - Specification: P"
+      ],
+      [
+        "IS 2095 (Part 1) : 2023",
+        "Gypsum Plaster Boards - Specification: P"
+      ],
+      [
+        "IS 2095 (Part 2) : 2001",
+        "Gypsum plaster boards - specification: P"
+      ]
+    ]
+  },
+  {
+    "index": 15,
+    "requirement_id": "T012-R003",
+    "query_text": "Plumbing Fittings",
+    "expected_standard": "IS 1239 (Part 2) : 1992; IS 778 : 1984",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "IS-1239-Part-2-2011",
+        "standard_number": "IS 1239 (Part 2) : 2011",
+        "full_title": "Steel tubes, tubulars and other steel fittings - Specification: Part 2 steel pipe fittings (Fifth Revision)",
+        "status": "UNKNOWN",
+        "tc": "MTD 19",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-778-1984",
+        "standard_number": "IS 778 : 1984",
+        "full_title": "Specification for copper alloy gate, globe and check valves for waterworks purposes (Fourth Revision)",
+        "status": "UNKNOWN",
+        "tc": "CED 03",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "IS 1239 (Part 2) : 2011": [
+        "fittings"
+      ],
+      "IS 778 : 1984": []
+    },
+    "det_rank": null,
+    "bm25_rank": 17,
+    "sem_rank": 67,
+    "fused_rank": 45,
+    "top_fused": [
+      [
+        "IS 17650 (Part 2) : 2021",
+        "Water efficient plumbing products - Requ"
+      ],
+      [
+        "IS 14810 : 2000",
+        "Copper tubes for plumbing - Specificatio"
+      ],
+      [
+        "IS 8321 : 1976",
+        "Glossary of terms applicable to plumbing"
+      ]
+    ]
+  },
+  {
+    "index": 16,
+    "requirement_id": "T013-R002",
+    "query_text": "SITC of VFD water pump panel",
+    "expected_standard": "IS/IEC 61800-2 : 2015; IS/IEC 61439-2 : 2011",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "IS-IEC-61800-Part-2-2015",
+        "standard_number": "IS/IEC 61800 (Part 2) : 2015",
+        "full_title": "Adjustable Speed Electrical Power Drive Systems Part 2 General Requirements \u00e2\u20ac\u201d Rating Specifications for Low Voltage Adjustable Speed a.c. Power Drive Systems",
+        "status": "WITHDRAWN",
+        "tc": "ETD 31",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-IEC-61439-Part-2-2011",
+        "standard_number": "IS/IEC 61439 (Part 2) : 2011",
+        "full_title": "Low Voltage Switch Gear and Controlgear Assemblies Part 2 Power Switch Gear and Control Gear Assemblies",
+        "status": "WITHDRAWN",
+        "tc": "ETD 07",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-IEC-61439-Part-2-2020",
+        "standard_number": "IS/IEC 61439 (Part 2) : 2020",
+        "full_title": "Low-voltage switchgear and controlgear assemblies Part 2: Power switchgear and controlgear assemblies (First Revision)",
+        "status": "ACTIVE",
+        "tc": "ETD 07",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "IS/IEC 61800 (Part 2) : 2015": [],
+      "IS/IEC 61439 (Part 2) : 2011": [],
+      "IS/IEC 61439 (Part 2) : 2020": []
+    },
+    "det_rank": null,
+    "bm25_rank": null,
+    "sem_rank": null,
+    "fused_rank": 9,
+    "top_fused": [
+      [
+        "IS 17018 (Part 1) : 2018",
+        "Solar photovoltaic water pumping systems"
+      ],
+      [
+        "IS 17123 (Part 1) : 2019",
+        "Adjustable Speed Electrical Power Drive "
+      ],
+      [
+        "IS 10069 : 2017",
+        "Hydraulic fluid power - Positive displac"
+      ]
+    ]
+  },
+  {
+    "index": 17,
+    "requirement_id": "T013-R003",
+    "query_text": "Insulation work",
+    "expected_standard": "IS 14164 : 2008; IS 8183 : 1993",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "IS-14164-2008",
+        "standard_number": "IS 14164 : 2008",
+        "full_title": "Industrial application and finishings of thermal insulation materials at temperatures above - 80&deg;C and up to 750&deg;C - Code of practice (First Revision)",
+        "status": "UNKNOWN",
+        "tc": "CHD 27",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-8183-1993",
+        "standard_number": "IS 8183 : 1993",
+        "full_title": "Bonded mineral wool - Specification (First Revision)",
+        "status": "WITHDRAWN",
+        "tc": "CHD 27",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-8183-2024",
+        "standard_number": "IS 8183 : 2024",
+        "full_title": "Bonded mineral wool - Specification (Second Revision)",
+        "status": "UNKNOWN",
+        "tc": "CHD 27",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "IS 14164 : 2008": [
+        "insulation"
+      ],
+      "IS 8183 : 1993": [],
+      "IS 8183 : 2024": []
+    },
+    "det_rank": 51,
+    "bm25_rank": null,
+    "sem_rank": 5,
+    "fused_rank": 32,
+    "top_fused": [
+      [
+        "IS 10556 : 2014",
+        "Storage and handling of thermal insulati"
+      ],
+      [
+        "IS 10556 : 1983",
+        "Code of practice for storage and handlin"
+      ],
+      [
+        "IS 11050 (Part 2) : 1984",
+        "Rating of sound insulation in buildings "
+      ]
+    ]
+  },
+  {
+    "index": 18,
+    "requirement_id": "T014-R002",
+    "query_text": "commissioning of three numbers of Process Water Pump motors 3.3 kV",
+    "expected_standard": "IS/IEC 60034-1 : 2017; IS 5120 : 1977",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "IS-IEC-60034-Part-1-2004",
+        "standard_number": "IS/IEC 60034 (Part 1) : 2004",
+        "full_title": "Rotating electrical machines : Part 1 Rating and performance",
+        "status": "WITHDRAWN",
+        "tc": "ETD 15",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-IEC-60034-Part-1-2022",
+        "standard_number": "IS/IEC 60034 (Part 1) : 2022",
+        "full_title": "Rotating electrical machines - Part 1: Rating and performance",
+        "status": "ACTIVE",
+        "tc": "ETD 15",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-5120-1977",
+        "standard_number": "IS 5120 : 1977",
+        "full_title": "Technical requirements for rotodynamic special purpose pumps (First Revision)",
+        "status": "UNKNOWN",
+        "tc": "MED 20",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "IS/IEC 60034 (Part 1) : 2004": [],
+      "IS/IEC 60034 (Part 1) : 2022": [],
+      "IS 5120 : 1977": []
+    },
+    "det_rank": null,
+    "bm25_rank": null,
+    "sem_rank": 64,
+    "fused_rank": null,
+    "top_fused": [
+      [
+        "IS 12066 : 1987",
+        "Specification for three - Phase inductio"
+      ],
+      [
+        "IS 14578 : 1999",
+        "Three - Phase induction motors for use i"
+      ],
+      [
+        "IS 325 : 1996",
+        "Three-phase Induction Motors"
+      ]
+    ]
+  },
+  {
+    "index": 19,
+    "requirement_id": "T020-R001",
+    "query_text": "Repair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn",
+    "expected_standard": "IS 15778 : 2007; IS 1239 (Part 1) : 2004",
+    "exists_in_snapshot": true,
+    "db_records": [
+      {
+        "standard_id": "IS-15778-2007",
+        "standard_number": "IS 15778 : 2007",
+        "full_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Distribution Supplies - Specification",
+        "status": "UNKNOWN",
+        "tc": "CED 50",
+        "ics": null,
+        "scope": ""
+      },
+      {
+        "standard_id": "IS-1239-Part-1-2004",
+        "standard_number": "IS 1239 (Part 1) : 2004",
+        "full_title": "Steel tubes, tubulars and other wrought steel fittings - Specification: Part 1 steel tubes (Sixth Revision)",
+        "status": "UNKNOWN",
+        "tc": "MTD 19",
+        "ics": null,
+        "scope": ""
+      }
+    ],
+    "token_overlaps": {
+      "IS 15778 : 2007": [],
+      "IS 1239 (Part 1) : 2004": []
+    },
+    "det_rank": 1,
+    "bm25_rank": 119,
+    "sem_rank": 2,
+    "fused_rank": 1,
+    "top_fused": [
+      [
+        "IS 15778 : 2007",
+        "Chlorinated Polyvinyl Chloride (CPVC) Pi"
+      ],
+      [
+        "IS 18837 : 2024",
+        "SOLVENT CEMENTS FOR CHLORINATED POLY (VI"
+      ],
+      [
+        "IS 16088 : 2012",
+        "Chlorinated polyvinyl chloride (CPVC) pi"
+      ]
+    ]
+  }
+]

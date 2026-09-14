@@ -70,6 +70,29 @@ TECHNICAL_TERMINOLOGY_MAP: Dict[str, List[str]] = {
     "submersible pump": ["submersible pumpsets", "submersible motor pumpset"],
     "centrifugal pump": ["rotodynamic special purpose pumps", "centrifugal pumps for clear cold water"],
     "mono block": ["monoset pump", "monobloc pump"],
+    "process water pump motors": ["rotating electrical machines", "three phase induction motors", "rotodynamic special purpose pumps"],
+    "pump motors": ["rotating electrical machines", "three phase induction motors", "rotodynamic pumps"],
+
+    # Civil & Building Finishes
+    "wall tiles": ["ceramic tiles", "pressed ceramic tiles"],
+    "floor tiles": ["ceramic tiles", "pressed ceramic tiles"],
+    "plaster repairing": ["cement plaster finishes", "application of plaster finishes"],
+    "insulation work": ["thermal insulation materials", "application and finishing of thermal insulation"],
+    "sanitary fittings": ["vitreous china sanitary appliances", "sanitary appliances"],
+
+    # Piping & Mechanical Services
+    "plumbing fittings": ["pipe fittings", "mild steel pipe fittings", "copper alloy valves for waterworks"],
+    "flange joint": ["steel pipe flanges", "pipe flanges", "jointing sheets", "compressed asbestos fibre jointing"],
+
+    # Electrical Services & Distribution
+    "electrical and mechanical services": ["electrical installations", "national electrical code", "electrical wiring"],
+    "electrical services": ["electrical installations", "national electrical code", "electrical wiring"],
+    "electrical maintenance": ["electrical installations", "national electrical code", "electrical wiring"],
+    "distribution boards": ["low voltage switchgear and controlgear assemblies", "distribution boards intended to be operated by ordinary persons"],
+
+    # Food Services & Commercial Outlets
+    "food outlet": ["food hygiene", "food safety", "food handling", "hazard analysis critical control point"],
+    "canteen": ["food hygiene", "food safety", "catering"],
 }
 
 

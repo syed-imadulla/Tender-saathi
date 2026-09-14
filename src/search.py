@@ -44,6 +44,19 @@ class SearchResult:
     final_score: float = 0.0
     ai_provider: Optional[str] = None
     ai_model: Optional[str] = None
+    # Provenance and stage lineage tracking fields:
+    source_rank_det: Optional[int] = None
+    source_rank_bm25: Optional[int] = None
+    source_rank_semantic: Optional[int] = None
+    fusion_score: float = 0.0
+    fusion_rank: Optional[int] = None
+    cross_encoder_score: Optional[float] = None
+    cross_encoder_rank: Optional[int] = None
+    final_rank: Optional[int] = None
+
+    @property
+    def canonical_id(self) -> str:
+        return self.standard_id
 
 
 
