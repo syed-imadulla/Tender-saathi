@@ -331,15 +331,14 @@ class EvidenceAwareCritic:
         if val_info.is_active or status_upper == "ACTIVE":
             lifecycle_score = 1.0
             critique_reasons.append("Standard is currently Active and verified in BIS catalogue")
-        elif status_upper == "UNKNOWN":
-            # Status not explicitly confirmed Active or Withdrawn in BIS source: neutral score with review flag
-            lifecycle_score = 0.70
-            critique_reasons.append("Standard lifecycle status is UNCONFIRMED (UNKNOWN) in BIS catalogue")
-            risk_reasons.append(f"Standard {std_num} has unverified lifecycle status in catalogue (UNKNOWN)")
-        elif val_info.successor_standard:
+        elif val_info.successor_standard or status_upper == "SUPERSEDED":
             lifecycle_score = 0.30
             critique_reasons.append(f"Standard is SUPERSEDED by {val_info.successor_standard}")
             risk_reasons.append(f"Standard {std_num} is superseded by {val_info.successor_standard}")
+        elif status_upper == "UNKNOWN":
+            # Status unconfirmed in portal table, but standard is present in current BIS snapshot without supersedence
+            lifecycle_score = 1.0
+            critique_reasons.append("Standard is recorded in BIS catalogue without supersedence")
         else:
             lifecycle_score = 0.0
             critique_reasons.append(f"Standard status is {val_info.status or 'Withdrawn'}")
@@ -411,8 +410,8 @@ class EvidenceAwareCritic:
         elif relevance < 0.35 or evidence.evidence_strength == "NONE" or not evidence.grounded:
             decision = "INSUFFICIENT_EVIDENCE"
             review_required = True
-        # Gate 3: Superseded standard cited
-        elif lifecycle_score < 1.0:
+        # Gate 3: Superseded or Withdrawn standard cited
+        elif val_info.successor_standard or status_upper in ["WITHDRAWN", "SUPERSEDED"]:
             decision = "REVIEW_REQUIRED"
             review_required = True
         # Gate 4: TRUST RULE - Strong retrieval + weak/none evidence CANNOT become High confidence recommendation
@@ -530,8 +529,13 @@ class EvidenceAwareCritic:
             )
             critiques.append(crit)
 
-        top_critique = critiques[0]
-        top_cand = candidates[0]
+        # Select best viable candidate (skip rejected/withdrawn candidates if viable candidate exists in pool)
+        viable_pairs = [(crit, cand) for crit, cand in zip(critiques, candidates) if crit.decision not in ["REJECT", "REJECT_NO_MATCH"]]
+        if viable_pairs:
+            top_critique, top_cand = viable_pairs[0]
+        else:
+            top_critique = critiques[0]
+            top_cand = candidates[0]
 
         # Calibrate Confidence with STRICT TRUST GATE INVARIANT:
         # If evidence_strength in ["WEAK", "NONE"], confidence MUST NOT become HIGH.

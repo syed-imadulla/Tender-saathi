@@ -153,6 +153,12 @@ class ExactCitationResolver:
                     (parsed.base_standard_number,)
                 )
                 rows = [dict(r) for r in cur.fetchall()]
+                if not rows:
+                    cur.execute(
+                        "SELECT * FROM catalogue_standards WHERE base_standard_number LIKE ? ORDER BY year DESC",
+                        (f"{parsed.base_standard_number} %",)
+                    )
+                    rows = [dict(r) for r in cur.fetchall()]
                 if rows:
                     # If multiple revisions exist, prefer Active, else newest year
                     best_row = rows[0]

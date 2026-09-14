@@ -63,6 +63,8 @@ def _extract_voltage(text: str) -> Optional[str]:
 
 def _extract_product_family(text: str) -> str:
     text = text.lower()
+    if "actuator" in text: return "actuator"
+    if "gearbox" in text: return "gearbox"
     if "cable" in text: return "cable"
     if "valve" in text: return "valve"
     if "pump" in text: return "pump"

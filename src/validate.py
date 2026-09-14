@@ -93,20 +93,33 @@ def validate_standard_status(
                 standard_metadata=None
             )
 
-        # 2. Check direct standard record in standards table
-        cursor.execute("""
-        SELECT * FROM standards
-        WHERE standard_id = ? 
-           OR standard_number = ? 
-           OR original_standard_identifier = ?
-           OR standard_number LIKE ?
-        """, (std_clean, std_clean, std_clean, f"%{std_num_digits}%"))
-        direct_match = cursor.fetchone()
+        # 2. Resolve via ExactCitationResolver / exact canonical lookup
+        resolved_std_data = None
+        try:
+            from src.citation_resolver import ExactCitationResolver
+            resolver = ExactCitationResolver(database)
+            resolved = resolver.resolve_citation(std_clean)
+            if resolved and resolved.raw_record:
+                resolved_std_data = dict(resolved.raw_record)
+        except Exception:
+            resolved_std_data = None
 
-        if direct_match:
-            std_data = dict(direct_match)
-            raw_status = (std_data.get("status") or "Active").strip()
-            is_active = (raw_status.lower() == "active")
+        if not resolved_std_data:
+            # Fallback to exact match on standard_id, standard_number, or original_standard_identifier
+            cursor.execute("""
+            SELECT * FROM standards
+            WHERE standard_id = ? 
+               OR standard_number = ? 
+               OR original_standard_identifier = ?
+            """, (std_clean, std_clean, std_clean))
+            direct_match = cursor.fetchone()
+            if direct_match:
+                resolved_std_data = dict(direct_match)
+
+        if resolved_std_data:
+            std_data = resolved_std_data
+            raw_status = (std_data.get("status") or "ACTIVE").strip()
+            is_active = (raw_status.upper() == "ACTIVE")
 
             # Check if this standard record has SUPERSEDED_BY relationship outgoing
             rel = None
@@ -115,7 +128,7 @@ def validate_standard_status(
                 SELECT relationship_type, target_standard, evidence
                 FROM standard_relationships
                 WHERE source_standard_id = ? AND relationship_type = 'SUPERSEDED_BY'
-                """, (std_data["standard_id"],))
+                """, (std_data.get("standard_id", ""),))
                 rel = cursor.fetchone()
 
             successor_std = None
@@ -126,9 +139,9 @@ def validate_standard_status(
                 rel_dict = dict(rel)
                 successor_std = rel_dict["target_standard"]
                 evidence_str = rel_dict["evidence"]
-                warning_msg = f"Standard {std_data['standard_number']} is superseded by {successor_std}."
+                warning_msg = f"Standard {std_data.get('standard_number', std_clean)} is superseded by {successor_std}."
             elif not is_active:
-                warning_msg = f"Standard {std_data['standard_number']} has non-active status: {raw_status}."
+                warning_msg = f"Standard {std_data.get('standard_number', std_clean)} has non-active status: {raw_status}."
 
             return StandardValidationResult(
                 standard_identifier=std_clean,

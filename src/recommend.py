@@ -256,32 +256,40 @@ class StandardsRecommender:
         for exp in explicit_stds:
             val_res = validate_standard_status(exp, self.db)
             
-            with self.db._get_connection() as conn:
-                cursor = conn.cursor()
-                # 1. Inject the explicit citation itself
-                exp_clean = exp.strip()
-                digits_match = re.search(r'\b(?:IS\s*(?:/|\s*)?(?:ISO|IEC)?\s*)?(\d{3,5})\b', exp_clean, re.IGNORECASE)
-                exp_digits = digits_match.group(1) if digits_match else exp_clean
+            resolved_std_data = None
+            try:
+                from src.citation_resolver import ExactCitationResolver
+                resolver = ExactCitationResolver(self.db)
+                resolved = resolver.resolve_citation(exp)
+                if resolved and resolved.raw_record:
+                    resolved_std_data = dict(resolved.raw_record)
+            except Exception:
+                resolved_std_data = None
 
-                cursor.execute("""
-                    SELECT * FROM standards 
-                    WHERE standard_number = ? 
-                       OR standard_id = ? 
-                       OR standard_number LIKE ? 
-                       OR standard_number LIKE ?
-                    LIMIT 1
-                """, (exp_clean, exp_clean, f"{exp_clean} : %", f"%{exp_digits}%"))
-                row = cursor.fetchone()
-                if row:
-                    r_dict = dict(row)
-                    exact_res = self.search_engine.det_engine._format_result(
-                        r_dict, 
-                        score=1.0, 
-                        reason=f"Explicitly cited in tender: {exp}"
-                    )
-                    exact_res.deterministic_score = 1.0
-                    exact_res.final_score = 1.0
-                    explicit_search_results.append(exact_res)
+            if not resolved_std_data:
+                with self.db._get_connection() as conn:
+                    cursor = conn.cursor()
+                    exp_clean = exp.strip()
+                    cursor.execute("""
+                        SELECT * FROM standards 
+                        WHERE standard_number = ? 
+                           OR standard_id = ? 
+                           OR standard_number LIKE ?
+                        LIMIT 1
+                    """, (exp_clean, exp_clean, f"{exp_clean} : %"))
+                    row = cursor.fetchone()
+                    if row:
+                        resolved_std_data = dict(row)
+
+            if resolved_std_data:
+                exact_res = self.search_engine.det_engine._format_result(
+                    resolved_std_data, 
+                    score=1.0, 
+                    reason=f"Explicitly cited in tender: {exp}"
+                )
+                exact_res.deterministic_score = 1.0
+                exact_res.final_score = 1.0
+                explicit_search_results.append(exact_res)
 
                 # 2. Inject the authoritative successor if superseded
                 if not val_res.is_active and val_res.successor_standard:
@@ -384,15 +392,16 @@ class StandardsRecommender:
         ]
         is_prod_req = any(re.search(rf'\b{w}\b', t_low) for w in prod_nouns)
 
-        if is_prod_req and any(classify_standard_role(c.standard_number, c.full_title, c.scope_summary) == "PRIMARY_PRODUCT" for c in applicable_candidates):
-            def role_priority(c: SearchResult) -> int:
-                role = classify_standard_role(c.standard_number, c.full_title, c.scope_summary)
-                if role == "PRIMARY_PRODUCT":
-                    return 0
-                elif role in ["INSTALLATION", "CODE_OF_PRACTICE"]:
-                    return 1
-                return 2
-            applicable_candidates.sort(key=role_priority)
+        cand_orig_rank = {c.standard_number: idx for idx, c in enumerate(search_results)}
+        def candidate_priority(c: SearchResult) -> Tuple[int, int, int]:
+            role = classify_standard_role(c.standard_number, c.full_title, c.scope_summary)
+            role_rank = 0 if role == "PRIMARY_PRODUCT" else (1 if role in ["INSTALLATION", "CODE_OF_PRACTICE"] else 2)
+            status_str = str(c.status or "").upper()
+            status_rank = 0 if status_str in ["ACTIVE", "UNKNOWN"] else 1
+            orig_rank = cand_orig_rank.get(c.standard_number, 999)
+            return (role_rank if is_prod_req else 0, status_rank, orig_rank)
+
+        applicable_candidates.sort(key=candidate_priority)
 
         # If ALL candidates fail the applicability gate: ABSTAIN cleanly
         if not applicable_candidates:
@@ -548,15 +557,16 @@ class StandardsRecommender:
             # Validate active/superseded status
             val_info = validate_standard_status(sr.standard_number, self.db)
             status_str = val_info.status if val_info.is_known else sr.status
-            version_role = "CURRENT_ACTIVE" if val_info.is_active else "REPLACED_OR_SUPERSEDED"
+            is_superseded_or_withdrawn = bool(val_info.successor_standard or str(status_str).upper() in ["WITHDRAWN", "SUPERSEDED"])
+            version_role = "REPLACED_OR_SUPERSEDED" if is_superseded_or_withdrawn else "CURRENT_ACTIVE"
 
             # Confidence Calibration with Trust Gate
             cand_ev = self.critic.extract_candidate_evidence(sr, text, val_info)
             if cand_ev.evidence_strength in ["WEAK", "NONE"]:
                 conf = "Medium" if sr.relevance_score >= 0.70 and cand_ev.evidence_strength == "WEAK" else "Low"
-            elif sr.relevance_score >= 0.75 and val_info.is_active:
+            elif sr.relevance_score >= 0.75 and not is_superseded_or_withdrawn:
                 conf = "High"
-            elif sr.relevance_score >= 0.40 and val_info.is_active:
+            elif sr.relevance_score >= 0.40 and not is_superseded_or_withdrawn:
                 conf = "Medium"
             else:
                 conf = "Low"

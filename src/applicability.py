@@ -377,6 +377,11 @@ class ApplicabilityGate:
             conflict_flags.append("APPLICATION_CONFLICT: display optical film")
             rejection_reasons.append("Application conflict: Agricultural, mechanical, or photography standards do not cover advanced television display optical film.")
 
+        if any(k in req_text_low for k in ["prepreg", "supersonic aerospace", "aerospace fuselage"]):
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: aerospace structural prepreg")
+            rejection_reasons.append("Application conflict: General plastic/translucent sheets or industrial standards do not cover supersonic aerospace fuselage prepregs.")
+
         # Equipment scope gate: Adjustable speed electrical power drives (IS/IEC 61800) vs Switchgear assemblies
         is_cand_vfd = "61800" in std_num or "power drive" in cand_corpus_low
         has_vfd_kw = bool(re.search(r'\b(?:vfd|variable\s+frequency|variable\s+speed|power\s+drive|frequency\s+converter|inverter\s+drive|ac\s+drive|drive\s+panel)\b', req_text_low))
@@ -386,8 +391,42 @@ class ApplicabilityGate:
             conflict_flags.append("EQUIPMENT_MISMATCH: power drive system vs switchgear assembly")
             rejection_reasons.append("Equipment mismatch: Standard covers adjustable speed power drive systems (VFD), but requirement specifies switchgear/controlgear assembly without power drive system.")
 
+        # Equipment scope gate: Electric cables vs HVDC Converter valves / Substation equipment / Ducts
+        is_cable_req = bool(re.search(r'\b(?:cable|cables|power\s+cable|electric\s+cable|underground\s+cable)\b', req_text_low))
+        is_cand_valve_or_converter = bool(re.search(r'\b(?:converter\s+valves?|thyristor\s+valves?|voltage\s+sourced\s+converters?|vsc\s+valves?)\b', cand_corpus_low))
+        is_cand_cable = bool(re.search(r'\b(?:cables?|conductors?)\b', cand_corpus_low))
+        if is_cable_req and is_cand_valve_or_converter and not is_cand_cable:
+            application_match = False
+            conflict_flags.append("EQUIPMENT_MISMATCH: converter valve / VSC equipment vs electric cable")
+            rejection_reasons.append("Equipment mismatch: Standard covers HVDC voltage sourced converter valves / converter stations, but requirement specifies electric power cables.")
+
+        is_cand_duct_pipe = bool(re.search(r'\b(?:pipes?|ducts?|fittings?)\s+for\s+underground\b', cand_corpus_low))
+        if is_cable_req and is_cand_duct_pipe and not bool(re.search(r'\b(?:pipe|duct|conduit)\b', req_text_low)):
+            application_match = False
+            conflict_flags.append("EQUIPMENT_MISMATCH: cable duct / pipe vs electric power cable")
+            rejection_reasons.append("Equipment mismatch: Standard covers unplasticized PVC pipes/ducts for underground cable installation, but requirement specifies the electric power cable itself.")
+
+        # Overhead transmission lines vs underground cables
+        is_underground_cable = bool(re.search(r'\b(?:underground\s+cable|underground\s+electric|underground\s+power|buried\s+cable)\b', req_text_low))
+        is_overhead_line = bool(re.search(r'\b(?:overhead\s+lines?|overhead\s+transmission)\b', cand_corpus_low))
+        if is_underground_cable and is_overhead_line:
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: overhead transmission lines vs underground power cable")
+            rejection_reasons.append("Application conflict: Standard covers overhead transmission lines, but requirement specifies underground electric power cables.")
+
+        # Equipment scope gate: Valves vs Actuators / Gearboxes for valves
+        is_valve_req = bool(re.search(r'\b(?:valves?|sluice|stopcock)\b', req_text_low))
+        is_cand_actuator_gearbox = bool(re.search(r'\b(?:actuators?|gearboxes?)\s+for\s+industrial\s+valves?\b', cand_corpus_low))
+        if is_valve_req and is_cand_actuator_gearbox and not bool(re.search(r'\b(?:actuator|actuators|gearbox|gearboxes)\b', req_text_low)):
+            application_match = False
+            conflict_flags.append("EQUIPMENT_MISMATCH: valve actuator / gearbox vs industrial valve")
+            rejection_reasons.append("Equipment mismatch: Standard covers electric actuators or gearboxes for valves, but requirement specifies the valve itself.")
+
         # Product boundary gates (Section 10 critical safety tests):
         # 1. XLPE Cable Voltage Tier Gate: IS 7098 Part 1 (<= 1100 V) vs Part 2 (3.3 kV to 33 kV)
+        # Grounded strictly in authoritative BIS catalogue title/scope text:
+        # Part 1 title: "For Working Voltages up to and Including 1 100 Volts"
+        # Part 2 title: "For Working Voltages from 3.3 kV up to and including 33 kV"
         is_7098 = "7098" in std_num
         if is_7098:
             has_mv_or_ht = bool(re.search(r'\b(?:11\s*kv|33\s*kv|3\.3\s*kv|6\.6\s*kv|22\s*kv|ht\s+cable|medium\s+voltage|high\s+voltage)\b', req_text_low))
@@ -398,11 +437,11 @@ class ApplicabilityGate:
             if is_part_1 and has_mv_or_ht and not has_lv_or_lt:
                 application_match = False
                 conflict_flags.append("VOLTAGE_CONFLICT: 11 kV / HT cable exceeds IS 7098 Part 1 maximum voltage rating (1.1 kV / 1100 V)")
-                rejection_reasons.append("Voltage rating conflict: IS 7098 (Part 1) only covers working voltages up to and including 1100 V (1.1 kV). For medium/high voltage (e.g. 11 kV), applicable standard is IS 7098 (Part 2).")
+                rejection_reasons.append("Voltage rating conflict: IS 7098 (Part 1) title explicitly specifies 'working voltages up to and including 1 100 volts'. For medium/high voltage (e.g. 11 kV), applicable standard is IS 7098 (Part 2).")
             elif is_part_2 and has_lv_or_lt and not has_mv_or_ht:
                 application_match = False
                 conflict_flags.append("VOLTAGE_CONFLICT: LT / 1.1 kV cable is below IS 7098 Part 2 minimum voltage rating (3.3 kV)")
-                rejection_reasons.append("Voltage rating conflict: IS 7098 (Part 2) covers voltages from 3.3 kV up to 33 kV. For low voltage / 1.1 kV, applicable standard is IS 7098 (Part 1).")
+                rejection_reasons.append("Voltage rating conflict: IS 7098 (Part 2) title explicitly specifies 'working voltages from 3.3 kV up to and including 33 kV'. For low voltage / 1.1 kV, applicable standard is IS 7098 (Part 1).")
 
         # 2. Steel Reinforcement Process & Grade Gate: IS 432 (Mild steel) vs IS 1786 (High strength deformed / TMT)
         is_432 = "432" in std_num
@@ -437,6 +476,14 @@ class ApplicabilityGate:
             application_match = False
             conflict_flags.append("APPLICATION_CONFLICT: non-submersible pump vs submersible pumpset IS 8034")
             rejection_reasons.append("Application conflict: IS 8034 specifically covers submersible pumpsets. Requirement specifies a non-submersible / surface coupled process pump.")
+
+        # Openwell vs Borewell pump application gate:
+        is_borewell = bool(re.search(r'\b(?:borewell|bore\s*well|borehole|tube\s*well|tubewell)\b', req_text_low))
+        is_openwell_std = "openwell" in cand_corpus_low
+        if is_borewell and is_openwell_std:
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: openwell pump vs borewell requirement")
+            rejection_reasons.append("Application conflict: Standard covers openwell submersible pumpsets (IS 14220), but requirement specifies a borewell installation which requires a borewell submersible pumpset (IS 8034).")
 
         # 7. Evidence Support
         # Standard exists and has scope, but does it evidence THIS requirement?
