@@ -1,0 +1,1153 @@
+{
+  "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+  "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+  "previous_record_count": 35208,
+  "current_record_count": 35208,
+  "detected_at": "2026-09-14T05:54:26.762698+00:00",
+  "counts_by_type": {
+    "NEW": 5,
+    "UNCHANGED": 35171,
+    "UPDATED": 5,
+    "STATUS_CHANGED": 15,
+    "WITHDRAWN": 10,
+    "SUPERSEDED": 2,
+    "MISSING_FROM_SOURCE": 5
+  },
+  "field_change_counts": {
+    "standard_number": 0,
+    "base_standard_number": 0,
+    "part": 0,
+    "section": 0,
+    "year": 0,
+    "title": 7,
+    "technical_committee": 0,
+    "aspect": 6,
+    "amendments": 7,
+    "amendment_count": 7,
+    "status": 27,
+    "is_active": 27,
+    "iso_equivalence": 0,
+    "iso_equivalence_degree": 0,
+    "source": 0,
+    "source_url": 0
+  },
+  "changes": [
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-99001-2026",
+      "change_type": "NEW",
+      "changed_fields": [
+        "ALL"
+      ],
+      "previous_values": null,
+      "new_values": {
+        "canonical_id": "IS-99001-2026",
+        "standard_number": "IS 99001 : 2026",
+        "base_standard_number": "IS 99001",
+        "part": null,
+        "section": null,
+        "year": 2026,
+        "title": "Advanced Smart Grid Specification Part 1",
+        "technical_committee": "ETD 50",
+        "aspect": "Product Specification",
+        "amendments": "0",
+        "amendment_count": 0,
+        "status": "ACTIVE",
+        "is_active": 1,
+        "iso_equivalence": null,
+        "iso_equivalence_degree": "Indigenous",
+        "source": "BIS",
+        "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=99001",
+        "raw_record_ref": "fresh_run_page_0001.json:1"
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=99001",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "fresh_run_page_0001.json:1"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-99002-2026",
+      "change_type": "NEW",
+      "changed_fields": [
+        "ALL"
+      ],
+      "previous_values": null,
+      "new_values": {
+        "canonical_id": "IS-99002-2026",
+        "standard_number": "IS 99002 : 2026",
+        "base_standard_number": "IS 99002",
+        "part": null,
+        "section": null,
+        "year": 2026,
+        "title": "Advanced Smart Grid Specification Part 2",
+        "technical_committee": "ETD 50",
+        "aspect": "Product Specification",
+        "amendments": "0",
+        "amendment_count": 0,
+        "status": "ACTIVE",
+        "is_active": 1,
+        "iso_equivalence": null,
+        "iso_equivalence_degree": "Indigenous",
+        "source": "BIS",
+        "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=99002",
+        "raw_record_ref": "fresh_run_page_0001.json:2"
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=99002",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "fresh_run_page_0001.json:2"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-99003-2026",
+      "change_type": "NEW",
+      "changed_fields": [
+        "ALL"
+      ],
+      "previous_values": null,
+      "new_values": {
+        "canonical_id": "IS-99003-2026",
+        "standard_number": "IS 99003 : 2026",
+        "base_standard_number": "IS 99003",
+        "part": null,
+        "section": null,
+        "year": 2026,
+        "title": "Advanced Smart Grid Specification Part 3",
+        "technical_committee": "ETD 50",
+        "aspect": "Product Specification",
+        "amendments": "0",
+        "amendment_count": 0,
+        "status": "ACTIVE",
+        "is_active": 1,
+        "iso_equivalence": null,
+        "iso_equivalence_degree": "Indigenous",
+        "source": "BIS",
+        "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=99003",
+        "raw_record_ref": "fresh_run_page_0001.json:3"
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=99003",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "fresh_run_page_0001.json:3"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-99004-2026",
+      "change_type": "NEW",
+      "changed_fields": [
+        "ALL"
+      ],
+      "previous_values": null,
+      "new_values": {
+        "canonical_id": "IS-99004-2026",
+        "standard_number": "IS 99004 : 2026",
+        "base_standard_number": "IS 99004",
+        "part": null,
+        "section": null,
+        "year": 2026,
+        "title": "Advanced Smart Grid Specification Part 4",
+        "technical_committee": "ETD 50",
+        "aspect": "Product Specification",
+        "amendments": "0",
+        "amendment_count": 0,
+        "status": "ACTIVE",
+        "is_active": 1,
+        "iso_equivalence": null,
+        "iso_equivalence_degree": "Indigenous",
+        "source": "BIS",
+        "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=99004",
+        "raw_record_ref": "fresh_run_page_0001.json:4"
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=99004",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "fresh_run_page_0001.json:4"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-99005-2026",
+      "change_type": "NEW",
+      "changed_fields": [
+        "ALL"
+      ],
+      "previous_values": null,
+      "new_values": {
+        "canonical_id": "IS-99005-2026",
+        "standard_number": "IS 99005 : 2026",
+        "base_standard_number": "IS 99005",
+        "part": null,
+        "section": null,
+        "year": 2026,
+        "title": "Advanced Smart Grid Specification Part 5",
+        "technical_committee": "ETD 50",
+        "aspect": "Product Specification",
+        "amendments": "0",
+        "amendment_count": 0,
+        "status": "ACTIVE",
+        "is_active": 1,
+        "iso_equivalence": null,
+        "iso_equivalence_degree": "Indigenous",
+        "source": "BIS",
+        "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=99005",
+        "raw_record_ref": "fresh_run_page_0001.json:5"
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=99005",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "fresh_run_page_0001.json:5"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-10000-Part-10-1980",
+      "change_type": "MISSING_FROM_SOURCE",
+      "changed_fields": [
+        "presence"
+      ],
+      "previous_values": {
+        "presence": "PRESENT",
+        "status": "UNKNOWN"
+      },
+      "new_values": {
+        "presence": "MISSING_FROM_SOURCE"
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=657",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:48"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-10000-Part-12-1980",
+      "change_type": "MISSING_FROM_SOURCE",
+      "changed_fields": [
+        "presence"
+      ],
+      "previous_values": {
+        "presence": "PRESENT",
+        "status": "UNKNOWN"
+      },
+      "new_values": {
+        "presence": "MISSING_FROM_SOURCE"
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=17847",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:49"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-10000-Part-4-1980",
+      "change_type": "MISSING_FROM_SOURCE",
+      "changed_fields": [
+        "presence"
+      ],
+      "previous_values": {
+        "presence": "PRESENT",
+        "status": "UNKNOWN"
+      },
+      "new_values": {
+        "presence": "MISSING_FROM_SOURCE"
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=17848",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:50"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-10000-Part-8-1980",
+      "change_type": "MISSING_FROM_SOURCE",
+      "changed_fields": [
+        "presence"
+      ],
+      "previous_values": {
+        "presence": "PRESENT",
+        "status": "UNKNOWN"
+      },
+      "new_values": {
+        "presence": "MISSING_FROM_SOURCE"
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=771",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:46"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-10000-Part-9-1980",
+      "change_type": "MISSING_FROM_SOURCE",
+      "changed_fields": [
+        "presence"
+      ],
+      "previous_values": {
+        "presence": "PRESENT",
+        "status": "UNKNOWN"
+      },
+      "new_values": {
+        "presence": "MISSING_FROM_SOURCE"
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=773",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:47"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-10-Part-1-1990",
+      "change_type": "STATUS_CHANGED",
+      "changed_fields": [
+        "amendments",
+        "amendment_count",
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "amendments": "0",
+        "amendment_count": 0,
+        "status": "UNKNOWN",
+        "is_active": null
+      },
+      "new_values": {
+        "amendments": "1",
+        "amendment_count": 1,
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=767",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:38"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-10-Part-2-2013",
+      "change_type": "STATUS_CHANGED",
+      "changed_fields": [
+        "title",
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "title": "Plywood Tea-Chests - Specification: Part 2 Plywood (Sixth Revision)",
+        "status": "UNKNOWN",
+        "is_active": null
+      },
+      "new_values": {
+        "title": "Plywood Tea-Chests - Specification: Part 2 Plywood (Sixth Revision) (Second Revision)",
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=123",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:34"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-10-Part-3-1974",
+      "change_type": "STATUS_CHANGED",
+      "changed_fields": [
+        "amendments",
+        "amendment_count",
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "amendments": "3",
+        "amendment_count": 3,
+        "status": "UNKNOWN",
+        "is_active": null
+      },
+      "new_values": {
+        "amendments": "4",
+        "amendment_count": 4,
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=683",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:35"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-10-Part-4-1989",
+      "change_type": "STATUS_CHANGED",
+      "changed_fields": [
+        "aspect",
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "aspect": "Product Specification",
+        "status": "UNKNOWN",
+        "is_active": null
+      },
+      "new_values": {
+        "aspect": "Revised Performance Standard",
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=684",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:36"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-10-Part-5-1976",
+      "change_type": "STATUS_CHANGED",
+      "changed_fields": [
+        "title",
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "title": "Specification for Plywood Tea-Chests: Part 5 Assembly and Packing (Fourth Revision)",
+        "status": "UNKNOWN",
+        "is_active": null
+      },
+      "new_values": {
+        "title": "Specification for Plywood Tea-Chests: Part 5 Assembly and Packing (Fourth Revision) (Second Revision)",
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=685",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:37"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-1000-2021",
+      "change_type": "STATUS_CHANGED",
+      "changed_fields": [
+        "aspect",
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "aspect": "Product Specification",
+        "status": "UNKNOWN",
+        "is_active": null
+      },
+      "new_values": {
+        "aspect": "Revised Performance Standard",
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=25901",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:40"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-10000-Part-5-1980",
+      "change_type": "STATUS_CHANGED",
+      "changed_fields": [
+        "title",
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "title": "Methods of tests for internal combustion engines: Part 5 preparation for tests and measurements for wear",
+        "status": "UNKNOWN",
+        "is_active": null
+      },
+      "new_values": {
+        "title": "Methods of tests for internal combustion engines: Part 5 preparation for tests and measurements for wear (Second Revision)",
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=768",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:43"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-10000-Part-6-1980",
+      "change_type": "STATUS_CHANGED",
+      "changed_fields": [
+        "amendments",
+        "amendment_count",
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "amendments": "1",
+        "amendment_count": 1,
+        "status": "UNKNOWN",
+        "is_active": null
+      },
+      "new_values": {
+        "amendments": "2",
+        "amendment_count": 2,
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=769",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:44"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-10000-Part-7-1980",
+      "change_type": "STATUS_CHANGED",
+      "changed_fields": [
+        "aspect",
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "aspect": "Methods of tests",
+        "status": "UNKNOWN",
+        "is_active": null
+      },
+      "new_values": {
+        "aspect": "Revised Performance Standard",
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=770",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:45"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-10001-1981",
+      "change_type": "WITHDRAWN",
+      "changed_fields": [
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "new_values": {
+        "status": "WITHDRAWN",
+        "is_active": 0
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=774",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:56"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-10002-1981",
+      "change_type": "WITHDRAWN",
+      "changed_fields": [
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "new_values": {
+        "status": "WITHDRAWN",
+        "is_active": 0
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=775",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:58"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-ISO-10001-2018",
+      "change_type": "WITHDRAWN",
+      "changed_fields": [
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "new_values": {
+        "status": "WITHDRAWN",
+        "is_active": 0
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=21311",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:57"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-ISO-10002-2018",
+      "change_type": "WITHDRAWN",
+      "changed_fields": [
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "new_values": {
+        "status": "WITHDRAWN",
+        "is_active": 0
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=17837",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:59"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-ISO-10003-2018",
+      "change_type": "WITHDRAWN",
+      "changed_fields": [
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "new_values": {
+        "status": "WITHDRAWN",
+        "is_active": 0
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=21312",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:60"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-ISO-10004-2018",
+      "change_type": "WITHDRAWN",
+      "changed_fields": [
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "new_values": {
+        "status": "WITHDRAWN",
+        "is_active": 0
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=24527",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:63"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-ISO-10005-2018",
+      "change_type": "WITHDRAWN",
+      "changed_fields": [
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "new_values": {
+        "status": "WITHDRAWN",
+        "is_active": 0
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=17565",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:65"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-ISO-10006-2017",
+      "change_type": "SUPERSEDED",
+      "changed_fields": [
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "new_values": {
+        "status": "SUPERSEDED",
+        "is_active": 0
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=17566",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:67"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-ISO-10007-2017",
+      "change_type": "SUPERSEDED",
+      "changed_fields": [
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "new_values": {
+        "status": "SUPERSEDED",
+        "is_active": 0
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=17567",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:69"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-ISO-10008-2022",
+      "change_type": "UPDATED",
+      "changed_fields": [
+        "title"
+      ],
+      "previous_values": {
+        "title": "Quality Management â€” Customer Satisfaction â€” Business-to-Consumer Electronic Commerce Transactions â€” Guidelines  (First Revision)"
+      },
+      "new_values": {
+        "title": "Quality Management â€” Customer Satisfaction â€” Business-to-Consumer Electronic Commerce Transactions â€” Guidelines  (First Revision) (Second Revision)"
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=31112",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:73"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-ISO-10010-2022",
+      "change_type": "UPDATED",
+      "changed_fields": [
+        "amendments",
+        "amendment_count"
+      ],
+      "previous_values": {
+        "amendments": "0",
+        "amendment_count": 0
+      },
+      "new_values": {
+        "amendments": "1",
+        "amendment_count": 1
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=31113",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:78"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-ISO-10012-2003",
+      "change_type": "UPDATED",
+      "changed_fields": [
+        "aspect"
+      ],
+      "previous_values": {
+        "aspect": "Others"
+      },
+      "new_values": {
+        "aspect": "Revised Performance Standard"
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=17568",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:87"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-ISO-10013-2021",
+      "change_type": "UPDATED",
+      "changed_fields": [
+        "title"
+      ],
+      "previous_values": {
+        "title": "Quality Management Systems - Guidance for documented information  Second Revision"
+      },
+      "new_values": {
+        "title": "Quality Management Systems - Guidance for documented information  Second Revision (Second Revision)"
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=26741",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:91"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-ISO-10014-2021",
+      "change_type": "UPDATED",
+      "changed_fields": [
+        "amendments",
+        "amendment_count"
+      ],
+      "previous_values": {
+        "amendments": "0",
+        "amendment_count": 0
+      },
+      "new_values": {
+        "amendments": "1",
+        "amendment_count": 1
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=26713",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:95"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-ISO-1361-Part-1-2020",
+      "change_type": "STATUS_CHANGED",
+      "changed_fields": [
+        "title",
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "title": "Financial Services  International Bank Account Number IBAN  Part 1: Structure of the IBAN (First Revision)",
+        "status": "UNKNOWN",
+        "is_active": null
+      },
+      "new_values": {
+        "title": "Financial Services  International Bank Account Number IBAN  Part 1: Structure of the IBAN (First Revision) (Second Revision)",
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=26217",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:10"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-ISO-2028-Part-2-2008",
+      "change_type": "WITHDRAWN",
+      "changed_fields": [
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "new_values": {
+        "status": "WITHDRAWN",
+        "is_active": 0
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=21652",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:17"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-ISO-3471-2008",
+      "change_type": "WITHDRAWN",
+      "changed_fields": [
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "new_values": {
+        "status": "WITHDRAWN",
+        "is_active": 0
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=21653",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:18"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-ISO-5006-2017",
+      "change_type": "WITHDRAWN",
+      "changed_fields": [
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "new_values": {
+        "status": "WITHDRAWN",
+        "is_active": 0
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=21654",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:19"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-QC-001001-2000",
+      "change_type": "STATUS_CHANGED",
+      "changed_fields": [
+        "amendments",
+        "amendment_count",
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "amendments": "0",
+        "amendment_count": 0,
+        "status": "UNKNOWN",
+        "is_active": null
+      },
+      "new_values": {
+        "amendments": "1",
+        "amendment_count": 1,
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=17844",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:28"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-QC-001002-Part-1-2000",
+      "change_type": "STATUS_CHANGED",
+      "changed_fields": [
+        "aspect",
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "aspect": "Code of Practice",
+        "status": "UNKNOWN",
+        "is_active": null
+      },
+      "new_values": {
+        "aspect": "Revised Performance Standard",
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=20808",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:29"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-QC-001002-Part-2-2000",
+      "change_type": "STATUS_CHANGED",
+      "changed_fields": [
+        "title",
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "title": "IEC quality assessment system for electronic components (IECQ) - Rules of procedure: Part 2 Documentation (First Revision)",
+        "status": "UNKNOWN",
+        "is_active": null
+      },
+      "new_values": {
+        "title": "IEC quality assessment system for electronic components (IECQ) - Rules of procedure: Part 2 Documentation (First Revision) (Second Revision)",
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=20809",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:30"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-QC-001002-Part-3-2000",
+      "change_type": "STATUS_CHANGED",
+      "changed_fields": [
+        "amendments",
+        "amendment_count",
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "amendments": "0",
+        "amendment_count": 0,
+        "status": "UNKNOWN",
+        "is_active": null
+      },
+      "new_values": {
+        "amendments": "1",
+        "amendment_count": 1,
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=20810",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:31"
+    },
+    {
+      "change_id": null,
+      "snapshot_id_previous": "snapshot_phase2_baseline_20260914",
+      "snapshot_id_current": "snapshot_phase3_fresh_20260914_055426",
+      "canonical_id": "IS-QC-001003-2000",
+      "change_type": "STATUS_CHANGED",
+      "changed_fields": [
+        "aspect",
+        "status",
+        "is_active"
+      ],
+      "previous_values": {
+        "aspect": "Code of Practice",
+        "status": "UNKNOWN",
+        "is_active": null
+      },
+      "new_values": {
+        "aspect": "Revised Performance Standard",
+        "status": "ACTIVE",
+        "is_active": 1
+      },
+      "detected_at": "2026-09-14T05:54:26.762698+00:00",
+      "source": "BIS",
+      "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=17463",
+      "provenance": "BIS_KNOW_YOUR_STANDARD",
+      "raw_record_ref": "seed_0_page_0000.json:32"
+    }
+  ],
+  "integrity": {
+    "duplicate_canonical_ids_previous": 0,
+    "duplicate_canonical_ids_current": 0,
+    "total_changes_detected": 42,
+    "fabricated_identifiers": 0,
+    "silently_deleted_records": 0,
+    "provenance_coverage_pct": 100.0
+  }
+}
