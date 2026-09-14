@@ -1,0 +1,23 @@
+{
+  "snapshot_id": "snapshot_20260914_104415",
+  "db_integrity_ok": true,
+  "total_db_records": 35204,
+  "unique_canonical_ids": 35204,
+  "null_canonical_ids": 0,
+  "quarantine_count": 391,
+  "bm25_doc_count": 35204,
+  "semantic_doc_count": 35204,
+  "bm25_id_set_matches_db": true,
+  "semantic_id_set_matches_db": true,
+  "index_bidirectional_reversible": true,
+  "artifact_hashes": {
+    "bis_catalogue.db": "c61f4718dc60f5c24880aa5b66500a3112b6602442b329bfb4c0454a3800de8a",
+    "bis_bm25_index.json": "dcd107bbdb72df9546836bef12641d7b18416542d62790c789540a85e83420cb",
+    "bis_semantic_embeddings.npy": "f099285ced61c7a688171be0395bda52118936a668c85a7fcdaf3f233a893508",
+    "bis_semantic_doc_ids.json": "88c03b4737a39b0217f19093b4550e24c67983546c24d5d2f9bfb21f00daed95",
+    "bis_semantic_doc_hashes.json": "d327ede2d57a38497518ee4c1bdaade06798bf9934c5ec3a4ed9dc485e25b9a2",
+    "bis_index_manifest.json": "5a79fe733bf40cf997c2a82606d673461012b651d940bba0ad349d51133cb984"
+  },
+  "is_valid": true,
+  "error_message": null
+}

@@ -1,0 +1,821 @@
+{
+  "run_id": "run_20260914_094936",
+  "started_at": "2026-09-14T09:49:36.755468+00:00",
+  "finished_at": "2026-09-14T10:44:15.161537+00:00",
+  "seeds": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "limit_per_seed": null,
+  "rejected_count": 2905,
+  "rejected_samples": [
+    {
+      "seed": "0",
+      "row": {
+        "id": 1,
+        "is_no": "IS/IEC :2023<br>IEC 60691:2023<br> (Active)",
+        "is_title": "Thermal-Links - Requirements and Application Guide (Second Revision)",
+        "amendments": "0",
+        "technical_committee": "ETD  39",
+        "aspect": "Product Specification",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='34092' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(34092)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=34092' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/IEC :2023'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2,
+        "is_no": "IS/IEC :2015<br>IEC 60691 : 2015 <br> (Withdrawn )",
+        "is_title": "Thermal Links - Requirements and Application Guide (First Revision) ",
+        "amendments": "0",
+        "technical_committee": "ETD  39",
+        "aspect": "Product Specification",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='22849' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(22849)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=22849' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/IEC :2015'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 3,
+        "is_no": "IS/IEC -1-310:2005<br> (Active)",
+        "is_title": "Coaxial communication cables: Part 1 - 310 mechanical test methods - Test for torsion characteristics of copper - Clad metals",
+        "amendments": "0",
+        "technical_committee": "LITD  06",
+        "aspect": "Methods of tests",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='586' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(586)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=586' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/IEC -1-310:2005'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 4,
+        "is_no": "IS/IEC :2003<br>IEC 61965:2003<br> (Active)",
+        "is_title": "Mechanical safety of cathode ray tubes",
+        "amendments": "0",
+        "technical_committee": "LITD  04",
+        "aspect": "Safety Standard",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='587' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(587)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=587' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/IEC :2003'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 5,
+        "is_no": "IS/IEC :2014<br>IEC  62353 : 2014 <br> (Active)",
+        "is_title": "Medical electrical equipment - Recurrent test and test after repair of medical electrical equipment (First Revision)",
+        "amendments": "0",
+        "technical_committee": "MHD  15",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='588' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(588)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=588' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/IEC :2014'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 6,
+        "is_no": "IS/ISO -4:2008<br>ISO  20474 : PART 4 : 2008<br> (Withdrawn )",
+        "is_title": "Earth-moving Machineryâ€”safety--Part 4 Requirements For Backhoe Loaders",
+        "amendments": "0",
+        "technical_committee": "MED  07",
+        "aspect": "Product Specification",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='590' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(590)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=590' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO -4:2008'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 7,
+        "is_no": "IS/ISO/IEC -36:2013<br>ISO/IEC 2382-36 : 2013 <br> (Withdrawn )",
+        "is_title": "Information technology - vocabulary: Part 36 learning, education and training (First Revision)",
+        "amendments": "0",
+        "technical_committee": "LITD  19",
+        "aspect": "Terminology",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='591' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(591)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=591' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEC -36:2013'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 8,
+        "is_no": "IS/ISO/IEC -1:2008<br> (Active)",
+        "is_title": "Information Technology Individualized--Adaptability And Accessibility In--E-learning, Education And Training--Part 1 Framework And Reference Model",
+        "amendments": "0",
+        "technical_committee": "LITD  19",
+        "aspect": "Code of Practice",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='592' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(592)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=592' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEC -1:2008'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 9,
+        "is_no": "IS/ISO/IEC -2:2008<br> (Active)",
+        "is_title": "Information technology - Individualized adaptability and accessibility in E-Learning, education and training: Part 2  Access for all personal needs and preferences for digital delivery",
+        "amendments": "0",
+        "technical_committee": "LITD  19",
+        "aspect": "Code of Practice",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='593' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(593)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=593' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEC -2:2008'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 10,
+        "is_no": "IS/ISO/IEC -3:2008<br> (Active)",
+        "is_title": "Information technology - Individualized adaptability and accessibility in E - Learning, education and training: Part 3 &#34;Access for all&#34; digital resource description",
+        "amendments": "0",
+        "technical_committee": "LITD  19",
+        "aspect": "Code of Practice",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='594' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(594)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=594' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEC -3:2008'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 12,
+        "is_no": "IS/IEC -1-302:2005<br> (Active)",
+        "is_title": "Coaxial Communication Cables Part 1-302 Mechanical Test Methods - Test for Eccentricity",
+        "amendments": "0",
+        "technical_committee": "LITD  06",
+        "aspect": "Methods of tests",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='618' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(618)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=618' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/IEC -1-302:2005'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 13,
+        "is_no": "IS/IEC -1-308:2012<br>NULL <br> (Active)",
+        "is_title": "Coaxial Communication Cables Part 1 Mechanical Test Methods Section 308 Test for tensile strength and elongation for copper-clad metals ( First Revision ) ",
+        "amendments": "0",
+        "technical_committee": "LITD  06",
+        "aspect": "Methods of tests",
+        "referirmatin_year": "Identical under dual numbering",
+        "Action": "<button id='619' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(619)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=619' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/IEC -1-308:2012'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 14,
+        "is_no": "IS/ISO :2012<br>ISO 5544 : 2008<br> (Active)",
+        "is_title": "Caseins - Determination of Fixed Ash (Reference Method)",
+        "amendments": "0",
+        "technical_committee": "FAD  19",
+        "aspect": "Methods of tests",
+        "referirmatin_year": "Identical under dual numbering",
+        "Action": "<button id='620' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(620)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=620' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO :2012'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 15,
+        "is_no": "IS/ISO -10:1998<br>ISO 8528-10 : 1998<br> (Withdrawn )",
+        "is_title": "Reciprocating Internal Combustion Engine Driven Alternating Current Generating Sets: Part 10 Measurement of Airborne Noise by the Enveloping Surface Method",
+        "amendments": "0",
+        "technical_committee": "TED  02",
+        "aspect": "Methods of tests",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='621' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(621)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=621' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO -10:1998'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 16,
+        "is_no": "IS/ISO/IEC/TR :2015<br>ISO/IEC 27039 : 2015 <br> (Active)",
+        "is_title": "Information Technology - Security Techniques -  Selection, Deployment and Operations of Intrusion Detection Systems ( IDPS )",
+        "amendments": "0",
+        "technical_committee": "LITD  17",
+        "aspect": "Code of Practice",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='24195' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(24195)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=24195' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEC/TR :2015'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 21,
+        "is_no": "IS/ISO :1978<br>ISO 24803 : 1978<br> (Withdrawn )",
+        "is_title": "Laboratory glassware - Borosilicate glass tubing",
+        "amendments": "0",
+        "technical_committee": "CHD  10",
+        "aspect": "Product Specification",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='21656' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(21656)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=21656' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO :1978'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 22,
+        "is_no": "IS/ISO -10:2022<br>ISO 8528-10:2022<br> (Active)",
+        "is_title": "Reciprocating Internal Combustion Engine Driven Alternating Current Generating Sets  Part 10 Measurement of Airborne Noise  (First Revision)",
+        "amendments": "0",
+        "technical_committee": "TED  02",
+        "aspect": "Methods of tests",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='31389' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(31389)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=31389' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO -10:2022'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 23,
+        "is_no": "IS/ISO -17012:2004<br>ISO 1701-2 : 2004<br> (Active)",
+        "is_title": "Test Conditions for Milling Machines with Table of Variable Height - Testing of Accuracy Part 2 Machines with Vertical Spindle",
+        "amendments": "0",
+        "technical_committee": "PGD  35",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under dual numbering",
+        "Action": "<button id='21701' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(21701)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=21701' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO -17012:2004'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 24,
+        "is_no": "IS/ISO -126431:2009<br>ISO 12643-1 : 2009<br> (Withdrawn )",
+        "is_title": "Graphic technology - Safety requirements for graphic technology equipment and systems: Part 1 general requirements",
+        "amendments": "0",
+        "technical_committee": "MED  25",
+        "aspect": "Safety Standard",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='21751' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(21751)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=21751' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO -126431:2009'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 25,
+        "is_no": "IS/ISO -126432:2010<br>ISO 12643-2 : 2010<br> (Withdrawn )",
+        "is_title": "Graphic technology - Safety requirements for graphic technology equipment and systems: Part 2 prepress and press equipment and systems",
+        "amendments": "0",
+        "technical_committee": "MED  25",
+        "aspect": "Safety Standard",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='21752' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(21752)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=21752' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO -126432:2010'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 26,
+        "is_no": "IS/ISO -126433:2010<br>ISO 12643-3 : 2010<br> (Withdrawn )",
+        "is_title": "Graphic technology - Safety requirements for graphic technology equipment and systems: Part 3 binding and finishing equipment and systems",
+        "amendments": "0",
+        "technical_committee": "MED  25",
+        "aspect": "Safety Standard",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='21753' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(21753)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=21753' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO -126433:2010'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 27,
+        "is_no": "IS/ISO -126434:2010<br>ISO 12643-4 : 2010<br> (Withdrawn )",
+        "is_title": "Graphic technology - Safety requirements for graphic technology equipment and systems: Part 4 converting equipment and systems",
+        "amendments": "0",
+        "technical_committee": "MED  25",
+        "aspect": "Safety Standard",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='21754' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(21754)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=21754' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO -126434:2010'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 28,
+        "is_no": "IS/ISO -126435:2010<br>ISO 12643-5 : 2010<br> (Withdrawn )",
+        "is_title": "Graphic technology - Safety requirements for graphic technology equipment and systems: Part 5 stand - Alone platen presses",
+        "amendments": "0",
+        "technical_committee": "MED  25",
+        "aspect": "Safety Standard",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='21755' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(21755)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=21755' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO -126435:2010'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 93,
+        "is_no": "IS/ISO/TR 10013:2001<br>ISO/TR 10013 : 2001<br> (Withdrawn )",
+        "is_title": "Guidelines for quality management system documentation (First Revision)",
+        "amendments": "0",
+        "technical_committee": "MSD  02",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='20916' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(20916)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=20916' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/TR 10013:2001'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 94,
+        "is_no": "IS/ISO/TS 10013:2001<br>ISO/TR 10013 : 2001<br> (Withdrawn )",
+        "is_title": "Guidelines for Quality Management System Documentation",
+        "amendments": "0",
+        "technical_committee": "MSD  02",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='25539' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(25539)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=25539' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/TS 10013:2001'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 122,
+        "is_no": "IS/ISO/TS 10020:2022<br>ISO/TS 10020: 2022<br> (Active)",
+        "is_title": "Quality Management Systems ï¿½ Organizational Change Management ï¿½ Processes",
+        "amendments": "0",
+        "technical_committee": "MSD  02",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='30723' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(30723)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=30723' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/TS 10020:2022'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 429,
+        "is_no": "IS/ISO/TS 10128:2023<br>ISO/TS 10128 :2023<br> (Active)",
+        "is_title": "Graphic Technology ï¿½ Methods of Adjustment of the Colour Reproduction of a Printing System to Match a Set of Characterization Data",
+        "amendments": "0",
+        "technical_committee": "MSD  06",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='31660' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(31660)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=31660' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/TS 10128:2023'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 568,
+        "is_no": "IS/ISO/TR 10217:1989<br>ISO/TR 10217 : 1989 <br> (Active)",
+        "is_title": "Solar energy - Water heating systems - Guide to material selection with regard to internal corrosion",
+        "amendments": "0",
+        "technical_committee": "MED  04",
+        "aspect": "Code of Practice",
+        "referirmatin_year": "Indigenous",
+        "Action": "<button id='21887' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(21887)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=21887' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/TR 10217:1989'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 1311,
+        "is_no": "10558 10558:2013<br> (Active)",
+        "is_title": "Aluminium shore gangways - Specification (First Revision)",
+        "amendments": "0",
+        "technical_committee": "TED  17",
+        "aspect": "Product Specification",
+        "referirmatin_year": "Indigenous",
+        "Action": "<button id='70' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(70)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=70' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: '10558 10558:2013'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 1905,
+        "is_no": "IS/ISO/IECTR 10822-1:2025<br> (Active)",
+        "is_title": "Cloud computing — Multi-Cloud management Part 1: Overview and use cases",
+        "amendments": "0",
+        "technical_committee": "LITD  31",
+        "aspect": null,
+        "referirmatin_year": "Indigenous",
+        "Action": "<button id='66352' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(66352)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=66352' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IECTR 10822-1:2025'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2168,
+        "is_no": "IS/ISO/TS 10974:2018<br>ISO TS 10974 : 2018 <br> (Active)",
+        "is_title": "Assessment of the Safety of Magnetic Resonance Imaging for Patients with an Active Implantable Medical Device ",
+        "amendments": "0",
+        "technical_committee": "MHD  15",
+        "aspect": "Methods of tests",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='24329' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(24329)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=24329' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/TS 10974:2018'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2197,
+        "is_no": "IS/ISO/TR 10989:2009<br>ISO/TR 10989<br> (Active)",
+        "is_title": "Reference materials  Guidance on and keywords used for RM categorization",
+        "amendments": "0",
+        "technical_committee": "MSD  20",
+        "aspect": "System Standard",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='30341' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(30341)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=30341' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/TR 10989:2009'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2218,
+        "is_no": "IS/ISO/TS 10993-20:2006<br>ISO/TS 10993-20:2006<br> (Active)",
+        "is_title": "Biological evaluation of medical devices Part 20 Principles and methods for immunotoxicology testing of medical devices",
+        "amendments": "0",
+        "technical_committee": "MHD  19",
+        "aspect": "Methods of tests",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='26211' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(26211)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=26211' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/TS 10993-20:2006'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2229,
+        "is_no": "IS/ISO/TR 10993-22:2017<br>ISO/TR 10993-22 : 2017 <br> (Active)",
+        "is_title": "Biological Evaluation of Medical Devices Part 22 Guidance on Nanomaterials ",
+        "amendments": "0",
+        "technical_committee": "MHD  19",
+        "aspect": "Methods of tests",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='24535' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(24535)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=24535' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/TR 10993-22:2017'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2230,
+        "is_no": "IS/IEC/TS 10993-19:2006<br>ISO/TS 109993-19 : 2006 <br> (Withdrawn )",
+        "is_title": "Biological Evaluation of Medical Devices Part 19 Physico-Chemical, Morphological and Topographical Characterization of Materials ",
+        "amendments": "0",
+        "technical_committee": "MHD  19",
+        "aspect": "Methods of tests",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='23272' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(23272)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=23272' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/IEC/TS 10993-19:2006'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2387,
+        "is_no": "IS/ISO/IEEE 11073-10407:2022<br>ISO/IEEE 11073-10407:2022<br> (Active)",
+        "is_title": "Health informatics - Device interoperability Part 10407 Personal health device communication - Device specialization - Blood pressure monitor (First Revision)",
+        "amendments": "0",
+        "technical_committee": "MHD  17",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='32270' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(32270)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=32270' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEEE 11073-10407:2022'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2388,
+        "is_no": "IS/ISO/IEEE 11073-10406:2012<br> <br> (Active)",
+        "is_title": "Health informatics - Personal health device communication: Part 10406 device specialization - Basic electrocardiograph (Ecg) (1 - to 3 - Lead ECG)",
+        "amendments": "0",
+        "technical_committee": "MHD  17",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='24079' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(24079)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=24079' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEEE 11073-10406:2012'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2389,
+        "is_no": "IS/ISO/IEEE 11073-10407:2010<br>ISO/IEEE 11073-10407 : 2010<br> (Withdrawn )",
+        "is_title": "Health Informatics - Personal Health Device Communication Part 10407 Device Specialization - Blood Pressure Monitor",
+        "amendments": "0",
+        "technical_committee": "MHD  17",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='24080' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(24080)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=24080' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEEE 11073-10407:2010'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2390,
+        "is_no": "IS/ISO/IEEE 11073-10408:2010<br> <br> (Withdrawn )",
+        "is_title": "Health informatics - Personal health device communication: Part 10408 device specialization - Thermometer",
+        "amendments": "0",
+        "technical_committee": "MHD  17",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under dual numbering",
+        "Action": "<button id='24081' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(24081)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=24081' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEEE 11073-10408:2010'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2391,
+        "is_no": "IS/ISO/IEEE 11073-10415:2010<br> <br> (Withdrawn )",
+        "is_title": "Health informatics - Personal health device communication: Part 10415 device specialization - Weighing scale",
+        "amendments": "0",
+        "technical_committee": "MHD  17",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='24082' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(24082)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=24082' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEEE 11073-10415:2010'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2392,
+        "is_no": "IS/ISO/IEEE 11073-10417:2017<br> <br> (Active)",
+        "is_title": "Health informatics - Personal health device communication: Part 10417 device specialization - Glucose meter",
+        "amendments": "0",
+        "technical_committee": "MHD  17",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='24083' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(24083)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=24083' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEEE 11073-10417:2017'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2393,
+        "is_no": "IS/ISO/IEEE 11073-10418:2014<br> <br> (Active)",
+        "is_title": "Health informatics - Personal health device communication: Part 10418 device specialization: international normalized ratio (INR) monitor",
+        "amendments": "1",
+        "technical_committee": "MHD  17",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='24084' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(24084)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=24084' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEEE 11073-10418:2014'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2394,
+        "is_no": "IS/ISO/IEEE 11073-10441:2015<br> <br> (Active)",
+        "is_title": "Health informatics - Personal health device communication: Part 10441 device specialization - Cardiovascular fitness and activity monitor",
+        "amendments": "0",
+        "technical_committee": "MHD  17",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='24085' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(24085)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=24085' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEEE 11073-10441:2015'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2395,
+        "is_no": "IS/ISO/IEEE 11073-10471:2010<br>ISO/IEEE 11073-10471 : 2010 <br> (Active,Withdrawn )",
+        "is_title": "Health informatics - Personal health device communication: Part 10471 device specialization - Independent living activity hub",
+        "amendments": "0",
+        "technical_committee": "MHD  17",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='24086' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(24086)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=24086' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEEE 11073-10471:2010'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2396,
+        "is_no": "IS/ISO/IEEE 11073-10472:2012<br>ISO/IEEE 11073-10472 : 2012 <br> (Active,Withdrawn )",
+        "is_title": "Health informatics - Personal health device communication: Part 10472 device specialization - Medication monitor",
+        "amendments": "0",
+        "technical_committee": "MHD  17",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='24087' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(24087)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=24087' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEEE 11073-10472:2012'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2399,
+        "is_no": "IS/ISO/IEEE 11073-10442:2015<br>ISO/IEEE 11073-10442 : 2015 <br> (Active)",
+        "is_title": "Health Informatics â€” Personal Health Device Communication Part 10442 Device Specialization â€” Strength Fitness Equipment ",
+        "amendments": "0",
+        "technical_committee": "MHD  17",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='24362' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(24362)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=24362' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEEE 11073-10442:2015'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2400,
+        "is_no": "IS/ISO/IEEE 11073-10404:2010<br>ISO/IEEE 11073-10404 : 2010 <br> (Withdrawn )",
+        "is_title": "Health informatics - Personal health device communication: Part 10404 device specialization - Pulse oximeter",
+        "amendments": "0",
+        "technical_committee": "MHD  17",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='23861' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(23861)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=23861' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEEE 11073-10404:2010'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2401,
+        "is_no": "IS/ISO/IEEE 11073-10420:2012<br>ISO/IEEE 11073-10420 : 2012 <br> (Withdrawn )",
+        "is_title": "Health Informatics â€” Personal Health Device Communication Part 10420 Device Specialization â€” Body Composition Analyzer ",
+        "amendments": "0",
+        "technical_committee": "MHD  17",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='24140' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(24140)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=24140' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEEE 11073-10420:2012'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2402,
+        "is_no": "IS/ISO/IEEE 11073-10421:2012<br>ISO/IEEE 11073-10421 : 2012 <br> (Active,Concurrent Running )",
+        "is_title": "Health informatics - Personal health device communication: Part 10421 device specialization - Peak expiratory flow monitor (Peak Flow)",
+        "amendments": "0",
+        "technical_committee": "MHD  17",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='24141' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(24141)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=24141' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEEE 11073-10421:2012'"
+    },
+    {
+      "seed": "0",
+      "row": {
+        "id": 2403,
+        "is_no": "IS/ISO/IEEE 11073-10425:2016<br>ISO/IEEE 11073-10425 : 2016 <br> (Withdrawn )",
+        "is_title": "Health informatics - Personal health device communication: Part 10425 device specialization - Continuous glucose monitor (CGM)",
+        "amendments": "0",
+        "technical_committee": "MHD  17",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='24142' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(24142)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=24142' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEEE 11073-10425:2016'"
+    }
+  ]
+}

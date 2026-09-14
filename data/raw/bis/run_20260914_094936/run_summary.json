@@ -1,0 +1,145 @@
+{
+  "run_id": "run_20260914_094936",
+  "started_at": "2026-09-14T09:49:36.755468+00:00",
+  "finished_at": "2026-09-14T10:44:15.161537+00:00",
+  "search_mode": "isnumber",
+  "seeds": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9"
+  ],
+  "config": {
+    "page_size": 1000,
+    "delay_sec": 0.2,
+    "timeout_sec": 45.0,
+    "max_retries": 3,
+    "limit_per_seed": null
+  },
+  "seed_stats": {
+    "0": {
+      "seed": "0",
+      "reported_total": 19244,
+      "fetched_rows": 19244,
+      "unique_rows": 18676,
+      "duplicate_rows": 133,
+      "rejected_rows": 435,
+      "pages_fetched": 20,
+      "failed": false,
+      "error_message": null
+    },
+    "1": {
+      "seed": "1",
+      "reported_total": 27301,
+      "fetched_rows": 27301,
+      "unique_rows": 10915,
+      "duplicate_rows": 15946,
+      "rejected_rows": 440,
+      "pages_fetched": 28,
+      "failed": false,
+      "error_message": null
+    },
+    "2": {
+      "seed": "2",
+      "reported_total": 20776,
+      "fetched_rows": 20776,
+      "unique_rows": 2308,
+      "duplicate_rows": 18036,
+      "rejected_rows": 432,
+      "pages_fetched": 21,
+      "failed": false,
+      "error_message": null
+    },
+    "3": {
+      "seed": "3",
+      "reported_total": 17249,
+      "fetched_rows": 17249,
+      "unique_rows": 1330,
+      "duplicate_rows": 15622,
+      "rejected_rows": 297,
+      "pages_fetched": 18,
+      "failed": false,
+      "error_message": null
+    },
+    "4": {
+      "seed": "4",
+      "reported_total": 16415,
+      "fetched_rows": 16415,
+      "unique_rows": 764,
+      "duplicate_rows": 15371,
+      "rejected_rows": 280,
+      "pages_fetched": 17,
+      "failed": false,
+      "error_message": null
+    },
+    "5": {
+      "seed": "5",
+      "reported_total": 16128,
+      "fetched_rows": 16128,
+      "unique_rows": 419,
+      "duplicate_rows": 15508,
+      "rejected_rows": 201,
+      "pages_fetched": 17,
+      "failed": false,
+      "error_message": null
+    },
+    "6": {
+      "seed": "6",
+      "reported_total": 16815,
+      "fetched_rows": 16815,
+      "unique_rows": 225,
+      "duplicate_rows": 16357,
+      "rejected_rows": 233,
+      "pages_fetched": 17,
+      "failed": false,
+      "error_message": null
+    },
+    "7": {
+      "seed": "7",
+      "reported_total": 15766,
+      "fetched_rows": 15766,
+      "unique_rows": 96,
+      "duplicate_rows": 15418,
+      "rejected_rows": 252,
+      "pages_fetched": 16,
+      "failed": false,
+      "error_message": null
+    },
+    "8": {
+      "seed": "8",
+      "reported_total": 15480,
+      "fetched_rows": 15480,
+      "unique_rows": 24,
+      "duplicate_rows": 15287,
+      "rejected_rows": 169,
+      "pages_fetched": 16,
+      "failed": false,
+      "error_message": null
+    },
+    "9": {
+      "seed": "9",
+      "reported_total": 15592,
+      "fetched_rows": 15592,
+      "unique_rows": 5,
+      "duplicate_rows": 15421,
+      "rejected_rows": 166,
+      "pages_fetched": 16,
+      "failed": false,
+      "error_message": null
+    }
+  },
+  "total_reported": 180766,
+  "total_raw_rows": 180766,
+  "total_unique_rows": 34762,
+  "total_duplicates": 143099,
+  "total_rejected": 2905,
+  "failed_seeds": [],
+  "status": "SUCCESS",
+  "output_dir": "/home/syed-imadulla/Desktop/sih26108-feasibility/data/raw/bis/run_20260914_094936"
+}

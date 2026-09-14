@@ -1,19 +1,19 @@
 {
-  "snapshot_id": "snapshot_20260914_094047",
-  "promoted_at": "2026-09-14T09:40:48.806949+00:00",
-  "snapshot_dir": "data/catalogue/snapshots/snapshot_20260914_094047",
+  "snapshot_id": "snapshot_20260914_104415",
+  "promoted_at": "2026-09-14T10:51:42.147685+00:00",
+  "snapshot_dir": "data/catalogue/snapshots/snapshot_20260914_104415",
   "paths": {
-    "db_path": "data/catalogue/snapshots/snapshot_20260914_094047/bis_catalogue.db",
-    "bm25_path": "data/catalogue/snapshots/snapshot_20260914_094047/bis_bm25_index.json",
-    "semantic_embeddings_path": "data/catalogue/snapshots/snapshot_20260914_094047/bis_semantic_embeddings.npy",
-    "semantic_doc_ids_path": "data/catalogue/snapshots/snapshot_20260914_094047/bis_semantic_doc_ids.json",
-    "semantic_doc_hashes_path": "data/catalogue/snapshots/snapshot_20260914_094047/bis_semantic_doc_hashes.json",
-    "index_manifest_path": "data/catalogue/snapshots/snapshot_20260914_094047/bis_index_manifest.json",
-    "snapshot_manifest_path": "data/catalogue/snapshots/snapshot_20260914_094047/snapshot_manifest.json"
+    "db_path": "data/catalogue/snapshots/snapshot_20260914_104415/bis_catalogue.db",
+    "bm25_path": "data/catalogue/snapshots/snapshot_20260914_104415/bis_bm25_index.json",
+    "semantic_embeddings_path": "data/catalogue/snapshots/snapshot_20260914_104415/bis_semantic_embeddings.npy",
+    "semantic_doc_ids_path": "data/catalogue/snapshots/snapshot_20260914_104415/bis_semantic_doc_ids.json",
+    "semantic_doc_hashes_path": "data/catalogue/snapshots/snapshot_20260914_104415/bis_semantic_doc_hashes.json",
+    "index_manifest_path": "data/catalogue/snapshots/snapshot_20260914_104415/bis_index_manifest.json",
+    "snapshot_manifest_path": "data/catalogue/snapshots/snapshot_20260914_104415/snapshot_manifest.json"
   },
-  "record_count": 35208,
-  "full_text_count": 0,
-  "metadata_only_count": 0,
-  "historical_edition_count": 0,
+  "record_count": 35204,
+  "full_text_count": 2,
+  "metadata_only_count": 2,
+  "historical_edition_count": 1,
   "validation_status": "VALIDATED"
 }

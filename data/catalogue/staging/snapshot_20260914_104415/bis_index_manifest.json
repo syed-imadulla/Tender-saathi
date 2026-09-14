@@ -1,0 +1,9 @@
+{
+  "snapshot_id": "snapshot_20260914_104415",
+  "source_run_id": "run_20260914_094936",
+  "record_count": 35204,
+  "bm25_doc_count": 35204,
+  "semantic_doc_count": 35204,
+  "embedding_dimensions": 384,
+  "built_at": "2026-09-14T10:51:41.124065+00:00"
+}

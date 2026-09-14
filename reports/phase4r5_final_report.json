@@ -1,0 +1,337 @@
+{
+  "phase": "PHASE 4R5 \u2014 LIVE BIS INGESTION EXECUTION AND PROOF",
+  "started_at": "2026-09-14T10:51:20.207929+00:00",
+  "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.43",
+  "python_version": "3.14.4",
+  "steps": {
+    "step_0_frozen_baseline": {
+      "ground_truth_sha256": "cfcbca27a729bd0619886be9128cfba272b912bd21115604b45af7eb59fa404b",
+      "catalogue_db_sha256": "bbd0b58a112f1755e77dda04fed56e87dff7fe7eb06975491ac4e023ebc35dd1",
+      "frozen_raw_pages_count": 186,
+      "status": "PASS"
+    },
+    "step_1_live_bis_acquisition": {
+      "run_id": "run_20260914_094936",
+      "run_dir": "/home/syed-imadulla/Desktop/sih26108-feasibility/data/raw/bis/run_20260914_094936",
+      "duration_sec": 3278.42,
+      "total_raw_rows": 180766,
+      "total_reported": 180766,
+      "seeds_verified": {
+        "0": {
+          "reported_total": 19244,
+          "fetched_rows": 19244,
+          "pages_fetched": 20,
+          "sum_equals_itotal": true,
+          "failed": false,
+          "error": null
+        },
+        "1": {
+          "reported_total": 27301,
+          "fetched_rows": 27301,
+          "pages_fetched": 28,
+          "sum_equals_itotal": true,
+          "failed": false,
+          "error": null
+        },
+        "2": {
+          "reported_total": 20776,
+          "fetched_rows": 20776,
+          "pages_fetched": 21,
+          "sum_equals_itotal": true,
+          "failed": false,
+          "error": null
+        },
+        "3": {
+          "reported_total": 17249,
+          "fetched_rows": 17249,
+          "pages_fetched": 18,
+          "sum_equals_itotal": true,
+          "failed": false,
+          "error": null
+        },
+        "4": {
+          "reported_total": 16415,
+          "fetched_rows": 16415,
+          "pages_fetched": 17,
+          "sum_equals_itotal": true,
+          "failed": false,
+          "error": null
+        },
+        "5": {
+          "reported_total": 16128,
+          "fetched_rows": 16128,
+          "pages_fetched": 17,
+          "sum_equals_itotal": true,
+          "failed": false,
+          "error": null
+        },
+        "6": {
+          "reported_total": 16815,
+          "fetched_rows": 16815,
+          "pages_fetched": 17,
+          "sum_equals_itotal": true,
+          "failed": false,
+          "error": null
+        },
+        "7": {
+          "reported_total": 15766,
+          "fetched_rows": 15766,
+          "pages_fetched": 16,
+          "sum_equals_itotal": true,
+          "failed": false,
+          "error": null
+        },
+        "8": {
+          "reported_total": 15480,
+          "fetched_rows": 15480,
+          "pages_fetched": 16,
+          "sum_equals_itotal": true,
+          "failed": false,
+          "error": null
+        },
+        "9": {
+          "reported_total": 15592,
+          "fetched_rows": 15592,
+          "pages_fetched": 16,
+          "sum_equals_itotal": true,
+          "failed": false,
+          "error": null
+        }
+      },
+      "all_10_seeds_reconciled": true,
+      "status": "PASS"
+    },
+    "step_2_normalization": {
+      "snapshot_id": "snapshot_20260914_104415",
+      "staging_dir": "/home/syed-imadulla/Desktop/sih26108-feasibility/data/catalogue/staging/snapshot_20260914_104415",
+      "total_raw_rows": 180766,
+      "accepted_standards": 35204,
+      "duplicate_rows": 145171,
+      "quarantined_rows": 391,
+      "recovered_standards": 6,
+      "status": "PASS"
+    },
+    "step_3_snapshot_comparison": {
+      "previous_snapshot_id": "snapshot_20260914_094047",
+      "comparison": {
+        "new": 7,
+        "unchanged": 35196,
+        "updated": 1,
+        "status_changed": 0,
+        "withdrawn": 11339,
+        "superseded": 16,
+        "missing_from_source": 11
+      },
+      "status": "PASS"
+    },
+    "step_4_fulltext_ingestion": {
+      "attempted": 5,
+      "exact_edition_found": 2,
+      "historical_edition_found": 1,
+      "metadata_only": 0,
+      "identity_rejected": 2,
+      "text_accepted": 3,
+      "transport_errors": 0,
+      "probe_details": [
+        {
+          "target": "IS 732 : 2019",
+          "archive_id": "gov.in.is.732.1989",
+          "attached": true,
+          "historical": true,
+          "edition_mismatch": true,
+          "source_edition": "IS 732 : 1989",
+          "catalogue_year": 2019,
+          "full_text_year": 1989,
+          "text_hash": "21842508f571c541b50dd257b1844b7522605ce86c897f440448c3ac9851bdab",
+          "chars": 299675
+        },
+        {
+          "target": "IS 104 : 1979",
+          "archive_id": "gov.in.is.104.1979",
+          "attached": true,
+          "historical": false,
+          "edition_mismatch": false,
+          "source_edition": "IS 104 : 1979",
+          "catalogue_year": 1979,
+          "full_text_year": 1979,
+          "text_hash": "8fcfedb94533f40a289a3524d67b00ba4f181ee4138c221892ebcbff5095c4ab",
+          "chars": 18405
+        },
+        {
+          "target": "IS 7098 (Part 1) : 1988",
+          "archive_id": "gov.in.is.7098.1.1988",
+          "attached": true,
+          "historical": false,
+          "edition_mismatch": false,
+          "source_edition": "IS 7098 (Part 1) : 1988",
+          "catalogue_year": 1988,
+          "full_text_year": 1988,
+          "text_hash": "032f953e2cbeba053b42d4b150f92fd6a5778c479b92fd84039f4683d2a5e648",
+          "chars": 49985
+        },
+        {
+          "target": "IS 7098 (Part 1) : 1988",
+          "archive_id": "gov.in.is.7098.2.2011",
+          "attached": false,
+          "reason": "Part mismatch (sibling bleed prohibited): archive Part 2 vs target Part 1"
+        },
+        {
+          "target": "IS 5039",
+          "archive_id": "gov.in.is.15039.2000",
+          "attached": false,
+          "reason": "Base number collision mismatch: archive=15039 vs target=5039"
+        }
+      ],
+      "db_fulltext_records": 2,
+      "db_historical_records": 1,
+      "metadata_only_total": 35202
+    },
+    "step_5_staging_validation": {
+      "is_valid": true,
+      "db_integrity_ok": true,
+      "total_db_records": 35204,
+      "unique_canonical_ids": 35204,
+      "bm25_doc_count": 35204,
+      "semantic_doc_count": 35204,
+      "bidirectional_reversibility": true,
+      "artifact_hashes": {
+        "bis_catalogue.db": "c61f4718dc60f5c24880aa5b66500a3112b6602442b329bfb4c0454a3800de8a",
+        "bis_bm25_index.json": "dcd107bbdb72df9546836bef12641d7b18416542d62790c789540a85e83420cb",
+        "bis_semantic_embeddings.npy": "f099285ced61c7a688171be0395bda52118936a668c85a7fcdaf3f233a893508",
+        "bis_semantic_doc_ids.json": "88c03b4737a39b0217f19093b4550e24c67983546c24d5d2f9bfb21f00daed95",
+        "bis_semantic_doc_hashes.json": "d327ede2d57a38497518ee4c1bdaade06798bf9934c5ec3a4ed9dc485e25b9a2",
+        "bis_index_manifest.json": "5a79fe733bf40cf997c2a82606d673461012b651d940bba0ad349d51133cb984"
+      },
+      "status": "PASS"
+    },
+    "step_6_failure_safety_test": {
+      "status": "PASS",
+      "rollback_guaranteed": true
+    },
+    "step_7_production_promotion": {
+      "promoted_snapshot_id": "snapshot_20260914_104415",
+      "active_pointer": {
+        "snapshot_id": "snapshot_20260914_104415",
+        "promoted_at": "2026-09-14T10:51:42.147685+00:00",
+        "snapshot_dir": "data/catalogue/snapshots/snapshot_20260914_104415",
+        "paths": {
+          "db_path": "data/catalogue/snapshots/snapshot_20260914_104415/bis_catalogue.db",
+          "bm25_path": "data/catalogue/snapshots/snapshot_20260914_104415/bis_bm25_index.json",
+          "semantic_embeddings_path": "data/catalogue/snapshots/snapshot_20260914_104415/bis_semantic_embeddings.npy",
+          "semantic_doc_ids_path": "data/catalogue/snapshots/snapshot_20260914_104415/bis_semantic_doc_ids.json",
+          "semantic_doc_hashes_path": "data/catalogue/snapshots/snapshot_20260914_104415/bis_semantic_doc_hashes.json",
+          "index_manifest_path": "data/catalogue/snapshots/snapshot_20260914_104415/bis_index_manifest.json",
+          "snapshot_manifest_path": "data/catalogue/snapshots/snapshot_20260914_104415/snapshot_manifest.json"
+        },
+        "record_count": 35204,
+        "full_text_count": 2,
+        "metadata_only_count": 2,
+        "historical_edition_count": 1,
+        "validation_status": "VALIDATED"
+      },
+      "status": "PASS"
+    },
+    "step_8_api_verification": {
+      "http_status": 200,
+      "response": {
+        "catalogue_snapshot_id": "snapshot_20260914_104415",
+        "full_text_count": 2,
+        "historical_edition_count": 1,
+        "last_successful_sync": "2026-09-14T10:51:42.147685+00:00",
+        "metadata_only_count": 2,
+        "record_count": 35204,
+        "source_description": "Latest successfully synchronized BIS catalogue snapshot",
+        "status": "ok",
+        "validation_status": "VALIDATED"
+      },
+      "status": "PASS"
+    },
+    "step_9_e2e_query_tests": {
+      "queries": [
+        {
+          "type": "1. Explicit standard citation",
+          "query": "Supply and laying of CPVC pipes conforming to IS 15778.",
+          "retrieval_rank": 1,
+          "document_id": "IS-15778-2007",
+          "candidate_standard": "IS 15778 : 2007",
+          "title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Distribution Supplies - Specification",
+          "status": "UNKNOWN",
+          "score": 1.0,
+          "provenance": "BIS (https://standardsbis.bsbedge.com/search_redirect.aspx?id=7976)",
+          "chain_verified": true
+        },
+        {
+          "type": "2. Lexical retrieval requirement",
+          "query": "Submersible pump sets for clear, cold water in tube wells.",
+          "retrieval_rank": 1,
+          "document_id": "IS-8034-2002",
+          "candidate_standard": "IS 8034 : 2002",
+          "title": "Submersible Pumpsets - Specification",
+          "status": "WITHDRAWN",
+          "score": 0.0474,
+          "provenance": "BIS (https://standardsbis.bsbedge.com/search_redirect.aspx?id=25501)",
+          "chain_verified": true
+        },
+        {
+          "type": "3. Semantic retrieval requirement",
+          "query": "High voltage underground electric cable for power transmission distribution.",
+          "retrieval_rank": 1,
+          "document_id": "IS-16667-2018",
+          "candidate_standard": "IS 16667 : 2018",
+          "title": "High - Voltage direct current (Hvdc) power transmission using voltage sourced converters (Vsc)",
+          "status": "WITHDRAWN",
+          "score": 0.0361,
+          "provenance": "BIS (https://standardsbis.bsbedge.com/search_redirect.aspx?id=22864)",
+          "chain_verified": true
+        },
+        {
+          "type": "4. Tender shorthand requirement",
+          "query": "HT XLPE insulated power cables 11 kV grade.",
+          "retrieval_rank": 1,
+          "document_id": "IS-7098-Part-1-2025",
+          "candidate_standard": "IS 7098 (Part 1) : 2025",
+          "title": "Crosslinked Polyethylene Insulated Thermoplastic Sheathed Cables - Specification Part 1 For Working Voltages up to and Including 1 100 Volts (Second Revision)",
+          "status": "UNKNOWN",
+          "score": 0.0472,
+          "provenance": "BIS (https://standardsbis.bsbedge.com/search_redirect.aspx?id=33652)",
+          "chain_verified": true
+        },
+        {
+          "type": "5. Standard without full text (metadata only)",
+          "query": "Structural steel hollow sections for general engineering use.",
+          "retrieval_rank": 1,
+          "document_id": "IS-4923-1997",
+          "candidate_standard": "IS 4923 : 1997",
+          "title": "Hollow steel sections for structural use - Specification",
+          "status": "WITHDRAWN",
+          "score": 0.0487,
+          "provenance": "BIS (https://standardsbis.bsbedge.com/search_redirect.aspx?id=25257)",
+          "chain_verified": true
+        },
+        {
+          "type": "6. Standard with historical edition text",
+          "query": "Electrical wiring installations in residential and commercial buildings.",
+          "retrieval_rank": 1,
+          "document_id": "IS-732-2019",
+          "candidate_standard": "IS 732 : 2019",
+          "title": "Code of practice for electrical wiring installations (Fourth Revision)",
+          "status": "ACTIVE",
+          "score": 0.0481,
+          "provenance": "BIS (https://standardsbis.bsbedge.com/search_redirect.aspx?id=14239)",
+          "chain_verified": true
+        }
+      ],
+      "all_chains_verified": true,
+      "status": "PASS"
+    },
+    "step_10_frozen_after": {
+      "ground_truth_sha256": "cfcbca27a729bd0619886be9128cfba272b912bd21115604b45af7eb59fa404b",
+      "catalogue_db_sha256": "bbd0b58a112f1755e77dda04fed56e87dff7fe7eb06975491ac4e023ebc35dd1",
+      "frozen_raw_pages_count": 186,
+      "status": "PASS"
+    }
+  },
+  "verdict": "PHASE 4R5 COMPLETE \u2014 LIVE INGESTION VERIFIED",
+  "finished_at": "2026-09-14T10:51:46.503735+00:00",
+  "total_duration_sec": 26.3
+}
