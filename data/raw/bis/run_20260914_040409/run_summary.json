@@ -1,0 +1,49 @@
+{
+  "run_id": "run_20260914_040409",
+  "started_at": "2026-09-14T04:04:09.703453+00:00",
+  "finished_at": "2026-09-14T04:04:13.062700+00:00",
+  "search_mode": "isnumber",
+  "seeds": [
+    "7",
+    "8"
+  ],
+  "config": {
+    "page_size": 500,
+    "delay_sec": 0.5,
+    "timeout_sec": 30.0,
+    "max_retries": 3,
+    "limit_per_seed": 50
+  },
+  "seed_stats": {
+    "7": {
+      "seed": "7",
+      "reported_total": 15766,
+      "fetched_rows": 50,
+      "unique_rows": 41,
+      "duplicate_rows": 1,
+      "rejected_rows": 8,
+      "pages_fetched": 1,
+      "failed": false,
+      "error_message": null
+    },
+    "8": {
+      "seed": "8",
+      "reported_total": 15480,
+      "fetched_rows": 50,
+      "unique_rows": 31,
+      "duplicate_rows": 3,
+      "rejected_rows": 16,
+      "pages_fetched": 1,
+      "failed": false,
+      "error_message": null
+    }
+  },
+  "total_reported": 31246,
+  "total_raw_rows": 100,
+  "total_unique_rows": 72,
+  "total_duplicates": 4,
+  "total_rejected": 24,
+  "failed_seeds": [],
+  "status": "SUCCESS",
+  "output_dir": "/home/syed-imadulla/Desktop/sih26108-feasibility/data/raw/bis/run_20260914_040409"
+}

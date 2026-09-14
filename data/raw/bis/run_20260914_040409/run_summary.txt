@@ -1,0 +1,25 @@
+============================================================
+BIS INGESTION RUN AUDIT SUMMARY
+============================================================
+run_id:        run_20260914_040409
+started_at:    2026-09-14T04:04:09.703453+00:00
+finished_at:   2026-09-14T04:04:13.062700+00:00
+search_mode:   isnumber
+seeds:         7, 8
+status:        SUCCESS
+output_dir:    /home/syed-imadulla/Desktop/sih26108-feasibility/data/raw/bis/run_20260914_040409
+------------------------------------------------------------
+SEED BREAKDOWN:
+Seed   | Reported  | Fetched  | Unique   | Dups   | Rejected | Pages  | Status
+------------------------------------------------------------
+7      | 15766     | 50       | 41       | 1      | 8        | 1      | OK
+8      | 15480     | 50       | 31       | 3      | 16       | 1      | OK
+------------------------------------------------------------
+TOTAL AGGREGATES:
+  Raw Rows Fetched:       100
+  Unique Standards:       72
+  Duplicate Instances:    4
+  Rejected / Malformed:   24
+  Failed Seeds:           None
+  Final Status:           SUCCESS
+============================================================

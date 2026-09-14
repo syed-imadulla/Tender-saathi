@@ -1,0 +1,397 @@
+{
+  "run_id": "run_20260914_040409",
+  "started_at": "2026-09-14T04:04:09.703453+00:00",
+  "finished_at": "2026-09-14T04:04:13.062700+00:00",
+  "seeds": [
+    "7",
+    "8"
+  ],
+  "limit_per_seed": 50,
+  "rejected_count": 24,
+  "rejected_samples": [
+    {
+      "seed": "7",
+      "row": {
+        "id": 1,
+        "is_no": "IS/ISO -4:2008<br>ISO  20474 : PART 4 : 2008<br> (Withdrawn )",
+        "is_title": "Earth-moving Machineryâ€”safety--Part 4 Requirements For Backhoe Loaders",
+        "amendments": "0",
+        "technical_committee": "MED  07",
+        "aspect": "Product Specification",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='590' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(590)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=590' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO -4:2008'"
+    },
+    {
+      "seed": "7",
+      "row": {
+        "id": 2,
+        "is_no": "IS/ISO/IEC -1:2008<br> (Active)",
+        "is_title": "Information Technology Individualized--Adaptability And Accessibility In--E-learning, Education And Training--Part 1 Framework And Reference Model",
+        "amendments": "0",
+        "technical_committee": "LITD  19",
+        "aspect": "Code of Practice",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='592' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(592)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=592' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEC -1:2008'"
+    },
+    {
+      "seed": "7",
+      "row": {
+        "id": 3,
+        "is_no": "IS/ISO/IEC -2:2008<br> (Active)",
+        "is_title": "Information technology - Individualized adaptability and accessibility in E-Learning, education and training: Part 2  Access for all personal needs and preferences for digital delivery",
+        "amendments": "0",
+        "technical_committee": "LITD  19",
+        "aspect": "Code of Practice",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='593' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(593)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=593' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEC -2:2008'"
+    },
+    {
+      "seed": "7",
+      "row": {
+        "id": 4,
+        "is_no": "IS/ISO/IEC -3:2008<br> (Active)",
+        "is_title": "Information technology - Individualized adaptability and accessibility in E - Learning, education and training: Part 3 &#34;Access for all&#34; digital resource description",
+        "amendments": "0",
+        "technical_committee": "LITD  19",
+        "aspect": "Code of Practice",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='594' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(594)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=594' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEC -3:2008'"
+    },
+    {
+      "seed": "7",
+      "row": {
+        "id": 5,
+        "is_no": "IS/ISO/IEC/TR :2015<br>ISO/IEC 27039 : 2015 <br> (Active)",
+        "is_title": "Information Technology - Security Techniques -  Selection, Deployment and Operations of Intrusion Detection Systems ( IDPS )",
+        "amendments": "0",
+        "technical_committee": "LITD  17",
+        "aspect": "Code of Practice",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='24195' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(24195)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=24195' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEC/TR :2015'"
+    },
+    {
+      "seed": "7",
+      "row": {
+        "id": 6,
+        "is_no": "IS/ISO3471 :2008<br>ISO 3471 : 2008<br> (Active)",
+        "is_title": "Earth-Moving Machinery - Roll-Over Protective Structures-Laboratory Tests and Performance Requirements",
+        "amendments": "0",
+        "technical_committee": "MED  07",
+        "aspect": "Product Specification",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='21653' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(21653)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=21653' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO3471 :2008'"
+    },
+    {
+      "seed": "7",
+      "row": {
+        "id": 7,
+        "is_no": "IS/ISO -17012:2004<br>ISO 1701-2 : 2004<br> (Active)",
+        "is_title": "Test Conditions for Milling Machines with Table of Variable Height - Testing of Accuracy Part 2 Machines with Vertical Spindle",
+        "amendments": "0",
+        "technical_committee": "PGD  35",
+        "aspect": "Others",
+        "referirmatin_year": "Identical under dual numbering",
+        "Action": "<button id='21701' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(21701)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=21701' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO -17012:2004'"
+    },
+    {
+      "seed": "7",
+      "row": {
+        "id": 8,
+        "is_no": "IS  (Part 1/Sec 1):1975<br><font color=\"green\">Reviewed In : 2022</font><br>Reaffirmed but not taken up for revision (Active)",
+        "is_title": "Schedule for properties and availability of stones for construction purposes: Part 1 Gujarat state: Sec 1 Availability of stones",
+        "amendments": "0",
+        "technical_committee": "CED  06",
+        "aspect": "Others",
+        "referirmatin_year": "Indigenous",
+        "Action": "<button id='14792' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(14792)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=14792' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS  (Part 1/Sec 1):1975'"
+    },
+    {
+      "seed": "8",
+      "row": {
+        "id": 1,
+        "is_no": "IS/ISO -4:2008<br>ISO  20474 : PART 4 : 2008<br> (Withdrawn )",
+        "is_title": "Earth-moving Machineryâ€”safety--Part 4 Requirements For Backhoe Loaders",
+        "amendments": "0",
+        "technical_committee": "MED  07",
+        "aspect": "Product Specification",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='590' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(590)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=590' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO -4:2008'"
+    },
+    {
+      "seed": "8",
+      "row": {
+        "id": 2,
+        "is_no": "IS/ISO/IEC -36:2013<br>ISO/IEC 2382-36 : 2013 <br> (Withdrawn )",
+        "is_title": "Information technology - vocabulary: Part 36 learning, education and training (First Revision)",
+        "amendments": "0",
+        "technical_committee": "LITD  19",
+        "aspect": "Terminology",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='591' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(591)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=591' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEC -36:2013'"
+    },
+    {
+      "seed": "8",
+      "row": {
+        "id": 3,
+        "is_no": "IS/ISO/IEC -1:2008<br> (Active)",
+        "is_title": "Information Technology Individualized--Adaptability And Accessibility In--E-learning, Education And Training--Part 1 Framework And Reference Model",
+        "amendments": "0",
+        "technical_committee": "LITD  19",
+        "aspect": "Code of Practice",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='592' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(592)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=592' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEC -1:2008'"
+    },
+    {
+      "seed": "8",
+      "row": {
+        "id": 4,
+        "is_no": "IS/ISO/IEC -2:2008<br> (Active)",
+        "is_title": "Information technology - Individualized adaptability and accessibility in E-Learning, education and training: Part 2  Access for all personal needs and preferences for digital delivery",
+        "amendments": "0",
+        "technical_committee": "LITD  19",
+        "aspect": "Code of Practice",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='593' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(593)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=593' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEC -2:2008'"
+    },
+    {
+      "seed": "8",
+      "row": {
+        "id": 5,
+        "is_no": "IS/ISO/IEC -3:2008<br> (Active)",
+        "is_title": "Information technology - Individualized adaptability and accessibility in E - Learning, education and training: Part 3 &#34;Access for all&#34; digital resource description",
+        "amendments": "0",
+        "technical_committee": "LITD  19",
+        "aspect": "Code of Practice",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='594' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(594)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=594' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO/IEC -3:2008'"
+    },
+    {
+      "seed": "8",
+      "row": {
+        "id": 6,
+        "is_no": "IS/ISO1361 -1:2020<br>Identical<br> ",
+        "is_title": "Financial Services  International Bank Account Number IBAN  Part 1: Structure of the IBAN (First Revision)",
+        "amendments": "0",
+        "technical_committee": "SSD  03",
+        "aspect": "Service Specification",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='26217' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(26217)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=26217' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO1361 -1:2020'"
+    },
+    {
+      "seed": "8",
+      "row": {
+        "id": 7,
+        "is_no": "IS/IEC -1-308:2012<br>NULL <br> (Active)",
+        "is_title": "Coaxial Communication Cables Part 1 Mechanical Test Methods Section 308 Test for tensile strength and elongation for copper-clad metals ( First Revision ) ",
+        "amendments": "0",
+        "technical_committee": "LITD  06",
+        "aspect": "Methods of tests",
+        "referirmatin_year": "Identical under dual numbering",
+        "Action": "<button id='619' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(619)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=619' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/IEC -1-308:2012'"
+    },
+    {
+      "seed": "8",
+      "row": {
+        "id": 8,
+        "is_no": "IS/ISO :2012<br>ISO 5544 : 2008<br> (Active)",
+        "is_title": "Caseins - Determination of Fixed Ash (Reference Method)",
+        "amendments": "0",
+        "technical_committee": "FAD  19",
+        "aspect": "Methods of tests",
+        "referirmatin_year": "Identical under dual numbering",
+        "Action": "<button id='620' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(620)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=620' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO :2012'"
+    },
+    {
+      "seed": "8",
+      "row": {
+        "id": 9,
+        "is_no": "IS/ISO -10:1998<br>ISO 8528-10 : 1998<br> (Withdrawn )",
+        "is_title": "Reciprocating Internal Combustion Engine Driven Alternating Current Generating Sets: Part 10 Measurement of Airborne Noise by the Enveloping Surface Method",
+        "amendments": "0",
+        "technical_committee": "TED  02",
+        "aspect": "Methods of tests",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='621' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(621)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=621' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO -10:1998'"
+    },
+    {
+      "seed": "8",
+      "row": {
+        "id": 10,
+        "is_no": "IS/ISO2028 -2:2008<br>ISO  20283-2 : 2008<br> (Active)",
+        "is_title": "Mechanical vibration - Measurement of vibration on ships: Part 2 measurement of structural vibration",
+        "amendments": "0",
+        "technical_committee": "MED  28",
+        "aspect": "Methods of tests",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='21652' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(21652)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=21652' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO2028 -2:2008'"
+    },
+    {
+      "seed": "8",
+      "row": {
+        "id": 11,
+        "is_no": "IS/ISO3471 :2008<br>ISO 3471 : 2008<br> (Active)",
+        "is_title": "Earth-Moving Machinery - Roll-Over Protective Structures-Laboratory Tests and Performance Requirements",
+        "amendments": "0",
+        "technical_committee": "MED  07",
+        "aspect": "Product Specification",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='21653' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(21653)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=21653' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO3471 :2008'"
+    },
+    {
+      "seed": "8",
+      "row": {
+        "id": 12,
+        "is_no": "IS/ISO :1978<br>ISO 24803 : 1978<br> (Withdrawn )",
+        "is_title": "Laboratory glassware - Borosilicate glass tubing",
+        "amendments": "0",
+        "technical_committee": "CHD  10",
+        "aspect": "Product Specification",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='21656' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(21656)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=21656' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": "W"
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO :1978'"
+    },
+    {
+      "seed": "8",
+      "row": {
+        "id": 13,
+        "is_no": "IS/ISO -10:2022<br>ISO 8528-10:2022<br> (Active)",
+        "is_title": "Reciprocating Internal Combustion Engine Driven Alternating Current Generating Sets  Part 10 Measurement of Airborne Noise  (First Revision)",
+        "amendments": "0",
+        "technical_committee": "TED  02",
+        "aspect": "Methods of tests",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='31389' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(31389)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=31389' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/ISO -10:2022'"
+    },
+    {
+      "seed": "8",
+      "row": {
+        "id": 14,
+        "is_no": "IS/QC 001002-1:2000<br> (Active)",
+        "is_title": "IEC quality assessment system for electronic components (IECQ) - Rules of procedure: Part 1 administration (First Revision)",
+        "amendments": "0",
+        "technical_committee": "LITD  05",
+        "aspect": "Code of Practice",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='20808' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(20808)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=20808' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/QC 001002-1:2000'"
+    },
+    {
+      "seed": "8",
+      "row": {
+        "id": 15,
+        "is_no": "IS/QC 001002-2:2000<br> (Active)",
+        "is_title": "IEC quality assessment system for electronic components (IECQ) - Rules of procedure: Part 2 Documentation (First Revision)",
+        "amendments": "0",
+        "technical_committee": "LITD  05",
+        "aspect": "Product Specification",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='20809' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(20809)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=20809' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/QC 001002-2:2000'"
+    },
+    {
+      "seed": "8",
+      "row": {
+        "id": 16,
+        "is_no": "IS/QC 001002-3:2000<br> (Active)",
+        "is_title": "IEC quality assessment system for electronic components (IECQ) - Rules of procedure: Part 3 approval procedures (First Revision)",
+        "amendments": "0",
+        "technical_committee": "LITD  05",
+        "aspect": "Code of Practice",
+        "referirmatin_year": "Identical under single numbering",
+        "Action": "<button id='20810' class='btn btn-primary btn-sm choose_is' onclick='choosenIS(20810)'>View</button>",
+        "DownloadAction": "<a href='https://standardsbis.bsbedge.com/search_redirect.aspx?id=20810' target='_blank' class='btn btn-primary btn-sm'> Download  </a>",
+        "withdrawn_status": null
+      },
+      "reason": "Corrupt or unparseable IS identity: 'IS/QC 001002-3:2000'"
+    }
+  ]
+}
