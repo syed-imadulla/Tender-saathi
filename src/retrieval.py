@@ -432,20 +432,106 @@ class HybridRetrievalEngine:
             # Reassemble scored_candidates: reranked pool first, remaining after
             scored_candidates = candidate_pool + remaining_candidates
 
+        # General Environmental & Domain Scoping:
+        # Specialized marine, aircraft, solar PV, and PCB standards should not pollute terrestrial procurement
+        q_low = query.lower()
+        is_marine_q = any(w in q_low for w in ['ship', 'marine', 'vessel', 'boat', 'naval', 'dock', 'harbour', 'shipyard', 'offshore'])
+        is_aero_q = any(w in q_low for w in ['aircraft', 'aviation', 'aerospace', 'aeroplane', 'avionics'])
+        is_solar_q = any(w in q_low for w in ['solar', 'photovoltaic', 'pv '])
+        is_pcb_q = any(w in q_low for w in ['printed circuit', 'pcb', 'printed wiring board'])
+
+        is_cable_q = bool(re.search(r'\b(?:cables?|power\s+cable|electric\s+cable|underground\s+cable)\b', q_low))
+        is_underground_q = bool(re.search(r'\b(?:underground|buried)\b', q_low))
+
+        filtered_candidates = []
+        for cand in scored_candidates:
+            t_low = (cand.full_title or "").lower() + " " + (cand.raw_record.get("scope") or "").lower()
+            if not is_marine_q and any(w in t_low for w in ['shipbuilding', 'in ships', 'for ships', 'shipboard equipment', 'marine purposes', 'for marine']):
+                continue
+            if not is_aero_q and any(w in t_low for w in ['for aircraft', 'in aircraft', 'aerospace application', 'for aerospace']):
+                continue
+            if not is_solar_q and any(w in t_low for w in ['solar photovoltaic', 'photovoltaic systems', 'photovoltaic']):
+                continue
+            if not is_pcb_q and any(w in t_low for w in ['printed wiring boards', 'printed circuit boards']):
+                continue
+            if is_cable_q:
+                # Converter valves / VSC equipment vs electric cables
+                if any(w in t_low for w in ['converter valves', 'voltage sourced converters', 'vsc valves', 'thyristor valves']) and not any(w in t_low for w in ['cable', 'cables']):
+                    continue
+                # Cable ducts / pipes vs electric cables
+                if 'pipes (ducts) and fittings for underground' in t_low and not any(w in q_low for w in ['pipe', 'duct']):
+                    continue
+                # Overhead lines vs underground cables
+                if is_underground_q and any(w in t_low for w in ['overhead lines', 'overhead power lines', 'overhead transmission']):
+                    continue
+            filtered_candidates.append(cand)
+
+        # Prioritize primary product specifications and installation codes over subordinate test methods / storage handling
+        from src.standards import classify_standard_role
+        is_work_or_repair = bool(re.search(r'\b(?:work|repair|repairing|installation|laying|maintenance|fixing)\b', q_low))
+        is_insulation_or_plaster = bool(re.search(r'\b(?:insulation|plaster|plastering)\b', q_low))
+        is_prod_query = any(re.search(rf'\b{w}\b', q_low) for w in [
+            "cable", "cables", "pipe", "pipes", "piping", "valve", "valves",
+            "pump", "pumps", "motor", "motors", "switchgear", "controlgear", "panel", "panels",
+            "transformer", "transformers", "cement", "tile", "tiles", "tube", "tubes",
+            "wire", "wires", "conductor", "conductors", "flange", "flanges", "fitting", "fittings"
+        ])
+
+        def retrieval_candidate_priority(cand: HybridCandidate) -> Tuple[int, float]:
+            t_cand = (cand.full_title or "").lower()
+            role = classify_standard_role(cand.standard_number, cand.full_title, cand.raw_record.get("scope"))
+
+            # Primary engineering standards: Product specifications, installation codes, and engineering design codes
+            if role == "TEST_METHOD":
+                role_rank = 3
+            elif role == "ALLIED":
+                role_rank = 2
+            elif (is_work_or_repair or is_insulation_or_plaster) and "storage and handling" in t_cand:
+                role_rank = 2
+            elif role in ["PRIMARY_PRODUCT", "INSTALLATION", "CODE_OF_PRACTICE"]:
+                role_rank = 0
+            else:
+                role_rank = 1
+
+            # Lexical specificity bonus within primary standards:
+            # Reward exact technical noun phrases matching the requirement
+            spec_bonus = 0
+            if "distribution boards" in q_low and "distribution boards" in t_cand:
+                spec_bonus -= 1
+            if "fittings" in q_low and "sanitary" not in q_low:
+                if any(w in t_cand for w in ["pipe fittings", "steel fittings", "tube fittings"]):
+                    spec_bonus -= 1
+            if "flange" in q_low and "pipe flanges" in t_cand:
+                spec_bonus -= 1
+
+            return (role_rank + spec_bonus, -cand.final_score)
+
+        top_slice = filtered_candidates[:15]
+        rest_slice = filtered_candidates[15:]
+        top_slice.sort(key=retrieval_candidate_priority)
+        scored_candidates = top_slice + rest_slice
+
         # Convert to SearchResult objects
         search_results: List[SearchResult] = []
-        for cand in scored_candidates[:top_k]:
+        for rank_idx, cand in enumerate(scored_candidates[:top_k], 1):
             rec = cand.raw_record
             formatted = self.det_engine._format_result(
                 row_dict=rec,
                 score=cand.final_score,
                 reason="; ".join(cand.reasons)
             )
+            # Assert candidate identity is preserved
+            assert formatted.standard_id == cand.standard_id, f"Candidate identity mismatch: {formatted.standard_id} != {cand.standard_id}"
             formatted.bm25_score = cand.bm25_score
             formatted.semantic_score = cand.semantic_score
             formatted.deterministic_score = cand.det_score
             formatted.reranker_score = cand.reranker_score
             formatted.final_score = cand.final_score
+            formatted.source_rank_det = cand.det_rank
+            formatted.source_rank_bm25 = cand.bm25_rank
+            formatted.source_rank_semantic = cand.sem_rank
+            formatted.fusion_score = cand.hybrid_score
+            formatted.final_rank = rank_idx
             search_results.append(formatted)
 
         return search_results

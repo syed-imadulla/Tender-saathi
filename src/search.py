@@ -101,7 +101,7 @@ class StandardsSearchEngine:
             # 1. Exact or Partial Standard Number Check (e.g. "IS 15000", "14846", "IS/ISO 10434")
             # Find all standard numbers in the query
             from src.extract import STANDARD_REGEX
-            std_num_matches = STANDARD_REGEX.finditer(query_clean)
+            std_num_matches = list(STANDARD_REGEX.finditer(query_clean))
             exact_numbers = []
             for m in std_num_matches:
                 # Extract just the numeric part for the deterministic search
@@ -116,20 +116,29 @@ class StandardsSearchEngine:
 
             superseding_rows = []
             if has_rel_table:
-                cursor.execute("""
-                SELECT s.*, r.relationship_type, r.evidence as rel_evidence, r.target_standard
-                FROM standards s
-                JOIN standard_relationships r ON s.standard_id = r.source_standard_id
-                WHERE r.relationship_type = 'SUPERSEDES' AND r.target_standard LIKE ?
-                """, (f"%{query_clean}%",))
-                superseding_rows = cursor.fetchall()
+                target_patterns = [f"%{query_clean}%"]
+                for m in std_num_matches:
+                    target_patterns.append(f"%{m.group(0)}%")
+                for num in exact_numbers:
+                    target_patterns.append(f"%{num}%")
+
+                for pat in set(target_patterns):
+                    cursor.execute("""
+                    SELECT s.*, r.relationship_type, r.evidence as rel_evidence, r.target_standard
+                    FROM standards s
+                    JOIN standard_relationships r ON s.standard_id = r.source_standard_id
+                    WHERE r.relationship_type = 'SUPERSEDES' AND r.target_standard LIKE ?
+                    """, (pat,))
+                    for row in cursor.fetchall():
+                        if not any(sr['standard_id'] == row['standard_id'] for sr in superseding_rows):
+                            superseding_rows.append(row)
 
             for row in superseding_rows:
                 r_dict = dict(row)
                 results.append(self._format_result(
                     r_dict,
                     score=1.0,
-                    reason=f"Authoritative replacement: {r_dict['original_standard_identifier']} explicitly supersedes {query_clean} ({r_dict['rel_evidence']})"
+                    reason=f"Authoritative replacement: {r_dict['original_standard_identifier']} explicitly supersedes {r_dict['target_standard']} ({r_dict['rel_evidence']})"
                 ))
 
             # Exact standard match for ALL numbers found

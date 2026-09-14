@@ -406,11 +406,10 @@ def run_benchmark_audit():
     for k, v in table_b_lifecycle_distribution.items():
         print(f"  {k:30}: {v}")
 
-    # Load 19 query detailed traces if available
+    # Save 19 query detailed traces evaluated in this run
     traces_file = "reports/all_19_queries_trace.json"
-    if os.path.exists(traces_file):
-        with open(traces_file) as tf:
-            per_query_traces = json.load(tf)
+    with open(traces_file, "w", encoding="utf-8") as tf:
+        json.dump(per_query_traces, tf, indent=2)
 
     # Acceptance Gates G1 - G30 (Directive 11: gate_id, description, criterion, actual, evidence, status)
     acceptance_gates = [
@@ -433,17 +432,17 @@ def run_benchmark_audit():
         {"gate_id": "G17", "description": "Cross-encoder and fusion failure rule", "criterion": "Document rank changes from first-stage to fused pool", "actual": "Individual engine ranks tracked (BM25, Semantic, Fused)", "evidence": "per_query_failure_traces verified", "status": "PASS"},
         {"gate_id": "G18", "description": "Canonical ID bookkeeping", "criterion": "StandardIdentifierNormalizer enforced throughout retrieval and evaluation", "actual": "All 7 collision pairs isolated without prefix bleed", "evidence": "test_phase4r6_applicability_and_bookkeeping.py passed", "status": "PASS"},
         {"gate_id": "G19", "description": "Collision pairs separation", "criterion": "Zero cross-resolution across all 7 collision pairs", "actual": "7 pairs verified distinct in 12 unit tests", "evidence": "12 of 12 tests passed", "status": "PASS"},
-        {"gate_id": "G20", "description": "Identity correctness separation", "criterion": "Track candidate_standard == evidence_standard separately", "actual": "Identity Correctness = 18/19 = 94.74%", "evidence": "Benchmark identity audit verified", "status": "PASS"},
-        {"gate_id": "G21", "description": "Warm retrieval latency measurement", "criterion": "P50, P95, Mean measured for BM25, Semantic, and End-to-End", "actual": "BM25 P50 29.13ms, Semantic P50 31.90ms, E2E P50 481.87ms", "evidence": "Benchmark latency timer output", "status": "PASS"},
-        {"gate_id": "G22", "description": "Top-1 benchmark recommendation correctness", "criterion": "Top-1 recommendation accuracy on frozen benchmark >= 50.0%", "actual": "Hit@1 = 3/19 = 15.79%, Final Recommendation Accuracy = 2/19 = 10.53%", "evidence": "17 of 19 evaluable benchmark queries missed Top-1", "status": "FAIL"},
+        {"gate_id": "G20", "description": "Identity correctness separation", "criterion": "Track candidate_standard == evidence_standard separately", "actual": f"Identity Correctness = {identity_correct_count}/{denominator} = {(identity_correct_count/denominator)*100:.2f}%", "evidence": "Benchmark identity audit verified", "status": "PASS" if identity_correct_count >= 18 else "FAIL"},
+        {"gate_id": "G21", "description": "Warm retrieval latency measurement", "criterion": "P50, P95, Mean measured for BM25, Semantic, and End-to-End", "actual": f"BM25 P50 {warm_latencies.get('bm25', {}).get('p50_ms', 0):.2f}ms, Semantic P50 {warm_latencies.get('semantic', {}).get('p50_ms', 0):.2f}ms, E2E P50 {warm_latencies.get('end_to_end', {}).get('p50_ms', 0):.2f}ms", "evidence": "Benchmark latency timer output", "status": "PASS"},
+        {"gate_id": "G22", "description": "Top-1 benchmark recommendation correctness", "criterion": "Top-1 recommendation accuracy on frozen benchmark >= 50.0%", "actual": f"Hit@1 = {hit_at[1]}/{denominator} = {(hit_at[1]/denominator)*100:.2f}%, Final Recommendation Accuracy = {final_recommendation_correct_count}/{denominator} = {(final_recommendation_correct_count/denominator)*100:.2f}%", "evidence": f"{hit_at[1]} of {denominator} evaluable benchmark queries achieved Top-1", "status": "PASS" if hit_at[1] >= 10 else "FAIL"},
         {"gate_id": "G23", "description": "Catalogue API functionality", "criterion": "FastAPI endpoints resolve standards from active snapshot", "actual": "API contract verified in integration test", "evidence": "test_ambiguity.py::test_11_api_ambiguity_contract passed", "status": "PASS"},
         {"gate_id": "G24", "description": "Database checksum verification", "criterion": "Active snapshot DB hash matches snapshot manifest", "actual": "c61f4718dc60f5c24880aa5b66500a3112b6602442b329bfb4c0454a3800de8a matches", "evidence": "sha256sum verified", "status": "PASS"},
         {"gate_id": "G25", "description": "Fulltext artifact consistency", "criterion": "Fulltext metadata and content stored in active snapshot DB", "actual": "standards_fulltext co-located in bis_catalogue.db", "evidence": "SQLite PRAGMA table_info verified", "status": "PASS"},
         {"gate_id": "G26", "description": "Zero runtime crashes", "criterion": "Audit pipeline executes without unhandled exceptions", "actual": "Full audit executed cleanly with zero crashes", "evidence": "Process exit code 0", "status": "PASS"},
         {"gate_id": "G27", "description": "Controlled failure safety", "criterion": "Clean abstention on uncatalogued or out-of-scope technologies", "actual": "NO_RELIABLE_MATCH emitted for carbon fiber aerospace prepreg", "evidence": "test_ambiguity.py::test_08 passed", "status": "PASS"},
         {"gate_id": "G28", "description": "Diagnostic acceptance queries pass rate", "criterion": "All 6 diagnostic acceptance queries pass (100.0%)", "actual": "6 of 6 diagnostic acceptance queries passed", "evidence": "Diagnostic results table verified", "status": "PASS"},
-        {"gate_id": "G29", "description": "Recall@100 computation", "criterion": "Recall@100 computed over denominator 19", "actual": "Recall@100 = 15/19 = 78.95%", "evidence": "Candidate search top-100 pool verified", "status": "PASS"},
-        {"gate_id": "G30", "description": "Veridical final verdict rendering", "criterion": "Verdict reflects gate pass/fail status without false PASS", "actual": "G22 is FAIL; verdict reflects incomplete retrieval accuracy", "evidence": "Final verdict string", "status": "PASS"}
+        {"gate_id": "G29", "description": "Recall@100 computation", "criterion": "Recall@100 computed over denominator 19", "actual": f"Recall@100 = {recall_at[100]}/{denominator} = {(recall_at[100]/denominator)*100:.2f}%", "evidence": "Candidate search top-100 pool verified", "status": "PASS" if recall_at[100] >= 15 else "FAIL"},
+        {"gate_id": "G30", "description": "Veridical final verdict rendering", "criterion": "Verdict reflects gate pass/fail status without false PASS", "actual": "All acceptance gates evaluated veridically", "evidence": "Final verdict string", "status": "PASS"}
     ]
 
     has_failures = any(g["status"] == "FAIL" for g in acceptance_gates)

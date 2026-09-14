@@ -422,6 +422,40 @@ class ApplicabilityGate:
             conflict_flags.append("EQUIPMENT_MISMATCH: valve actuator / gearbox vs industrial valve")
             rejection_reasons.append("Equipment mismatch: Standard covers electric actuators or gearboxes for valves, but requirement specifies the valve itself.")
 
+        # Environmental & Operational Scope Gates:
+        # Specialized marine/shipboard equipment standards
+        is_marine_req = any(w in req_text_low for w in ['ship', 'marine', 'vessel', 'boat', 'naval', 'dock', 'harbour', 'shipyard', 'offshore'])
+        is_marine_std = any(w in cand_corpus_low for w in ['shipbuilding', 'in ships', 'for ships', 'shipboard equipment', 'marine purposes', 'for marine'])
+        if is_marine_std and not is_marine_req:
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: marine/shipboard standard vs terrestrial installation")
+            rejection_reasons.append("Application conflict: Standard is specifically scoped for marine/shipboard equipment, but requirement is for terrestrial/civil procurement.")
+
+        # Specialized aircraft/aerospace standards
+        is_aero_req = any(w in req_text_low for w in ['aircraft', 'aviation', 'aerospace', 'aeroplane', 'avionics'])
+        is_aero_std = any(w in cand_corpus_low for w in ['for aircraft', 'in aircraft', 'aerospace application', 'for aerospace'])
+        if is_aero_std and not is_aero_req:
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: aircraft/aerospace standard vs terrestrial installation")
+            rejection_reasons.append("Application conflict: Standard is specifically scoped for aircraft/aerospace equipment, but requirement is for terrestrial/civil procurement.")
+
+        # Specialized solar photovoltaic water pumping equipment vs general electrical drive
+        is_solar_req = any(w in req_text_low for w in ['solar', 'photovoltaic', 'pv '])
+        is_solar_std = 'solar photovoltaic water pumping' in cand_corpus_low
+        if is_solar_std and not is_solar_req:
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: solar photovoltaic pump drive vs general electrical drive")
+            rejection_reasons.append("Application conflict: Standard covers solar photovoltaic water pumping inverters, but requirement specifies standard electrical pump panel.")
+
+        # Printed circuit boards / electronics vs electrical power equipment
+        is_pcb_req = any(w in req_text_low for w in ['printed circuit', 'pcb', 'printed wiring board'])
+        is_pcb_std = any(w in cand_corpus_low for w in ['printed wiring boards', 'printed circuit boards'])
+        if is_pcb_std and not is_pcb_req:
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: printed wiring boards / electronics vs electrical power equipment")
+            rejection_reasons.append("Application conflict: Standard covers printed wiring boards / PCB electronic assemblies, but requirement specifies electrical power equipment.")
+
+
         # Product boundary gates (Section 10 critical safety tests):
         # 1. XLPE Cable Voltage Tier Gate: IS 7098 Part 1 (<= 1100 V) vs Part 2 (3.3 kV to 33 kV)
         # Grounded strictly in authoritative BIS catalogue title/scope text:

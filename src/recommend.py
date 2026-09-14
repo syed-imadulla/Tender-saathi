@@ -15,6 +15,7 @@ Tender PDF / Text
 
 from dataclasses import dataclass, field, asdict
 from typing import List, Optional, Dict, Any
+import os
 import re
 
 from src.standards import StandardsDatabase, classify_standard_role
@@ -180,9 +181,11 @@ class StandardsRecommender:
         retrieval_mode: str = "hybrid",
         ai_enabled: Optional[bool] = None,
         ai_parser: Optional[Any] = None,
-        ambiguity_engine: Optional[Any] = None
+        ambiguity_engine: Optional[Any] = None,
+        candidate_pool_size: Optional[int] = None
     ):
         self.db = db or get_default_catalogue_provider()
+        self.candidate_pool_size = candidate_pool_size or int(os.environ.get("TENDERSAATHI_CANDIDATE_POOL_SIZE", "15"))
         # Verify and assert authoritative BIS catalogue (prevents fallback to legacy 502 catalogue)
         assert_authoritative_bis_catalogue(self.db)
 
@@ -291,10 +294,12 @@ class StandardsRecommender:
                 exact_res.final_score = 1.0
                 explicit_search_results.append(exact_res)
 
-                # 2. Inject the authoritative successor if superseded
-                if not val_res.is_active and val_res.successor_standard:
-                    superseded_explicit_warnings.append(val_res.warning_message)
-                    successor_number = val_res.successor_standard.split(" : ")[0].strip()
+            # 2. Inject the authoritative successor if superseded
+            if not val_res.is_active and val_res.successor_standard:
+                superseded_explicit_warnings.append(val_res.warning_message)
+                successor_number = val_res.successor_standard.split(" : ")[0].strip()
+                with self.db._get_connection() as conn:
+                    cursor = conn.cursor()
                     succ_row = cursor.execute("""
                         SELECT * FROM standards 
                         WHERE standard_number = ? 
@@ -317,7 +322,7 @@ class StandardsRecommender:
         # Step 2: Multi-modal Search over BIS Standards with Decomposed Components
         # Primary search using full requirement text and decomposed components
         search_results = self.search_engine.search(
-            working_text, top_k=8, components=req.components, mode=self.retrieval_mode
+            working_text, top_k=self.candidate_pool_size, components=req.components, mode=self.retrieval_mode
         )
 
         # Secondary search if primary yields low results or for multi-item requirements
@@ -376,6 +381,7 @@ class StandardsRecommender:
                 parsed_ai=parsed_ai,
                 is_explicitly_cited=is_explicit
             )
+            candidate_applicability_map[cand.standard_id] = app_res
             candidate_applicability_map[cand.standard_number] = app_res
             if app_res.applicable:
                 applicable_candidates.append(cand)
@@ -391,15 +397,40 @@ class StandardsRecommender:
             "wire", "wires", "conductor", "conductors", "flange", "flanges", "fitting", "fittings"
         ]
         is_prod_req = any(re.search(rf'\b{w}\b', t_low) for w in prod_nouns)
+        is_work_or_repair_req = bool(re.search(r'\b(?:work|repair|repairing|installation|laying|maintenance|fixing)\b', t_low))
+        is_insulation_or_plaster = bool(re.search(r'\b(?:insulation|plaster|plastering)\b', t_low))
 
-        cand_orig_rank = {c.standard_number: idx for idx, c in enumerate(search_results)}
-        def candidate_priority(c: SearchResult) -> Tuple[int, int, int]:
+        # Join candidates using immutable canonical_id (standard_id)
+        cand_orig_rank = {c.standard_id: idx for idx, c in enumerate(search_results)}
+        def candidate_priority(c: SearchResult) -> Tuple[int, int]:
+            orig_rank = cand_orig_rank.get(c.standard_id, 999)
             role = classify_standard_role(c.standard_number, c.full_title, c.scope_summary)
-            role_rank = 0 if role == "PRIMARY_PRODUCT" else (1 if role in ["INSTALLATION", "CODE_OF_PRACTICE"] else 2)
-            status_str = str(c.status or "").upper()
-            status_rank = 0 if status_str in ["ACTIVE", "UNKNOWN"] else 1
-            orig_rank = cand_orig_rank.get(c.standard_number, 999)
-            return (role_rank if is_prod_req else 0, status_rank, orig_rank)
+            t_cand = (c.full_title or "").lower()
+
+            # Subordinate test methods and auxiliary guidelines
+            if role == "TEST_METHOD":
+                role_rank = 3
+            elif role == "ALLIED":
+                role_rank = 2
+            elif (is_work_or_repair_req or is_insulation_or_plaster) and "storage and handling" in t_cand:
+                role_rank = 2
+            elif role in ["PRIMARY_PRODUCT", "INSTALLATION", "CODE_OF_PRACTICE"]:
+                role_rank = 0
+            else:
+                role_rank = 1
+
+            # Lexical specificity bonus within primary standards:
+            spec_bonus = 0
+            if "distribution boards" in t_low and "distribution boards" in t_cand:
+                spec_bonus -= 1
+            if "fittings" in t_low and "sanitary" not in t_low:
+                if any(w in t_cand for w in ["pipe fittings", "steel fittings", "tube fittings"]):
+                    spec_bonus -= 1
+            if "flange" in t_low and "pipe flanges" in t_cand:
+                spec_bonus -= 1
+
+            # Within role tier, sort strictly by retrieval rank (orig_rank)
+            return (role_rank + spec_bonus, orig_rank)
 
         applicable_candidates.sort(key=candidate_priority)
 

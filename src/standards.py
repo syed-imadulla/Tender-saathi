@@ -119,7 +119,7 @@ def classify_standard_role(standard_number: str, title: Optional[str] = None, sc
 
     # 1. Pure Test Methods (prioritize over generic keyword overlap)
     if any(w in t for w in ["method of test", "methods of test", "ethods of test", "test method", "methods for test", "sampling and test", "sampling and methods of test", "determination of", "measurement of"]):
-        if not any(w in t for w in ["specification", "requirements and test methods"]):
+        if not any(w in t for w in ["specification", "requirements and test methods", "test methods and requirements"]):
             return "TEST_METHOD"
 
     # 2. Code of Practice / Installation / Application / Maintenance
@@ -132,7 +132,7 @@ def classify_standard_role(standard_number: str, title: Optional[str] = None, sc
         return "CODE_OF_PRACTICE"
 
     # 3. Recommendations and Guides (Auxiliary)
-    if any(w in t for w in ["recommendations for", "recommendation for", "guide for repair", "guide for"]) and not any(w in t for w in ["specification"]):
+    if any(w in t for w in ["recommendations for", "recommendation for", "recommended", "guide for repair", "guide for", "system requirements"]) and not any(w in t for w in ["specification"]):
         return "ALLIED"
 
     # 4. Product specifications that include test methods
@@ -144,7 +144,7 @@ def classify_standard_role(standard_number: str, title: Optional[str] = None, sc
         return "SAFETY"
 
     # 6. Allied / Terminology
-    if any(w in t for w in ["glossary of terms", "terminology", "vocabulary", "symbols"]):
+    if any(w in t for w in ["glossary of terms", "terminology", "term!nology", "vocabulary", "symbols"]):
         return "ALLIED"
 
     # 7. Default is primary product specification
