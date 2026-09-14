@@ -81,7 +81,8 @@ class SemanticSearchEngine:
         self,
         db: Optional[StandardsDatabase] = None,
         model_name: str = "all-MiniLM-L6-v2",
-        cache_dir: str = "data/standards"
+        cache_dir: str = "data/standards",
+        cache_prefix: Optional[str] = None
     ):
         self.db = db or StandardsDatabase()
         self.model_name = model_name
@@ -90,6 +91,12 @@ class SemanticSearchEngine:
             self.cache_dir = os.path.dirname(os.path.abspath(self.db.db_path))
         else:
             self.cache_dir = cache_dir
+
+        if cache_prefix is not None:
+            self.cache_prefix = cache_prefix
+        else:
+            db_base = os.path.basename(self.db.db_path)
+            self.cache_prefix = "bis_" if "bis" in db_base.lower() else ""
 
         self.model = get_embedding_model(model_name)
         self.is_available = self.model is not None
@@ -104,9 +111,9 @@ class SemanticSearchEngine:
     def _build_or_load_index(self):
         """Loads embeddings from cache or incrementally computes and saves them."""
         import hashlib
-        npy_path = os.path.join(self.cache_dir, "semantic_embeddings.npy")
-        meta_path = os.path.join(self.cache_dir, "semantic_doc_ids.json")
-        hash_path = os.path.join(self.cache_dir, "semantic_doc_hashes.json")
+        npy_path = os.path.join(self.cache_dir, f"{self.cache_prefix}semantic_embeddings.npy")
+        meta_path = os.path.join(self.cache_dir, f"{self.cache_prefix}semantic_doc_ids.json")
+        hash_path = os.path.join(self.cache_dir, f"{self.cache_prefix}semantic_doc_hashes.json")
 
         with self.db._get_connection() as conn:
             cursor = conn.cursor()
@@ -225,6 +232,20 @@ class SemanticSearchEngine:
                 json.dump(self.doc_ids, f)
             with open(hash_path, "w", encoding="utf-8") as f:
                 json.dump(current_hashes, f)
+
+            manifest_path = os.path.join(self.cache_dir, f"{self.cache_prefix}index_manifest.json")
+            from datetime import datetime, timezone
+            manifest = {
+                "catalogue_source": self.db.db_path,
+                "total_standards": len(self.doc_ids),
+                "embedding_model": self.model_name,
+                "embedding_dimension": int(self.doc_embeddings.shape[1]) if self.doc_embeddings is not None else 384,
+                "index_version": "v4.0_phase4",
+                "cache_prefix": self.cache_prefix,
+                "updated_at": datetime.now(timezone.utc).isoformat()
+            }
+            with open(manifest_path, "w", encoding="utf-8") as f:
+                json.dump(manifest, f, indent=2)
         except Exception as e:
             logger.warning(f"Could not cache semantic embeddings: {e}")
 

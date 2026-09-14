@@ -187,6 +187,57 @@ class BISCatalogueFetcher:
         )
         self.client = client or BISClient(config=self.config)
 
+    @classmethod
+    def validate_seed_pagination(
+        cls,
+        seed: str,
+        offsets: List[int],
+        page_row_counts: List[int],
+        reported_total: int,
+        page_size: int,
+        limit: Optional[int] = None
+    ) -> Tuple[bool, Optional[str]]:
+        """
+        Validates pagination completeness:
+        - Every expected offset (0, page_size, 2*page_size, ...) exists without gaps or duplicates.
+        - Final page is allowed to contain fewer than page_size rows (valid short page).
+        - Accumulated rows must equal reported_total (or limit).
+        """
+        if limit is not None:
+            expected_total = min(reported_total, limit)
+        else:
+            expected_total = reported_total
+
+        if expected_total == 0:
+            if offsets and offsets != [0]:
+                return False, f"Seed '{seed}': Expected 0 rows but received offsets {offsets}"
+            return True, None
+
+        expected_page_count = (expected_total + page_size - 1) // page_size
+        expected_offsets = [i * page_size for i in range(expected_page_count)]
+
+        if offsets != expected_offsets:
+            return False, f"Seed '{seed}': Offset sequence mismatch. Expected {expected_offsets}, got {offsets}"
+
+        accumulated = sum(page_row_counts)
+        if accumulated != expected_total:
+            return False, (
+                f"Seed '{seed}': Accumulated rows ({accumulated}) != expected total ({expected_total}). "
+                f"Page row counts: {page_row_counts}"
+            )
+
+        # Check intermediate page lengths are full page_size
+        for idx, count in enumerate(page_row_counts[:-1]):
+            if count != page_size:
+                return False, f"Seed '{seed}': Intermediate page {idx} is short ({count} < {page_size})"
+
+        # Final page length check
+        final_expected = expected_total - (expected_page_count - 1) * page_size
+        if page_row_counts and page_row_counts[-1] != final_expected:
+            return False, f"Seed '{seed}': Final page has {page_row_counts[-1]} rows, expected {final_expected}"
+
+        return True, None
+
     def run_acquisition(
         self,
         seeds: Optional[List[str]] = None,
@@ -234,6 +285,8 @@ class BISCatalogueFetcher:
                 start_offset = 0
                 page_index = 0
                 seed_done = False
+                offsets: List[int] = []
+                page_row_counts: List[int] = []
 
                 while not seed_done:
                     draw = page_index + 1
@@ -270,6 +323,8 @@ class BISCatalogueFetcher:
                         )
 
                     stat.pages_fetched += 1
+                    offsets.append(start_offset)
+                    page_row_counts.append(len(page_result.rows))
 
                     # Save raw page response to disk
                     page_filename = f"seed_{seed}_page_{page_index:04d}.json"
@@ -330,6 +385,23 @@ class BISCatalogueFetcher:
                     # Termination condition: fetched all reported or empty batch
                     if start_offset >= page_result.total_records or len(rows) < req_length:
                         seed_done = True
+
+                # Validate pagination completeness if not already failed on transport
+                if not stat.failed:
+                    is_valid_pag, pag_err = self.validate_seed_pagination(
+                        seed=seed,
+                        offsets=offsets,
+                        page_row_counts=page_row_counts,
+                        reported_total=stat.reported_total,
+                        page_size=self.config.page_size,
+                        limit=limit
+                    )
+                    if not is_valid_pag:
+                        logger.error("Pagination validation failed for seed '%s': %s", seed, pag_err)
+                        stat.failed = True
+                        stat.error_message = pag_err
+                        if seed not in failed_seeds:
+                            failed_seeds.append(seed)
 
                 seed_stats[seed] = stat
                 logger.info(

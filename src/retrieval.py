@@ -14,13 +14,23 @@ from dataclasses import dataclass, field
 from typing import List, Dict, Any, Optional, Set
 import os
 import re
+import logging
+
+logger = logging.getLogger("tendersaathi.retrieval")
 
 from src.standards import StandardsDatabase
+from src.catalogue.provider import get_default_catalogue_provider, assert_authoritative_bis_catalogue
 from src.search import StandardsSearchEngine, SearchResult
 from src.bm25_search import BM25SearchEngine, BM25Hit
 from src.semantic_search import SemanticSearchEngine, SemanticHit
 from src.decompose import RequirementComponent, decompose_requirement
 from src.reranker import CrossEncoderReranker, get_reranker_instance
+from src.terminology import TechnicalTerminologyNormalizer
+
+# Production Sizing Constants (Empirically Selected)
+DEFAULT_FIRST_STAGE_K = 150
+DEFAULT_RERANK_POOL_SIZE = 30
+DEFAULT_TOP_K = 5
 
 
 @dataclass
@@ -34,6 +44,9 @@ class HybridCandidate:
     det_score: float = 0.0
     bm25_score: float = 0.0
     semantic_score: float = 0.0
+    det_rank: Optional[int] = None
+    bm25_rank: Optional[int] = None
+    sem_rank: Optional[int] = None
     hybrid_score: float = 0.0
     reranker_score: Optional[float] = None
     final_score: float = 0.0
@@ -44,10 +57,11 @@ class HybridCandidate:
 class HybridRetrievalEngine:
     """
     Coordinates multi-modal hybrid retrieval across:
-    1. Okapi BM25
+    1. Okapi BM25 with deterministic technical terminology expansion
     2. Dense semantic embeddings (all-MiniLM-L6-v2)
-    3. Deterministic / domain guardrails
-    4. Optional Cross-Encoder neural reranking (cross-encoder/ms-marco-MiniLM-L-6-v2)
+    3. Deterministic / domain guardrails & exact citation resolution
+    4. Cross-Encoder neural reranking (cross-encoder/ms-marco-MiniLM-L-6-v2)
+    5. Reciprocal Rank Fusion (RRF) production fusion
     """
 
     def __init__(
@@ -58,27 +72,40 @@ class HybridRetrievalEngine:
         w_deterministic: float = 0.25,
         w_rerank: float = 0.25,
         default_mode: str = "hybrid",
-        reranker: Optional[CrossEncoderReranker] = None
+        reranker: Optional[CrossEncoderReranker] = None,
+        fusion_strategy: str = "rrf",
+        rrf_k: int = 60
     ):
-        self.db = db or StandardsDatabase()
+        self.db = db or get_default_catalogue_provider()
+        # Verify and assert authoritative BIS catalogue
+        assert_authoritative_bis_catalogue(self.db)
+
         self.w_bm25 = w_bm25
         self.w_semantic = w_semantic
         self.w_deterministic = w_deterministic
         self.w_rerank = w_rerank
         self.default_mode = default_mode
         self.reranker = reranker or get_reranker_instance()
+        self.fusion_strategy = fusion_strategy
+        self.rrf_k = rrf_k
 
         # Initialize component engines
+        from src.citation_resolver import ExactCitationResolver
+        self.citation_resolver = ExactCitationResolver(self.db)
         self.det_engine = StandardsSearchEngine(self.db)
         self.bm25_engine = BM25SearchEngine(self.db)
         self.semantic_engine = SemanticSearchEngine(self.db)
+        self.terminology_normalizer = TechnicalTerminologyNormalizer()
 
     def search(
         self,
         query: str,
-        top_k: int = 5,
+        top_k: int = DEFAULT_TOP_K,
         components: Optional[List[RequirementComponent]] = None,
-        mode: Optional[str] = None
+        mode: Optional[str] = None,
+        fusion_strategy: Optional[str] = None,
+        first_stage_k: Optional[int] = None,
+        rerank_pool_size: Optional[int] = None
     ) -> List[SearchResult]:
         """
         Executes search under the specified retrieval mode:
@@ -95,37 +122,86 @@ class HybridRetrievalEngine:
             decomp = decompose_requirement(query_clean)
             components = decomp.components
 
+        # Expand first-stage recall pool to ensure candidates are not dropped before fusion
+        stage_k = first_stage_k or DEFAULT_FIRST_STAGE_K
+
         # 1. Deterministic search results
-        det_results = self.det_engine.search(query_clean, top_k=top_k * 2, components=components)
+        det_results = self.det_engine.search(query_clean, top_k=stage_k, components=components)
+
+        # Dual-path architecture: Resolve explicit citations first
+        resolved_citations = self.citation_resolver.resolve_from_text(query_clean)
+        exact_citation_results: List[SearchResult] = []
+        resolved_std_ids = set()
+        for rc in resolved_citations:
+            resolved_std_ids.add(rc.canonical_id)
+            status_val = rc.status or "UNKNOWN"
+            if status_val.lower() == "active":
+                version_role = "CURRENT_ACTIVE"
+            elif "superseded" in status_val.lower():
+                version_role = "REPLACED_OR_SUPERSEDED"
+            elif "withdrawn" in status_val.lower():
+                version_role = "WITHDRAWN"
+            else:
+                version_role = "CURRENT_ACTIVE"
+
+            exact_citation_results.append(SearchResult(
+                standard_id=rc.canonical_id,
+                standard_number=rc.standard_number,
+                year=rc.year,
+                full_title=rc.title,
+                status=status_val,
+                version_role=version_role,
+                relevance_score=1.0,
+                relevance_reason=f"Authoritative BIS Citation ({rc.precedence}): {rc.raw_citation}",
+                scope_summary=rc.raw_record.get("scope") or "",
+                source_provenance=f"{rc.source} ({rc.source_url or 'authoritative_catalogue'})",
+                deterministic_score=1.0,
+                final_score=1.0
+            ))
 
         # Mode: purely deterministic
         if active_mode == "deterministic":
-            return det_results[:top_k]
+            merged = exact_citation_results + [r for r in det_results if r.standard_id not in resolved_std_ids]
+            return merged[:top_k]
 
-        # 2. BM25 search results (primary query + components)
-        bm25_hits = self.bm25_engine.search(query_clean, top_k=top_k * 2)
+        # Expand query deterministically to bridge technical terminology mismatch
+        expanded_query = self.terminology_normalizer.build_expanded_query(query_clean)
+
+        # 2. BM25 search results (expanded query)
+        bm25_hits = self.bm25_engine.search(expanded_query, top_k=stage_k)
 
         # Mode: purely BM25
         if active_mode == "bm25":
-            return self._convert_bm25_to_search_results(bm25_hits, top_k=top_k)
+            bm25_converted = self._convert_bm25_to_search_results(bm25_hits, top_k=top_k)
+            merged = exact_citation_results + [r for r in bm25_converted if r.standard_id not in resolved_std_ids]
+            return merged[:top_k]
 
-        # 3. Semantic search results (primary query)
-        sem_hits = self.semantic_engine.search(query_clean, top_k=top_k * 2)
+        # 3. Semantic search results (expanded query)
+        sem_hits = self.semantic_engine.search(expanded_query, top_k=stage_k)
 
         # Mode: purely semantic
         if active_mode == "semantic":
-            return self._convert_semantic_to_search_results(sem_hits, top_k=top_k)
+            sem_converted = self._convert_semantic_to_search_results(sem_hits, top_k=top_k)
+            merged = exact_citation_results + [r for r in sem_converted if r.standard_id not in resolved_std_ids]
+            return merged[:top_k]
 
         # 4. Hybrid / Hybrid+Rerank Mode: Candidate Union, Score Fusion, and optional Reranking
-        return self._fuse_hybrid_results(
+        strategy = fusion_strategy or self.fusion_strategy
+        hybrid_res = self._fuse_hybrid_results(
             query=query_clean,
             components=components or [],
             det_results=det_results,
             bm25_hits=bm25_hits,
             sem_hits=sem_hits,
             top_k=top_k,
-            mode=active_mode
+            mode=active_mode,
+            fusion_strategy=strategy,
+            rerank_pool_size=rerank_pool_size
         )
+        if exact_citation_results:
+            merged = exact_citation_results + [r for r in hybrid_res if r.standard_id not in resolved_std_ids]
+            return merged[:top_k]
+        return hybrid_res
 
     def _fuse_hybrid_results(
         self,
@@ -135,7 +211,9 @@ class HybridRetrievalEngine:
         bm25_hits: List[BM25Hit],
         sem_hits: List[SemanticHit],
         top_k: int,
-        mode: str = "hybrid"
+        mode: str = "hybrid",
+        fusion_strategy: str = "rrf",
+        rerank_pool_size: Optional[int] = None
     ) -> List[SearchResult]:
         """Merges candidates from all 3 engines with multi-component fusion."""
         candidate_map: Dict[str, HybridCandidate] = {}
@@ -147,8 +225,8 @@ class HybridRetrievalEngine:
                 comp_hits = self.bm25_engine.search(c.text, top_k=3)
                 comp_bm25_hits[c.text] = comp_hits
 
-        # Collect candidate pool from Deterministic
-        for r in det_results:
+        # Collect candidate pool from Deterministic with 1-based rank
+        for idx, r in enumerate(det_results):
             std_id = r.standard_id
             rec = self.db.get_standard(std_id) or {}
             candidate_map[std_id] = HybridCandidate(
@@ -158,17 +236,19 @@ class HybridRetrievalEngine:
                 status=r.status,
                 raw_record=rec,
                 det_score=r.relevance_score,
+                det_rank=idx + 1,
                 reasons=[f"Deterministic: {r.relevance_reason}"]
             )
 
-        # Collect / merge from BM25
-        for h in bm25_hits:
+        # Collect / merge from BM25 with 1-based rank
+        for idx, h in enumerate(bm25_hits):
             std_id = h.standard_id
             matched_terms_str = ", ".join(h.matched_terms[:4])
             bm_reason = f"BM25 match (norm: {h.normalized_score:.2f}, terms: [{matched_terms_str}])"
             if std_id in candidate_map:
                 cand = candidate_map[std_id]
                 cand.bm25_score = h.normalized_score
+                cand.bm25_rank = idx + 1
                 cand.reasons.append(bm_reason)
             else:
                 rec = h.raw_record or self.db.get_standard(std_id) or {}
@@ -179,6 +259,7 @@ class HybridRetrievalEngine:
                     status=rec.get("status", "Active"),
                     raw_record=rec,
                     bm25_score=h.normalized_score,
+                    bm25_rank=idx + 1,
                     reasons=[bm_reason]
                 )
 
@@ -193,13 +274,14 @@ class HybridRetrievalEngine:
                     cand.matched_components.append(comp_text)
                     cand.reasons.append(f"Component BM25 matched '{comp_text}'")
 
-        # Collect / merge from Semantic
-        for s in sem_hits:
+        # Collect / merge from Semantic with 1-based rank
+        for idx, s in enumerate(sem_hits):
             std_id = s.standard_id
             sem_reason = f"Semantic similarity: {s.similarity_score:.3f}"
             if std_id in candidate_map:
                 cand = candidate_map[std_id]
                 cand.semantic_score = s.similarity_score
+                cand.sem_rank = idx + 1
                 cand.reasons.append(sem_reason)
             else:
                 rec = s.raw_record or self.db.get_standard(std_id) or {}
@@ -210,6 +292,7 @@ class HybridRetrievalEngine:
                     status=rec.get("status", "Active"),
                     raw_record=rec,
                     semantic_score=s.similarity_score,
+                    sem_rank=idx + 1,
                     reasons=[sem_reason]
                 )
 
@@ -221,11 +304,10 @@ class HybridRetrievalEngine:
             for c in components
         )
 
-        # Compute fused hybrid score
+        # Compute fused hybrid score based on selected fusion_strategy
         scored_candidates: List[HybridCandidate] = []
         for cand in candidate_map.values():
             t_low = (cand.full_title or "").lower()
-            s_low = (cand.raw_record.get("scope") or "").lower()
 
             # Domain conflict guardrail: filter agricultural irrigation pump codes for industrial/MV requirements
             is_agri = "agriculture" in t_low or "agricultural" in t_low
@@ -235,15 +317,51 @@ class HybridRetrievalEngine:
             # Check if this standard was an exact standard number or authoritative supersedence
             is_authoritative_match = False
             for r in cand.reasons:
-                if "Authoritative replacement" in r or "Standard number match on identifier" in r:
+                if "Authoritative replacement" in r or "Standard number match on identifier" in r or "Authoritative BIS Citation" in r:
                     is_authoritative_match = True
                     break
 
             if is_authoritative_match:
                 cand.hybrid_score = cand.det_score or 0.98
+            elif fusion_strategy == "rrf":
+                # Strategy B: Reciprocal Rank Fusion
+                k_rrf = self.rrf_k or 60
+                rrf_score = 0.0
+                if cand.det_rank is not None:
+                    rrf_score += 1.0 / (k_rrf + cand.det_rank)
+                if cand.bm25_rank is not None:
+                    rrf_score += 1.0 / (k_rrf + cand.bm25_rank)
+                if cand.sem_rank is not None:
+                    rrf_score += 1.0 / (k_rrf + cand.sem_rank)
+
+                # Component coherence bonus
+                unique_comp_matches = len(set(cand.matched_components))
+                if unique_comp_matches >= 2:
+                    rrf_score *= 1.10
+
+                cand.hybrid_score = round(rrf_score, 6)
+            elif fusion_strategy == "candidate_preserving":
+                # Strategy C: Candidate-Preserving Union / CombMAX with consensus boost
+                # 1. Base CombMAX score across retrievers
+                comb_max = max(cand.bm25_score, cand.semantic_score, cand.det_score)
+
+                # 2. Rank preservation anchor: reward high ranks from ANY engine
+                retriever_ranks = [r for r in [cand.det_rank, cand.bm25_rank, cand.sem_rank] if r is not None]
+                best_rank = min(retriever_ranks) if retriever_ranks else 100
+                rank_anchor = 1.0 / (1.0 + 0.02 * (best_rank - 1))
+
+                # 3. Consensus boost across multiple retrievers
+                num_engines = len(retriever_ranks)
+                consensus_boost = 1.0 + (0.10 * (num_engines - 1))
+
+                # 4. Component coherence boost
+                unique_comp_matches = len(set(cand.matched_components))
+                comp_boost = 1.10 if unique_comp_matches >= 2 else 1.0
+
+                fused_score = comb_max * rank_anchor * consensus_boost * comp_boost
+                cand.hybrid_score = round(min(0.98, fused_score), 4)
             else:
-                # Weighted hybrid formula
-                # Normalize component contributions
+                # Strategy A: Baseline Weighted Fusion
                 w_total = self.w_bm25 + self.w_semantic + self.w_deterministic
                 base_hybrid = (
                     (self.w_bm25 * cand.bm25_score) +
@@ -251,17 +369,15 @@ class HybridRetrievalEngine:
                     (self.w_deterministic * cand.det_score)
                 ) / (w_total if w_total > 0 else 1.0)
 
-                # Component coherence boost
                 unique_comp_matches = len(set(cand.matched_components))
                 if unique_comp_matches >= 2:
                     base_hybrid = min(0.98, base_hybrid * 1.15)
 
-                cand.hybrid_score = round(min(0.98, base_hybrid), 3)
+                cand.hybrid_score = round(min(0.98, base_hybrid), 4)
 
-            # Keep candidate if score exceeds minimum threshold
-            if cand.hybrid_score >= 0.20 or cand.det_score >= 0.35:
-                cand.final_score = cand.hybrid_score
-                scored_candidates.append(cand)
+            # Assign preliminary final_score equal to hybrid_score
+            cand.final_score = cand.hybrid_score
+            scored_candidates.append(cand)
 
         # Sort by initial hybrid score descending
         scored_candidates.sort(
@@ -275,8 +391,11 @@ class HybridRetrievalEngine:
 
         # Stage 2: Cross-Encoder Neural Reranking if active mode is hybrid+rerank
         if mode == "hybrid+rerank" and self.reranker and scored_candidates:
-            pool_size = max(top_k * 2, 10)
+            # Empirically calibrated candidate pool size (30) for cross-encoder reranking
+            pool_size = rerank_pool_size or DEFAULT_RERANK_POOL_SIZE
             candidate_pool = scored_candidates[:pool_size]
+            remaining_candidates = scored_candidates[pool_size:]
+
             candidate_texts = [
                 self.reranker.build_candidate_text(cand.raw_record)
                 for cand in candidate_pool
@@ -290,7 +409,7 @@ class HybridRetrievalEngine:
 
                 # Exact match safety: preserve exact cited standard priority
                 is_authoritative = any(
-                    "Authoritative replacement" in r or "Standard number match on identifier" in r
+                    "Authoritative replacement" in r or "Standard number match on identifier" in r or "Authoritative BIS Citation" in r
                     for r in cand.reasons
                 )
                 if is_authoritative or cand.hybrid_score >= 0.98:
@@ -301,8 +420,8 @@ class HybridRetrievalEngine:
                         4
                     )
 
-            # Re-sort candidates by final_score descending
-            scored_candidates.sort(
+            # Re-sort candidate_pool by final_score descending
+            candidate_pool.sort(
                 key=lambda x: (
                     x.final_score,
                     len(x.matched_components),
@@ -310,6 +429,8 @@ class HybridRetrievalEngine:
                 ),
                 reverse=True
             )
+            # Reassemble scored_candidates: reranked pool first, remaining after
+            scored_candidates = candidate_pool + remaining_candidates
 
         # Convert to SearchResult objects
         search_results: List[SearchResult] = []

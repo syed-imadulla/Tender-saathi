@@ -1,0 +1,9 @@
+{
+  "catalogue_source": "data/catalogue/bis_catalogue.db",
+  "total_standards": 35208,
+  "embedding_model": "all-MiniLM-L6-v2",
+  "embedding_dimension": 384,
+  "index_version": "v4.0_phase4",
+  "cache_prefix": "bis_",
+  "updated_at": "2026-09-14T06:14:41.157316+00:00"
+}

@@ -1,0 +1,1392 @@
+{
+  "report_type": "Phase 4R3 \u2014 Final Retrieval Correctness Audit",
+  "generated_at": "2026-09-14T08:58:04.679299+00:00",
+  "database_metadata": {
+    "active_catalogue_provider": "BIS catalogue",
+    "active_catalogue_path": "data/catalogue/bis_catalogue.db",
+    "total_standards_count": 35208,
+    "synchronization_status": "BIS catalogue synchronized: 2026-09-14T05:54:26.762698+00:00",
+    "legacy_catalogue_path": "data/catalogue/catalogue.db",
+    "legacy_catalogue_count": 502,
+    "legacy_catalogue_status": "ISOLATED (Blocked by runtime assertion)"
+  },
+  "retrieval_parameters": {
+    "first_stage_retrieval_k": 150,
+    "union_k": 450,
+    "rrf_retention_k": 100,
+    "cross_encoder_pool_k": 30,
+    "final_display_k": 5,
+    "fusion_strategy": "rrf (Reciprocal Rank Fusion, k=60)"
+  },
+  "citation_resolution_benchmark": {
+    "test_suite": "CITATION RESOLUTION TEST SUITE",
+    "total_cases": 7,
+    "resolver_precision": 100.0,
+    "resolver_recall": 100.0,
+    "false_positive_rate": 0.0,
+    "compound_accuracy": 100.0
+  },
+  "metrics": {
+    "total_benchmark_queries": 20,
+    "evaluable_queries_count": 19,
+    "ambiguous_queries_count": 1,
+    "first_stage": {
+      "deterministic": {
+        "recall@10": {
+          "count": 4,
+          "percentage": 21.1,
+          "str": "4/19 (21.1%)"
+        },
+        "recall@30": {
+          "count": 8,
+          "percentage": 42.1,
+          "str": "8/19 (42.1%)"
+        },
+        "recall@50": {
+          "count": 8,
+          "percentage": 42.1,
+          "str": "8/19 (42.1%)"
+        },
+        "recall@100": {
+          "count": 10,
+          "percentage": 52.6,
+          "str": "10/19 (52.6%)"
+        },
+        "recall@150": {
+          "count": 11,
+          "percentage": 57.9,
+          "str": "11/19 (57.9%)"
+        },
+        "recall@200": {
+          "count": 11,
+          "percentage": 57.9,
+          "str": "11/19 (57.9%)"
+        },
+        "recall@300": {
+          "count": 11,
+          "percentage": 57.9,
+          "str": "11/19 (57.9%)"
+        },
+        "total_found": {
+          "count": 11,
+          "percentage": 57.9,
+          "str": "11/19 (57.9%)"
+        }
+      },
+      "bm25": {
+        "recall@10": {
+          "count": 5,
+          "percentage": 26.3,
+          "str": "5/19 (26.3%)"
+        },
+        "recall@30": {
+          "count": 7,
+          "percentage": 36.8,
+          "str": "7/19 (36.8%)"
+        },
+        "recall@50": {
+          "count": 9,
+          "percentage": 47.4,
+          "str": "9/19 (47.4%)"
+        },
+        "recall@100": {
+          "count": 12,
+          "percentage": 63.2,
+          "str": "12/19 (63.2%)"
+        },
+        "recall@150": {
+          "count": 12,
+          "percentage": 63.2,
+          "str": "12/19 (63.2%)"
+        },
+        "recall@200": {
+          "count": 12,
+          "percentage": 63.2,
+          "str": "12/19 (63.2%)"
+        },
+        "recall@300": {
+          "count": 12,
+          "percentage": 63.2,
+          "str": "12/19 (63.2%)"
+        },
+        "total_found": {
+          "count": 12,
+          "percentage": 63.2,
+          "str": "12/19 (63.2%)"
+        }
+      },
+      "semantic": {
+        "recall@10": {
+          "count": 4,
+          "percentage": 21.1,
+          "str": "4/19 (21.1%)"
+        },
+        "recall@30": {
+          "count": 10,
+          "percentage": 52.6,
+          "str": "10/19 (52.6%)"
+        },
+        "recall@50": {
+          "count": 13,
+          "percentage": 68.4,
+          "str": "13/19 (68.4%)"
+        },
+        "recall@100": {
+          "count": 15,
+          "percentage": 78.9,
+          "str": "15/19 (78.9%)"
+        },
+        "recall@150": {
+          "count": 16,
+          "percentage": 84.2,
+          "str": "16/19 (84.2%)"
+        },
+        "recall@200": {
+          "count": 16,
+          "percentage": 84.2,
+          "str": "16/19 (84.2%)"
+        },
+        "recall@300": {
+          "count": 16,
+          "percentage": 84.2,
+          "str": "16/19 (84.2%)"
+        },
+        "total_found": {
+          "count": 16,
+          "percentage": 84.2,
+          "str": "16/19 (84.2%)"
+        }
+      },
+      "union": {
+        "recall@10": {
+          "count": 4,
+          "percentage": 21.1,
+          "str": "4/19 (21.1%)"
+        },
+        "recall@30": {
+          "count": 8,
+          "percentage": 42.1,
+          "str": "8/19 (42.1%)"
+        },
+        "recall@50": {
+          "count": 8,
+          "percentage": 42.1,
+          "str": "8/19 (42.1%)"
+        },
+        "recall@100": {
+          "count": 11,
+          "percentage": 57.9,
+          "str": "11/19 (57.9%)"
+        },
+        "recall@150": {
+          "count": 13,
+          "percentage": 68.4,
+          "str": "13/19 (68.4%)"
+        },
+        "recall@200": {
+          "count": 15,
+          "percentage": 78.9,
+          "str": "15/19 (78.9%)"
+        },
+        "recall@300": {
+          "count": 16,
+          "percentage": 84.2,
+          "str": "16/19 (84.2%)"
+        },
+        "total_found": {
+          "count": 17,
+          "percentage": 89.5,
+          "str": "17/19 (89.5%)"
+        }
+      }
+    },
+    "rrf_fusion": {
+      "recall@10": {
+        "count": 7,
+        "percentage": 36.8,
+        "str": "7/19 (36.8%)"
+      },
+      "recall@30": {
+        "count": 9,
+        "percentage": 47.4,
+        "str": "9/19 (47.4%)"
+      },
+      "recall@50": {
+        "count": 11,
+        "percentage": 57.9,
+        "str": "11/19 (57.9%)"
+      },
+      "recall@100": {
+        "count": 16,
+        "percentage": 84.2,
+        "str": "16/19 (84.2%)"
+      },
+      "recall@150": {
+        "count": 16,
+        "percentage": 84.2,
+        "str": "16/19 (84.2%)"
+      },
+      "recall@200": {
+        "count": 16,
+        "percentage": 84.2,
+        "str": "16/19 (84.2%)"
+      },
+      "recall@300": {
+        "count": 16,
+        "percentage": 84.2,
+        "str": "16/19 (84.2%)"
+      },
+      "total_found": {
+        "count": 16,
+        "percentage": 84.2,
+        "str": "16/19 (84.2%)"
+      },
+      "hit@1": {
+        "count": 3,
+        "percentage": 15.8
+      },
+      "hit@3": {
+        "count": 4,
+        "percentage": 21.1
+      },
+      "mrr": 0.211
+    },
+    "cross_encoder": {
+      "recall@10": {
+        "count": 8,
+        "percentage": 42.1,
+        "str": "8/19 (42.1%)"
+      },
+      "recall@30": {
+        "count": 9,
+        "percentage": 47.4,
+        "str": "9/19 (47.4%)"
+      },
+      "recall@50": {
+        "count": 9,
+        "percentage": 47.4,
+        "str": "9/19 (47.4%)"
+      },
+      "recall@100": {
+        "count": 9,
+        "percentage": 47.4,
+        "str": "9/19 (47.4%)"
+      },
+      "recall@150": {
+        "count": 9,
+        "percentage": 47.4,
+        "str": "9/19 (47.4%)"
+      },
+      "recall@200": {
+        "count": 9,
+        "percentage": 47.4,
+        "str": "9/19 (47.4%)"
+      },
+      "recall@300": {
+        "count": 9,
+        "percentage": 47.4,
+        "str": "9/19 (47.4%)"
+      },
+      "total_found": {
+        "count": 9,
+        "percentage": 47.4,
+        "str": "9/19 (47.4%)"
+      },
+      "hit@1": {
+        "count": 2,
+        "percentage": 10.5
+      },
+      "hit@3": {
+        "count": 5,
+        "percentage": 26.3
+      },
+      "mrr": 0.202
+    },
+    "latencies_warm": {
+      "deterministic_mean_ms": 177.2,
+      "bm25_mean_ms": 45.7,
+      "semantic_mean_ms": 39.9,
+      "union_mean_ms": 0.3,
+      "rrf_mean_ms": 94.7,
+      "cross_encoder_mean_ms": 557.7,
+      "total_warm_mean_ms": 915.5,
+      "total_warm_median_ms": 903.6,
+      "total_warm_p95_ms": 1195.3
+    }
+  },
+  "failure_classifications": {
+    "SUCCESS (Retrieved in Top 3)": 5,
+    "Fusion Retention / Ranking Failure (Outside CE Pool)": 7,
+    "Ambiguous Requirement (Human Review Expected)": 1,
+    "Cross-Encoder Ranking Failure": 4,
+    "Fusion Retention / Ranking Failure": 1,
+    "First-Stage Retrieval Failure (Vocabulary Mismatch)": 2
+  },
+  "searchable_document_audit": [
+    {
+      "token": "IS 15905",
+      "canonical_id": "IS-15905-2024",
+      "standard_number": "IS 15905 : 2024",
+      "full_title": "Hubless Centrifugally Cast (Spun) Iron Pipes, Fittings and Accessories \u00e2\u20ac\u201d Spigot Series \u00e2\u20ac\u201d Specification  (First Revision)",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 1239 (PART 1)",
+      "canonical_id": "IS-1239-Part-1-2004",
+      "standard_number": "IS 1239 (Part 1) : 2004",
+      "full_title": "Steel tubes, tubulars and other wrought steel fittings - Specification: Part 1 steel tubes (Sixth Revision)",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 15622",
+      "canonical_id": "IS-15622-2017",
+      "standard_number": "IS 15622 : 2017",
+      "full_title": "Pressed Ceramic Tiles - Specification (First Revision) Amendment - 2",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 2556",
+      "canonical_id": "IS-2556-Part-15-2024",
+      "standard_number": "IS 2556 (Part 15) : 2024",
+      "full_title": "Vitreous China Sanitary Appliances \u00e2\u20ac\u201dSpecification            Part 15 Specific Requirements of Universal Water Closets                (Third Revision)",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 781",
+      "canonical_id": "IS-781-1984",
+      "standard_number": "IS 781 : 1984",
+      "full_title": "Specification for cast copper alloy screw down bib taps and stop valves for water services (Third Revision)",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 774",
+      "canonical_id": "IS-774-2021",
+      "standard_number": "IS 774 : 2021",
+      "full_title": "Ceramic (Vitreous China) flushing cisterns for water closets and urinals - Specification (sixth revision)",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 6392",
+      "canonical_id": "IS-6392-2020",
+      "standard_number": "IS 6392 : 2020",
+      "full_title": "Steel Pipes Flanges \u2014 Specification ( First Revision )",
+      "status": "ACTIVE",
+      "verified": true
+    },
+    {
+      "token": "IS 2712",
+      "canonical_id": "IS-2712-2024",
+      "standard_number": "IS 2712 : 2024",
+      "full_title": "Gaskets and Packings  Compressed Asbestos Fibre Jointing  Specification",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS/IEC 61439",
+      "canonical_id": "IS-IEC-61439-Part-3-2024",
+      "standard_number": "IS/IEC 61439 (Part 3) : 2024",
+      "full_title": "Low-voltage switchgear and controlgear assemblies  Part 3: Distribution boards intended to be operated by ordinary persons DBO First Revision",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 10322",
+      "canonical_id": "IS-10322-Part-1-2026",
+      "standard_number": "IS 10322 (Part 1) : 2026",
+      "full_title": "Luminaires  Part 1  General Requirements and Tests  (second  revision)",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 7098 (PART 1)",
+      "canonical_id": "IS-7098-Part-1-2025",
+      "standard_number": "IS 7098 (Part 1) : 2025",
+      "full_title": "Crosslinked Polyethylene Insulated Thermoplastic Sheathed Cables - Specification Part 1 For Working Voltages up to and Including 1 100 Volts (Second Revision)",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 1255",
+      "canonical_id": "IS-1255-1983",
+      "standard_number": "IS 1255 : 1983",
+      "full_title": "Code of practice for installation and maintenance of power cables up to and including 33 kV rating (Second Revision)",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 5039",
+      "canonical_id": "IS-5039-1983",
+      "standard_number": "IS 5039 : 1983",
+      "full_title": "Specification for distribution pillars for voltages not exceeding 1000 V AC and 1200 V DC (First Revision)",
+      "status": "WITHDRAWN",
+      "verified": true
+    },
+    {
+      "token": "IS 3043",
+      "canonical_id": "IS-3043-2018",
+      "standard_number": "IS 3043 : 2018",
+      "full_title": "Code of practice for earthing (Second Revision)",
+      "status": "ACTIVE",
+      "verified": true
+    },
+    {
+      "token": "IS 1293",
+      "canonical_id": "IS-1293-2019",
+      "standard_number": "IS 1293 : 2019",
+      "full_title": "Plugs and Socket-Outlets for Household and Similar Purposes of Rated Voltage up to and Including 250 V and Rated Current up to and Including 16 A - Specification ( Fourth Revision )",
+      "status": "ACTIVE",
+      "verified": true
+    },
+    {
+      "token": "IS 16088",
+      "canonical_id": "IS-16088-2012",
+      "standard_number": "IS 16088 : 2012",
+      "full_title": "Chlorinated polyvinyl chloride (CPVC) pipes for automatic sprinkler fire extinguishing system - Specification",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 2491",
+      "canonical_id": "IS-2491-2024",
+      "standard_number": "IS 2491 : 2024",
+      "full_title": "Food Hygiene \u00e2\u20ac\u201d General Principles \u00e2\u20ac\u201d Code of Practice  (Fourth Revision)",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 15000",
+      "canonical_id": "IS-15000-2024",
+      "standard_number": "IS 15000 : 2024",
+      "full_title": "Hazard Analysis and Critical Control Point (HACCP) - Requirements for Any Organization in the Food Chain  (Second Revision)",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "SP 30",
+      "canonical_id": "SP-30-2023",
+      "standard_number": "SP 30 : 2023",
+      "full_title": "NATIONAL ELECTRICAL CODE OF INDIA 2023 (Second Revision)",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 732",
+      "canonical_id": "IS-732-2019",
+      "standard_number": "IS 732 : 2019",
+      "full_title": "Code of practice for electrical wiring installations (Fourth Revision)",
+      "status": "ACTIVE",
+      "verified": true
+    },
+    {
+      "token": "IS 458",
+      "canonical_id": "IS-458-2021",
+      "standard_number": "IS 458 : 2021",
+      "full_title": "Precast Concrete Pipes (with and without Reinforcement) -",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 783",
+      "canonical_id": "IS-783-1985",
+      "standard_number": "IS 783 : 1985",
+      "full_title": "Code of Practice for Laying of Concrete Pipes",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 14333",
+      "canonical_id": "IS-14333-2022",
+      "standard_number": "IS 14333 : 2022",
+      "full_title": "Polyethylene Pipes for Sewerage and Industrial Chemicals and Effluent - Specification (First Revision)",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 1661",
+      "canonical_id": "IS-1661-1972",
+      "standard_number": "IS 1661 : 1972",
+      "full_title": "Code of practice for application of cement and cement - Lime plaster finishes (First Revision)",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 269",
+      "canonical_id": "IS-269-2015",
+      "standard_number": "IS 269 : 2015",
+      "full_title": "Ordinary portland cement - Specification (Sixth Revision)",
+      "status": "ACTIVE",
+      "verified": true
+    },
+    {
+      "token": "IS 1239 (PART 2)",
+      "canonical_id": "IS-1239-Part-2-2011",
+      "standard_number": "IS 1239 (Part 2) : 2011",
+      "full_title": "Steel tubes, tubulars and other steel fittings - Specification: Part 2 steel pipe fittings (Fifth Revision)",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 778",
+      "canonical_id": "IS-778-1984",
+      "standard_number": "IS 778 : 1984",
+      "full_title": "Specification for copper alloy gate, globe and check valves for waterworks purposes (Fourth Revision)",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS/IEC 61800",
+      "canonical_id": "IS-IEC-61800-Part-5-Sec-2-2020",
+      "standard_number": "IS/IEC 61800 (Part 5) (Sec 2) : 2020",
+      "full_title": "Adjustable Speed Electrical Power Drive Systems Part 5 Safety Requirements Section 2 Functional",
+      "status": "ACTIVE",
+      "verified": true
+    },
+    {
+      "token": "IS 14164",
+      "canonical_id": "IS-14164-2008",
+      "standard_number": "IS 14164 : 2008",
+      "full_title": "Industrial application and finishings of thermal insulation materials at temperatures above - 80&deg;C and up to 750&deg;C - Code of practice (First Revision)",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 8183",
+      "canonical_id": "IS-8183-2024",
+      "standard_number": "IS 8183 : 2024",
+      "full_title": "Bonded mineral wool - Specification (Second Revision)",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS/IEC 60034",
+      "canonical_id": "IS-IEC-60034-Part-2-Sec-1-2024",
+      "standard_number": "IS/IEC 60034 (Part 2) (Sec 1) : 2024",
+      "full_title": "Rotating Electrical Machines  Part 2 Determining Losses and Efficiency from Tests  Section 1 Standard Methods (Excluding Machines for Traction Vehicles)",
+      "status": "ACTIVE",
+      "verified": true
+    },
+    {
+      "token": "IS 5120",
+      "canonical_id": "IS-5120-1977",
+      "standard_number": "IS 5120 : 1977",
+      "full_title": "Technical requirements for rotodynamic special purpose pumps (First Revision)",
+      "status": "UNKNOWN",
+      "verified": true
+    },
+    {
+      "token": "IS 15778",
+      "canonical_id": "IS-15778-2007",
+      "standard_number": "IS 15778 : 2007",
+      "full_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Distribution Supplies - Specification",
+      "status": "UNKNOWN",
+      "verified": true
+    }
+  ],
+  "terminology_audit": [
+    {
+      "term": "vfd",
+      "expansions": [
+        "variable frequency drive",
+        "adjustable speed electrical power drive systems"
+      ],
+      "reason": "Tender shorthand for variable frequency inverter; BIS uses IEC adoption phrase.",
+      "affected_retriever": "BM25, Semantic",
+      "benchmark_effect": "Enables retrieval of IS/IEC 61800-2 for T013-R002 (BM25 rank 3)."
+    },
+    {
+      "term": "dg set",
+      "expansions": [
+        "diesel generator",
+        "generating set",
+        "reciprocating internal combustion engine driven generating set"
+      ],
+      "reason": "Tender acronym for diesel generator set; BIS uses generating set.",
+      "affected_retriever": "BM25, Semantic",
+      "benchmark_effect": "Enables semantic retrieval of IS 7098 (Part 1) and IS 3043 for T005-R001."
+    },
+    {
+      "term": "xlpe",
+      "expansions": [
+        "crosslinked polyethylene",
+        "cross-linked polyethylene"
+      ],
+      "reason": "Polymer acronym; BIS standard IS 7098 uses full chemical title.",
+      "affected_retriever": "BM25, Semantic",
+      "benchmark_effect": "Enables lexical and semantic discovery of power cables in T004-R002 and T011-R001."
+    },
+    {
+      "term": "lt",
+      "expansions": [
+        "low tension",
+        "working voltages up to and including 1100 volts"
+      ],
+      "reason": "Indian electrical tender shorthand; BIS cable specifications define by voltage limit.",
+      "affected_retriever": "BM25, Semantic",
+      "benchmark_effect": "Matches scope clause of IS 7098 Part 1."
+    },
+    {
+      "term": "cpvc",
+      "expansions": [
+        "chlorinated polyvinyl chloride"
+      ],
+      "reason": "Standard piping abbreviation; BIS IS 15778 uses full chemical name.",
+      "affected_retriever": "BM25, Semantic",
+      "benchmark_effect": "Enables retrieval of IS 15778 for T020-R001."
+    },
+    {
+      "term": "upvc",
+      "expansions": [
+        "unplasticized polyvinyl chloride"
+      ],
+      "reason": "Standard profile abbreviation; BIS IS 16088 uses full chemical name.",
+      "affected_retriever": "BM25",
+      "benchmark_effect": "Improves lexical match for T006-R001 partition wall."
+    }
+  ],
+  "queries_audit": [
+    {
+      "requirement_id": "T001-R002",
+      "requirement_text": "replacement of damaged pipelines by Hubless",
+      "category": "material",
+      "expected_standard": "IS 15905 : 2011; IS 1239 (Part 1) : 2004",
+      "expected_tokens": [
+        "IS 15905",
+        "IS 1239 (PART 1)"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "IS-15905-2024",
+      "standard_number": "IS 15905 : 2024",
+      "full_title": "Hubless Centrifugally Cast (Spun) Iron Pipes, Fittings and Accessories \u00e2\u20ac\u201d Spigot Series \u00e2\u20ac\u201d Specification  (First Revision)",
+      "status": "UNKNOWN",
+      "technical_committee": "MTD 06",
+      "indexed_text": "IS 15905 : 2024 : Hubless Centrifugally Cast (Spun) Iron Pipes, Fittings and Accessories \u00e2\u20ac\u201d Spigot Series \u00e2\u20ac\u201d Specification  (First Revision). Committee: MTD 06",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": 1,
+        "bm25": 3,
+        "semantic": 48,
+        "union": 1,
+        "rrf": 1,
+        "cross_encoder": 1
+      },
+      "failure_classification": "SUCCESS (Retrieved in Top 3)",
+      "latencies_ms": {
+        "det": 113.8,
+        "bm25": 24.8,
+        "sem": 28.7,
+        "union": 0.1,
+        "rrf": 44.4,
+        "ce": 573.6,
+        "total": 785.4
+      }
+    },
+    {
+      "requirement_id": "T001-R003",
+      "requirement_text": "wall tiles",
+      "category": "material",
+      "expected_standard": "IS 15622 : 2017",
+      "expected_tokens": [
+        "IS 15622"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "IS-15622-2017",
+      "standard_number": "IS 15622 : 2017",
+      "full_title": "Pressed Ceramic Tiles - Specification (First Revision) Amendment - 2",
+      "status": "UNKNOWN",
+      "technical_committee": "CED 05",
+      "indexed_text": "IS 15622 : 2017 : Pressed Ceramic Tiles - Specification (First Revision) Amendment - 2. Committee: CED 05",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": null,
+        "bm25": 57,
+        "semantic": 41,
+        "union": 150,
+        "rrf": 80,
+        "cross_encoder": null
+      },
+      "failure_classification": "Fusion Retention / Ranking Failure (Outside CE Pool)",
+      "latencies_ms": {
+        "det": 70.0,
+        "bm25": 24.9,
+        "sem": 21.7,
+        "union": 0.1,
+        "rrf": 70.4,
+        "ce": 407.8,
+        "total": 594.9
+      }
+    },
+    {
+      "requirement_id": "T001-R004",
+      "requirement_text": "upgradation of all sanitary fittings at AGL Department in Main School Building at IIT ISM Dhanbad",
+      "category": "product_equipment",
+      "expected_standard": "IS 2556 (Part 1 to 17); IS 781 : 1984; IS 774 : 2021",
+      "expected_tokens": [
+        "IS 2556",
+        "IS 781",
+        "IS 774"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "IS-2556-Part-15-2024",
+      "standard_number": "IS 2556 (Part 15) : 2024",
+      "full_title": "Vitreous China Sanitary Appliances \u00e2\u20ac\u201dSpecification            Part 15 Specific Requirements of Universal Water Closets                (Third Revision)",
+      "status": "UNKNOWN",
+      "technical_committee": "CED 03",
+      "indexed_text": "IS 2556 (Part 15) : 2024 : Vitreous China Sanitary Appliances \u00e2\u20ac\u201dSpecification            Part 15 Specific Requirements of Universal Water Closets                (Third Revision). Committee: CED 03",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": 13,
+        "bm25": 34,
+        "semantic": 5,
+        "union": 13,
+        "rrf": 3,
+        "cross_encoder": 3
+      },
+      "failure_classification": "SUCCESS (Retrieved in Top 3)",
+      "latencies_ms": {
+        "det": 107.2,
+        "bm25": 26.3,
+        "sem": 26.2,
+        "union": 0.2,
+        "rrf": 87.0,
+        "ce": 578.9,
+        "total": 825.8
+      }
+    },
+    {
+      "requirement_id": "T002-R002",
+      "requirement_text": "Valve Replacement",
+      "category": "material",
+      "expected_standard": null,
+      "expected_tokens": [],
+      "in_bis_db": false,
+      "canonical_id": "N/A",
+      "standard_number": "N/A",
+      "full_title": "N/A",
+      "status": "N/A",
+      "technical_committee": "N/A",
+      "indexed_text": "N/A : N/A. Committee: N/A",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": null,
+        "bm25": null,
+        "semantic": null,
+        "union": null,
+        "rrf": null,
+        "cross_encoder": null
+      },
+      "failure_classification": "Ambiguous Requirement (Human Review Expected)",
+      "latencies_ms": {
+        "det": 91.2,
+        "bm25": 39.5,
+        "sem": 23.4,
+        "union": 0.2,
+        "rrf": 71.7,
+        "ce": 447.9,
+        "total": 673.9
+      }
+    },
+    {
+      "requirement_id": "T002-R003",
+      "requirement_text": "Flange Joint Maintenance",
+      "category": "installation_execution",
+      "expected_standard": "IS 6392 : 1971; IS 2712 : 2020",
+      "expected_tokens": [
+        "IS 6392",
+        "IS 2712"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "IS-6392-2020",
+      "standard_number": "IS 6392 : 2020",
+      "full_title": "Steel Pipes Flanges \u2014 Specification ( First Revision )",
+      "status": "ACTIVE",
+      "technical_committee": "MTD 19",
+      "indexed_text": "IS 6392 : 2020 : Steel Pipes Flanges \u2014 Specification ( First Revision ). Committee: MTD 19",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": 88,
+        "bm25": null,
+        "semantic": 11,
+        "union": 88,
+        "rrf": 53,
+        "cross_encoder": null
+      },
+      "failure_classification": "Fusion Retention / Ranking Failure (Outside CE Pool)",
+      "latencies_ms": {
+        "det": 94.5,
+        "bm25": 29.7,
+        "sem": 36.5,
+        "union": 0.3,
+        "rrf": 98.6,
+        "ce": 501.7,
+        "total": 761.3
+      }
+    },
+    {
+      "requirement_id": "T003-R001",
+      "requirement_text": "Replacement / repair of distribution boards and defective lights at various locations in main sports stadium",
+      "category": "material",
+      "expected_standard": "IS/IEC 61439-3 : 2012; IS 10322 (Part 5 / Sec 5) : 2013",
+      "expected_tokens": [
+        "IS/IEC 61439",
+        "IS 10322"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "IS-IEC-61439-Part-3-2024",
+      "standard_number": "IS/IEC 61439 (Part 3) : 2024",
+      "full_title": "Low-voltage switchgear and controlgear assemblies  Part 3: Distribution boards intended to be operated by ordinary persons DBO First Revision",
+      "status": "UNKNOWN",
+      "technical_committee": "ETD 07",
+      "indexed_text": "IS/IEC 61439 (Part 3) : 2024 : Low-voltage switchgear and controlgear assemblies  Part 3: Distribution boards intended to be operated by ordinary persons DBO First Revision. Committee: ETD 07",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": 1,
+        "bm25": 10,
+        "semantic": 35,
+        "union": 1,
+        "rrf": 7,
+        "cross_encoder": 7
+      },
+      "failure_classification": "Cross-Encoder Ranking Failure",
+      "latencies_ms": {
+        "det": 529.1,
+        "bm25": 84.9,
+        "sem": 63.6,
+        "union": 0.3,
+        "rrf": 91.7,
+        "ce": 649.5,
+        "total": 1419.1
+      }
+    },
+    {
+      "requirement_id": "T004-R002",
+      "requirement_text": "power cables from outside of electrical room to AMF room",
+      "category": "material",
+      "expected_standard": "IS 7098 (Part 1) : 1988; IS 1255 : 1983",
+      "expected_tokens": [
+        "IS 7098 (PART 1)",
+        "IS 1255"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "IS-7098-Part-1-2025",
+      "standard_number": "IS 7098 (Part 1) : 2025",
+      "full_title": "Crosslinked Polyethylene Insulated Thermoplastic Sheathed Cables - Specification Part 1 For Working Voltages up to and Including 1 100 Volts (Second Revision)",
+      "status": "UNKNOWN",
+      "technical_committee": "ETD 09",
+      "indexed_text": "IS 7098 (Part 1) : 2025 : Crosslinked Polyethylene Insulated Thermoplastic Sheathed Cables - Specification Part 1 For Working Voltages up to and Including 1 100 Volts (Second Revision). Committee: ETD 09",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": 12,
+        "bm25": 69,
+        "semantic": 25,
+        "union": 12,
+        "rrf": 5,
+        "cross_encoder": 5
+      },
+      "failure_classification": "Cross-Encoder Ranking Failure",
+      "latencies_ms": {
+        "det": 168.4,
+        "bm25": 52.2,
+        "sem": 36.2,
+        "union": 0.3,
+        "rrf": 148.7,
+        "ce": 564.1,
+        "total": 970.0
+      }
+    },
+    {
+      "requirement_id": "T004-R005",
+      "requirement_text": "Dismantling,Shifting and reinstallation of feeder pillar, power",
+      "category": "product_equipment",
+      "expected_standard": "IS 5039 : 1983; IS/IEC 61439-5 : 2014",
+      "expected_tokens": [
+        "IS 5039",
+        "IS/IEC 61439"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "IS-5039-1983",
+      "standard_number": "IS 5039 : 1983",
+      "full_title": "Specification for distribution pillars for voltages not exceeding 1000 V AC and 1200 V DC (First Revision)",
+      "status": "WITHDRAWN",
+      "technical_committee": "ETD 07",
+      "indexed_text": "IS 5039 : 1983 : Specification for distribution pillars for voltages not exceeding 1000 V AC and 1200 V DC (First Revision). Committee: ETD 07",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": 29,
+        "bm25": 27,
+        "semantic": 144,
+        "union": 29,
+        "rrf": 19,
+        "cross_encoder": 19
+      },
+      "failure_classification": "Cross-Encoder Ranking Failure",
+      "latencies_ms": {
+        "det": 243.1,
+        "bm25": 50.6,
+        "sem": 56.3,
+        "union": 0.5,
+        "rrf": 158.6,
+        "ce": 517.0,
+        "total": 1026.1
+      }
+    },
+    {
+      "requirement_id": "T005-R001",
+      "requirement_text": "Cable connection of DG Set in Newly constructed building of the Dept. of Molecular , Human Genetics",
+      "category": "material",
+      "expected_standard": "IS 3043 : 2018; IS 7098 (Part 1) : 1988; IS 1293 : 2019",
+      "expected_tokens": [
+        "IS 3043",
+        "IS 7098 (PART 1)",
+        "IS 1293"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "IS-3043-2018",
+      "standard_number": "IS 3043 : 2018",
+      "full_title": "Code of practice for earthing (Second Revision)",
+      "status": "ACTIVE",
+      "technical_committee": "ETD 20",
+      "indexed_text": "IS 3043 : 2018 : Code of practice for earthing (Second Revision). Committee: ETD 20",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": null,
+        "bm25": null,
+        "semantic": 13,
+        "union": 301,
+        "rrf": 71,
+        "cross_encoder": null
+      },
+      "failure_classification": "Fusion Retention / Ranking Failure (Outside CE Pool)",
+      "latencies_ms": {
+        "det": 162.0,
+        "bm25": 48.6,
+        "sem": 34.5,
+        "union": 0.3,
+        "rrf": 91.0,
+        "ce": 524.2,
+        "total": 860.6
+      }
+    },
+    {
+      "requirement_id": "T006-R001",
+      "requirement_text": "UPVC Partition Wall Work for Conversion of Seafood Authentication Laboratory into Conventional Microbiology Laboratory",
+      "category": "material",
+      "expected_standard": "IS 16088 : 2016",
+      "expected_tokens": [
+        "IS 16088"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "IS-16088-2012",
+      "standard_number": "IS 16088 : 2012",
+      "full_title": "Chlorinated polyvinyl chloride (CPVC) pipes for automatic sprinkler fire extinguishing system - Specification",
+      "status": "UNKNOWN",
+      "technical_committee": "CED 22",
+      "indexed_text": "IS 16088 : 2012 : Chlorinated polyvinyl chloride (CPVC) pipes for automatic sprinkler fire extinguishing system - Specification. Committee: CED 22",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": null,
+        "bm25": 51,
+        "semantic": null,
+        "union": 185,
+        "rrf": null,
+        "cross_encoder": null
+      },
+      "failure_classification": "Fusion Retention / Ranking Failure",
+      "latencies_ms": {
+        "det": 230.6,
+        "bm25": 44.0,
+        "sem": 35.5,
+        "union": 0.3,
+        "rrf": 92.3,
+        "ce": 513.4,
+        "total": 916.0
+      }
+    },
+    {
+      "requirement_id": "T007-R003",
+      "requirement_text": "Low-Oil Food Outlet on BOT",
+      "category": "general_specification",
+      "expected_standard": "IS 2491 : 2013; IS 15000 : 2013",
+      "expected_tokens": [
+        "IS 2491",
+        "IS 15000"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "IS-2491-2024",
+      "standard_number": "IS 2491 : 2024",
+      "full_title": "Food Hygiene \u00e2\u20ac\u201d General Principles \u00e2\u20ac\u201d Code of Practice  (Fourth Revision)",
+      "status": "UNKNOWN",
+      "technical_committee": "FAD 15",
+      "indexed_text": "IS 2491 : 2024 : Food Hygiene \u00e2\u20ac\u201d General Principles \u00e2\u20ac\u201d Code of Practice  (Fourth Revision). Committee: FAD 15",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": null,
+        "bm25": null,
+        "semantic": null,
+        "union": null,
+        "rrf": null,
+        "cross_encoder": null
+      },
+      "failure_classification": "First-Stage Retrieval Failure (Vocabulary Mismatch)",
+      "latencies_ms": {
+        "det": 66.0,
+        "bm25": 50.6,
+        "sem": 32.5,
+        "union": 0.2,
+        "rrf": 79.1,
+        "ce": 729.2,
+        "total": 957.6
+      }
+    },
+    {
+      "requirement_id": "T009-R001",
+      "requirement_text": "Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD",
+      "category": "installation_execution",
+      "expected_standard": "SP 30 : 2023; IS 732 : 2019",
+      "expected_tokens": [
+        "SP 30",
+        "IS 732"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "SP-30-2023",
+      "standard_number": "SP 30 : 2023",
+      "full_title": "NATIONAL ELECTRICAL CODE OF INDIA 2023 (Second Revision)",
+      "status": "UNKNOWN",
+      "technical_committee": "ETD 20",
+      "indexed_text": "SP 30 : 2023 : NATIONAL ELECTRICAL CODE OF INDIA 2023 (Second Revision). Committee: ETD 20",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": null,
+        "bm25": null,
+        "semantic": null,
+        "union": null,
+        "rrf": null,
+        "cross_encoder": null
+      },
+      "failure_classification": "First-Stage Retrieval Failure (Vocabulary Mismatch)",
+      "latencies_ms": {
+        "det": 379.5,
+        "bm25": 50.3,
+        "sem": 43.3,
+        "union": 0.2,
+        "rrf": 123.8,
+        "ce": 561.7,
+        "total": 1158.8
+      }
+    },
+    {
+      "requirement_id": "T010-R001",
+      "requirement_text": "Sewerage Pipeline works from Collection Chamber to STP 9/4/26",
+      "category": "material",
+      "expected_standard": "IS 458 : 2021; IS 783 : 1985; IS 14333 : 1996",
+      "expected_tokens": [
+        "IS 458",
+        "IS 783",
+        "IS 14333"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "IS-458-2021",
+      "standard_number": "IS 458 : 2021",
+      "full_title": "Precast Concrete Pipes (with and without Reinforcement) -",
+      "status": "UNKNOWN",
+      "technical_committee": "CED 53",
+      "indexed_text": "IS 458 : 2021 : Precast Concrete Pipes (with and without Reinforcement) -. Committee: CED 53",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": 10,
+        "bm25": 4,
+        "semantic": 1,
+        "union": 10,
+        "rrf": 1,
+        "cross_encoder": 1
+      },
+      "failure_classification": "SUCCESS (Retrieved in Top 3)",
+      "latencies_ms": {
+        "det": 229.6,
+        "bm25": 55.9,
+        "sem": 40.3,
+        "union": 0.3,
+        "rrf": 79.3,
+        "ce": 697.1,
+        "total": 1102.6
+      }
+    },
+    {
+      "requirement_id": "T011-R001",
+      "requirement_text": "Providing and laying underground cable for STP for main supply of electricity under CEDCO BSF Bangalore",
+      "category": "material",
+      "expected_standard": "IS 7098 (Part 1) : 1988; IS 1255 : 1983",
+      "expected_tokens": [
+        "IS 7098 (PART 1)",
+        "IS 1255"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "IS-7098-Part-1-2025",
+      "standard_number": "IS 7098 (Part 1) : 2025",
+      "full_title": "Crosslinked Polyethylene Insulated Thermoplastic Sheathed Cables - Specification Part 1 For Working Voltages up to and Including 1 100 Volts (Second Revision)",
+      "status": "UNKNOWN",
+      "technical_committee": "ETD 09",
+      "indexed_text": "IS 7098 (Part 1) : 2025 : Crosslinked Polyethylene Insulated Thermoplastic Sheathed Cables - Specification Part 1 For Working Voltages up to and Including 1 100 Volts (Second Revision). Committee: ETD 09",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": null,
+        "bm25": null,
+        "semantic": 14,
+        "union": 271,
+        "rrf": 70,
+        "cross_encoder": null
+      },
+      "failure_classification": "Fusion Retention / Ranking Failure (Outside CE Pool)",
+      "latencies_ms": {
+        "det": 157.9,
+        "bm25": 30.4,
+        "sem": 51.9,
+        "union": 0.4,
+        "rrf": 101.8,
+        "ce": 587.3,
+        "total": 929.6
+      }
+    },
+    {
+      "requirement_id": "T012-R002",
+      "requirement_text": "Plaster Repairing",
+      "category": "installation_execution",
+      "expected_standard": "IS 1661 : 1972; IS 269 : 2015",
+      "expected_tokens": [
+        "IS 1661",
+        "IS 269"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "IS-1661-1972",
+      "standard_number": "IS 1661 : 1972",
+      "full_title": "Code of practice for application of cement and cement - Lime plaster finishes (First Revision)",
+      "status": "UNKNOWN",
+      "technical_committee": "CED 05",
+      "indexed_text": "IS 1661 : 1972 : Code of practice for application of cement and cement - Lime plaster finishes (First Revision). Committee: CED 05",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": 20,
+        "bm25": 49,
+        "semantic": 16,
+        "union": 20,
+        "rrf": 28,
+        "cross_encoder": 2
+      },
+      "failure_classification": "SUCCESS (Retrieved in Top 3)",
+      "latencies_ms": {
+        "det": 84.2,
+        "bm25": 30.5,
+        "sem": 27.1,
+        "union": 0.2,
+        "rrf": 36.3,
+        "ce": 586.0,
+        "total": 764.2
+      }
+    },
+    {
+      "requirement_id": "T012-R003",
+      "requirement_text": "Plumbing Fittings",
+      "category": "product_equipment",
+      "expected_standard": "IS 1239 (Part 2) : 1992; IS 778 : 1984",
+      "expected_tokens": [
+        "IS 1239 (PART 2)",
+        "IS 778"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "IS-1239-Part-2-2011",
+      "standard_number": "IS 1239 (Part 2) : 2011",
+      "full_title": "Steel tubes, tubulars and other steel fittings - Specification: Part 2 steel pipe fittings (Fifth Revision)",
+      "status": "UNKNOWN",
+      "technical_committee": "MTD 19",
+      "indexed_text": "IS 1239 (Part 2) : 2011 : Steel tubes, tubulars and other steel fittings - Specification: Part 2 steel pipe fittings (Fifth Revision). Committee: MTD 19",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": null,
+        "bm25": 17,
+        "semantic": 67,
+        "union": 64,
+        "rrf": 45,
+        "cross_encoder": null
+      },
+      "failure_classification": "Fusion Retention / Ranking Failure (Outside CE Pool)",
+      "latencies_ms": {
+        "det": 51.4,
+        "bm25": 36.1,
+        "sem": 30.6,
+        "union": 0.2,
+        "rrf": 36.0,
+        "ce": 597.1,
+        "total": 751.6
+      }
+    },
+    {
+      "requirement_id": "T013-R002",
+      "requirement_text": "SITC of VFD water pump panel",
+      "category": "product_equipment",
+      "expected_standard": "IS/IEC 61800-2 : 2015; IS/IEC 61439-2 : 2011",
+      "expected_tokens": [
+        "IS/IEC 61800",
+        "IS/IEC 61439"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "IS-IEC-61800-Part-5-Sec-2-2020",
+      "standard_number": "IS/IEC 61800 (Part 5) (Sec 2) : 2020",
+      "full_title": "Adjustable Speed Electrical Power Drive Systems Part 5 Safety Requirements Section 2 Functional",
+      "status": "ACTIVE",
+      "technical_committee": "ETD 31",
+      "indexed_text": "IS/IEC 61800 (Part 5) (Sec 2) : 2020 : Adjustable Speed Electrical Power Drive Systems Part 5 Safety Requirements Section 2 Functional. Committee: ETD 31",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": null,
+        "bm25": 3,
+        "semantic": 20,
+        "union": 153,
+        "rrf": 9,
+        "cross_encoder": 9
+      },
+      "failure_classification": "Cross-Encoder Ranking Failure",
+      "latencies_ms": {
+        "det": 188.0,
+        "bm25": 71.4,
+        "sem": 59.1,
+        "union": 0.3,
+        "rrf": 174.6,
+        "ce": 690.0,
+        "total": 1183.5
+      }
+    },
+    {
+      "requirement_id": "T013-R003",
+      "requirement_text": "Insulation work",
+      "category": "material",
+      "expected_standard": "IS 14164 : 2008; IS 8183 : 1993",
+      "expected_tokens": [
+        "IS 14164",
+        "IS 8183"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "IS-14164-2008",
+      "standard_number": "IS 14164 : 2008",
+      "full_title": "Industrial application and finishings of thermal insulation materials at temperatures above - 80&deg;C and up to 750&deg;C - Code of practice (First Revision)",
+      "status": "UNKNOWN",
+      "technical_committee": "CHD 27",
+      "indexed_text": "IS 14164 : 2008 : Industrial application and finishings of thermal insulation materials at temperatures above - 80&deg;C and up to 750&deg;C - Code of practice (First Revision). Committee: CHD 27",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": 51,
+        "bm25": null,
+        "semantic": 5,
+        "union": 51,
+        "rrf": 32,
+        "cross_encoder": null
+      },
+      "failure_classification": "Fusion Retention / Ranking Failure (Outside CE Pool)",
+      "latencies_ms": {
+        "det": 96.0,
+        "bm25": 52.8,
+        "sem": 58.6,
+        "union": 0.3,
+        "rrf": 85.7,
+        "ce": 381.1,
+        "total": 674.5
+      }
+    },
+    {
+      "requirement_id": "T014-R002",
+      "requirement_text": "commissioning of three numbers of Process Water Pump motors 3.3 kV",
+      "category": "product_equipment",
+      "expected_standard": "IS/IEC 60034-1 : 2017; IS 5120 : 1977",
+      "expected_tokens": [
+        "IS/IEC 60034",
+        "IS 5120"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "IS-IEC-60034-Part-2-Sec-1-2024",
+      "standard_number": "IS/IEC 60034 (Part 2) (Sec 1) : 2024",
+      "full_title": "Rotating Electrical Machines  Part 2 Determining Losses and Efficiency from Tests  Section 1 Standard Methods (Excluding Machines for Traction Vehicles)",
+      "status": "ACTIVE",
+      "technical_committee": "ETD 15",
+      "indexed_text": "IS/IEC 60034 (Part 2) (Sec 1) : 2024 : Rotating Electrical Machines  Part 2 Determining Losses and Efficiency from Tests  Section 1 Standard Methods (Excluding Machines for Traction Vehicles). Committee: ETD 15",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": 148,
+        "bm25": null,
+        "semantic": 54,
+        "union": 148,
+        "rrf": 79,
+        "cross_encoder": null
+      },
+      "failure_classification": "Fusion Retention / Ranking Failure (Outside CE Pool)",
+      "latencies_ms": {
+        "det": 251.2,
+        "bm25": 50.5,
+        "sem": 40.3,
+        "union": 1.3,
+        "rrf": 112.7,
+        "ce": 435.2,
+        "total": 891.2
+      }
+    },
+    {
+      "requirement_id": "T020-R001",
+      "requirement_text": "Repair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn",
+      "category": "material",
+      "expected_standard": "IS 15778 : 2007; IS 1239 (Part 1) : 2004",
+      "expected_tokens": [
+        "IS 15778",
+        "IS 1239 (PART 1)"
+      ],
+      "in_bis_db": true,
+      "canonical_id": "IS-15778-2007",
+      "standard_number": "IS 15778 : 2007",
+      "full_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Distribution Supplies - Specification",
+      "status": "UNKNOWN",
+      "technical_committee": "CED 50",
+      "indexed_text": "IS 15778 : 2007 : Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Distribution Supplies - Specification. Committee: CED 50",
+      "exact_citation_present": false,
+      "citation_resolved_id": null,
+      "ranks": {
+        "deterministic": 1,
+        "bm25": 5,
+        "semantic": 1,
+        "union": 1,
+        "rrf": 1,
+        "cross_encoder": 2
+      },
+      "failure_classification": "SUCCESS (Retrieved in Top 3)",
+      "latencies_ms": {
+        "det": 230.1,
+        "bm25": 60.6,
+        "sem": 52.0,
+        "union": 0.4,
+        "rrf": 109.7,
+        "ce": 610.7,
+        "total": 1063.7
+      }
+    }
+  ]
+}

@@ -327,9 +327,15 @@ class EvidenceAwareCritic:
             risk_reasons.append("Insufficient stored evidence to establish standard applicability")
 
         # 3. Lifecycle Score [0, 1]
-        if val_info.is_active:
+        status_upper = (val_info.status or "").strip().upper()
+        if val_info.is_active or status_upper == "ACTIVE":
             lifecycle_score = 1.0
             critique_reasons.append("Standard is currently Active and verified in BIS catalogue")
+        elif status_upper == "UNKNOWN":
+            # Status not explicitly confirmed Active or Withdrawn in BIS source: neutral score with review flag
+            lifecycle_score = 0.70
+            critique_reasons.append("Standard lifecycle status is UNCONFIRMED (UNKNOWN) in BIS catalogue")
+            risk_reasons.append(f"Standard {std_num} has unverified lifecycle status in catalogue (UNKNOWN)")
         elif val_info.successor_standard:
             lifecycle_score = 0.30
             critique_reasons.append(f"Standard is SUPERSEDED by {val_info.successor_standard}")

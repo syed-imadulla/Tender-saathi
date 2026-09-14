@@ -9,20 +9,23 @@
     "date": null,
     "requirements_analyzed": 1
   },
-  "publication_readiness": "READY_FOR_REVIEW",
+  "publication_readiness": "REVIEW_REQUIRED",
   "readiness_reasons": [
-    "All 1 requirement(s) have grounded standards evidence with no critical or high risk flags."
+    "1 requirement(s) cite or match superseded standard(s).",
+    "1 requirement(s) flagged with HIGH risk.",
+    "1 requirement(s) require technical engineer review.",
+    "1 requirement(s) have potentially missing specification parameters."
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
     "tender_id": "SAMPLE-CPVC",
     "requirements_analyzed": 1,
-    "recommendations_count": 1,
-    "review_required_count": 0,
+    "recommendations_count": 0,
+    "review_required_count": 1,
     "insufficient_evidence_count": 0,
-    "superseded_count": 0,
+    "superseded_count": 1,
     "withdrawn_count": 0,
-    "active_count": 1,
+    "active_count": 0,
     "unknown_lifecycle_count": 0,
     "evidence_distribution": {
       "STRONG": 1,
@@ -37,43 +40,57 @@
       "NOT_APPLICABLE": 0
     },
     "risk_distribution": {
-      "LOW": 1,
+      "LOW": 0,
       "MEDIUM": 0,
-      "HIGH": 0,
+      "HIGH": 1,
       "CRITICAL": 0
     },
     "lifecycle_distribution": {
-      "Active": 1,
-      "Superseded": 0,
+      "Active": 0,
+      "Superseded": 1,
       "Withdrawn": 0,
       "Unknown": 0
     },
     "related_standards_count": 3,
-    "review_queue": [],
-    "publication_readiness": "READY_FOR_REVIEW",
+    "review_queue": [
+      {
+        "requirement_id": "REQ-001",
+        "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
+        "risk_level": "HIGH",
+        "decision": "REVIEW_REQUIRED",
+        "candidate_standard": "IS 15778 : 2007",
+        "evidence_strength": "STRONG",
+        "primary_reason": "Standard IS 15778 : 2007 has unverified lifecycle status in catalogue (UNKNOWN)",
+        "priority": 2
+      }
+    ],
+    "publication_readiness": "REVIEW_REQUIRED",
     "readiness_reasons": [
-      "All 1 requirement(s) have grounded standards evidence with no critical or high risk flags."
+      "1 requirement(s) cite or match superseded standard(s).",
+      "1 requirement(s) flagged with HIGH risk.",
+      "1 requirement(s) require technical engineer review.",
+      "1 requirement(s) have potentially missing specification parameters."
     ],
     "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
-    "dependency_count": 5,
+    "dependency_count": 3,
     "normative_reference_count": 0,
     "allied_standard_count": 1,
     "test_standard_count": 1,
-    "installation_standard_count": 3,
+    "installation_standard_count": 1,
     "verified_missing_count": 0,
     "potentially_missing_count": 2,
     "related_for_review_count": 1,
     "standards_coverage": {
       "direct_standards_identified": 1,
-      "total_dependencies": 5,
+      "total_dependencies": 3,
       "normative_references": 0,
       "testing_dependencies": 1,
-      "installation_dependencies": 3,
+      "installation_dependencies": 1,
       "allied_standards": 1,
       "covered_in_tender": 0,
       "potential_gaps": 2,
       "verified_gaps": 0,
-      "items_requiring_review": 0
+      "items_requiring_review": 1
     },
     "gap_summary": {
       "verified_missing_count": 0,
@@ -105,63 +122,26 @@
           "extracted_attributes": {
             "category": "pipe_material"
           }
-        },
-        {
-          "text": "CPVC fittings",
-          "component_type": "equipment",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "domain": "mechanical"
-          }
-        },
-        {
-          "text": "domestic hot water distribution",
-          "component_type": "application",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "is_process": false
-          }
-        },
-        {
-          "text": "domestic cold water distribution",
-          "component_type": "application",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "is_process": false
-          }
-        },
-        {
-          "text": "supply",
-          "component_type": "action",
-          "domain": "general",
-          "extracted_attributes": {}
-        },
-        {
-          "text": "installation",
-          "component_type": "action",
-          "domain": "general",
-          "extracted_attributes": {}
         }
       ],
       "recommended_standard": "IS 15778 : 2007",
-      "recommended_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
+      "recommended_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Distribution Supplies - Specification",
       "relevance_score": 1.0,
-      "lifecycle_status": "Active",
+      "lifecycle_status": "UNKNOWN",
       "successor_standard": null,
       "superseded_citation": null,
       "evidence_strength": "STRONG",
-      "provenance": "CURATED",
-      "evidence_text": "Tender explicitly requires compliance with IS 15778.",
+      "provenance": "VERIFIED",
+      "evidence_text": "Tender explicitly requires compliance with IS 15778 : 2007.",
       "evidence_source": "Tender Document",
       "why_this": [
-        "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.",
-        "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 15778.\"",
-        "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via Tender Document (VERIFIED).",
-        "Candidate addresses multiple decomposed technical aspects of the requirement."
+        "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Distribution Supplies - Specification'.",
+        "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 15778 : 2007.\"",
+        "Provenance established via Tender Document (VERIFIED)."
       ],
       "why_not": [
-        "Alternative standard IS 15905 has lower composite relevance (0.468 vs 1.000)."
+        "Alternative standard IS 17546 : 2021 has lower composite relevance (0.048 vs 1.000).",
+        "Alternative standard IS 17546 : 2021 lacks strong grounded scope evidence for this requirement."
       ],
       "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [
@@ -172,54 +152,56 @@
       "related_standards": [
         {
           "standard_number": "IS 12235 : 2004",
-          "title": "Title not in local index",
+          "title": "Thermoplastics Pipes and Fittings - Methods of Test (First Revision)",
           "relationship_type": "TEST_METHOD",
           "direction": "OUTGOING",
-          "lifecycle_status": "Unknown",
+          "lifecycle_status": "UNKNOWN",
           "provenance": "CURATED",
           "evidence_strength": "MODERATE",
           "evidence_text": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
-          "source_url": null,
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=3518",
           "review_note": "Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance."
         },
         {
           "standard_number": "IS 7634 (Part 3) : 2003",
-          "title": "Title not in local index",
+          "title": "Storage Units - Specification",
           "relationship_type": "INSTALLATION_STANDARD",
           "direction": "OUTGOING",
-          "lifecycle_status": "Unknown",
+          "lifecycle_status": "UNKNOWN",
           "provenance": "CURATED",
           "evidence_strength": "MODERATE",
           "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
-          "source_url": null,
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=27283",
           "review_note": "Installation, laying, and jointing standard associated with IS 7634 (Part 3) : 2003. Review for installation execution."
         },
         {
           "standard_number": "IS 4985 : 2000",
-          "title": "Title not in local index",
+          "title": "Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)",
           "relationship_type": "ALLIED_STANDARD",
           "direction": "OUTGOING",
-          "lifecycle_status": "Unknown",
+          "lifecycle_status": "UNKNOWN",
           "provenance": "CURATED",
           "evidence_strength": "MODERATE",
           "evidence_text": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
-          "source_url": null,
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=25898",
           "review_note": "Allied product or component standard. Review for equipment interface compatibility."
         }
       ],
-      "decision": "RECOMMEND",
-      "risk_level": "LOW",
-      "risk_reasons": [],
-      "human_review_required": false,
-      "confidence": "High",
-      "review_reason": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence.",
+      "decision": "REVIEW_REQUIRED",
+      "risk_level": "HIGH",
+      "risk_reasons": [
+        "Standard IS 15778 : 2007 has unverified lifecycle status in catalogue (UNKNOWN)"
+      ],
+      "human_review_required": true,
+      "confidence": "Low",
+      "review_reason": "Standard IS 15778 : 2007 has unverified lifecycle status in catalogue (UNKNOWN)",
       "candidate_standard": "IS 15778 : 2007",
       "evidence_standard": "IS 15778 : 2007",
-      "why_it_matches": "Tender explicitly requires compliance with IS 15778.",
+      "why_it_matches": "Tender explicitly requires compliance with IS 15778 : 2007.",
       "dependencies": [
         {
           "standard_number": "IS 12235 : 2004",
-          "title": "Title not in local index",
+          "title": "Thermoplastics Pipes and Fittings - Methods of Test (First Revision)",
           "relationship_type": "TEST_METHOD",
           "dependency_status": "TEST_DEPENDENCY",
           "direction": "OUTGOING",
@@ -229,7 +211,7 @@
           "evidence_text": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
           "source": "CURATED_STANDARDS_DOC",
           "confidence": 0.95,
-          "why_related": "IS 12235 : 2004 (Title not in local index) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778 : 2007. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED].",
+          "why_related": "IS 12235 : 2004 (Thermoplastics Pipes and Fittings - Methods of Test (First Revision)) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778 : 2007. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED].",
           "functional_category": "testing",
           "is_applicable_to_requirement": false,
           "applicability_decision": "REVIEW_REQUIRED",
@@ -237,11 +219,11 @@
           "evidence": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
           "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
           "applicability_assessment": "REVIEW_REQUIRED",
-          "explanation": "IS 12235 : 2004 (Title not in local index) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778 : 2007. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED]."
+          "explanation": "IS 12235 : 2004 (Thermoplastics Pipes and Fittings - Methods of Test (First Revision)) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778 : 2007. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED]."
         },
         {
           "standard_number": "IS 7634 (Part 3) : 2003",
-          "title": "Title not in local index",
+          "title": "Storage Units - Specification",
           "relationship_type": "INSTALLATION_STANDARD",
           "dependency_status": "INSTALLATION_DEPENDENCY",
           "direction": "OUTGOING",
@@ -251,7 +233,7 @@
           "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
           "source": "CURATED_STANDARDS_DOC",
           "confidence": 0.9,
-          "why_related": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed installation, laying, and execution standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
+          "why_related": "IS 7634 (Part 3) : 2003 (Storage Units - Specification) is identified as an evidence-backed installation, laying, and execution standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
           "functional_category": "installation",
           "is_applicable_to_requirement": true,
           "applicability_decision": "REVIEW_REQUIRED",
@@ -259,11 +241,11 @@
           "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
           "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
           "applicability_assessment": "REVIEW_REQUIRED",
-          "explanation": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed installation, laying, and execution standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
+          "explanation": "IS 7634 (Part 3) : 2003 (Storage Units - Specification) is identified as an evidence-backed installation, laying, and execution standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
         },
         {
           "standard_number": "IS 4985 : 2000",
-          "title": "Title not in local index",
+          "title": "Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)",
           "relationship_type": "ALLIED_STANDARD",
           "dependency_status": "ALLIED_DEPENDENCY",
           "direction": "OUTGOING",
@@ -273,7 +255,7 @@
           "evidence_text": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
           "source": "CURATED_STANDARDS_DOC",
           "confidence": 0.85,
-          "why_related": "IS 4985 : 2000 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED].",
+          "why_related": "IS 4985 : 2000 (Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED].",
           "functional_category": "allied",
           "is_applicable_to_requirement": false,
           "applicability_decision": "REVIEW_REQUIRED",
@@ -281,29 +263,7 @@
           "evidence": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
           "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
           "applicability_assessment": "REVIEW_REQUIRED",
-          "explanation": "IS 4985 : 2000 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED]."
-        },
-        {
-          "standard_number": "SP 57 (QAWSM) : 1993",
-          "title": "Handbook on Pipes and Fittings for Drinking Water Supply",
-          "relationship_type": "CODE_OF_PRACTICE",
-          "dependency_status": "INSTALLATION_DEPENDENCY",
-          "functional_category": "installation",
-          "evidence": "Curated reference standard for Handbook on Pipes and Fittings for Drinking Water Supply",
-          "is_satisfied": false,
-          "context_applicability": "APPLICABLE",
-          "provenance": "CURATED"
-        },
-        {
-          "standard_number": "IS 783 : 1985",
-          "title": "Code of Practice for Laying of Concrete Pipes",
-          "relationship_type": "INSTALLATION_STANDARD",
-          "dependency_status": "INSTALLATION_DEPENDENCY",
-          "functional_category": "installation",
-          "evidence": "1.1 This standard covers recommended design practice for the laying of precast concrete pipes. It includes methods for calculating loads on pipes according to installation conditions and gives the corresponding load factors. 1.1.1 This standard is intended primarily for use in association with IS : ",
-          "is_satisfied": false,
-          "context_applicability": "APPLICABLE",
-          "provenance": "VERIFIED"
+          "explanation": "IS 4985 : 2000 (Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED]."
         }
       ],
       "regulatory": {
@@ -378,11 +338,22 @@
           "additional_metadata": {}
         }
       },
-      "ambiguity_state": "CLEAR",
-      "ambiguity_reason": "Primary applicable standard IS 15778 is clearly identifiable and sufficiently supported."
+      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_reason": "Standard IS 15778 : 2007 has unverified lifecycle status in catalogue (UNKNOWN)"
     }
   ],
-  "review_queue": [],
+  "review_queue": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
+      "risk_level": "HIGH",
+      "decision": "REVIEW_REQUIRED",
+      "candidate_standard": "IS 15778 : 2007",
+      "evidence_strength": "STRONG",
+      "primary_reason": "Standard IS 15778 : 2007 has unverified lifecycle status in catalogue (UNKNOWN)",
+      "priority": 2
+    }
+  ],
   "evidence_summary": {
     "evidence_distribution": {
       "STRONG": 1,
@@ -391,8 +362,8 @@
       "NONE": 0
     },
     "provenance_distribution": {
-      "VERIFIED": 0,
-      "CURATED": 1,
+      "VERIFIED": 1,
+      "CURATED": 0,
       "INFERRED": 0,
       "UNKNOWN": 0
     },

@@ -62,6 +62,7 @@ class StandardIdentifierNormalizer:
 
     YEAR_PATTERN = re.compile(r':\s*(19\d\d|20\d\d)\b|[-_\s](19\d\d|20\d\d)\s*$')
     PART_SEC_PATTERN = re.compile(r'\(\s*(?:Part|Pt\.?)\s*(\d+)\s*(?:/|\s+)\s*(?:Sec\.?|Section)\s*(\d+)\s*\)', re.IGNORECASE)
+    PART_RANGE_PATTERN = re.compile(r'\(\s*(?:Parts?|Pt\.?)\s*(\d+)\s*(?:to|-)\s*(\d+)\s*\)', re.IGNORECASE)
     PART_PATTERN = re.compile(r'\(\s*(?:Part|Pt\.?)\s*(\d+)\s*\)|\b(?:Part|Pt\.?)\s*[-/]?\s*(\d+)\b', re.IGNORECASE)
     SECTION_PATTERN = re.compile(r'\(\s*(?:Sec\.?|Section)\s*(\d+)\s*\)|\b(?:Sec\.?|Section)\s*[-/]?\s*(\d+)\b', re.IGNORECASE)
     AMENDMENT_PATTERN = re.compile(r'\b(?:Amd\.?|Amendment)\s*[-/]?\s*(\d+)\b', re.IGNORECASE)
@@ -96,6 +97,9 @@ class StandardIdentifierNormalizer:
         # Normalize unicode / accent typo on 'ÍS' -> 'IS'
         if cleaned.startswith('ÍS') or cleaned.startswith('Ís'):
             cleaned = 'IS' + cleaned[2:]
+
+        # Separate prefix directly adjacent to digits (e.g. 'IS15778' -> 'IS 15778')
+        cleaned = re.sub(r'\b(IS|SP)(\d+)', r'\1 \2', cleaned, flags=re.IGNORECASE)
 
         # Check for recoverable bare digits: e.g. '16324 16324:2014' or '13360:2025'
         bare_match = re.match(r'^(\d+)(?:\s+\1)?(?:\s*:\s*|\s*-\s*)(19\d\d|20\d\d)', cleaned)
@@ -186,10 +190,15 @@ class StandardIdentifierNormalizer:
             section = int(psm.group(2))
             remainder = remainder[:psm.start()] + remainder[psm.end():]
         else:
-            part_match = cls.PART_PATTERN.search(remainder)
-            if part_match:
-                part = int(part_match.group(1) or part_match.group(2))
-                remainder = remainder[:part_match.start()] + remainder[part_match.end():]
+            prm = cls.PART_RANGE_PATTERN.search(remainder)
+            if prm:
+                part = int(prm.group(1))
+                remainder = remainder[:prm.start()] + remainder[prm.end():]
+            else:
+                part_match = cls.PART_PATTERN.search(remainder)
+                if part_match:
+                    part = int(part_match.group(1) or part_match.group(2))
+                    remainder = remainder[:part_match.start()] + remainder[part_match.end():]
 
             sec_match = cls.SECTION_PATTERN.search(remainder)
             if sec_match:
@@ -285,6 +294,88 @@ class StandardIdentifierNormalizer:
                 return parsed_a.year == parsed_b.year
 
         return True
+
+    @classmethod
+    def parse_archive_identifier(cls, archive_id: str) -> Optional[CanonicalStandardIdentifier]:
+        """
+        Parses an Internet Archive / Public.Resource.Org identifier into a CanonicalStandardIdentifier.
+        Accepted shapes:
+          - gov.in.is.<base>[.<part>[.<sec>]].<year>
+          - gov.in.sp.<base>.<year>
+        Example:
+          'gov.in.is.1554.1.1988' -> IS 1554 (Part 1) : 1988
+          'gov.in.is.302.2.21.2018' -> IS 302 (Part 2) (Sec 21) : 2018
+        """
+        if not archive_id or not isinstance(archive_id, str):
+            return None
+        parts = archive_id.strip().lower().split(".")
+        if len(parts) < 4 or parts[0] != "gov" or parts[1] != "in":
+            return None
+        
+        prefix_str = parts[2].upper()
+        remainder = parts[3:]
+        
+        # Check if last token is a 4-digit publication year
+        year = None
+        if remainder and len(remainder[-1]) == 4 and remainder[-1].isdigit():
+            year = remainder[-1]
+            tokens = remainder[:-1]
+        else:
+            tokens = remainder
+            
+        if not tokens:
+            return None
+            
+        base_num = tokens[0]
+        part = None
+        sec = None
+        if len(tokens) == 2:
+            part = tokens[1]
+        elif len(tokens) >= 3:
+            part = tokens[1]
+            sec = tokens[2]
+            
+        std_str = f"{prefix_str} {base_num}"
+        if part and sec:
+            std_str += f" (Part {part}/Sec {sec})"
+        elif part:
+            std_str += f" (Part {part})"
+        if year:
+            std_str += f" : {year}"
+            
+        parsed = cls.parse(std_str)
+        return parsed if parsed.is_valid else None
+
+    @classmethod
+    def matches_identity_without_year(
+        cls,
+        a: CanonicalStandardIdentifier,
+        b: CanonicalStandardIdentifier
+    ) -> bool:
+        """
+        Returns True if base standard identity (prefix, base_number, part, section)
+        matches exactly, regardless of publication year.
+        Guarantees that IS 5039 != IS 15039 and IS 7098 Part 1 != IS 7098 Part 2.
+        """
+        if not a or not b or not a.is_valid or not b.is_valid:
+            return False
+        return (
+            a.prefix.upper() == b.prefix.upper() and
+            a.base_number == b.base_number and
+            a.part == b.part and
+            a.section == b.section
+        )
+
+    @classmethod
+    def matches_exact_identity(
+        cls,
+        a: CanonicalStandardIdentifier,
+        b: CanonicalStandardIdentifier
+    ) -> bool:
+        """
+        Returns True if full standard identity including edition year matches exactly.
+        """
+        return cls.matches_identity_without_year(a, b) and (a.year == b.year)
 
     @classmethod
     def normalize_identifier(cls, standard_str: str) -> str:

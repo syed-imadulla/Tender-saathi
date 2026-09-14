@@ -1,0 +1,14 @@
+{
+  "snapshot_id": "snapshot_20260914_055426",
+  "created_at": "2026-09-14T09:33:54.688869+00:00",
+  "record_count": 35208,
+  "validation_status": "VALIDATED",
+  "files": {
+    "bis_catalogue.db": "bd04dab6f7d5cd4ea58fa69c917b1fa5d375f721ee4ec03691dfc7eb1b0850b3",
+    "bis_bm25_index.json": "2ad456b4e7afc612c92910d50ea80b31e6fbfbe586e54d952ed193bcccf0ae62",
+    "bis_semantic_embeddings.npy": "216c40ac0ac8a685c44a55dfb07fc46354eb7d14d10acfb3e5514979c9dc41be",
+    "bis_semantic_doc_ids.json": "ad002bd38378140f2199be48e52c94847f6f8b4e68ec63ae35313baf31525937",
+    "bis_semantic_doc_hashes.json": "8c459e6dcfa8b36267457b620b5323b735f55f93503f14ae75ec9850b0d88f3a",
+    "bis_index_manifest.json": "4bc860ae57ceb8eeaa42c17bd172fc1edfd01bc52d049395802aca8602188c90"
+  }
+}

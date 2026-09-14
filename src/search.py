@@ -52,6 +52,21 @@ class StandardsSearchEngine:
 
     def __init__(self, db: Optional[StandardsDatabase] = None):
         self.db = db or StandardsDatabase()
+        self._standards_cache: Optional[List[Dict[str, Any]]] = None
+
+    def _get_all_standards(self, cursor) -> List[Dict[str, Any]]:
+        if self._standards_cache is None:
+            cursor.execute("SELECT * FROM standards")
+            rows = cursor.fetchall()
+            cache = []
+            for r in rows:
+                d = dict(r)
+                d["_title_lower"] = (d.get("full_title") or "").lower()
+                d["_scope_lower"] = (d.get("scope") or "").lower()
+                d["_notes_lower"] = (d.get("notes") or "").lower()
+                cache.append(d)
+            self._standards_cache = cache
+        return self._standards_cache
 
     def search(self, query: str, top_k: int = 5, components: Optional[List[Any]] = None) -> List[SearchResult]:
         query_clean = query.strip()
@@ -82,13 +97,19 @@ class StandardsSearchEngine:
                     exact_numbers.append(num_match.group(0))
 
             # Also check if query targets a standard that was superseded (e.g., "IS 10611")
-            cursor.execute("""
-            SELECT s.*, r.relationship_type, r.evidence as rel_evidence, r.target_standard
-            FROM standards s
-            JOIN standard_relationships r ON s.standard_id = r.source_standard_id
-            WHERE r.relationship_type = 'SUPERSEDES' AND r.target_standard LIKE ?
-            """, (f"%{query_clean}%",))
-            superseding_rows = cursor.fetchall()
+            # Only query standard_relationships if the table exists
+            cursor.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='standard_relationships'")
+            has_rel_table = cursor.fetchone() is not None
+
+            superseding_rows = []
+            if has_rel_table:
+                cursor.execute("""
+                SELECT s.*, r.relationship_type, r.evidence as rel_evidence, r.target_standard
+                FROM standards s
+                JOIN standard_relationships r ON s.standard_id = r.source_standard_id
+                WHERE r.relationship_type = 'SUPERSEDES' AND r.target_standard LIKE ?
+                """, (f"%{query_clean}%",))
+                superseding_rows = cursor.fetchall()
 
             for row in superseding_rows:
                 r_dict = dict(row)
@@ -156,23 +177,101 @@ class StandardsSearchEngine:
                         has_industrial_or_mv = True
                         break
 
-            cursor.execute("SELECT * FROM standards")
-            all_standards = cursor.fetchall()
+            # Use targeted queries to fetch candidate pool instead of O(N) scanning
+            candidate_dicts = {}
+            
+            def add_candidates(sql: str, params: tuple):
+                try:
+                    cursor.execute(sql, params)
+                    for row in cursor.fetchall():
+                        d = dict(row)
+                        std_id = d["standard_id"]
+                        if std_id not in candidate_dicts:
+                            d["_title_lower"] = (d.get("full_title") or "").lower()
+                            d["_scope_lower"] = (d.get("scope") or "").lower()
+                            d["_notes_lower"] = (d.get("notes") or "").lower()
+                            candidate_dicts[std_id] = d
+                except Exception as e:
+                    pass
 
-            for row in all_standards:
-                r_dict = dict(row)
+            # A. Exact Phrase & Standard Number
+            exact_query = f"%{query_clean}%"
+            add_candidates("SELECT * FROM standards WHERE standard_number LIKE ? OR standard_id LIKE ? OR full_title LIKE ? OR scope LIKE ? LIMIT 100", (exact_query, exact_query, exact_query, exact_query))
+
+            # A.2 Explicit Citation Resolution
+            from src.citation_resolver import ExactCitationResolver, CitationPrecedence
+            citation_resolver = ExactCitationResolver(db=self.db)
+            resolved_citations = citation_resolver.resolve_from_text(query_clean)
+            resolved_ids = {rc.canonical_id: rc for rc in resolved_citations}
+            for rc in resolved_citations:
+                add_candidates("SELECT * FROM standards WHERE standard_id = ? OR standard_number = ? LIMIT 5", (rc.canonical_id, rc.standard_number))
+
+            # B. Components
+            if components:
+                for c in components:
+                    c_text = getattr(c, "text", "")
+                    if len(c_text) > 2:
+                        c_like = f"%{c_text}%"
+                        add_candidates("SELECT * FROM standards WHERE standard_number LIKE ? OR full_title LIKE ? OR scope LIKE ? OR notes LIKE ? LIMIT 100", (c_like, c_like, c_like, c_like))
+            
+            # C. Domain Keywords
+            domain_keywords = ["cpvc", "hubless", "haccp", "sluice", "vitrified", "flange", "earthing", "sewerage", "plaster", "insulation", "sanitary", "pillar", "cable", "vfd", "pump"]
+            for dt in domain_keywords:
+                if dt in query_clean.lower():
+                    dt_like = f"%{dt}%"
+                    add_candidates("SELECT * FROM standards WHERE full_title LIKE ? OR scope LIKE ? LIMIT 100", (dt_like, dt_like))
+            
+            # D. Token Overlap via FTS5 (if exists) or LIKE
+            if effective_tokens:
+                fts_terms = " OR ".join(f'"{t}"' for t in effective_tokens)
+                if fts_terms:
+                    # Check if fts_standards exists
+                    cursor.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='fts_standards'")
+                    if cursor.fetchone():
+                        add_candidates(
+                            "SELECT s.* FROM standards s JOIN fts_standards f ON s.standard_id = f.standard_id WHERE fts_standards MATCH ? LIMIT 150", 
+                            (fts_terms,)
+                        )
+                    else:
+                        # Fallback for tokens
+                        for t in effective_tokens:
+                            if len(t) > 3:
+                                t_like = f"%{t}%"
+                                add_candidates("SELECT * FROM standards WHERE standard_number LIKE ? OR full_title LIKE ? LIMIT 50", (t_like, t_like))
+
+            for r_dict in candidate_dicts.values():
                 if any(res.standard_id == r_dict["standard_id"] for res in results):
                     continue
 
-                title_lower = (r_dict["full_title"] or "").lower()
-                scope_lower = (r_dict["scope"] or "").lower()
-                notes_lower = (r_dict["notes"] or "").lower()
+                title_lower = r_dict.get("_title_lower", "")
+                scope_lower = r_dict.get("_scope_lower", "")
+                notes_lower = r_dict.get("_notes_lower", "")
                 std_num = r_dict["standard_number"]
 
                 # Domain conflict filter: exclude agricultural irrigation pump standards when
                 # requirement specifies medium voltage (3.3 kV), VFD drives, or industrial process pumps
                 is_agri = "agriculture" in title_lower or "agricultural" in title_lower
                 if is_agri and has_industrial_or_mv:
+                    continue
+
+                # Explicit authoritative citation match
+                sid = r_dict["standard_id"]
+                if sid in resolved_ids:
+                    rc = resolved_ids[sid]
+                    results.append(self._format_result(
+                        r_dict,
+                        score=0.99,
+                        reason=f"Authoritative BIS Citation ({rc.precedence}): {rc.raw_citation}"
+                    ))
+                    continue
+
+                # Exact standard number match
+                if query_clean.lower() in std_num.lower():
+                    results.append(self._format_result(
+                        r_dict,
+                        score=0.96,
+                        reason=f"Exact query match on standard number: '{std_num}'"
+                    ))
                     continue
 
                 # Exact phrase in title or scope
@@ -221,9 +320,9 @@ class StandardsSearchEngine:
                                 matched_components += 1
                                 comp_reasons.append(f"Component '{c.text}' in scope/notes")
 
-                # Distinctive domain noun match (e.g. "cpvc", "hubless", "haccp", "sluice valve")
+                # Distinctive domain noun match
                 domain_hits = []
-                for dt in ["cpvc", "hubless", "haccp", "sluice", "vitrified", "flange", "earthing", "sewerage", "plaster", "insulation", "sanitary", "pillar", "cable", "vfd", "pump"]:
+                for dt in domain_keywords:
                     if dt in query_clean.lower() and (dt in title_lower or dt in scope_lower):
                         domain_hits.append(dt)
 
@@ -280,8 +379,8 @@ class StandardsSearchEngine:
         return results[:top_k]
 
     def _format_result(self, row_dict: Dict[str, Any], score: float, reason: str) -> SearchResult:
-        std_id = row_dict["standard_id"]
-        status = row_dict["status"]
+        std_id = row_dict.get("standard_id", "")
+        status = row_dict.get("status", "Active")
 
         # Determine version role based on status and explicit evidence
         if status.lower() == "active":
@@ -303,11 +402,15 @@ class StandardsSearchEngine:
         scope = row_dict.get("scope") or ""
         scope_summary = (scope[:220] + "...") if len(scope) > 220 else scope
 
+        ver_status = row_dict.get("verification_status", "VERIFIED")
+        source_val = row_dict.get("source", "BIS")
+        url_val = row_dict.get("source_url") or "local"
+
         return SearchResult(
             standard_id=std_id,
-            standard_number=row_dict["standard_number"],
+            standard_number=row_dict.get("standard_number", ""),
             year=row_dict.get("year"),
-            full_title=row_dict["full_title"],
+            full_title=row_dict.get("full_title", ""),
             status=status,
             version_role=version_role,
             relevance_score=score,
@@ -315,8 +418,8 @@ class StandardsSearchEngine:
             scope_summary=scope_summary,
             referenced_standards=ref_names[:10], # Top 10 references
             explicit_relationships=rel_list,
-            verification_status=row_dict["verification_status"],
-            source_provenance=f"{row_dict['source']} ({row_dict.get('source_url') or 'local'})",
+            verification_status=ver_status,
+            source_provenance=f"{source_val} ({url_val})",
             deterministic_score=score,
             final_score=score
         )

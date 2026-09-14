@@ -1,0 +1,145 @@
+{
+  "phase": "PHASE 4R4 \u2014 BIS INGESTION + IDENTITY INTEGRITY",
+  "generated_at": "2026-09-14T09:40:59.041338+00:00",
+  "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.43",
+  "python_version": "3.14.4",
+  "gates": {
+    "gate_01_bis_acquisition_completed": "PASS",
+    "gate_02_all_seeds_reconciled": "PASS",
+    "gate_03_pagination_complete": "PASS",
+    "gate_04_raw_data_persisted": "PASS",
+    "gate_05_staging_db_valid": "PASS",
+    "gate_06_pragma_integrity_check_ok": "PASS",
+    "gate_07_canonical_ids_unique": "PASS",
+    "gate_08_malformed_records_handled_explicitly": "PASS",
+    "gate_09_full_text_identity_verified": "PASS",
+    "gate_10_no_sibling_identity_bleed": "PASS",
+    "gate_11_edition_mismatch_explicitly_represented": "PASS",
+    "gate_12_bis_metadata_separated_from_external_provenance": "PASS",
+    "gate_13_index_identity_reversible": "PASS",
+    "gate_14_no_orphan_index_documents": "PASS",
+    "gate_15_snapshot_manifest_generated": "PASS",
+    "gate_16_artifact_hashes_generated": "PASS",
+    "gate_17_identity_audit_passes": "PASS",
+    "gate_18_frozen_files_unchanged": "PASS",
+    "gate_19_failed_promotion_leaves_current_unchanged": "PASS",
+    "gate_20_successful_promotion_changes_current_atomically": "PASS",
+    "gate_21_api_reports_actual_snapshot": "PASS",
+    "gate_22_all_relevant_tests_pass": "PASS"
+  },
+  "metrics": {
+    "frozen_files": {
+      "ground_truth_sha256": "cfcbca27a729bd0619886be9128cfba272b912bd21115604b45af7eb59fa404b",
+      "ground_truth_expected": "cfcbca27a729bd0619886be9128cfba272b912bd21115604b45af7eb59fa404b",
+      "ground_truth_match": true,
+      "ground_truth_bytes": 17990,
+      "catalogue_db_sha256": "bbd0b58a112f1755e77dda04fed56e87dff7fe7eb06975491ac4e023ebc35dd1",
+      "catalogue_db_expected": "bbd0b58a112f1755e77dda04fed56e87dff7fe7eb06975491ac4e023ebc35dd1",
+      "catalogue_db_match": true,
+      "catalogue_db_bytes": 806912,
+      "raw_pages_count": 186,
+      "raw_pages_expected": 186,
+      "status": "PASS"
+    },
+    "staging_database": {
+      "snapshot_id": "snapshot_20260914_094047",
+      "db_path": "data/catalogue/snapshots/snapshot_20260914_094047/bis_catalogue.db",
+      "pragma_integrity_check": "ok",
+      "total_records": 35208,
+      "unique_standard_ids": 35208,
+      "null_or_empty_ids": 0,
+      "has_fulltext_table": true,
+      "has_chunks_table": true,
+      "status": "PASS"
+    },
+    "index_identity": {
+      "db_canonical_ids_count": 35208,
+      "bm25_doc_ids_count": 35208,
+      "bm25_unique_canonical_ids": 35208,
+      "semantic_doc_ids_count": 35208,
+      "semantic_unique_canonical_ids": 35208,
+      "db_equals_bm25_cids": true,
+      "db_equals_semantic_cids": true,
+      "orphan_bm25_docs": 0,
+      "orphan_semantic_docs": 0,
+      "status": "PASS"
+    },
+    "snapshot_manifest": {
+      "manifest_path": "data/catalogue/snapshots/snapshot_20260914_094047/snapshot_manifest.json",
+      "files_verified": {
+        "bis_catalogue.db": {
+          "status": "PASS",
+          "sha256": "73a947a87ecd14f9bffc2cd84627f9708c06f1afc39110d884f49fb23b784311",
+          "bytes": 41009152
+        },
+        "bis_bm25_index.json": {
+          "status": "PASS",
+          "sha256": "2ad456b4e7afc612c92910d50ea80b31e6fbfbe586e54d952ed193bcccf0ae62",
+          "bytes": 35376861
+        },
+        "bis_semantic_embeddings.npy": {
+          "status": "PASS",
+          "sha256": "216c40ac0ac8a685c44a55dfb07fc46354eb7d14d10acfb3e5514979c9dc41be",
+          "bytes": 54079616
+        },
+        "bis_semantic_doc_ids.json": {
+          "status": "PASS",
+          "sha256": "ad002bd38378140f2199be48e52c94847f6f8b4e68ec63ae35313baf31525937",
+          "bytes": 699387
+        },
+        "bis_semantic_doc_hashes.json": {
+          "status": "PASS",
+          "sha256": "8c459e6dcfa8b36267457b620b5323b735f55f93503f14ae75ec9850b0d88f3a",
+          "bytes": 1403547
+        },
+        "bis_index_manifest.json": {
+          "status": "PASS",
+          "sha256": "4bc860ae57ceb8eeaa42c17bd172fc1edfd01bc52d049395802aca8602188c90",
+          "bytes": 270
+        }
+      },
+      "all_hashes_match": true,
+      "status": "PASS"
+    },
+    "identity_audit": {
+      "benchmark_standards_checked": 39,
+      "benchmark_standards_passed": 39,
+      "benchmark_audit_pass": true,
+      "negative_collision_pairs_checked": 7,
+      "negative_collision_pairs_passed": 7,
+      "collision_audit_pass": true,
+      "status": "PASS"
+    },
+    "api_endpoint": {
+      "endpoint": "/api/catalogue/status",
+      "http_status": 200,
+      "response": {
+        "catalogue_snapshot_id": "snapshot_20260914_094047",
+        "full_text_count": 0,
+        "historical_edition_count": 0,
+        "last_successful_sync": "2026-09-14T09:40:48.806949+00:00",
+        "metadata_only_count": 0,
+        "record_count": 35208,
+        "source_description": "Latest successfully synchronized BIS catalogue snapshot",
+        "status": "ok",
+        "validation_status": "VALIDATED"
+      },
+      "status": "PASS"
+    }
+  },
+  "artifacts": {},
+  "test_results": {
+    "phase4_r4_test_suite": {
+      "command": "pytest tests/test_phase4_r4_ingestion_and_identity.py -v",
+      "return_code": 0,
+      "passed": true,
+      "total_tests": 26,
+      "passed_tests": 26,
+      "stdout_summary": [
+        "============================== 26 passed in 2.70s =============================="
+      ]
+    }
+  },
+  "final_verdict": "PHASE 4R4 COMPLETE \u2014 VERIFIED",
+  "execution_duration_sec": 5.54
+}

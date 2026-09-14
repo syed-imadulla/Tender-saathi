@@ -74,10 +74,13 @@ _audit_engine: Optional[TenderAuditEngine] = None
 _report_gen: Optional[ReportGenerator] = None
 
 
+from src.catalogue.provider import get_default_catalogue_provider
+
+
 def get_recommender() -> StandardsRecommender:
     global _recommender
     if _recommender is None:
-        _recommender = StandardsRecommender()
+        _recommender = StandardsRecommender(db=get_default_catalogue_provider())
     return _recommender
 
 
@@ -474,6 +477,29 @@ def health():
         "status": "ok",
         "service": "TenderSaathi API",
         "timestamp": datetime.utcnow().isoformat() + "Z",
+    })
+
+
+@app.route("/api/catalogue/status", methods=["GET"])
+def catalogue_status():
+    from src.catalogue.snapshot_manager import SnapshotManager
+    mgr = SnapshotManager()
+    curr = mgr.get_current_snapshot()
+    if not curr:
+        return jsonify({
+            "status": "UNAVAILABLE",
+            "message": "No active catalogue snapshot found."
+        }), 503
+    return jsonify({
+        "status": "ok",
+        "source_description": "Latest successfully synchronized BIS catalogue snapshot",
+        "catalogue_snapshot_id": curr.get("snapshot_id"),
+        "last_successful_sync": curr.get("promoted_at"),
+        "record_count": curr.get("record_count"),
+        "full_text_count": curr.get("full_text_count"),
+        "metadata_only_count": curr.get("metadata_only_count"),
+        "historical_edition_count": curr.get("historical_edition_count"),
+        "validation_status": curr.get("validation_status"),
     })
 
 

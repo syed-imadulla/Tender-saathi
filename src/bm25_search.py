@@ -83,7 +83,7 @@ class BM25Index:
         self.total_docs: int = 0
         self.idf_cache: Dict[str, float] = {}
 
-    def build_from_db(self, db: StandardsDatabase):
+    def build_from_db(self, db: StandardsDatabase, cache_filename: Optional[str] = None):
         """Indexes all standards from the SQLite database with persistent caching."""
         import json
         import os
@@ -96,7 +96,14 @@ class BM25Index:
         self.idf_cache.clear()
 
         cache_dir = os.path.dirname(os.path.abspath(db.db_path))
-        cache_path = os.path.join(cache_dir, "bm25_index.json")
+        if cache_filename:
+            cache_path = os.path.join(cache_dir, cache_filename)
+        else:
+            db_base = os.path.basename(db.db_path)
+            if "bis" in db_base.lower():
+                cache_path = os.path.join(cache_dir, "bis_bm25_index.json")
+            else:
+                cache_path = os.path.join(cache_dir, "bm25_index.json")
 
         with db._get_connection() as conn:
             cursor = conn.cursor()
@@ -110,7 +117,7 @@ class BM25Index:
             try:
                 with open(cache_path, "r", encoding="utf-8") as f:
                     cached = json.load(f)
-                if cached.get("doc_ids") == current_ids:
+                if cached.get("doc_ids") == current_ids and cached.get("total_docs") == len(current_ids):
                     self.doc_ids = cached["doc_ids"]
                     self.doc_records = cached["doc_records"]
                     self.doc_lengths = cached["doc_lengths"]
@@ -137,9 +144,10 @@ class BM25Index:
             scope = r.get("scope") or ""
             notes = r.get("notes") or ""
             tc = r.get("technical_committee") or ""
+            aspect = r.get("aspect") or ""
 
             # Repeat standard number & title to give them natural field weighting
-            doc_content = f"{std_num} {std_num} {title} {title} {scope} {notes} {tc}"
+            doc_content = f"{std_num} {std_num} {doc_id} {title} {title} {scope} {notes} {tc} {aspect}"
             tokens = tokenize(doc_content)
             doc_len = len(tokens)
             self.doc_lengths[doc_id] = doc_len
@@ -230,10 +238,16 @@ class BM25Index:
 class BM25SearchEngine:
     """High-level BM25 search interface with score normalization and candidate filtering."""
 
-    def __init__(self, db: Optional[StandardsDatabase] = None, k1: float = 1.5, b: float = 0.75):
+    def __init__(
+        self,
+        db: Optional[StandardsDatabase] = None,
+        k1: float = 1.5,
+        b: float = 0.75,
+        cache_filename: Optional[str] = None
+    ):
         self.db = db or StandardsDatabase()
         self.index = BM25Index(k1=k1, b=b)
-        self.index.build_from_db(self.db)
+        self.index.build_from_db(self.db, cache_filename=cache_filename)
 
     def search(self, query: str, top_k: int = 10) -> List[BM25Hit]:
         """Searches BM25 index and returns top_k BM25Hit objects."""

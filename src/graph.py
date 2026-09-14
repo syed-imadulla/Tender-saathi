@@ -156,66 +156,24 @@ class StandardsGraph:
         with self.db._get_connection() as conn:
             cursor = conn.cursor()
 
+            cursor.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='standard_relationships'")
+            has_rel_table = cursor.fetchone() is not None
+
+            cursor.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='standard_references'")
+            has_ref_table = cursor.fetchone() is not None
+
             # 1. Outgoing from standard_relationships table
-            cursor.execute("""
-            SELECT s.standard_number AS src_num, s.year AS src_yr, s.verification_status, s.source_url,
-                   r.target_standard, r.relationship_type, r.evidence
-            FROM standard_relationships r
-            JOIN standards s ON s.standard_id = r.source_standard_id
-            WHERE s.standard_id = ? OR s.standard_number LIKE ? OR s.standard_id LIKE ?
-            """, (norm_id, f"%{norm_id}%", f"%{digits}%" if digits else norm_id))
+            if has_rel_table:
+                cursor.execute("""
+                SELECT s.standard_number AS src_num, s.year AS src_yr, s.verification_status, s.source_url,
+                       r.target_standard, r.relationship_type, r.evidence
+                FROM standard_relationships r
+                JOIN standards s ON s.standard_id = r.source_standard_id
+                WHERE s.standard_id = ? OR s.standard_number LIKE ? OR s.standard_id LIKE ?
+                """, (norm_id, f"%{norm_id}%", f"%{digits}%" if digits else norm_id))
 
-            for row in cursor.fetchall():
-                src_repr = f"{row['src_num']} : {row['src_yr']}" if row['src_yr'] else row['src_num']
-                add_rel(StandardRelationship(
-                    source_standard=src_repr,
-                    target_standard=row['target_standard'],
-                    relationship_type=row['relationship_type'],
-                    evidence=row['evidence'],
-                    provenance=row['verification_status'] or "CURATED",
-                    source_url=row['source_url'],
-                    confidence=1.0 if row['verification_status'] == "VERIFIED" else 0.85,
-                    direction="OUTGOING",
-                    source="SQLITE_DB"
-                ))
-
-            # 2. Outgoing Normative References from standard_references table
-            cursor.execute("""
-            SELECT s.standard_number AS src_num, s.year AS src_yr, s.verification_status, s.source_url,
-                   ref.referenced_standard_number, ref.referenced_year, ref.referenced_title, ref.citing_clause
-            FROM standard_references ref
-            JOIN standards s ON s.standard_id = ref.standard_id
-            WHERE s.standard_id = ? OR s.standard_number LIKE ? OR s.standard_id LIKE ?
-            """, (norm_id, f"%{norm_id}%", f"%{digits}%" if digits else norm_id))
-
-            for row in cursor.fetchall():
-                src_repr = f"{row['src_num']} : {row['src_yr']}" if row['src_yr'] else row['src_num']
-                tgt_repr = f"{row['referenced_standard_number']} : {row['referenced_year']}" if row['referenced_year'] else row['referenced_standard_number']
-                clause_info = row['citing_clause'] or "Normative References"
-                add_rel(StandardRelationship(
-                    source_standard=src_repr,
-                    target_standard=tgt_repr,
-                    relationship_type="REFERENCES",
-                    evidence=f"Cited under {clause_info} in {src_repr}.",
-                    provenance=row['verification_status'] or "VERIFIED",
-                    source_url=row['source_url'],
-                    confidence=0.95 if row['verification_status'] == "VERIFIED" else 0.80,
-                    direction="OUTGOING",
-                    source="SQLITE_DB"
-                ))
-
-            # 3. Incoming relationships from standard_relationships table
-            cursor.execute("""
-            SELECT s.standard_number AS src_num, s.year AS src_yr, s.verification_status, s.source_url,
-                   r.target_standard, r.relationship_type, r.evidence
-            FROM standard_relationships r
-            JOIN standards s ON s.standard_id = r.source_standard_id
-            WHERE r.target_standard LIKE ? OR ( ? != '' AND r.target_standard LIKE ? )
-            """, (f"%{norm_id}%", digits or "", f"%{digits}%" if digits else ""))
-
-            for row in cursor.fetchall():
-                src_repr = f"{row['src_num']} : {row['src_yr']}" if row['src_yr'] else row['src_num']
-                if src_repr != norm_id:
+                for row in cursor.fetchall():
+                    src_repr = f"{row['src_num']} : {row['src_yr']}" if row['src_yr'] else row['src_num']
                     add_rel(StandardRelationship(
                         source_standard=src_repr,
                         target_standard=row['target_standard'],
@@ -224,35 +182,87 @@ class StandardsGraph:
                         provenance=row['verification_status'] or "CURATED",
                         source_url=row['source_url'],
                         confidence=1.0 if row['verification_status'] == "VERIFIED" else 0.85,
-                        direction="INCOMING",
+                        direction="OUTGOING",
                         source="SQLITE_DB"
                     ))
 
-            # 4. Incoming references from standard_references table
-            cursor.execute("""
-            SELECT s.standard_number AS src_num, s.year AS src_yr, s.verification_status, s.source_url,
-                   ref.referenced_standard_number, ref.referenced_year, ref.referenced_title, ref.citing_clause
-            FROM standard_references ref
-            JOIN standards s ON s.standard_id = ref.standard_id
-            WHERE ref.referenced_standard_number LIKE ? OR ( ? != '' AND ref.referenced_standard_number LIKE ? )
-            """, (f"%{norm_id}%", digits or "", f"%{digits}%" if digits else ""))
+            # 2. Outgoing Normative References from standard_references table
+            if has_ref_table:
+                cursor.execute("""
+                SELECT s.standard_number AS src_num, s.year AS src_yr, s.verification_status, s.source_url,
+                       ref.referenced_standard_number, ref.referenced_year, ref.referenced_title, ref.citing_clause
+                FROM standard_references ref
+                JOIN standards s ON s.standard_id = ref.standard_id
+                WHERE s.standard_id = ? OR s.standard_number LIKE ? OR s.standard_id LIKE ?
+                """, (norm_id, f"%{norm_id}%", f"%{digits}%" if digits else norm_id))
 
-            for row in cursor.fetchall():
-                src_repr = f"{row['src_num']} : {row['src_yr']}" if row['src_yr'] else row['src_num']
-                tgt_repr = f"{row['referenced_standard_number']} : {row['referenced_year']}" if row['referenced_year'] else row['referenced_standard_number']
-                if src_repr != norm_id:
+                for row in cursor.fetchall():
+                    src_repr = f"{row['src_num']} : {row['src_yr']}" if row['src_yr'] else row['src_num']
+                    tgt_repr = f"{row['referenced_standard_number']} : {row['referenced_year']}" if row['referenced_year'] else row['referenced_standard_number']
                     clause_info = row['citing_clause'] or "Normative References"
                     add_rel(StandardRelationship(
                         source_standard=src_repr,
                         target_standard=tgt_repr,
                         relationship_type="REFERENCES",
-                        evidence=f"Cited as normative reference in {src_repr} ({clause_info}).",
+                        evidence=f"Cited under {clause_info} in {src_repr}.",
                         provenance=row['verification_status'] or "VERIFIED",
                         source_url=row['source_url'],
-                        confidence=0.90 if row['verification_status'] == "VERIFIED" else 0.75,
-                        direction="INCOMING",
+                        confidence=0.95 if row['verification_status'] == "VERIFIED" else 0.80,
+                        direction="OUTGOING",
                         source="SQLITE_DB"
                     ))
+
+            # 3. Incoming relationships from standard_relationships table
+            if has_rel_table:
+                cursor.execute("""
+                SELECT s.standard_number AS src_num, s.year AS src_yr, s.verification_status, s.source_url,
+                       r.target_standard, r.relationship_type, r.evidence
+                FROM standard_relationships r
+                JOIN standards s ON s.standard_id = r.source_standard_id
+                WHERE r.target_standard LIKE ? OR ( ? != '' AND r.target_standard LIKE ? )
+                """, (f"%{norm_id}%", digits or "", f"%{digits}%" if digits else ""))
+
+                for row in cursor.fetchall():
+                    src_repr = f"{row['src_num']} : {row['src_yr']}" if row['src_yr'] else row['src_num']
+                    if src_repr != norm_id:
+                        add_rel(StandardRelationship(
+                            source_standard=src_repr,
+                            target_standard=row['target_standard'],
+                            relationship_type=row['relationship_type'],
+                            evidence=row['evidence'],
+                            provenance=row['verification_status'] or "CURATED",
+                            source_url=row['source_url'],
+                            confidence=1.0 if row['verification_status'] == "VERIFIED" else 0.85,
+                            direction="INCOMING",
+                            source="SQLITE_DB"
+                        ))
+
+            # 4. Incoming references from standard_references table
+            if has_ref_table:
+                cursor.execute("""
+                SELECT s.standard_number AS src_num, s.year AS src_yr, s.verification_status, s.source_url,
+                       ref.referenced_standard_number, ref.referenced_year, ref.referenced_title, ref.citing_clause
+                FROM standard_references ref
+                JOIN standards s ON s.standard_id = ref.standard_id
+                WHERE ref.referenced_standard_number LIKE ? OR ( ? != '' AND ref.referenced_standard_number LIKE ? )
+                """, (f"%{norm_id}%", digits or "", f"%{digits}%" if digits else ""))
+
+                for row in cursor.fetchall():
+                    src_repr = f"{row['src_num']} : {row['src_yr']}" if row['src_yr'] else row['src_num']
+                    tgt_repr = f"{row['referenced_standard_number']} : {row['referenced_year']}" if row['referenced_year'] else row['referenced_standard_number']
+                    if src_repr != norm_id:
+                        clause_info = row['citing_clause'] or "Normative References"
+                        add_rel(StandardRelationship(
+                            source_standard=src_repr,
+                            target_standard=tgt_repr,
+                            relationship_type="REFERENCES",
+                            evidence=f"Cited as normative reference in {src_repr} ({clause_info}).",
+                            provenance=row['verification_status'] or "VERIFIED",
+                            source_url=row['source_url'],
+                            confidence=0.95 if row['verification_status'] == "VERIFIED" else 0.80,
+                            direction="INCOMING",
+                            source="SQLITE_DB"
+                        ))
 
         # 5. Supplementary relationships from relationships.json
         file_rels = self._load_file_relationships()

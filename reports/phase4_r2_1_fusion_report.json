@@ -1,0 +1,787 @@
+{
+  "timestamp": "2026-09-14T07:58:57.511305+00:00",
+  "total_catalogue_standards": 35208,
+  "benchmark_queries_evaluated": 19,
+  "first_stage_retrieval": {
+    "deterministic_recall_at_100": "10/19",
+    "bm25_recall_at_100": "9/19",
+    "semantic_recall_at_100": "14/19",
+    "union_recall_at_30": "12/19",
+    "union_recall_at_50": "14/19",
+    "union_recall_at_100": "15/19"
+  },
+  "strategy_comparison": {
+    "weighted": {
+      "r10": 5,
+      "r30": 7,
+      "r50": 10,
+      "r100": 11,
+      "hit1": 3,
+      "hit3": 3,
+      "mrr": 0.1862,
+      "preserved_from_first_stage": 11,
+      "dropped_from_first_stage": 4,
+      "ce_r10": 5,
+      "ce_hit1": 3,
+      "ce_hit3": 3,
+      "ce_mrr": 0.1742
+    },
+    "rrf": {
+      "r10": 6,
+      "r30": 8,
+      "r50": 11,
+      "r100": 13,
+      "hit1": 2,
+      "hit3": 3,
+      "mrr": 0.1661,
+      "preserved_from_first_stage": 13,
+      "dropped_from_first_stage": 2,
+      "ce_r10": 8,
+      "ce_hit1": 2,
+      "ce_hit3": 6,
+      "ce_mrr": 0.2167
+    },
+    "candidate_preserving": {
+      "r10": 4,
+      "r30": 8,
+      "r50": 10,
+      "r100": 12,
+      "hit1": 2,
+      "hit3": 3,
+      "mrr": 0.148,
+      "preserved_from_first_stage": 12,
+      "dropped_from_first_stage": 3,
+      "ce_r10": 4,
+      "ce_hit1": 2,
+      "ce_hit3": 3,
+      "ce_mrr": 0.1287
+    }
+  },
+  "latency_profile_ms": {
+    "det_ms": 139.1,
+    "bm25_ms": 36.3,
+    "semantic_ms": 31.5,
+    "union_ms": 3.5,
+    "fusion_weighted_ms": 116.8,
+    "fusion_rrf_ms": 93.4,
+    "fusion_cand_pres_ms": 82.1,
+    "cross_encoder_30_ms": 608.9,
+    "total_cand_pres_rerank_ms": 898.0
+  },
+  "focus_failure_analysis": {
+    "T003-R001": {
+      "requirement_id": "T003-R001",
+      "expected_standard": "IS/IEC 61439-3 : 2012; IS 10322 (Part 5 / Sec 5) : 2013",
+      "exists_in_db": true,
+      "db_record": {
+        "standard_id": "IS-IEC-61439-Part-5-2014",
+        "standard_number": "IS/IEC 61439 (Part 5) : 2014",
+        "full_title": "Low-Voltage Switchgear and Controlgear Assemblies Part 5 Assemblies for Power Distribution in Public Networks",
+        "status": "WITHDRAWN"
+      },
+      "det_rank": 1,
+      "bm25_rank": 10,
+      "sem_rank": 35,
+      "union_found_at_100": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": 18,
+          "ce_rank": null,
+          "preserved": true
+        },
+        "rrf": {
+          "fusion_rank": 5,
+          "ce_rank": 5,
+          "preserved": true
+        },
+        "candidate_preserving": {
+          "fusion_rank": 11,
+          "ce_rank": null,
+          "preserved": true
+        }
+      }
+    },
+    "T004-R005": {
+      "requirement_id": "T004-R005",
+      "expected_standard": "IS 5039 : 1983; IS/IEC 61439-5 : 2014",
+      "exists_in_db": true,
+      "db_record": {
+        "standard_id": "IS-15039-2018",
+        "standard_number": "IS 15039 : 2018",
+        "full_title": "Information technology equipment - Immunity characteristics - Limits and methods of measurement (First Revision)",
+        "status": "WITHDRAWN"
+      },
+      "det_rank": 29,
+      "bm25_rank": null,
+      "sem_rank": null,
+      "union_found_at_100": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "rrf": {
+          "fusion_rank": 78,
+          "ce_rank": null,
+          "preserved": true
+        },
+        "candidate_preserving": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        }
+      }
+    },
+    "T005-R001": {
+      "requirement_id": "T005-R001",
+      "expected_standard": "IS 3043 : 2018; IS 7098 (Part 1) : 1988; IS 1293 : 2019",
+      "exists_in_db": true,
+      "db_record": {
+        "standard_id": "IS-13043-1991",
+        "standard_number": "IS 13043 : 1991",
+        "full_title": "Covered manual metal arc welding electrodes - Determination of efficiency, metal recovery and deposition co - Efficient",
+        "status": "UNKNOWN"
+      },
+      "det_rank": null,
+      "bm25_rank": null,
+      "sem_rank": 40,
+      "union_found_at_100": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "rrf": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "candidate_preserving": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        }
+      }
+    },
+    "T011-R001": {
+      "requirement_id": "T011-R001",
+      "expected_standard": "IS 7098 (Part 1) : 1988; IS 1255 : 1983",
+      "exists_in_db": true,
+      "db_record": {
+        "standard_id": "IS-17098-2019",
+        "standard_number": "IS 17098 : 2019",
+        "full_title": "Footwear - Test methods for accessories: metallic accessories - Corrosion resistance",
+        "status": "ACTIVE"
+      },
+      "det_rank": null,
+      "bm25_rank": null,
+      "sem_rank": 14,
+      "union_found_at_100": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "rrf": {
+          "fusion_rank": 48,
+          "ce_rank": null,
+          "preserved": true
+        },
+        "candidate_preserving": {
+          "fusion_rank": 53,
+          "ce_rank": null,
+          "preserved": true
+        }
+      }
+    },
+    "T014-R002": {
+      "requirement_id": "T014-R002",
+      "expected_standard": "IS/IEC 60034-1 : 2017; IS 5120 : 1977",
+      "exists_in_db": true,
+      "db_record": {
+        "standard_id": "IS-IEC-60034-Part-27-Sec-1-2017",
+        "standard_number": "IS/IEC 60034 (Part 27) (Sec 1) : 2017",
+        "full_title": "Rotating electrical machines Part 27 Winding insulation of rotating electrical machines Section 1 Off-Line partial discharge measurements on the winding insulation",
+        "status": "UNKNOWN"
+      },
+      "det_rank": null,
+      "bm25_rank": null,
+      "sem_rank": 54,
+      "union_found_at_100": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "rrf": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "candidate_preserving": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        }
+      }
+    }
+  },
+  "per_query_results": [
+    {
+      "requirement_id": "T001-R002",
+      "expected_standard": "IS 15905 : 2011; IS 1239 (Part 1) : 2004",
+      "expected_tokens": [
+        "IS 15905",
+        "IS 1239 (PART 1)"
+      ],
+      "det_rank": 1,
+      "bm25_rank": 3,
+      "sem_rank": 48,
+      "first_stage_found": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": 1,
+          "ce_rank": 1,
+          "preserved": true
+        },
+        "rrf": {
+          "fusion_rank": 1,
+          "ce_rank": 1,
+          "preserved": true
+        },
+        "candidate_preserving": {
+          "fusion_rank": 1,
+          "ce_rank": 1,
+          "preserved": true
+        }
+      }
+    },
+    {
+      "requirement_id": "T001-R003",
+      "expected_standard": "IS 15622 : 2017",
+      "expected_tokens": [
+        "IS 15622"
+      ],
+      "det_rank": null,
+      "bm25_rank": 57,
+      "sem_rank": 41,
+      "first_stage_found": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": 50,
+          "ce_rank": null,
+          "preserved": true
+        },
+        "rrf": {
+          "fusion_rank": 68,
+          "ce_rank": null,
+          "preserved": true
+        },
+        "candidate_preserving": {
+          "fusion_rank": 85,
+          "ce_rank": null,
+          "preserved": true
+        }
+      }
+    },
+    {
+      "requirement_id": "T001-R004",
+      "expected_standard": "IS 2556 (Part 1 to 17); IS 781 : 1984; IS 774 : 2021",
+      "expected_tokens": [
+        "IS 2556",
+        "IS 781",
+        "IS 774"
+      ],
+      "det_rank": 13,
+      "bm25_rank": 34,
+      "sem_rank": 5,
+      "first_stage_found": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": 7,
+          "ce_rank": 7,
+          "preserved": true
+        },
+        "rrf": {
+          "fusion_rank": 3,
+          "ce_rank": 3,
+          "preserved": true
+        },
+        "candidate_preserving": {
+          "fusion_rank": 13,
+          "ce_rank": null,
+          "preserved": true
+        }
+      }
+    },
+    {
+      "requirement_id": "T002-R003",
+      "expected_standard": "IS 6392 : 1971; IS 2712 : 2020",
+      "expected_tokens": [
+        "IS 6392",
+        "IS 2712"
+      ],
+      "det_rank": 88,
+      "bm25_rank": null,
+      "sem_rank": 11,
+      "first_stage_found": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": 48,
+          "ce_rank": null,
+          "preserved": true
+        },
+        "rrf": {
+          "fusion_rank": 50,
+          "ce_rank": null,
+          "preserved": true
+        },
+        "candidate_preserving": {
+          "fusion_rank": 24,
+          "ce_rank": null,
+          "preserved": true
+        }
+      }
+    },
+    {
+      "requirement_id": "T003-R001",
+      "expected_standard": "IS/IEC 61439-3 : 2012; IS 10322 (Part 5 / Sec 5) : 2013",
+      "expected_tokens": [
+        "IS/IEC 61439",
+        "IS 10322"
+      ],
+      "det_rank": 1,
+      "bm25_rank": 10,
+      "sem_rank": 35,
+      "first_stage_found": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": 18,
+          "ce_rank": null,
+          "preserved": true
+        },
+        "rrf": {
+          "fusion_rank": 5,
+          "ce_rank": 5,
+          "preserved": true
+        },
+        "candidate_preserving": {
+          "fusion_rank": 11,
+          "ce_rank": null,
+          "preserved": true
+        }
+      }
+    },
+    {
+      "requirement_id": "T004-R002",
+      "expected_standard": "IS 7098 (Part 1) : 1988; IS 1255 : 1983",
+      "expected_tokens": [
+        "IS 7098 (PART 1)",
+        "IS 1255"
+      ],
+      "det_rank": 12,
+      "bm25_rank": 69,
+      "sem_rank": 25,
+      "first_stage_found": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": 1,
+          "ce_rank": 1,
+          "preserved": true
+        },
+        "rrf": {
+          "fusion_rank": 5,
+          "ce_rank": 4,
+          "preserved": true
+        },
+        "candidate_preserving": {
+          "fusion_rank": 9,
+          "ce_rank": 9,
+          "preserved": true
+        }
+      }
+    },
+    {
+      "requirement_id": "T004-R005",
+      "expected_standard": "IS 5039 : 1983; IS/IEC 61439-5 : 2014",
+      "expected_tokens": [
+        "IS 5039",
+        "IS/IEC 61439"
+      ],
+      "det_rank": 29,
+      "bm25_rank": null,
+      "sem_rank": null,
+      "first_stage_found": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "rrf": {
+          "fusion_rank": 78,
+          "ce_rank": null,
+          "preserved": true
+        },
+        "candidate_preserving": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        }
+      }
+    },
+    {
+      "requirement_id": "T005-R001",
+      "expected_standard": "IS 3043 : 2018; IS 7098 (Part 1) : 1988; IS 1293 : 2019",
+      "expected_tokens": [
+        "IS 3043",
+        "IS 7098 (PART 1)",
+        "IS 1293"
+      ],
+      "det_rank": null,
+      "bm25_rank": null,
+      "sem_rank": 40,
+      "first_stage_found": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "rrf": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "candidate_preserving": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        }
+      }
+    },
+    {
+      "requirement_id": "T006-R001",
+      "expected_standard": "IS 16088 : 2016",
+      "expected_tokens": [
+        "IS 16088"
+      ],
+      "det_rank": null,
+      "bm25_rank": null,
+      "sem_rank": null,
+      "first_stage_found": false,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "rrf": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "candidate_preserving": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        }
+      }
+    },
+    {
+      "requirement_id": "T007-R003",
+      "expected_standard": "IS 2491 : 2013; IS 15000 : 2013",
+      "expected_tokens": [
+        "IS 2491",
+        "IS 15000"
+      ],
+      "det_rank": null,
+      "bm25_rank": null,
+      "sem_rank": null,
+      "first_stage_found": false,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "rrf": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "candidate_preserving": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        }
+      }
+    },
+    {
+      "requirement_id": "T009-R001",
+      "expected_standard": "SP 30 : 2023; IS 732 : 2019",
+      "expected_tokens": [
+        "SP 30",
+        "IS 732"
+      ],
+      "det_rank": null,
+      "bm25_rank": null,
+      "sem_rank": null,
+      "first_stage_found": false,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "rrf": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "candidate_preserving": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        }
+      }
+    },
+    {
+      "requirement_id": "T010-R001",
+      "expected_standard": "IS 458 : 2021; IS 783 : 1985; IS 14333 : 1996",
+      "expected_tokens": [
+        "IS 458",
+        "IS 783",
+        "IS 14333"
+      ],
+      "det_rank": 10,
+      "bm25_rank": 4,
+      "sem_rank": 1,
+      "first_stage_found": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": 1,
+          "ce_rank": 1,
+          "preserved": true
+        },
+        "rrf": {
+          "fusion_rank": 1,
+          "ce_rank": 1,
+          "preserved": true
+        },
+        "candidate_preserving": {
+          "fusion_rank": 1,
+          "ce_rank": 1,
+          "preserved": true
+        }
+      }
+    },
+    {
+      "requirement_id": "T011-R001",
+      "expected_standard": "IS 7098 (Part 1) : 1988; IS 1255 : 1983",
+      "expected_tokens": [
+        "IS 7098 (PART 1)",
+        "IS 1255"
+      ],
+      "det_rank": null,
+      "bm25_rank": null,
+      "sem_rank": 14,
+      "first_stage_found": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "rrf": {
+          "fusion_rank": 48,
+          "ce_rank": null,
+          "preserved": true
+        },
+        "candidate_preserving": {
+          "fusion_rank": 53,
+          "ce_rank": null,
+          "preserved": true
+        }
+      }
+    },
+    {
+      "requirement_id": "T012-R002",
+      "expected_standard": "IS 1661 : 1972; IS 269 : 2015",
+      "expected_tokens": [
+        "IS 1661",
+        "IS 269"
+      ],
+      "det_rank": 20,
+      "bm25_rank": 49,
+      "sem_rank": 16,
+      "first_stage_found": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": 40,
+          "ce_rank": null,
+          "preserved": true
+        },
+        "rrf": {
+          "fusion_rank": 28,
+          "ce_rank": 2,
+          "preserved": true
+        },
+        "candidate_preserving": {
+          "fusion_rank": 38,
+          "ce_rank": null,
+          "preserved": true
+        }
+      }
+    },
+    {
+      "requirement_id": "T012-R003",
+      "expected_standard": "IS 1239 (Part 2) : 1992; IS 778 : 1984",
+      "expected_tokens": [
+        "IS 1239 (PART 2)",
+        "IS 778"
+      ],
+      "det_rank": null,
+      "bm25_rank": 12,
+      "sem_rank": 67,
+      "first_stage_found": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": 11,
+          "ce_rank": null,
+          "preserved": true
+        },
+        "rrf": {
+          "fusion_rank": 40,
+          "ce_rank": null,
+          "preserved": true
+        },
+        "candidate_preserving": {
+          "fusion_rank": 41,
+          "ce_rank": null,
+          "preserved": true
+        }
+      }
+    },
+    {
+      "requirement_id": "T013-R002",
+      "expected_standard": "IS/IEC 61800-2 : 2015; IS/IEC 61439-2 : 2011",
+      "expected_tokens": [
+        "IS/IEC 61800",
+        "IS/IEC 61439"
+      ],
+      "det_rank": null,
+      "bm25_rank": null,
+      "sem_rank": null,
+      "first_stage_found": false,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "rrf": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "candidate_preserving": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        }
+      }
+    },
+    {
+      "requirement_id": "T013-R003",
+      "expected_standard": "IS 14164 : 2008; IS 8183 : 1993",
+      "expected_tokens": [
+        "IS 14164",
+        "IS 8183"
+      ],
+      "det_rank": 51,
+      "bm25_rank": null,
+      "sem_rank": 5,
+      "first_stage_found": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": 62,
+          "ce_rank": null,
+          "preserved": true
+        },
+        "rrf": {
+          "fusion_rank": 23,
+          "ce_rank": 2,
+          "preserved": true
+        },
+        "candidate_preserving": {
+          "fusion_rank": 13,
+          "ce_rank": null,
+          "preserved": true
+        }
+      }
+    },
+    {
+      "requirement_id": "T014-R002",
+      "expected_standard": "IS/IEC 60034-1 : 2017; IS 5120 : 1977",
+      "expected_tokens": [
+        "IS/IEC 60034",
+        "IS 5120"
+      ],
+      "det_rank": null,
+      "bm25_rank": null,
+      "sem_rank": 54,
+      "first_stage_found": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "rrf": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        },
+        "candidate_preserving": {
+          "fusion_rank": null,
+          "ce_rank": null,
+          "preserved": false
+        }
+      }
+    },
+    {
+      "requirement_id": "T020-R001",
+      "expected_standard": "IS 15778 : 2007; IS 1239 (Part 1) : 2004",
+      "expected_tokens": [
+        "IS 15778",
+        "IS 1239 (PART 1)"
+      ],
+      "det_rank": 1,
+      "bm25_rank": 97,
+      "sem_rank": 2,
+      "first_stage_found": true,
+      "strategies": {
+        "weighted": {
+          "fusion_rank": 6,
+          "ce_rank": 6,
+          "preserved": true
+        },
+        "rrf": {
+          "fusion_rank": 4,
+          "ce_rank": 3,
+          "preserved": true
+        },
+        "candidate_preserving": {
+          "fusion_rank": 3,
+          "ce_rank": 3,
+          "preserved": true
+        }
+      }
+    }
+  ]
+}

@@ -18,6 +18,7 @@ from typing import List, Optional, Dict, Any
 import re
 
 from src.standards import StandardsDatabase, classify_standard_role
+from src.catalogue.provider import get_default_catalogue_provider, assert_authoritative_bis_catalogue
 from src.search import SearchResult
 from src.retrieval import HybridRetrievalEngine
 from src.validate import validate_standard_status, StandardValidationResult
@@ -56,6 +57,10 @@ class StandardRecommendation:
     final_score: float = 0.0
     applicability: Optional[Dict[str, Any]] = None
     standard_role: str = "PRIMARY_PRODUCT"
+    canonical_id: Optional[str] = None
+    source_url: Optional[str] = None
+    raw_record_ref: Optional[str] = None
+    ingestion_run_id: Optional[str] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -125,6 +130,10 @@ class RequirementRecommendationResult:
     unresolved_components: List[str] = field(default_factory=list)
     standard_role: str = "PRIMARY_PRODUCT"
     multilingual: Optional[Dict[str, Any]] = None
+    canonical_id: Optional[str] = None
+    source_url: Optional[str] = None
+    raw_record_ref: Optional[str] = None
+    ingestion_run_id: Optional[str] = None
 
     def to_dict(self) -> Dict[str, Any]:
 
@@ -173,7 +182,10 @@ class StandardsRecommender:
         ai_parser: Optional[Any] = None,
         ambiguity_engine: Optional[Any] = None
     ):
-        self.db = db or StandardsDatabase()
+        self.db = db or get_default_catalogue_provider()
+        # Verify and assert authoritative BIS catalogue (prevents fallback to legacy 502 catalogue)
+        assert_authoritative_bis_catalogue(self.db)
+
         self.retrieval_mode = retrieval_mode
         self.search_engine = HybridRetrievalEngine(self.db, default_mode=retrieval_mode)
         self.verifier = EvidenceVerifier(self.db)
@@ -247,7 +259,18 @@ class StandardsRecommender:
             with self.db._get_connection() as conn:
                 cursor = conn.cursor()
                 # 1. Inject the explicit citation itself
-                cursor.execute("SELECT * FROM standards WHERE standard_number = ?", (exp,))
+                exp_clean = exp.strip()
+                digits_match = re.search(r'\b(?:IS\s*(?:/|\s*)?(?:ISO|IEC)?\s*)?(\d{3,5})\b', exp_clean, re.IGNORECASE)
+                exp_digits = digits_match.group(1) if digits_match else exp_clean
+
+                cursor.execute("""
+                    SELECT * FROM standards 
+                    WHERE standard_number = ? 
+                       OR standard_id = ? 
+                       OR standard_number LIKE ? 
+                       OR standard_number LIKE ?
+                    LIMIT 1
+                """, (exp_clean, exp_clean, f"{exp_clean} : %", f"%{exp_digits}%"))
                 row = cursor.fetchone()
                 if row:
                     r_dict = dict(row)
@@ -264,8 +287,13 @@ class StandardsRecommender:
                 if not val_res.is_active and val_res.successor_standard:
                     superseded_explicit_warnings.append(val_res.warning_message)
                     successor_number = val_res.successor_standard.split(" : ")[0].strip()
-                    succ_row = cursor.execute("SELECT * FROM standards WHERE standard_number = ? OR standard_id = ?",
-                                              (successor_number, val_res.successor_standard)).fetchone()
+                    succ_row = cursor.execute("""
+                        SELECT * FROM standards 
+                        WHERE standard_number = ? 
+                           OR standard_id = ? 
+                           OR standard_number LIKE ?
+                        LIMIT 1
+                    """, (successor_number, val_res.successor_standard, f"{successor_number} : %")).fetchone()
                     if succ_row:
                         s_dict = dict(succ_row)
                         succ_res = self.search_engine.det_engine._format_result(
@@ -328,7 +356,11 @@ class StandardsRecommender:
         candidate_applicability_map: Dict[str, ApplicabilityResult] = {}
 
         for cand in search_results:
-            is_explicit = any(exp in cand.relevance_reason or exp in cand.standard_number for exp in explicit_stds)
+            is_explicit = any(
+                exp.lower().replace(" ", "") in cand.relevance_reason.lower().replace(" ", "") or
+                exp.lower().replace(" ", "") in cand.standard_number.lower().replace(" ", "")
+                for exp in explicit_stds
+            )
             app_res = self.applicability_gate.evaluate_candidate(
                 candidate=cand,
                 requirement_text=working_text,
@@ -546,6 +578,10 @@ class StandardsRecommender:
                 rec_std_num = sr.standard_number
 
             rec_role = classify_standard_role(sr.standard_number, sr.full_title, sr.scope_summary)
+            prov_info = {}
+            if hasattr(self.db, "get_provenance"):
+                prov_info = self.db.get_provenance(sr.standard_id) or {}
+
             recommendations.append(StandardRecommendation(
                 standard_number=rec_std_num,
                 title=sr.full_title,
@@ -563,7 +599,11 @@ class StandardsRecommender:
                 reranker_score=round(sr.reranker_score, 3) if sr.reranker_score is not None else None,
                 final_score=round(sr.final_score, 3),
                 applicability=app_dict,
-                standard_role=rec_role
+                standard_role=rec_role,
+                canonical_id=prov_info.get("canonical_id") or sr.standard_id,
+                source_url=prov_info.get("source_url"),
+                raw_record_ref=prov_info.get("raw_record_ref"),
+                ingestion_run_id=prov_info.get("ingestion_run_id")
             ))
 
         # Select top_rec prioritizing PRIMARY_PRODUCT if seeking a manufactured product
@@ -768,7 +808,11 @@ class StandardsRecommender:
             suggested_clarification_question=ambiguity_report.suggested_clarification_question,
             unresolved_components=unresolved_missing,
             standard_role=top_rec.standard_role,
-            multilingual=multilingual_payload
+            multilingual=multilingual_payload,
+            canonical_id=top_rec.canonical_id,
+            source_url=top_rec.source_url,
+            raw_record_ref=top_rec.raw_record_ref,
+            ingestion_run_id=top_rec.ingestion_run_id
         )
 
 

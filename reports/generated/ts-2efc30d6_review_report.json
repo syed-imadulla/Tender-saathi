@@ -1,0 +1,255 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-2EFC30D6",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "text input",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "INSUFFICIENT_EVIDENCE",
+  "readiness_reasons": [
+    "No reliable standards evidence identified across all requirements."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-2EFC30D6",
+    "requirements_analyzed": 1,
+    "recommendations_count": 0,
+    "review_required_count": 0,
+    "insufficient_evidence_count": 1,
+    "superseded_count": 1,
+    "withdrawn_count": 0,
+    "active_count": 0,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 0,
+      "WEAK": 1,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 1,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 0
+    },
+    "risk_distribution": {
+      "LOW": 0,
+      "MEDIUM": 0,
+      "HIGH": 1,
+      "CRITICAL": 0
+    },
+    "lifecycle_distribution": {
+      "Active": 0,
+      "Superseded": 1,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 0,
+    "review_queue": [
+      {
+        "requirement_id": "REQ-001",
+        "requirement_text": "Supply of catering lunch boxes and mineral water for office staff meeting.",
+        "risk_level": "HIGH",
+        "decision": "INSUFFICIENT_EVIDENCE",
+        "candidate_standard": "IS 15410 : 2003",
+        "evidence_strength": "WEAK",
+        "primary_reason": "Weak evidentiary grounding between requirement and standard scope",
+        "priority": 2
+      }
+    ],
+    "publication_readiness": "INSUFFICIENT_EVIDENCE",
+    "readiness_reasons": [
+      "No reliable standards evidence identified across all requirements."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 0,
+    "normative_reference_count": 0,
+    "allied_standard_count": 0,
+    "test_standard_count": 0,
+    "installation_standard_count": 0,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 0,
+    "related_for_review_count": 0,
+    "standards_coverage": {
+      "direct_standards_identified": 0,
+      "total_dependencies": 0,
+      "normative_references": 0,
+      "testing_dependencies": 0,
+      "installation_dependencies": 0,
+      "allied_standards": 0,
+      "covered_in_tender": 0,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "items_requiring_review": 0
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 0,
+      "related_for_review_count": 0
+    },
+    "certification_checks": 1,
+    "qco_checks": 1,
+    "crs_checks": 1,
+    "hallmarking_checks": 1,
+    "regulatory_review_items": 1,
+    "unknown_regulatory_items": 0,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 0,
+    "mandatory_certification_count": 0,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
+  },
+  "requirements": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "Supply of catering lunch boxes and mineral water for office staff meeting.",
+      "category": "installation_execution",
+      "components": [
+        {
+          "text": "catering",
+          "component_type": "application",
+          "domain": "food_safety",
+          "extracted_attributes": {
+            "application_type": "food_hygiene_haccp",
+            "standard_focus": "IS 2491 / IS 15000"
+          }
+        }
+      ],
+      "recommended_standard": "IS 15410 : 2003",
+      "recommended_title": "Containers for packaging of natural mineral water and packaged drinking water - Specification",
+      "relevance_score": 0.048,
+      "lifecycle_status": "UNKNOWN",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "WEAK",
+      "provenance": "VERIFIED",
+      "evidence_text": "Catalogue Record: Sectional Committee PCD 21, Title: Containers for packaging of natural mineral water and packaged drinking water - Specification",
+      "evidence_source": "BSB Edge Portal",
+      "why_this": [
+        "Official title aligns with specification: 'Containers for packaging of natural mineral water and packaged drinking water - Specification'.",
+        "Authoritative scope explicitly covers application: \"Catalogue Record: Sectional Committee PCD 21, Title: Containers for packaging of natural mineral water and packaged drin...\"",
+        "Provenance established via BSB Edge Portal (VERIFIED)."
+      ],
+      "why_not": [
+        "Alternative standard IS 15410 : 2025 scored lower across the 5-dimension critic evaluation."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Regulatory Hygiene Framework"
+      ],
+      "known_parameters": {},
+      "related_standards": [],
+      "decision": "INSUFFICIENT_EVIDENCE",
+      "risk_level": "HIGH",
+      "risk_reasons": [
+        "Weak evidentiary grounding between requirement and standard scope",
+        "Standard IS 15410 : 2003 has unverified lifecycle status in catalogue (UNKNOWN)"
+      ],
+      "human_review_required": true,
+      "confidence": "Low",
+      "review_reason": "Weak evidentiary grounding between requirement and standard scope; Standard IS 15410 : 2003 has unverified lifecycle status in catalogue (UNKNOWN)",
+      "candidate_standard": "IS 15410 : 2003",
+      "evidence_standard": "IS 15410 : 2003",
+      "why_it_matches": "Catalogue Record: Sectional Committee PCD 21, Title: Containers for packaging of natural mineral water and packaged drin...",
+      "dependencies": [],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 15410 : 2003",
+          "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS certification is NOT identified for IS 15410 : 2003 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "additional_metadata": {
+            "mandate_type": "VOLUNTARY_OR_UNREGULATED"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 15410 : 2003",
+          "legal_basis": "",
+          "source": "e-Gazette of India / DPIIT QCO Registry",
+          "source_url": "e-Gazette of India / DPIIT QCO Registry",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 15410 : 2003. Verify ministry specific notifications.",
+          "additional_metadata": {}
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 15410 : 2003",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS 15410 : 2003",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs",
+          "source_url": "Ministry of Consumer Affairs",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": false,
+          "explanation": "Hallmarking is not applicable to this product category.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_reason": "Weak evidentiary grounding between requirement and standard scope; Standard IS 15410 : 2003 has unverified lifecycle status in catalogue (UNKNOWN)"
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "Supply of catering lunch boxes and mineral water for office staff meeting.",
+      "risk_level": "HIGH",
+      "decision": "INSUFFICIENT_EVIDENCE",
+      "candidate_standard": "IS 15410 : 2003",
+      "evidence_strength": "WEAK",
+      "primary_reason": "Weak evidentiary grounding between requirement and standard scope",
+      "priority": 2
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 0,
+      "MODERATE": 0,
+      "WEAK": 1,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 1,
+      "CURATED": 0,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}

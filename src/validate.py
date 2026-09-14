@@ -56,17 +56,23 @@ def validate_standard_status(
     with database._get_connection() as conn:
         cursor = conn.cursor()
 
-        # 1. Check if another standard in DB explicitly SUPERSEDES this standard
-        cursor.execute("""
-        SELECT s.standard_id, s.standard_number, s.year, s.full_title, s.status,
-               r.relationship_type, r.evidence, r.target_standard
-        FROM standard_relationships r
-        JOIN standards s ON s.standard_id = r.source_standard_id
-        WHERE r.relationship_type = 'SUPERSEDES' AND (
-            r.target_standard LIKE ? OR r.target_standard LIKE ?
-        )
-        """, (f"%{std_clean}%", f"%{std_num_digits}%"))
-        superseding_match = cursor.fetchone()
+        # Check if table exists
+        cursor.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='standard_relationships'")
+        has_rel_table = cursor.fetchone() is not None
+
+        superseding_match = None
+        if has_rel_table:
+            # 1. Check if another standard in DB explicitly SUPERSEDES this standard
+            cursor.execute("""
+            SELECT s.standard_id, s.standard_number, s.year, s.full_title, s.status,
+                   r.relationship_type, r.evidence, r.target_standard
+            FROM standard_relationships r
+            JOIN standards s ON s.standard_id = r.source_standard_id
+            WHERE r.relationship_type = 'SUPERSEDES' AND (
+                r.target_standard LIKE ? OR r.target_standard LIKE ?
+            )
+            """, (f"%{std_clean}%", f"%{std_num_digits}%"))
+            superseding_match = cursor.fetchone()
 
         if superseding_match:
             row = dict(superseding_match)
@@ -103,12 +109,14 @@ def validate_standard_status(
             is_active = (raw_status.lower() == "active")
 
             # Check if this standard record has SUPERSEDED_BY relationship outgoing
-            cursor.execute("""
-            SELECT relationship_type, target_standard, evidence
-            FROM standard_relationships
-            WHERE source_standard_id = ? AND relationship_type = 'SUPERSEDED_BY'
-            """, (std_data["standard_id"],))
-            rel = cursor.fetchone()
+            rel = None
+            if has_rel_table:
+                cursor.execute("""
+                SELECT relationship_type, target_standard, evidence
+                FROM standard_relationships
+                WHERE source_standard_id = ? AND relationship_type = 'SUPERSEDED_BY'
+                """, (std_data["standard_id"],))
+                rel = cursor.fetchone()
 
             successor_std = None
             evidence_str = None

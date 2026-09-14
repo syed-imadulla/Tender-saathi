@@ -1,0 +1,3233 @@
+{
+  "total_queries_evaluated": 19,
+  "recall_at_k": {
+    "10": {
+      "DET": "4/19 (21.1%)",
+      "BM25": "3/19 (15.8%)",
+      "SEM": "4/19 (21.1%)",
+      "HYB": "5/19 (26.3%)"
+    },
+    "30": {
+      "DET": "8/19 (42.1%)",
+      "BM25": "4/19 (21.1%)",
+      "SEM": "8/19 (42.1%)",
+      "HYB": "7/19 (36.8%)"
+    },
+    "50": {
+      "DET": "8/19 (42.1%)",
+      "BM25": "6/19 (31.6%)",
+      "SEM": "12/19 (63.2%)",
+      "HYB": "9/19 (47.4%)"
+    },
+    "100": {
+      "DET": "10/19 (52.6%)",
+      "BM25": "8/19 (42.1%)",
+      "SEM": "14/19 (73.7%)",
+      "HYB": "11/19 (57.9%)"
+    }
+  },
+  "citation_metrics": {
+    "total_with_citation": 0,
+    "resolved_correctly": 0
+  },
+  "general_relevance_recall": {
+    "10": "5/19 (26.3%)",
+    "30": "7/19 (36.8%)",
+    "50": "9/19 (47.4%)",
+    "100": "11/19 (57.9%)"
+  },
+  "lifecycle_composition_top10": {
+    "ACTIVE": 36,
+    "WITHDRAWN": 59,
+    "SUPERSEDED": 0,
+    "UNKNOWN": 95
+  },
+  "fusion_concrete_cases": [
+    {
+      "requirement_id": "T003-R001",
+      "query": "Replacement / repair of distribution boards and defective lights at various locations in main sports stadium",
+      "expected": "IS/IEC 61439-3 : 2012; IS 10322 (Part 5 / Sec 5) : 2013",
+      "ranks": {
+        "DET": 1,
+        "BM25": 10,
+        "SEM": 35,
+        "HYB": 17
+      }
+    },
+    {
+      "requirement_id": "T004-R002",
+      "query": "power cables from outside of electrical room to AMF room",
+      "expected": "IS 7098 (Part 1) : 1988; IS 1255 : 1983",
+      "ranks": {
+        "DET": 12,
+        "BM25": 69,
+        "SEM": 25,
+        "HYB": 1
+      }
+    },
+    {
+      "requirement_id": "T005-R001",
+      "query": "Cable connection of DG Set in Newly constructed building of the Dept. of Molecular , Human Genetics",
+      "expected": "IS 3043 : 2018; IS 7098 (Part 1) : 1988; IS 1293 : 2019",
+      "ranks": {
+        "DET": -1,
+        "BM25": -1,
+        "SEM": 40,
+        "HYB": -1
+      }
+    },
+    {
+      "requirement_id": "T012-R002",
+      "query": "Plaster Repairing",
+      "expected": "IS 1661 : 1972; IS 269 : 2015",
+      "ranks": {
+        "DET": 20,
+        "BM25": 49,
+        "SEM": 16,
+        "HYB": 40
+      }
+    },
+    {
+      "requirement_id": "T014-R002",
+      "query": "commissioning of three numbers of Process Water Pump motors 3.3 kV",
+      "expected": "IS/IEC 60034-1 : 2017; IS 5120 : 1977",
+      "ranks": {
+        "DET": -1,
+        "BM25": -1,
+        "SEM": 54,
+        "HYB": -1
+      }
+    }
+  ],
+  "pool_size_sweep": {
+    "10": {
+      "total_latency_ms": 524.79,
+      "reranker_latency_ms": 120.99
+    },
+    "20": {
+      "total_latency_ms": 591.36,
+      "reranker_latency_ms": 190.75
+    },
+    "30": {
+      "total_latency_ms": 564.37,
+      "reranker_latency_ms": 285.01
+    },
+    "50": {
+      "total_latency_ms": 596.98,
+      "reranker_latency_ms": 477.77
+    },
+    "100": {
+      "total_latency_ms": 670.63,
+      "reranker_latency_ms": 1065.82
+    }
+  },
+  "warm_stage_latencies": {
+    "warm_deterministic_ms": 90.23,
+    "warm_bm25_ms": 18.35,
+    "warm_semantic_ms": 21.85,
+    "warm_hybrid_ms": 206.19
+  },
+  "failed_queries_count": 8,
+  "failed_queries": [
+    {
+      "requirement_id": "T004-R005",
+      "query": "Dismantling,Shifting and reinstallation of feeder pillar, power",
+      "expected_standard": "IS 5039 : 1983; IS/IEC 61439-5 : 2014",
+      "has_citation": false,
+      "ranks": {
+        "DET": 29,
+        "BM25": -1,
+        "SEM": -1,
+        "HYB": -1
+      },
+      "exists_in_db": true,
+      "db_records": [
+        {
+          "canonical_id": "IS-5039-1983",
+          "standard_number": "IS 5039 : 1983",
+          "base_standard_number": "IS 5039",
+          "prefix": "IS",
+          "base_number": "5039",
+          "part": null,
+          "section": null,
+          "year": 1983,
+          "amendment": null,
+          "title": "Specification for distribution pillars for voltages not exceeding 1000 V AC and 1200 V DC (First Revision)",
+          "technical_committee": "ETD 07",
+          "department": "ETD",
+          "aspect": "Product Specification",
+          "amendments": "1",
+          "amendment_count": 1,
+          "status": "WITHDRAWN",
+          "is_active": 0,
+          "iso_equivalence": "(Withdrawn )",
+          "iso_equivalence_degree": "Indigenous",
+          "source": "BIS",
+          "source_type": "BIS_KNOW_YOUR_STANDARD",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=11791",
+          "retrieved_at": "2026-09-14T05:45:19.397591+00:00",
+          "ingestion_run_id": "run_20260914_042545",
+          "seeds_observed_json": "[\"0\", \"1\", \"2\", \"3\", \"5\", \"9\"]",
+          "times_observed": 6,
+          "first_seen": "2026-09-14T05:45:19.397591+00:00",
+          "last_seen": "2026-09-14T05:45:19.397591+00:00",
+          "raw_record_ref": "seed_0_page_0014.json:314",
+          "is_recovered": 0,
+          "recovery_reason": null
+        },
+        {
+          "canonical_id": "IS-IEC-61439-Part-5-2014",
+          "standard_number": "IS/IEC 61439 (Part 5) : 2014",
+          "base_standard_number": "IS/IEC 61439 (Part 5)",
+          "prefix": "IS/IEC",
+          "base_number": "61439",
+          "part": 5,
+          "section": null,
+          "year": 2014,
+          "amendment": null,
+          "title": "Low-Voltage Switchgear and Controlgear Assemblies Part 5 Assemblies for Power Distribution in Public Networks",
+          "technical_committee": "ETD 07",
+          "department": "ETD",
+          "aspect": "Product Specification",
+          "amendments": "0",
+          "amendment_count": 0,
+          "status": "WITHDRAWN",
+          "is_active": 0,
+          "iso_equivalence": "IEC 61439-5 : 2014",
+          "iso_equivalence_degree": "Identical under single numbering",
+          "source": "BIS",
+          "source_type": "BIS_KNOW_YOUR_STANDARD",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=24077",
+          "retrieved_at": "2026-09-14T05:45:19.397591+00:00",
+          "ingestion_run_id": "run_20260914_042545",
+          "seeds_observed_json": "[\"0\", \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"9\"]",
+          "times_observed": 8,
+          "first_seen": "2026-09-14T05:45:19.397591+00:00",
+          "last_seen": "2026-09-14T05:45:19.397591+00:00",
+          "raw_record_ref": "seed_0_page_0015.json:864",
+          "is_recovered": 0,
+          "recovery_reason": null
+        }
+      ],
+      "top10_det": [
+        {
+          "std": "IS 12960 : 1990",
+          "score": 0.336
+        },
+        {
+          "std": "IS 1060 (Part 5) (Sec 16) : 2015",
+          "score": 0.317
+        },
+        {
+          "std": "IS 11030 : 2024",
+          "score": 0.317
+        },
+        {
+          "std": "IS 11030 : 1984",
+          "score": 0.317
+        },
+        {
+          "std": "IS 13360 (Part 11) (Sec 9) : 2023",
+          "score": 0.317
+        },
+        {
+          "std": "IS 13360 (Part 11) (Sec 9) : 2018",
+          "score": 0.317
+        },
+        {
+          "std": "IS 13360 (Part 4) (Sec 4) : 1999",
+          "score": 0.317
+        },
+        {
+          "std": "IS 13360 (Part 4) (Sec 5) : 2000",
+          "score": 0.317
+        },
+        {
+          "std": "IS 13360 (Part 6) (Sec 10) : 2013",
+          "score": 0.317
+        },
+        {
+          "std": "IS/ISO 13360 (Part 4) (Sec 5) : 2016",
+          "score": 0.317
+        }
+      ],
+      "top10_bm25": [
+        {
+          "std": "IS 17862 : 2022",
+          "score": 1.0
+        },
+        {
+          "std": "IS 7700 : 1975",
+          "score": 0.988
+        },
+        {
+          "std": "IS 12907 : 1990",
+          "score": 0.922
+        },
+        {
+          "std": "IS 18445 : 2024",
+          "score": 0.921
+        },
+        {
+          "std": "IS 18444 (Part 57) (Sec 1202) : 2024",
+          "score": 0.92
+        },
+        {
+          "std": "IS 5869 : 1970",
+          "score": 0.892
+        },
+        {
+          "std": "IS 5662 : 1991",
+          "score": 0.859
+        },
+        {
+          "std": "IS 17220 : 2019",
+          "score": 0.85
+        },
+        {
+          "std": "IS 1200 (Part 18) : 1974",
+          "score": 0.84
+        },
+        {
+          "std": "IS 8191 : 1976",
+          "score": 0.83
+        }
+      ],
+      "top10_sem": [
+        {
+          "std": "IS 17220 : 2019",
+          "score": 0.463
+        },
+        {
+          "std": "IS 12960 : 1990",
+          "score": 0.416
+        },
+        {
+          "std": "IS 1795 : 1982",
+          "score": 0.403
+        },
+        {
+          "std": "IS 15424 (Part 3) : 2018",
+          "score": 0.396
+        },
+        {
+          "std": "IS 15424 (Part 5) : 2022",
+          "score": 0.39
+        },
+        {
+          "std": "IS 15424 (Part 5) : 2018",
+          "score": 0.387
+        },
+        {
+          "std": "IS 15424 (Part 3) : 2021",
+          "score": 0.387
+        },
+        {
+          "std": "IS 12204 : 1987",
+          "score": 0.376
+        },
+        {
+          "std": "IS 15424 (Part 2) : 2018",
+          "score": 0.361
+        },
+        {
+          "std": "IS 14471 : 1997",
+          "score": 0.359
+        }
+      ],
+      "top10_hyb": [
+        {
+          "std": "IS 17220 : 2019",
+          "score": 0.581,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS 5869 : 1970",
+          "score": 0.556,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 1795 : 1982",
+          "score": 0.545,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 8934 : 1978",
+          "score": 0.519,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 2425 : 1982",
+          "score": 0.506,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 18444 (Part 57) (Sec 1202) : 2024",
+          "score": 0.443,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 12907 : 1990",
+          "score": 0.411,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS 8191 : 1976",
+          "score": 0.411,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 17862 : 2022",
+          "score": 0.4,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 7664 : 2005",
+          "score": 0.397,
+          "status": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "requirement_id": "T005-R001",
+      "query": "Cable connection of DG Set in Newly constructed building of the Dept. of Molecular , Human Genetics",
+      "expected_standard": "IS 3043 : 2018; IS 7098 (Part 1) : 1988; IS 1293 : 2019",
+      "has_citation": false,
+      "ranks": {
+        "DET": -1,
+        "BM25": -1,
+        "SEM": 40,
+        "HYB": -1
+      },
+      "exists_in_db": true,
+      "db_records": [
+        {
+          "canonical_id": "IS-3043-2018",
+          "standard_number": "IS 3043 : 2018",
+          "base_standard_number": "IS 3043",
+          "prefix": "IS",
+          "base_number": "3043",
+          "part": null,
+          "section": null,
+          "year": 2018,
+          "amendment": null,
+          "title": "Code of practice for earthing (Second Revision)",
+          "technical_committee": "ETD 20",
+          "department": "ETD",
+          "aspect": "Code of Practice",
+          "amendments": "0",
+          "amendment_count": 0,
+          "status": "ACTIVE",
+          "is_active": 1,
+          "iso_equivalence": null,
+          "iso_equivalence_degree": "Modified/Technically Equivalent",
+          "source": "BIS",
+          "source_type": "BIS_KNOW_YOUR_STANDARD",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=9619",
+          "retrieved_at": "2026-09-14T05:45:19.397591+00:00",
+          "ingestion_run_id": "run_20260914_042545",
+          "seeds_observed_json": "[\"0\", \"3\", \"4\", \"6\"]",
+          "times_observed": 4,
+          "first_seen": "2026-09-14T05:45:19.397591+00:00",
+          "last_seen": "2026-09-14T05:45:19.397591+00:00",
+          "raw_record_ref": "seed_0_page_0012.json:639",
+          "is_recovered": 0,
+          "recovery_reason": null
+        },
+        {
+          "canonical_id": "IS-7098-Part-1-2025",
+          "standard_number": "IS 7098 (Part 1) : 2025",
+          "base_standard_number": "IS 7098 (Part 1)",
+          "prefix": "IS",
+          "base_number": "7098",
+          "part": 1,
+          "section": null,
+          "year": 2025,
+          "amendment": null,
+          "title": "Crosslinked Polyethylene Insulated Thermoplastic Sheathed Cables - Specification Part 1 For Working Voltages up to and Including 1 100 Volts (Second Revision)",
+          "technical_committee": "ETD 09",
+          "department": "ETD",
+          "aspect": "Product Specification",
+          "amendments": "0",
+          "amendment_count": 0,
+          "status": "UNKNOWN",
+          "is_active": null,
+          "iso_equivalence": "(Active)",
+          "iso_equivalence_degree": "Indigenous",
+          "source": "BIS",
+          "source_type": "BIS_KNOW_YOUR_STANDARD",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=33652",
+          "retrieved_at": "2026-09-14T05:45:19.397591+00:00",
+          "ingestion_run_id": "run_20260914_042545",
+          "seeds_observed_json": "[\"0\", \"1\", \"7\", \"8\", \"9\"]",
+          "times_observed": 5,
+          "first_seen": "2026-09-14T05:45:19.397591+00:00",
+          "last_seen": "2026-09-14T05:45:19.397591+00:00",
+          "raw_record_ref": "seed_0_page_0016.json:886",
+          "is_recovered": 0,
+          "recovery_reason": null
+        },
+        {
+          "canonical_id": "IS-1293-2005",
+          "standard_number": "IS 1293 : 2005",
+          "base_standard_number": "IS 1293",
+          "prefix": "IS",
+          "base_number": "1293",
+          "part": null,
+          "section": null,
+          "year": 2005,
+          "amendment": null,
+          "title": "Plugs and socket - Outlets of rated Voltage up to and including 250 Volts and rated current up to and including 16 amperes - Specification (Third Revision)",
+          "technical_committee": "ETD 14",
+          "department": "ETD",
+          "aspect": "Product Specification",
+          "amendments": "2",
+          "amendment_count": 2,
+          "status": "WITHDRAWN",
+          "is_active": 0,
+          "iso_equivalence": null,
+          "iso_equivalence_degree": "Modified/Technically Equivalent",
+          "source": "BIS",
+          "source_type": "BIS_KNOW_YOUR_STANDARD",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=4400",
+          "retrieved_at": "2026-09-14T05:45:19.397591+00:00",
+          "ingestion_run_id": "run_20260914_042545",
+          "seeds_observed_json": "[\"0\", \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"8\", \"9\"]",
+          "times_observed": 9,
+          "first_seen": "2026-09-14T05:45:19.397591+00:00",
+          "last_seen": "2026-09-14T05:45:19.397591+00:00",
+          "raw_record_ref": "seed_0_page_0003.json:960",
+          "is_recovered": 0,
+          "recovery_reason": null
+        }
+      ],
+      "top10_det": [
+        {
+          "std": "IS 10810 (Part 30) : 1984",
+          "score": 0.616
+        },
+        {
+          "std": "IS 17867 (Part 3) : 2022",
+          "score": 0.616
+        },
+        {
+          "std": "IS 10052 (Part 6) : 1992",
+          "score": 0.448
+        },
+        {
+          "std": "IS 10241 (Part 2) : 1982",
+          "score": 0.448
+        },
+        {
+          "std": "IS 10241 (Part 3) : 1987",
+          "score": 0.448
+        },
+        {
+          "std": "IS 10241 (Part 1) : 1982",
+          "score": 0.448
+        },
+        {
+          "std": "IS 10242 (Part 3) (Sec 10) : 1992",
+          "score": 0.448
+        },
+        {
+          "std": "IS 10242 (Part 3) (Sec 11) : 1986",
+          "score": 0.448
+        },
+        {
+          "std": "IS 10242 (Part 3) (Sec 12) : 1986",
+          "score": 0.448
+        },
+        {
+          "std": "IS 10242 (Part 3) (Sec 13) : 1992",
+          "score": 0.448
+        }
+      ],
+      "top10_bm25": [
+        {
+          "std": "IS 16128 : 2013",
+          "score": 1.0
+        },
+        {
+          "std": "IS 19766 (Part 1) : 2026",
+          "score": 0.815
+        },
+        {
+          "std": "IS 13276 (Part 3) : 1992",
+          "score": 0.809
+        },
+        {
+          "std": "IS 14211 : 1994",
+          "score": 0.669
+        },
+        {
+          "std": "IS/IEC 61537 : 2006",
+          "score": 0.655
+        },
+        {
+          "std": "IS 17950 (Part 1) : 2022",
+          "score": 0.644
+        },
+        {
+          "std": "IS/IEC 61537 : 2023",
+          "score": 0.642
+        },
+        {
+          "std": "IS 17950 (Part 2) : 2022",
+          "score": 0.636
+        },
+        {
+          "std": "IS 17950 (Part 3) : 2022",
+          "score": 0.636
+        },
+        {
+          "std": "IS 17046 : 2018",
+          "score": 0.634
+        }
+      ],
+      "top10_sem": [
+        {
+          "std": "IS 10810 (Part 19) : 1984",
+          "score": 0.488
+        },
+        {
+          "std": "IS 10810 : 1984",
+          "score": 0.475
+        },
+        {
+          "std": "IS 10334 : 2026",
+          "score": 0.458
+        },
+        {
+          "std": "IS 10810 (Part 10) : 1984",
+          "score": 0.445
+        },
+        {
+          "std": "IS 10334 : 1982",
+          "score": 0.441
+        },
+        {
+          "std": "IS 12598 : 1989",
+          "score": 0.439
+        },
+        {
+          "std": "IS 10810 (Part 22) : 1984",
+          "score": 0.436
+        },
+        {
+          "std": "IS 10810 (Part 20) : 1984",
+          "score": 0.436
+        },
+        {
+          "std": "IS 10810 (Part 12) : 1984",
+          "score": 0.432
+        },
+        {
+          "std": "IS/ISO/IEEE 11073 (Part 30200) : 2004",
+          "score": 0.432
+        }
+      ],
+      "top10_hyb": [
+        {
+          "std": "IS 16128 : 2013",
+          "score": 0.4,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS/IEC 62275 : 2018",
+          "score": 0.391,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS/IEC 62275 : 2013",
+          "score": 0.389,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 4821 : 1968",
+          "score": 0.386,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS/IEC 61537 : 2006",
+          "score": 0.36,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS 4630 : 1968",
+          "score": 0.36,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 16783 : 2018",
+          "score": 0.355,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS/IEC 61537 : 2023",
+          "score": 0.353,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 10729 : 1983",
+          "score": 0.351,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 17046 : 2018",
+          "score": 0.349,
+          "status": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "requirement_id": "T006-R001",
+      "query": "UPVC Partition Wall Work for Conversion of Seafood Authentication Laboratory into Conventional Microbiology Laboratory",
+      "expected_standard": "IS 16088 : 2016",
+      "has_citation": false,
+      "ranks": {
+        "DET": -1,
+        "BM25": -1,
+        "SEM": -1,
+        "HYB": -1
+      },
+      "exists_in_db": true,
+      "db_records": [
+        {
+          "canonical_id": "IS-16088-2012",
+          "standard_number": "IS 16088 : 2012",
+          "base_standard_number": "IS 16088",
+          "prefix": "IS",
+          "base_number": "16088",
+          "part": null,
+          "section": null,
+          "year": 2012,
+          "amendment": null,
+          "title": "Chlorinated polyvinyl chloride (CPVC) pipes for automatic sprinkler fire extinguishing system - Specification",
+          "technical_committee": "CED 22",
+          "department": "CED",
+          "aspect": "Product Specification",
+          "amendments": "1",
+          "amendment_count": 1,
+          "status": "UNKNOWN",
+          "is_active": null,
+          "iso_equivalence": "(Active)",
+          "iso_equivalence_degree": "Indigenous",
+          "source": "BIS",
+          "source_type": "BIS_KNOW_YOUR_STANDARD",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=599",
+          "retrieved_at": "2026-09-14T05:45:19.397591+00:00",
+          "ingestion_run_id": "run_20260914_042545",
+          "seeds_observed_json": "[\"0\", \"1\", \"6\", \"8\"]",
+          "times_observed": 4,
+          "first_seen": "2026-09-14T05:45:19.397591+00:00",
+          "last_seen": "2026-09-14T05:45:19.397591+00:00",
+          "raw_record_ref": "seed_0_page_0007.json:342",
+          "is_recovered": 0,
+          "recovery_reason": null
+        }
+      ],
+      "top10_det": [
+        {
+          "std": "IS 17113 (Part 4) : 2022",
+          "score": 0.635
+        },
+        {
+          "std": "IS 17113 (Part 5) : 2022",
+          "score": 0.635
+        },
+        {
+          "std": "IS 17113 (Part 3) : 2022",
+          "score": 0.635
+        },
+        {
+          "std": "IS 17385 : 2020",
+          "score": 0.635
+        },
+        {
+          "std": "IS 6213 (Part 8) (Sec 1) : 2017",
+          "score": 0.635
+        },
+        {
+          "std": "IS 9271 : 2004",
+          "score": 0.504
+        },
+        {
+          "std": "IS/ISO 3471 : 2008",
+          "score": 0.467
+        },
+        {
+          "std": "IS 10072 : 2024",
+          "score": 0.467
+        },
+        {
+          "std": "IS 10073 : 2025",
+          "score": 0.467
+        },
+        {
+          "std": "IS 10231 : 2024",
+          "score": 0.467
+        }
+      ],
+      "top10_bm25": [
+        {
+          "std": "IS 17113 (Part 4) : 2022",
+          "score": 1.0
+        },
+        {
+          "std": "IS 6213 (Part 8) (Sec 1) : 2017",
+          "score": 0.942
+        },
+        {
+          "std": "IS 9271 : 2004",
+          "score": 0.938
+        },
+        {
+          "std": "IS 17113 (Part 3) : 2022",
+          "score": 0.925
+        },
+        {
+          "std": "IS 18995 (Part 1) : 2025",
+          "score": 0.864
+        },
+        {
+          "std": "IS 18995 (Part 2) : 2025",
+          "score": 0.864
+        },
+        {
+          "std": "IS 6384 (Part 2) : 1971",
+          "score": 0.852
+        },
+        {
+          "std": "IS 6384 (Part 3) : 1971",
+          "score": 0.852
+        },
+        {
+          "std": "IS 5701 (Part 5) : 1972",
+          "score": 0.84
+        },
+        {
+          "std": "IS 5701 (Part 7) : 1977",
+          "score": 0.84
+        }
+      ],
+      "top10_sem": [
+        {
+          "std": "IS 17448 : 2020",
+          "score": 0.515
+        },
+        {
+          "std": "IS 15478 (Part 2) : 2004",
+          "score": 0.463
+        },
+        {
+          "std": "IS 15990 : 2012",
+          "score": 0.459
+        },
+        {
+          "std": "IS 17385 : 2020",
+          "score": 0.454
+        },
+        {
+          "std": "IS 16980 : 2018",
+          "score": 0.447
+        },
+        {
+          "std": "IS 15990 : 2023",
+          "score": 0.445
+        },
+        {
+          "std": "IS 17112 (Part 1) : 2019",
+          "score": 0.441
+        },
+        {
+          "std": "IS 16122 : 2013",
+          "score": 0.441
+        },
+        {
+          "std": "IS 5887 (Part 5) (Sec 2) : 2023",
+          "score": 0.439
+        },
+        {
+          "std": "IS 17113 (Part 4) : 2022",
+          "score": 0.437
+        }
+      ],
+      "top10_hyb": [
+        {
+          "std": "IS 17113 (Part 4) : 2022",
+          "score": 0.712,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS 17113 (Part 3) : 2022",
+          "score": 0.669,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS 6213 (Part 8) (Sec 1) : 2017",
+          "score": 0.536,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS/ISO 4787 : 2010",
+          "score": 0.509,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 9271 : 2004",
+          "score": 0.501,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 5701 (Part 5) : 1972",
+          "score": 0.453,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 5701 (Part 7) : 1977",
+          "score": 0.453,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS 5701 (Part 8) : 1979",
+          "score": 0.453,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 5701 (Part 9) : 1979",
+          "score": 0.453,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 5701 (Part 2) : 1979",
+          "score": 0.444,
+          "status": "WITHDRAWN"
+        }
+      ]
+    },
+    {
+      "requirement_id": "T007-R003",
+      "query": "Low-Oil Food Outlet on BOT",
+      "expected_standard": "IS 2491 : 2013; IS 15000 : 2013",
+      "has_citation": false,
+      "ranks": {
+        "DET": -1,
+        "BM25": -1,
+        "SEM": -1,
+        "HYB": -1
+      },
+      "exists_in_db": true,
+      "db_records": [
+        {
+          "canonical_id": "IS-2491-2013",
+          "standard_number": "IS 2491 : 2013",
+          "base_standard_number": "IS 2491",
+          "prefix": "IS",
+          "base_number": "2491",
+          "part": null,
+          "section": null,
+          "year": 2013,
+          "amendment": null,
+          "title": "Food hygiene - General principles - Code of practice (Third Revision)",
+          "technical_committee": "FAD 15",
+          "department": "FAD",
+          "aspect": "Code of Practice",
+          "amendments": "0",
+          "amendment_count": 0,
+          "status": "WITHDRAWN",
+          "is_active": 0,
+          "iso_equivalence": "(Withdrawn )",
+          "iso_equivalence_degree": "Modified/Technically Equivalent",
+          "source": "BIS",
+          "source_type": "BIS_KNOW_YOUR_STANDARD",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=489",
+          "retrieved_at": "2026-09-14T05:45:19.397591+00:00",
+          "ingestion_run_id": "run_20260914_042545",
+          "seeds_observed_json": "[\"0\", \"1\", \"2\", \"3\", \"4\", \"9\"]",
+          "times_observed": 6,
+          "first_seen": "2026-09-14T05:45:19.397591+00:00",
+          "last_seen": "2026-09-14T05:45:19.397591+00:00",
+          "raw_record_ref": "seed_0_page_0011.json:780",
+          "is_recovered": 0,
+          "recovery_reason": null
+        },
+        {
+          "canonical_id": "IS-15000-2024",
+          "standard_number": "IS 15000 : 2024",
+          "base_standard_number": "IS 15000",
+          "prefix": "IS",
+          "base_number": "15000",
+          "part": null,
+          "section": null,
+          "year": 2024,
+          "amendment": null,
+          "title": "Hazard Analysis and Critical Control Point (HACCP) - Requirements for Any Organization in the Food Chain  (Second Revision)",
+          "technical_committee": "FAD 15",
+          "department": "FAD",
+          "aspect": "System Standard",
+          "amendments": "0",
+          "amendment_count": 0,
+          "status": "UNKNOWN",
+          "is_active": null,
+          "iso_equivalence": "(Active)",
+          "iso_equivalence_degree": "Modified/Technically Equivalent",
+          "source": "BIS",
+          "source_type": "BIS_KNOW_YOUR_STANDARD",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=32162",
+          "retrieved_at": "2026-09-14T05:45:19.397591+00:00",
+          "ingestion_run_id": "run_20260914_042545",
+          "seeds_observed_json": "[\"0\", \"1\", \"5\"]",
+          "times_observed": 3,
+          "first_seen": "2026-09-14T05:45:19.397591+00:00",
+          "last_seen": "2026-09-14T05:45:19.397591+00:00",
+          "raw_record_ref": "seed_0_page_0006.json:144",
+          "is_recovered": 0,
+          "recovery_reason": null
+        }
+      ],
+      "top10_det": [
+        {
+          "std": "IS 10563 : 2026",
+          "score": 0.336
+        },
+        {
+          "std": "IS 10563 : 1983",
+          "score": 0.336
+        },
+        {
+          "std": "IS 15472 : 2004",
+          "score": 0.336
+        },
+        {
+          "std": "IS 10038 : 1981",
+          "score": 0.168
+        },
+        {
+          "std": "IS 10106 (Part 1) (Sec 1) : 1990",
+          "score": 0.168
+        },
+        {
+          "std": "IS 10141 : 2001",
+          "score": 0.168
+        },
+        {
+          "std": "IS 10142 : 2025",
+          "score": 0.168
+        },
+        {
+          "std": "IS 10142 : 1999",
+          "score": 0.168
+        },
+        {
+          "std": "IS 10146 : 1982",
+          "score": 0.168
+        },
+        {
+          "std": "IS 10148 : 2023",
+          "score": 0.168
+        }
+      ],
+      "top10_bm25": [
+        {
+          "std": "IS 10563 : 1983",
+          "score": 1.0
+        },
+        {
+          "std": "IS 12804 : 1989",
+          "score": 0.994
+        },
+        {
+          "std": "IS 7603 : 1975",
+          "score": 0.977
+        },
+        {
+          "std": "IS 11912 : 1986",
+          "score": 0.976
+        },
+        {
+          "std": "IS 10563 : 2026",
+          "score": 0.872
+        },
+        {
+          "std": "IS 16434 : 2018",
+          "score": 0.764
+        },
+        {
+          "std": "IS 302 (Part 2) (Sec 209) : 1994",
+          "score": 0.744
+        },
+        {
+          "std": "IS 1448 (Part 108) : 1982",
+          "score": 0.737
+        },
+        {
+          "std": "IS 19809 : 2026",
+          "score": 0.737
+        },
+        {
+          "std": "IS 16806 (Part 5) : 2018",
+          "score": 0.731
+        }
+      ],
+      "top10_sem": [
+        {
+          "std": "IS 7603 : 1975",
+          "score": 0.338
+        },
+        {
+          "std": "IS 17295 : 2019",
+          "score": 0.321
+        },
+        {
+          "std": "IS 16083 : 2013",
+          "score": 0.321
+        },
+        {
+          "std": "IS 5777 : 1970",
+          "score": 0.319
+        },
+        {
+          "std": "IS 11695 : 2020",
+          "score": 0.317
+        },
+        {
+          "std": "IS 10263 : 1982",
+          "score": 0.316
+        },
+        {
+          "std": "IS 16852 : 2018",
+          "score": 0.314
+        },
+        {
+          "std": "IS 18523 : 2023",
+          "score": 0.312
+        },
+        {
+          "std": "IS 17606 : 2021",
+          "score": 0.308
+        },
+        {
+          "std": "IS 14279 : 1995",
+          "score": 0.305
+        }
+      ],
+      "top10_hyb": [
+        {
+          "std": "IS 7603 : 1975",
+          "score": 0.509,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 10563 : 1983",
+          "score": 0.484,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 12804 : 1989",
+          "score": 0.44,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 10563 : 2026",
+          "score": 0.433,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 302 (Part 2) (Sec 209) : 1994",
+          "score": 0.398,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 11912 : 1986",
+          "score": 0.39,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 16806 (Part 5) : 2018",
+          "score": 0.334,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS 16806 (Part 6) : 2018",
+          "score": 0.334,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS 18351 : 2023",
+          "score": 0.31,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS 16434 : 2018",
+          "score": 0.306,
+          "status": "ACTIVE"
+        }
+      ]
+    },
+    {
+      "requirement_id": "T009-R001",
+      "query": "Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD",
+      "expected_standard": "SP 30 : 2023; IS 732 : 2019",
+      "has_citation": false,
+      "ranks": {
+        "DET": -1,
+        "BM25": -1,
+        "SEM": -1,
+        "HYB": -1
+      },
+      "exists_in_db": true,
+      "db_records": [
+        {
+          "canonical_id": "SP-30-2011",
+          "standard_number": "SP 30 : 2011",
+          "base_standard_number": "SP 30",
+          "prefix": "SP",
+          "base_number": "30",
+          "part": null,
+          "section": null,
+          "year": 2011,
+          "amendment": null,
+          "title": "National electrical code 2011 (First Revision)",
+          "technical_committee": "ETD 20",
+          "department": "ETD",
+          "aspect": "Code of Practice",
+          "amendments": "0",
+          "amendment_count": 0,
+          "status": "WITHDRAWN",
+          "is_active": 0,
+          "iso_equivalence": "(Withdrawn )",
+          "iso_equivalence_degree": "Indigenous",
+          "source": "BIS",
+          "source_type": "BIS_KNOW_YOUR_STANDARD",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=17713",
+          "retrieved_at": "2026-09-14T05:45:19.397591+00:00",
+          "ingestion_run_id": "run_20260914_042545",
+          "seeds_observed_json": "[\"0\", \"1\", \"2\", \"3\"]",
+          "times_observed": 4,
+          "first_seen": "2026-09-14T05:45:19.397591+00:00",
+          "last_seen": "2026-09-14T05:45:19.397591+00:00",
+          "raw_record_ref": "seed_0_page_0012.json:253",
+          "is_recovered": 0,
+          "recovery_reason": null
+        },
+        {
+          "canonical_id": "IS-732-2019",
+          "standard_number": "IS 732 : 2019",
+          "base_standard_number": "IS 732",
+          "prefix": "IS",
+          "base_number": "732",
+          "part": null,
+          "section": null,
+          "year": 2019,
+          "amendment": null,
+          "title": "Code of practice for electrical wiring installations (Fourth Revision)",
+          "technical_committee": "ETD 20",
+          "department": "ETD",
+          "aspect": "Code of Practice",
+          "amendments": "0",
+          "amendment_count": 0,
+          "status": "ACTIVE",
+          "is_active": 1,
+          "iso_equivalence": null,
+          "iso_equivalence_degree": "Modified/Technically Equivalent",
+          "source": "BIS",
+          "source_type": "BIS_KNOW_YOUR_STANDARD",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=14239",
+          "retrieved_at": "2026-09-14T05:45:19.397591+00:00",
+          "ingestion_run_id": "run_20260914_042545",
+          "seeds_observed_json": "[\"0\", \"2\", \"3\", \"5\", \"6\", \"7\"]",
+          "times_observed": 6,
+          "first_seen": "2026-09-14T05:45:19.397591+00:00",
+          "last_seen": "2026-09-14T05:45:19.397591+00:00",
+          "raw_record_ref": "seed_0_page_0017.json:84",
+          "is_recovered": 0,
+          "recovery_reason": null
+        }
+      ],
+      "top10_det": [
+        {
+          "std": "IS 10242 (Part 3) (Sec 11) : 1986",
+          "score": 0.336
+        },
+        {
+          "std": "IS 10242 (Part 3) (Sec 19) : 1990",
+          "score": 0.336
+        },
+        {
+          "std": "IS 10242 (Part 3) (Sec 24) : 1987",
+          "score": 0.336
+        },
+        {
+          "std": "IS 10242 (Part 360) : 2023",
+          "score": 0.336
+        },
+        {
+          "std": "IS 12075 : 2008",
+          "score": 0.336
+        },
+        {
+          "std": "IS 12075 : 2024",
+          "score": 0.336
+        },
+        {
+          "std": "IS 13450 (Part 1) (Sec 12) : 2024",
+          "score": 0.336
+        },
+        {
+          "std": "IS 13450 (Part 2) (Sec 84) : 2023",
+          "score": 0.336
+        },
+        {
+          "std": "IS 10581 : 1983",
+          "score": 0.336
+        },
+        {
+          "std": "IS 13040 : 1991",
+          "score": 0.299
+        }
+      ],
+      "top10_bm25": [
+        {
+          "std": "IS 19529 : 2026",
+          "score": 1.0
+        },
+        {
+          "std": "IS 13040 : 1991",
+          "score": 0.892
+        },
+        {
+          "std": "IS 12457 : 1988",
+          "score": 0.818
+        },
+        {
+          "std": "IS 9124 : 1979",
+          "score": 0.811
+        },
+        {
+          "std": "IS 4051 : 1967",
+          "score": 0.792
+        },
+        {
+          "std": "IS 2818 (Part 3) : 1971",
+          "score": 0.775
+        },
+        {
+          "std": "IS 2818 (Part 4) : 1971",
+          "score": 0.775
+        },
+        {
+          "std": "IS 2818 (Part 5) : 1974",
+          "score": 0.775
+        },
+        {
+          "std": "IS 2818 (Part 6) : 1977",
+          "score": 0.775
+        },
+        {
+          "std": "IS 2818 (Part 2) : 1971",
+          "score": 0.758
+        }
+      ],
+      "top10_sem": [
+        {
+          "std": "IS 9692 (Part 8) (Sec 1) : 1988",
+          "score": 0.529
+        },
+        {
+          "std": "IS 9692 (Part 8) (Sec 3) : 1988",
+          "score": 0.513
+        },
+        {
+          "std": "IS 9692 (Part 8) (Sec 4) : 1988",
+          "score": 0.504
+        },
+        {
+          "std": "IS 9692 (Part 8) (Sec 2) : 1988",
+          "score": 0.499
+        },
+        {
+          "std": "IS 15474 (Part 3) (Sec 14) : 2019",
+          "score": 0.494
+        },
+        {
+          "std": "IS 9692 (Part 2) : 1980",
+          "score": 0.474
+        },
+        {
+          "std": "IS 19529 : 2026",
+          "score": 0.469
+        },
+        {
+          "std": "IS 15474 (Part 3) (Sec 11) : 2014",
+          "score": 0.461
+        },
+        {
+          "std": "IS 10580 : 1983",
+          "score": 0.461
+        },
+        {
+          "std": "IS 7354 (Part 2) : 1984",
+          "score": 0.457
+        }
+      ],
+      "top10_hyb": [
+        {
+          "std": "IS 19529 : 2026",
+          "score": 0.639,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 1866 : 2017",
+          "score": 0.505,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS 4051 : 1967",
+          "score": 0.47,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 4051 : 2025",
+          "score": 0.452,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 13040 : 1991",
+          "score": 0.432,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS 589 : 1961",
+          "score": 0.422,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 11478 (Part 2) : 1985",
+          "score": 0.422,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 9692 (Part 8) (Sec 3) : 1988",
+          "score": 0.409,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 9692 (Part 8) (Sec 2) : 1988",
+          "score": 0.404,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 9692 (Part 8) (Sec 4) : 1988",
+          "score": 0.404,
+          "status": "WITHDRAWN"
+        }
+      ]
+    },
+    {
+      "requirement_id": "T011-R001",
+      "query": "Providing and laying underground cable for STP for main supply of electricity under CEDCO BSF Bangalore",
+      "expected_standard": "IS 7098 (Part 1) : 1988; IS 1255 : 1983",
+      "has_citation": false,
+      "ranks": {
+        "DET": -1,
+        "BM25": -1,
+        "SEM": 14,
+        "HYB": -1
+      },
+      "exists_in_db": true,
+      "db_records": [
+        {
+          "canonical_id": "IS-7098-Part-1-2025",
+          "standard_number": "IS 7098 (Part 1) : 2025",
+          "base_standard_number": "IS 7098 (Part 1)",
+          "prefix": "IS",
+          "base_number": "7098",
+          "part": 1,
+          "section": null,
+          "year": 2025,
+          "amendment": null,
+          "title": "Crosslinked Polyethylene Insulated Thermoplastic Sheathed Cables - Specification Part 1 For Working Voltages up to and Including 1 100 Volts (Second Revision)",
+          "technical_committee": "ETD 09",
+          "department": "ETD",
+          "aspect": "Product Specification",
+          "amendments": "0",
+          "amendment_count": 0,
+          "status": "UNKNOWN",
+          "is_active": null,
+          "iso_equivalence": "(Active)",
+          "iso_equivalence_degree": "Indigenous",
+          "source": "BIS",
+          "source_type": "BIS_KNOW_YOUR_STANDARD",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=33652",
+          "retrieved_at": "2026-09-14T05:45:19.397591+00:00",
+          "ingestion_run_id": "run_20260914_042545",
+          "seeds_observed_json": "[\"0\", \"1\", \"7\", \"8\", \"9\"]",
+          "times_observed": 5,
+          "first_seen": "2026-09-14T05:45:19.397591+00:00",
+          "last_seen": "2026-09-14T05:45:19.397591+00:00",
+          "raw_record_ref": "seed_0_page_0016.json:886",
+          "is_recovered": 0,
+          "recovery_reason": null
+        },
+        {
+          "canonical_id": "IS-12550-1988",
+          "standard_number": "IS 12550 : 1988",
+          "base_standard_number": "IS 12550",
+          "prefix": "IS",
+          "base_number": "12550",
+          "part": null,
+          "section": null,
+          "year": 1988,
+          "amendment": null,
+          "title": "Methods of determining particle size distribution of iron ore fines",
+          "technical_committee": "MTD 13",
+          "department": "MTD",
+          "aspect": "Methods of tests",
+          "amendments": "2",
+          "amendment_count": 2,
+          "status": "UNKNOWN",
+          "is_active": null,
+          "iso_equivalence": "(Active)",
+          "iso_equivalence_degree": "Not Equivalent",
+          "source": "BIS",
+          "source_type": "BIS_KNOW_YOUR_STANDARD",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=3942",
+          "retrieved_at": "2026-09-14T05:45:19.397591+00:00",
+          "ingestion_run_id": "run_20260914_042545",
+          "seeds_observed_json": "[\"0\", \"1\", \"2\", \"4\", \"5\", \"7\"]",
+          "times_observed": 6,
+          "first_seen": "2026-09-14T05:45:19.397591+00:00",
+          "last_seen": "2026-09-14T05:45:19.397591+00:00",
+          "raw_record_ref": "seed_0_page_0003.json:691",
+          "is_recovered": 0,
+          "recovery_reason": null
+        }
+      ],
+      "top10_det": [
+        {
+          "std": "IS 9336 : 1979",
+          "score": 0.616
+        },
+        {
+          "std": "IS 9047 (Part 3) : 1983",
+          "score": 0.485
+        },
+        {
+          "std": "IS 9047 (Part 4) : 1983",
+          "score": 0.485
+        },
+        {
+          "std": "IS 14787 : 2000",
+          "score": 0.485
+        },
+        {
+          "std": "IS 1198 : 1982",
+          "score": 0.336
+        },
+        {
+          "std": "IS 10386 (Part 11) : 2026",
+          "score": 0.336
+        },
+        {
+          "std": "IS 10386 (Part 11) : 2012",
+          "score": 0.336
+        },
+        {
+          "std": "IS 14480 : 2006",
+          "score": 0.336
+        },
+        {
+          "std": "IS 15707 : 2006",
+          "score": 0.336
+        },
+        {
+          "std": "IS 9792 (Part 1) : 1987",
+          "score": 0.336
+        }
+      ],
+      "top10_bm25": [
+        {
+          "std": "IS 14787 : 2000",
+          "score": 1.0
+        },
+        {
+          "std": "IS/ISO 28003 : 2007",
+          "score": 0.935
+        },
+        {
+          "std": "IS 5822 : 1994",
+          "score": 0.911
+        },
+        {
+          "std": "IS/IEC 63318 : 2022",
+          "score": 0.813
+        },
+        {
+          "std": "IS 8742 : 1978",
+          "score": 0.69
+        },
+        {
+          "std": "IS 12524 : 1988",
+          "score": 0.642
+        },
+        {
+          "std": "IS/IEC 61537 : 2006",
+          "score": 0.63
+        },
+        {
+          "std": "IS 10515 : 1983",
+          "score": 0.627
+        },
+        {
+          "std": "IS 14393 : 1996",
+          "score": 0.627
+        },
+        {
+          "std": "IS/IEC 61537 : 2023",
+          "score": 0.617
+        }
+      ],
+      "top10_sem": [
+        {
+          "std": "IS 14787 : 2000",
+          "score": 0.464
+        },
+        {
+          "std": "IS 691 : 1984",
+          "score": 0.457
+        },
+        {
+          "std": "IS 16205 (Part 24) : 2017",
+          "score": 0.454
+        },
+        {
+          "std": "IS 16205 (Part 24) : 2018",
+          "score": 0.444
+        },
+        {
+          "std": "IS 1026 : 1984",
+          "score": 0.43
+        },
+        {
+          "std": "IS 692 : 1994",
+          "score": 0.422
+        },
+        {
+          "std": "IS/IEC 62275 : 2018",
+          "score": 0.421
+        },
+        {
+          "std": "IS 16205 (Part 1) : 2017",
+          "score": 0.418
+        },
+        {
+          "std": "IS/IEC 60189 (Part 1) : 2018",
+          "score": 0.414
+        },
+        {
+          "std": "IS/IEC 62275 : 2013",
+          "score": 0.414
+        }
+      ],
+      "top10_hyb": [
+        {
+          "std": "IS 14787 : 2000",
+          "score": 0.684,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 9336 : 1979",
+          "score": 0.518,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS/IEC 62275 : 2018",
+          "score": 0.379,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS/IEC 62275 : 2013",
+          "score": 0.377,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS/ISO 28003 : 2007",
+          "score": 0.374,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS 5822 : 1994",
+          "score": 0.364,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 15143 : 2002",
+          "score": 0.331,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS/IEC 63318 : 2022",
+          "score": 0.325,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS 15707 : 2006",
+          "score": 0.3,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 1198 : 1982",
+          "score": 0.296,
+          "status": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "requirement_id": "T013-R002",
+      "query": "SITC of VFD water pump panel",
+      "expected_standard": "IS/IEC 61800-2 : 2015; IS/IEC 61439-2 : 2011",
+      "has_citation": false,
+      "ranks": {
+        "DET": -1,
+        "BM25": -1,
+        "SEM": -1,
+        "HYB": -1
+      },
+      "exists_in_db": true,
+      "db_records": [
+        {
+          "canonical_id": "IS-IEC-61800-Part-2-2015",
+          "standard_number": "IS/IEC 61800 (Part 2) : 2015",
+          "base_standard_number": "IS/IEC 61800 (Part 2)",
+          "prefix": "IS/IEC",
+          "base_number": "61800",
+          "part": 2,
+          "section": null,
+          "year": 2015,
+          "amendment": null,
+          "title": "Adjustable Speed Electrical Power Drive Systems Part 2 General Requirements \u00e2\u20ac\u201d Rating Specifications for Low Voltage Adjustable Speed a.c. Power Drive Systems",
+          "technical_committee": "ETD 31",
+          "department": "ETD",
+          "aspect": "Product Specification",
+          "amendments": "0",
+          "amendment_count": 0,
+          "status": "WITHDRAWN",
+          "is_active": 0,
+          "iso_equivalence": "IEC 61800-2 : 2015",
+          "iso_equivalence_degree": "Identical under single numbering",
+          "source": "BIS",
+          "source_type": "BIS_KNOW_YOUR_STANDARD",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=24635",
+          "retrieved_at": "2026-09-14T05:45:19.397591+00:00",
+          "ingestion_run_id": "run_20260914_042545",
+          "seeds_observed_json": "[\"0\", \"1\", \"2\", \"5\", \"6\", \"8\"]",
+          "times_observed": 6,
+          "first_seen": "2026-09-14T05:45:19.397591+00:00",
+          "last_seen": "2026-09-14T05:45:19.397591+00:00",
+          "raw_record_ref": "seed_0_page_0015.json:954",
+          "is_recovered": 0,
+          "recovery_reason": null
+        },
+        {
+          "canonical_id": "IS-IEC-61439-Part-5-2014",
+          "standard_number": "IS/IEC 61439 (Part 5) : 2014",
+          "base_standard_number": "IS/IEC 61439 (Part 5)",
+          "prefix": "IS/IEC",
+          "base_number": "61439",
+          "part": 5,
+          "section": null,
+          "year": 2014,
+          "amendment": null,
+          "title": "Low-Voltage Switchgear and Controlgear Assemblies Part 5 Assemblies for Power Distribution in Public Networks",
+          "technical_committee": "ETD 07",
+          "department": "ETD",
+          "aspect": "Product Specification",
+          "amendments": "0",
+          "amendment_count": 0,
+          "status": "WITHDRAWN",
+          "is_active": 0,
+          "iso_equivalence": "IEC 61439-5 : 2014",
+          "iso_equivalence_degree": "Identical under single numbering",
+          "source": "BIS",
+          "source_type": "BIS_KNOW_YOUR_STANDARD",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=24077",
+          "retrieved_at": "2026-09-14T05:45:19.397591+00:00",
+          "ingestion_run_id": "run_20260914_042545",
+          "seeds_observed_json": "[\"0\", \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"9\"]",
+          "times_observed": 8,
+          "first_seen": "2026-09-14T05:45:19.397591+00:00",
+          "last_seen": "2026-09-14T05:45:19.397591+00:00",
+          "raw_record_ref": "seed_0_page_0015.json:864",
+          "is_recovered": 0,
+          "recovery_reason": null
+        }
+      ],
+      "top10_det": [
+        {
+          "std": "IS 17018 (Part 1) : 2018",
+          "score": 0.616
+        },
+        {
+          "std": "IS 17018 (Part 1) : 2022",
+          "score": 0.616
+        },
+        {
+          "std": "IS 17292 : 2020",
+          "score": 0.616
+        },
+        {
+          "std": "IS 17429 : 2020",
+          "score": 0.616
+        },
+        {
+          "std": "IS 1520 : 1980",
+          "score": 0.485
+        },
+        {
+          "std": "IS 14399 (Part 1) : 1996",
+          "score": 0.467
+        },
+        {
+          "std": "IS 14399 (Part 12) : 1996",
+          "score": 0.467
+        },
+        {
+          "std": "IS 1001 : 1991",
+          "score": 0.317
+        },
+        {
+          "std": "IS 10069 : 2023",
+          "score": 0.317
+        },
+        {
+          "std": "IS 10069 : 2017",
+          "score": 0.317
+        }
+      ],
+      "top10_bm25": [
+        {
+          "std": "IS 1924 : 1973",
+          "score": 1.0
+        },
+        {
+          "std": "IS 14483 (Part 2) : 2002",
+          "score": 0.905
+        },
+        {
+          "std": "IS 6595 (Part 2) : 2024",
+          "score": 0.896
+        },
+        {
+          "std": "IS 14483 (Part 2) : 2025",
+          "score": 0.852
+        },
+        {
+          "std": "IS 2419 : 2012",
+          "score": 0.789
+        },
+        {
+          "std": "IS 12528 : 1988",
+          "score": 0.727
+        },
+        {
+          "std": "IS 17541 : 2021",
+          "score": 0.717
+        },
+        {
+          "std": "IS 17682 : 2021",
+          "score": 0.717
+        },
+        {
+          "std": "IS 12670 : 1989",
+          "score": 0.709
+        },
+        {
+          "std": "IS 11447 : 1985",
+          "score": 0.7
+        }
+      ],
+      "top10_sem": [
+        {
+          "std": "IS 17018 (Part 1) : 2018",
+          "score": 0.531
+        },
+        {
+          "std": "IS 17429 : 2020",
+          "score": 0.513
+        },
+        {
+          "std": "IS 17018 (Part 1) : 2022",
+          "score": 0.509
+        },
+        {
+          "std": "IS 8034 : 2002",
+          "score": 0.483
+        },
+        {
+          "std": "IS 6849 (Part 3) : 1976",
+          "score": 0.479
+        },
+        {
+          "std": "IS 14848 : 2000",
+          "score": 0.478
+        },
+        {
+          "std": "IS 13139 : 1992",
+          "score": 0.476
+        },
+        {
+          "std": "IS 13518 : 1992",
+          "score": 0.475
+        },
+        {
+          "std": "IS 6595 (Part 2) : 2024",
+          "score": 0.469
+        },
+        {
+          "std": "IS 14197 : 2023",
+          "score": 0.466
+        }
+      ],
+      "top10_hyb": [
+        {
+          "std": "IS 15310 : 2003",
+          "score": 0.492,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 14197 : 2023",
+          "score": 0.489,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS 15310 : 2026",
+          "score": 0.47,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 1924 : 1973",
+          "score": 0.4,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 12670 : 1989",
+          "score": 0.363,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 14483 (Part 2) : 2002",
+          "score": 0.362,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 2419 : 2012",
+          "score": 0.36,
+          "status": "ACTIVE"
+        },
+        {
+          "std": "IS 11447 : 1985",
+          "score": 0.355,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 12670 : 2025",
+          "score": 0.343,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 14483 (Part 2) : 2025",
+          "score": 0.341,
+          "status": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "requirement_id": "T014-R002",
+      "query": "commissioning of three numbers of Process Water Pump motors 3.3 kV",
+      "expected_standard": "IS/IEC 60034-1 : 2017; IS 5120 : 1977",
+      "has_citation": false,
+      "ranks": {
+        "DET": -1,
+        "BM25": -1,
+        "SEM": 54,
+        "HYB": -1
+      },
+      "exists_in_db": true,
+      "db_records": [
+        {
+          "canonical_id": "IS-IEC-60034-Part-27-Sec-1-2017",
+          "standard_number": "IS/IEC 60034 (Part 27) (Sec 1) : 2017",
+          "base_standard_number": "IS/IEC 60034 (Part 27) (Sec 1)",
+          "prefix": "IS/IEC",
+          "base_number": "60034",
+          "part": 27,
+          "section": 1,
+          "year": 2017,
+          "amendment": null,
+          "title": "Rotating electrical machines Part 27 Winding insulation of rotating electrical machines Section 1 Off-Line partial discharge measurements on the winding insulation",
+          "technical_committee": "ETD 15",
+          "department": "ETD",
+          "aspect": null,
+          "amendments": "0",
+          "amendment_count": 0,
+          "status": "UNKNOWN",
+          "is_active": null,
+          "iso_equivalence": "(Active)",
+          "iso_equivalence_degree": "Indigenous",
+          "source": "BIS",
+          "source_type": "BIS_KNOW_YOUR_STANDARD",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=65577",
+          "retrieved_at": "2026-09-14T05:45:19.397591+00:00",
+          "ingestion_run_id": "run_20260914_042545",
+          "seeds_observed_json": "[\"0\", \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\"]",
+          "times_observed": 10,
+          "first_seen": "2026-09-14T05:45:19.397591+00:00",
+          "last_seen": "2026-09-14T05:45:19.397591+00:00",
+          "raw_record_ref": "seed_0_page_0015.json:72",
+          "is_recovered": 0,
+          "recovery_reason": null
+        },
+        {
+          "canonical_id": "IS-5120-1977",
+          "standard_number": "IS 5120 : 1977",
+          "base_standard_number": "IS 5120",
+          "prefix": "IS",
+          "base_number": "5120",
+          "part": null,
+          "section": null,
+          "year": 1977,
+          "amendment": null,
+          "title": "Technical requirements for rotodynamic special purpose pumps (First Revision)",
+          "technical_committee": "MED 20",
+          "department": "MED",
+          "aspect": "Code of Practice",
+          "amendments": "5",
+          "amendment_count": 5,
+          "status": "UNKNOWN",
+          "is_active": null,
+          "iso_equivalence": "(Active)",
+          "iso_equivalence_degree": "Indigenous",
+          "source": "BIS",
+          "source_type": "BIS_KNOW_YOUR_STANDARD",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=11879",
+          "retrieved_at": "2026-09-14T05:45:19.397591+00:00",
+          "ingestion_run_id": "run_20260914_042545",
+          "seeds_observed_json": "[\"0\", \"1\", \"2\", \"5\"]",
+          "times_observed": 4,
+          "first_seen": "2026-09-14T05:45:19.397591+00:00",
+          "last_seen": "2026-09-14T05:45:19.397591+00:00",
+          "raw_record_ref": "seed_0_page_0014.json:444",
+          "is_recovered": 0,
+          "recovery_reason": null
+        }
+      ],
+      "top10_det": [
+        {
+          "std": "IS 10069 : 2023",
+          "score": 0.616
+        },
+        {
+          "std": "IS 10069 : 2017",
+          "score": 0.616
+        },
+        {
+          "std": "IS 10129 : 2004",
+          "score": 0.616
+        },
+        {
+          "std": "IS 14602 : 1999",
+          "score": 0.616
+        },
+        {
+          "std": "IS 14604 : 1998",
+          "score": 0.616
+        },
+        {
+          "std": "IS 2254 : 2026",
+          "score": 0.616
+        },
+        {
+          "std": "IS 11147 : 1984",
+          "score": 0.616
+        },
+        {
+          "std": "IS 13876 (Part 3) : 1993",
+          "score": 0.616
+        },
+        {
+          "std": "IS 14848 : 2000",
+          "score": 0.616
+        },
+        {
+          "std": "IS 9283 : 2024",
+          "score": 0.616
+        }
+      ],
+      "top10_bm25": [
+        {
+          "std": "IS 325 : 1996",
+          "score": 1.0
+        },
+        {
+          "std": "IS 11354 : 2023",
+          "score": 0.933
+        },
+        {
+          "std": "IS 9628 : 1980",
+          "score": 0.93
+        },
+        {
+          "std": "IS 12066 : 1987",
+          "score": 0.909
+        },
+        {
+          "std": "IS 4029 : 2010",
+          "score": 0.909
+        },
+        {
+          "std": "IS 1231 : 2019",
+          "score": 0.895
+        },
+        {
+          "std": "IS 12615 : 2011",
+          "score": 0.889
+        },
+        {
+          "std": "IS 14578 : 1999",
+          "score": 0.889
+        },
+        {
+          "std": "IS 8151 : 1976",
+          "score": 0.889
+        },
+        {
+          "std": "IS 8789 : 1996",
+          "score": 0.889
+        }
+      ],
+      "top10_sem": [
+        {
+          "std": "IS 9283 : 2013",
+          "score": 0.582
+        },
+        {
+          "std": "IS 10069 : 2023",
+          "score": 0.578
+        },
+        {
+          "std": "IS 7538 : 1996",
+          "score": 0.562
+        },
+        {
+          "std": "IS 12066 : 1987",
+          "score": 0.561
+        },
+        {
+          "std": "IS 9283 : 2024",
+          "score": 0.56
+        },
+        {
+          "std": "IS 14578 : 1999",
+          "score": 0.552
+        },
+        {
+          "std": "IS 14849 (Part 3) : 2005",
+          "score": 0.532
+        },
+        {
+          "std": "IS 14849 (Part 2) : 2018",
+          "score": 0.531
+        },
+        {
+          "std": "IS 14849 (Part 1) : 2017",
+          "score": 0.528
+        },
+        {
+          "std": "IS 6849 (Part 3) : 1976",
+          "score": 0.528
+        }
+      ],
+      "top10_hyb": [
+        {
+          "std": "IS 325 : 1996",
+          "score": 0.69,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 12066 : 1987",
+          "score": 0.677,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 14578 : 1999",
+          "score": 0.666,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 9628 : 1980",
+          "score": 0.659,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 8789 : 1996",
+          "score": 0.657,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 12615 : 2011",
+          "score": 0.647,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 4029 : 2010",
+          "score": 0.644,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 8151 : 1976",
+          "score": 0.642,
+          "status": "WITHDRAWN"
+        },
+        {
+          "std": "IS 14578 : 2025",
+          "score": 0.64,
+          "status": "UNKNOWN"
+        },
+        {
+          "std": "IS 8789 : 2021",
+          "score": 0.638,
+          "status": "UNKNOWN"
+        }
+      ]
+    }
+  ],
+  "all_queries": [
+    {
+      "requirement_id": "T001-R002",
+      "query": "replacement of damaged pipelines by Hubless",
+      "expected_standard": "IS 15905 : 2011; IS 1239 (Part 1) : 2004",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": 1,
+        "BM25": 3,
+        "SEM": 48,
+        "HYB": 1
+      },
+      "top10_hybrid_lifecycle": [
+        "WITHDRAWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "WITHDRAWN",
+        "UNKNOWN"
+      ],
+      "top5_det": [
+        "IS 15905 : 2011",
+        "IS 15905 : 2024",
+        "IS 10117 : 2000",
+        "IS 10221 : 2008",
+        "IS 10990 (Part 1) : 2023"
+      ],
+      "top5_bm25": [
+        "IS 16038 : 2012",
+        "IS 11759 : 1986",
+        "IS 15905 : 2011",
+        "IS 19180 : 2025",
+        "IS 19193 : 2025"
+      ],
+      "top5_sem": [
+        "IS 8262 (Part 1) : 1976",
+        "IS 10990 (Part 2) : 1992",
+        "IS 15947 (Part 2) : 2012",
+        "IS 17055 (Part 9) : 2020",
+        "IS/ISO 3183 : 2007"
+      ],
+      "top5_hyb": [
+        "IS 15905 : 2011",
+        "IS 15905 : 2024",
+        "IS 15663 (Part 1) : 2006",
+        "IS 15663 (Part 2) : 2006",
+        "IS 15663 (Part 3) : 2006"
+      ]
+    },
+    {
+      "requirement_id": "T001-R003",
+      "query": "wall tiles",
+      "expected_standard": "IS 15622 : 2017",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": -1,
+        "BM25": 57,
+        "SEM": 41,
+        "HYB": 51
+      },
+      "top10_hybrid_lifecycle": [
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "WITHDRAWN",
+        "ACTIVE",
+        "UNKNOWN"
+      ],
+      "top5_det": [
+        "IS 4112 : 1967",
+        "IS 3463 : 1966",
+        "IS 3464 : 1986",
+        "IS 777 : 1988",
+        "IS 10108 : 1982"
+      ],
+      "top5_bm25": [
+        "IS 3463 : 1966",
+        "IS 777 : 1988",
+        "IS 4112 : 1967",
+        "IS 3464 : 1986",
+        "IS 15418 : 2003"
+      ],
+      "top5_sem": [
+        "IS 3463 : 1966",
+        "IS 13712 : 2019",
+        "IS 4112 : 1967",
+        "IS 19752 (Part 1) : 2026",
+        "IS 3464 : 1986"
+      ],
+      "top5_hyb": [
+        "IS 3463 : 1966",
+        "IS 777 : 1988",
+        "IS 4112 : 1967",
+        "IS 3464 : 1986",
+        "IS 19752 (Part 1) : 2026"
+      ]
+    },
+    {
+      "requirement_id": "T001-R004",
+      "query": "upgradation of all sanitary fittings at AGL Department in Main School Building at IIT ISM Dhanbad",
+      "expected_standard": "IS 2556 (Part 1 to 17); IS 781 : 1984; IS 774 : 2021",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": 13,
+        "BM25": 34,
+        "SEM": 5,
+        "HYB": 7
+      },
+      "top10_hybrid_lifecycle": [
+        "UNKNOWN",
+        "ACTIVE",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "UNKNOWN"
+      ],
+      "top5_det": [
+        "IS 17650 (Part 2) : 2021",
+        "IS 2064 : 1993",
+        "IS 12309 (Part 1) : 1988",
+        "IS 12309 (Part 2) : 1988",
+        "IS 14393 : 1996"
+      ],
+      "top5_bm25": [
+        "IS 14393 : 1996",
+        "IS 17650 (Part 2) : 2021",
+        "IS 1626 (Part 3) : 1994",
+        "IS 1626 (Part 2) : 1994",
+        "IS 1626 (Part 1) : 1994"
+      ],
+      "top5_sem": [
+        "IS 17650 (Part 2) : 2021",
+        "IS 17650 (Part 1) : 2021",
+        "IS 2064 : 1993",
+        "IS 6541 : 2024",
+        "IS 2556 (Part 1) : 2021"
+      ],
+      "top5_hyb": [
+        "IS 17650 (Part 2) : 2021",
+        "IS 14393 : 1996",
+        "IS 2064 : 1993",
+        "IS 5329 : 1983",
+        "IS 17454 : 2023"
+      ]
+    },
+    {
+      "requirement_id": "T002-R003",
+      "query": "Flange Joint Maintenance",
+      "expected_standard": "IS 6392 : 1971; IS 2712 : 2020",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": 88,
+        "BM25": -1,
+        "SEM": 11,
+        "HYB": 48
+      },
+      "top10_hybrid_lifecycle": [
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "ACTIVE",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "ACTIVE",
+        "UNKNOWN"
+      ],
+      "top5_det": [
+        "IS 14478 : 2026",
+        "IS 13257 : 1992",
+        "IS 14478 : 1997",
+        "IS 425 : 1953",
+        "IS 10124 (Part 6) : 2009"
+      ],
+      "top5_bm25": [
+        "IS 14478 : 2026",
+        "IS 14478 : 1997",
+        "IS 4774 (Part 2) : 2022",
+        "IS 425 : 1953",
+        "IS 700 : 1955"
+      ],
+      "top5_sem": [
+        "IS 4864 (Part 4870) : 1968",
+        "IS 7411 (Part 2) : 1974",
+        "IS 4865 : 1968",
+        "IS 4866 : 1968",
+        "IS 4868 : 1968"
+      ],
+      "top5_hyb": [
+        "IS 425 : 1953",
+        "IS 700 : 1955",
+        "IS 14478 : 2026",
+        "IS 14478 : 1997",
+        "IS 13257 : 1992"
+      ]
+    },
+    {
+      "requirement_id": "T003-R001",
+      "query": "Replacement / repair of distribution boards and defective lights at various locations in main sports stadium",
+      "expected_standard": "IS/IEC 61439-3 : 2012; IS 10322 (Part 5 / Sec 5) : 2013",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": 1,
+        "BM25": 10,
+        "SEM": 35,
+        "HYB": 17
+      },
+      "top10_hybrid_lifecycle": [
+        "WITHDRAWN",
+        "UNKNOWN",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "WITHDRAWN"
+      ],
+      "top5_det": [
+        "IS 10322 (Part 5) (Sec 5) : 2026",
+        "IS 10322 (Part 5) (Sec 9) : 2017",
+        "IS 10322 (Part 5) (Sec 5) : 2013",
+        "IS 2675 : 1983",
+        "IS 15512 : 2004"
+      ],
+      "top5_bm25": [
+        "IS 11214 : 1984",
+        "IS 18284 : 2023",
+        "IS 15512 : 2004",
+        "IS 15932 (Part 1) : 2012",
+        "IS 15844 (Part 2) : 2023"
+      ],
+      "top5_sem": [
+        "IS/IEC 62326 (Part 20) : 2016",
+        "IS 5870 : 2026",
+        "IS 11214 : 1984",
+        "IS 12309 (Part 2) : 1988",
+        "IS 2592 : 1980"
+      ],
+      "top5_hyb": [
+        "IS 11214 : 1984",
+        "IS 18284 : 2023",
+        "IS 3628 : 1966",
+        "IS 15512 : 2004",
+        "IS 15932 (Part 1) : 2012"
+      ]
+    },
+    {
+      "requirement_id": "T004-R002",
+      "query": "power cables from outside of electrical room to AMF room",
+      "expected_standard": "IS 7098 (Part 1) : 1988; IS 1255 : 1983",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": 12,
+        "BM25": 69,
+        "SEM": 25,
+        "HYB": 1
+      },
+      "top10_hybrid_lifecycle": [
+        "UNKNOWN",
+        "UNKNOWN",
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "ACTIVE",
+        "ACTIVE",
+        "UNKNOWN",
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "top5_det": [
+        "IS 10242 (Part 3) (Sec 10) : 1992",
+        "IS 10242 (Part 3) (Sec 11) : 1986",
+        "IS 10242 (Part 3) (Sec 13) : 2023",
+        "IS 10242 (Part 3) (Sec 12) : 1986",
+        "IS 10242 (Part 3) (Sec 19) : 1990"
+      ],
+      "top5_bm25": [
+        "IS 19383 : 2025",
+        "IS 5899 : 1970",
+        "IS 9901 (Part 9) : 1986",
+        "IS 7152 : 2021",
+        "IS 7152 : 1992"
+      ],
+      "top5_sem": [
+        "IS 11892 : 1986",
+        "IS 16246 : 2015",
+        "IS 16205 (Part 1) : 2017",
+        "IS 16939 : 2018",
+        "IS 17048 : 2018"
+      ],
+      "top5_hyb": [
+        "IS 1255 : 1983",
+        "IS 10810 (Part 48) : 1984",
+        "IS 10242 (Part 3) (Sec 11) : 1986",
+        "IS 10242 (Part 3) (Sec 10) : 1992",
+        "IS 10242 (Part 3) (Sec 19) : 1990"
+      ]
+    },
+    {
+      "requirement_id": "T004-R005",
+      "query": "Dismantling,Shifting and reinstallation of feeder pillar, power",
+      "expected_standard": "IS 5039 : 1983; IS/IEC 61439-5 : 2014",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": 29,
+        "BM25": -1,
+        "SEM": -1,
+        "HYB": -1
+      },
+      "top10_hybrid_lifecycle": [
+        "ACTIVE",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "ACTIVE",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "UNKNOWN"
+      ],
+      "top5_det": [
+        "IS 12960 : 1990",
+        "IS 1060 (Part 5) (Sec 16) : 2015",
+        "IS 11030 : 2024",
+        "IS 11030 : 1984",
+        "IS 13360 (Part 11) (Sec 9) : 2023"
+      ],
+      "top5_bm25": [
+        "IS 17862 : 2022",
+        "IS 7700 : 1975",
+        "IS 12907 : 1990",
+        "IS 18445 : 2024",
+        "IS 18444 (Part 57) (Sec 1202) : 2024"
+      ],
+      "top5_sem": [
+        "IS 17220 : 2019",
+        "IS 12960 : 1990",
+        "IS 1795 : 1982",
+        "IS 15424 (Part 3) : 2018",
+        "IS 15424 (Part 5) : 2022"
+      ],
+      "top5_hyb": [
+        "IS 17220 : 2019",
+        "IS 5869 : 1970",
+        "IS 1795 : 1982",
+        "IS 8934 : 1978",
+        "IS 2425 : 1982"
+      ]
+    },
+    {
+      "requirement_id": "T005-R001",
+      "query": "Cable connection of DG Set in Newly constructed building of the Dept. of Molecular , Human Genetics",
+      "expected_standard": "IS 3043 : 2018; IS 7098 (Part 1) : 1988; IS 1293 : 2019",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": -1,
+        "BM25": -1,
+        "SEM": 40,
+        "HYB": -1
+      },
+      "top10_hybrid_lifecycle": [
+        "UNKNOWN",
+        "ACTIVE",
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "ACTIVE",
+        "WITHDRAWN",
+        "ACTIVE",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN"
+      ],
+      "top5_det": [
+        "IS 10810 (Part 30) : 1984",
+        "IS 17867 (Part 3) : 2022",
+        "IS 10052 (Part 6) : 1992",
+        "IS 10241 (Part 2) : 1982",
+        "IS 10241 (Part 3) : 1987"
+      ],
+      "top5_bm25": [
+        "IS 16128 : 2013",
+        "IS 19766 (Part 1) : 2026",
+        "IS 13276 (Part 3) : 1992",
+        "IS 14211 : 1994",
+        "IS/IEC 61537 : 2006"
+      ],
+      "top5_sem": [
+        "IS 10810 (Part 19) : 1984",
+        "IS 10810 : 1984",
+        "IS 10334 : 2026",
+        "IS 10810 (Part 10) : 1984",
+        "IS 10334 : 1982"
+      ],
+      "top5_hyb": [
+        "IS 16128 : 2013",
+        "IS/IEC 62275 : 2018",
+        "IS/IEC 62275 : 2013",
+        "IS 4821 : 1968",
+        "IS/IEC 61537 : 2006"
+      ]
+    },
+    {
+      "requirement_id": "T006-R001",
+      "query": "UPVC Partition Wall Work for Conversion of Seafood Authentication Laboratory into Conventional Microbiology Laboratory",
+      "expected_standard": "IS 16088 : 2016",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": -1,
+        "BM25": -1,
+        "SEM": -1,
+        "HYB": -1
+      },
+      "top10_hybrid_lifecycle": [
+        "ACTIVE",
+        "ACTIVE",
+        "ACTIVE",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "ACTIVE",
+        "UNKNOWN",
+        "UNKNOWN",
+        "WITHDRAWN"
+      ],
+      "top5_det": [
+        "IS 17113 (Part 4) : 2022",
+        "IS 17113 (Part 5) : 2022",
+        "IS 17113 (Part 3) : 2022",
+        "IS 17385 : 2020",
+        "IS 6213 (Part 8) (Sec 1) : 2017"
+      ],
+      "top5_bm25": [
+        "IS 17113 (Part 4) : 2022",
+        "IS 6213 (Part 8) (Sec 1) : 2017",
+        "IS 9271 : 2004",
+        "IS 17113 (Part 3) : 2022",
+        "IS 18995 (Part 1) : 2025"
+      ],
+      "top5_sem": [
+        "IS 17448 : 2020",
+        "IS 15478 (Part 2) : 2004",
+        "IS 15990 : 2012",
+        "IS 17385 : 2020",
+        "IS 16980 : 2018"
+      ],
+      "top5_hyb": [
+        "IS 17113 (Part 4) : 2022",
+        "IS 17113 (Part 3) : 2022",
+        "IS 6213 (Part 8) (Sec 1) : 2017",
+        "IS/ISO 4787 : 2010",
+        "IS 9271 : 2004"
+      ]
+    },
+    {
+      "requirement_id": "T007-R003",
+      "query": "Low-Oil Food Outlet on BOT",
+      "expected_standard": "IS 2491 : 2013; IS 15000 : 2013",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": -1,
+        "BM25": -1,
+        "SEM": -1,
+        "HYB": -1
+      },
+      "top10_hybrid_lifecycle": [
+        "UNKNOWN",
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "ACTIVE",
+        "ACTIVE",
+        "ACTIVE",
+        "ACTIVE"
+      ],
+      "top5_det": [
+        "IS 10563 : 2026",
+        "IS 10563 : 1983",
+        "IS 15472 : 2004",
+        "IS 10038 : 1981",
+        "IS 10106 (Part 1) (Sec 1) : 1990"
+      ],
+      "top5_bm25": [
+        "IS 10563 : 1983",
+        "IS 12804 : 1989",
+        "IS 7603 : 1975",
+        "IS 11912 : 1986",
+        "IS 10563 : 2026"
+      ],
+      "top5_sem": [
+        "IS 7603 : 1975",
+        "IS 17295 : 2019",
+        "IS 16083 : 2013",
+        "IS 5777 : 1970",
+        "IS 11695 : 2020"
+      ],
+      "top5_hyb": [
+        "IS 7603 : 1975",
+        "IS 10563 : 1983",
+        "IS 12804 : 1989",
+        "IS 10563 : 2026",
+        "IS 302 (Part 2) (Sec 209) : 1994"
+      ]
+    },
+    {
+      "requirement_id": "T009-R001",
+      "query": "Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD",
+      "expected_standard": "SP 30 : 2023; IS 732 : 2019",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": -1,
+        "BM25": -1,
+        "SEM": -1,
+        "HYB": -1
+      },
+      "top10_hybrid_lifecycle": [
+        "UNKNOWN",
+        "ACTIVE",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "ACTIVE",
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "WITHDRAWN"
+      ],
+      "top5_det": [
+        "IS 10242 (Part 3) (Sec 11) : 1986",
+        "IS 10242 (Part 3) (Sec 19) : 1990",
+        "IS 10242 (Part 3) (Sec 24) : 1987",
+        "IS 10242 (Part 360) : 2023",
+        "IS 12075 : 2008"
+      ],
+      "top5_bm25": [
+        "IS 19529 : 2026",
+        "IS 13040 : 1991",
+        "IS 12457 : 1988",
+        "IS 9124 : 1979",
+        "IS 4051 : 1967"
+      ],
+      "top5_sem": [
+        "IS 9692 (Part 8) (Sec 1) : 1988",
+        "IS 9692 (Part 8) (Sec 3) : 1988",
+        "IS 9692 (Part 8) (Sec 4) : 1988",
+        "IS 9692 (Part 8) (Sec 2) : 1988",
+        "IS 15474 (Part 3) (Sec 14) : 2019"
+      ],
+      "top5_hyb": [
+        "IS 19529 : 2026",
+        "IS 1866 : 2017",
+        "IS 4051 : 1967",
+        "IS 4051 : 2025",
+        "IS 13040 : 1991"
+      ]
+    },
+    {
+      "requirement_id": "T010-R001",
+      "query": "Sewerage Pipeline works from Collection Chamber to STP 9/4/26",
+      "expected_standard": "IS 458 : 2021; IS 783 : 1985; IS 14333 : 1996",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": 10,
+        "BM25": 4,
+        "SEM": 1,
+        "HYB": 1
+      },
+      "top10_hybrid_lifecycle": [
+        "WITHDRAWN",
+        "UNKNOWN",
+        "WITHDRAWN",
+        "ACTIVE",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "WITHDRAWN",
+        "UNKNOWN"
+      ],
+      "top5_det": [
+        "IS 5382 : 2018",
+        "IS 5382 : 2025",
+        "IS 14402 : 1996",
+        "IS 16098 (Part 1) : 2013",
+        "IS 16098 (Part 2) : 2013"
+      ],
+      "top5_bm25": [
+        "IS 11542 (Part 1) : 1985",
+        "IS 11542 (Part 2) : 1985",
+        "IS/ISO 7396 (Part 1) : 2007",
+        "IS 14333 : 1996",
+        "IS 18466 (Part 1) : 2024"
+      ],
+      "top5_sem": [
+        "IS 14333 : 1996",
+        "IS 4111 (Part 4) : 1968",
+        "IS 10990 (Part 3) : 2001",
+        "IS 16098 (Part 1) : 2013",
+        "IS 16098 (Part 2) : 2013"
+      ],
+      "top5_hyb": [
+        "IS 14333 : 1996",
+        "IS 14333 : 2022",
+        "IS/ISO 7396 (Part 1) : 2007",
+        "IS 18466 (Part 1) : 2024",
+        "IS 4111 (Part 4) : 1968"
+      ]
+    },
+    {
+      "requirement_id": "T011-R001",
+      "query": "Providing and laying underground cable for STP for main supply of electricity under CEDCO BSF Bangalore",
+      "expected_standard": "IS 7098 (Part 1) : 1988; IS 1255 : 1983",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": -1,
+        "BM25": -1,
+        "SEM": 14,
+        "HYB": -1
+      },
+      "top10_hybrid_lifecycle": [
+        "UNKNOWN",
+        "WITHDRAWN",
+        "ACTIVE",
+        "WITHDRAWN",
+        "ACTIVE",
+        "UNKNOWN",
+        "UNKNOWN",
+        "ACTIVE",
+        "UNKNOWN",
+        "UNKNOWN"
+      ],
+      "top5_det": [
+        "IS 9336 : 1979",
+        "IS 9047 (Part 3) : 1983",
+        "IS 9047 (Part 4) : 1983",
+        "IS 14787 : 2000",
+        "IS 1198 : 1982"
+      ],
+      "top5_bm25": [
+        "IS 14787 : 2000",
+        "IS/ISO 28003 : 2007",
+        "IS 5822 : 1994",
+        "IS/IEC 63318 : 2022",
+        "IS 8742 : 1978"
+      ],
+      "top5_sem": [
+        "IS 14787 : 2000",
+        "IS 691 : 1984",
+        "IS 16205 (Part 24) : 2017",
+        "IS 16205 (Part 24) : 2018",
+        "IS 1026 : 1984"
+      ],
+      "top5_hyb": [
+        "IS 14787 : 2000",
+        "IS 9336 : 1979",
+        "IS/IEC 62275 : 2018",
+        "IS/IEC 62275 : 2013",
+        "IS/ISO 28003 : 2007"
+      ]
+    },
+    {
+      "requirement_id": "T012-R002",
+      "query": "Plaster Repairing",
+      "expected_standard": "IS 1661 : 1972; IS 269 : 2015",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": 20,
+        "BM25": 49,
+        "SEM": 16,
+        "HYB": 40
+      },
+      "top10_hybrid_lifecycle": [
+        "UNKNOWN",
+        "ACTIVE",
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN"
+      ],
+      "top5_det": [
+        "IS 10326 : 1982",
+        "IS 10327 : 1982",
+        "IS 10338 : 1982",
+        "IS 109 : 2017",
+        "IS 1200 (Part 12) : 2026"
+      ],
+      "top5_bm25": [
+        "IS 9008 : 1978",
+        "IS 12053 : 1987",
+        "IS 15523 : 2018",
+        "IS 2542 (Part 1) (Sec 6) : 2023",
+        "IS 2542 (Part 1) (Sec 9) : 2023"
+      ],
+      "top5_sem": [
+        "IS 8272 : 1984",
+        "IS 1542 : 1992",
+        "IS 2333 : 1992",
+        "IS 2333 : 2025",
+        "IS 2547 (Part 1) : 1976"
+      ],
+      "top5_hyb": [
+        "IS 8272 : 1984",
+        "IS 9008 : 1978",
+        "IS 2095 (Part 1) : 2011",
+        "IS 2095 (Part 2) : 2001",
+        "IS 2542 (Part 1) (Sec 1) : 2023"
+      ]
+    },
+    {
+      "requirement_id": "T012-R003",
+      "query": "Plumbing Fittings",
+      "expected_standard": "IS 1239 (Part 2) : 1992; IS 778 : 1984",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": -1,
+        "BM25": 12,
+        "SEM": 67,
+        "HYB": 11
+      },
+      "top10_hybrid_lifecycle": [
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "ACTIVE",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "ACTIVE",
+        "WITHDRAWN",
+        "UNKNOWN"
+      ],
+      "top5_det": [
+        "IS 17650 (Part 2) : 2021",
+        "IS 1200 (Part 19) : 1981",
+        "IS 14810 : 2000",
+        "IS 17650 (Part 1) : 2021",
+        "IS 12183 (Part 1) : 1987"
+      ],
+      "top5_bm25": [
+        "IS 17650 (Part 2) : 2021",
+        "IS 14810 : 2000",
+        "IS 8321 : 1976",
+        "IS 17650 (Part 1) : 2021",
+        "SP 35 : 1987"
+      ],
+      "top5_sem": [
+        "SP 57 : 1993",
+        "IS 13479 : 1992",
+        "IS 1538 : 1993",
+        "IS 8008 (Part 6) : 2003",
+        "IS 17650 (Part 2) : 2021"
+      ],
+      "top5_hyb": [
+        "IS 17650 (Part 2) : 2021",
+        "IS 15927 (Part 2) : 2012",
+        "IS 15927 (Part 1) : 2012",
+        "IS 14768 (Part 2) : 2003",
+        "IS 12300 : 1988"
+      ]
+    },
+    {
+      "requirement_id": "T013-R002",
+      "query": "SITC of VFD water pump panel",
+      "expected_standard": "IS/IEC 61800-2 : 2015; IS/IEC 61439-2 : 2011",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": -1,
+        "BM25": -1,
+        "SEM": -1,
+        "HYB": -1
+      },
+      "top10_hybrid_lifecycle": [
+        "UNKNOWN",
+        "ACTIVE",
+        "UNKNOWN",
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "ACTIVE",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN"
+      ],
+      "top5_det": [
+        "IS 17018 (Part 1) : 2018",
+        "IS 17018 (Part 1) : 2022",
+        "IS 17292 : 2020",
+        "IS 17429 : 2020",
+        "IS 1520 : 1980"
+      ],
+      "top5_bm25": [
+        "IS 1924 : 1973",
+        "IS 14483 (Part 2) : 2002",
+        "IS 6595 (Part 2) : 2024",
+        "IS 14483 (Part 2) : 2025",
+        "IS 2419 : 2012"
+      ],
+      "top5_sem": [
+        "IS 17018 (Part 1) : 2018",
+        "IS 17429 : 2020",
+        "IS 17018 (Part 1) : 2022",
+        "IS 8034 : 2002",
+        "IS 6849 (Part 3) : 1976"
+      ],
+      "top5_hyb": [
+        "IS 15310 : 2003",
+        "IS 14197 : 2023",
+        "IS 15310 : 2026",
+        "IS 1924 : 1973",
+        "IS 12670 : 1989"
+      ]
+    },
+    {
+      "requirement_id": "T013-R003",
+      "query": "Insulation work",
+      "expected_standard": "IS 14164 : 2008; IS 8183 : 1993",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": 51,
+        "BM25": -1,
+        "SEM": 5,
+        "HYB": 62
+      },
+      "top10_hybrid_lifecycle": [
+        "UNKNOWN",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "ACTIVE",
+        "WITHDRAWN",
+        "ACTIVE",
+        "ACTIVE",
+        "UNKNOWN"
+      ],
+      "top5_det": [
+        "IS 10242 (Part 3) (Sec 13) : 1992",
+        "IS 10530 : 1983",
+        "IS 10556 : 2014",
+        "IS 10556 : 1983",
+        "IS 10579 : 1983"
+      ],
+      "top5_bm25": [
+        "IS 2165 (Part 2) : 1983",
+        "IS 11050 (Part 2) : 1984",
+        "IS 18973 : 2024",
+        "IS 11050 (Part 1) : 2023",
+        "IS 11050 (Part 2) : 2023"
+      ],
+      "top5_sem": [
+        "IS 11182 (Part 1) : 1984",
+        "IS 3716 : 1978",
+        "IS 13773 : 2018",
+        "IS 10556 : 2014",
+        "IS 14164 : 2008"
+      ],
+      "top5_hyb": [
+        "IS 10556 : 2014",
+        "IS 10556 : 1983",
+        "IS 15402 : 2003",
+        "IS 3690 : 1974",
+        "IS 10656 : 1983"
+      ]
+    },
+    {
+      "requirement_id": "T014-R002",
+      "query": "commissioning of three numbers of Process Water Pump motors 3.3 kV",
+      "expected_standard": "IS/IEC 60034-1 : 2017; IS 5120 : 1977",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": -1,
+        "BM25": -1,
+        "SEM": 54,
+        "HYB": -1
+      },
+      "top10_hybrid_lifecycle": [
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "UNKNOWN"
+      ],
+      "top5_det": [
+        "IS 10069 : 2023",
+        "IS 10069 : 2017",
+        "IS 10129 : 2004",
+        "IS 14602 : 1999",
+        "IS 14604 : 1998"
+      ],
+      "top5_bm25": [
+        "IS 325 : 1996",
+        "IS 11354 : 2023",
+        "IS 9628 : 1980",
+        "IS 12066 : 1987",
+        "IS 4029 : 2010"
+      ],
+      "top5_sem": [
+        "IS 9283 : 2013",
+        "IS 10069 : 2023",
+        "IS 7538 : 1996",
+        "IS 12066 : 1987",
+        "IS 9283 : 2024"
+      ],
+      "top5_hyb": [
+        "IS 325 : 1996",
+        "IS 12066 : 1987",
+        "IS 14578 : 1999",
+        "IS 9628 : 1980",
+        "IS 8789 : 1996"
+      ]
+    },
+    {
+      "requirement_id": "T020-R001",
+      "query": "Repair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn",
+      "expected_standard": "IS 15778 : 2007; IS 1239 (Part 1) : 2004",
+      "has_citation": false,
+      "extracted_citations": [],
+      "resolved_citations": [],
+      "ranks": {
+        "DET": 1,
+        "BM25": -1,
+        "SEM": 2,
+        "HYB": 6
+      },
+      "top10_hybrid_lifecycle": [
+        "UNKNOWN",
+        "UNKNOWN",
+        "ACTIVE",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "UNKNOWN",
+        "WITHDRAWN",
+        "UNKNOWN",
+        "WITHDRAWN"
+      ],
+      "top5_det": [
+        "IS 15778 : 2007",
+        "IS 16088 : 2012",
+        "IS 18837 : 2024",
+        "IS 15225 : 2002",
+        "IS 16534 : 2017"
+      ],
+      "top5_bm25": [
+        "IS 18837 : 2024",
+        "IS 3943 : 1966",
+        "IS 16176 : 2014",
+        "IS 1626 (Part 1) : 1994",
+        "IS 3333 (Part 1) : 1967"
+      ],
+      "top5_sem": [
+        "IS 7634 (Part 3) : 2003",
+        "IS 15778 : 2007",
+        "IS 9271 : 2004",
+        "IS 16088 : 2012",
+        "IS 18837 : 2024"
+      ],
+      "top5_hyb": [
+        "IS 18837 : 2024",
+        "IS 16088 : 2012",
+        "IS 16534 : 2017",
+        "IS 14182 : 1994",
+        "IS 11101 : 1984"
+      ]
+    }
+  ]
+}

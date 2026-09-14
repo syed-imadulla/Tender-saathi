@@ -502,13 +502,21 @@ class StandardsDatabase:
                 return None
             result = dict(row)
 
-            # Fetch references
-            cursor.execute("SELECT referenced_standard_number, referenced_year, referenced_title, citing_clause FROM standard_references WHERE standard_id = ?", (standard_id,))
-            result["references"] = [dict(r) for r in cursor.fetchall()]
+            # Fetch references if table exists
+            cursor.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='standard_references'")
+            if cursor.fetchone():
+                cursor.execute("SELECT referenced_standard_number, referenced_year, referenced_title, citing_clause FROM standard_references WHERE standard_id = ?", (standard_id,))
+                result["references"] = [dict(r) for r in cursor.fetchall()]
+            else:
+                result["references"] = []
 
-            # Fetch explicit relationships
-            cursor.execute("SELECT target_standard, relationship_type, evidence FROM standard_relationships WHERE source_standard_id = ?", (standard_id,))
-            result["explicit_relationships"] = [dict(r) for r in cursor.fetchall()]
+            # Fetch explicit relationships if table exists
+            cursor.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='standard_relationships'")
+            if cursor.fetchone():
+                cursor.execute("SELECT target_standard, relationship_type, evidence FROM standard_relationships WHERE source_standard_id = ?", (standard_id,))
+                result["explicit_relationships"] = [dict(r) for r in cursor.fetchall()]
+            else:
+                result["explicit_relationships"] = []
 
             return result
 
@@ -516,6 +524,9 @@ class StandardsDatabase:
         """Returns all standards referenced by this standard."""
         with self._get_connection() as conn:
             cursor = conn.cursor()
+            cursor.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='standard_references'")
+            if not cursor.fetchone():
+                return []
             cursor.execute("SELECT * FROM standard_references WHERE standard_id = ?", (standard_id,))
             return [dict(r) for r in cursor.fetchall()]
 
@@ -523,6 +534,9 @@ class StandardsDatabase:
         """Returns all standards that cite this standard number."""
         with self._get_connection() as conn:
             cursor = conn.cursor()
+            cursor.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='standard_references'")
+            if not cursor.fetchone():
+                return []
             cursor.execute("""
             SELECT s.* FROM standards s
             JOIN standard_references r ON s.standard_id = r.standard_id
@@ -534,6 +548,9 @@ class StandardsDatabase:
         """Returns all explicit relationships where standard_id is source or target."""
         with self._get_connection() as conn:
             cursor = conn.cursor()
+            cursor.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='standard_relationships'")
+            if not cursor.fetchone():
+                return []
             cursor.execute("""
             SELECT source_standard_id, target_standard, relationship_type, evidence
             FROM standard_relationships

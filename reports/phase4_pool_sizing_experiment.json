@@ -1,0 +1,162 @@
+{
+  "first_stage": {
+    "100": {
+      "det_found": 10,
+      "bm25_found": 12,
+      "sem_found": 15,
+      "union_found": 17,
+      "union_r10": 4,
+      "union_r30": 8,
+      "union_r50": 8,
+      "union_r100": 11,
+      "union_r150": 14,
+      "union_r200": 15,
+      "union_r300": 17,
+      "latency_ms": 249.8
+    },
+    "150": {
+      "det_found": 11,
+      "bm25_found": 12,
+      "sem_found": 16,
+      "union_found": 17,
+      "union_r10": 4,
+      "union_r30": 8,
+      "union_r50": 8,
+      "union_r100": 11,
+      "union_r150": 13,
+      "union_r200": 15,
+      "union_r300": 16,
+      "latency_ms": 241.1
+    },
+    "200": {
+      "det_found": 11,
+      "bm25_found": 13,
+      "sem_found": 16,
+      "union_found": 17,
+      "union_r10": 4,
+      "union_r30": 8,
+      "union_r50": 8,
+      "union_r100": 11,
+      "union_r150": 13,
+      "union_r200": 13,
+      "union_r300": 15,
+      "latency_ms": 258.2
+    },
+    "300": {
+      "det_found": 11,
+      "bm25_found": 13,
+      "sem_found": 16,
+      "union_found": 17,
+      "union_r10": 4,
+      "union_r30": 8,
+      "union_r50": 8,
+      "union_r100": 11,
+      "union_r150": 13,
+      "union_r200": 13,
+      "union_r300": 15,
+      "latency_ms": 263.2
+    }
+  },
+  "rrf_retention": {
+    "30": {
+      "total_found": 9,
+      "r10": 7,
+      "r30": 9,
+      "r50": 9,
+      "r100": 9,
+      "hit1": 3,
+      "hit3": 4,
+      "mrr": 0.204,
+      "latency_ms": 372.6
+    },
+    "50": {
+      "total_found": 11,
+      "r10": 7,
+      "r30": 9,
+      "r50": 11,
+      "r100": 11,
+      "hit1": 3,
+      "hit3": 4,
+      "mrr": 0.207,
+      "latency_ms": 292.9
+    },
+    "75": {
+      "total_found": 14,
+      "r10": 7,
+      "r30": 9,
+      "r50": 11,
+      "r100": 14,
+      "hit1": 3,
+      "hit3": 4,
+      "mrr": 0.209,
+      "latency_ms": 284.1
+    },
+    "100": {
+      "total_found": 16,
+      "r10": 7,
+      "r30": 9,
+      "r50": 11,
+      "r100": 16,
+      "hit1": 3,
+      "hit3": 4,
+      "mrr": 0.211,
+      "latency_ms": 379.5
+    },
+    "150": {
+      "total_found": 16,
+      "r10": 7,
+      "r30": 9,
+      "r50": 11,
+      "r100": 16,
+      "hit1": 3,
+      "hit3": 4,
+      "mrr": 0.211,
+      "latency_ms": 351.7
+    },
+    "200": {
+      "total_found": 17,
+      "r10": 7,
+      "r30": 9,
+      "r50": 11,
+      "r100": 16,
+      "hit1": 3,
+      "hit3": 4,
+      "mrr": 0.211,
+      "latency_ms": 289.7
+    }
+  },
+  "cross_encoder_pool": {
+    "30": {
+      "total_found": 9,
+      "r10": 8,
+      "hit1": 2,
+      "hit3": 5,
+      "mrr": 0.202,
+      "latency_ms": 803.6
+    },
+    "50": {
+      "total_found": 11,
+      "r10": 9,
+      "hit1": 2,
+      "hit3": 4,
+      "mrr": 0.199,
+      "latency_ms": 1004.3
+    },
+    "75": {
+      "total_found": 14,
+      "r10": 9,
+      "hit1": 2,
+      "hit3": 4,
+      "mrr": 0.2,
+      "latency_ms": 1273.2
+    },
+    "100": {
+      "total_found": 16,
+      "r10": 9,
+      "hit1": 2,
+      "hit3": 4,
+      "mrr": 0.2,
+      "latency_ms": 1759.1
+    }
+  }
+}
