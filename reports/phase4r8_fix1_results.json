@@ -1,0 +1,256 @@
+{
+  "fix": "1_terminology_map_expansion",
+  "r7_baseline": {
+    "correct": 7,
+    "total": 19,
+    "accuracy_pct": 36.84
+  },
+  "fix1_result": {
+    "correct": 13,
+    "total": 19,
+    "accuracy_pct": 68.42
+  },
+  "delta_correct": 6,
+  "regressions": [],
+  "new_gains": [
+    "T001-R003",
+    "T004-R005",
+    "T005-R001",
+    "T007-R003",
+    "T011-R001",
+    "T013-R003"
+  ],
+  "p50_ms": 618.9,
+  "p95_ms": 2038.5,
+  "retrieval_rank_check": {
+    "T004-R005": {
+      "baseline": 18,
+      "new": 1,
+      "improved": true,
+      "ms": 386.4
+    },
+    "T005-R001": {
+      "baseline": 61,
+      "new": 1,
+      "improved": true,
+      "ms": 377.1
+    },
+    "T011-R001": {
+      "baseline": 61,
+      "new": 3,
+      "improved": true,
+      "ms": 384.9
+    }
+  },
+  "per_req": {
+    "T001-R002": {
+      "text": "replacement of damaged pipelines by Hubless",
+      "expected_0": "IS 15905 : 2011",
+      "final_rec": "IS 15905 : 2024",
+      "human_review": false,
+      "correct": true,
+      "was_correct_r7": true,
+      "latency_ms": 2038.5,
+      "regression": false,
+      "new_gain": false
+    },
+    "T001-R003": {
+      "text": "wall tiles",
+      "expected_0": "IS 15622 : 2017",
+      "final_rec": "",
+      "human_review": true,
+      "correct": true,
+      "was_correct_r7": false,
+      "latency_ms": 1333.1,
+      "regression": false,
+      "new_gain": true
+    },
+    "T001-R004": {
+      "text": "upgradation of all sanitary fittings at AGL Department in Ma",
+      "expected_0": "IS 2556 (Part 1 to 17)",
+      "final_rec": "IS 2556 (Part 9) : 2004",
+      "human_review": false,
+      "correct": true,
+      "was_correct_r7": true,
+      "latency_ms": 1586.4,
+      "regression": false,
+      "new_gain": false
+    },
+    "T002-R003": {
+      "text": "Flange Joint Maintenance",
+      "expected_0": "IS 6392 : 1971",
+      "final_rec": "IS 13257 : 1992",
+      "human_review": false,
+      "correct": false,
+      "was_correct_r7": false,
+      "latency_ms": 526.8,
+      "regression": false,
+      "new_gain": false
+    },
+    "T003-R001": {
+      "text": "Replacement / repair of distribution boards and defective li",
+      "expected_0": "IS/IEC 61439-3 : 2012",
+      "final_rec": "IS/IEC 61439 (Part 3) : 2012",
+      "human_review": false,
+      "correct": true,
+      "was_correct_r7": true,
+      "latency_ms": 634.9,
+      "regression": false,
+      "new_gain": false
+    },
+    "T004-R002": {
+      "text": "power cables from outside of electrical room to AMF room",
+      "expected_0": "IS 7098 (Part 1) : 1988",
+      "final_rec": "IS 1255 : 1983",
+      "human_review": false,
+      "correct": true,
+      "was_correct_r7": true,
+      "latency_ms": 510.0,
+      "regression": false,
+      "new_gain": false
+    },
+    "T004-R005": {
+      "text": "Dismantling,Shifting and reinstallation of feeder pillar, po",
+      "expected_0": "IS 5039 : 1983",
+      "final_rec": "",
+      "human_review": true,
+      "correct": true,
+      "was_correct_r7": false,
+      "latency_ms": 534.8,
+      "regression": false,
+      "new_gain": true
+    },
+    "T005-R001": {
+      "text": "Cable connection of DG Set in Newly constructed building of ",
+      "expected_0": "IS 3043 : 2018",
+      "final_rec": "",
+      "human_review": true,
+      "correct": true,
+      "was_correct_r7": false,
+      "latency_ms": 1312.4,
+      "regression": false,
+      "new_gain": true
+    },
+    "T006-R001": {
+      "text": "UPVC Partition Wall Work for Conversion of Seafood Authentic",
+      "expected_0": "IS 16088 : 2016",
+      "final_rec": "IS 9271 : 2004",
+      "human_review": false,
+      "correct": false,
+      "was_correct_r7": false,
+      "latency_ms": 588.7,
+      "regression": false,
+      "new_gain": false
+    },
+    "T007-R003": {
+      "text": "Low-Oil Food Outlet on BOT",
+      "expected_0": "IS 2491 : 2013",
+      "final_rec": "",
+      "human_review": true,
+      "correct": true,
+      "was_correct_r7": false,
+      "latency_ms": 388.5,
+      "regression": false,
+      "new_gain": true
+    },
+    "T009-R001": {
+      "text": "Annual Repairs and Maintenance Contract for electrical and m",
+      "expected_0": "SP 30 : 2023",
+      "final_rec": "IS 4051 : 2025",
+      "human_review": false,
+      "correct": false,
+      "was_correct_r7": false,
+      "latency_ms": 926.4,
+      "regression": false,
+      "new_gain": false
+    },
+    "T010-R001": {
+      "text": "Sewerage Pipeline works from Collection Chamber to STP 9/4/2",
+      "expected_0": "IS 458 : 2021",
+      "final_rec": "IS 14333 : 2022",
+      "human_review": false,
+      "correct": true,
+      "was_correct_r7": true,
+      "latency_ms": 658.5,
+      "regression": false,
+      "new_gain": false
+    },
+    "T011-R001": {
+      "text": "Providing and laying underground cable for STP for main supp",
+      "expected_0": "IS 7098 (Part 1) : 1988",
+      "final_rec": "",
+      "human_review": true,
+      "correct": true,
+      "was_correct_r7": false,
+      "latency_ms": 618.9,
+      "regression": false,
+      "new_gain": true
+    },
+    "T012-R002": {
+      "text": "Plaster Repairing",
+      "expected_0": "IS 1661 : 1972",
+      "final_rec": "IS 1661 : 1972",
+      "human_review": false,
+      "correct": true,
+      "was_correct_r7": true,
+      "latency_ms": 471.8,
+      "regression": false,
+      "new_gain": false
+    },
+    "T012-R003": {
+      "text": "Plumbing Fittings",
+      "expected_0": "IS 1239 (Part 2) : 1992",
+      "final_rec": "IS 11906 : 1986",
+      "human_review": false,
+      "correct": false,
+      "was_correct_r7": false,
+      "latency_ms": 432.9,
+      "regression": false,
+      "new_gain": false
+    },
+    "T013-R002": {
+      "text": "SITC of VFD water pump panel",
+      "expected_0": "IS/IEC 61800-2 : 2015",
+      "final_rec": "IS 10069 : 2023",
+      "human_review": false,
+      "correct": false,
+      "was_correct_r7": false,
+      "latency_ms": 663.0,
+      "regression": false,
+      "new_gain": false
+    },
+    "T013-R003": {
+      "text": "Insulation work",
+      "expected_0": "IS 14164 : 2008",
+      "final_rec": "IS 14164 : 2008",
+      "human_review": false,
+      "correct": true,
+      "was_correct_r7": false,
+      "latency_ms": 1255.0,
+      "regression": false,
+      "new_gain": true
+    },
+    "T014-R002": {
+      "text": "commissioning of three numbers of Process Water Pump motors ",
+      "expected_0": "IS/IEC 60034-1 : 2017",
+      "final_rec": "IS 14578 : 2025",
+      "human_review": false,
+      "correct": false,
+      "was_correct_r7": false,
+      "latency_ms": 499.7,
+      "regression": false,
+      "new_gain": false
+    },
+    "T020-R001": {
+      "text": "Repair/ maint of CPVC pipe in lieu of rusted GI pipe at Lait",
+      "expected_0": "IS 15778 : 2007",
+      "final_rec": "IS 15778 : 2007",
+      "human_review": false,
+      "correct": true,
+      "was_correct_r7": true,
+      "latency_ms": 536.8,
+      "regression": false,
+      "new_gain": false
+    }
+  }
+}

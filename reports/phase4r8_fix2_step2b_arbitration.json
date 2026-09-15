@@ -1,0 +1,74 @@
+{
+  "T009-R001": {
+    "retrieval": {
+      "hybrid_correct_rank": 10,
+      "hybrid_wrong_rank": 2,
+      "bm25_correct_rank": 1,
+      "semantic_correct_rank": null
+    },
+    "pool_correct_rank": 10,
+    "pool_wrong_rank": 2,
+    "critic_correct": {
+      "overall_score": 0.827,
+      "relevance_score": 0.4729,
+      "evidence_score": 0.95,
+      "lifecycle_score": 1.0,
+      "decision": "RECOMMEND"
+    },
+    "critic_wrong": {
+      "overall_score": 0.668,
+      "relevance_score": 0.6116,
+      "evidence_score": 0.95,
+      "lifecycle_score": 0.0,
+      "decision": "REJECT"
+    }
+  },
+  "T012-R003": {
+    "retrieval": {
+      "hybrid_correct_rank": 1,
+      "hybrid_wrong_rank": 13,
+      "bm25_correct_rank": 1,
+      "semantic_correct_rank": 6
+    },
+    "pool_correct_rank": 1,
+    "pool_wrong_rank": 13,
+    "critic_correct": {
+      "overall_score": 0.877,
+      "relevance_score": 0.6414,
+      "evidence_score": 0.95,
+      "lifecycle_score": 1.0,
+      "decision": "RECOMMEND"
+    },
+    "critic_wrong": {
+      "overall_score": 0.928,
+      "relevance_score": 0.8115,
+      "evidence_score": 0.95,
+      "lifecycle_score": 1.0,
+      "decision": "RECOMMEND"
+    }
+  },
+  "T013-R002": {
+    "retrieval": {
+      "hybrid_correct_rank": 4,
+      "hybrid_wrong_rank": 12,
+      "bm25_correct_rank": 3,
+      "semantic_correct_rank": 20
+    },
+    "pool_correct_rank": 4,
+    "pool_wrong_rank": 12,
+    "critic_correct": {
+      "overall_score": 0.508,
+      "relevance_score": 0.5769,
+      "evidence_score": 0.7,
+      "lifecycle_score": 0.0,
+      "decision": "REJECT"
+    },
+    "critic_wrong": {
+      "overall_score": 0.522,
+      "relevance_score": 0.6238,
+      "evidence_score": 0.7,
+      "lifecycle_score": 0.0,
+      "decision": "REJECT"
+    }
+  }
+}

@@ -1,0 +1,874 @@
+{
+  "bm25-only": {
+    "mode": "bm25",
+    "fusion": "rrf",
+    "fr_correct": 7,
+    "fr_accuracy_pct": 36.84,
+    "new_gains": [
+      "T001-R003",
+      "T009-R001",
+      "T012-R003"
+    ],
+    "regressions": [
+      "T004-R002",
+      "T013-R003",
+      "T020-R001"
+    ],
+    "retrieval_metrics": {
+      "Hit@1": "7/19=36.8%",
+      "Recall@100": "19/19=100.0%",
+      "MRR": 0.5339
+    },
+    "p50_ms": 399.4,
+    "p95_ms": 4429.7,
+    "per_req": {
+      "T001-R002": {
+        "fr": "IS 11759 : 1986",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 4429.7
+      },
+      "T001-R003": {
+        "fr": "IS 15622 : 2017",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 1833.3
+      },
+      "T001-R004": {
+        "fr": "IS 2556 (Part 9) : 2004",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 389.1
+      },
+      "T002-R003": {
+        "fr": "IS 13257 : 1992",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 344.6
+      },
+      "T003-R001": {
+        "fr": "IS/IEC 61439 (Part 3) : 2012",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 431.1
+      },
+      "T004-R002": {
+        "fr": "IS 19383 : 2025",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": true,
+        "regression": true,
+        "ms": 357.6
+      },
+      "T004-R005": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 481.1
+      },
+      "T005-R001": {
+        "fr": "IS 3961 (Part 7) : 2017",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 532.8
+      },
+      "T006-R001": {
+        "fr": "IS 9271 : 2004",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 457.1
+      },
+      "T007-R003": {
+        "fr": "IS 16020 : 2012",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 414.7
+      },
+      "T009-R001": {
+        "fr": "SP 30 : 2023",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 339.0
+      },
+      "T010-R001": {
+        "fr": "IS 14333 : 2022",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 359.4
+      },
+      "T011-R001": {
+        "fr": "IS 3961 (Part 7) : 2017",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 385.7
+      },
+      "T012-R002": {
+        "fr": "IS 1661 : 1972",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 565.0
+      },
+      "T012-R003": {
+        "fr": "IS 1239 (Part 2) : 2011",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 226.3
+      },
+      "T013-R002": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 308.0
+      },
+      "T013-R003": {
+        "fr": "IS 9743 : 2020",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": true,
+        "regression": true,
+        "ms": 254.5
+      },
+      "T014-R002": {
+        "fr": "IS 8789 : 2021",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 421.3
+      },
+      "T020-R001": {
+        "fr": "IS 18837 : 2024",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": true,
+        "regression": true,
+        "ms": 399.4
+      }
+    }
+  },
+  "semantic-only": {
+    "mode": "semantic",
+    "fusion": "rrf",
+    "fr_correct": 5,
+    "fr_accuracy_pct": 26.32,
+    "new_gains": [],
+    "regressions": [
+      "T010-R001"
+    ],
+    "retrieval_metrics": {
+      "Hit@1": "9/19=47.4%",
+      "Recall@100": "18/19=94.7%",
+      "MRR": 0.5497
+    },
+    "p50_ms": 422.6,
+    "p95_ms": 585.5,
+    "per_req": {
+      "T001-R002": {
+        "fr": "IS 15947 (Part 2) : 2012",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 371.1
+      },
+      "T001-R003": {
+        "fr": "IS 13712 : 2019",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 395.9
+      },
+      "T001-R004": {
+        "fr": "IS 2556 (Part 9) : 2004",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 405.5
+      },
+      "T002-R003": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 428.9
+      },
+      "T003-R001": {
+        "fr": "IS/IEC 61439 (Part 3) : 2012",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 522.6
+      },
+      "T004-R002": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 495.5
+      },
+      "T004-R005": {
+        "fr": "IS 19761 : 2026",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 440.7
+      },
+      "T005-R001": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 424.4
+      },
+      "T006-R001": {
+        "fr": "IS/ISO 24998 : 2008",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 422.6
+      },
+      "T007-R003": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 254.4
+      },
+      "T009-R001": {
+        "fr": "IS 4051 : 2025",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 399.6
+      },
+      "T010-R001": {
+        "fr": "IS/ISO 7396 (Part 2) : 2007",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": true,
+        "regression": true,
+        "ms": 382.5
+      },
+      "T011-R001": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 465.4
+      },
+      "T012-R002": {
+        "fr": "IS 1661 : 1972",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 317.2
+      },
+      "T012-R003": {
+        "fr": "IS 11428 (Part 13) : 1985",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 585.5
+      },
+      "T013-R002": {
+        "fr": "IS 14848 : 2000",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 406.9
+      },
+      "T013-R003": {
+        "fr": "IS 14164 : 2008",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 290.0
+      },
+      "T014-R002": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 433.1
+      },
+      "T020-R001": {
+        "fr": "IS 15778 : 2007",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 494.4
+      }
+    }
+  },
+  "hybrid-rrf": {
+    "mode": "hybrid",
+    "fusion": "rrf",
+    "fr_correct": 8,
+    "fr_accuracy_pct": 42.11,
+    "new_gains": [
+      "T001-R002"
+    ],
+    "regressions": [],
+    "retrieval_metrics": {
+      "Hit@1": "12/19=63.2%",
+      "Recall@100": "18/19=94.7%",
+      "MRR": 0.7035
+    },
+    "p50_ms": 539.2,
+    "p95_ms": 727.0,
+    "per_req": {
+      "T001-R002": {
+        "fr": "IS 15905 : 2024",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 718.3
+      },
+      "T001-R003": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 376.9
+      },
+      "T001-R004": {
+        "fr": "IS 2556 (Part 9) : 2004",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 492.8
+      },
+      "T002-R003": {
+        "fr": "IS 13257 : 1992",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 559.3
+      },
+      "T003-R001": {
+        "fr": "IS/IEC 61439 (Part 3) : 2012",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 727.0
+      },
+      "T004-R002": {
+        "fr": "IS 1255 : 1983",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 591.4
+      },
+      "T004-R005": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 600.2
+      },
+      "T005-R001": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 559.5
+      },
+      "T006-R001": {
+        "fr": "IS 9271 : 2004",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 507.9
+      },
+      "T007-R003": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 352.3
+      },
+      "T009-R001": {
+        "fr": "IS 4051 : 2025",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 473.4
+      },
+      "T010-R001": {
+        "fr": "IS 14333 : 2022",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 539.2
+      },
+      "T011-R001": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 528.5
+      },
+      "T012-R002": {
+        "fr": "IS 1661 : 1972",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 466.6
+      },
+      "T012-R003": {
+        "fr": "IS 11906 : 1986",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 396.1
+      },
+      "T013-R002": {
+        "fr": "IS 10069 : 2023",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 562.5
+      },
+      "T013-R003": {
+        "fr": "IS 14164 : 2008",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 380.0
+      },
+      "T014-R002": {
+        "fr": "IS 14578 : 2025",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 561.0
+      },
+      "T020-R001": {
+        "fr": "IS 15778 : 2007",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 689.3
+      }
+    }
+  },
+  "hybrid-linear": {
+    "mode": "hybrid",
+    "fusion": "linear",
+    "fr_correct": 5,
+    "fr_accuracy_pct": 26.32,
+    "new_gains": [
+      "T001-R002",
+      "T012-R003"
+    ],
+    "regressions": [
+      "T001-R004",
+      "T020-R001"
+    ],
+    "retrieval_metrics": {
+      "Hit@1": "8/19=42.1%",
+      "Recall@100": "18/19=94.7%",
+      "MRR": 0.5997
+    },
+    "p50_ms": 564.1,
+    "p95_ms": 1494.8,
+    "per_req": {
+      "T001-R002": {
+        "fr": "IS 15905 : 2024",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 445.0
+      },
+      "T001-R003": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 492.8
+      },
+      "T001-R004": {
+        "fr": "IS 17650 (Part 2) : 2021",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": true,
+        "regression": true,
+        "ms": 620.6
+      },
+      "T002-R003": {
+        "fr": "IS 13257 : 1992",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 421.8
+      },
+      "T003-R001": {
+        "fr": "IS/IEC 61439 (Part 3) : 2012",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 611.4
+      },
+      "T004-R002": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 748.8
+      },
+      "T004-R005": {
+        "fr": "IS 12907 : 1990",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 715.6
+      },
+      "T005-R001": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 583.4
+      },
+      "T006-R001": {
+        "fr": "IS 9271 : 2004",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 564.1
+      },
+      "T007-R003": {
+        "fr": "IS 302 (Part 2) (Sec 209) : 1994",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 401.4
+      },
+      "T009-R001": {
+        "fr": "IS 4051 : 2025",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 467.7
+      },
+      "T010-R001": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 516.4
+      },
+      "T011-R001": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 539.1
+      },
+      "T012-R002": {
+        "fr": "IS 1661 : 1972",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 405.5
+      },
+      "T012-R003": {
+        "fr": "IS 1239 (Part 2) : 2011",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 663.5
+      },
+      "T013-R002": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 740.0
+      },
+      "T013-R003": {
+        "fr": "IS 14164 : 2008",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 459.4
+      },
+      "T014-R002": {
+        "fr": "IS 14578 : 2025",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 1494.8
+      },
+      "T020-R001": {
+        "fr": "IS 18837 : 2024",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": true,
+        "regression": true,
+        "ms": 568.2
+      }
+    }
+  },
+  "hybrid-cand-preserving": {
+    "mode": "hybrid",
+    "fusion": "candidate_preserving",
+    "fr_correct": 8,
+    "fr_accuracy_pct": 42.11,
+    "new_gains": [
+      "T001-R002",
+      "T001-R003",
+      "T009-R001",
+      "T012-R003"
+    ],
+    "regressions": [
+      "T004-R002",
+      "T012-R002",
+      "T020-R001"
+    ],
+    "retrieval_metrics": {
+      "Hit@1": "6/19=31.6%",
+      "Recall@100": "18/19=94.7%",
+      "MRR": 0.5398
+    },
+    "p50_ms": 681.7,
+    "p95_ms": 4122.0,
+    "per_req": {
+      "T001-R002": {
+        "fr": "IS 15905 : 2024",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 466.1
+      },
+      "T001-R003": {
+        "fr": "IS 15622 : 2017",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 681.7
+      },
+      "T001-R004": {
+        "fr": "IS 2556 (Part 9) : 2004",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 647.1
+      },
+      "T002-R003": {
+        "fr": "IS 13257 : 1992",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 931.9
+      },
+      "T003-R001": {
+        "fr": "IS/IEC 61439 (Part 3) : 2012",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 825.1
+      },
+      "T004-R002": {
+        "fr": "IS 7152 : 2021",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": true,
+        "regression": true,
+        "ms": 667.0
+      },
+      "T004-R005": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 1045.7
+      },
+      "T005-R001": {
+        "fr": "IS 3961 (Part 7) : 2017",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 4122.0
+      },
+      "T006-R001": {
+        "fr": "IS 9271 : 2004",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 599.1
+      },
+      "T007-R003": {
+        "fr": "IS 16020 : 2012",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 506.7
+      },
+      "T009-R001": {
+        "fr": "SP 30 : 2023",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 617.4
+      },
+      "T010-R001": {
+        "fr": "IS 14333 : 2022",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 725.9
+      },
+      "T011-R001": {
+        "fr": "IS 3961 (Part 7) : 2017",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 720.8
+      },
+      "T012-R002": {
+        "fr": "IS 9008 : 1978",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": true,
+        "regression": true,
+        "ms": 469.8
+      },
+      "T012-R003": {
+        "fr": "IS 1239 (Part 2) : 2011",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 406.6
+      },
+      "T013-R002": {
+        "fr": "",
+        "hrr": true,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 787.8
+      },
+      "T013-R003": {
+        "fr": "IS 14164 : 2008",
+        "hrr": false,
+        "fr_correct": true,
+        "r7_correct": true,
+        "regression": false,
+        "ms": 571.1
+      },
+      "T014-R002": {
+        "fr": "IS 14578 : 2025",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": false,
+        "regression": false,
+        "ms": 780.2
+      },
+      "T020-R001": {
+        "fr": "IS 16088 : 2012",
+        "hrr": false,
+        "fr_correct": false,
+        "r7_correct": true,
+        "regression": true,
+        "ms": 846.4
+      }
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "T002-R003": {
+    "retrieval_ranks": {
+      "hybrid": {
+        "correct": 2,
+        "wrong": 1
+      },
+      "bm25": {
+        "correct": 2,
+        "wrong": 1
+      },
+      "semantic": {
+        "correct": 1,
+        "wrong": 11
+      }
+    },
+    "pool_rank_correct": 2,
+    "pool_rank_wrong": 1,
+    "critic_correct": {
+      "overall_score": 0.545,
+      "relevance_score": 0.7987,
+      "evidence_score": 0.35,
+      "lifecycle_score": 0.0,
+      "decision": "REJECT"
+    },
+    "critic_wrong": {
+      "overall_score": 0.969,
+      "relevance_score": 0.9477,
+      "evidence_score": 0.95,
+      "lifecycle_score": 1.0,
+      "decision": "RECOMMEND"
+    }
+  },
+  "T009-R001": {
+    "retrieval_ranks": {
+      "hybrid": {
+        "correct": 10,
+        "wrong": 2
+      },
+      "bm25": {
+        "correct": 1,
+        "wrong": 7
+      },
+      "semantic": {
+        "correct": null,
+        "wrong": 6
+      }
+    },
+    "pool_rank_correct": 10,
+    "pool_rank_wrong": 2,
+    "critic_correct": {
+      "overall_score": 0.827,
+      "relevance_score": 0.4729,
+      "evidence_score": 0.95,
+      "lifecycle_score": 1.0,
+      "decision": "RECOMMEND"
+    },
+    "critic_wrong": {
+      "overall_score": 0.668,
+      "relevance_score": 0.6116,
+      "evidence_score": 0.95,
+      "lifecycle_score": 0.0,
+      "decision": "REJECT"
+    }
+  },
+  "T012-R003": {
+    "retrieval_ranks": {
+      "hybrid": {
+        "correct": 1,
+        "wrong": 13
+      },
+      "bm25": {
+        "correct": 1,
+        "wrong": 6
+      },
+      "semantic": {
+        "correct": 6,
+        "wrong": 12
+      }
+    },
+    "pool_rank_correct": 1,
+    "pool_rank_wrong": 13,
+    "critic_correct": {
+      "overall_score": 0.877,
+      "relevance_score": 0.6414,
+      "evidence_score": 0.95,
+      "lifecycle_score": 1.0,
+      "decision": "RECOMMEND"
+    },
+    "critic_wrong": {
+      "overall_score": 0.928,
+      "relevance_score": 0.8115,
+      "evidence_score": 0.95,
+      "lifecycle_score": 1.0,
+      "decision": "RECOMMEND"
+    }
+  },
+  "T013-R002": {
+    "retrieval_ranks": {
+      "hybrid": {
+        "correct": 4,
+        "wrong": 12
+      },
+      "bm25": {
+        "correct": 3,
+        "wrong": null
+      },
+      "semantic": {
+        "correct": 20,
+        "wrong": 1
+      }
+    },
+    "pool_rank_correct": 4,
+    "pool_rank_wrong": 12,
+    "critic_correct": {
+      "overall_score": 0.508,
+      "relevance_score": 0.5769,
+      "evidence_score": 0.7,
+      "lifecycle_score": 0.0,
+      "decision": "REJECT"
+    },
+    "critic_wrong": {
+      "overall_score": 0.522,
+      "relevance_score": 0.6238,
+      "evidence_score": 0.7,
+      "lifecycle_score": 0.0,
+      "decision": "REJECT"
+    }
+  }
+}

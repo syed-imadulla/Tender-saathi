@@ -1,0 +1,446 @@
+{
+  "phase_a": {
+    "text": "Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD",
+    "components": [
+      "Repairs",
+      "Maintenance",
+      "FSD"
+    ],
+    "expanded_query": "Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD (installations national code)",
+    "tech_tokens": [
+      "repairs",
+      "fsd",
+      "alongwith",
+      "requisite",
+      "electrical",
+      "annual",
+      "contract",
+      "mechanical"
+    ],
+    "domains": [],
+    "bm25_terms": [
+      "annual",
+      "repairs",
+      "maintenance",
+      "contract",
+      "electrical",
+      "mechanical",
+      "services",
+      "alongwith",
+      "requisite",
+      "materials",
+      "fsd",
+      "installations",
+      "national",
+      "code"
+    ]
+  },
+  "phase_b": {
+    "1. Original text": {
+      "sp30_rank": 20,
+      "is732_rank": 10,
+      "is12457_rank": 3,
+      "is4051_rank": 2,
+      "r15": 1,
+      "r30": 1,
+      "r50": 1,
+      "r100": 1
+    },
+    "2. Components only": {
+      "sp30_rank": null,
+      "is732_rank": null,
+      "is12457_rank": 1,
+      "is4051_rank": 39,
+      "r15": 0,
+      "r30": 0,
+      "r50": 0,
+      "r100": 0
+    },
+    "3. Technical terms only": {
+      "sp30_rank": null,
+      "is732_rank": null,
+      "is12457_rank": 2,
+      "is4051_rank": 53,
+      "r15": 0,
+      "r30": 0,
+      "r50": 0,
+      "r100": 0
+    },
+    "4. Domain terms only": {
+      "sp30_rank": 1,
+      "is732_rank": 6,
+      "is12457_rank": null,
+      "is4051_rank": 14,
+      "r15": 1,
+      "r30": 1,
+      "r50": 1,
+      "r100": 1
+    },
+    "5. Original + components": {
+      "sp30_rank": 79,
+      "is732_rank": 53,
+      "is12457_rank": 2,
+      "is4051_rank": 4,
+      "r15": 0,
+      "r30": 0,
+      "r50": 0,
+      "r100": 1
+    },
+    "6. Text without generic service/maintenance": {
+      "sp30_rank": null,
+      "is732_rank": null,
+      "is12457_rank": null,
+      "is4051_rank": null,
+      "r15": 0,
+      "r30": 0,
+      "r50": 0,
+      "r100": 0
+    },
+    "7. Expanded query (production)": {
+      "sp30_rank": 4,
+      "is732_rank": 11,
+      "is12457_rank": 7,
+      "is4051_rank": 3,
+      "r15": 1,
+      "r30": 1,
+      "r50": 1,
+      "r100": 1
+    }
+  },
+  "phase_c": {
+    "SP 30 : 2023": {
+      "bm25_rank": 2,
+      "semantic_rank": null,
+      "det_rank": null,
+      "fused_rank": 23,
+      "rrf_score": 0.328
+    },
+    "SP 30 : 2011": {
+      "bm25_rank": 1,
+      "semantic_rank": null,
+      "det_rank": null,
+      "fused_rank": 20,
+      "rrf_score": 0.3333
+    },
+    "IS 732 : 2019": {
+      "bm25_rank": 4,
+      "semantic_rank": 71,
+      "det_rank": null,
+      "fused_rank": 10,
+      "rrf_score": 0.4729
+    },
+    "IS 12457 : 1988": {
+      "bm25_rank": 8,
+      "semantic_rank": null,
+      "det_rank": 11,
+      "fused_rank": 3,
+      "rrf_score": 0.5854
+    },
+    "IS 4051 : 2025": {
+      "bm25_rank": 13,
+      "semantic_rank": 9,
+      "det_rank": null,
+      "fused_rank": 4,
+      "rrf_score": 0.5732
+    },
+    "IS 4051 : 1967": {
+      "bm25_rank": 7,
+      "semantic_rank": 6,
+      "det_rank": null,
+      "fused_rank": 2,
+      "rrf_score": 0.6116
+    },
+    "IS/IEC 60079-17": {
+      "bm25_rank": 5,
+      "semantic_rank": 25,
+      "det_rank": null,
+      "fused_rank": 7,
+      "rrf_score": 0.4946
+    },
+    "IS/IEC 60034-23": {
+      "bm25_rank": null,
+      "semantic_rank": 15,
+      "det_rank": null,
+      "fused_rank": 47,
+      "rrf_score": 0.2711
+    }
+  },
+  "phase_d": {
+    "10": {
+      "hit1": 0.631578947368421,
+      "recall": 0.8947368421052632,
+      "mrr": 0.6969924812030075,
+      "candidate_survival": 0.7368421052631579,
+      "candidate_survival_count": 14,
+      "p50_ms": 337.3,
+      "p95_ms": 829.5
+    },
+    "15": {
+      "hit1": 0.631578947368421,
+      "recall": 0.8947368421052632,
+      "mrr": 0.6969924812030075,
+      "candidate_survival": 0.7894736842105263,
+      "candidate_survival_count": 15,
+      "p50_ms": 316.9,
+      "p95_ms": 1119.5
+    },
+    "30": {
+      "hit1": 0.631578947368421,
+      "recall": 0.8947368421052632,
+      "mrr": 0.6969924812030075,
+      "candidate_survival": 0.7368421052631579,
+      "candidate_survival_count": 14,
+      "p50_ms": 355.1,
+      "p95_ms": 1173.9
+    },
+    "50": {
+      "hit1": 0.631578947368421,
+      "recall": 0.9473684210526315,
+      "mrr": 0.6983420088683246,
+      "candidate_survival": 0.6842105263157895,
+      "candidate_survival_count": 13,
+      "p50_ms": 260.6,
+      "p95_ms": 651.6
+    },
+    "100": {
+      "hit1": 0.631578947368421,
+      "recall": 0.9473684210526315,
+      "mrr": 0.6983420088683246,
+      "candidate_survival": 0.6842105263157895,
+      "candidate_survival_count": 13,
+      "p50_ms": 395.2,
+      "p95_ms": 1034.2
+    }
+  },
+  "phase_e": [
+    {
+      "requirement_id": "T001-R002",
+      "expected": [
+        "IS 15905 : 2011",
+        "IS 1239 (Part 1) : 2004"
+      ],
+      "raw_rank": 1,
+      "k15": "YES",
+      "k30": "YES",
+      "k50": "YES",
+      "k100": "YES"
+    },
+    {
+      "requirement_id": "T001-R003",
+      "expected": [
+        "IS 15622 : 2017"
+      ],
+      "raw_rank": 7,
+      "k15": "YES",
+      "k30": "YES",
+      "k50": "YES",
+      "k100": "YES"
+    },
+    {
+      "requirement_id": "T001-R004",
+      "expected": [
+        "IS 2556 (Part 1 to 17)",
+        "IS 781 : 1984",
+        "IS 774 : 2021"
+      ],
+      "raw_rank": 1,
+      "k15": "YES",
+      "k30": "YES",
+      "k50": "YES",
+      "k100": "YES"
+    },
+    {
+      "requirement_id": "T002-R003",
+      "expected": [
+        "IS 6392 : 1971",
+        "IS 2712 : 2020"
+      ],
+      "raw_rank": 2,
+      "k15": "YES",
+      "k30": "YES",
+      "k50": "YES",
+      "k100": "YES"
+    },
+    {
+      "requirement_id": "T003-R001",
+      "expected": [
+        "IS/IEC 61439-3 : 2012",
+        "IS 10322 (Part 5 / Sec 5) : 2013"
+      ],
+      "raw_rank": 1,
+      "k15": "YES",
+      "k30": "YES",
+      "k50": "YES",
+      "k100": "YES"
+    },
+    {
+      "requirement_id": "T004-R002",
+      "expected": [
+        "IS 7098 (Part 1) : 1988",
+        "IS 1255 : 1983"
+      ],
+      "raw_rank": 1,
+      "k15": "YES",
+      "k30": "YES",
+      "k50": "YES",
+      "k100": "YES"
+    },
+    {
+      "requirement_id": "T004-R005",
+      "expected": [
+        "IS 5039 : 1983",
+        "IS/IEC 61439-5 : 2014"
+      ],
+      "raw_rank": 1,
+      "k15": "YES",
+      "k30": "YES",
+      "k50": "YES",
+      "k100": "YES"
+    },
+    {
+      "requirement_id": "T005-R001",
+      "expected": [
+        "IS 3043 : 2018",
+        "IS 7098 (Part 1) : 1988",
+        "IS 1293 : 2019"
+      ],
+      "raw_rank": 1,
+      "k15": "YES",
+      "k30": "YES",
+      "k50": "YES",
+      "k100": "YES"
+    },
+    {
+      "requirement_id": "T006-R001",
+      "expected": [
+        "IS 16088 : 2016"
+      ],
+      "raw_rank": null,
+      "k15": "NO",
+      "k30": "NO",
+      "k50": "NO",
+      "k100": "NO"
+    },
+    {
+      "requirement_id": "T007-R003",
+      "expected": [
+        "IS 2491 : 2013",
+        "IS 15000 : 2013"
+      ],
+      "raw_rank": 1,
+      "k15": "YES",
+      "k30": "YES",
+      "k50": "YES",
+      "k100": "YES"
+    },
+    {
+      "requirement_id": "T009-R001",
+      "expected": [
+        "SP 30 : 2023",
+        "IS 732 : 2019"
+      ],
+      "raw_rank": 10,
+      "k15": "YES",
+      "k30": "YES",
+      "k50": "YES",
+      "k100": "YES"
+    },
+    {
+      "requirement_id": "T010-R001",
+      "expected": [
+        "IS 458 : 2021",
+        "IS 783 : 1985",
+        "IS 14333 : 1996"
+      ],
+      "raw_rank": 1,
+      "k15": "YES",
+      "k30": "YES",
+      "k50": "YES",
+      "k100": "YES"
+    },
+    {
+      "requirement_id": "T011-R001",
+      "expected": [
+        "IS 7098 (Part 1) : 1988",
+        "IS 1255 : 1983"
+      ],
+      "raw_rank": 4,
+      "k15": "YES",
+      "k30": "YES",
+      "k50": "YES",
+      "k100": "YES"
+    },
+    {
+      "requirement_id": "T012-R002",
+      "expected": [
+        "IS 1661 : 1972",
+        "IS 269 : 2015"
+      ],
+      "raw_rank": 1,
+      "k15": "YES",
+      "k30": "YES",
+      "k50": "YES",
+      "k100": "YES"
+    },
+    {
+      "requirement_id": "T012-R003",
+      "expected": [
+        "IS 1239 (Part 2) : 1992",
+        "IS 778 : 1984"
+      ],
+      "raw_rank": 1,
+      "k15": "YES",
+      "k30": "YES",
+      "k50": "YES",
+      "k100": "YES"
+    },
+    {
+      "requirement_id": "T013-R002",
+      "expected": [
+        "IS/IEC 61800-2 : 2015",
+        "IS/IEC 61439-2 : 2011"
+      ],
+      "raw_rank": 4,
+      "k15": "YES",
+      "k30": "YES",
+      "k50": "YES",
+      "k100": "YES"
+    },
+    {
+      "requirement_id": "T013-R003",
+      "expected": [
+        "IS 14164 : 2008",
+        "IS 8183 : 1993"
+      ],
+      "raw_rank": 1,
+      "k15": "YES",
+      "k30": "YES",
+      "k50": "YES",
+      "k100": "YES"
+    },
+    {
+      "requirement_id": "T014-R002",
+      "expected": [
+        "IS/IEC 60034-1 : 2017",
+        "IS 5120 : 1977"
+      ],
+      "raw_rank": 39,
+      "k15": "NO",
+      "k30": "NO",
+      "k50": "YES",
+      "k100": "YES"
+    },
+    {
+      "requirement_id": "T020-R001",
+      "expected": [
+        "IS 15778 : 2007",
+        "IS 1239 (Part 1) : 2004"
+      ],
+      "raw_rank": 1,
+      "k15": "YES",
+      "k30": "YES",
+      "k50": "YES",
+      "k100": "YES"
+    }
+  ]
+}

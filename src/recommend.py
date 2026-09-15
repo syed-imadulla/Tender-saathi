@@ -764,6 +764,11 @@ class StandardsRecommender:
             c_rank = conf_rank_map.get(r.confidence, 2)
             valid_primary_roles = ["PRIMARY_PRODUCT", "INSTALLATION", "CODE_OF_PRACTICE"]
             r_rank = 0 if (is_prod_req and not is_work_or_repair_req and r.standard_role in valid_primary_roles) else 1
+            # For product-procurement requirements, technical role takes priority
+            # over coarse confidence bucket to prevent allied/reference standards
+            # from displacing primary product standards via lexical confidence alone.
+            if is_prod_req and not is_work_or_repair_req:
+                return (storage_rank, r_rank, c_rank, idx)
             return (storage_rank, c_rank, r_rank, idx)
 
         sorted_recs = sorted(enumerate(recommendations), key=lambda x: final_rec_priority(x[1], x[0]))

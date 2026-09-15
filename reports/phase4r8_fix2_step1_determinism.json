@@ -1,0 +1,194 @@
+{
+  "llm_enabled": false,
+  "groq_key_present": false,
+  "llm_active": false,
+  "crossencoder_active": false,
+  "variance_found": false,
+  "focus_results": {
+    "T001-R002": [
+      {
+        "run": 1,
+        "final_rec": "IS 15905 : 2024",
+        "human_review": false,
+        "candidate": "IS 15905 : 2024",
+        "ms": 499.3
+      },
+      {
+        "run": 2,
+        "final_rec": "IS 15905 : 2024",
+        "human_review": false,
+        "candidate": "IS 15905 : 2024",
+        "ms": 446.0
+      },
+      {
+        "run": 3,
+        "final_rec": "IS 15905 : 2024",
+        "human_review": false,
+        "candidate": "IS 15905 : 2024",
+        "ms": 372.5
+      },
+      {
+        "run": 4,
+        "final_rec": "IS 15905 : 2024",
+        "human_review": false,
+        "candidate": "IS 15905 : 2024",
+        "ms": 413.5
+      },
+      {
+        "run": 5,
+        "final_rec": "IS 15905 : 2024",
+        "human_review": false,
+        "candidate": "IS 15905 : 2024",
+        "ms": 394.0
+      }
+    ],
+    "T002-R003": [
+      {
+        "run": 1,
+        "final_rec": "IS 13257 : 1992",
+        "human_review": false,
+        "candidate": "IS 13257 : 1992",
+        "ms": 652.8
+      },
+      {
+        "run": 2,
+        "final_rec": "IS 13257 : 1992",
+        "human_review": false,
+        "candidate": "IS 13257 : 1992",
+        "ms": 568.8
+      },
+      {
+        "run": 3,
+        "final_rec": "IS 13257 : 1992",
+        "human_review": false,
+        "candidate": "IS 13257 : 1992",
+        "ms": 398.4
+      },
+      {
+        "run": 4,
+        "final_rec": "IS 13257 : 1992",
+        "human_review": false,
+        "candidate": "IS 13257 : 1992",
+        "ms": 558.2
+      },
+      {
+        "run": 5,
+        "final_rec": "IS 13257 : 1992",
+        "human_review": false,
+        "candidate": "IS 13257 : 1992",
+        "ms": 468.6
+      }
+    ],
+    "T009-R001": [
+      {
+        "run": 1,
+        "final_rec": "IS 4051 : 2025",
+        "human_review": false,
+        "candidate": "IS 4051 : 2025",
+        "ms": 611.0
+      },
+      {
+        "run": 2,
+        "final_rec": "IS 4051 : 2025",
+        "human_review": false,
+        "candidate": "IS 4051 : 2025",
+        "ms": 540.6
+      },
+      {
+        "run": 3,
+        "final_rec": "IS 4051 : 2025",
+        "human_review": false,
+        "candidate": "IS 4051 : 2025",
+        "ms": 457.1
+      },
+      {
+        "run": 4,
+        "final_rec": "IS 4051 : 2025",
+        "human_review": false,
+        "candidate": "IS 4051 : 2025",
+        "ms": 492.1
+      },
+      {
+        "run": 5,
+        "final_rec": "IS 4051 : 2025",
+        "human_review": false,
+        "candidate": "IS 4051 : 2025",
+        "ms": 547.5
+      }
+    ],
+    "T012-R003": [
+      {
+        "run": 1,
+        "final_rec": "IS 11906 : 1986",
+        "human_review": false,
+        "candidate": "IS 11906 : 1986",
+        "ms": 369.1
+      },
+      {
+        "run": 2,
+        "final_rec": "IS 11906 : 1986",
+        "human_review": false,
+        "candidate": "IS 11906 : 1986",
+        "ms": 654.0
+      },
+      {
+        "run": 3,
+        "final_rec": "IS 11906 : 1986",
+        "human_review": false,
+        "candidate": "IS 11906 : 1986",
+        "ms": 382.9
+      },
+      {
+        "run": 4,
+        "final_rec": "IS 11906 : 1986",
+        "human_review": false,
+        "candidate": "IS 11906 : 1986",
+        "ms": 321.4
+      },
+      {
+        "run": 5,
+        "final_rec": "IS 11906 : 1986",
+        "human_review": false,
+        "candidate": "IS 11906 : 1986",
+        "ms": 330.8
+      }
+    ],
+    "T013-R002": [
+      {
+        "run": 1,
+        "final_rec": "IS 10069 : 2023",
+        "human_review": false,
+        "candidate": "IS 10069 : 2023",
+        "ms": 676.7
+      },
+      {
+        "run": 2,
+        "final_rec": "IS 10069 : 2023",
+        "human_review": false,
+        "candidate": "IS 10069 : 2023",
+        "ms": 617.6
+      },
+      {
+        "run": 3,
+        "final_rec": "IS 10069 : 2023",
+        "human_review": false,
+        "candidate": "IS 10069 : 2023",
+        "ms": 517.1
+      },
+      {
+        "run": 4,
+        "final_rec": "IS 10069 : 2023",
+        "human_review": false,
+        "candidate": "IS 10069 : 2023",
+        "ms": 511.5
+      },
+      {
+        "run": 5,
+        "final_rec": "IS 10069 : 2023",
+        "human_review": false,
+        "candidate": "IS 10069 : 2023",
+        "ms": 617.0
+      }
+    ]
+  }
+}

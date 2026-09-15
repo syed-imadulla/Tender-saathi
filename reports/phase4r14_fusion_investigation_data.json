@@ -1,0 +1,2801 @@
+{
+  "metadata": {
+    "phase": "4R14",
+    "timestamp": "2026-09-15 09:44:41",
+    "catalogue": "data/catalogue/bis_catalogue.db",
+    "embedding_model": "all-MiniLM-L6-v2",
+    "fusion_baseline": "RRF (k=60, K=15)",
+    "benchmark_size": 19
+  },
+  "union_ceiling": {
+    "10": {
+      "hits": 16,
+      "queries_hit": [
+        "T001-R002",
+        "T001-R003",
+        "T001-R004",
+        "T002-R003",
+        "T003-R001",
+        "T004-R005",
+        "T005-R001",
+        "T007-R003",
+        "T009-R001",
+        "T010-R001",
+        "T011-R001",
+        "T012-R002",
+        "T012-R003",
+        "T013-R002",
+        "T013-R003",
+        "T020-R001"
+      ],
+      "recall": 0.8421
+    },
+    "15": {
+      "hits": 16,
+      "queries_hit": [
+        "T001-R002",
+        "T001-R003",
+        "T001-R004",
+        "T002-R003",
+        "T003-R001",
+        "T004-R005",
+        "T005-R001",
+        "T007-R003",
+        "T009-R001",
+        "T010-R001",
+        "T011-R001",
+        "T012-R002",
+        "T012-R003",
+        "T013-R002",
+        "T013-R003",
+        "T020-R001"
+      ],
+      "recall": 0.8421
+    },
+    "30": {
+      "hits": 18,
+      "queries_hit": [
+        "T001-R002",
+        "T001-R003",
+        "T001-R004",
+        "T002-R003",
+        "T003-R001",
+        "T004-R002",
+        "T004-R005",
+        "T005-R001",
+        "T007-R003",
+        "T009-R001",
+        "T010-R001",
+        "T011-R001",
+        "T012-R002",
+        "T012-R003",
+        "T013-R002",
+        "T013-R003",
+        "T014-R002",
+        "T020-R001"
+      ],
+      "recall": 0.9474
+    },
+    "50": {
+      "hits": 18,
+      "queries_hit": [
+        "T001-R002",
+        "T001-R003",
+        "T001-R004",
+        "T002-R003",
+        "T003-R001",
+        "T004-R002",
+        "T004-R005",
+        "T005-R001",
+        "T007-R003",
+        "T009-R001",
+        "T010-R001",
+        "T011-R001",
+        "T012-R002",
+        "T012-R003",
+        "T013-R002",
+        "T013-R003",
+        "T014-R002",
+        "T020-R001"
+      ],
+      "recall": 0.9474
+    },
+    "100": {
+      "hits": 19,
+      "queries_hit": [
+        "T001-R002",
+        "T001-R003",
+        "T001-R004",
+        "T002-R003",
+        "T003-R001",
+        "T004-R002",
+        "T004-R005",
+        "T005-R001",
+        "T006-R001",
+        "T007-R003",
+        "T009-R001",
+        "T010-R001",
+        "T011-R001",
+        "T012-R002",
+        "T012-R003",
+        "T013-R002",
+        "T013-R003",
+        "T014-R002",
+        "T020-R001"
+      ],
+      "recall": 1.0
+    }
+  },
+  "per_query_diagnostics": {
+    "T001-R002": {
+      "text": "replacement of damaged pipelines by Hubless",
+      "expected": "IS 15905 : 2011; IS 1239 (Part 1) : 2004",
+      "bm25_rank": 3,
+      "sem_rank": 48,
+      "variant_ranks": {
+        "A_Base": 1,
+        "C_BM25_top1": 1,
+        "C_BM25_top2": 1,
+        "C_BM25_top3": 1,
+        "C_BM25_top5": 1,
+        "D_Sem_top1": 1,
+        "D_Sem_top2": 1,
+        "D_Sem_top3": 1,
+        "D_Sem_top5": 1,
+        "E_Dual_top1": 1,
+        "E_Dual_top2": 1,
+        "E_Dual_top3": 1,
+        "E_Dual_top5": 1,
+        "F_ScoreGated": 1
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS 15905 : 2011",
+          "IS 10990 (Part 2) : 1992",
+          "IS 8262 (Part 1) : 1976",
+          "IS 15947 (Part 2) : 2012",
+          "IS 10990 (Part 2) : 2023"
+        ],
+        "C_BM25_top1": [
+          "IS 15905 : 2011",
+          "IS 10990 (Part 2) : 1992",
+          "IS 8262 (Part 1) : 1976",
+          "IS 15947 (Part 2) : 2012",
+          "IS 10990 (Part 2) : 2023"
+        ],
+        "C_BM25_top2": [
+          "IS 15905 : 2011",
+          "IS 10990 (Part 2) : 1992",
+          "IS 8262 (Part 1) : 1976",
+          "IS 15947 (Part 2) : 2012",
+          "IS 10990 (Part 2) : 2023"
+        ],
+        "C_BM25_top3": [
+          "IS 15905 : 2011",
+          "IS 10990 (Part 2) : 1992",
+          "IS 8262 (Part 1) : 1976",
+          "IS 15947 (Part 2) : 2012",
+          "IS 10990 (Part 2) : 2023"
+        ],
+        "C_BM25_top5": [
+          "IS 15905 : 2011",
+          "IS 10990 (Part 2) : 1992",
+          "IS 8262 (Part 1) : 1976",
+          "IS 15947 (Part 2) : 2012",
+          "IS 10990 (Part 2) : 2023"
+        ],
+        "D_Sem_top1": [
+          "IS 15905 : 2011",
+          "IS 10990 (Part 2) : 1992",
+          "IS 8262 (Part 1) : 1976",
+          "IS 15947 (Part 2) : 2012",
+          "IS 10990 (Part 2) : 2023"
+        ],
+        "D_Sem_top2": [
+          "IS 15905 : 2011",
+          "IS 10990 (Part 2) : 1992",
+          "IS 8262 (Part 1) : 1976",
+          "IS 15947 (Part 2) : 2012",
+          "IS 10990 (Part 2) : 2023"
+        ],
+        "D_Sem_top3": [
+          "IS 15905 : 2011",
+          "IS 10990 (Part 2) : 1992",
+          "IS 8262 (Part 1) : 1976",
+          "IS 15947 (Part 2) : 2012",
+          "IS 10990 (Part 2) : 2023"
+        ],
+        "D_Sem_top5": [
+          "IS 15905 : 2011",
+          "IS 10990 (Part 2) : 1992",
+          "IS 8262 (Part 1) : 1976",
+          "IS 15947 (Part 2) : 2012",
+          "IS 10990 (Part 2) : 2023"
+        ],
+        "E_Dual_top1": [
+          "IS 15905 : 2011",
+          "IS 10990 (Part 2) : 1992",
+          "IS 8262 (Part 1) : 1976",
+          "IS 15947 (Part 2) : 2012",
+          "IS 10990 (Part 2) : 2023"
+        ],
+        "E_Dual_top2": [
+          "IS 15905 : 2011",
+          "IS 10990 (Part 2) : 1992",
+          "IS 8262 (Part 1) : 1976",
+          "IS 15947 (Part 2) : 2012",
+          "IS 10990 (Part 2) : 2023"
+        ],
+        "E_Dual_top3": [
+          "IS 15905 : 2011",
+          "IS 10990 (Part 2) : 1992",
+          "IS 8262 (Part 1) : 1976",
+          "IS 15947 (Part 2) : 2012",
+          "IS 10990 (Part 2) : 2023"
+        ],
+        "E_Dual_top5": [
+          "IS 15905 : 2011",
+          "IS 10990 (Part 2) : 1992",
+          "IS 8262 (Part 1) : 1976",
+          "IS 15947 (Part 2) : 2012",
+          "IS 10990 (Part 2) : 2023"
+        ],
+        "F_ScoreGated": [
+          "IS 15905 : 2011",
+          "IS 10990 (Part 2) : 1992",
+          "IS 8262 (Part 1) : 1976",
+          "IS 15947 (Part 2) : 2012",
+          "IS 10990 (Part 2) : 2023"
+        ]
+      }
+    },
+    "T001-R003": {
+      "text": "wall tiles",
+      "expected": "IS 15622 : 2017",
+      "bm25_rank": 1,
+      "sem_rank": 9,
+      "variant_ranks": {
+        "A_Base": 7,
+        "C_BM25_top1": 7,
+        "C_BM25_top2": 7,
+        "C_BM25_top3": 7,
+        "C_BM25_top5": 7,
+        "D_Sem_top1": 7,
+        "D_Sem_top2": 7,
+        "D_Sem_top3": 7,
+        "D_Sem_top5": 7,
+        "E_Dual_top1": 7,
+        "E_Dual_top2": 7,
+        "E_Dual_top3": 7,
+        "E_Dual_top5": 7,
+        "F_ScoreGated": 7
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS 4112 : 1967",
+          "IS 3463 : 1966",
+          "IS 777 : 1988",
+          "IS 13755 : 1993",
+          "IS 13712 : 2019"
+        ],
+        "C_BM25_top1": [
+          "IS 4112 : 1967",
+          "IS 3463 : 1966",
+          "IS 777 : 1988",
+          "IS 13755 : 1993",
+          "IS 13712 : 2019"
+        ],
+        "C_BM25_top2": [
+          "IS 4112 : 1967",
+          "IS 3463 : 1966",
+          "IS 777 : 1988",
+          "IS 13755 : 1993",
+          "IS 13712 : 2019"
+        ],
+        "C_BM25_top3": [
+          "IS 4112 : 1967",
+          "IS 3463 : 1966",
+          "IS 777 : 1988",
+          "IS 13755 : 1993",
+          "IS 13712 : 2019"
+        ],
+        "C_BM25_top5": [
+          "IS 4112 : 1967",
+          "IS 3463 : 1966",
+          "IS 777 : 1988",
+          "IS 13755 : 1993",
+          "IS 13712 : 2019"
+        ],
+        "D_Sem_top1": [
+          "IS 4112 : 1967",
+          "IS 3463 : 1966",
+          "IS 777 : 1988",
+          "IS 13755 : 1993",
+          "IS 13712 : 2019"
+        ],
+        "D_Sem_top2": [
+          "IS 4112 : 1967",
+          "IS 3463 : 1966",
+          "IS 777 : 1988",
+          "IS 13755 : 1993",
+          "IS 13712 : 2019"
+        ],
+        "D_Sem_top3": [
+          "IS 4112 : 1967",
+          "IS 3463 : 1966",
+          "IS 777 : 1988",
+          "IS 13755 : 1993",
+          "IS 13712 : 2019"
+        ],
+        "D_Sem_top5": [
+          "IS 4112 : 1967",
+          "IS 3463 : 1966",
+          "IS 777 : 1988",
+          "IS 13755 : 1993",
+          "IS 13712 : 2019"
+        ],
+        "E_Dual_top1": [
+          "IS 4112 : 1967",
+          "IS 3463 : 1966",
+          "IS 777 : 1988",
+          "IS 13755 : 1993",
+          "IS 13712 : 2019"
+        ],
+        "E_Dual_top2": [
+          "IS 4112 : 1967",
+          "IS 3463 : 1966",
+          "IS 777 : 1988",
+          "IS 13755 : 1993",
+          "IS 13712 : 2019"
+        ],
+        "E_Dual_top3": [
+          "IS 4112 : 1967",
+          "IS 3463 : 1966",
+          "IS 777 : 1988",
+          "IS 13755 : 1993",
+          "IS 13712 : 2019"
+        ],
+        "E_Dual_top5": [
+          "IS 4112 : 1967",
+          "IS 3463 : 1966",
+          "IS 777 : 1988",
+          "IS 13755 : 1993",
+          "IS 13712 : 2019"
+        ],
+        "F_ScoreGated": [
+          "IS 4112 : 1967",
+          "IS 3463 : 1966",
+          "IS 777 : 1988",
+          "IS 13755 : 1993",
+          "IS 13712 : 2019"
+        ]
+      }
+    },
+    "T001-R004": {
+      "text": "upgradation of all sanitary fittings at AGL Department in Main School Building at IIT ISM Dhanbad",
+      "expected": "IS 2556 (Part 1 to 17); IS 781 : 1984; IS 774 : 2021",
+      "bm25_rank": 1,
+      "sem_rank": 1,
+      "variant_ranks": {
+        "A_Base": 1,
+        "C_BM25_top1": 1,
+        "C_BM25_top2": 1,
+        "C_BM25_top3": 1,
+        "C_BM25_top5": 1,
+        "D_Sem_top1": 1,
+        "D_Sem_top2": 1,
+        "D_Sem_top3": 1,
+        "D_Sem_top5": 1,
+        "E_Dual_top1": 1,
+        "E_Dual_top2": 1,
+        "E_Dual_top3": 1,
+        "E_Dual_top5": 1,
+        "F_ScoreGated": 1
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS 2556 (Part 1) : 2021",
+          "IS 2556 (Part 1) : 1994",
+          "IS 17650 (Part 2) : 2021",
+          "IS 2556 (Part 6) : 2021",
+          "IS 2064 : 1993"
+        ],
+        "C_BM25_top1": [
+          "IS 2556 (Part 1) : 2021",
+          "IS 2556 (Part 1) : 1994",
+          "IS 17650 (Part 2) : 2021",
+          "IS 2556 (Part 6) : 2021",
+          "IS 2064 : 1993"
+        ],
+        "C_BM25_top2": [
+          "IS 2556 (Part 1) : 2021",
+          "IS 2556 (Part 1) : 1994",
+          "IS 17650 (Part 2) : 2021",
+          "IS 2556 (Part 6) : 2021",
+          "IS 2064 : 1993"
+        ],
+        "C_BM25_top3": [
+          "IS 2556 (Part 1) : 2021",
+          "IS 2556 (Part 1) : 1994",
+          "IS 17650 (Part 2) : 2021",
+          "IS 2556 (Part 6) : 2021",
+          "IS 2064 : 1993"
+        ],
+        "C_BM25_top5": [
+          "IS 2556 (Part 1) : 2021",
+          "IS 2556 (Part 1) : 1994",
+          "IS 17650 (Part 2) : 2021",
+          "IS 2556 (Part 6) : 2021",
+          "IS 2064 : 1993"
+        ],
+        "D_Sem_top1": [
+          "IS 2556 (Part 1) : 2021",
+          "IS 2556 (Part 1) : 1994",
+          "IS 17650 (Part 2) : 2021",
+          "IS 2556 (Part 6) : 2021",
+          "IS 2064 : 1993"
+        ],
+        "D_Sem_top2": [
+          "IS 2556 (Part 1) : 2021",
+          "IS 2556 (Part 1) : 1994",
+          "IS 17650 (Part 2) : 2021",
+          "IS 2556 (Part 6) : 2021",
+          "IS 2064 : 1993"
+        ],
+        "D_Sem_top3": [
+          "IS 2556 (Part 1) : 2021",
+          "IS 2556 (Part 1) : 1994",
+          "IS 17650 (Part 2) : 2021",
+          "IS 2556 (Part 6) : 2021",
+          "IS 2064 : 1993"
+        ],
+        "D_Sem_top5": [
+          "IS 2556 (Part 1) : 2021",
+          "IS 2556 (Part 1) : 1994",
+          "IS 17650 (Part 2) : 2021",
+          "IS 2556 (Part 6) : 2021",
+          "IS 2064 : 1993"
+        ],
+        "E_Dual_top1": [
+          "IS 2556 (Part 1) : 2021",
+          "IS 2556 (Part 1) : 1994",
+          "IS 17650 (Part 2) : 2021",
+          "IS 2556 (Part 6) : 2021",
+          "IS 2064 : 1993"
+        ],
+        "E_Dual_top2": [
+          "IS 2556 (Part 1) : 2021",
+          "IS 2556 (Part 1) : 1994",
+          "IS 17650 (Part 2) : 2021",
+          "IS 2556 (Part 6) : 2021",
+          "IS 2064 : 1993"
+        ],
+        "E_Dual_top3": [
+          "IS 2556 (Part 1) : 2021",
+          "IS 2556 (Part 1) : 1994",
+          "IS 17650 (Part 2) : 2021",
+          "IS 2556 (Part 6) : 2021",
+          "IS 2064 : 1993"
+        ],
+        "E_Dual_top5": [
+          "IS 2556 (Part 1) : 2021",
+          "IS 2556 (Part 1) : 1994",
+          "IS 17650 (Part 2) : 2021",
+          "IS 2556 (Part 6) : 2021",
+          "IS 2064 : 1993"
+        ],
+        "F_ScoreGated": [
+          "IS 2556 (Part 1) : 2021",
+          "IS 2556 (Part 1) : 1994",
+          "IS 17650 (Part 2) : 2021",
+          "IS 2556 (Part 6) : 2021",
+          "IS 2064 : 1993"
+        ]
+      }
+    },
+    "T002-R003": {
+      "text": "Flange Joint Maintenance",
+      "expected": "IS 6392 : 1971; IS 2712 : 2020",
+      "bm25_rank": 2,
+      "sem_rank": 1,
+      "variant_ranks": {
+        "A_Base": 4,
+        "C_BM25_top1": 4,
+        "C_BM25_top2": 4,
+        "C_BM25_top3": 4,
+        "C_BM25_top5": 4,
+        "D_Sem_top1": 4,
+        "D_Sem_top2": 4,
+        "D_Sem_top3": 4,
+        "D_Sem_top5": 4,
+        "E_Dual_top1": 4,
+        "E_Dual_top2": 4,
+        "E_Dual_top3": 4,
+        "E_Dual_top5": 4,
+        "F_ScoreGated": 4
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS 13257 : 1992",
+          "IS 10864 : 2013",
+          "IS 10864 : 2024",
+          "IS 6392 : 1971",
+          "IS 425 : 1953"
+        ],
+        "C_BM25_top1": [
+          "IS 13257 : 1992",
+          "IS 10864 : 2013",
+          "IS 10864 : 2024",
+          "IS 6392 : 1971",
+          "IS 425 : 1953"
+        ],
+        "C_BM25_top2": [
+          "IS 13257 : 1992",
+          "IS 10864 : 2013",
+          "IS 10864 : 2024",
+          "IS 6392 : 1971",
+          "IS 425 : 1953"
+        ],
+        "C_BM25_top3": [
+          "IS 13257 : 1992",
+          "IS 10864 : 2013",
+          "IS 10864 : 2024",
+          "IS 6392 : 1971",
+          "IS 425 : 1953"
+        ],
+        "C_BM25_top5": [
+          "IS 13257 : 1992",
+          "IS 10864 : 2013",
+          "IS 10864 : 2024",
+          "IS 6392 : 1971",
+          "IS 425 : 1953"
+        ],
+        "D_Sem_top1": [
+          "IS 13257 : 1992",
+          "IS 10864 : 2013",
+          "IS 10864 : 2024",
+          "IS 6392 : 1971",
+          "IS 425 : 1953"
+        ],
+        "D_Sem_top2": [
+          "IS 13257 : 1992",
+          "IS 10864 : 2013",
+          "IS 10864 : 2024",
+          "IS 6392 : 1971",
+          "IS 425 : 1953"
+        ],
+        "D_Sem_top3": [
+          "IS 13257 : 1992",
+          "IS 10864 : 2013",
+          "IS 10864 : 2024",
+          "IS 6392 : 1971",
+          "IS 425 : 1953"
+        ],
+        "D_Sem_top5": [
+          "IS 13257 : 1992",
+          "IS 10864 : 2013",
+          "IS 10864 : 2024",
+          "IS 6392 : 1971",
+          "IS 425 : 1953"
+        ],
+        "E_Dual_top1": [
+          "IS 13257 : 1992",
+          "IS 10864 : 2013",
+          "IS 10864 : 2024",
+          "IS 6392 : 1971",
+          "IS 425 : 1953"
+        ],
+        "E_Dual_top2": [
+          "IS 13257 : 1992",
+          "IS 10864 : 2013",
+          "IS 10864 : 2024",
+          "IS 6392 : 1971",
+          "IS 425 : 1953"
+        ],
+        "E_Dual_top3": [
+          "IS 13257 : 1992",
+          "IS 10864 : 2013",
+          "IS 10864 : 2024",
+          "IS 6392 : 1971",
+          "IS 425 : 1953"
+        ],
+        "E_Dual_top5": [
+          "IS 13257 : 1992",
+          "IS 10864 : 2013",
+          "IS 10864 : 2024",
+          "IS 6392 : 1971",
+          "IS 425 : 1953"
+        ],
+        "F_ScoreGated": [
+          "IS 13257 : 1992",
+          "IS 10864 : 2013",
+          "IS 10864 : 2024",
+          "IS 6392 : 1971",
+          "IS 425 : 1953"
+        ]
+      }
+    },
+    "T003-R001": {
+      "text": "Replacement / repair of distribution boards and defective lights at various locations in main sports stadium",
+      "expected": "IS/IEC 61439-3 : 2012; IS 10322 (Part 5 / Sec 5) : 2013",
+      "bm25_rank": 1,
+      "sem_rank": 4,
+      "variant_ranks": {
+        "A_Base": 1,
+        "C_BM25_top1": 1,
+        "C_BM25_top2": 1,
+        "C_BM25_top3": 1,
+        "C_BM25_top5": 1,
+        "D_Sem_top1": 1,
+        "D_Sem_top2": 1,
+        "D_Sem_top3": 1,
+        "D_Sem_top5": 1,
+        "E_Dual_top1": 1,
+        "E_Dual_top2": 1,
+        "E_Dual_top3": 1,
+        "E_Dual_top5": 1,
+        "F_ScoreGated": 1
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS/IEC 61439 (Part 3) : 2012",
+          "IS/IEC 61439 (Part 3) : 2024",
+          "IS/IEC 61439 (Part 5) : 2014",
+          "IS/IEC 61439 (Part 2) : 2020",
+          "IS/IEC 61439 (Part 1) : 2011"
+        ],
+        "C_BM25_top1": [
+          "IS/IEC 61439 (Part 3) : 2012",
+          "IS/IEC 61439 (Part 3) : 2024",
+          "IS/IEC 61439 (Part 5) : 2014",
+          "IS/IEC 61439 (Part 2) : 2020",
+          "IS/IEC 61439 (Part 1) : 2011"
+        ],
+        "C_BM25_top2": [
+          "IS/IEC 61439 (Part 3) : 2012",
+          "IS/IEC 61439 (Part 3) : 2024",
+          "IS/IEC 61439 (Part 5) : 2014",
+          "IS/IEC 61439 (Part 2) : 2020",
+          "IS/IEC 61439 (Part 1) : 2011"
+        ],
+        "C_BM25_top3": [
+          "IS/IEC 61439 (Part 3) : 2012",
+          "IS/IEC 61439 (Part 3) : 2024",
+          "IS/IEC 61439 (Part 5) : 2014",
+          "IS/IEC 61439 (Part 2) : 2020",
+          "IS/IEC 61439 (Part 1) : 2011"
+        ],
+        "C_BM25_top5": [
+          "IS/IEC 61439 (Part 3) : 2012",
+          "IS/IEC 61439 (Part 3) : 2024",
+          "IS/IEC 61439 (Part 5) : 2014",
+          "IS/IEC 61439 (Part 2) : 2020",
+          "IS/IEC 61439 (Part 1) : 2011"
+        ],
+        "D_Sem_top1": [
+          "IS/IEC 61439 (Part 3) : 2012",
+          "IS/IEC 61439 (Part 3) : 2024",
+          "IS/IEC 61439 (Part 5) : 2014",
+          "IS/IEC 61439 (Part 2) : 2020",
+          "IS/IEC 61439 (Part 1) : 2011"
+        ],
+        "D_Sem_top2": [
+          "IS/IEC 61439 (Part 3) : 2012",
+          "IS/IEC 61439 (Part 3) : 2024",
+          "IS/IEC 61439 (Part 5) : 2014",
+          "IS/IEC 61439 (Part 2) : 2020",
+          "IS/IEC 61439 (Part 1) : 2011"
+        ],
+        "D_Sem_top3": [
+          "IS/IEC 61439 (Part 3) : 2012",
+          "IS/IEC 61439 (Part 3) : 2024",
+          "IS/IEC 61439 (Part 5) : 2014",
+          "IS/IEC 61439 (Part 2) : 2020",
+          "IS/IEC 61439 (Part 1) : 2011"
+        ],
+        "D_Sem_top5": [
+          "IS/IEC 61439 (Part 3) : 2012",
+          "IS/IEC 61439 (Part 3) : 2024",
+          "IS/IEC 61439 (Part 5) : 2014",
+          "IS/IEC 61439 (Part 2) : 2020",
+          "IS/IEC 61439 (Part 1) : 2011"
+        ],
+        "E_Dual_top1": [
+          "IS/IEC 61439 (Part 3) : 2012",
+          "IS/IEC 61439 (Part 3) : 2024",
+          "IS/IEC 61439 (Part 5) : 2014",
+          "IS/IEC 61439 (Part 2) : 2020",
+          "IS/IEC 61439 (Part 1) : 2011"
+        ],
+        "E_Dual_top2": [
+          "IS/IEC 61439 (Part 3) : 2012",
+          "IS/IEC 61439 (Part 3) : 2024",
+          "IS/IEC 61439 (Part 5) : 2014",
+          "IS/IEC 61439 (Part 2) : 2020",
+          "IS/IEC 61439 (Part 1) : 2011"
+        ],
+        "E_Dual_top3": [
+          "IS/IEC 61439 (Part 3) : 2012",
+          "IS/IEC 61439 (Part 3) : 2024",
+          "IS/IEC 61439 (Part 5) : 2014",
+          "IS/IEC 61439 (Part 2) : 2020",
+          "IS/IEC 61439 (Part 1) : 2011"
+        ],
+        "E_Dual_top5": [
+          "IS/IEC 61439 (Part 3) : 2012",
+          "IS/IEC 61439 (Part 3) : 2024",
+          "IS/IEC 61439 (Part 5) : 2014",
+          "IS/IEC 61439 (Part 2) : 2020",
+          "IS/IEC 61439 (Part 1) : 2011"
+        ],
+        "F_ScoreGated": [
+          "IS/IEC 61439 (Part 3) : 2012",
+          "IS/IEC 61439 (Part 3) : 2024",
+          "IS/IEC 61439 (Part 5) : 2014",
+          "IS/IEC 61439 (Part 2) : 2020",
+          "IS/IEC 61439 (Part 1) : 2011"
+        ]
+      }
+    },
+    "T004-R002": {
+      "text": "power cables from outside of electrical room to AMF room",
+      "expected": "IS 7098 (Part 1) : 1988; IS 1255 : 1983",
+      "bm25_rank": 69,
+      "sem_rank": 25,
+      "variant_ranks": {
+        "A_Base": 1,
+        "C_BM25_top1": 1,
+        "C_BM25_top2": 1,
+        "C_BM25_top3": 1,
+        "C_BM25_top5": 1,
+        "D_Sem_top1": 1,
+        "D_Sem_top2": 1,
+        "D_Sem_top3": 1,
+        "D_Sem_top5": 1,
+        "E_Dual_top1": 1,
+        "E_Dual_top2": 1,
+        "E_Dual_top3": 1,
+        "E_Dual_top5": 1,
+        "F_ScoreGated": 1
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS 1255 : 1983",
+          "IS 12909 : 1990",
+          "IS 302 (Part 2) (Sec 30) : 2007",
+          "IS 19544 (Part 1) : 2026",
+          "IS 1391 (Part 2) : 1992"
+        ],
+        "C_BM25_top1": [
+          "IS 1255 : 1983",
+          "IS 12909 : 1990",
+          "IS 302 (Part 2) (Sec 30) : 2007",
+          "IS 19544 (Part 1) : 2026",
+          "IS 1391 (Part 2) : 1992"
+        ],
+        "C_BM25_top2": [
+          "IS 1255 : 1983",
+          "IS 12909 : 1990",
+          "IS 302 (Part 2) (Sec 30) : 2007",
+          "IS 19544 (Part 1) : 2026",
+          "IS 1391 (Part 2) : 1992"
+        ],
+        "C_BM25_top3": [
+          "IS 1255 : 1983",
+          "IS 12909 : 1990",
+          "IS 302 (Part 2) (Sec 30) : 2007",
+          "IS 19544 (Part 1) : 2026",
+          "IS 1391 (Part 2) : 1992"
+        ],
+        "C_BM25_top5": [
+          "IS 1255 : 1983",
+          "IS 12909 : 1990",
+          "IS 302 (Part 2) (Sec 30) : 2007",
+          "IS 19544 (Part 1) : 2026",
+          "IS 1391 (Part 2) : 1992"
+        ],
+        "D_Sem_top1": [
+          "IS 1255 : 1983",
+          "IS 12909 : 1990",
+          "IS 302 (Part 2) (Sec 30) : 2007",
+          "IS 19544 (Part 1) : 2026",
+          "IS 1391 (Part 2) : 1992"
+        ],
+        "D_Sem_top2": [
+          "IS 1255 : 1983",
+          "IS 12909 : 1990",
+          "IS 302 (Part 2) (Sec 30) : 2007",
+          "IS 19544 (Part 1) : 2026",
+          "IS 1391 (Part 2) : 1992"
+        ],
+        "D_Sem_top3": [
+          "IS 1255 : 1983",
+          "IS 12909 : 1990",
+          "IS 302 (Part 2) (Sec 30) : 2007",
+          "IS 19544 (Part 1) : 2026",
+          "IS 1391 (Part 2) : 1992"
+        ],
+        "D_Sem_top5": [
+          "IS 1255 : 1983",
+          "IS 12909 : 1990",
+          "IS 302 (Part 2) (Sec 30) : 2007",
+          "IS 19544 (Part 1) : 2026",
+          "IS 1391 (Part 2) : 1992"
+        ],
+        "E_Dual_top1": [
+          "IS 1255 : 1983",
+          "IS 12909 : 1990",
+          "IS 302 (Part 2) (Sec 30) : 2007",
+          "IS 19544 (Part 1) : 2026",
+          "IS 1391 (Part 2) : 1992"
+        ],
+        "E_Dual_top2": [
+          "IS 1255 : 1983",
+          "IS 12909 : 1990",
+          "IS 302 (Part 2) (Sec 30) : 2007",
+          "IS 19544 (Part 1) : 2026",
+          "IS 1391 (Part 2) : 1992"
+        ],
+        "E_Dual_top3": [
+          "IS 1255 : 1983",
+          "IS 12909 : 1990",
+          "IS 302 (Part 2) (Sec 30) : 2007",
+          "IS 19544 (Part 1) : 2026",
+          "IS 1391 (Part 2) : 1992"
+        ],
+        "E_Dual_top5": [
+          "IS 1255 : 1983",
+          "IS 12909 : 1990",
+          "IS 302 (Part 2) (Sec 30) : 2007",
+          "IS 19544 (Part 1) : 2026",
+          "IS 1391 (Part 2) : 1992"
+        ],
+        "F_ScoreGated": [
+          "IS 1255 : 1983",
+          "IS 12909 : 1990",
+          "IS 19383 : 2025",
+          "IS 5899 : 1970",
+          "IS 9901 (Part 9) : 1986"
+        ]
+      }
+    },
+    "T004-R005": {
+      "text": "Dismantling,Shifting and reinstallation of feeder pillar, power",
+      "expected": "IS 5039 : 1983; IS/IEC 61439-5 : 2014",
+      "bm25_rank": 1,
+      "sem_rank": 1,
+      "variant_ranks": {
+        "A_Base": 1,
+        "C_BM25_top1": 1,
+        "C_BM25_top2": 1,
+        "C_BM25_top3": 1,
+        "C_BM25_top5": 1,
+        "D_Sem_top1": 1,
+        "D_Sem_top2": 1,
+        "D_Sem_top3": 1,
+        "D_Sem_top5": 1,
+        "E_Dual_top1": 1,
+        "E_Dual_top2": 1,
+        "E_Dual_top3": 1,
+        "E_Dual_top5": 1,
+        "F_ScoreGated": 1
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS 5039 : 1983",
+          "IS 2675 : 1983",
+          "IS 2959 : 1985",
+          "IS 16463 (Part 12) : 2017",
+          "IS 9046 : 1978"
+        ],
+        "C_BM25_top1": [
+          "IS 5039 : 1983",
+          "IS 2675 : 1983",
+          "IS 2959 : 1985",
+          "IS 16463 (Part 12) : 2017",
+          "IS 9046 : 1978"
+        ],
+        "C_BM25_top2": [
+          "IS 5039 : 1983",
+          "IS 2675 : 1983",
+          "IS 2959 : 1985",
+          "IS 16463 (Part 12) : 2017",
+          "IS 9046 : 1978"
+        ],
+        "C_BM25_top3": [
+          "IS 5039 : 1983",
+          "IS 2675 : 1983",
+          "IS 2959 : 1985",
+          "IS 16463 (Part 12) : 2017",
+          "IS 9046 : 1978"
+        ],
+        "C_BM25_top5": [
+          "IS 5039 : 1983",
+          "IS 2675 : 1983",
+          "IS 2959 : 1985",
+          "IS 16463 (Part 12) : 2017",
+          "IS 9046 : 1978"
+        ],
+        "D_Sem_top1": [
+          "IS 5039 : 1983",
+          "IS 2675 : 1983",
+          "IS 2959 : 1985",
+          "IS 16463 (Part 12) : 2017",
+          "IS 9046 : 1978"
+        ],
+        "D_Sem_top2": [
+          "IS 5039 : 1983",
+          "IS 2675 : 1983",
+          "IS 2959 : 1985",
+          "IS 16463 (Part 12) : 2017",
+          "IS 9046 : 1978"
+        ],
+        "D_Sem_top3": [
+          "IS 5039 : 1983",
+          "IS 2675 : 1983",
+          "IS 2959 : 1985",
+          "IS 16463 (Part 12) : 2017",
+          "IS 9046 : 1978"
+        ],
+        "D_Sem_top5": [
+          "IS 5039 : 1983",
+          "IS 2675 : 1983",
+          "IS 2959 : 1985",
+          "IS 16463 (Part 12) : 2017",
+          "IS 9046 : 1978"
+        ],
+        "E_Dual_top1": [
+          "IS 5039 : 1983",
+          "IS 2675 : 1983",
+          "IS 2959 : 1985",
+          "IS 16463 (Part 12) : 2017",
+          "IS 9046 : 1978"
+        ],
+        "E_Dual_top2": [
+          "IS 5039 : 1983",
+          "IS 2675 : 1983",
+          "IS 2959 : 1985",
+          "IS 16463 (Part 12) : 2017",
+          "IS 9046 : 1978"
+        ],
+        "E_Dual_top3": [
+          "IS 5039 : 1983",
+          "IS 2675 : 1983",
+          "IS 2959 : 1985",
+          "IS 16463 (Part 12) : 2017",
+          "IS 9046 : 1978"
+        ],
+        "E_Dual_top5": [
+          "IS 5039 : 1983",
+          "IS 2675 : 1983",
+          "IS 2959 : 1985",
+          "IS 16463 (Part 12) : 2017",
+          "IS 9046 : 1978"
+        ],
+        "F_ScoreGated": [
+          "IS 5039 : 1983",
+          "IS 2675 : 1983",
+          "IS 2959 : 1985",
+          "IS 16463 (Part 12) : 2017",
+          "IS 9046 : 1978"
+        ]
+      }
+    },
+    "T005-R001": {
+      "text": "Cable connection of DG Set in Newly constructed building of the Dept. of Molecular , Human Genetics",
+      "expected": "IS 3043 : 2018; IS 7098 (Part 1) : 1988; IS 1293 : 2019",
+      "bm25_rank": 2,
+      "sem_rank": 2,
+      "variant_ranks": {
+        "A_Base": 1,
+        "C_BM25_top1": 1,
+        "C_BM25_top2": 1,
+        "C_BM25_top3": 1,
+        "C_BM25_top5": 1,
+        "D_Sem_top1": 1,
+        "D_Sem_top2": 1,
+        "D_Sem_top3": 1,
+        "D_Sem_top5": 1,
+        "E_Dual_top1": 1,
+        "E_Dual_top2": 1,
+        "E_Dual_top3": 1,
+        "E_Dual_top5": 1,
+        "F_ScoreGated": 1
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 3) : 1993",
+          "IS 3961 (Part 7) : 2017",
+          "IS 7098 (Part 1) : 1988"
+        ],
+        "C_BM25_top1": [
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 3) : 1993",
+          "IS 3961 (Part 7) : 2017",
+          "IS 7098 (Part 1) : 1988"
+        ],
+        "C_BM25_top2": [
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 3) : 1993",
+          "IS 3961 (Part 7) : 2017",
+          "IS 7098 (Part 1) : 1988"
+        ],
+        "C_BM25_top3": [
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 3) : 1993",
+          "IS 3961 (Part 7) : 2017",
+          "IS 7098 (Part 1) : 1988"
+        ],
+        "C_BM25_top5": [
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 3) : 1993",
+          "IS 3961 (Part 7) : 2017",
+          "IS 7098 (Part 1) : 1988"
+        ],
+        "D_Sem_top1": [
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 3) : 1993",
+          "IS 3961 (Part 7) : 2017",
+          "IS 7098 (Part 1) : 1988"
+        ],
+        "D_Sem_top2": [
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 3) : 1993",
+          "IS 3961 (Part 7) : 2017",
+          "IS 7098 (Part 1) : 1988"
+        ],
+        "D_Sem_top3": [
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 3) : 1993",
+          "IS 3961 (Part 7) : 2017",
+          "IS 7098 (Part 1) : 1988"
+        ],
+        "D_Sem_top5": [
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 3) : 1993",
+          "IS 3961 (Part 7) : 2017",
+          "IS 7098 (Part 1) : 1988"
+        ],
+        "E_Dual_top1": [
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 3) : 1993",
+          "IS 3961 (Part 7) : 2017",
+          "IS 7098 (Part 1) : 1988"
+        ],
+        "E_Dual_top2": [
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 3) : 1993",
+          "IS 3961 (Part 7) : 2017",
+          "IS 7098 (Part 1) : 1988"
+        ],
+        "E_Dual_top3": [
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 3) : 1993",
+          "IS 3961 (Part 7) : 2017",
+          "IS 7098 (Part 1) : 1988"
+        ],
+        "E_Dual_top5": [
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 3) : 1993",
+          "IS 3961 (Part 7) : 2017",
+          "IS 7098 (Part 1) : 1988"
+        ],
+        "F_ScoreGated": [
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 3) : 1993",
+          "IS 3961 (Part 7) : 2017",
+          "IS 7098 (Part 1) : 1988"
+        ]
+      }
+    },
+    "T006-R001": {
+      "text": "UPVC Partition Wall Work for Conversion of Seafood Authentication Laboratory into Conventional Microbiology Laboratory",
+      "expected": "IS 16088 : 2016",
+      "bm25_rank": 51,
+      "sem_rank": null,
+      "variant_ranks": {
+        "A_Base": null,
+        "C_BM25_top1": null,
+        "C_BM25_top2": null,
+        "C_BM25_top3": null,
+        "C_BM25_top5": null,
+        "D_Sem_top1": null,
+        "D_Sem_top2": null,
+        "D_Sem_top3": null,
+        "D_Sem_top5": null,
+        "E_Dual_top1": null,
+        "E_Dual_top2": null,
+        "E_Dual_top3": null,
+        "E_Dual_top5": null,
+        "F_ScoreGated": null
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS 9271 : 2004",
+          "IS 17113 (Part 4) : 2022",
+          "IS 17113 (Part 3) : 2022",
+          "IS 14735 : 1999",
+          "IS 17385 : 2020"
+        ],
+        "C_BM25_top1": [
+          "IS 9271 : 2004",
+          "IS 17113 (Part 4) : 2022",
+          "IS 17113 (Part 3) : 2022",
+          "IS 14735 : 1999",
+          "IS 17385 : 2020"
+        ],
+        "C_BM25_top2": [
+          "IS 9271 : 2004",
+          "IS 17113 (Part 4) : 2022",
+          "IS 17113 (Part 3) : 2022",
+          "IS 14735 : 1999",
+          "IS 17385 : 2020"
+        ],
+        "C_BM25_top3": [
+          "IS 9271 : 2004",
+          "IS 17113 (Part 4) : 2022",
+          "IS 17113 (Part 3) : 2022",
+          "IS 14735 : 1999",
+          "IS 17385 : 2020"
+        ],
+        "C_BM25_top5": [
+          "IS 9271 : 2004",
+          "IS 17113 (Part 4) : 2022",
+          "IS 17113 (Part 3) : 2022",
+          "IS 14735 : 1999",
+          "IS 17385 : 2020"
+        ],
+        "D_Sem_top1": [
+          "IS 9271 : 2004",
+          "IS 17113 (Part 4) : 2022",
+          "IS 17113 (Part 3) : 2022",
+          "IS 14735 : 1999",
+          "IS 17385 : 2020"
+        ],
+        "D_Sem_top2": [
+          "IS 9271 : 2004",
+          "IS 17113 (Part 4) : 2022",
+          "IS 17113 (Part 3) : 2022",
+          "IS 14735 : 1999",
+          "IS 17385 : 2020"
+        ],
+        "D_Sem_top3": [
+          "IS 9271 : 2004",
+          "IS 17113 (Part 4) : 2022",
+          "IS 17113 (Part 3) : 2022",
+          "IS 14735 : 1999",
+          "IS 17385 : 2020"
+        ],
+        "D_Sem_top5": [
+          "IS 9271 : 2004",
+          "IS 17113 (Part 4) : 2022",
+          "IS 17113 (Part 3) : 2022",
+          "IS 14735 : 1999",
+          "IS 17385 : 2020"
+        ],
+        "E_Dual_top1": [
+          "IS 9271 : 2004",
+          "IS 17113 (Part 4) : 2022",
+          "IS 17113 (Part 3) : 2022",
+          "IS 14735 : 1999",
+          "IS 17385 : 2020"
+        ],
+        "E_Dual_top2": [
+          "IS 9271 : 2004",
+          "IS 17113 (Part 4) : 2022",
+          "IS 17113 (Part 3) : 2022",
+          "IS 14735 : 1999",
+          "IS 17385 : 2020"
+        ],
+        "E_Dual_top3": [
+          "IS 9271 : 2004",
+          "IS 17113 (Part 4) : 2022",
+          "IS 17113 (Part 3) : 2022",
+          "IS 14735 : 1999",
+          "IS 17385 : 2020"
+        ],
+        "E_Dual_top5": [
+          "IS 9271 : 2004",
+          "IS 17113 (Part 4) : 2022",
+          "IS 17113 (Part 3) : 2022",
+          "IS 14735 : 1999",
+          "IS 17385 : 2020"
+        ],
+        "F_ScoreGated": [
+          "IS 9271 : 2004",
+          "IS 17113 (Part 4) : 2022",
+          "IS 17113 (Part 3) : 2022",
+          "IS 14735 : 1999",
+          "IS 17385 : 2020"
+        ]
+      }
+    },
+    "T007-R003": {
+      "text": "Low-Oil Food Outlet on BOT",
+      "expected": "IS 2491 : 2013; IS 15000 : 2013",
+      "bm25_rank": 8,
+      "sem_rank": 2,
+      "variant_ranks": {
+        "A_Base": 1,
+        "C_BM25_top1": 1,
+        "C_BM25_top2": 1,
+        "C_BM25_top3": 1,
+        "C_BM25_top5": 1,
+        "D_Sem_top1": 1,
+        "D_Sem_top2": 1,
+        "D_Sem_top3": 1,
+        "D_Sem_top5": 1,
+        "E_Dual_top1": 1,
+        "E_Dual_top2": 1,
+        "E_Dual_top3": 1,
+        "E_Dual_top5": 1,
+        "F_ScoreGated": 1
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS 2491 : 2013",
+          "IS 2491 : 2024",
+          "IS 14366 : 1996",
+          "IS 10563 : 1983",
+          "IS 14367 : 1996"
+        ],
+        "C_BM25_top1": [
+          "IS 2491 : 2013",
+          "IS 2491 : 2024",
+          "IS 14366 : 1996",
+          "IS 10563 : 1983",
+          "IS 14367 : 1996"
+        ],
+        "C_BM25_top2": [
+          "IS 2491 : 2013",
+          "IS 2491 : 2024",
+          "IS 14366 : 1996",
+          "IS 10563 : 1983",
+          "IS 14367 : 1996"
+        ],
+        "C_BM25_top3": [
+          "IS 2491 : 2013",
+          "IS 2491 : 2024",
+          "IS 14366 : 1996",
+          "IS 10563 : 1983",
+          "IS 14367 : 1996"
+        ],
+        "C_BM25_top5": [
+          "IS 2491 : 2013",
+          "IS 2491 : 2024",
+          "IS 14366 : 1996",
+          "IS 10563 : 1983",
+          "IS 14367 : 1996"
+        ],
+        "D_Sem_top1": [
+          "IS 2491 : 2013",
+          "IS 2491 : 2024",
+          "IS 14366 : 1996",
+          "IS 10563 : 1983",
+          "IS 14367 : 1996"
+        ],
+        "D_Sem_top2": [
+          "IS 2491 : 2013",
+          "IS 2491 : 2024",
+          "IS 14366 : 1996",
+          "IS 10563 : 1983",
+          "IS 14367 : 1996"
+        ],
+        "D_Sem_top3": [
+          "IS 2491 : 2013",
+          "IS 2491 : 2024",
+          "IS 14366 : 1996",
+          "IS 10563 : 1983",
+          "IS 14367 : 1996"
+        ],
+        "D_Sem_top5": [
+          "IS 2491 : 2013",
+          "IS 2491 : 2024",
+          "IS 14366 : 1996",
+          "IS 10563 : 1983",
+          "IS 14367 : 1996"
+        ],
+        "E_Dual_top1": [
+          "IS 2491 : 2013",
+          "IS 2491 : 2024",
+          "IS 14366 : 1996",
+          "IS 10563 : 1983",
+          "IS 14367 : 1996"
+        ],
+        "E_Dual_top2": [
+          "IS 2491 : 2013",
+          "IS 2491 : 2024",
+          "IS 14366 : 1996",
+          "IS 10563 : 1983",
+          "IS 14367 : 1996"
+        ],
+        "E_Dual_top3": [
+          "IS 2491 : 2013",
+          "IS 2491 : 2024",
+          "IS 14366 : 1996",
+          "IS 10563 : 1983",
+          "IS 14367 : 1996"
+        ],
+        "E_Dual_top5": [
+          "IS 2491 : 2013",
+          "IS 2491 : 2024",
+          "IS 14366 : 1996",
+          "IS 10563 : 1983",
+          "IS 14367 : 1996"
+        ],
+        "F_ScoreGated": [
+          "IS 2491 : 2013",
+          "IS 2491 : 2024",
+          "IS 14366 : 1996",
+          "IS 10563 : 1983",
+          "IS 14367 : 1996"
+        ]
+      }
+    },
+    "T009-R001": {
+      "text": "Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD",
+      "expected": "SP 30 : 2023; IS 732 : 2019",
+      "bm25_rank": 1,
+      "sem_rank": 71,
+      "variant_ranks": {
+        "A_Base": 10,
+        "C_BM25_top1": 10,
+        "C_BM25_top2": 10,
+        "C_BM25_top3": 10,
+        "C_BM25_top5": 10,
+        "D_Sem_top1": 10,
+        "D_Sem_top2": 10,
+        "D_Sem_top3": 10,
+        "D_Sem_top5": 10,
+        "E_Dual_top1": 10,
+        "E_Dual_top2": 10,
+        "E_Dual_top3": 10,
+        "E_Dual_top5": 9,
+        "F_ScoreGated": 10
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS 19529 : 2026",
+          "IS 4051 : 1967",
+          "IS 12457 : 1988",
+          "IS 4051 : 2025",
+          "IS 13040 : 1991"
+        ],
+        "C_BM25_top1": [
+          "IS 19529 : 2026",
+          "IS 4051 : 1967",
+          "IS 12457 : 1988",
+          "IS 4051 : 2025",
+          "IS 13040 : 1991"
+        ],
+        "C_BM25_top2": [
+          "IS 19529 : 2026",
+          "IS 4051 : 1967",
+          "IS 12457 : 1988",
+          "IS 4051 : 2025",
+          "IS 13040 : 1991"
+        ],
+        "C_BM25_top3": [
+          "IS 19529 : 2026",
+          "IS 4051 : 1967",
+          "IS 12457 : 1988",
+          "IS 4051 : 2025",
+          "IS 13040 : 1991"
+        ],
+        "C_BM25_top5": [
+          "IS 19529 : 2026",
+          "IS 4051 : 1967",
+          "IS 12457 : 1988",
+          "IS 4051 : 2025",
+          "IS 13040 : 1991"
+        ],
+        "D_Sem_top1": [
+          "IS 19529 : 2026",
+          "IS 4051 : 1967",
+          "IS 12457 : 1988",
+          "IS 4051 : 2025",
+          "IS 13040 : 1991"
+        ],
+        "D_Sem_top2": [
+          "IS 19529 : 2026",
+          "IS 4051 : 1967",
+          "IS 12457 : 1988",
+          "IS 4051 : 2025",
+          "IS 13040 : 1991"
+        ],
+        "D_Sem_top3": [
+          "IS 19529 : 2026",
+          "IS 4051 : 1967",
+          "IS 12457 : 1988",
+          "IS 4051 : 2025",
+          "IS 13040 : 1991"
+        ],
+        "D_Sem_top5": [
+          "IS 19529 : 2026",
+          "IS 4051 : 1967",
+          "IS 12457 : 1988",
+          "IS 4051 : 2025",
+          "IS 13040 : 1991"
+        ],
+        "E_Dual_top1": [
+          "IS 19529 : 2026",
+          "IS 4051 : 1967",
+          "IS 12457 : 1988",
+          "IS 4051 : 2025",
+          "IS 13040 : 1991"
+        ],
+        "E_Dual_top2": [
+          "IS 19529 : 2026",
+          "IS 4051 : 1967",
+          "IS 12457 : 1988",
+          "IS 4051 : 2025",
+          "IS 13040 : 1991"
+        ],
+        "E_Dual_top3": [
+          "IS 19529 : 2026",
+          "IS 4051 : 1967",
+          "IS 12457 : 1988",
+          "IS 4051 : 2025",
+          "IS 13040 : 1991"
+        ],
+        "E_Dual_top5": [
+          "IS 19529 : 2026",
+          "IS 4051 : 1967",
+          "IS 12457 : 1988",
+          "IS 4051 : 2025",
+          "IS 13040 : 1991"
+        ],
+        "F_ScoreGated": [
+          "IS 19529 : 2026",
+          "IS 4051 : 1967",
+          "IS 12457 : 1988",
+          "IS 4051 : 2025",
+          "IS 13040 : 1991"
+        ]
+      }
+    },
+    "T010-R001": {
+      "text": "Sewerage Pipeline works from Collection Chamber to STP 9/4/26",
+      "expected": "IS 458 : 2021; IS 783 : 1985; IS 14333 : 1996",
+      "bm25_rank": 4,
+      "sem_rank": 1,
+      "variant_ranks": {
+        "A_Base": 1,
+        "C_BM25_top1": 1,
+        "C_BM25_top2": 1,
+        "C_BM25_top3": 1,
+        "C_BM25_top5": 1,
+        "D_Sem_top1": 1,
+        "D_Sem_top2": 1,
+        "D_Sem_top3": 1,
+        "D_Sem_top5": 1,
+        "E_Dual_top1": 1,
+        "E_Dual_top2": 1,
+        "E_Dual_top3": 1,
+        "E_Dual_top5": 1,
+        "F_ScoreGated": 1
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS 14333 : 1996",
+          "IS 14333 : 2022",
+          "IS 4111 (Part 4) : 1968",
+          "IS 16098 (Part 1) : 2013",
+          "IS/ISO 7396 (Part 1) : 2007"
+        ],
+        "C_BM25_top1": [
+          "IS 14333 : 1996",
+          "IS 14333 : 2022",
+          "IS 4111 (Part 4) : 1968",
+          "IS 16098 (Part 1) : 2013",
+          "IS/ISO 7396 (Part 1) : 2007"
+        ],
+        "C_BM25_top2": [
+          "IS 14333 : 1996",
+          "IS 14333 : 2022",
+          "IS 4111 (Part 4) : 1968",
+          "IS 16098 (Part 1) : 2013",
+          "IS/ISO 7396 (Part 1) : 2007"
+        ],
+        "C_BM25_top3": [
+          "IS 14333 : 1996",
+          "IS 14333 : 2022",
+          "IS 4111 (Part 4) : 1968",
+          "IS 16098 (Part 1) : 2013",
+          "IS/ISO 7396 (Part 1) : 2007"
+        ],
+        "C_BM25_top5": [
+          "IS 14333 : 1996",
+          "IS 14333 : 2022",
+          "IS 4111 (Part 4) : 1968",
+          "IS 16098 (Part 1) : 2013",
+          "IS/ISO 7396 (Part 1) : 2007"
+        ],
+        "D_Sem_top1": [
+          "IS 14333 : 1996",
+          "IS 14333 : 2022",
+          "IS 4111 (Part 4) : 1968",
+          "IS 16098 (Part 1) : 2013",
+          "IS/ISO 7396 (Part 1) : 2007"
+        ],
+        "D_Sem_top2": [
+          "IS 14333 : 1996",
+          "IS 14333 : 2022",
+          "IS 4111 (Part 4) : 1968",
+          "IS 16098 (Part 1) : 2013",
+          "IS/ISO 7396 (Part 1) : 2007"
+        ],
+        "D_Sem_top3": [
+          "IS 14333 : 1996",
+          "IS 14333 : 2022",
+          "IS 4111 (Part 4) : 1968",
+          "IS 16098 (Part 1) : 2013",
+          "IS/ISO 7396 (Part 1) : 2007"
+        ],
+        "D_Sem_top5": [
+          "IS 14333 : 1996",
+          "IS 14333 : 2022",
+          "IS 4111 (Part 4) : 1968",
+          "IS 16098 (Part 1) : 2013",
+          "IS/ISO 7396 (Part 1) : 2007"
+        ],
+        "E_Dual_top1": [
+          "IS 14333 : 1996",
+          "IS 14333 : 2022",
+          "IS 4111 (Part 4) : 1968",
+          "IS 16098 (Part 1) : 2013",
+          "IS/ISO 7396 (Part 1) : 2007"
+        ],
+        "E_Dual_top2": [
+          "IS 14333 : 1996",
+          "IS 14333 : 2022",
+          "IS 4111 (Part 4) : 1968",
+          "IS 16098 (Part 1) : 2013",
+          "IS/ISO 7396 (Part 1) : 2007"
+        ],
+        "E_Dual_top3": [
+          "IS 14333 : 1996",
+          "IS 14333 : 2022",
+          "IS 4111 (Part 4) : 1968",
+          "IS 16098 (Part 1) : 2013",
+          "IS/ISO 7396 (Part 1) : 2007"
+        ],
+        "E_Dual_top5": [
+          "IS 14333 : 1996",
+          "IS 14333 : 2022",
+          "IS 4111 (Part 4) : 1968",
+          "IS 16098 (Part 1) : 2013",
+          "IS/ISO 7396 (Part 1) : 2007"
+        ],
+        "F_ScoreGated": [
+          "IS 14333 : 1996",
+          "IS 14333 : 2022",
+          "IS 4111 (Part 4) : 1968",
+          "IS 16098 (Part 1) : 2013",
+          "IS/ISO 7396 (Part 1) : 2007"
+        ]
+      }
+    },
+    "T011-R001": {
+      "text": "Providing and laying underground cable for STP for main supply of electricity under CEDCO BSF Bangalore",
+      "expected": "IS 7098 (Part 1) : 1988; IS 1255 : 1983",
+      "bm25_rank": 2,
+      "sem_rank": 9,
+      "variant_ranks": {
+        "A_Base": 4,
+        "C_BM25_top1": 4,
+        "C_BM25_top2": 4,
+        "C_BM25_top3": 4,
+        "C_BM25_top5": 4,
+        "D_Sem_top1": 4,
+        "D_Sem_top2": 4,
+        "D_Sem_top3": 4,
+        "D_Sem_top5": 4,
+        "E_Dual_top1": 4,
+        "E_Dual_top2": 4,
+        "E_Dual_top3": 4,
+        "E_Dual_top5": 4,
+        "F_ScoreGated": 4
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS 10334 : 1982",
+          "IS 10334 : 2026",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 3) : 1993"
+        ],
+        "C_BM25_top1": [
+          "IS 10334 : 1982",
+          "IS 10334 : 2026",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 3) : 1993"
+        ],
+        "C_BM25_top2": [
+          "IS 10334 : 1982",
+          "IS 10334 : 2026",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 3) : 1993"
+        ],
+        "C_BM25_top3": [
+          "IS 10334 : 1982",
+          "IS 10334 : 2026",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 3) : 1993"
+        ],
+        "C_BM25_top5": [
+          "IS 10334 : 1982",
+          "IS 10334 : 2026",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 3) : 1993"
+        ],
+        "D_Sem_top1": [
+          "IS 10334 : 1982",
+          "IS 10334 : 2026",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 3) : 1993"
+        ],
+        "D_Sem_top2": [
+          "IS 10334 : 1982",
+          "IS 10334 : 2026",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 3) : 1993"
+        ],
+        "D_Sem_top3": [
+          "IS 10334 : 1982",
+          "IS 10334 : 2026",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 3) : 1993"
+        ],
+        "D_Sem_top5": [
+          "IS 10334 : 1982",
+          "IS 10334 : 2026",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 3) : 1993"
+        ],
+        "E_Dual_top1": [
+          "IS 10334 : 1982",
+          "IS 10334 : 2026",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 3) : 1993"
+        ],
+        "E_Dual_top2": [
+          "IS 10334 : 1982",
+          "IS 10334 : 2026",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 3) : 1993"
+        ],
+        "E_Dual_top3": [
+          "IS 10334 : 1982",
+          "IS 10334 : 2026",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 3) : 1993"
+        ],
+        "E_Dual_top5": [
+          "IS 10334 : 1982",
+          "IS 10334 : 2026",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 3) : 1993"
+        ],
+        "F_ScoreGated": [
+          "IS 10334 : 1982",
+          "IS 10334 : 2026",
+          "IS 7098 (Part 2) : 2011",
+          "IS 7098 (Part 1) : 2025",
+          "IS 7098 (Part 3) : 1993"
+        ]
+      }
+    },
+    "T012-R002": {
+      "text": "Plaster Repairing",
+      "expected": "IS 1661 : 1972; IS 269 : 2015",
+      "bm25_rank": 1,
+      "sem_rank": 1,
+      "variant_ranks": {
+        "A_Base": 1,
+        "C_BM25_top1": 1,
+        "C_BM25_top2": 1,
+        "C_BM25_top3": 1,
+        "C_BM25_top5": 1,
+        "D_Sem_top1": 1,
+        "D_Sem_top2": 1,
+        "D_Sem_top3": 1,
+        "D_Sem_top5": 1,
+        "E_Dual_top1": 1,
+        "E_Dual_top2": 1,
+        "E_Dual_top3": 1,
+        "E_Dual_top5": 1,
+        "F_ScoreGated": 1
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS 1661 : 1972",
+          "IS 2394 : 1984",
+          "IS 8272 : 1984",
+          "IS 2095 (Part 1) : 2011",
+          "IS 2095 (Part 2) : 2001"
+        ],
+        "C_BM25_top1": [
+          "IS 1661 : 1972",
+          "IS 2394 : 1984",
+          "IS 8272 : 1984",
+          "IS 2095 (Part 1) : 2011",
+          "IS 2095 (Part 2) : 2001"
+        ],
+        "C_BM25_top2": [
+          "IS 1661 : 1972",
+          "IS 2394 : 1984",
+          "IS 8272 : 1984",
+          "IS 2095 (Part 1) : 2011",
+          "IS 2095 (Part 2) : 2001"
+        ],
+        "C_BM25_top3": [
+          "IS 1661 : 1972",
+          "IS 2394 : 1984",
+          "IS 8272 : 1984",
+          "IS 2095 (Part 1) : 2011",
+          "IS 2095 (Part 2) : 2001"
+        ],
+        "C_BM25_top5": [
+          "IS 1661 : 1972",
+          "IS 2394 : 1984",
+          "IS 8272 : 1984",
+          "IS 2095 (Part 1) : 2011",
+          "IS 2095 (Part 2) : 2001"
+        ],
+        "D_Sem_top1": [
+          "IS 1661 : 1972",
+          "IS 2394 : 1984",
+          "IS 8272 : 1984",
+          "IS 2095 (Part 1) : 2011",
+          "IS 2095 (Part 2) : 2001"
+        ],
+        "D_Sem_top2": [
+          "IS 1661 : 1972",
+          "IS 2394 : 1984",
+          "IS 8272 : 1984",
+          "IS 2095 (Part 1) : 2011",
+          "IS 2095 (Part 2) : 2001"
+        ],
+        "D_Sem_top3": [
+          "IS 1661 : 1972",
+          "IS 2394 : 1984",
+          "IS 8272 : 1984",
+          "IS 2095 (Part 1) : 2011",
+          "IS 2095 (Part 2) : 2001"
+        ],
+        "D_Sem_top5": [
+          "IS 1661 : 1972",
+          "IS 2394 : 1984",
+          "IS 8272 : 1984",
+          "IS 2095 (Part 1) : 2011",
+          "IS 2095 (Part 2) : 2001"
+        ],
+        "E_Dual_top1": [
+          "IS 1661 : 1972",
+          "IS 2394 : 1984",
+          "IS 8272 : 1984",
+          "IS 2095 (Part 1) : 2011",
+          "IS 2095 (Part 2) : 2001"
+        ],
+        "E_Dual_top2": [
+          "IS 1661 : 1972",
+          "IS 2394 : 1984",
+          "IS 8272 : 1984",
+          "IS 2095 (Part 1) : 2011",
+          "IS 2095 (Part 2) : 2001"
+        ],
+        "E_Dual_top3": [
+          "IS 1661 : 1972",
+          "IS 2394 : 1984",
+          "IS 8272 : 1984",
+          "IS 2095 (Part 1) : 2011",
+          "IS 2095 (Part 2) : 2001"
+        ],
+        "E_Dual_top5": [
+          "IS 1661 : 1972",
+          "IS 2394 : 1984",
+          "IS 8272 : 1984",
+          "IS 2095 (Part 1) : 2011",
+          "IS 2095 (Part 2) : 2001"
+        ],
+        "F_ScoreGated": [
+          "IS 1661 : 1972",
+          "IS 2394 : 1984",
+          "IS 8272 : 1984",
+          "IS 2095 (Part 1) : 2011",
+          "IS 2095 (Part 2) : 2001"
+        ]
+      }
+    },
+    "T012-R003": {
+      "text": "Plumbing Fittings",
+      "expected": "IS 1239 (Part 2) : 1992; IS 778 : 1984",
+      "bm25_rank": 1,
+      "sem_rank": 6,
+      "variant_ranks": {
+        "A_Base": 1,
+        "C_BM25_top1": 1,
+        "C_BM25_top2": 1,
+        "C_BM25_top3": 1,
+        "C_BM25_top5": 1,
+        "D_Sem_top1": 1,
+        "D_Sem_top2": 1,
+        "D_Sem_top3": 1,
+        "D_Sem_top5": 1,
+        "E_Dual_top1": 1,
+        "E_Dual_top2": 1,
+        "E_Dual_top3": 1,
+        "E_Dual_top5": 1,
+        "F_ScoreGated": 1
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS 1239 (Part 2) : 2011",
+          "IS 11428 (Part 13) : 1985",
+          "IS 1879 : 2010",
+          "IS 17650 (Part 2) : 2021",
+          "IS 14810 : 2000"
+        ],
+        "C_BM25_top1": [
+          "IS 1239 (Part 2) : 2011",
+          "IS 11428 (Part 13) : 1985",
+          "IS 1879 : 2010",
+          "IS 17650 (Part 2) : 2021",
+          "IS 14810 : 2000"
+        ],
+        "C_BM25_top2": [
+          "IS 1239 (Part 2) : 2011",
+          "IS 11428 (Part 13) : 1985",
+          "IS 1879 : 2010",
+          "IS 17650 (Part 2) : 2021",
+          "IS 14810 : 2000"
+        ],
+        "C_BM25_top3": [
+          "IS 1239 (Part 2) : 2011",
+          "IS 11428 (Part 13) : 1985",
+          "IS 1879 : 2010",
+          "IS 17650 (Part 2) : 2021",
+          "IS 14810 : 2000"
+        ],
+        "C_BM25_top5": [
+          "IS 1239 (Part 2) : 2011",
+          "IS 11428 (Part 13) : 1985",
+          "IS 1879 : 2010",
+          "IS 17650 (Part 2) : 2021",
+          "IS 14810 : 2000"
+        ],
+        "D_Sem_top1": [
+          "IS 1239 (Part 2) : 2011",
+          "IS 11428 (Part 13) : 1985",
+          "IS 1879 : 2010",
+          "IS 17650 (Part 2) : 2021",
+          "IS 14810 : 2000"
+        ],
+        "D_Sem_top2": [
+          "IS 1239 (Part 2) : 2011",
+          "IS 11428 (Part 13) : 1985",
+          "IS 1879 : 2010",
+          "IS 17650 (Part 2) : 2021",
+          "IS 14810 : 2000"
+        ],
+        "D_Sem_top3": [
+          "IS 1239 (Part 2) : 2011",
+          "IS 11428 (Part 13) : 1985",
+          "IS 1879 : 2010",
+          "IS 17650 (Part 2) : 2021",
+          "IS 14810 : 2000"
+        ],
+        "D_Sem_top5": [
+          "IS 1239 (Part 2) : 2011",
+          "IS 11428 (Part 13) : 1985",
+          "IS 1879 : 2010",
+          "IS 17650 (Part 2) : 2021",
+          "IS 14810 : 2000"
+        ],
+        "E_Dual_top1": [
+          "IS 1239 (Part 2) : 2011",
+          "IS 11428 (Part 13) : 1985",
+          "IS 1879 : 2010",
+          "IS 17650 (Part 2) : 2021",
+          "IS 14810 : 2000"
+        ],
+        "E_Dual_top2": [
+          "IS 1239 (Part 2) : 2011",
+          "IS 11428 (Part 13) : 1985",
+          "IS 1879 : 2010",
+          "IS 17650 (Part 2) : 2021",
+          "IS 14810 : 2000"
+        ],
+        "E_Dual_top3": [
+          "IS 1239 (Part 2) : 2011",
+          "IS 11428 (Part 13) : 1985",
+          "IS 1879 : 2010",
+          "IS 17650 (Part 2) : 2021",
+          "IS 14810 : 2000"
+        ],
+        "E_Dual_top5": [
+          "IS 1239 (Part 2) : 2011",
+          "IS 11428 (Part 13) : 1985",
+          "IS 1879 : 2010",
+          "IS 17650 (Part 2) : 2021",
+          "IS 14810 : 2000"
+        ],
+        "F_ScoreGated": [
+          "IS 1239 (Part 2) : 2011",
+          "IS 11428 (Part 13) : 1985",
+          "IS 1879 : 2010",
+          "IS 17650 (Part 2) : 2021",
+          "IS 14810 : 2000"
+        ]
+      }
+    },
+    "T013-R002": {
+      "text": "SITC of VFD water pump panel",
+      "expected": "IS/IEC 61800-2 : 2015; IS/IEC 61439-2 : 2011",
+      "bm25_rank": 3,
+      "sem_rank": 20,
+      "variant_ranks": {
+        "A_Base": 4,
+        "C_BM25_top1": 4,
+        "C_BM25_top2": 4,
+        "C_BM25_top3": 4,
+        "C_BM25_top5": 4,
+        "D_Sem_top1": 4,
+        "D_Sem_top2": 4,
+        "D_Sem_top3": 4,
+        "D_Sem_top5": 4,
+        "E_Dual_top1": 4,
+        "E_Dual_top2": 4,
+        "E_Dual_top3": 4,
+        "E_Dual_top5": 4,
+        "F_ScoreGated": 4
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS 17123 (Part 1) : 2019",
+          "IS 17123 (Part 2) : 2025",
+          "IS 17123 (Part 1) : 2025",
+          "IS/IEC 61800 (Part 2) : 2015",
+          "IS 17123 (Part 9) (Sec 2) : 2025"
+        ],
+        "C_BM25_top1": [
+          "IS 17123 (Part 1) : 2019",
+          "IS 17123 (Part 2) : 2025",
+          "IS 17123 (Part 1) : 2025",
+          "IS/IEC 61800 (Part 2) : 2015",
+          "IS 17123 (Part 9) (Sec 2) : 2025"
+        ],
+        "C_BM25_top2": [
+          "IS 17123 (Part 1) : 2019",
+          "IS 17123 (Part 2) : 2025",
+          "IS 17123 (Part 1) : 2025",
+          "IS/IEC 61800 (Part 2) : 2015",
+          "IS 17123 (Part 9) (Sec 2) : 2025"
+        ],
+        "C_BM25_top3": [
+          "IS 17123 (Part 1) : 2019",
+          "IS 17123 (Part 2) : 2025",
+          "IS 17123 (Part 1) : 2025",
+          "IS/IEC 61800 (Part 2) : 2015",
+          "IS 17123 (Part 9) (Sec 2) : 2025"
+        ],
+        "C_BM25_top5": [
+          "IS 17123 (Part 1) : 2019",
+          "IS 17123 (Part 2) : 2025",
+          "IS 17123 (Part 1) : 2025",
+          "IS/IEC 61800 (Part 2) : 2015",
+          "IS 17123 (Part 9) (Sec 2) : 2025"
+        ],
+        "D_Sem_top1": [
+          "IS 17123 (Part 1) : 2019",
+          "IS 17123 (Part 2) : 2025",
+          "IS 17123 (Part 1) : 2025",
+          "IS/IEC 61800 (Part 2) : 2015",
+          "IS 17123 (Part 9) (Sec 2) : 2025"
+        ],
+        "D_Sem_top2": [
+          "IS 17123 (Part 1) : 2019",
+          "IS 17123 (Part 2) : 2025",
+          "IS 17123 (Part 1) : 2025",
+          "IS/IEC 61800 (Part 2) : 2015",
+          "IS 17123 (Part 9) (Sec 2) : 2025"
+        ],
+        "D_Sem_top3": [
+          "IS 17123 (Part 1) : 2019",
+          "IS 17123 (Part 2) : 2025",
+          "IS 17123 (Part 1) : 2025",
+          "IS/IEC 61800 (Part 2) : 2015",
+          "IS 17123 (Part 9) (Sec 2) : 2025"
+        ],
+        "D_Sem_top5": [
+          "IS 17123 (Part 1) : 2019",
+          "IS 17123 (Part 2) : 2025",
+          "IS 17123 (Part 1) : 2025",
+          "IS/IEC 61800 (Part 2) : 2015",
+          "IS 17123 (Part 9) (Sec 2) : 2025"
+        ],
+        "E_Dual_top1": [
+          "IS 17123 (Part 1) : 2019",
+          "IS 17123 (Part 2) : 2025",
+          "IS 17123 (Part 1) : 2025",
+          "IS/IEC 61800 (Part 2) : 2015",
+          "IS 17123 (Part 9) (Sec 2) : 2025"
+        ],
+        "E_Dual_top2": [
+          "IS 17123 (Part 1) : 2019",
+          "IS 17123 (Part 2) : 2025",
+          "IS 17123 (Part 1) : 2025",
+          "IS/IEC 61800 (Part 2) : 2015",
+          "IS 17123 (Part 9) (Sec 2) : 2025"
+        ],
+        "E_Dual_top3": [
+          "IS 17123 (Part 1) : 2019",
+          "IS 17123 (Part 2) : 2025",
+          "IS 17123 (Part 1) : 2025",
+          "IS/IEC 61800 (Part 2) : 2015",
+          "IS 17123 (Part 9) (Sec 2) : 2025"
+        ],
+        "E_Dual_top5": [
+          "IS 17123 (Part 1) : 2019",
+          "IS 17123 (Part 2) : 2025",
+          "IS 17123 (Part 1) : 2025",
+          "IS/IEC 61800 (Part 2) : 2015",
+          "IS 17123 (Part 9) (Sec 2) : 2025"
+        ],
+        "F_ScoreGated": [
+          "IS 17123 (Part 1) : 2019",
+          "IS 17123 (Part 2) : 2025",
+          "IS 17123 (Part 1) : 2025",
+          "IS/IEC 61800 (Part 2) : 2015",
+          "IS 17123 (Part 9) (Sec 2) : 2025"
+        ]
+      }
+    },
+    "T013-R003": {
+      "text": "Insulation work",
+      "expected": "IS 14164 : 2008; IS 8183 : 1993",
+      "bm25_rank": 3,
+      "sem_rank": 1,
+      "variant_ranks": {
+        "A_Base": 1,
+        "C_BM25_top1": 1,
+        "C_BM25_top2": 1,
+        "C_BM25_top3": 1,
+        "C_BM25_top5": 1,
+        "D_Sem_top1": 1,
+        "D_Sem_top2": 1,
+        "D_Sem_top3": 1,
+        "D_Sem_top5": 1,
+        "E_Dual_top1": 1,
+        "E_Dual_top2": 1,
+        "E_Dual_top3": 1,
+        "E_Dual_top5": 1,
+        "F_ScoreGated": 1
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS 14164 : 2008",
+          "IS 7413 : 1981",
+          "IS 13013 (Part 1) : 1990",
+          "IS 7240 : 1981",
+          "IS 9743 : 2020"
+        ],
+        "C_BM25_top1": [
+          "IS 14164 : 2008",
+          "IS 7413 : 1981",
+          "IS 13013 (Part 1) : 1990",
+          "IS 7240 : 1981",
+          "IS 9743 : 2020"
+        ],
+        "C_BM25_top2": [
+          "IS 14164 : 2008",
+          "IS 7413 : 1981",
+          "IS 13013 (Part 1) : 1990",
+          "IS 7240 : 1981",
+          "IS 9743 : 2020"
+        ],
+        "C_BM25_top3": [
+          "IS 14164 : 2008",
+          "IS 7413 : 1981",
+          "IS 13013 (Part 1) : 1990",
+          "IS 7240 : 1981",
+          "IS 9743 : 2020"
+        ],
+        "C_BM25_top5": [
+          "IS 14164 : 2008",
+          "IS 7413 : 1981",
+          "IS 13013 (Part 1) : 1990",
+          "IS 7240 : 1981",
+          "IS 9743 : 2020"
+        ],
+        "D_Sem_top1": [
+          "IS 14164 : 2008",
+          "IS 7413 : 1981",
+          "IS 13013 (Part 1) : 1990",
+          "IS 7240 : 1981",
+          "IS 9743 : 2020"
+        ],
+        "D_Sem_top2": [
+          "IS 14164 : 2008",
+          "IS 7413 : 1981",
+          "IS 13013 (Part 1) : 1990",
+          "IS 7240 : 1981",
+          "IS 9743 : 2020"
+        ],
+        "D_Sem_top3": [
+          "IS 14164 : 2008",
+          "IS 7413 : 1981",
+          "IS 13013 (Part 1) : 1990",
+          "IS 7240 : 1981",
+          "IS 9743 : 2020"
+        ],
+        "D_Sem_top5": [
+          "IS 14164 : 2008",
+          "IS 7413 : 1981",
+          "IS 13013 (Part 1) : 1990",
+          "IS 7240 : 1981",
+          "IS 9743 : 2020"
+        ],
+        "E_Dual_top1": [
+          "IS 14164 : 2008",
+          "IS 7413 : 1981",
+          "IS 13013 (Part 1) : 1990",
+          "IS 7240 : 1981",
+          "IS 9743 : 2020"
+        ],
+        "E_Dual_top2": [
+          "IS 14164 : 2008",
+          "IS 7413 : 1981",
+          "IS 13013 (Part 1) : 1990",
+          "IS 7240 : 1981",
+          "IS 9743 : 2020"
+        ],
+        "E_Dual_top3": [
+          "IS 14164 : 2008",
+          "IS 7413 : 1981",
+          "IS 13013 (Part 1) : 1990",
+          "IS 7240 : 1981",
+          "IS 9743 : 2020"
+        ],
+        "E_Dual_top5": [
+          "IS 14164 : 2008",
+          "IS 7413 : 1981",
+          "IS 13013 (Part 1) : 1990",
+          "IS 7240 : 1981",
+          "IS 9743 : 2020"
+        ],
+        "F_ScoreGated": [
+          "IS 14164 : 2008",
+          "IS 7413 : 1981",
+          "IS 13013 (Part 1) : 1990",
+          "IS 7240 : 1981",
+          "IS 9743 : 2020"
+        ]
+      }
+    },
+    "T014-R002": {
+      "text": "commissioning of three numbers of Process Water Pump motors 3.3 kV",
+      "expected": "IS/IEC 60034-1 : 2017; IS 5120 : 1977",
+      "bm25_rank": 55,
+      "sem_rank": 24,
+      "variant_ranks": {
+        "A_Base": 39,
+        "C_BM25_top1": 39,
+        "C_BM25_top2": 39,
+        "C_BM25_top3": 39,
+        "C_BM25_top5": 39,
+        "D_Sem_top1": 39,
+        "D_Sem_top2": 39,
+        "D_Sem_top3": 40,
+        "D_Sem_top5": 40,
+        "E_Dual_top1": 39,
+        "E_Dual_top2": 39,
+        "E_Dual_top3": 40,
+        "E_Dual_top5": 40,
+        "F_ScoreGated": 40
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS 12066 : 1987",
+          "IS 15999 (Part 26) : 2016",
+          "IS 14578 : 1999",
+          "IS 12615 : 2011",
+          "IS 325 : 1996"
+        ],
+        "C_BM25_top1": [
+          "IS 12066 : 1987",
+          "IS 15999 (Part 26) : 2016",
+          "IS 14578 : 1999",
+          "IS 12615 : 2011",
+          "IS 325 : 1996"
+        ],
+        "C_BM25_top2": [
+          "IS 12066 : 1987",
+          "IS 15999 (Part 26) : 2016",
+          "IS 14578 : 1999",
+          "IS 12615 : 2011",
+          "IS 325 : 1996"
+        ],
+        "C_BM25_top3": [
+          "IS 12066 : 1987",
+          "IS 15999 (Part 26) : 2016",
+          "IS 14578 : 1999",
+          "IS 12615 : 2011",
+          "IS 325 : 1996"
+        ],
+        "C_BM25_top5": [
+          "IS 12066 : 1987",
+          "IS 15999 (Part 26) : 2016",
+          "IS 14578 : 1999",
+          "IS 12615 : 2011",
+          "IS 325 : 1996"
+        ],
+        "D_Sem_top1": [
+          "IS 12066 : 1987",
+          "IS 15999 (Part 26) : 2016",
+          "IS 14578 : 1999",
+          "IS 12615 : 2011",
+          "IS 325 : 1996"
+        ],
+        "D_Sem_top2": [
+          "IS 12066 : 1987",
+          "IS 15999 (Part 26) : 2016",
+          "IS 14578 : 1999",
+          "IS 12615 : 2011",
+          "IS 325 : 1996"
+        ],
+        "D_Sem_top3": [
+          "IS 12066 : 1987",
+          "IS 15999 (Part 26) : 2016",
+          "IS 14578 : 1999",
+          "IS 12615 : 2011",
+          "IS 325 : 1996"
+        ],
+        "D_Sem_top5": [
+          "IS 12066 : 1987",
+          "IS 15999 (Part 26) : 2016",
+          "IS 14578 : 1999",
+          "IS 12615 : 2011",
+          "IS 325 : 1996"
+        ],
+        "E_Dual_top1": [
+          "IS 12066 : 1987",
+          "IS 15999 (Part 26) : 2016",
+          "IS 14578 : 1999",
+          "IS 12615 : 2011",
+          "IS 325 : 1996"
+        ],
+        "E_Dual_top2": [
+          "IS 12066 : 1987",
+          "IS 15999 (Part 26) : 2016",
+          "IS 14578 : 1999",
+          "IS 12615 : 2011",
+          "IS 325 : 1996"
+        ],
+        "E_Dual_top3": [
+          "IS 12066 : 1987",
+          "IS 15999 (Part 26) : 2016",
+          "IS 14578 : 1999",
+          "IS 12615 : 2011",
+          "IS 325 : 1996"
+        ],
+        "E_Dual_top5": [
+          "IS 12066 : 1987",
+          "IS 15999 (Part 26) : 2016",
+          "IS 14578 : 1999",
+          "IS 12615 : 2011",
+          "IS 325 : 1996"
+        ],
+        "F_ScoreGated": [
+          "IS 12066 : 1987",
+          "IS 15999 (Part 26) : 2016",
+          "IS 14578 : 1999",
+          "IS 12615 : 2011",
+          "IS 325 : 1996"
+        ]
+      }
+    },
+    "T020-R001": {
+      "text": "Repair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn",
+      "expected": "IS 15778 : 2007; IS 1239 (Part 1) : 2004",
+      "bm25_rank": 5,
+      "sem_rank": 1,
+      "variant_ranks": {
+        "A_Base": 1,
+        "C_BM25_top1": 1,
+        "C_BM25_top2": 1,
+        "C_BM25_top3": 1,
+        "C_BM25_top5": 1,
+        "D_Sem_top1": 1,
+        "D_Sem_top2": 1,
+        "D_Sem_top3": 1,
+        "D_Sem_top5": 1,
+        "E_Dual_top1": 1,
+        "E_Dual_top2": 1,
+        "E_Dual_top3": 1,
+        "E_Dual_top5": 1,
+        "F_ScoreGated": 1
+      },
+      "variant_pools": {
+        "A_Base": [
+          "IS 15778 : 2007",
+          "IS 18837 : 2024",
+          "IS 16088 : 2012",
+          "IS 15225 : 2002",
+          "IS 16534 : 2017"
+        ],
+        "C_BM25_top1": [
+          "IS 15778 : 2007",
+          "IS 18837 : 2024",
+          "IS 16088 : 2012",
+          "IS 15225 : 2002",
+          "IS 16534 : 2017"
+        ],
+        "C_BM25_top2": [
+          "IS 15778 : 2007",
+          "IS 18837 : 2024",
+          "IS 16088 : 2012",
+          "IS 15225 : 2002",
+          "IS 16534 : 2017"
+        ],
+        "C_BM25_top3": [
+          "IS 15778 : 2007",
+          "IS 18837 : 2024",
+          "IS 16088 : 2012",
+          "IS 15225 : 2002",
+          "IS 16534 : 2017"
+        ],
+        "C_BM25_top5": [
+          "IS 15778 : 2007",
+          "IS 18837 : 2024",
+          "IS 16088 : 2012",
+          "IS 15225 : 2002",
+          "IS 16534 : 2017"
+        ],
+        "D_Sem_top1": [
+          "IS 15778 : 2007",
+          "IS 18837 : 2024",
+          "IS 16088 : 2012",
+          "IS 15225 : 2002",
+          "IS 16534 : 2017"
+        ],
+        "D_Sem_top2": [
+          "IS 15778 : 2007",
+          "IS 18837 : 2024",
+          "IS 16088 : 2012",
+          "IS 15225 : 2002",
+          "IS 16534 : 2017"
+        ],
+        "D_Sem_top3": [
+          "IS 15778 : 2007",
+          "IS 18837 : 2024",
+          "IS 16088 : 2012",
+          "IS 15225 : 2002",
+          "IS 16534 : 2017"
+        ],
+        "D_Sem_top5": [
+          "IS 15778 : 2007",
+          "IS 18837 : 2024",
+          "IS 16088 : 2012",
+          "IS 15225 : 2002",
+          "IS 16534 : 2017"
+        ],
+        "E_Dual_top1": [
+          "IS 15778 : 2007",
+          "IS 18837 : 2024",
+          "IS 16088 : 2012",
+          "IS 15225 : 2002",
+          "IS 16534 : 2017"
+        ],
+        "E_Dual_top2": [
+          "IS 15778 : 2007",
+          "IS 18837 : 2024",
+          "IS 16088 : 2012",
+          "IS 15225 : 2002",
+          "IS 16534 : 2017"
+        ],
+        "E_Dual_top3": [
+          "IS 15778 : 2007",
+          "IS 18837 : 2024",
+          "IS 16088 : 2012",
+          "IS 15225 : 2002",
+          "IS 16534 : 2017"
+        ],
+        "E_Dual_top5": [
+          "IS 15778 : 2007",
+          "IS 18837 : 2024",
+          "IS 16088 : 2012",
+          "IS 15225 : 2002",
+          "IS 16534 : 2017"
+        ],
+        "F_ScoreGated": [
+          "IS 15778 : 2007",
+          "IS 18837 : 2024",
+          "IS 16088 : 2012",
+          "IS 15225 : 2002",
+          "IS 16534 : 2017"
+        ]
+      }
+    }
+  },
+  "variants_metrics": {
+    "A_Base": {
+      "Hit@1": 12,
+      "Hit@1_pct": 63.2,
+      "Recall@10": 17,
+      "Recall@10_pct": 89.5,
+      "Recall@15_Survival": 17,
+      "Recall@15_pct": 89.5,
+      "Recall@30": 17,
+      "Recall@30_pct": 89.5,
+      "Recall@50": 18,
+      "Recall@50_pct": 94.7,
+      "Recall@100": 18,
+      "Recall@100_pct": 94.7,
+      "MRR": 0.6852,
+      "FR_Accuracy": 9,
+      "FR_Accuracy_pct": 47.4,
+      "Human_Review": 0,
+      "Abstention": 5,
+      "False_Confident": 2,
+      "P50_latency_ms": 308.2,
+      "P95_latency_ms": 485.2,
+      "regressions_vs_base": 0,
+      "improvements_vs_base": 0,
+      "unchanged_vs_base": 19
+    },
+    "C_BM25_top1": {
+      "Hit@1": 12,
+      "Hit@1_pct": 63.2,
+      "Recall@10": 17,
+      "Recall@10_pct": 89.5,
+      "Recall@15_Survival": 17,
+      "Recall@15_pct": 89.5,
+      "Recall@30": 17,
+      "Recall@30_pct": 89.5,
+      "Recall@50": 18,
+      "Recall@50_pct": 94.7,
+      "Recall@100": 18,
+      "Recall@100_pct": 94.7,
+      "MRR": 0.6852,
+      "FR_Accuracy": 8,
+      "FR_Accuracy_pct": 42.1,
+      "Human_Review": 0,
+      "Abstention": 6,
+      "False_Confident": 2,
+      "P50_latency_ms": 308.2,
+      "P95_latency_ms": 485.2,
+      "regressions_vs_base": 0,
+      "improvements_vs_base": 0,
+      "unchanged_vs_base": 19
+    },
+    "C_BM25_top2": {
+      "Hit@1": 12,
+      "Hit@1_pct": 63.2,
+      "Recall@10": 17,
+      "Recall@10_pct": 89.5,
+      "Recall@15_Survival": 17,
+      "Recall@15_pct": 89.5,
+      "Recall@30": 17,
+      "Recall@30_pct": 89.5,
+      "Recall@50": 18,
+      "Recall@50_pct": 94.7,
+      "Recall@100": 18,
+      "Recall@100_pct": 94.7,
+      "MRR": 0.6852,
+      "FR_Accuracy": 9,
+      "FR_Accuracy_pct": 47.4,
+      "Human_Review": 0,
+      "Abstention": 5,
+      "False_Confident": 2,
+      "P50_latency_ms": 308.2,
+      "P95_latency_ms": 485.2,
+      "regressions_vs_base": 0,
+      "improvements_vs_base": 0,
+      "unchanged_vs_base": 19
+    },
+    "C_BM25_top3": {
+      "Hit@1": 12,
+      "Hit@1_pct": 63.2,
+      "Recall@10": 17,
+      "Recall@10_pct": 89.5,
+      "Recall@15_Survival": 17,
+      "Recall@15_pct": 89.5,
+      "Recall@30": 17,
+      "Recall@30_pct": 89.5,
+      "Recall@50": 18,
+      "Recall@50_pct": 94.7,
+      "Recall@100": 18,
+      "Recall@100_pct": 94.7,
+      "MRR": 0.6852,
+      "FR_Accuracy": 9,
+      "FR_Accuracy_pct": 47.4,
+      "Human_Review": 0,
+      "Abstention": 5,
+      "False_Confident": 2,
+      "P50_latency_ms": 308.2,
+      "P95_latency_ms": 485.2,
+      "regressions_vs_base": 0,
+      "improvements_vs_base": 0,
+      "unchanged_vs_base": 19
+    },
+    "C_BM25_top5": {
+      "Hit@1": 12,
+      "Hit@1_pct": 63.2,
+      "Recall@10": 17,
+      "Recall@10_pct": 89.5,
+      "Recall@15_Survival": 17,
+      "Recall@15_pct": 89.5,
+      "Recall@30": 17,
+      "Recall@30_pct": 89.5,
+      "Recall@50": 18,
+      "Recall@50_pct": 94.7,
+      "Recall@100": 18,
+      "Recall@100_pct": 94.7,
+      "MRR": 0.6852,
+      "FR_Accuracy": 8,
+      "FR_Accuracy_pct": 42.1,
+      "Human_Review": 0,
+      "Abstention": 4,
+      "False_Confident": 2,
+      "P50_latency_ms": 309.6,
+      "P95_latency_ms": 488.1,
+      "regressions_vs_base": 0,
+      "improvements_vs_base": 0,
+      "unchanged_vs_base": 19
+    },
+    "D_Sem_top1": {
+      "Hit@1": 12,
+      "Hit@1_pct": 63.2,
+      "Recall@10": 17,
+      "Recall@10_pct": 89.5,
+      "Recall@15_Survival": 17,
+      "Recall@15_pct": 89.5,
+      "Recall@30": 17,
+      "Recall@30_pct": 89.5,
+      "Recall@50": 18,
+      "Recall@50_pct": 94.7,
+      "Recall@100": 18,
+      "Recall@100_pct": 94.7,
+      "MRR": 0.6852,
+      "FR_Accuracy": 8,
+      "FR_Accuracy_pct": 42.1,
+      "Human_Review": 0,
+      "Abstention": 6,
+      "False_Confident": 2,
+      "P50_latency_ms": 309.7,
+      "P95_latency_ms": 485.7,
+      "regressions_vs_base": 0,
+      "improvements_vs_base": 0,
+      "unchanged_vs_base": 19
+    },
+    "D_Sem_top2": {
+      "Hit@1": 12,
+      "Hit@1_pct": 63.2,
+      "Recall@10": 17,
+      "Recall@10_pct": 89.5,
+      "Recall@15_Survival": 17,
+      "Recall@15_pct": 89.5,
+      "Recall@30": 17,
+      "Recall@30_pct": 89.5,
+      "Recall@50": 18,
+      "Recall@50_pct": 94.7,
+      "Recall@100": 18,
+      "Recall@100_pct": 94.7,
+      "MRR": 0.6852,
+      "FR_Accuracy": 7,
+      "FR_Accuracy_pct": 36.8,
+      "Human_Review": 0,
+      "Abstention": 5,
+      "False_Confident": 2,
+      "P50_latency_ms": 310.0,
+      "P95_latency_ms": 490.8,
+      "regressions_vs_base": 0,
+      "improvements_vs_base": 0,
+      "unchanged_vs_base": 19
+    },
+    "D_Sem_top3": {
+      "Hit@1": 12,
+      "Hit@1_pct": 63.2,
+      "Recall@10": 17,
+      "Recall@10_pct": 89.5,
+      "Recall@15_Survival": 17,
+      "Recall@15_pct": 89.5,
+      "Recall@30": 17,
+      "Recall@30_pct": 89.5,
+      "Recall@50": 18,
+      "Recall@50_pct": 94.7,
+      "Recall@100": 18,
+      "Recall@100_pct": 94.7,
+      "MRR": 0.6852,
+      "FR_Accuracy": 7,
+      "FR_Accuracy_pct": 36.8,
+      "Human_Review": 0,
+      "Abstention": 5,
+      "False_Confident": 2,
+      "P50_latency_ms": 308.2,
+      "P95_latency_ms": 485.2,
+      "regressions_vs_base": 1,
+      "improvements_vs_base": 0,
+      "unchanged_vs_base": 18
+    },
+    "D_Sem_top5": {
+      "Hit@1": 12,
+      "Hit@1_pct": 63.2,
+      "Recall@10": 17,
+      "Recall@10_pct": 89.5,
+      "Recall@15_Survival": 17,
+      "Recall@15_pct": 89.5,
+      "Recall@30": 17,
+      "Recall@30_pct": 89.5,
+      "Recall@50": 18,
+      "Recall@50_pct": 94.7,
+      "Recall@100": 18,
+      "Recall@100_pct": 94.7,
+      "MRR": 0.6852,
+      "FR_Accuracy": 7,
+      "FR_Accuracy_pct": 36.8,
+      "Human_Review": 0,
+      "Abstention": 4,
+      "False_Confident": 2,
+      "P50_latency_ms": 308.3,
+      "P95_latency_ms": 485.2,
+      "regressions_vs_base": 1,
+      "improvements_vs_base": 0,
+      "unchanged_vs_base": 18
+    },
+    "E_Dual_top1": {
+      "Hit@1": 12,
+      "Hit@1_pct": 63.2,
+      "Recall@10": 17,
+      "Recall@10_pct": 89.5,
+      "Recall@15_Survival": 17,
+      "Recall@15_pct": 89.5,
+      "Recall@30": 17,
+      "Recall@30_pct": 89.5,
+      "Recall@50": 18,
+      "Recall@50_pct": 94.7,
+      "Recall@100": 18,
+      "Recall@100_pct": 94.7,
+      "MRR": 0.6852,
+      "FR_Accuracy": 8,
+      "FR_Accuracy_pct": 42.1,
+      "Human_Review": 0,
+      "Abstention": 6,
+      "False_Confident": 2,
+      "P50_latency_ms": 308.2,
+      "P95_latency_ms": 485.2,
+      "regressions_vs_base": 0,
+      "improvements_vs_base": 0,
+      "unchanged_vs_base": 19
+    },
+    "E_Dual_top2": {
+      "Hit@1": 12,
+      "Hit@1_pct": 63.2,
+      "Recall@10": 17,
+      "Recall@10_pct": 89.5,
+      "Recall@15_Survival": 17,
+      "Recall@15_pct": 89.5,
+      "Recall@30": 17,
+      "Recall@30_pct": 89.5,
+      "Recall@50": 18,
+      "Recall@50_pct": 94.7,
+      "Recall@100": 18,
+      "Recall@100_pct": 94.7,
+      "MRR": 0.6852,
+      "FR_Accuracy": 8,
+      "FR_Accuracy_pct": 42.1,
+      "Human_Review": 0,
+      "Abstention": 5,
+      "False_Confident": 2,
+      "P50_latency_ms": 308.2,
+      "P95_latency_ms": 485.2,
+      "regressions_vs_base": 0,
+      "improvements_vs_base": 0,
+      "unchanged_vs_base": 19
+    },
+    "E_Dual_top3": {
+      "Hit@1": 12,
+      "Hit@1_pct": 63.2,
+      "Recall@10": 17,
+      "Recall@10_pct": 89.5,
+      "Recall@15_Survival": 17,
+      "Recall@15_pct": 89.5,
+      "Recall@30": 17,
+      "Recall@30_pct": 89.5,
+      "Recall@50": 18,
+      "Recall@50_pct": 94.7,
+      "Recall@100": 18,
+      "Recall@100_pct": 94.7,
+      "MRR": 0.6852,
+      "FR_Accuracy": 8,
+      "FR_Accuracy_pct": 42.1,
+      "Human_Review": 0,
+      "Abstention": 5,
+      "False_Confident": 2,
+      "P50_latency_ms": 308.2,
+      "P95_latency_ms": 485.2,
+      "regressions_vs_base": 1,
+      "improvements_vs_base": 0,
+      "unchanged_vs_base": 18
+    },
+    "E_Dual_top5": {
+      "Hit@1": 12,
+      "Hit@1_pct": 63.2,
+      "Recall@10": 17,
+      "Recall@10_pct": 89.5,
+      "Recall@15_Survival": 17,
+      "Recall@15_pct": 89.5,
+      "Recall@30": 17,
+      "Recall@30_pct": 89.5,
+      "Recall@50": 18,
+      "Recall@50_pct": 94.7,
+      "Recall@100": 18,
+      "Recall@100_pct": 94.7,
+      "MRR": 0.6857,
+      "FR_Accuracy": 8,
+      "FR_Accuracy_pct": 42.1,
+      "Human_Review": 0,
+      "Abstention": 3,
+      "False_Confident": 2,
+      "P50_latency_ms": 308.3,
+      "P95_latency_ms": 485.2,
+      "regressions_vs_base": 1,
+      "improvements_vs_base": 1,
+      "unchanged_vs_base": 17
+    },
+    "F_ScoreGated": {
+      "Hit@1": 12,
+      "Hit@1_pct": 63.2,
+      "Recall@10": 17,
+      "Recall@10_pct": 89.5,
+      "Recall@15_Survival": 17,
+      "Recall@15_pct": 89.5,
+      "Recall@30": 17,
+      "Recall@30_pct": 89.5,
+      "Recall@50": 18,
+      "Recall@50_pct": 94.7,
+      "Recall@100": 18,
+      "Recall@100_pct": 94.7,
+      "MRR": 0.6852,
+      "FR_Accuracy": 7,
+      "FR_Accuracy_pct": 36.8,
+      "Human_Review": 0,
+      "Abstention": 3,
+      "False_Confident": 5,
+      "P50_latency_ms": 308.2,
+      "P95_latency_ms": 485.2,
+      "regressions_vs_base": 1,
+      "improvements_vs_base": 0,
+      "unchanged_vs_base": 18
+    }
+  }
+}

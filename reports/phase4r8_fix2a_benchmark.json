@@ -1,0 +1,529 @@
+{
+  "fix": "2A",
+  "description": "Technical role priority in arbitration for product requirements",
+  "metrics": {
+    "final_recommendation_accuracy": "7/19",
+    "candidate_survival": "15/19",
+    "review_candidate_survival": "2/19",
+    "safe_abstention": "4/19"
+  },
+  "results": [
+    {
+      "req_id": "T001-R002",
+      "expected": "IS 15905 : 2011",
+      "final_recommendation": "IS 10990 (Part 3) : 2023",
+      "human_review_required": false,
+      "fr_correct": false,
+      "candidate_for_review": null,
+      "candidate_survival": true,
+      "review_candidate_survival": false,
+      "safe_abstention": false,
+      "top_3": [
+        "IS 10990 (Part 3) : 2023",
+        "IS 15947 (Part 2) : 2012",
+        "IS 15663 (Part 3) : 2006"
+      ],
+      "top_roles": [
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT",
+        "INSTALLATION"
+      ],
+      "top_confs": [
+        "High",
+        "High",
+        "High"
+      ],
+      "num_candidates": 15,
+      "ms": 1338.1
+    },
+    {
+      "req_id": "T001-R003",
+      "expected": "IS 15622 : 2017",
+      "final_recommendation": "(abstain)",
+      "human_review_required": true,
+      "fr_correct": false,
+      "candidate_for_review": "IS 4112 : 1967",
+      "candidate_survival": true,
+      "review_candidate_survival": false,
+      "safe_abstention": true,
+      "top_3": [
+        "IS 4112 : 1967",
+        "IS 3463 : 1966",
+        "IS 777 : 1988"
+      ],
+      "top_roles": [
+        "INSTALLATION",
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT"
+      ],
+      "top_confs": [
+        "High",
+        "High",
+        "High"
+      ],
+      "num_candidates": 15,
+      "ms": 1507.6
+    },
+    {
+      "req_id": "T001-R004",
+      "expected": "IS 2556 (Part 1 to 17)",
+      "final_recommendation": "IS 2556 (Part 9) : 2004",
+      "human_review_required": false,
+      "fr_correct": false,
+      "candidate_for_review": null,
+      "candidate_survival": true,
+      "review_candidate_survival": false,
+      "safe_abstention": false,
+      "top_3": [
+        "IS 2556 (Part 9) : 2004",
+        "IS 2556 (Part 1) : 2021",
+        "IS 17650 (Part 2) : 2021"
+      ],
+      "top_roles": [
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT"
+      ],
+      "top_confs": [
+        "High",
+        "High",
+        "High"
+      ],
+      "num_candidates": 15,
+      "ms": 1483.7
+    },
+    {
+      "req_id": "T002-R003",
+      "expected": "IS 6392 : 1971",
+      "final_recommendation": "IS 13257 : 1992",
+      "human_review_required": false,
+      "fr_correct": false,
+      "candidate_for_review": null,
+      "candidate_survival": true,
+      "review_candidate_survival": false,
+      "safe_abstention": false,
+      "top_3": [
+        "IS 13257 : 1992",
+        "IS 6392 : 2020",
+        "IS 10864 : 2024"
+      ],
+      "top_roles": [
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT"
+      ],
+      "top_confs": [
+        "High",
+        "High",
+        "Medium"
+      ],
+      "num_candidates": 15,
+      "ms": 3045.8
+    },
+    {
+      "req_id": "T003-R001",
+      "expected": "IS/IEC 61439-3 : 2012",
+      "final_recommendation": "IS/IEC 61439 (Part 3) : 2012",
+      "human_review_required": false,
+      "fr_correct": true,
+      "candidate_for_review": null,
+      "candidate_survival": true,
+      "review_candidate_survival": false,
+      "safe_abstention": false,
+      "top_3": [
+        "IS/IEC 61439 (Part 3) : 2012",
+        "IS/IEC 61439 (Part 3) : 2024",
+        "IS 18284 : 2023"
+      ],
+      "top_roles": [
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT",
+        "CODE_OF_PRACTICE"
+      ],
+      "top_confs": [
+        "High",
+        "High",
+        "Medium"
+      ],
+      "num_candidates": 5,
+      "ms": 2357.2
+    },
+    {
+      "req_id": "T004-R002",
+      "expected": "IS 7098 (Part 1) : 1988",
+      "final_recommendation": "IS 1255 : 1983",
+      "human_review_required": false,
+      "fr_correct": true,
+      "candidate_for_review": null,
+      "candidate_survival": true,
+      "review_candidate_survival": false,
+      "safe_abstention": false,
+      "top_3": [
+        "IS 1255 : 1983",
+        "IS 12909 : 1990",
+        "IS 18833 : 2024"
+      ],
+      "top_roles": [
+        "INSTALLATION",
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT"
+      ],
+      "top_confs": [
+        "Medium",
+        "Medium",
+        "Medium"
+      ],
+      "num_candidates": 14,
+      "ms": 1415.9
+    },
+    {
+      "req_id": "T004-R005",
+      "expected": "IS 5039 : 1983",
+      "final_recommendation": "(abstain)",
+      "human_review_required": true,
+      "fr_correct": false,
+      "candidate_for_review": "IS 5039 : 1983",
+      "candidate_survival": true,
+      "review_candidate_survival": true,
+      "safe_abstention": true,
+      "top_3": [
+        "IS 5039 : 1983",
+        "IS/IEC 61439 (Part 5) : 2023",
+        "IS 19761 : 2026"
+      ],
+      "top_roles": [
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT"
+      ],
+      "top_confs": [
+        "High",
+        "Medium",
+        "Medium"
+      ],
+      "num_candidates": 7,
+      "ms": 1585.1
+    },
+    {
+      "req_id": "T005-R001",
+      "expected": "IS 3043 : 2018",
+      "final_recommendation": "(abstain)",
+      "human_review_required": true,
+      "fr_correct": false,
+      "candidate_for_review": "IS 7098 (Part 2) : 2011",
+      "candidate_survival": true,
+      "review_candidate_survival": false,
+      "safe_abstention": true,
+      "top_3": [
+        "IS 7098 (Part 2) : 2011",
+        "IS 7098 (Part 3) : 1993",
+        "IS 7098 (Part 1) : 2025"
+      ],
+      "top_roles": [
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT"
+      ],
+      "top_confs": [
+        "Medium",
+        "Low",
+        "Low"
+      ],
+      "num_candidates": 15,
+      "ms": 2563.7
+    },
+    {
+      "req_id": "T006-R001",
+      "expected": "IS 16088 : 2016",
+      "final_recommendation": "IS 9271 : 2004",
+      "human_review_required": false,
+      "fr_correct": false,
+      "candidate_for_review": null,
+      "candidate_survival": false,
+      "review_candidate_survival": false,
+      "safe_abstention": false,
+      "top_3": [
+        "IS 9271 : 2004",
+        "IS 14735 : 1999",
+        "IS/ISO 24998 : 2008"
+      ],
+      "top_roles": [
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT"
+      ],
+      "top_confs": [
+        "High",
+        "High",
+        "Medium"
+      ],
+      "num_candidates": 9,
+      "ms": 1492.4
+    },
+    {
+      "req_id": "T007-R003",
+      "expected": "IS 2491 : 2013",
+      "final_recommendation": "(abstain)",
+      "human_review_required": true,
+      "fr_correct": false,
+      "candidate_for_review": "IS 2491 : 2024",
+      "candidate_survival": true,
+      "review_candidate_survival": true,
+      "safe_abstention": true,
+      "top_3": [
+        "IS 2491 : 2024",
+        "IS 10563 : 2026",
+        "IS 14366 : 1996"
+      ],
+      "top_roles": [
+        "CODE_OF_PRACTICE",
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT"
+      ],
+      "top_confs": [
+        "Low",
+        "Low",
+        "Low"
+      ],
+      "num_candidates": 11,
+      "ms": 1767.8
+    },
+    {
+      "req_id": "T009-R001",
+      "expected": "SP 30 : 2023",
+      "final_recommendation": "IS 12457 : 1988",
+      "human_review_required": false,
+      "fr_correct": false,
+      "candidate_for_review": null,
+      "candidate_survival": true,
+      "review_candidate_survival": false,
+      "safe_abstention": false,
+      "top_3": [
+        "IS 12457 : 1988",
+        "IS 4051 : 2025",
+        "IS 13040 : 1991"
+      ],
+      "top_roles": [
+        "CODE_OF_PRACTICE",
+        "INSTALLATION",
+        "PRIMARY_PRODUCT"
+      ],
+      "top_confs": [
+        "Medium",
+        "Medium",
+        "Medium"
+      ],
+      "num_candidates": 13,
+      "ms": 1738.0
+    },
+    {
+      "req_id": "T010-R001",
+      "expected": "IS 458 : 2021",
+      "final_recommendation": "IS 14333 : 2022",
+      "human_review_required": false,
+      "fr_correct": true,
+      "candidate_for_review": null,
+      "candidate_survival": true,
+      "review_candidate_survival": false,
+      "safe_abstention": false,
+      "top_3": [
+        "IS 14333 : 2022",
+        "IS 4111 (Part 5) : 1993",
+        "IS 16098 (Part 2) : 2013"
+      ],
+      "top_roles": [
+        "PRIMARY_PRODUCT",
+        "CODE_OF_PRACTICE",
+        "PRIMARY_PRODUCT"
+      ],
+      "top_confs": [
+        "Medium",
+        "Medium",
+        "Medium"
+      ],
+      "num_candidates": 14,
+      "ms": 1672.3
+    },
+    {
+      "req_id": "T011-R001",
+      "expected": "IS 7098 (Part 1) : 1988",
+      "final_recommendation": "(abstain)",
+      "human_review_required": true,
+      "fr_correct": false,
+      "candidate_for_review": null,
+      "candidate_survival": false,
+      "review_candidate_survival": false,
+      "safe_abstention": false,
+      "top_3": [],
+      "top_roles": [],
+      "top_confs": [],
+      "num_candidates": 0,
+      "ms": 1585.3
+    },
+    {
+      "req_id": "T012-R002",
+      "expected": "IS 1661 : 1972",
+      "final_recommendation": "IS 1661 : 1972",
+      "human_review_required": false,
+      "fr_correct": true,
+      "candidate_for_review": null,
+      "candidate_survival": true,
+      "review_candidate_survival": false,
+      "safe_abstention": false,
+      "top_3": [
+        "IS 1661 : 1972",
+        "IS 2394 : 1984",
+        "IS 8272 : 1984"
+      ],
+      "top_roles": [
+        "INSTALLATION",
+        "INSTALLATION",
+        "PRIMARY_PRODUCT"
+      ],
+      "top_confs": [
+        "High",
+        "High",
+        "High"
+      ],
+      "num_candidates": 15,
+      "ms": 1182.3
+    },
+    {
+      "req_id": "T012-R003",
+      "expected": "IS 1239 (Part 2) : 1992",
+      "final_recommendation": "IS 1239 (Part 2) : 2011",
+      "human_review_required": false,
+      "fr_correct": true,
+      "candidate_for_review": null,
+      "candidate_survival": true,
+      "review_candidate_survival": false,
+      "safe_abstention": false,
+      "top_3": [
+        "IS 1239 (Part 2) : 2011",
+        "IS 11428 (Part 13) : 1985",
+        "IS 1879 : 2010"
+      ],
+      "top_roles": [
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT"
+      ],
+      "top_confs": [
+        "Medium",
+        "Medium",
+        "Medium"
+      ],
+      "num_candidates": 14,
+      "ms": 1034.4
+    },
+    {
+      "req_id": "T013-R002",
+      "expected": "IS/IEC 61800-2 : 2015",
+      "final_recommendation": "IS 10069 : 2023",
+      "human_review_required": false,
+      "fr_correct": false,
+      "candidate_for_review": null,
+      "candidate_survival": false,
+      "review_candidate_survival": false,
+      "safe_abstention": false,
+      "top_3": [
+        "IS 10069 : 2023",
+        "IS 10069 : 2017"
+      ],
+      "top_roles": [
+        "TEST_METHOD",
+        "TEST_METHOD"
+      ],
+      "top_confs": [
+        "Medium",
+        "Medium"
+      ],
+      "num_candidates": 2,
+      "ms": 2140.1
+    },
+    {
+      "req_id": "T013-R003",
+      "expected": "IS 14164 : 2008",
+      "final_recommendation": "IS 14164 : 2008",
+      "human_review_required": false,
+      "fr_correct": true,
+      "candidate_for_review": null,
+      "candidate_survival": true,
+      "review_candidate_survival": false,
+      "safe_abstention": false,
+      "top_3": [
+        "IS 14164 : 2008",
+        "IS 13013 (Part 1) : 1990",
+        "IS 9743 : 2020"
+      ],
+      "top_roles": [
+        "INSTALLATION",
+        "CODE_OF_PRACTICE",
+        "PRIMARY_PRODUCT"
+      ],
+      "top_confs": [
+        "High",
+        "Medium",
+        "Medium"
+      ],
+      "num_candidates": 13,
+      "ms": 3112.5
+    },
+    {
+      "req_id": "T014-R002",
+      "expected": "IS/IEC 60034-1 : 2017",
+      "final_recommendation": "IS 14578 : 2025",
+      "human_review_required": false,
+      "fr_correct": false,
+      "candidate_for_review": null,
+      "candidate_survival": false,
+      "review_candidate_survival": false,
+      "safe_abstention": false,
+      "top_3": [
+        "IS 14578 : 2025",
+        "IS 8789 : 2021",
+        "IS 13529 : 2021"
+      ],
+      "top_roles": [
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT"
+      ],
+      "top_confs": [
+        "High",
+        "High",
+        "High"
+      ],
+      "num_candidates": 15,
+      "ms": 1677.2
+    },
+    {
+      "req_id": "T020-R001",
+      "expected": "IS 15778 : 2007",
+      "final_recommendation": "IS 15778 : 2007",
+      "human_review_required": false,
+      "fr_correct": true,
+      "candidate_for_review": null,
+      "candidate_survival": true,
+      "review_candidate_survival": false,
+      "safe_abstention": false,
+      "top_3": [
+        "IS 15778 : 2007",
+        "IS 18837 : 2024",
+        "IS 16088 : 2012"
+      ],
+      "top_roles": [
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT",
+        "PRIMARY_PRODUCT"
+      ],
+      "top_confs": [
+        "High",
+        "High",
+        "High"
+      ],
+      "num_candidates": 14,
+      "ms": 1776.4
+    }
+  ]
+}

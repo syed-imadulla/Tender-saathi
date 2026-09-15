@@ -1,0 +1,598 @@
+{
+  "phase_a": {
+    "text": "Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD",
+    "components": [
+      "Repairs",
+      "Maintenance",
+      "FSD"
+    ],
+    "tech_tokens": [
+      "alongwith",
+      "annual",
+      "contract",
+      "electrical",
+      "fsd",
+      "mechanical",
+      "repairs",
+      "requisite"
+    ],
+    "domains": [],
+    "expansions": {
+      "electrical and mechanical services": [
+        "electrical installations",
+        "national electrical code",
+        "electrical wiring"
+      ]
+    },
+    "bm25_query": "Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD (installations national code)",
+    "semantic_query": "Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD (installations national code)"
+  },
+  "phase_b_c_t009": {
+    "A": {
+      "desc": "Current production expanded query",
+      "sp30_rank": 16,
+      "is732_rank": 9,
+      "is12457_rank": 3,
+      "is4051_rank": 2,
+      "r15": 1,
+      "r30": 1,
+      "r50": 1,
+      "r100": 1
+    },
+    "B": {
+      "desc": "Technical-domain query (non-admin tokens + domain keywords)",
+      "sp30_rank": null,
+      "is732_rank": null,
+      "is12457_rank": 31,
+      "is4051_rank": null,
+      "r15": 0,
+      "r30": 0,
+      "r50": 0,
+      "r100": 0
+    },
+    "C": {
+      "desc": "Domain + technical-context query (tokens + components + attributes)",
+      "sp30_rank": null,
+      "is732_rank": null,
+      "is12457_rank": 30,
+      "is4051_rank": null,
+      "r15": 0,
+      "r30": 0,
+      "r50": 0,
+      "r100": 0
+    },
+    "D": {
+      "desc": "Original query with administrative contract terms removed",
+      "sp30_rank": null,
+      "is732_rank": null,
+      "is12457_rank": 31,
+      "is4051_rank": null,
+      "r15": 0,
+      "r30": 0,
+      "r50": 0,
+      "r100": 0
+    },
+    "E": {
+      "desc": "Original query + technical-domain expansion",
+      "sp30_rank": 16,
+      "is732_rank": 9,
+      "is12457_rank": 3,
+      "is4051_rank": 2,
+      "r15": 1,
+      "r30": 1,
+      "r50": 1,
+      "r100": 1
+    },
+    "F": {
+      "desc": "Components + technical-domain expansion",
+      "sp30_rank": null,
+      "is732_rank": null,
+      "is12457_rank": 17,
+      "is4051_rank": null,
+      "r15": 0,
+      "r30": 0,
+      "r50": 0,
+      "r100": 0
+    },
+    "G": {
+      "desc": "Structured weighted query (2x technical token weight in BM25)",
+      "sp30_rank": 9,
+      "is732_rank": 5,
+      "is12457_rank": 31,
+      "is4051_rank": 2,
+      "r15": 1,
+      "r30": 1,
+      "r50": 1,
+      "r100": 1
+    }
+  },
+  "phase_c_channels": {
+    "A": {
+      "SP 30 : 2023": {
+        "bm25": 2,
+        "sem": null,
+        "det": null,
+        "rrf": 19
+      },
+      "IS 732 : 2019": {
+        "bm25": 4,
+        "sem": 71,
+        "det": null,
+        "rrf": 9
+      },
+      "IS 12457 : 1988": {
+        "bm25": 8,
+        "sem": null,
+        "det": 11,
+        "rrf": 3
+      },
+      "IS 4051": {
+        "bm25": 7,
+        "sem": 6,
+        "det": null,
+        "rrf": 2
+      }
+    },
+    "B": {
+      "SP 30 : 2023": {
+        "bm25": null,
+        "sem": null,
+        "det": null,
+        "rrf": null
+      },
+      "IS 732 : 2019": {
+        "bm25": null,
+        "sem": null,
+        "det": null,
+        "rrf": null
+      },
+      "IS 12457 : 1988": {
+        "bm25": null,
+        "sem": null,
+        "det": 11,
+        "rrf": 31
+      },
+      "IS 4051": {
+        "bm25": null,
+        "sem": null,
+        "det": null,
+        "rrf": null
+      }
+    },
+    "C": {
+      "SP 30 : 2023": {
+        "bm25": null,
+        "sem": null,
+        "det": null,
+        "rrf": null
+      },
+      "IS 732 : 2019": {
+        "bm25": null,
+        "sem": null,
+        "det": null,
+        "rrf": null
+      },
+      "IS 12457 : 1988": {
+        "bm25": null,
+        "sem": null,
+        "det": 11,
+        "rrf": 30
+      },
+      "IS 4051": {
+        "bm25": null,
+        "sem": null,
+        "det": null,
+        "rrf": null
+      }
+    },
+    "D": {
+      "SP 30 : 2023": {
+        "bm25": null,
+        "sem": null,
+        "det": null,
+        "rrf": null
+      },
+      "IS 732 : 2019": {
+        "bm25": null,
+        "sem": null,
+        "det": null,
+        "rrf": null
+      },
+      "IS 12457 : 1988": {
+        "bm25": null,
+        "sem": null,
+        "det": 11,
+        "rrf": 31
+      },
+      "IS 4051": {
+        "bm25": null,
+        "sem": null,
+        "det": null,
+        "rrf": null
+      }
+    },
+    "E": {
+      "SP 30 : 2023": {
+        "bm25": 2,
+        "sem": null,
+        "det": null,
+        "rrf": 19
+      },
+      "IS 732 : 2019": {
+        "bm25": 4,
+        "sem": 71,
+        "det": null,
+        "rrf": 9
+      },
+      "IS 12457 : 1988": {
+        "bm25": 8,
+        "sem": null,
+        "det": 11,
+        "rrf": 3
+      },
+      "IS 4051": {
+        "bm25": 7,
+        "sem": 6,
+        "det": null,
+        "rrf": 2
+      }
+    },
+    "F": {
+      "SP 30 : 2023": {
+        "bm25": null,
+        "sem": null,
+        "det": null,
+        "rrf": null
+      },
+      "IS 732 : 2019": {
+        "bm25": null,
+        "sem": null,
+        "det": null,
+        "rrf": null
+      },
+      "IS 12457 : 1988": {
+        "bm25": null,
+        "sem": null,
+        "det": 11,
+        "rrf": 17
+      },
+      "IS 4051": {
+        "bm25": null,
+        "sem": null,
+        "det": null,
+        "rrf": null
+      }
+    },
+    "G": {
+      "SP 30 : 2023": {
+        "bm25": 2,
+        "sem": null,
+        "det": null,
+        "rrf": 11
+      },
+      "IS 732 : 2019": {
+        "bm25": 4,
+        "sem": 71,
+        "det": null,
+        "rrf": 5
+      },
+      "IS 12457 : 1988": {
+        "bm25": null,
+        "sem": null,
+        "det": 11,
+        "rrf": 31
+      },
+      "IS 4051": {
+        "bm25": 27,
+        "sem": 6,
+        "det": null,
+        "rrf": 2
+      }
+    }
+  },
+  "phase_d_benchmark": {
+    "A": {
+      "desc": "Current production expanded query",
+      "hit1": 0.631578947368421,
+      "hit1_count": 12,
+      "recall10": 0.8947368421052632,
+      "recall10_count": 17,
+      "recall15": 0.8947368421052632,
+      "recall15_count": 17,
+      "recall30": 0.8947368421052632,
+      "recall30_count": 17,
+      "recall50": 0.9473684210526315,
+      "recall50_count": 18,
+      "recall100": 0.9473684210526315,
+      "recall100_count": 18,
+      "mrr": 0.698926804189962,
+      "candidate_survival": 0.7894736842105263,
+      "candidate_survival_count": 15,
+      "final_recommendation_accuracy": 0.3684210526315789,
+      "final_rec_count": 7,
+      "p50_ms": 374.5,
+      "p95_ms": 1364.9
+    },
+    "B": {
+      "desc": "Technical-domain query (non-admin tokens + domain keywords)",
+      "hit1": 0.21052631578947367,
+      "hit1_count": 4,
+      "recall10": 0.3157894736842105,
+      "recall10_count": 6,
+      "recall15": 0.3157894736842105,
+      "recall15_count": 6,
+      "recall30": 0.5263157894736842,
+      "recall30_count": 10,
+      "recall50": 0.5263157894736842,
+      "recall50_count": 10,
+      "recall100": 0.7894736842105263,
+      "recall100_count": 15,
+      "mrr": 0.24587940375800202,
+      "candidate_survival": 0.7894736842105263,
+      "candidate_survival_count": 15,
+      "final_recommendation_accuracy": 0.42105263157894735,
+      "final_rec_count": 8,
+      "p50_ms": 342.0,
+      "p95_ms": 518.3
+    },
+    "C": {
+      "desc": "Domain + technical-context query (tokens + components + attributes)",
+      "hit1": 0.42105263157894735,
+      "hit1_count": 8,
+      "recall10": 0.631578947368421,
+      "recall10_count": 12,
+      "recall15": 0.631578947368421,
+      "recall15_count": 12,
+      "recall30": 0.7368421052631579,
+      "recall30_count": 14,
+      "recall50": 0.8421052631578947,
+      "recall50_count": 16,
+      "recall100": 0.8421052631578947,
+      "recall100_count": 16,
+      "mrr": 0.45914011670590615,
+      "candidate_survival": 0.7894736842105263,
+      "candidate_survival_count": 15,
+      "final_recommendation_accuracy": 0.42105263157894735,
+      "final_rec_count": 8,
+      "p50_ms": 342.3,
+      "p95_ms": 1710.5
+    },
+    "D": {
+      "desc": "Original query with administrative contract terms removed",
+      "hit1": 0.10526315789473684,
+      "hit1_count": 2,
+      "recall10": 0.3157894736842105,
+      "recall10_count": 6,
+      "recall15": 0.3157894736842105,
+      "recall15_count": 6,
+      "recall30": 0.42105263157894735,
+      "recall30_count": 8,
+      "recall50": 0.47368421052631576,
+      "recall50_count": 9,
+      "recall100": 0.6842105263157895,
+      "recall100_count": 13,
+      "mrr": 0.1685749934823766,
+      "candidate_survival": 0.7894736842105263,
+      "candidate_survival_count": 15,
+      "final_recommendation_accuracy": 0.42105263157894735,
+      "final_rec_count": 8,
+      "p50_ms": 278.0,
+      "p95_ms": 1366.2
+    },
+    "E": {
+      "desc": "Original query + technical-domain expansion",
+      "hit1": 0.5263157894736842,
+      "hit1_count": 10,
+      "recall10": 0.7368421052631579,
+      "recall10_count": 14,
+      "recall15": 0.7368421052631579,
+      "recall15_count": 14,
+      "recall30": 0.8421052631578947,
+      "recall30_count": 16,
+      "recall50": 0.8947368421052632,
+      "recall50_count": 17,
+      "recall100": 0.9473684210526315,
+      "recall100_count": 18,
+      "mrr": 0.6066481994459835,
+      "candidate_survival": 0.7894736842105263,
+      "candidate_survival_count": 15,
+      "final_recommendation_accuracy": 0.42105263157894735,
+      "final_rec_count": 8,
+      "p50_ms": 302.4,
+      "p95_ms": 1440.3
+    },
+    "F": {
+      "desc": "Components + technical-domain expansion",
+      "hit1": 0.47368421052631576,
+      "hit1_count": 9,
+      "recall10": 0.6842105263157895,
+      "recall10_count": 13,
+      "recall15": 0.6842105263157895,
+      "recall15_count": 13,
+      "recall30": 0.7368421052631579,
+      "recall30_count": 14,
+      "recall50": 0.8421052631578947,
+      "recall50_count": 16,
+      "recall100": 0.8947368421052632,
+      "recall100_count": 17,
+      "mrr": 0.5442121397038882,
+      "candidate_survival": 0.7894736842105263,
+      "candidate_survival_count": 15,
+      "final_recommendation_accuracy": 0.42105263157894735,
+      "final_rec_count": 8,
+      "p50_ms": 349.2,
+      "p95_ms": 489.4
+    },
+    "G": {
+      "desc": "Structured weighted query (2x technical token weight in BM25)",
+      "hit1": 0.5263157894736842,
+      "hit1_count": 10,
+      "recall10": 0.8947368421052632,
+      "recall10_count": 17,
+      "recall15": 0.8947368421052632,
+      "recall15_count": 17,
+      "recall30": 0.8947368421052632,
+      "recall30_count": 17,
+      "recall50": 0.9473684210526315,
+      "recall50_count": 18,
+      "recall100": 0.9473684210526315,
+      "recall100_count": 18,
+      "mrr": 0.6255452821242294,
+      "candidate_survival": 0.7894736842105263,
+      "candidate_survival_count": 15,
+      "final_recommendation_accuracy": 0.42105263157894735,
+      "final_rec_count": 8,
+      "p50_ms": 332.4,
+      "p95_ms": 1590.2
+    }
+  },
+  "phase_e_rank_traces": {
+    "A": {
+      "T001-R002": 1,
+      "T001-R003": 7,
+      "T001-R004": 1,
+      "T002-R003": 2,
+      "T003-R001": 1,
+      "T004-R002": 1,
+      "T004-R005": 1,
+      "T005-R001": 1,
+      "T006-R001": null,
+      "T007-R003": 1,
+      "T009-R001": 9,
+      "T010-R001": 1,
+      "T011-R001": 4,
+      "T012-R002": 1,
+      "T012-R003": 1,
+      "T013-R002": 4,
+      "T013-R003": 1,
+      "T014-R002": 39,
+      "T020-R001": 1
+    },
+    "B": {
+      "T001-R002": 8,
+      "T001-R003": 30,
+      "T001-R004": 72,
+      "T002-R003": 59,
+      "T003-R001": 3,
+      "T004-R002": 1,
+      "T004-R005": 27,
+      "T005-R001": 57,
+      "T006-R001": null,
+      "T007-R003": 1,
+      "T009-R001": null,
+      "T010-R001": 1,
+      "T011-R001": 68,
+      "T012-R002": 28,
+      "T012-R003": null,
+      "T013-R002": null,
+      "T013-R003": 30,
+      "T014-R002": 92,
+      "T020-R001": 1
+    },
+    "C": {
+      "T001-R002": 8,
+      "T001-R003": 9,
+      "T001-R004": 4,
+      "T002-R003": 27,
+      "T003-R001": 1,
+      "T004-R002": 1,
+      "T004-R005": 1,
+      "T005-R001": 32,
+      "T006-R001": null,
+      "T007-R003": 1,
+      "T009-R001": null,
+      "T010-R001": 1,
+      "T011-R001": 22,
+      "T012-R002": 1,
+      "T012-R003": null,
+      "T013-R002": 10,
+      "T013-R003": 1,
+      "T014-R002": 42,
+      "T020-R001": 1
+    },
+    "D": {
+      "T001-R002": 8,
+      "T001-R003": 68,
+      "T001-R004": 3,
+      "T002-R003": 59,
+      "T003-R001": 3,
+      "T004-R002": 1,
+      "T004-R005": 75,
+      "T005-R001": null,
+      "T006-R001": null,
+      "T007-R003": null,
+      "T009-R001": null,
+      "T010-R001": 1,
+      "T011-R001": 72,
+      "T012-R002": 28,
+      "T012-R003": 40,
+      "T013-R002": null,
+      "T013-R003": 24,
+      "T014-R002": null,
+      "T020-R001": 4
+    },
+    "E": {
+      "T001-R002": 1,
+      "T001-R003": 16,
+      "T001-R004": 2,
+      "T002-R003": 2,
+      "T003-R001": 1,
+      "T004-R002": 1,
+      "T004-R005": 1,
+      "T005-R001": 1,
+      "T006-R001": null,
+      "T007-R003": 1,
+      "T009-R001": 9,
+      "T010-R001": 1,
+      "T011-R001": 4,
+      "T012-R002": 1,
+      "T012-R003": 16,
+      "T013-R002": 38,
+      "T013-R003": 1,
+      "T014-R002": 72,
+      "T020-R001": 1
+    },
+    "F": {
+      "T001-R002": 32,
+      "T001-R003": 7,
+      "T001-R004": 1,
+      "T002-R003": 59,
+      "T003-R001": 1,
+      "T004-R002": 1,
+      "T004-R005": 1,
+      "T005-R001": null,
+      "T006-R001": 25,
+      "T007-R003": 3,
+      "T009-R001": null,
+      "T010-R001": 1,
+      "T011-R001": 2,
+      "T012-R002": 1,
+      "T012-R003": 1,
+      "T013-R002": 4,
+      "T013-R003": 1,
+      "T014-R002": 39,
+      "T020-R001": 1
+    },
+    "G": {
+      "T001-R002": 3,
+      "T001-R003": 8,
+      "T001-R004": 1,
+      "T002-R003": 4,
+      "T003-R001": 1,
+      "T004-R002": 1,
+      "T004-R005": 1,
+      "T005-R001": 1,
+      "T006-R001": null,
+      "T007-R003": 1,
+      "T009-R001": 5,
+      "T010-R001": 1,
+      "T011-R001": 5,
+      "T012-R002": 1,
+      "T012-R003": 1,
+      "T013-R002": 4,
+      "T013-R003": 1,
+      "T014-R002": 37,
+      "T020-R001": 2
+    }
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "t009_analysis": {
+    "current_winner": "IS 12457 : 1988",
+    "winner_if_12457_rejected": "IS 4051 : 2025",
+    "winner_if_12457_4051_rejected": "IS 13040 : 1991",
+    "winner_if_12457_4051_13040_rejected": "IS/IEC 60079 (Part 17) : 2023",
+    "is_732_in_pool": true,
+    "is_sp30_in_pool": false
+  },
+  "per_query_results": [
+    {
+      "req_id": "T001-R002",
+      "expected": [
+        "IS 15905 : 2011",
+        "IS 1239 (Part 1) : 2004"
+      ],
+      "fr": "IS 10990 (Part 3) : 2023",
+      "hrr": false,
+      "correct": false,
+      "cand_in_pool": true
+    },
+    {
+      "req_id": "T001-R003",
+      "expected": [
+        "IS 15622 : 2017"
+      ],
+      "fr": null,
+      "hrr": true,
+      "correct": false,
+      "cand_in_pool": true
+    },
+    {
+      "req_id": "T001-R004",
+      "expected": [
+        "IS 2556 (Part 1 to 17)",
+        "IS 781 : 1984",
+        "IS 774 : 2021"
+      ],
+      "fr": "IS 2556 (Part 9) : 2004",
+      "hrr": false,
+      "correct": false,
+      "cand_in_pool": true
+    },
+    {
+      "req_id": "T002-R003",
+      "expected": [
+        "IS 6392 : 1971",
+        "IS 2712 : 2020"
+      ],
+      "fr": "IS 13257 : 1992",
+      "hrr": false,
+      "correct": false,
+      "cand_in_pool": true
+    },
+    {
+      "req_id": "T003-R001",
+      "expected": [
+        "IS/IEC 61439-3 : 2012",
+        "IS 10322 (Part 5 / Sec 5) : 2013"
+      ],
+      "fr": "IS/IEC 61439 (Part 3) : 2012",
+      "hrr": false,
+      "correct": true,
+      "cand_in_pool": true
+    },
+    {
+      "req_id": "T004-R002",
+      "expected": [
+        "IS 7098 (Part 1) : 1988",
+        "IS 1255 : 1983"
+      ],
+      "fr": "IS 1255 : 1983",
+      "hrr": false,
+      "correct": true,
+      "cand_in_pool": true
+    },
+    {
+      "req_id": "T004-R005",
+      "expected": [
+        "IS 5039 : 1983",
+        "IS/IEC 61439-5 : 2014"
+      ],
+      "fr": null,
+      "hrr": true,
+      "correct": false,
+      "cand_in_pool": true
+    },
+    {
+      "req_id": "T005-R001",
+      "expected": [
+        "IS 3043 : 2018",
+        "IS 7098 (Part 1) : 1988",
+        "IS 1293 : 2019"
+      ],
+      "fr": null,
+      "hrr": true,
+      "correct": false,
+      "cand_in_pool": true
+    },
+    {
+      "req_id": "T006-R001",
+      "expected": [
+        "IS 16088 : 2016"
+      ],
+      "fr": "IS 9271 : 2004",
+      "hrr": false,
+      "correct": false,
+      "cand_in_pool": false
+    },
+    {
+      "req_id": "T007-R003",
+      "expected": [
+        "IS 2491 : 2013",
+        "IS 15000 : 2013"
+      ],
+      "fr": null,
+      "hrr": true,
+      "correct": false,
+      "cand_in_pool": true
+    },
+    {
+      "req_id": "T009-R001",
+      "expected": [
+        "SP 30 : 2023",
+        "IS 732 : 2019"
+      ],
+      "fr": "IS 12457 : 1988",
+      "hrr": false,
+      "correct": false,
+      "cand_in_pool": true
+    },
+    {
+      "req_id": "T010-R001",
+      "expected": [
+        "IS 458 : 2021",
+        "IS 783 : 1985",
+        "IS 14333 : 1996"
+      ],
+      "fr": "IS 14333 : 2022",
+      "hrr": false,
+      "correct": true,
+      "cand_in_pool": true
+    },
+    {
+      "req_id": "T011-R001",
+      "expected": [
+        "IS 7098 (Part 1) : 1988",
+        "IS 1255 : 1983"
+      ],
+      "fr": null,
+      "hrr": true,
+      "correct": false,
+      "cand_in_pool": false
+    },
+    {
+      "req_id": "T012-R002",
+      "expected": [
+        "IS 1661 : 1972",
+        "IS 269 : 2015"
+      ],
+      "fr": "IS 1661 : 1972",
+      "hrr": false,
+      "correct": true,
+      "cand_in_pool": true
+    },
+    {
+      "req_id": "T012-R003",
+      "expected": [
+        "IS 1239 (Part 2) : 1992",
+        "IS 778 : 1984"
+      ],
+      "fr": "IS 1239 (Part 2) : 2011",
+      "hrr": false,
+      "correct": true,
+      "cand_in_pool": true
+    },
+    {
+      "req_id": "T013-R002",
+      "expected": [
+        "IS/IEC 61800-2 : 2015",
+        "IS/IEC 61439-2 : 2011"
+      ],
+      "fr": "IS 10069 : 2023",
+      "hrr": false,
+      "correct": false,
+      "cand_in_pool": false
+    },
+    {
+      "req_id": "T013-R003",
+      "expected": [
+        "IS 14164 : 2008",
+        "IS 8183 : 1993"
+      ],
+      "fr": "IS 14164 : 2008",
+      "hrr": false,
+      "correct": true,
+      "cand_in_pool": true
+    },
+    {
+      "req_id": "T014-R002",
+      "expected": [
+        "IS/IEC 60034-1 : 2017",
+        "IS 5120 : 1977"
+      ],
+      "fr": "IS 14578 : 2025",
+      "hrr": false,
+      "correct": false,
+      "cand_in_pool": false
+    },
+    {
+      "req_id": "T020-R001",
+      "expected": [
+        "IS 15778 : 2007",
+        "IS 1239 (Part 1) : 2004"
+      ],
+      "fr": "IS 15778 : 2007",
+      "hrr": false,
+      "correct": true,
+      "cand_in_pool": true
+    }
+  ]
+}

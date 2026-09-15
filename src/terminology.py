@@ -31,7 +31,10 @@ TECHNICAL_TERMINOLOGY_MAP: Dict[str, List[str]] = {
     "ups": ["uninterruptible power system"],
     
     # Cables & Conductors
-    "xlpe": ["crosslinked polyethylene", "cross-linked polyethylene"],
+    "xlpe": ["crosslinked polyethylene", "cross-linked polyethylene",
+              "crosslinked polyethylene insulated thermoplastic sheathed cables"],
+    "xlpe cable": ["crosslinked polyethylene insulated thermoplastic sheathed cables",
+                   "code of practice installation maintenance power cables"],
     "lt": ["low tension", "working voltages up to and including 1100 volts"],
     "ht": ["high tension", "working voltages exceeding 1100 volts"],
     "ehv": ["extra high voltage", "working voltages exceeding 33 kv"],
@@ -39,6 +42,26 @@ TECHNICAL_TERMINOLOGY_MAP: Dict[str, List[str]] = {
     "fr": ["fire survival", "flame retardant"],
     "pvc insulated": ["polyvinyl chloride insulated"],
     "acsr": ["aluminum conductors steel reinforced"],
+
+    # Cable Installation, Laying & Maintenance
+    # Generic BIS catalogue vocabulary for power-cable works in tender requirements.
+    # These entries bridge the gap between tender shorthand ("cable connection",
+    # "underground cable", "cable laying") and BIS title language used in
+    # cable-installation specifications.
+    "cable connection": ["crosslinked polyethylene insulated thermoplastic sheathed cables",
+                         "code of practice installation maintenance power cables"],
+    "cable laying": ["code of practice installation maintenance power cables",
+                     "underground cable trench bedding laying"],
+    "laying cable": ["code of practice installation maintenance power cables",
+                     "underground cable trench bedding laying"],
+    "underground cable": ["code of practice installation maintenance power cables",
+                          "underground trench bedding warning tiles cable pulling"],
+    "laying underground cable": ["code of practice installation maintenance power cables",
+                                  "crosslinked polyethylene insulated thermoplastic sheathed cables"],
+    "providing and laying": ["code of practice installation maintenance power cables",
+                             "crosslinked polyethylene insulated thermoplastic sheathed cables"],
+    "power cable": ["crosslinked polyethylene insulated thermoplastic sheathed cables",
+                    "code of practice installation maintenance power cables"],
     
     # Piping & Civil Materials
     "cpvc": ["chlorinated polyvinyl chloride"],
@@ -64,7 +87,10 @@ TECHNICAL_TERMINOLOGY_MAP: Dict[str, List[str]] = {
     "rccb": ["residual current circuit breaker"],
     "rcbo": ["residual current breaker with overcurrent protection"],
     "db": ["distribution board", "switchboard"],
-    "feeder pillar": ["distribution pillar", "outdoor distribution pillar"],
+    "feeder pillar": ["distribution pillars voltages not exceeding 1000 V AC",
+                     "outdoor distribution pillar low voltage specification"],
+    "distribution pillar": ["distribution pillars voltages not exceeding 1000 V AC",
+                            "outdoor distribution pillar low voltage specification"],
     
     # Pumps & Rotodynamics
     "submersible pump": ["submersible pumpsets", "submersible motor pumpset"],
