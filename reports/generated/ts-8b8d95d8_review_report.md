@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-VALVE`
-- **Source File:** `Sample: valve`
+- **Tender ID:** `TS-8B8D95D8`
+- **Source File:** `text input`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -62,27 +62,27 @@
 ### 5.1 Requirement `REQ-001` [PRODUCT_EQUIPMENT]
 
 **Original Requirement Text:**
-> "Repair and replacement of valves in the mechanical distribution system."
+> "Procurement of valves without pressure rating or body material."
 
-- **Decomposed Technical Components:** `general: Repair`, `general: replacement`, `general: valves`, `general: mechanical distribution system`
-- **Recommended Standard:** **NONE** — *REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE*
+- **Decomposed Technical Components:** `general: valves`, `general: supply`
+- **Recommended Standard:** **NONE** — *Diaphragm type (plastic body) float operated valves for cold water services - Specification*
 - **Candidate Standard:** `None (Abstained)` | **Evidence Standard:** `None` (Safe Abstention)
-- **Why It Matches:** Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE
-- **Lifecycle Status:** **UNKNOWN** | **Composite Relevance Score:** `0.813`
+- **Why It Matches:** Catalogue Record Title: Diaphragm type (plastic body) float operated valves for cold water services - Specification
+- **Lifecycle Status:** **UNKNOWN** | **Composite Relevance Score:** `0.929`
 - **Ambiguity & Verification State:** `REVIEW_REQUIRED` — *Reason:* Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).
 - **Evidence Strength:** `STRONG` | **Provenance:** `VERIFIED`
-- **Verbatim Evidence (BSB Edge Portal):** "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE"
+- **Verbatim Evidence (BSB Edge Portal):** "Catalogue Record Title: Diaphragm type (plastic body) float operated valves for cold water services - Specification"
 - **Why This Standard?:**
-  - Standard title directly matches requirement component(s): 'Repair'.
-  - Authoritative scope explicitly covers application: "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE"
+  - Standard title directly matches requirement component(s): 'valves'.
+  - Authoritative scope explicitly covers application: "Catalogue Record Title: Diaphragm type (plastic body) float operated valves for cold water services - Specification"
   - Standard is currently active in the BIS repository with verified currency.
   - Provenance established via BSB Edge Portal (VERIFIED).
   - Candidate addresses multiple decomposed technical aspects of the requirement.
 - **Why Not Alternatives?:**
-  - Alternative standard IS 10939 : 2023 has lower composite relevance (0.662 vs 0.813).
+  - Alternative standard IS 14148 : 2021 has lower composite relevance (0.845 vs 0.929).
 - **Specification Review Completeness:** `UNKNOWN` (Potentially missing: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material, Fluid Medium / Service)
 - **Regulatory & Statutory Intelligence:** Product Certification: `NOT_IDENTIFIED` | QCO: `NOT_IDENTIFIED` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
-- **Standards Review Decision:** `INSUFFICIENT_EVIDENCE` | **Risk Level:** `HIGH` | **Confidence:** `Low`
+- **Standards Review Decision:** `INSUFFICIENT_EVIDENCE` | **Risk Level:** `HIGH` | **Confidence:** `High`
 - ⚠ **Human Technical Review Required:** Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).
 
 ---

@@ -2,22 +2,23 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-364E55BE",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: valve",
+    "source_file": "eProcurement System Government of India15.pdf",
     "date": null,
     "requirements_analyzed": 1
   },
   "publication_readiness": "REVIEW_REQUIRED",
   "readiness_reasons": [
     "1 requirement(s) cite or match superseded standard(s).",
-    "1 requirement(s) flagged with HIGH risk.",
-    "1 requirement(s) require technical engineer review."
+    "1 requirement(s) flagged with CRITICAL risk.",
+    "1 requirement(s) require technical engineer review.",
+    "1 requirement(s) have potentially missing specification parameters."
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-364E55BE",
     "requirements_analyzed": 1,
     "recommendations_count": 0,
     "review_required_count": 1,
@@ -34,15 +35,15 @@
     },
     "completeness_distribution": {
       "KNOWN": 0,
-      "POTENTIALLY_MISSING": 0,
-      "UNKNOWN": 1,
+      "POTENTIALLY_MISSING": 1,
+      "UNKNOWN": 0,
       "NOT_APPLICABLE": 0
     },
     "risk_distribution": {
       "LOW": 0,
       "MEDIUM": 0,
-      "HIGH": 1,
-      "CRITICAL": 0
+      "HIGH": 0,
+      "CRITICAL": 1
     },
     "lifecycle_distribution": {
       "Active": 0,
@@ -53,21 +54,22 @@
     "related_standards_count": 0,
     "review_queue": [
       {
-        "requirement_id": "REQ-001",
-        "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
-        "risk_level": "HIGH",
+        "requirement_id": "TS-364E55BE-R001",
+        "requirement_text": "Design, manufacturing, inspection, supply, installation, testing and commissioning of three numbers of Process Water Pump motors 3.3 kV, 440 kW at Dhruva, BARC, Mumbai 400085",
+        "risk_level": "CRITICAL",
         "decision": "RECOMMEND_WITH_REVIEW",
-        "candidate_standard": "NONE",
+        "candidate_standard": "IS 14578 : 2025",
         "evidence_strength": "STRONG",
-        "primary_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)",
-        "priority": 2
+        "primary_reason": "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)",
+        "priority": 1
       }
     ],
     "publication_readiness": "REVIEW_REQUIRED",
     "readiness_reasons": [
       "1 requirement(s) cite or match superseded standard(s).",
-      "1 requirement(s) flagged with HIGH risk.",
-      "1 requirement(s) require technical engineer review."
+      "1 requirement(s) flagged with CRITICAL risk.",
+      "1 requirement(s) require technical engineer review.",
+      "1 requirement(s) have potentially missing specification parameters."
     ],
     "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
     "dependency_count": 0,
@@ -109,91 +111,163 @@
   },
   "requirements": [
     {
-      "requirement_id": "REQ-001",
-      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+      "requirement_id": "TS-364E55BE-R001",
+      "requirement_text": "Design, manufacturing, inspection, supply, installation, testing and commissioning of three numbers of Process Water Pump motors 3.3 kV, 440 kW at Dhruva, BARC, Mumbai 400085",
       "category": "product_equipment",
       "components": [
         {
-          "text": "Repair",
-          "component_type": "installation",
-          "domain": "execution",
+          "text": "inspection",
+          "component_type": "testing",
+          "domain": "quality_assurance",
           "extracted_attributes": {
-            "action": "repair"
+            "test_type": "inspection"
           }
         },
         {
-          "text": "replacement",
+          "text": "supply, installation, testing and commissioning",
           "component_type": "installation",
           "domain": "execution",
           "extracted_attributes": {
-            "action": "replacement"
+            "action": "supply, installation, testing and commissioning"
           }
         },
         {
-          "text": "valves",
+          "text": "Process Water Pump",
           "component_type": "product",
           "domain": "mechanical",
           "extracted_attributes": {
-            "category": "flow_control_valve"
+            "category": "pump_rotodynamic",
+            "is_process": true
           }
         },
         {
-          "text": "mechanical distribution system",
+          "text": "motors",
+          "component_type": "electrical",
+          "domain": "electrical",
+          "extracted_attributes": {
+            "category": "electric_machine",
+            "standard_focus": "IS/IEC 60034-1"
+          }
+        },
+        {
+          "text": "3.3 kV",
+          "component_type": "specification",
+          "domain": "electrical",
+          "extracted_attributes": {
+            "spec_type": "voltage",
+            "value": "3.3 kV",
+            "kv": 3.3,
+            "level": "medium_or_high_voltage"
+          }
+        },
+        {
+          "text": "Process Water Pump motor",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "motor",
+          "component_type": "electrical",
+          "domain": "electrical",
+          "extracted_attributes": {
+            "domain": "electrical"
+          }
+        },
+        {
+          "text": "process water pumping",
           "component_type": "application",
           "domain": "mechanical",
           "extracted_attributes": {
-            "is_process": false
+            "is_process": true
           }
+        },
+        {
+          "text": "design",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "manufacturing",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "testing",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "commissioning",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
         }
       ],
-      "recommended_standard": "NONE",
-      "recommended_title": "REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE",
-      "relevance_score": 0.813,
+      "recommended_standard": "IS 14578 : 2025",
+      "recommended_title": "THREE PHASE INDUCTION MOTORS FOR USE IN NUCLEAR POWER PLANTS - SPECIFICATION (first revision)",
+      "relevance_score": 0.801,
       "lifecycle_status": "UNKNOWN",
       "successor_standard": null,
       "superseded_citation": null,
       "evidence_strength": "STRONG",
       "provenance": "VERIFIED",
-      "evidence_text": "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE",
+      "evidence_text": "Catalogue Record Title: THREE PHASE INDUCTION MOTORS FOR USE IN NUCLEAR POWER PLANTS - SPECIFICATION (first revision)",
       "evidence_source": "BSB Edge Portal",
       "why_this": [
-        "Standard title directly matches requirement component(s): 'Repair'.",
-        "Authoritative scope explicitly covers application: \"Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE\"",
+        "Standard title directly matches requirement component(s): 'motors, motor'.",
+        "Authoritative scope explicitly covers application: \"Catalogue Record Title: THREE PHASE INDUCTION MOTORS FOR USE IN NUCLEAR POWER PLANTS - SPECIFICATION (first revision)\"",
         "Standard is currently active in the BIS repository with verified currency.",
         "Provenance established via BSB Edge Portal (VERIFIED).",
         "Candidate addresses multiple decomposed technical aspects of the requirement."
       ],
       "why_not": [
-        "Alternative standard IS 10939 : 2023 has lower composite relevance (0.662 vs 0.813)."
+        "Alternative standard IS 8789 : 2021 scored lower across the 5-dimension critic evaluation."
       ],
-      "completeness_label": "UNKNOWN",
+      "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [
-        "Valve Type",
-        "Nominal Size / Diameter (DN)",
-        "Pressure Rating (PN / Class)",
-        "Body Metallurgy / Material",
-        "Fluid Medium / Service"
+        "Pump Mechanism / Type",
+        "Discharge / Flow Rate (Q)",
+        "Total Dynamic Head (H)",
+        "Motor Coupling / Prime Mover"
       ],
       "known_parameters": {},
       "related_standards": [],
-      "decision": "INSUFFICIENT_EVIDENCE",
-      "risk_level": "HIGH",
+      "decision": "REVIEW_REQUIRED",
+      "risk_level": "CRITICAL",
       "risk_reasons": [
-        "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)"
+        "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)"
       ],
-      "human_review_required": true,
-      "confidence": "Low",
-      "review_reason": "Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
-      "candidate_standard": null,
-      "evidence_standard": null,
-      "why_it_matches": "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE",
+      "human_review_required": false,
+      "confidence": "Medium",
+      "review_reason": "Authoritative active standard IS 14578 : 2025 verified against scope with Medium confidence.",
+      "candidate_standard": "IS 14578 : 2025",
+      "evidence_standard": "IS 14578 : 2025",
+      "why_it_matches": "Catalogue Record Title: THREE PHASE INDUCTION MOTORS FOR USE IN NUCLEAR POWER PLANTS - SPECIFICATION (first revision)",
       "dependencies": [],
       "regulatory": {
         "certification": {
           "category": "BIS_PRODUCT_CERTIFICATION",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS 14578 : 2025",
           "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
           "source": "https://www.manakonline.in",
           "source_url": "https://www.manakonline.in",
@@ -201,7 +275,7 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 0.9,
           "human_review_required": true,
-          "explanation": "Mandatory BIS certification is NOT identified for IS 18284 : 2023 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "explanation": "Mandatory BIS certification is NOT identified for IS 14578 : 2025 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
           "additional_metadata": {
             "mandate_type": "VOLUNTARY_OR_UNREGULATED"
           }
@@ -210,7 +284,7 @@
           "category": "QCO",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS 14578 : 2025",
           "legal_basis": "",
           "source": "e-Gazette of India / DPIIT QCO Registry",
           "source_url": "e-Gazette of India / DPIIT QCO Registry",
@@ -218,14 +292,14 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 0.9,
           "human_review_required": true,
-          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 18284 : 2023. Verify ministry specific notifications.",
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 14578 : 2025. Verify ministry specific notifications.",
           "additional_metadata": {}
         },
         "crs": {
           "category": "CRS",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS 14578 : 2025",
           "legal_basis": "",
           "source": "MeitY / BIS Compulsory Registration Portal",
           "source_url": "MeitY / BIS Compulsory Registration Portal",
@@ -240,7 +314,7 @@
           "category": "HALLMARKING",
           "status": "NOT_APPLICABLE",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS 14578 : 2025",
           "legal_basis": "BIS (Hallmarking) Regulations, 2018",
           "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
           "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
@@ -248,24 +322,24 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 1.0,
           "human_review_required": false,
-          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (valves); not applicable.",
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (motors, pump); not applicable.",
           "additional_metadata": {}
         }
       },
-      "ambiguity_state": "REVIEW_REQUIRED",
-      "ambiguity_reason": "Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel)."
+      "ambiguity_state": "CLEAR",
+      "ambiguity_reason": "Primary applicable standard IS 14578 : 2025 is clearly identifiable and sufficiently supported."
     }
   ],
   "review_queue": [
     {
-      "requirement_id": "REQ-001",
-      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
-      "risk_level": "HIGH",
+      "requirement_id": "TS-364E55BE-R001",
+      "requirement_text": "Design, manufacturing, inspection, supply, installation, testing and commissioning of three numbers of Process Water Pump motors 3.3 kV, 440 kW at Dhruva, BARC, Mumbai 400085",
+      "risk_level": "CRITICAL",
       "decision": "RECOMMEND_WITH_REVIEW",
-      "candidate_standard": "NONE",
+      "candidate_standard": "IS 14578 : 2025",
       "evidence_strength": "STRONG",
-      "primary_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)",
-      "priority": 2
+      "primary_reason": "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)",
+      "priority": 1
     }
   ],
   "evidence_summary": {

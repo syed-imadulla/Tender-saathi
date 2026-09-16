@@ -2,10 +2,10 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-DCA2E0EE",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: valve",
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
@@ -17,7 +17,7 @@
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-DCA2E0EE",
     "requirements_analyzed": 1,
     "recommendations_count": 0,
     "review_required_count": 1,

@@ -2,29 +2,29 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-4F2A4880",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: valve",
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
   "publication_readiness": "REVIEW_REQUIRED",
   "readiness_reasons": [
-    "1 requirement(s) cite or match superseded standard(s).",
     "1 requirement(s) flagged with HIGH risk.",
-    "1 requirement(s) require technical engineer review."
+    "1 requirement(s) require technical engineer review.",
+    "1 requirement(s) have potentially missing specification parameters."
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-4F2A4880",
     "requirements_analyzed": 1,
     "recommendations_count": 0,
     "review_required_count": 1,
     "insufficient_evidence_count": 0,
-    "superseded_count": 1,
+    "superseded_count": 0,
     "withdrawn_count": 0,
-    "active_count": 0,
+    "active_count": 1,
     "unknown_lifecycle_count": 0,
     "evidence_distribution": {
       "STRONG": 1,
@@ -34,8 +34,8 @@
     },
     "completeness_distribution": {
       "KNOWN": 0,
-      "POTENTIALLY_MISSING": 0,
-      "UNKNOWN": 1,
+      "POTENTIALLY_MISSING": 1,
+      "UNKNOWN": 0,
       "NOT_APPLICABLE": 0
     },
     "risk_distribution": {
@@ -45,32 +45,32 @@
       "CRITICAL": 0
     },
     "lifecycle_distribution": {
-      "Active": 0,
-      "Superseded": 1,
+      "Active": 1,
+      "Superseded": 0,
       "Withdrawn": 0,
       "Unknown": 0
     },
-    "related_standards_count": 0,
+    "related_standards_count": 1,
     "review_queue": [
       {
         "requirement_id": "REQ-001",
-        "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+        "requirement_text": "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.",
         "risk_level": "HIGH",
         "decision": "RECOMMEND_WITH_REVIEW",
         "candidate_standard": "NONE",
         "evidence_strength": "STRONG",
-        "primary_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)",
+        "primary_reason": "Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material",
         "priority": 2
       }
     ],
     "publication_readiness": "REVIEW_REQUIRED",
     "readiness_reasons": [
-      "1 requirement(s) cite or match superseded standard(s).",
       "1 requirement(s) flagged with HIGH risk.",
-      "1 requirement(s) require technical engineer review."
+      "1 requirement(s) require technical engineer review.",
+      "1 requirement(s) have potentially missing specification parameters."
     ],
     "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
-    "dependency_count": 0,
+    "dependency_count": 1,
     "normative_reference_count": 0,
     "allied_standard_count": 0,
     "test_standard_count": 0,
@@ -80,12 +80,12 @@
     "related_for_review_count": 0,
     "standards_coverage": {
       "direct_standards_identified": 1,
-      "total_dependencies": 0,
+      "total_dependencies": 1,
       "normative_references": 0,
       "testing_dependencies": 0,
       "installation_dependencies": 0,
       "allied_standards": 0,
-      "covered_in_tender": 0,
+      "covered_in_tender": 1,
       "potential_gaps": 0,
       "verified_gaps": 0,
       "items_requiring_review": 1
@@ -110,27 +110,11 @@
   "requirements": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+      "requirement_text": "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.",
       "category": "product_equipment",
       "components": [
         {
-          "text": "Repair",
-          "component_type": "installation",
-          "domain": "execution",
-          "extracted_attributes": {
-            "action": "repair"
-          }
-        },
-        {
-          "text": "replacement",
-          "component_type": "installation",
-          "domain": "execution",
-          "extracted_attributes": {
-            "action": "replacement"
-          }
-        },
-        {
-          "text": "valves",
+          "text": "gate valves",
           "component_type": "product",
           "domain": "mechanical",
           "extracted_attributes": {
@@ -138,62 +122,103 @@
           }
         },
         {
-          "text": "mechanical distribution system",
-          "component_type": "application",
+          "text": "bolted bonnet steel gate valve",
+          "component_type": "equipment",
           "domain": "mechanical",
           "extracted_attributes": {
-            "is_process": false
+            "domain": "mechanical"
           }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
         }
       ],
       "recommended_standard": "NONE",
-      "recommended_title": "REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE",
-      "relevance_score": 0.813,
-      "lifecycle_status": "UNKNOWN",
+      "recommended_title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+      "relevance_score": 0.98,
+      "lifecycle_status": "ACTIVE",
       "successor_standard": null,
       "superseded_citation": null,
       "evidence_strength": "STRONG",
       "provenance": "VERIFIED",
-      "evidence_text": "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE",
+      "evidence_text": "Catalogue Record Title: Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
       "evidence_source": "BSB Edge Portal",
       "why_this": [
-        "Standard title directly matches requirement component(s): 'Repair'.",
-        "Authoritative scope explicitly covers application: \"Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE\"",
+        "Standard title directly matches requirement component(s): 'gate valves, bolted bonnet steel gate valve'.",
+        "Authoritative scope explicitly covers application: \"Catalogue Record Title: Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries\"",
         "Standard is currently active in the BIS repository with verified currency.",
         "Provenance established via BSB Edge Portal (VERIFIED).",
         "Candidate addresses multiple decomposed technical aspects of the requirement."
       ],
       "why_not": [
-        "Alternative standard IS 10939 : 2023 has lower composite relevance (0.662 vs 0.813)."
+        "Alternative standard IS/ISO 15761 : 2020 has lower composite relevance (0.929 vs 0.980)."
       ],
-      "completeness_label": "UNKNOWN",
+      "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [
-        "Valve Type",
         "Nominal Size / Diameter (DN)",
         "Pressure Rating (PN / Class)",
         "Body Metallurgy / Material",
         "Fluid Medium / Service"
       ],
       "known_parameters": {},
-      "related_standards": [],
+      "related_standards": [
+        {
+          "standard_number": "IS 10611 : 1983",
+          "title": "Specification for steel gate valves (Flanged And Butt - Welded Ends) for petroleum, petrochemicals and allied industries",
+          "relationship_type": "SUPERSEDES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "WITHDRAWN",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=1459",
+          "review_note": "Authoritative successor standard supersedes IS 10611 : 1983. Review legacy specifications."
+        }
+      ],
       "decision": "INSUFFICIENT_EVIDENCE",
       "risk_level": "HIGH",
       "risk_reasons": [
-        "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)"
+        "Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material"
       ],
       "human_review_required": true,
-      "confidence": "Low",
+      "confidence": "High",
       "review_reason": "Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
       "candidate_standard": null,
       "evidence_standard": null,
-      "why_it_matches": "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE",
-      "dependencies": [],
+      "why_it_matches": "Catalogue Record Title: Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+      "dependencies": [
+        {
+          "standard_number": "IS 10611 : 1983",
+          "title": "Specification for steel gate valves (Flanged And Butt - Welded Ends) for petroleum, petrochemicals and allied industries",
+          "relationship_type": "SUPERSEDES",
+          "dependency_status": "RELATED_FOR_REVIEW",
+          "direction": "OUTGOING",
+          "lifecycle_status": "WITHDRAWN",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "confidence": 1.0,
+          "why_related": "IS 10611 : 1983 (Specification for steel gate valves (Flanged And Butt - Welded Ends) for petroleum, petrochemicals and allied industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434 : 2020. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED].",
+          "functional_category": "lifecycle",
+          "is_applicable_to_requirement": false,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "RELATED_FOR_REVIEW",
+          "evidence": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 10611 : 1983 (Specification for steel gate valves (Flanged And Butt - Welded Ends) for petroleum, petrochemicals and allied industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434 : 2020. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED]."
+        }
+      ],
       "regulatory": {
         "certification": {
           "category": "BIS_PRODUCT_CERTIFICATION",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS/ISO 10434 : 2020",
           "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
           "source": "https://www.manakonline.in",
           "source_url": "https://www.manakonline.in",
@@ -201,7 +226,7 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 0.9,
           "human_review_required": true,
-          "explanation": "Mandatory BIS certification is NOT identified for IS 18284 : 2023 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "explanation": "Mandatory BIS certification is NOT identified for IS/ISO 10434 : 2020 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
           "additional_metadata": {
             "mandate_type": "VOLUNTARY_OR_UNREGULATED"
           }
@@ -210,7 +235,7 @@
           "category": "QCO",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS/ISO 10434 : 2020",
           "legal_basis": "",
           "source": "e-Gazette of India / DPIIT QCO Registry",
           "source_url": "e-Gazette of India / DPIIT QCO Registry",
@@ -218,14 +243,14 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 0.9,
           "human_review_required": true,
-          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 18284 : 2023. Verify ministry specific notifications.",
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS/ISO 10434 : 2020. Verify ministry specific notifications.",
           "additional_metadata": {}
         },
         "crs": {
           "category": "CRS",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS/ISO 10434 : 2020",
           "legal_basis": "",
           "source": "MeitY / BIS Compulsory Registration Portal",
           "source_url": "MeitY / BIS Compulsory Registration Portal",
@@ -240,7 +265,7 @@
           "category": "HALLMARKING",
           "status": "NOT_APPLICABLE",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS/ISO 10434 : 2020",
           "legal_basis": "BIS (Hallmarking) Regulations, 2018",
           "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
           "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
@@ -248,7 +273,7 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 1.0,
           "human_review_required": false,
-          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (valves); not applicable.",
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (steel, valves); not applicable.",
           "additional_metadata": {}
         }
       },
@@ -259,12 +284,12 @@
   "review_queue": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+      "requirement_text": "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.",
       "risk_level": "HIGH",
       "decision": "RECOMMEND_WITH_REVIEW",
       "candidate_standard": "NONE",
       "evidence_strength": "STRONG",
-      "primary_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)",
+      "primary_reason": "Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material",
       "priority": 2
     }
   ],

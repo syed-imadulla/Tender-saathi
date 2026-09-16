@@ -2,10 +2,10 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-8B8D95D8",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: valve",
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
@@ -17,7 +17,7 @@
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-8B8D95D8",
     "requirements_analyzed": 1,
     "recommendations_count": 0,
     "review_required_count": 1,
@@ -54,7 +54,7 @@
     "review_queue": [
       {
         "requirement_id": "REQ-001",
-        "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+        "requirement_text": "Procurement of valves without pressure rating or body material.",
         "risk_level": "HIGH",
         "decision": "RECOMMEND_WITH_REVIEW",
         "candidate_standard": "NONE",
@@ -110,25 +110,9 @@
   "requirements": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+      "requirement_text": "Procurement of valves without pressure rating or body material.",
       "category": "product_equipment",
       "components": [
-        {
-          "text": "Repair",
-          "component_type": "installation",
-          "domain": "execution",
-          "extracted_attributes": {
-            "action": "repair"
-          }
-        },
-        {
-          "text": "replacement",
-          "component_type": "installation",
-          "domain": "execution",
-          "extracted_attributes": {
-            "action": "replacement"
-          }
-        },
         {
           "text": "valves",
           "component_type": "product",
@@ -138,33 +122,31 @@
           }
         },
         {
-          "text": "mechanical distribution system",
-          "component_type": "application",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "is_process": false
-          }
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
         }
       ],
       "recommended_standard": "NONE",
-      "recommended_title": "REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE",
-      "relevance_score": 0.813,
+      "recommended_title": "Diaphragm type (plastic body) float operated valves for cold water services - Specification",
+      "relevance_score": 0.929,
       "lifecycle_status": "UNKNOWN",
       "successor_standard": null,
       "superseded_citation": null,
       "evidence_strength": "STRONG",
       "provenance": "VERIFIED",
-      "evidence_text": "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE",
+      "evidence_text": "Catalogue Record Title: Diaphragm type (plastic body) float operated valves for cold water services - Specification",
       "evidence_source": "BSB Edge Portal",
       "why_this": [
-        "Standard title directly matches requirement component(s): 'Repair'.",
-        "Authoritative scope explicitly covers application: \"Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE\"",
+        "Standard title directly matches requirement component(s): 'valves'.",
+        "Authoritative scope explicitly covers application: \"Catalogue Record Title: Diaphragm type (plastic body) float operated valves for cold water services - Specification\"",
         "Standard is currently active in the BIS repository with verified currency.",
         "Provenance established via BSB Edge Portal (VERIFIED).",
         "Candidate addresses multiple decomposed technical aspects of the requirement."
       ],
       "why_not": [
-        "Alternative standard IS 10939 : 2023 has lower composite relevance (0.662 vs 0.813)."
+        "Alternative standard IS 14148 : 2021 has lower composite relevance (0.845 vs 0.929)."
       ],
       "completeness_label": "UNKNOWN",
       "potentially_missing_parameters": [
@@ -182,18 +164,18 @@
         "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)"
       ],
       "human_review_required": true,
-      "confidence": "Low",
+      "confidence": "High",
       "review_reason": "Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
       "candidate_standard": null,
       "evidence_standard": null,
-      "why_it_matches": "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE",
+      "why_it_matches": "Catalogue Record Title: Diaphragm type (plastic body) float operated valves for cold water services - Specification",
       "dependencies": [],
       "regulatory": {
         "certification": {
           "category": "BIS_PRODUCT_CERTIFICATION",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS 13049 : 1991",
           "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
           "source": "https://www.manakonline.in",
           "source_url": "https://www.manakonline.in",
@@ -201,7 +183,7 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 0.9,
           "human_review_required": true,
-          "explanation": "Mandatory BIS certification is NOT identified for IS 18284 : 2023 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "explanation": "Mandatory BIS certification is NOT identified for IS 13049 : 1991 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
           "additional_metadata": {
             "mandate_type": "VOLUNTARY_OR_UNREGULATED"
           }
@@ -210,7 +192,7 @@
           "category": "QCO",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS 13049 : 1991",
           "legal_basis": "",
           "source": "e-Gazette of India / DPIIT QCO Registry",
           "source_url": "e-Gazette of India / DPIIT QCO Registry",
@@ -218,14 +200,14 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 0.9,
           "human_review_required": true,
-          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 18284 : 2023. Verify ministry specific notifications.",
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 13049 : 1991. Verify ministry specific notifications.",
           "additional_metadata": {}
         },
         "crs": {
           "category": "CRS",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS 13049 : 1991",
           "legal_basis": "",
           "source": "MeitY / BIS Compulsory Registration Portal",
           "source_url": "MeitY / BIS Compulsory Registration Portal",
@@ -240,7 +222,7 @@
           "category": "HALLMARKING",
           "status": "NOT_APPLICABLE",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS 13049 : 1991",
           "legal_basis": "BIS (Hallmarking) Regulations, 2018",
           "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
           "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
@@ -259,7 +241,7 @@
   "review_queue": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+      "requirement_text": "Procurement of valves without pressure rating or body material.",
       "risk_level": "HIGH",
       "decision": "RECOMMEND_WITH_REVIEW",
       "candidate_standard": "NONE",

@@ -176,11 +176,19 @@ def _normalize_result(
         }
 
         # Determine superseded citation and successor standard
-        is_superseded_status = (r.status or "").lower() == "superseded"
-        has_superseded_warn = any(bool(getattr(rec, "superseded_warning", "")) for rec in (r.recommendations or []))
+        is_superseded_status = (r.status or "").lower() == "superseded" or getattr(r, "version_role", "") == "REPLACED_OR_SUPERSEDED"
+        top_rec_warn = (getattr(r.recommendations[0], "superseded_warning", "") or "") if (r.recommendations and len(r.recommendations) > 0) else ""
+        has_superseded_warn = "superseded" in top_rec_warn.lower()
         has_superseded_reason = bool(r.reason and "cited superseded standard" in r.reason.lower())
+        has_superseded_risk = any("superseded" in str(s).lower() for s in (r.risk_reasons or []))
+        has_superseded_related = any(
+            rel.get("relationship_type") in ("SUPERSEDES", "SUPERSEDED_BY") or
+            (rel.get("lifecycle_status") or "").lower() in ("superseded", "withdrawn")
+            for rel in (r.related_standards or [])
+            if any(re.sub(r'\D', '', exp) == re.sub(r'\D', '', rel.get("standard_number", "")) for exp in (r.explicit_standards_found or []))
+        )
 
-        is_superseded = is_superseded_status or has_superseded_warn or has_superseded_reason
+        is_superseded = is_superseded_status or has_superseded_warn or has_superseded_reason or has_superseded_risk or has_superseded_related
 
         successor_std = None
         superseded_cite = None
@@ -194,16 +202,15 @@ def _normalize_result(
                         successor_std = rel.get("standard_number")
                         break
             else:
-                # The candidate is the active replacement (e.g. IS/ISO 10434)
+                # The candidate or top recommendation is the active replacement (e.g. IS/ISO 10434)
                 # and the tender cited the superseded standard (e.g. IS 10611)
-                successor_std = r.candidate_standard
-                if r.explicit_standards_found:
+                successor_std = r.candidate_standard or (r.recommendations[0].standard_number if r.recommendations else None)
+                for rel in (r.related_standards or []):
+                    if (rel.get("lifecycle_status") or "").lower() in ("superseded", "withdrawn") or rel.get("relationship_type") == "SUPERSEDES":
+                        superseded_cite = rel.get("standard_number")
+                        break
+                if not superseded_cite and r.explicit_standards_found:
                     superseded_cite = r.explicit_standards_found[0]
-                else:
-                    for rel in (r.related_standards or []):
-                        if (rel.get("lifecycle_status") or "").lower() == "superseded":
-                            superseded_cite = rel.get("standard_number")
-                            break
 
             # Fallback search for successor in superseded_warning
             if not successor_std:
@@ -515,8 +522,12 @@ def analyze_text():
     req_id = body.get("req_id") or "REQ-001"
     tender_id = body.get("tender_id") or f"TS-{uuid.uuid4().hex[:8].upper()}"
 
+    # Support multiple clauses when separated by newlines or numbered bullets
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
+    req_texts = lines if len(lines) > 1 else [text]
+
     try:
-        result = _run_analysis(texts=[text], tender_id=tender_id, source_name="text input")
+        result = _run_analysis(texts=req_texts, tender_id=tender_id, source_name="text input")
         return jsonify(result)
     except Exception as e:
         logger.error("analyze_text error: %s", traceback.format_exc())

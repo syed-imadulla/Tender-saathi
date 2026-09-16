@@ -1,0 +1,356 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-B10DC9B7",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "text input",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "REVIEW_REQUIRED",
+  "readiness_reasons": [
+    "1 requirement(s) cite or match superseded standard(s).",
+    "1 requirement(s) flagged with CRITICAL risk.",
+    "1 requirement(s) have potentially missing specification parameters."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-B10DC9B7",
+    "requirements_analyzed": 1,
+    "recommendations_count": 1,
+    "review_required_count": 0,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 1,
+    "withdrawn_count": 0,
+    "active_count": 0,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 1,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 0
+    },
+    "risk_distribution": {
+      "LOW": 0,
+      "MEDIUM": 0,
+      "HIGH": 0,
+      "CRITICAL": 1
+    },
+    "lifecycle_distribution": {
+      "Active": 0,
+      "Superseded": 1,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 1,
+    "review_queue": [
+      {
+        "requirement_id": "REQ-001",
+        "requirement_text": "जल वितरण प्रणाली के लिए 100 मिमी सीआई स्लुइस वाल्व की आपूर्ति,",
+        "risk_level": "CRITICAL",
+        "decision": "RECOMMEND",
+        "candidate_standard": "IS 14846 : 2000",
+        "evidence_strength": "STRONG",
+        "primary_reason": "Tender cited or recommended superseded standard 'IS 14846 : 2000'.",
+        "priority": 1
+      }
+    ],
+    "publication_readiness": "REVIEW_REQUIRED",
+    "readiness_reasons": [
+      "1 requirement(s) cite or match superseded standard(s).",
+      "1 requirement(s) flagged with CRITICAL risk.",
+      "1 requirement(s) have potentially missing specification parameters."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 3,
+    "normative_reference_count": 1,
+    "allied_standard_count": 0,
+    "test_standard_count": 0,
+    "installation_standard_count": 2,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 0,
+    "related_for_review_count": 1,
+    "standards_coverage": {
+      "direct_standards_identified": 1,
+      "total_dependencies": 3,
+      "normative_references": 1,
+      "testing_dependencies": 0,
+      "installation_dependencies": 2,
+      "allied_standards": 0,
+      "covered_in_tender": 0,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "items_requiring_review": 0
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 0,
+      "related_for_review_count": 1
+    },
+    "certification_checks": 1,
+    "qco_checks": 1,
+    "crs_checks": 1,
+    "hallmarking_checks": 1,
+    "regulatory_review_items": 1,
+    "unknown_regulatory_items": 0,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 1,
+    "mandatory_certification_count": 1,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
+  },
+  "requirements": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "जल वितरण प्रणाली के लिए 100 मिमी सीआई स्लुइस वाल्व की आपूर्ति,",
+      "category": "general_specification",
+      "components": [
+        {
+          "text": "100 mm",
+          "component_type": "specification",
+          "domain": "general",
+          "extracted_attributes": {
+            "spec_type": "dimension",
+            "value": "100 mm"
+          }
+        },
+        {
+          "text": "sluice valve",
+          "component_type": "product",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "category": "flow_control_valve"
+          }
+        },
+        {
+          "text": "100 mm cast iron sluice valve",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "water distribution system",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        }
+      ],
+      "recommended_standard": "IS 14846 : 2000",
+      "recommended_title": "Sluice valve for water works purposes (50 To 1200 mm size) - Specification",
+      "relevance_score": 0.98,
+      "lifecycle_status": "UNKNOWN",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "Catalogue Record Title: Sluice valve for water works purposes (50 To 1200 mm size) - Specification",
+      "evidence_source": "BSB Edge Portal",
+      "why_this": [
+        "Standard title directly matches requirement component(s): 'sluice valve'.",
+        "Authoritative scope explicitly covers application: \"Catalogue Record Title: Sluice valve for water works purposes (50 To 1200 mm size) - Specification\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BSB Edge Portal (VERIFIED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement.",
+        "Cites normative reference IS 778 : 1984 (Furrow Opener for Seed-cum-fertilizer Drills - Part 1 : Shovel Type)."
+      ],
+      "why_not": [
+        "Alternative standard IS 909 : 1992 has lower composite relevance (0.698 vs 0.980)."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Pressure Rating (PN / Class)",
+        "Fluid Medium / Service"
+      ],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 778 : 1984",
+          "title": "Furrow Opener for Seed-cum-fertilizer Drills - Part 1 : Shovel Type",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "WITHDRAWN",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Listed under Clause 2 References in IS 14846:2000 for copper alloy internal valve trim components.",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=17980",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        }
+      ],
+      "decision": "RECOMMEND",
+      "risk_level": "CRITICAL",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "High",
+      "review_reason": "Authoritative active standard IS 14846 : 2000 verified against scope with High confidence.",
+      "candidate_standard": "IS 14846 : 2000",
+      "evidence_standard": "IS 14846 : 2000",
+      "why_it_matches": "Catalogue Record Title: Sluice valve for water works purposes (50 To 1200 mm size) - Specification",
+      "dependencies": [
+        {
+          "standard_number": "IS 778 : 1984",
+          "title": "Furrow Opener for Seed-cum-fertilizer Drills - Part 1 : Shovel Type",
+          "relationship_type": "REFERENCES",
+          "dependency_status": "NORMATIVE_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "WITHDRAWN",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "Listed under Clause 2 References in IS 14846:2000 for copper alloy internal valve trim components.",
+          "source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "confidence": 1.0,
+          "why_related": "IS 778 : 1984 (Furrow Opener for Seed-cum-fertilizer Drills - Part 1 : Shovel Type) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 14846 : 2000. Evidence: Listed under Clause 2 References in IS 14846:2000 for copper alloy internal valve trim components. [Provenance: VERIFIED].",
+          "functional_category": "normative",
+          "is_applicable_to_requirement": true,
+          "applicability_decision": "APPLICABLE",
+          "dependency_state": "NORMATIVE_DEPENDENCY",
+          "evidence": "Listed under Clause 2 References in IS 14846:2000 for copper alloy internal valve trim components.",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 778 : 1984 (Furrow Opener for Seed-cum-fertilizer Drills - Part 1 : Shovel Type) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 14846 : 2000. Evidence: Listed under Clause 2 References in IS 14846:2000 for copper alloy internal valve trim components. [Provenance: VERIFIED]."
+        },
+        {
+          "standard_number": "IS 2685 : 1971",
+          "title": "Code of practice for selection, installation and maintenance of sluice valves (First Revision)",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'sluice valve' in title; Domain keyword match: sluice; 2 title keyword matches; Semantic similarity: 0.527",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        },
+        {
+          "standard_number": "IS 8717 : 1978",
+          "title": "Code of practice for packaging of cast iron pipes and fittings of 150 mm diameter and below",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "BM25 match (norm: 0.63, terms: [mm, cast, iron]); Semantic similarity: 0.472",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        }
+      ],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "APPLICABLE",
+          "matched_product": "Sluice Valves for Waterworks Purposes",
+          "standard_number": "IS 14846 : 2000",
+          "legal_basis": "Section 16, BIS Act, 2016",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS Product Certification (Scheme-I (ISI Mark)) applicable for Sluice Valves for Waterworks Purposes. Governing Order: Valves (Quality Control) Order, 2024 (S.O. 2682(E)). Manufacturers must obtain a valid BIS licence before supply.",
+          "additional_metadata": {
+            "scheme": "Scheme-I (ISI Mark)",
+            "governing_order": "Valves (Quality Control) Order, 2024 (S.O. 2682(E))",
+            "mandate_type": "MANDATORY"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "CURRENT",
+          "matched_product": "Sluice Valves for Waterworks Purposes",
+          "standard_number": "IS 14846 : 2000",
+          "legal_basis": "Sections 16, 17 and 25 of the Bureau of Indian Standards Act, 2016 (11 of 2016)",
+          "source": "https://egazette.gov.in/WriteReadData/2023/249811.pdf",
+          "source_url": "https://egazette.gov.in/WriteReadData/2023/249811.pdf",
+          "effective_date": "2024-06-19",
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": true,
+          "explanation": "Mandatory QCO in force: Covered under Valves (Quality Control) Order, 2024 (S.O. 2682(E)) issued by Ministry of Commerce and Industry (DPIIT). Effective from 2024-06-19. Compliance and Standard Mark are mandatory under Section 16, BIS Act 2016.",
+          "additional_metadata": {
+            "order_id": "QCO-VALVES-2024",
+            "order_title": "Valves (Quality Control) Order, 2024",
+            "ministry": "Ministry of Commerce and Industry (DPIIT)",
+            "gazette_notification": "S.O. 2682(E)",
+            "notification_date": "2023-12-19"
+          }
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 14846 : 2000",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS 14846 : 2000",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": false,
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (valve); not applicable.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "CLEAR",
+      "ambiguity_reason": "Primary applicable standard IS 14846 : 2000 is clearly identifiable and sufficiently supported."
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "जल वितरण प्रणाली के लिए 100 मिमी सीआई स्लुइस वाल्व की आपूर्ति,",
+      "risk_level": "CRITICAL",
+      "decision": "RECOMMEND",
+      "candidate_standard": "IS 14846 : 2000",
+      "evidence_strength": "STRONG",
+      "primary_reason": "Tender cited or recommended superseded standard 'IS 14846 : 2000'.",
+      "priority": 1
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 1,
+      "CURATED": 0,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}

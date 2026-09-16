@@ -131,7 +131,7 @@ class StandardsGapDetector:
         Executes standards coverage analysis and identifies missing standards & parameters.
         """
         req_id = getattr(requirement, "requirement_id", "REQ-001") if hasattr(requirement, "requirement_id") else "REQ-001"
-        req_text = getattr(requirement, "text", "") if hasattr(requirement, "text") else str(requirement or "")
+        req_text = getattr(requirement, "requirement_text", None) or getattr(requirement, "text", "") or str(requirement or "")
         cited_list = tender_cited_standards or []
 
         # Also extract explicitly cited standards from the requirement itself if not passed

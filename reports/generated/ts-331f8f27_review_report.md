@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-CPVC`
-- **Source File:** `Sample: cpvc`
+- **Tender ID:** `TS-331F8F27`
+- **Source File:** `text input`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -37,14 +37,14 @@
 ### Governance Distributions
 
 - **Evidence Strength:** STRONG: `1` | MODERATE: `0` | WEAK: `0` | NONE: `0`
-- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `1` | UNKNOWN: `0` | NOT_APPLICABLE: `0`
+- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `0` | UNKNOWN: `0` | NOT_APPLICABLE: `1`
 - **Risk Distribution:** CRITICAL: `0` | HIGH: `0` | MEDIUM: `0` | LOW: `1`
 
 ### Standards Ecosystem & Dependency Coverage
 
 - **Normative References:** `0`
 - **Testing Method Dependencies:** `0`
-- **Installation / Laying Standards:** `0`
+- **Installation / Laying Standards:** `3`
 - **Allied Standards:** `0`
 - **Potential Standard Gaps:** `0`
 - **Verified Standard Gaps:** `0`
@@ -55,28 +55,33 @@
 
 ## 5. Requirement-by-Requirement Review
 
-### 5.1 Requirement `REQ-001` [MATERIAL]
+### 5.1 Requirement `REQ-001` [INSTALLATION_EXECUTION]
 
 **Original Requirement Text:**
-> "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778."
+> "Installation of electrical wiring and safety equipment in office building."
 
-- **Decomposed Technical Components:** `general: CPVC pipes`
-- **Recommended Standard:** **IS 16534 : 2017** — *Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing System - Specification*
-- **Candidate Standard:** `IS 16534 : 2017` | **Evidence Standard:** `IS 16534 : 2017` (Candidate == Evidence Grounding Established)
-- **Why It Matches:** Catalogue Record Title: Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing S...
-- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.911`
-- **Ambiguity & Verification State:** `CLEAR` — *Reason:* Primary applicable standard IS 16534 : 2017 is clearly identifiable and sufficiently supported.
+- **Decomposed Technical Components:** `general: wiring`, `general: electrical wiring`, `general: safety equipment`, `general: office building`, `general: installation`
+- **Recommended Standard:** **IS 732 : 2019** — *Code of practice for electrical wiring installations (Fourth Revision)*
+- **Candidate Standard:** `IS 732 : 2019` | **Evidence Standard:** `IS 732 : 2019` (Candidate == Evidence Grounding Established)
+- **Why It Matches:** Catalogue Record Title: Code of practice for electrical wiring installations (Fourth Revision)
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.906`
+- **Ambiguity & Verification State:** `CLEAR` — *Reason:* Primary applicable standard IS 732 : 2019 is clearly identifiable and sufficiently supported.
 - **Evidence Strength:** `STRONG` | **Provenance:** `VERIFIED`
-- **Verbatim Evidence (BSB Edge Portal):** "Catalogue Record Title: Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing System - Specification"
+- **Verbatim Evidence (BSB Edge Portal):** "Catalogue Record Title: Code of practice for electrical wiring installations (Fourth Revision)"
 - **Why This Standard?:**
-  - Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing System - Specification'.
-  - Authoritative scope explicitly covers application: "Catalogue Record Title: Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing S..."
+  - Standard title directly matches requirement component(s): 'wiring, electrical wiring, installation'.
+  - Authoritative scope explicitly covers application: "Catalogue Record Title: Code of practice for electrical wiring installations (Fourth Revision)"
   - Standard is currently active in the BIS repository with verified currency.
   - Provenance established via BSB Edge Portal (VERIFIED).
+  - Candidate addresses multiple decomposed technical aspects of the requirement.
 - **Why Not Alternatives?:**
-  - Alternative standard IS 15778 : 2007 scored lower across the 5-dimension critic evaluation.
-- **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
-- **Regulatory & Statutory Intelligence:** Product Certification: `APPLICABLE` | QCO: `CURRENT` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
+  - Alternative standard IS 13313 : 1991 has lower composite relevance (0.644 vs 0.906).
+- **Specification Review Completeness:** `NOT_APPLICABLE`
+- **Standards Dependencies Mapped (3):**
+  - [INSTALLATION STANDARD] `IS 7733 : 1975` — *Code of practice for electrical wiring installations in hospitals* ()
+  - [INSTALLATION STANDARD] `IS 2274 : 1963` — *Code of practice for electrical wiring installations (system voltage exceeding 650 volts)* ()
+  - [INSTALLATION STANDARD] `IS 5571 : 2009` — *Guide for selection and installation of electrical equipment in hazardous areas (Other Than Mines) (Third Revision)* ()
+- **Regulatory & Statutory Intelligence:** Product Certification: `NOT_IDENTIFIED` | QCO: `NOT_IDENTIFIED` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
 - **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `High`
 
 ---

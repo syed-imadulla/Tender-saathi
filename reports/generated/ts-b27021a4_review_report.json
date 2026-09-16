@@ -2,10 +2,10 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-B27021A4",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: cpvc",
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
@@ -15,7 +15,7 @@
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-B27021A4",
     "requirements_analyzed": 1,
     "recommendations_count": 1,
     "review_required_count": 0,
@@ -105,11 +105,39 @@
           "extracted_attributes": {
             "category": "pipe_material"
           }
+        },
+        {
+          "text": "CPVC fittings",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "domestic hot and cold water distribution",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
         }
       ],
       "recommended_standard": "IS 16534 : 2017",
       "recommended_title": "Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing System - Specification",
-      "relevance_score": 0.911,
+      "relevance_score": 0.898,
       "lifecycle_status": "ACTIVE",
       "successor_standard": null,
       "superseded_citation": null,
@@ -121,7 +149,8 @@
         "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing System - Specification'.",
         "Authoritative scope explicitly covers application: \"Catalogue Record Title: Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing S...\"",
         "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via BSB Edge Portal (VERIFIED)."
+        "Provenance established via BSB Edge Portal (VERIFIED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
       ],
       "why_not": [
         "Alternative standard IS 15778 : 2007 scored lower across the 5-dimension critic evaluation."

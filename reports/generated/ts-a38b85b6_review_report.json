@@ -2,35 +2,33 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-A38B85B6",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: valve",
+    "source_file": "eProcurement System Government of India12.pdf",
     "date": null,
     "requirements_analyzed": 1
   },
-  "publication_readiness": "REVIEW_REQUIRED",
+  "publication_readiness": "INSUFFICIENT_EVIDENCE",
   "readiness_reasons": [
-    "1 requirement(s) cite or match superseded standard(s).",
-    "1 requirement(s) flagged with HIGH risk.",
-    "1 requirement(s) require technical engineer review."
+    "1 of 1 requirements lack verified standards evidence."
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-A38B85B6",
     "requirements_analyzed": 1,
     "recommendations_count": 0,
     "review_required_count": 1,
     "insufficient_evidence_count": 0,
-    "superseded_count": 1,
+    "superseded_count": 0,
     "withdrawn_count": 0,
     "active_count": 0,
-    "unknown_lifecycle_count": 0,
+    "unknown_lifecycle_count": 1,
     "evidence_distribution": {
-      "STRONG": 1,
+      "STRONG": 0,
       "MODERATE": 0,
       "WEAK": 0,
-      "NONE": 0
+      "NONE": 1
     },
     "completeness_distribution": {
       "KNOWN": 0,
@@ -46,28 +44,26 @@
     },
     "lifecycle_distribution": {
       "Active": 0,
-      "Superseded": 1,
+      "Superseded": 0,
       "Withdrawn": 0,
-      "Unknown": 0
+      "Unknown": 1
     },
     "related_standards_count": 0,
     "review_queue": [
       {
-        "requirement_id": "REQ-001",
-        "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+        "requirement_id": "TS-A38B85B6-R001",
+        "requirement_text": "Providing and laying underground cable for STP for main supply of electricity under CEDCO BSF Bangalore",
         "risk_level": "HIGH",
-        "decision": "RECOMMEND_WITH_REVIEW",
+        "decision": "REVIEW_REQUIRED",
         "candidate_standard": "NONE",
-        "evidence_strength": "STRONG",
-        "primary_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)",
+        "evidence_strength": "NONE",
+        "primary_reason": "Multiple competing Indian Standards (IS 10334 : 2026 and IS 7098 (Part 2) : 2011) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (concrete vs xlpe)) to select between them.",
         "priority": 2
       }
     ],
-    "publication_readiness": "REVIEW_REQUIRED",
+    "publication_readiness": "INSUFFICIENT_EVIDENCE",
     "readiness_reasons": [
-      "1 requirement(s) cite or match superseded standard(s).",
-      "1 requirement(s) flagged with HIGH risk.",
-      "1 requirement(s) require technical engineer review."
+      "1 of 1 requirements lack verified standards evidence."
     ],
     "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
     "dependency_count": 0,
@@ -100,7 +96,7 @@
     "crs_checks": 1,
     "hallmarking_checks": 1,
     "regulatory_review_items": 1,
-    "unknown_regulatory_items": 0,
+    "unknown_regulatory_items": 1,
     "upcoming_qco_items": 0,
     "mandatory_qco_count": 0,
     "mandatory_certification_count": 0,
@@ -109,123 +105,137 @@
   },
   "requirements": [
     {
-      "requirement_id": "REQ-001",
-      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
-      "category": "product_equipment",
+      "requirement_id": "TS-A38B85B6-R001",
+      "requirement_text": "Providing and laying underground cable for STP for main supply of electricity under CEDCO BSF Bangalore",
+      "category": "material",
       "components": [
         {
-          "text": "Repair",
+          "text": "laying underground",
           "component_type": "installation",
           "domain": "execution",
           "extracted_attributes": {
-            "action": "repair"
+            "action": "laying underground"
           }
         },
         {
-          "text": "replacement",
-          "component_type": "installation",
-          "domain": "execution",
+          "text": "underground cable",
+          "component_type": "material",
+          "domain": "electrical",
           "extracted_attributes": {
-            "action": "replacement"
+            "category": "cable_distribution",
+            "standard_focus": "IS 7098 / IS 1554"
           }
         },
         {
-          "text": "valves",
-          "component_type": "product",
-          "domain": "mechanical",
+          "text": "STP",
+          "component_type": "application",
+          "domain": "infrastructure",
           "extracted_attributes": {
-            "category": "flow_control_valve"
+            "facility_type": "stp"
           }
         },
         {
-          "text": "mechanical distribution system",
+          "text": "main electricity supply",
           "component_type": "application",
           "domain": "mechanical",
           "extracted_attributes": {
             "is_process": false
           }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "testing",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
         }
       ],
       "recommended_standard": "NONE",
-      "recommended_title": "REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE",
-      "relevance_score": 0.813,
-      "lifecycle_status": "UNKNOWN",
+      "recommended_title": "Ambiguous Requirement - Multiple Competing Standards",
+      "relevance_score": 0.0,
+      "lifecycle_status": "Unknown",
       "successor_standard": null,
       "superseded_citation": null,
-      "evidence_strength": "STRONG",
-      "provenance": "VERIFIED",
-      "evidence_text": "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE",
-      "evidence_source": "BSB Edge Portal",
+      "evidence_strength": "NONE",
+      "provenance": "UNKNOWN",
+      "evidence_text": "We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue.",
+      "evidence_source": null,
       "why_this": [
-        "Standard title directly matches requirement component(s): 'Repair'.",
-        "Authoritative scope explicitly covers application: \"Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE\"",
-        "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via BSB Edge Portal (VERIFIED).",
-        "Candidate addresses multiple decomposed technical aspects of the requirement."
+        "Multiple competing Indian Standards (IS 10334 : 2026 and IS 7098 (Part 2) : 2011) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (concrete vs xlpe)) to select between them."
       ],
       "why_not": [
-        "Alternative standard IS 10939 : 2023 has lower composite relevance (0.662 vs 0.813)."
+        "Candidate standard IS 10334 : 2026 competes within separation threshold: material (concrete vs xlpe).",
+        "Candidate standard IS 7098 (Part 2) : 2011 competes within separation threshold: material (concrete vs xlpe)."
       ],
       "completeness_label": "UNKNOWN",
       "potentially_missing_parameters": [
-        "Valve Type",
-        "Nominal Size / Diameter (DN)",
-        "Pressure Rating (PN / Class)",
-        "Body Metallurgy / Material",
-        "Fluid Medium / Service"
+        "Voltage Grade",
+        "Conductor Material",
+        "Insulation Material",
+        "Number of Cores & Cross-section",
+        "Armouring Type"
       ],
       "known_parameters": {},
       "related_standards": [],
       "decision": "INSUFFICIENT_EVIDENCE",
       "risk_level": "HIGH",
       "risk_reasons": [
-        "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)"
+        "Multiple competing Indian Standards (IS 10334 : 2026 and IS 7098 (Part 2) : 2011) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (concrete vs xlpe)) to select between them."
       ],
       "human_review_required": true,
       "confidence": "Low",
-      "review_reason": "Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+      "review_reason": "Multiple competing Indian Standards (IS 10334 : 2026 and IS 7098 (Part 2) : 2011) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (concrete vs xlpe)) to select between them.",
       "candidate_standard": null,
       "evidence_standard": null,
-      "why_it_matches": "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE",
+      "why_it_matches": "Multiple candidate Indian Standards are applicable with close relevance scores; tender lacks distinguishing parameters.",
       "dependencies": [],
       "regulatory": {
         "certification": {
           "category": "BIS_PRODUCT_CERTIFICATION",
-          "status": "NOT_IDENTIFIED",
+          "status": "UNKNOWN",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
-          "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
+          "standard_number": "",
+          "legal_basis": "Bureau of Indian Standards Act, 2016",
           "source": "https://www.manakonline.in",
           "source_url": "https://www.manakonline.in",
           "effective_date": null,
           "provenance": "OFFICIAL_PRIMARY",
-          "confidence": 0.9,
+          "confidence": 0.5,
           "human_review_required": true,
-          "explanation": "Mandatory BIS certification is NOT identified for IS 18284 : 2023 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
-          "additional_metadata": {
-            "mandate_type": "VOLUNTARY_OR_UNREGULATED"
-          }
+          "explanation": "No Indian Standard provided to establish BIS Product Certification status.",
+          "additional_metadata": {}
         },
         "qco": {
           "category": "QCO",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "",
           "legal_basis": "",
-          "source": "e-Gazette of India / DPIIT QCO Registry",
-          "source_url": "e-Gazette of India / DPIIT QCO Registry",
+          "source": "",
+          "source_url": "",
           "effective_date": null,
           "provenance": "OFFICIAL_PRIMARY",
-          "confidence": 0.9,
-          "human_review_required": true,
-          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 18284 : 2023. Verify ministry specific notifications.",
+          "confidence": 1.0,
+          "human_review_required": false,
+          "explanation": "No Indian Standard provided to evaluate Quality Control Order applicability.",
           "additional_metadata": {}
         },
         "crs": {
           "category": "CRS",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "",
           "legal_basis": "",
           "source": "MeitY / BIS Compulsory Registration Portal",
           "source_url": "MeitY / BIS Compulsory Registration Portal",
@@ -240,7 +250,7 @@
           "category": "HALLMARKING",
           "status": "NOT_APPLICABLE",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "",
           "legal_basis": "BIS (Hallmarking) Regulations, 2018",
           "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
           "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
@@ -248,38 +258,38 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 1.0,
           "human_review_required": false,
-          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (valves); not applicable.",
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (cable); not applicable.",
           "additional_metadata": {}
         }
       },
-      "ambiguity_state": "REVIEW_REQUIRED",
-      "ambiguity_reason": "Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel)."
+      "ambiguity_state": "AMBIGUOUS",
+      "ambiguity_reason": "Multiple competing Indian Standards (IS 10334 : 2026 and IS 7098 (Part 2) : 2011) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (concrete vs xlpe)) to select between them."
     }
   ],
   "review_queue": [
     {
-      "requirement_id": "REQ-001",
-      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+      "requirement_id": "TS-A38B85B6-R001",
+      "requirement_text": "Providing and laying underground cable for STP for main supply of electricity under CEDCO BSF Bangalore",
       "risk_level": "HIGH",
-      "decision": "RECOMMEND_WITH_REVIEW",
+      "decision": "REVIEW_REQUIRED",
       "candidate_standard": "NONE",
-      "evidence_strength": "STRONG",
-      "primary_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)",
+      "evidence_strength": "NONE",
+      "primary_reason": "Multiple competing Indian Standards (IS 10334 : 2026 and IS 7098 (Part 2) : 2011) have competing applicability for the same procurement object. The tender does not contain distinguishing specifications (material (concrete vs xlpe)) to select between them.",
       "priority": 2
     }
   ],
   "evidence_summary": {
     "evidence_distribution": {
-      "STRONG": 1,
+      "STRONG": 0,
       "MODERATE": 0,
       "WEAK": 0,
-      "NONE": 0
+      "NONE": 1
     },
     "provenance_distribution": {
-      "VERIFIED": 1,
+      "VERIFIED": 0,
       "CURATED": 0,
       "INFERRED": 0,
-      "UNKNOWN": 0
+      "UNKNOWN": 1
     },
     "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
   },

@@ -2,25 +2,24 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-46775B79",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: valve",
+    "source_file": "eProcurement System Government of India.pdf",
     "date": null,
     "requirements_analyzed": 1
   },
   "publication_readiness": "REVIEW_REQUIRED",
   "readiness_reasons": [
     "1 requirement(s) cite or match superseded standard(s).",
-    "1 requirement(s) flagged with HIGH risk.",
-    "1 requirement(s) require technical engineer review."
+    "1 requirement(s) flagged with CRITICAL risk."
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-46775B79",
     "requirements_analyzed": 1,
-    "recommendations_count": 0,
-    "review_required_count": 1,
+    "recommendations_count": 1,
+    "review_required_count": 0,
     "insufficient_evidence_count": 0,
     "superseded_count": 1,
     "withdrawn_count": 0,
@@ -35,14 +34,14 @@
     "completeness_distribution": {
       "KNOWN": 0,
       "POTENTIALLY_MISSING": 0,
-      "UNKNOWN": 1,
-      "NOT_APPLICABLE": 0
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 1
     },
     "risk_distribution": {
       "LOW": 0,
       "MEDIUM": 0,
-      "HIGH": 1,
-      "CRITICAL": 0
+      "HIGH": 0,
+      "CRITICAL": 1
     },
     "lifecycle_distribution": {
       "Active": 0,
@@ -53,42 +52,41 @@
     "related_standards_count": 0,
     "review_queue": [
       {
-        "requirement_id": "REQ-001",
-        "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
-        "risk_level": "HIGH",
-        "decision": "RECOMMEND_WITH_REVIEW",
-        "candidate_standard": "NONE",
+        "requirement_id": "TS-46775B79-R001",
+        "requirement_text": "C/O 11 Nos light / medium vehicle 06 Nos heavy vehicle garage at BSF Academy Tekanpur. (SH Soil Testing, structural design and consultancy)",
+        "risk_level": "CRITICAL",
+        "decision": "RECOMMEND",
+        "candidate_standard": "IS 10074 : 2025",
         "evidence_strength": "STRONG",
-        "primary_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)",
-        "priority": 2
+        "primary_reason": "Tender cited or recommended superseded standard 'IS 10074 : 2025'.",
+        "priority": 1
       }
     ],
     "publication_readiness": "REVIEW_REQUIRED",
     "readiness_reasons": [
       "1 requirement(s) cite or match superseded standard(s).",
-      "1 requirement(s) flagged with HIGH risk.",
-      "1 requirement(s) require technical engineer review."
+      "1 requirement(s) flagged with CRITICAL risk."
     ],
     "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
-    "dependency_count": 0,
+    "dependency_count": 2,
     "normative_reference_count": 0,
     "allied_standard_count": 0,
     "test_standard_count": 0,
-    "installation_standard_count": 0,
+    "installation_standard_count": 2,
     "verified_missing_count": 0,
     "potentially_missing_count": 0,
     "related_for_review_count": 0,
     "standards_coverage": {
       "direct_standards_identified": 1,
-      "total_dependencies": 0,
+      "total_dependencies": 2,
       "normative_references": 0,
       "testing_dependencies": 0,
-      "installation_dependencies": 0,
+      "installation_dependencies": 2,
       "allied_standards": 0,
       "covered_in_tender": 0,
       "potential_gaps": 0,
       "verified_gaps": 0,
-      "items_requiring_review": 1
+      "items_requiring_review": 0
     },
     "gap_summary": {
       "verified_missing_count": 0,
@@ -109,91 +107,110 @@
   },
   "requirements": [
     {
-      "requirement_id": "REQ-001",
-      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
-      "category": "product_equipment",
+      "requirement_id": "TS-46775B79-R001",
+      "requirement_text": "C/O 11 Nos light / medium vehicle 06 Nos heavy vehicle garage at BSF Academy Tekanpur. (SH Soil Testing, structural design and consultancy)",
+      "category": "general_specification",
       "components": [
         {
-          "text": "Repair",
-          "component_type": "installation",
-          "domain": "execution",
+          "text": "Testing",
+          "component_type": "testing",
+          "domain": "quality_assurance",
           "extracted_attributes": {
-            "action": "repair"
+            "test_type": "testing"
           }
         },
         {
-          "text": "replacement",
-          "component_type": "installation",
-          "domain": "execution",
-          "extracted_attributes": {
-            "action": "replacement"
-          }
-        },
-        {
-          "text": "valves",
-          "component_type": "product",
+          "text": "garage structure",
+          "component_type": "equipment",
           "domain": "mechanical",
           "extracted_attributes": {
-            "category": "flow_control_valve"
+            "domain": "mechanical"
           }
         },
         {
-          "text": "mechanical distribution system",
+          "text": "vehicle garage",
           "component_type": "application",
           "domain": "mechanical",
           "extracted_attributes": {
             "is_process": false
           }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
         }
       ],
-      "recommended_standard": "NONE",
-      "recommended_title": "REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE",
-      "relevance_score": 0.813,
+      "recommended_standard": "IS 10074 : 2025",
+      "recommended_title": "Compaction Mould Assembly for Light and Heavy Compaction Test of Soil ï¿½ Specification (First Revision)",
+      "relevance_score": 0.621,
       "lifecycle_status": "UNKNOWN",
       "successor_standard": null,
       "superseded_citation": null,
       "evidence_strength": "STRONG",
       "provenance": "VERIFIED",
-      "evidence_text": "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE",
+      "evidence_text": "Catalogue Record Title: Compaction Mould Assembly for Light and Heavy Compaction Test of Soil ï¿½ Specification (First Revision)",
       "evidence_source": "BSB Edge Portal",
       "why_this": [
-        "Standard title directly matches requirement component(s): 'Repair'.",
-        "Authoritative scope explicitly covers application: \"Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE\"",
+        "Official title aligns with specification: 'Compaction Mould Assembly for Light and Heavy Compaction Test of Soil ï¿½ Specification (First Revision)'.",
+        "Authoritative scope explicitly covers application: \"Catalogue Record Title: Compaction Mould Assembly for Light and Heavy Compaction Test of Soil ï¿½ Specification (First R...\"",
         "Standard is currently active in the BIS repository with verified currency.",
         "Provenance established via BSB Edge Portal (VERIFIED).",
         "Candidate addresses multiple decomposed technical aspects of the requirement."
       ],
       "why_not": [
-        "Alternative standard IS 10939 : 2023 has lower composite relevance (0.662 vs 0.813)."
+        "Alternative standard IS 12605 : 2004 scored lower across the 5-dimension critic evaluation."
       ],
-      "completeness_label": "UNKNOWN",
-      "potentially_missing_parameters": [
-        "Valve Type",
-        "Nominal Size / Diameter (DN)",
-        "Pressure Rating (PN / Class)",
-        "Body Metallurgy / Material",
-        "Fluid Medium / Service"
-      ],
+      "completeness_label": "NOT_APPLICABLE",
+      "potentially_missing_parameters": [],
       "known_parameters": {},
       "related_standards": [],
-      "decision": "INSUFFICIENT_EVIDENCE",
-      "risk_level": "HIGH",
-      "risk_reasons": [
-        "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)"
+      "decision": "RECOMMEND",
+      "risk_level": "CRITICAL",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "Medium",
+      "review_reason": "Authoritative active standard IS 10074 : 2025 verified against scope with Medium confidence.",
+      "candidate_standard": "IS 10074 : 2025",
+      "evidence_standard": "IS 10074 : 2025",
+      "why_it_matches": "Catalogue Record Title: Compaction Mould Assembly for Light and Heavy Compaction Test of Soil ï¿½ Specification (First R...",
+      "dependencies": [
+        {
+          "standard_number": "IS 807 : 2006",
+          "title": "Design, erection and testing (Structural Portion) of cranes and hoists - Code of practice (Second Revision)",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'Testing' in title; 3 title keyword matches; BM25 match (norm: 0.56, terms: [testing, structural, design])",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        },
+        {
+          "standard_number": "IS 4880 (Part 5) : 1972",
+          "title": "Code of practice for design of tunnels conveying water: Part 5 structural design of concrete lining lIu soft strata and soils",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: 3 title keyword matches; BM25 match (norm: 0.42, terms: [structural, design])",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        }
       ],
-      "human_review_required": true,
-      "confidence": "Low",
-      "review_reason": "Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
-      "candidate_standard": null,
-      "evidence_standard": null,
-      "why_it_matches": "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE",
-      "dependencies": [],
       "regulatory": {
         "certification": {
           "category": "BIS_PRODUCT_CERTIFICATION",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS 10074 : 2025",
           "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
           "source": "https://www.manakonline.in",
           "source_url": "https://www.manakonline.in",
@@ -201,7 +218,7 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 0.9,
           "human_review_required": true,
-          "explanation": "Mandatory BIS certification is NOT identified for IS 18284 : 2023 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "explanation": "Mandatory BIS certification is NOT identified for IS 10074 : 2025 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
           "additional_metadata": {
             "mandate_type": "VOLUNTARY_OR_UNREGULATED"
           }
@@ -210,7 +227,7 @@
           "category": "QCO",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS 10074 : 2025",
           "legal_basis": "",
           "source": "e-Gazette of India / DPIIT QCO Registry",
           "source_url": "e-Gazette of India / DPIIT QCO Registry",
@@ -218,14 +235,14 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 0.9,
           "human_review_required": true,
-          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 18284 : 2023. Verify ministry specific notifications.",
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 10074 : 2025. Verify ministry specific notifications.",
           "additional_metadata": {}
         },
         "crs": {
           "category": "CRS",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS 10074 : 2025",
           "legal_basis": "",
           "source": "MeitY / BIS Compulsory Registration Portal",
           "source_url": "MeitY / BIS Compulsory Registration Portal",
@@ -240,7 +257,7 @@
           "category": "HALLMARKING",
           "status": "NOT_APPLICABLE",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS 10074 : 2025",
           "legal_basis": "BIS (Hallmarking) Regulations, 2018",
           "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
           "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
@@ -248,24 +265,24 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 1.0,
           "human_review_required": false,
-          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (valves); not applicable.",
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (light, soil); not applicable.",
           "additional_metadata": {}
         }
       },
-      "ambiguity_state": "REVIEW_REQUIRED",
-      "ambiguity_reason": "Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel)."
+      "ambiguity_state": "CLEAR",
+      "ambiguity_reason": "Primary applicable standard IS 10074 : 2025 is clearly identifiable and sufficiently supported."
     }
   ],
   "review_queue": [
     {
-      "requirement_id": "REQ-001",
-      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
-      "risk_level": "HIGH",
-      "decision": "RECOMMEND_WITH_REVIEW",
-      "candidate_standard": "NONE",
+      "requirement_id": "TS-46775B79-R001",
+      "requirement_text": "C/O 11 Nos light / medium vehicle 06 Nos heavy vehicle garage at BSF Academy Tekanpur. (SH Soil Testing, structural design and consultancy)",
+      "risk_level": "CRITICAL",
+      "decision": "RECOMMEND",
+      "candidate_standard": "IS 10074 : 2025",
       "evidence_strength": "STRONG",
-      "primary_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)",
-      "priority": 2
+      "primary_reason": "Tender cited or recommended superseded standard 'IS 10074 : 2025'.",
+      "priority": 1
     }
   ],
   "evidence_summary": {

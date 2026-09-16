@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-CPVC`
-- **Source File:** `Sample: cpvc`
+- **Tender ID:** `TS-0082409E`
+- **Source File:** `text input`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -32,7 +32,7 @@
 | **Superseded Standards** | 0 | Outdated standards identified |
 | **Withdrawn Standards** | 0 | Cancelled standards |
 | **Unknown Lifecycle** | 0 | Unindexed in local catalogue |
-| **Related Standards to Review** | 0 | Discovered via relationship graph (depth=1) |
+| **Related Standards to Review** | 1 | Discovered via relationship graph (depth=1) |
 
 ### Governance Distributions
 
@@ -55,28 +55,33 @@
 
 ## 5. Requirement-by-Requirement Review
 
-### 5.1 Requirement `REQ-001` [MATERIAL]
+### 5.1 Requirement `REQ-001` [PRODUCT_EQUIPMENT]
 
 **Original Requirement Text:**
-> "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778."
+> "Procurement of cast iron gate valves conforming to IS 10611."
 
-- **Decomposed Technical Components:** `general: CPVC pipes`
-- **Recommended Standard:** **IS 16534 : 2017** — *Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing System - Specification*
-- **Candidate Standard:** `IS 16534 : 2017` | **Evidence Standard:** `IS 16534 : 2017` (Candidate == Evidence Grounding Established)
-- **Why It Matches:** Catalogue Record Title: Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing S...
-- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.911`
-- **Ambiguity & Verification State:** `CLEAR` — *Reason:* Primary applicable standard IS 16534 : 2017 is clearly identifiable and sufficiently supported.
+- **Decomposed Technical Components:** `general: gate valves`, `general: cast iron gate valve`, `general: supply`
+- **Recommended Standard:** **IS/ISO 10434 : 2020** — *Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries*
+- **Candidate Standard:** `IS/ISO 10434 : 2020` | **Evidence Standard:** `IS/ISO 10434 : 2020` (Candidate == Evidence Grounding Established)
+- **Why It Matches:** Catalogue Record Title: Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.908`
+- **Ambiguity & Verification State:** `CLEAR` — *Reason:* Primary applicable standard IS/ISO 10434 : 2020 is clearly identifiable and sufficiently supported.
 - **Evidence Strength:** `STRONG` | **Provenance:** `VERIFIED`
-- **Verbatim Evidence (BSB Edge Portal):** "Catalogue Record Title: Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing System - Specification"
+- **Verbatim Evidence (BSB Edge Portal):** "Catalogue Record Title: Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries"
 - **Why This Standard?:**
-  - Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing System - Specification'.
-  - Authoritative scope explicitly covers application: "Catalogue Record Title: Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing S..."
+  - Standard title directly matches requirement component(s): 'gate valves'.
+  - Authoritative scope explicitly covers application: "Catalogue Record Title: Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries"
   - Standard is currently active in the BIS repository with verified currency.
   - Provenance established via BSB Edge Portal (VERIFIED).
+  - Candidate addresses multiple decomposed technical aspects of the requirement.
 - **Why Not Alternatives?:**
-  - Alternative standard IS 15778 : 2007 scored lower across the 5-dimension critic evaluation.
-- **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
-- **Regulatory & Statutory Intelligence:** Product Certification: `APPLICABLE` | QCO: `CURRENT` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
+  - Alternative standard IS/ISO 15761 : 2020 has lower composite relevance (0.832 vs 0.908).
+- **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Fluid Medium / Service)
+- **Related Standards Identified for Review (Graph Depth = 1):**
+  - [→ SUPERSEDES] `IS 10611 : 1983` — *Specification for steel gate valves (Flanged And Butt - Welded Ends) for petroleum, petrochemicals and allied industries* (WITHDRAWN) — *Note:* Authoritative successor standard supersedes IS 10611 : 1983. Review legacy specifications.
+- **Standards Dependencies Mapped (1):**
+  - [SUPERSEDES] `IS 10611 : 1983` — *Specification for steel gate valves (Flanged And Butt - Welded Ends) for petroleum, petrochemicals and allied industries* (IS 10611 : 1983 (Specification for steel gate valves (Flanged And Butt - Welded Ends) for petroleum, petrochemicals and allied industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434 : 2020. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED].)
+- **Regulatory & Statutory Intelligence:** Product Certification: `NOT_IDENTIFIED` | QCO: `NOT_IDENTIFIED` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
 - **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `High`
 
 ---

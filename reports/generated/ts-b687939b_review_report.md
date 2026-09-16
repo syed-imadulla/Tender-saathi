@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-VALVE`
-- **Source File:** `Sample: valve`
+- **Tender ID:** `TS-B687939B`
+- **Source File:** `text input`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -19,16 +19,16 @@
 
 ### Key Observations:
 - 1 requirement(s) cite or match superseded standard(s).
-- 1 requirement(s) flagged with HIGH risk.
-- 1 requirement(s) require technical engineer review.
+- 1 requirement(s) flagged with CRITICAL risk.
+- 1 requirement(s) have potentially missing specification parameters.
 
 ## 3. Executive Summary
 
 | Metric | Count / Distribution | Notes |
 |---|---|---|
 | **Requirements Analysed** | 1 | Total clauses extracted |
-| **Direct Recommendations** | 0 | Active standards grounded in evidence |
-| **Review Required** | 1 | Flagged for engineering attention |
+| **Direct Recommendations** | 1 | Active standards grounded in evidence |
+| **Review Required** | 0 | Flagged for engineering attention |
 | **Insufficient Evidence** | 0 | No reliable standard matched |
 | **Active Standards** | 0 | Verified current in BIS catalogue |
 | **Superseded Standards** | 1 | Outdated standards identified |
@@ -39,14 +39,14 @@
 ### Governance Distributions
 
 - **Evidence Strength:** STRONG: `1` | MODERATE: `0` | WEAK: `0` | NONE: `0`
-- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `0` | UNKNOWN: `1` | NOT_APPLICABLE: `0`
-- **Risk Distribution:** CRITICAL: `0` | HIGH: `1` | MEDIUM: `0` | LOW: `0`
+- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `1` | UNKNOWN: `0` | NOT_APPLICABLE: `0`
+- **Risk Distribution:** CRITICAL: `1` | HIGH: `0` | MEDIUM: `0` | LOW: `0`
 
 ### Standards Ecosystem & Dependency Coverage
 
 - **Normative References:** `0`
 - **Testing Method Dependencies:** `0`
-- **Installation / Laying Standards:** `0`
+- **Installation / Laying Standards:** `1`
 - **Allied Standards:** `0`
 - **Potential Standard Gaps:** `0`
 - **Verified Standard Gaps:** `0`
@@ -55,35 +55,36 @@
 
 | # | Priority | Requirement ID | Candidate Standard | Issue / Primary Reason |
 |---|---|---|---|---|
-| 1 | **HIGH** | `REQ-001` | `NONE` | Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class) |
+| 1 | **CRITICAL** | `REQ-001` | `IS 16088 : 2012` | Tender cited or recommended superseded standard 'IS 16088 : 2012'. |
 
 ## 5. Requirement-by-Requirement Review
 
-### 5.1 Requirement `REQ-001` [PRODUCT_EQUIPMENT]
+### 5.1 Requirement `REQ-001` [INSTALLATION_EXECUTION]
 
 **Original Requirement Text:**
-> "Repair and replacement of valves in the mechanical distribution system."
+> "Supply and laying of CPVC pipes."
 
-- **Decomposed Technical Components:** `general: Repair`, `general: replacement`, `general: valves`, `general: mechanical distribution system`
-- **Recommended Standard:** **NONE** — *REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE*
-- **Candidate Standard:** `None (Abstained)` | **Evidence Standard:** `None` (Safe Abstention)
-- **Why It Matches:** Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE
-- **Lifecycle Status:** **UNKNOWN** | **Composite Relevance Score:** `0.813`
-- **Ambiguity & Verification State:** `REVIEW_REQUIRED` — *Reason:* Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).
+- **Decomposed Technical Components:** `general: laying of`, `general: CPVC pipes`, `general: CPVC pipe`, `general: water supply`, `general: supply`, `general: installation`
+- **Recommended Standard:** **IS 16088 : 2012** — *Chlorinated polyvinyl chloride (CPVC) pipes for automatic sprinkler fire extinguishing system - Specification*
+- **Candidate Standard:** `IS 16088 : 2012` | **Evidence Standard:** `IS 16088 : 2012` (Candidate == Evidence Grounding Established)
+- **Why It Matches:** Catalogue Record Title: Chlorinated polyvinyl chloride (CPVC) pipes for automatic sprinkler fire extinguishing system -...
+- **Lifecycle Status:** **UNKNOWN** | **Composite Relevance Score:** `0.980`
+- **Ambiguity & Verification State:** `CLEAR` — *Reason:* Primary applicable standard IS 16088 : 2012 is clearly identifiable and sufficiently supported.
 - **Evidence Strength:** `STRONG` | **Provenance:** `VERIFIED`
-- **Verbatim Evidence (BSB Edge Portal):** "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE"
+- **Verbatim Evidence (BSB Edge Portal):** "Catalogue Record Title: Chlorinated polyvinyl chloride (CPVC) pipes for automatic sprinkler fire extinguishing system - Specification"
 - **Why This Standard?:**
-  - Standard title directly matches requirement component(s): 'Repair'.
-  - Authoritative scope explicitly covers application: "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE"
+  - Official title aligns with specification: 'Chlorinated polyvinyl chloride (CPVC) pipes for automatic sprinkler fire extinguishing system - Specification'.
+  - Authoritative scope explicitly covers application: "Catalogue Record Title: Chlorinated polyvinyl chloride (CPVC) pipes for automatic sprinkler fire extinguishing system -..."
   - Standard is currently active in the BIS repository with verified currency.
   - Provenance established via BSB Edge Portal (VERIFIED).
   - Candidate addresses multiple decomposed technical aspects of the requirement.
 - **Why Not Alternatives?:**
-  - Alternative standard IS 10939 : 2023 has lower composite relevance (0.662 vs 0.813).
-- **Specification Review Completeness:** `UNKNOWN` (Potentially missing: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material, Fluid Medium / Service)
+  - Alternative standard IS 17988 : 2022 scored lower across the 5-dimension critic evaluation.
+- **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
+- **Standards Dependencies Mapped (1):**
+  - [INSTALLATION STANDARD] `IS 5822 : 1994` — *Code of practice for laying of electrically welded steel pipes for water supply (Second Revision)* ()
 - **Regulatory & Statutory Intelligence:** Product Certification: `NOT_IDENTIFIED` | QCO: `NOT_IDENTIFIED` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
-- **Standards Review Decision:** `INSUFFICIENT_EVIDENCE` | **Risk Level:** `HIGH` | **Confidence:** `Low`
-- ⚠ **Human Technical Review Required:** Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).
+- **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `CRITICAL` | **Confidence:** `High`
 
 ---
 

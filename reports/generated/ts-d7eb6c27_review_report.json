@@ -2,10 +2,10 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-D7EB6C27",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: cpvc",
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
@@ -15,7 +15,7 @@
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-D7EB6C27",
     "requirements_analyzed": 1,
     "recommendations_count": 1,
     "review_required_count": 0,
@@ -55,20 +55,20 @@
       "All 1 requirement(s) have grounded standards evidence with no critical or high risk flags."
     ],
     "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
-    "dependency_count": 0,
+    "dependency_count": 1,
     "normative_reference_count": 0,
     "allied_standard_count": 0,
     "test_standard_count": 0,
-    "installation_standard_count": 0,
+    "installation_standard_count": 1,
     "verified_missing_count": 0,
     "potentially_missing_count": 0,
     "related_for_review_count": 0,
     "standards_coverage": {
       "direct_standards_identified": 1,
-      "total_dependencies": 0,
+      "total_dependencies": 1,
       "normative_references": 0,
       "testing_dependencies": 0,
-      "installation_dependencies": 0,
+      "installation_dependencies": 1,
       "allied_standards": 0,
       "covered_in_tender": 0,
       "potential_gaps": 0,
@@ -95,8 +95,8 @@
   "requirements": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
-      "category": "material",
+      "requirement_text": "पेयजल आपूर्ति के लिए सीपीवीसी पाइप और फिटिंग की आपूर्ति और स्थापना, IS 15778 के अनुरूप",
+      "category": "general_specification",
       "components": [
         {
           "text": "CPVC pipes",
@@ -105,11 +105,47 @@
           "extracted_attributes": {
             "category": "pipe_material"
           }
+        },
+        {
+          "text": "drinking water",
+          "component_type": "application",
+          "domain": "water_supply",
+          "extracted_attributes": {
+            "application_type": "drinking_water"
+          }
+        },
+        {
+          "text": "CPVC fittings",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "drinking water supply",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
         }
       ],
       "recommended_standard": "IS 16534 : 2017",
       "recommended_title": "Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing System - Specification",
-      "relevance_score": 0.911,
+      "relevance_score": 0.827,
       "lifecycle_status": "ACTIVE",
       "successor_standard": null,
       "superseded_citation": null,
@@ -121,7 +157,8 @@
         "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing System - Specification'.",
         "Authoritative scope explicitly covers application: \"Catalogue Record Title: Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing S...\"",
         "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via BSB Edge Portal (VERIFIED)."
+        "Provenance established via BSB Edge Portal (VERIFIED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
       ],
       "why_not": [
         "Alternative standard IS 15778 : 2007 scored lower across the 5-dimension critic evaluation."
@@ -142,7 +179,19 @@
       "candidate_standard": "IS 16534 : 2017",
       "evidence_standard": "IS 16534 : 2017",
       "why_it_matches": "Catalogue Record Title: Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing S...",
-      "dependencies": [],
+      "dependencies": [
+        {
+          "standard_number": "SP 57 : 1993",
+          "title": "Handbook on pipes and fittings for drinking water supply",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'drinking water' in title; Component 'drinking water supply' in title; Component 'supply' in title; 4 title keyword matches; BM25 match (norm: 0.68, terms: [supply, pipes, fittings, drinking]); Semantic similarity: 0.622",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        }
+      ],
       "regulatory": {
         "certification": {
           "category": "BIS_PRODUCT_CERTIFICATION",

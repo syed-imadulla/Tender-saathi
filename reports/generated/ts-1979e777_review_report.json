@@ -1,0 +1,701 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-1979E777",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "text input",
+    "date": null,
+    "requirements_analyzed": 3
+  },
+  "publication_readiness": "REVIEW_REQUIRED",
+  "readiness_reasons": [
+    "1 requirement(s) cite or match superseded standard(s).",
+    "1 requirement(s) flagged with CRITICAL risk.",
+    "3 requirement(s) have potentially missing specification parameters."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-1979E777",
+    "requirements_analyzed": 3,
+    "recommendations_count": 3,
+    "review_required_count": 0,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 1,
+    "withdrawn_count": 0,
+    "active_count": 2,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 3,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 3,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 0
+    },
+    "risk_distribution": {
+      "LOW": 2,
+      "MEDIUM": 0,
+      "HIGH": 0,
+      "CRITICAL": 1
+    },
+    "lifecycle_distribution": {
+      "Active": 2,
+      "Superseded": 1,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 1,
+    "review_queue": [
+      {
+        "requirement_id": "REQ-002",
+        "requirement_text": "जल वितरण प्रणाली के लिए 100 मिमी सीआई स्लुइस वाल्व की आपूर्ति, IS 14846 के अनुसार।",
+        "risk_level": "CRITICAL",
+        "decision": "RECOMMEND",
+        "candidate_standard": "IS 14846 : 2000",
+        "evidence_strength": "STRONG",
+        "primary_reason": "Tender cited or recommended superseded standard 'IS 14846 : 2000'.",
+        "priority": 1
+      }
+    ],
+    "publication_readiness": "REVIEW_REQUIRED",
+    "readiness_reasons": [
+      "1 requirement(s) cite or match superseded standard(s).",
+      "1 requirement(s) flagged with CRITICAL risk.",
+      "3 requirement(s) have potentially missing specification parameters."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 5,
+    "normative_reference_count": 1,
+    "allied_standard_count": 0,
+    "test_standard_count": 0,
+    "installation_standard_count": 4,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 0,
+    "related_for_review_count": 1,
+    "standards_coverage": {
+      "direct_standards_identified": 3,
+      "total_dependencies": 5,
+      "normative_references": 1,
+      "testing_dependencies": 0,
+      "installation_dependencies": 4,
+      "allied_standards": 0,
+      "covered_in_tender": 0,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "items_requiring_review": 0
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 0,
+      "related_for_review_count": 1
+    },
+    "certification_checks": 3,
+    "qco_checks": 3,
+    "crs_checks": 3,
+    "hallmarking_checks": 3,
+    "regulatory_review_items": 3,
+    "unknown_regulatory_items": 0,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 2,
+    "mandatory_certification_count": 2,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
+  },
+  "requirements": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "पेयजल आपूर्ति के लिए सीपीवीसी पाइप और फिटिंग्स की आपूर्ति और स्थापना, IS 15778 के अनुसार।",
+      "category": "general_specification",
+      "components": [
+        {
+          "text": "CPVC pipes",
+          "component_type": "material",
+          "domain": "piping",
+          "extracted_attributes": {
+            "category": "pipe_material"
+          }
+        },
+        {
+          "text": "drinking water",
+          "component_type": "application",
+          "domain": "water_supply",
+          "extracted_attributes": {
+            "application_type": "drinking_water"
+          }
+        },
+        {
+          "text": "CPVC fittings",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "drinking water supply",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        }
+      ],
+      "recommended_standard": "IS 16534 : 2017",
+      "recommended_title": "Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing System - Specification",
+      "relevance_score": 0.827,
+      "lifecycle_status": "ACTIVE",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "Catalogue Record Title: Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing System - Specification",
+      "evidence_source": "BSB Edge Portal",
+      "why_this": [
+        "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing System - Specification'.",
+        "Authoritative scope explicitly covers application: \"Catalogue Record Title: Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing S...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BSB Edge Portal (VERIFIED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
+      ],
+      "why_not": [
+        "Alternative standard IS 15778 : 2007 scored lower across the 5-dimension critic evaluation."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Diameter / Nominal Bore (DN/OD)",
+        "Pressure Class / Schedule / SDR"
+      ],
+      "known_parameters": {},
+      "related_standards": [],
+      "decision": "RECOMMEND",
+      "risk_level": "LOW",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "High",
+      "review_reason": "Authoritative active standard IS 16534 : 2017 verified against scope with High confidence.",
+      "candidate_standard": "IS 16534 : 2017",
+      "evidence_standard": "IS 16534 : 2017",
+      "why_it_matches": "Catalogue Record Title: Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing S...",
+      "dependencies": [
+        {
+          "standard_number": "SP 57 : 1993",
+          "title": "Handbook on pipes and fittings for drinking water supply",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'drinking water' in title; Component 'drinking water supply' in title; Component 'supply' in title; 4 title keyword matches; BM25 match (norm: 0.68, terms: [supply, pipes, fittings, drinking]); Semantic similarity: 0.659",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        }
+      ],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "APPLICABLE",
+          "matched_product": "CPVC Pipes for Potable Hot and Cold Water Supplies",
+          "standard_number": "IS 15778 : 2007",
+          "legal_basis": "Section 16, BIS Act, 2016",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS Product Certification (Scheme-I (ISI Mark)) applicable for CPVC Pipes for Potable Hot and Cold Water Supplies. Governing Order: Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024 (S.O. 1205(E)). Manufacturers must obtain a valid BIS licence before supply.",
+          "additional_metadata": {
+            "scheme": "Scheme-I (ISI Mark)",
+            "governing_order": "Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024 (S.O. 1205(E))",
+            "mandate_type": "MANDATORY"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "CURRENT",
+          "matched_product": "Chlorinated Polyvinyl Chloride (CPVC) Pipes",
+          "standard_number": "IS 15778 : 2007",
+          "legal_basis": "Sections 16, 17 and 25 of the Bureau of Indian Standards Act, 2016 (11 of 2016)",
+          "source": "https://egazette.gov.in/WriteReadData/2024/252312.pdf",
+          "source_url": "https://egazette.gov.in/WriteReadData/2024/252312.pdf",
+          "effective_date": "2024-08-25",
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": true,
+          "explanation": "Mandatory QCO in force: Covered under Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024 (S.O. 1205(E)) issued by Ministry of Commerce and Industry (DPIIT). Effective from 2024-08-25. Compliance and Standard Mark are mandatory under Section 16, BIS Act 2016.",
+          "additional_metadata": {
+            "order_id": "QCO-CPVC-2024",
+            "order_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024",
+            "ministry": "Ministry of Commerce and Industry (DPIIT)",
+            "gazette_notification": "S.O. 1205(E)",
+            "notification_date": "2024-02-26"
+          }
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 16534 : 2017",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS 16534 : 2017",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": false,
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (fittings, pipes); not applicable.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "CLEAR",
+      "ambiguity_reason": "Primary applicable standard IS 16534 : 2017 is clearly identifiable and sufficiently supported."
+    },
+    {
+      "requirement_id": "REQ-002",
+      "requirement_text": "जल वितरण प्रणाली के लिए 100 मिमी सीआई स्लुइस वाल्व की आपूर्ति, IS 14846 के अनुसार।",
+      "category": "general_specification",
+      "components": [
+        {
+          "text": "100 mm",
+          "component_type": "specification",
+          "domain": "general",
+          "extracted_attributes": {
+            "spec_type": "dimension",
+            "value": "100 mm"
+          }
+        },
+        {
+          "text": "sluice valve",
+          "component_type": "product",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "category": "flow_control_valve"
+          }
+        },
+        {
+          "text": "100 mm cast iron sluice valve",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "water distribution system",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        }
+      ],
+      "recommended_standard": "IS 14846 : 2000",
+      "recommended_title": "Sluice valve for water works purposes (50 To 1200 mm size) - Specification",
+      "relevance_score": 1.0,
+      "lifecycle_status": "UNKNOWN",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "Tender explicitly requires compliance with IS 14846 : 2000.",
+      "evidence_source": "Tender Document",
+      "why_this": [
+        "Standard title directly matches requirement component(s): 'sluice valve'.",
+        "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 14846 : 2000.\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via Tender Document (VERIFIED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement.",
+        "Cites normative reference IS 778 : 1984 (Furrow Opener for Seed-cum-fertilizer Drills - Part 1 : Shovel Type)."
+      ],
+      "why_not": [
+        "Alternative standard IS 909 : 1992 has lower composite relevance (0.700 vs 1.000)."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Pressure Rating (PN / Class)",
+        "Fluid Medium / Service"
+      ],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 778 : 1984",
+          "title": "Furrow Opener for Seed-cum-fertilizer Drills - Part 1 : Shovel Type",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "WITHDRAWN",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Listed under Clause 2 References in IS 14846:2000 for copper alloy internal valve trim components.",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=17980",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        }
+      ],
+      "decision": "RECOMMEND",
+      "risk_level": "CRITICAL",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "High",
+      "review_reason": "Authoritative active standard IS 14846 : 2000 verified against scope with High confidence.",
+      "candidate_standard": "IS 14846 : 2000",
+      "evidence_standard": "IS 14846 : 2000",
+      "why_it_matches": "Tender explicitly requires compliance with IS 14846 : 2000.",
+      "dependencies": [
+        {
+          "standard_number": "IS 778 : 1984",
+          "title": "Furrow Opener for Seed-cum-fertilizer Drills - Part 1 : Shovel Type",
+          "relationship_type": "REFERENCES",
+          "dependency_status": "NORMATIVE_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "WITHDRAWN",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "Listed under Clause 2 References in IS 14846:2000 for copper alloy internal valve trim components.",
+          "source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "confidence": 1.0,
+          "why_related": "IS 778 : 1984 (Furrow Opener for Seed-cum-fertilizer Drills - Part 1 : Shovel Type) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 14846 : 2000. Evidence: Listed under Clause 2 References in IS 14846:2000 for copper alloy internal valve trim components. [Provenance: VERIFIED].",
+          "functional_category": "normative",
+          "is_applicable_to_requirement": true,
+          "applicability_decision": "APPLICABLE",
+          "dependency_state": "NORMATIVE_DEPENDENCY",
+          "evidence": "Listed under Clause 2 References in IS 14846:2000 for copper alloy internal valve trim components.",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 778 : 1984 (Furrow Opener for Seed-cum-fertilizer Drills - Part 1 : Shovel Type) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 14846 : 2000. Evidence: Listed under Clause 2 References in IS 14846:2000 for copper alloy internal valve trim components. [Provenance: VERIFIED]."
+        },
+        {
+          "standard_number": "IS 2685 : 1971",
+          "title": "Code of practice for selection, installation and maintenance of sluice valves (First Revision)",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'sluice valve' in title; Domain keyword match: sluice; 2 title keyword matches; Semantic similarity: 0.565",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        },
+        {
+          "standard_number": "IS 8717 : 1978",
+          "title": "Code of practice for packaging of cast iron pipes and fittings of 150 mm diameter and below",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "BM25 match (norm: 0.42, terms: [mm, cast, iron]); Semantic similarity: 0.531",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        }
+      ],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "APPLICABLE",
+          "matched_product": "Sluice Valves for Waterworks Purposes",
+          "standard_number": "IS 14846 : 2000",
+          "legal_basis": "Section 16, BIS Act, 2016",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS Product Certification (Scheme-I (ISI Mark)) applicable for Sluice Valves for Waterworks Purposes. Governing Order: Valves (Quality Control) Order, 2024 (S.O. 2682(E)). Manufacturers must obtain a valid BIS licence before supply.",
+          "additional_metadata": {
+            "scheme": "Scheme-I (ISI Mark)",
+            "governing_order": "Valves (Quality Control) Order, 2024 (S.O. 2682(E))",
+            "mandate_type": "MANDATORY"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "CURRENT",
+          "matched_product": "Sluice Valves for Waterworks Purposes",
+          "standard_number": "IS 14846 : 2000",
+          "legal_basis": "Sections 16, 17 and 25 of the Bureau of Indian Standards Act, 2016 (11 of 2016)",
+          "source": "https://egazette.gov.in/WriteReadData/2023/249811.pdf",
+          "source_url": "https://egazette.gov.in/WriteReadData/2023/249811.pdf",
+          "effective_date": "2024-06-19",
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": true,
+          "explanation": "Mandatory QCO in force: Covered under Valves (Quality Control) Order, 2024 (S.O. 2682(E)) issued by Ministry of Commerce and Industry (DPIIT). Effective from 2024-06-19. Compliance and Standard Mark are mandatory under Section 16, BIS Act 2016.",
+          "additional_metadata": {
+            "order_id": "QCO-VALVES-2024",
+            "order_title": "Valves (Quality Control) Order, 2024",
+            "ministry": "Ministry of Commerce and Industry (DPIIT)",
+            "gazette_notification": "S.O. 2682(E)",
+            "notification_date": "2023-12-19"
+          }
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 14846 : 2000",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS 14846 : 2000",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": false,
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (valve); not applicable.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "CLEAR",
+      "ambiguity_reason": "Primary applicable standard IS 14846 : 2000 is clearly identifiable and sufficiently supported."
+    },
+    {
+      "requirement_id": "REQ-003",
+      "requirement_text": "ट्यूबवेल जल आपूर्ति के लिए सबमर्सिबल पंप सेट और मोटर की स्थापना, IS 8034 के अनुसार।",
+      "category": "general_specification",
+      "components": [
+        {
+          "text": "submersible pump",
+          "component_type": "product",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "category": "pump_rotodynamic",
+            "is_process": false
+          }
+        },
+        {
+          "text": "motor",
+          "component_type": "electrical",
+          "domain": "electrical",
+          "extracted_attributes": {
+            "category": "electric_machine",
+            "standard_focus": "IS/IEC 60034-1"
+          }
+        },
+        {
+          "text": "water supply",
+          "component_type": "application",
+          "domain": "water_supply",
+          "extracted_attributes": {
+            "application_type": "drinking_water"
+          }
+        },
+        {
+          "text": "submersible pump set",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "tube-well water supply",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        }
+      ],
+      "recommended_standard": "IS 8034 : 2018",
+      "recommended_title": "Submersible pumpsets - Specification (Third Revision)",
+      "relevance_score": 1.0,
+      "lifecycle_status": "ACTIVE",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "Tender explicitly requires compliance with IS 8034 : 2018.",
+      "evidence_source": "Tender Document",
+      "why_this": [
+        "Standard title directly matches requirement component(s): 'submersible pump'.",
+        "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 8034 : 2018.\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via Tender Document (VERIFIED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
+      ],
+      "why_not": [
+        "Alternative standard IS 9283 : 2024 scored lower across the 5-dimension critic evaluation."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Discharge / Flow Rate (Q)",
+        "Total Dynamic Head (H)",
+        "Motor Coupling / Prime Mover"
+      ],
+      "known_parameters": {},
+      "related_standards": [],
+      "decision": "RECOMMEND",
+      "risk_level": "LOW",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "High",
+      "review_reason": "Authoritative active standard IS 8034 : 2018 verified against scope with High confidence.",
+      "candidate_standard": "IS 8034 : 2018",
+      "evidence_standard": "IS 8034 : 2018",
+      "why_it_matches": "Tender explicitly requires compliance with IS 8034 : 2018.",
+      "dependencies": [
+        {
+          "standard_number": "IS 14536 : 2018",
+          "title": "Selection, installation, operation and maintenance of submersible pumpset - Code of practice (First Revision)",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'submersible pump' in title; Component 'installation' in title; Domain keyword match: pump; 4 title keyword matches; BM25 match (norm: 0.68, terms: [installation, submersible, pumpset]); Semantic similarity: 0.635",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        }
+      ],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 8034 : 2018",
+          "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS certification is NOT identified for IS 8034 : 2018 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "additional_metadata": {
+            "mandate_type": "VOLUNTARY_OR_UNREGULATED"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 8034 : 2018",
+          "legal_basis": "",
+          "source": "e-Gazette of India / DPIIT QCO Registry",
+          "source_url": "e-Gazette of India / DPIIT QCO Registry",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 8034 : 2018. Verify ministry specific notifications.",
+          "additional_metadata": {}
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 8034 : 2018",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS 8034 : 2018",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": false,
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (motor, pump); not applicable.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "CLEAR",
+      "ambiguity_reason": "Primary applicable standard IS 8034 : 2018 is clearly identifiable and sufficiently supported."
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "REQ-002",
+      "requirement_text": "जल वितरण प्रणाली के लिए 100 मिमी सीआई स्लुइस वाल्व की आपूर्ति, IS 14846 के अनुसार।",
+      "risk_level": "CRITICAL",
+      "decision": "RECOMMEND",
+      "candidate_standard": "IS 14846 : 2000",
+      "evidence_strength": "STRONG",
+      "primary_reason": "Tender cited or recommended superseded standard 'IS 14846 : 2000'.",
+      "priority": 1
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 3,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 3,
+      "CURATED": 0,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}

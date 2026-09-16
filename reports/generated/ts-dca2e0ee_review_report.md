@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-VALVE`
-- **Source File:** `Sample: valve`
+- **Tender ID:** `TS-DCA2E0EE`
+- **Source File:** `text input`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness

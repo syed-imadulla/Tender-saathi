@@ -1,0 +1,388 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-B309E3FC",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "text input",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "REVIEW_REQUIRED",
+  "readiness_reasons": [
+    "1 requirement(s) cite or match superseded standard(s).",
+    "1 requirement(s) flagged with CRITICAL risk.",
+    "1 requirement(s) require technical engineer review.",
+    "1 requirement(s) have potentially missing specification parameters."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-B309E3FC",
+    "requirements_analyzed": 1,
+    "recommendations_count": 0,
+    "review_required_count": 1,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 1,
+    "withdrawn_count": 0,
+    "active_count": 0,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 1,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 0
+    },
+    "risk_distribution": {
+      "LOW": 0,
+      "MEDIUM": 0,
+      "HIGH": 0,
+      "CRITICAL": 1
+    },
+    "lifecycle_distribution": {
+      "Active": 0,
+      "Superseded": 1,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 2,
+    "review_queue": [
+      {
+        "requirement_id": "REQ-001",
+        "requirement_text": "Supply and laying of precast concrete pipes class NP2 for drainage works conforming to IS 458.",
+        "risk_level": "CRITICAL",
+        "decision": "RECOMMEND",
+        "candidate_standard": "NONE",
+        "evidence_strength": "STRONG",
+        "primary_reason": "Verified missing standard dependency 'IS 783 : 1985' required for specification.",
+        "priority": 1
+      }
+    ],
+    "publication_readiness": "REVIEW_REQUIRED",
+    "readiness_reasons": [
+      "1 requirement(s) cite or match superseded standard(s).",
+      "1 requirement(s) flagged with CRITICAL risk.",
+      "1 requirement(s) require technical engineer review.",
+      "1 requirement(s) have potentially missing specification parameters."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 4,
+    "normative_reference_count": 0,
+    "allied_standard_count": 0,
+    "test_standard_count": 1,
+    "installation_standard_count": 3,
+    "verified_missing_count": 1,
+    "potentially_missing_count": 1,
+    "related_for_review_count": 0,
+    "standards_coverage": {
+      "direct_standards_identified": 1,
+      "total_dependencies": 4,
+      "normative_references": 0,
+      "testing_dependencies": 1,
+      "installation_dependencies": 3,
+      "allied_standards": 0,
+      "covered_in_tender": 0,
+      "potential_gaps": 1,
+      "verified_gaps": 1,
+      "items_requiring_review": 1
+    },
+    "gap_summary": {
+      "verified_missing_count": 1,
+      "potentially_missing_count": 1,
+      "related_for_review_count": 0
+    },
+    "certification_checks": 1,
+    "qco_checks": 1,
+    "crs_checks": 1,
+    "hallmarking_checks": 1,
+    "regulatory_review_items": 1,
+    "unknown_regulatory_items": 0,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 0,
+    "mandatory_certification_count": 0,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
+  },
+  "requirements": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "Supply and laying of precast concrete pipes class NP2 for drainage works conforming to IS 458.",
+      "category": "installation_execution",
+      "components": [
+        {
+          "text": "laying of",
+          "component_type": "installation",
+          "domain": "execution",
+          "extracted_attributes": {
+            "action": "laying of"
+          }
+        },
+        {
+          "text": "precast concrete pipes",
+          "component_type": "material",
+          "domain": "piping",
+          "extracted_attributes": {
+            "category": "pipe_material"
+          }
+        },
+        {
+          "text": "NP2",
+          "component_type": "specification",
+          "domain": "piping",
+          "extracted_attributes": {
+            "spec_type": "pressure_or_pipe_class",
+            "value": "NP2"
+          }
+        },
+        {
+          "text": "drainage",
+          "component_type": "application",
+          "domain": "sanitary_sewerage",
+          "extracted_attributes": {
+            "application_type": "sewerage_drainage"
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        }
+      ],
+      "recommended_standard": "NONE",
+      "recommended_title": "Precast Concrete Pipes (with and without Reinforcement) -",
+      "relevance_score": 1.0,
+      "lifecycle_status": "UNKNOWN",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "Tender explicitly requires compliance with IS 458 : 2021.",
+      "evidence_source": "Tender Document",
+      "why_this": [
+        "Standard title directly matches requirement component(s): 'precast concrete pipes'.",
+        "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 458 : 2021.\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via Tender Document (VERIFIED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
+      ],
+      "why_not": [
+        "Alternative standard IS 4350 : 1967 has lower composite relevance (0.948 vs 1.000)."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Diameter / Nominal Bore (DN/OD)"
+      ],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 783 : 1985",
+          "title": "Specification for patient - Lifting devices, mobile, manually operated",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "direction": "INCOMING",
+          "lifecycle_status": "WITHDRAWN",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "Foreword and Clause 1 Scope declare IS 783 as the Code of practice for laying of concrete pipes manufactured in accordance with IS 458.",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=1678",
+          "review_note": "Product manufacturing standard associated with installation code IS 783 : 1985. Review for manufacturing specs."
+        },
+        {
+          "standard_number": "IS 3597 : 1998",
+          "title": "TEXTILES  POLYPROPYLENE BRAIDED TAPES FOR BERETS  SPECIFICATION",
+          "relationship_type": "TEST_METHOD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Clause 8 Sampling and Testing references IS 3597 for Methods of tests for concrete pipes (three-edge bearing test, hydrostatic test).",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=29224",
+          "review_note": "Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance."
+        }
+      ],
+      "decision": "INSUFFICIENT_EVIDENCE",
+      "risk_level": "CRITICAL",
+      "risk_reasons": [],
+      "human_review_required": true,
+      "confidence": "High",
+      "review_reason": "Authoritative active standard IS 458 : 2021 verified against scope with High confidence.",
+      "candidate_standard": null,
+      "evidence_standard": null,
+      "why_it_matches": "Tender explicitly requires compliance with IS 458 : 2021.",
+      "dependencies": [
+        {
+          "standard_number": "IS 783 : 1985",
+          "title": "Specification for patient - Lifting devices, mobile, manually operated",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "dependency_status": "CODE_OF_PRACTICE",
+          "direction": "INCOMING",
+          "lifecycle_status": "WITHDRAWN",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "Foreword and Clause 1 Scope declare IS 783 as the Code of practice for laying of concrete pipes manufactured in accordance with IS 458.",
+          "source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "confidence": 1.0,
+          "why_related": "IS 783 : 1985 (Specification for patient - Lifting devices, mobile, manually operated) is identified as an evidence-backed code of practice for installation and civil execution associated with IS 458 : 2021. Evidence: Foreword and Clause 1 Scope declare IS 783 as the Code of practice for laying of concrete pipes manufactured in accordance with IS 458. [Provenance: VERIFIED].",
+          "functional_category": "installation",
+          "is_applicable_to_requirement": true,
+          "applicability_decision": "APPLICABLE",
+          "dependency_state": "CODE_OF_PRACTICE",
+          "evidence": "Foreword and Clause 1 Scope declare IS 783 as the Code of practice for laying of concrete pipes manufactured in accordance with IS 458.",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 783 : 1985 (Specification for patient - Lifting devices, mobile, manually operated) is identified as an evidence-backed code of practice for installation and civil execution associated with IS 458 : 2021. Evidence: Foreword and Clause 1 Scope declare IS 783 as the Code of practice for laying of concrete pipes manufactured in accordance with IS 458. [Provenance: VERIFIED]."
+        },
+        {
+          "standard_number": "IS 3597 : 1998",
+          "title": "TEXTILES  POLYPROPYLENE BRAIDED TAPES FOR BERETS  SPECIFICATION",
+          "relationship_type": "TEST_METHOD",
+          "dependency_status": "TEST_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Clause 8 Sampling and Testing references IS 3597 for Methods of tests for concrete pipes (three-edge bearing test, hydrostatic test).",
+          "source": "CURATED_STANDARDS_DOC",
+          "confidence": 0.9,
+          "why_related": "IS 3597 : 1998 (TEXTILES  POLYPROPYLENE BRAIDED TAPES FOR BERETS  SPECIFICATION) is identified as an evidence-backed official test method standard for quality and verification associated with IS 458 : 2021. Evidence: Clause 8 Sampling and Testing references IS 3597 for Methods of tests for concrete pipes (three-edge bearing test, hydrostatic test). [Provenance: CURATED].",
+          "functional_category": "testing",
+          "is_applicable_to_requirement": false,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "TEST_DEPENDENCY",
+          "evidence": "Clause 8 Sampling and Testing references IS 3597 for Methods of tests for concrete pipes (three-edge bearing test, hydrostatic test).",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 3597 : 1998 (TEXTILES  POLYPROPYLENE BRAIDED TAPES FOR BERETS  SPECIFICATION) is identified as an evidence-backed official test method standard for quality and verification associated with IS 458 : 2021. Evidence: Clause 8 Sampling and Testing references IS 3597 for Methods of tests for concrete pipes (three-edge bearing test, hydrostatic test). [Provenance: CURATED]."
+        },
+        {
+          "standard_number": "IS 5822 : 1994",
+          "title": "Code of practice for laying of electrically welded steel pipes for water supply (Second Revision)",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'laying of' in title; Component 'supply' in title; 2 title keyword matches; BM25 match (norm: 0.54, terms: [supply, laying, pipes]); Semantic similarity: 0.504",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        },
+        {
+          "standard_number": "IS 3114 : 1994",
+          "title": "Code of Practice for Laying of Cast Iron Pipes (Second Revision)",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'laying of' in title; 2 title keyword matches; BM25 match (norm: 0.41, terms: [laying, pipes]); Semantic similarity: 0.498",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        }
+      ],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 458 : 2021",
+          "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS certification is NOT identified for IS 458 : 2021 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "additional_metadata": {
+            "mandate_type": "VOLUNTARY_OR_UNREGULATED"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 458 : 2021",
+          "legal_basis": "",
+          "source": "e-Gazette of India / DPIIT QCO Registry",
+          "source_url": "e-Gazette of India / DPIIT QCO Registry",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 458 : 2021. Verify ministry specific notifications.",
+          "additional_metadata": {}
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 458 : 2021",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS 458 : 2021",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": false,
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (concrete, pipes); not applicable.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "REVIEW_REQUIRED",
+      "ambiguity_reason": "Primary applicable standard IS 458 : 2021 is clearly identifiable and sufficiently supported."
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "Supply and laying of precast concrete pipes class NP2 for drainage works conforming to IS 458.",
+      "risk_level": "CRITICAL",
+      "decision": "RECOMMEND",
+      "candidate_standard": "NONE",
+      "evidence_strength": "STRONG",
+      "primary_reason": "Verified missing standard dependency 'IS 783 : 1985' required for specification.",
+      "priority": 1
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 1,
+      "CURATED": 0,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}

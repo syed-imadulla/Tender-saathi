@@ -2,10 +2,10 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-8E75ED7E",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: cpvc",
+    "source_file": "eProcurement System Government of India7.pdf",
     "date": null,
     "requirements_analyzed": 1
   },
@@ -15,7 +15,7 @@
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-8E75ED7E",
     "requirements_analyzed": 1,
     "recommendations_count": 1,
     "review_required_count": 0,
@@ -25,16 +25,16 @@
     "active_count": 1,
     "unknown_lifecycle_count": 0,
     "evidence_distribution": {
-      "STRONG": 1,
-      "MODERATE": 0,
+      "STRONG": 0,
+      "MODERATE": 1,
       "WEAK": 0,
       "NONE": 0
     },
     "completeness_distribution": {
       "KNOWN": 0,
-      "POTENTIALLY_MISSING": 1,
+      "POTENTIALLY_MISSING": 0,
       "UNKNOWN": 0,
-      "NOT_APPLICABLE": 0
+      "NOT_APPLICABLE": 1
     },
     "risk_distribution": {
       "LOW": 1,
@@ -87,50 +87,77 @@
     "regulatory_review_items": 1,
     "unknown_regulatory_items": 0,
     "upcoming_qco_items": 0,
-    "mandatory_qco_count": 1,
-    "mandatory_certification_count": 1,
+    "mandatory_qco_count": 0,
+    "mandatory_certification_count": 0,
     "crs_applicable_count": 0,
     "hallmarking_applicable_count": 0
   },
   "requirements": [
     {
-      "requirement_id": "REQ-001",
-      "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
-      "category": "material",
+      "requirement_id": "TS-8E75ED7E-R001",
+      "requirement_text": "UPVC Partition Wall Work for Conversion of Seafood Authentication Laboratory into Conventional Microbiology Laboratory at Central Laboratory (CAGPFTL), RGCA-HQ, Karaimedu, Sirkali",
+      "category": "installation_execution",
       "components": [
         {
-          "text": "CPVC pipes",
+          "text": "UPVC Partition Wall",
           "component_type": "material",
-          "domain": "piping",
+          "domain": "civil",
           "extracted_attributes": {
-            "category": "pipe_material"
+            "category": "upvc_profiles",
+            "standard_focus": "IS 16088"
           }
+        },
+        {
+          "text": "Laboratory",
+          "component_type": "application",
+          "domain": "infrastructure",
+          "extracted_attributes": {
+            "facility_type": "laboratory"
+          }
+        },
+        {
+          "text": "UPVC partition wall for laboratory conversion",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
         }
       ],
-      "recommended_standard": "IS 16534 : 2017",
-      "recommended_title": "Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing System - Specification",
-      "relevance_score": 0.911,
-      "lifecycle_status": "ACTIVE",
+      "recommended_standard": "IS 16088 : 2016",
+      "recommended_title": "Unplasticized Polyvinyl Chloride (uPVC) Profiles for the Fabrication of Windows and Doors - Specification",
+      "relevance_score": 0.73,
+      "lifecycle_status": "Active",
       "successor_standard": null,
       "superseded_citation": null,
-      "evidence_strength": "STRONG",
-      "provenance": "VERIFIED",
-      "evidence_text": "Catalogue Record Title: Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing System - Specification",
-      "evidence_source": "BSB Edge Portal",
+      "evidence_strength": "MODERATE",
+      "provenance": "CURATED",
+      "evidence_text": "Exact Match: IS 16088 governs extruded multi-chamber UPVC hollow profiles used in architectural partitions and frame assemblies.",
+      "evidence_source": "BIS Standards Catalogue",
       "why_this": [
-        "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing System - Specification'.",
-        "Authoritative scope explicitly covers application: \"Catalogue Record Title: Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing S...\"",
+        "Official title aligns with specification: 'Unplasticized Polyvinyl Chloride (uPVC) Profiles for the Fabrication of Windows and Doors - Specification'.",
+        "Authoritative scope explicitly covers application: \"Exact Match: IS 16088 governs extruded multi-chamber UPVC hollow profiles used in architectural partitions and frame ass...\"",
         "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via BSB Edge Portal (VERIFIED)."
+        "Provenance established via BIS Standards Catalogue (CURATED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
       ],
       "why_not": [
-        "Alternative standard IS 15778 : 2007 scored lower across the 5-dimension critic evaluation."
+        "No alternative candidate standards met the retrieval threshold."
       ],
-      "completeness_label": "POTENTIALLY_MISSING",
-      "potentially_missing_parameters": [
-        "Diameter / Nominal Bore (DN/OD)",
-        "Pressure Class / Schedule / SDR"
-      ],
+      "completeness_label": "NOT_APPLICABLE",
+      "potentially_missing_parameters": [],
       "known_parameters": {},
       "related_standards": [],
       "decision": "RECOMMEND",
@@ -138,57 +165,49 @@
       "risk_reasons": [],
       "human_review_required": false,
       "confidence": "High",
-      "review_reason": "Authoritative active standard IS 16534 : 2017 verified against scope with High confidence.",
-      "candidate_standard": "IS 16534 : 2017",
-      "evidence_standard": "IS 16534 : 2017",
-      "why_it_matches": "Catalogue Record Title: Chlorinated Polyvinyl Chloride (CPCV) Pipe Fittings for Automatic Sprinkler Fire Extinguishing S...",
+      "review_reason": "Authoritative active standard IS 16088 : 2016 verified against scope with High confidence.",
+      "candidate_standard": "IS 16088 : 2016",
+      "evidence_standard": "IS 16088 : 2016",
+      "why_it_matches": "IS 16088 governs extruded multi-chamber UPVC hollow profiles used in architectural partitions and frame ass...",
       "dependencies": [],
       "regulatory": {
         "certification": {
           "category": "BIS_PRODUCT_CERTIFICATION",
-          "status": "APPLICABLE",
-          "matched_product": "CPVC Pipes for Potable Hot and Cold Water Supplies",
-          "standard_number": "IS 15778 : 2007",
-          "legal_basis": "Section 16, BIS Act, 2016",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 16088 : 2016",
+          "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
           "source": "https://www.manakonline.in",
           "source_url": "https://www.manakonline.in",
           "effective_date": null,
           "provenance": "OFFICIAL_PRIMARY",
-          "confidence": 1.0,
+          "confidence": 0.9,
           "human_review_required": true,
-          "explanation": "Mandatory BIS Product Certification (Scheme-I (ISI Mark)) applicable for CPVC Pipes for Potable Hot and Cold Water Supplies. Governing Order: Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024 (S.O. 1205(E)). Manufacturers must obtain a valid BIS licence before supply.",
+          "explanation": "Mandatory BIS certification is NOT identified for IS 16088 : 2016 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
           "additional_metadata": {
-            "scheme": "Scheme-I (ISI Mark)",
-            "governing_order": "Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024 (S.O. 1205(E))",
-            "mandate_type": "MANDATORY"
+            "mandate_type": "VOLUNTARY_OR_UNREGULATED"
           }
         },
         "qco": {
           "category": "QCO",
-          "status": "CURRENT",
-          "matched_product": "Chlorinated Polyvinyl Chloride (CPVC) Pipes",
-          "standard_number": "IS 15778 : 2007",
-          "legal_basis": "Sections 16, 17 and 25 of the Bureau of Indian Standards Act, 2016 (11 of 2016)",
-          "source": "https://egazette.gov.in/WriteReadData/2024/252312.pdf",
-          "source_url": "https://egazette.gov.in/WriteReadData/2024/252312.pdf",
-          "effective_date": "2024-08-25",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 16088 : 2016",
+          "legal_basis": "",
+          "source": "e-Gazette of India / DPIIT QCO Registry",
+          "source_url": "e-Gazette of India / DPIIT QCO Registry",
+          "effective_date": null,
           "provenance": "OFFICIAL_PRIMARY",
-          "confidence": 1.0,
+          "confidence": 0.9,
           "human_review_required": true,
-          "explanation": "Mandatory QCO in force: Covered under Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024 (S.O. 1205(E)) issued by Ministry of Commerce and Industry (DPIIT). Effective from 2024-08-25. Compliance and Standard Mark are mandatory under Section 16, BIS Act 2016.",
-          "additional_metadata": {
-            "order_id": "QCO-CPVC-2024",
-            "order_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes and Fittings (Quality Control) Order, 2024",
-            "ministry": "Ministry of Commerce and Industry (DPIIT)",
-            "gazette_notification": "S.O. 1205(E)",
-            "notification_date": "2024-02-26"
-          }
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 16088 : 2016. Verify ministry specific notifications.",
+          "additional_metadata": {}
         },
         "crs": {
           "category": "CRS",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 16534 : 2017",
+          "standard_number": "IS 16088 : 2016",
           "legal_basis": "",
           "source": "MeitY / BIS Compulsory Registration Portal",
           "source_url": "MeitY / BIS Compulsory Registration Portal",
@@ -203,33 +222,33 @@
           "category": "HALLMARKING",
           "status": "NOT_APPLICABLE",
           "matched_product": "",
-          "standard_number": "IS 16534 : 2017",
+          "standard_number": "IS 16088 : 2016",
           "legal_basis": "BIS (Hallmarking) Regulations, 2018",
-          "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
-          "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "source": "Ministry of Consumer Affairs",
+          "source_url": "Ministry of Consumer Affairs",
           "effective_date": null,
           "provenance": "OFFICIAL_PRIMARY",
-          "confidence": 1.0,
+          "confidence": 0.9,
           "human_review_required": false,
-          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (fittings, pipes); not applicable.",
+          "explanation": "Hallmarking is not applicable to this product category.",
           "additional_metadata": {}
         }
       },
       "ambiguity_state": "CLEAR",
-      "ambiguity_reason": "Primary applicable standard IS 16534 : 2017 is clearly identifiable and sufficiently supported."
+      "ambiguity_reason": "Primary applicable standard IS 16088 is clearly identifiable and sufficiently supported."
     }
   ],
   "review_queue": [],
   "evidence_summary": {
     "evidence_distribution": {
-      "STRONG": 1,
-      "MODERATE": 0,
+      "STRONG": 0,
+      "MODERATE": 1,
       "WEAK": 0,
       "NONE": 0
     },
     "provenance_distribution": {
-      "VERIFIED": 1,
-      "CURATED": 0,
+      "VERIFIED": 0,
+      "CURATED": 1,
       "INFERRED": 0,
       "UNKNOWN": 0
     },

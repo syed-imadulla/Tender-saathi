@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-VALVE`
-- **Source File:** `Sample: valve`
+- **Tender ID:** `TS-54EEE3DF`
+- **Source File:** `eProcurement System Government of India16.pdf`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -19,16 +19,15 @@
 
 ### Key Observations:
 - 1 requirement(s) cite or match superseded standard(s).
-- 1 requirement(s) flagged with HIGH risk.
-- 1 requirement(s) require technical engineer review.
+- 1 requirement(s) flagged with CRITICAL risk.
 
 ## 3. Executive Summary
 
 | Metric | Count / Distribution | Notes |
 |---|---|---|
 | **Requirements Analysed** | 1 | Total clauses extracted |
-| **Direct Recommendations** | 0 | Active standards grounded in evidence |
-| **Review Required** | 1 | Flagged for engineering attention |
+| **Direct Recommendations** | 1 | Active standards grounded in evidence |
+| **Review Required** | 0 | Flagged for engineering attention |
 | **Insufficient Evidence** | 0 | No reliable standard matched |
 | **Active Standards** | 0 | Verified current in BIS catalogue |
 | **Superseded Standards** | 1 | Outdated standards identified |
@@ -39,14 +38,14 @@
 ### Governance Distributions
 
 - **Evidence Strength:** STRONG: `1` | MODERATE: `0` | WEAK: `0` | NONE: `0`
-- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `0` | UNKNOWN: `1` | NOT_APPLICABLE: `0`
-- **Risk Distribution:** CRITICAL: `0` | HIGH: `1` | MEDIUM: `0` | LOW: `0`
+- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `0` | UNKNOWN: `0` | NOT_APPLICABLE: `1`
+- **Risk Distribution:** CRITICAL: `1` | HIGH: `0` | MEDIUM: `0` | LOW: `0`
 
 ### Standards Ecosystem & Dependency Coverage
 
 - **Normative References:** `0`
 - **Testing Method Dependencies:** `0`
-- **Installation / Laying Standards:** `0`
+- **Installation / Laying Standards:** `1`
 - **Allied Standards:** `0`
 - **Potential Standard Gaps:** `0`
 - **Verified Standard Gaps:** `0`
@@ -55,35 +54,36 @@
 
 | # | Priority | Requirement ID | Candidate Standard | Issue / Primary Reason |
 |---|---|---|---|---|
-| 1 | **HIGH** | `REQ-001` | `NONE` | Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class) |
+| 1 | **CRITICAL** | `TS-54EEE3DF-R001` | `IS 12647 : 2021` | Tender cited or recommended superseded standard 'IS 12647 : 2021'. |
 
 ## 5. Requirement-by-Requirement Review
 
-### 5.1 Requirement `REQ-001` [PRODUCT_EQUIPMENT]
+### 5.1 Requirement `TS-54EEE3DF-R001` [INSTALLATION_EXECUTION]
 
 **Original Requirement Text:**
-> "Repair and replacement of valves in the mechanical distribution system."
+> "Construction of shed for waste collection in CDH 1 and CDH 2 at IISER Campus, Vithura"
 
-- **Decomposed Technical Components:** `general: Repair`, `general: replacement`, `general: valves`, `general: mechanical distribution system`
-- **Recommended Standard:** **NONE** — *REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE*
-- **Candidate Standard:** `None (Abstained)` | **Evidence Standard:** `None` (Safe Abstention)
-- **Why It Matches:** Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE
-- **Lifecycle Status:** **UNKNOWN** | **Composite Relevance Score:** `0.813`
-- **Ambiguity & Verification State:** `REVIEW_REQUIRED` — *Reason:* Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).
+- **Decomposed Technical Components:** `general: shed`, `general: waste collection`, `general: supply`, `general: installation`
+- **Recommended Standard:** **IS 12647 : 2021** — *Solid Waste Management Collection Equipment Requirements and Guidelines*
+- **Candidate Standard:** `IS 12647 : 2021` | **Evidence Standard:** `IS 12647 : 2021` (Candidate == Evidence Grounding Established)
+- **Why It Matches:** Catalogue Record Title: Solid Waste Management Collection Equipment Requirements and Guidelines
+- **Lifecycle Status:** **UNKNOWN** | **Composite Relevance Score:** `0.914`
+- **Ambiguity & Verification State:** `CLEAR` — *Reason:* Primary applicable standard IS 12647 : 2021 is clearly identifiable and sufficiently supported.
 - **Evidence Strength:** `STRONG` | **Provenance:** `VERIFIED`
-- **Verbatim Evidence (BSB Edge Portal):** "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE"
+- **Verbatim Evidence (BSB Edge Portal):** "Catalogue Record Title: Solid Waste Management Collection Equipment Requirements and Guidelines"
 - **Why This Standard?:**
-  - Standard title directly matches requirement component(s): 'Repair'.
-  - Authoritative scope explicitly covers application: "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE"
+  - Official title aligns with specification: 'Solid Waste Management Collection Equipment Requirements and Guidelines'.
+  - Authoritative scope explicitly covers application: "Catalogue Record Title: Solid Waste Management Collection Equipment Requirements and Guidelines"
   - Standard is currently active in the BIS repository with verified currency.
   - Provenance established via BSB Edge Portal (VERIFIED).
   - Candidate addresses multiple decomposed technical aspects of the requirement.
 - **Why Not Alternatives?:**
-  - Alternative standard IS 10939 : 2023 has lower composite relevance (0.662 vs 0.813).
-- **Specification Review Completeness:** `UNKNOWN` (Potentially missing: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material, Fluid Medium / Service)
+  - Alternative standard IS 16557 : 2016 scored lower across the 5-dimension critic evaluation.
+- **Specification Review Completeness:** `NOT_APPLICABLE`
+- **Standards Dependencies Mapped (1):**
+  - [INSTALLATION STANDARD] `IS 18150 : 2023` — *Non-Sewered On-SIte Santitation System - Design, Fabrication and Installation of Biodigesters for Human Waste Decomposition - Code of Practice* ()
 - **Regulatory & Statutory Intelligence:** Product Certification: `NOT_IDENTIFIED` | QCO: `NOT_IDENTIFIED` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
-- **Standards Review Decision:** `INSUFFICIENT_EVIDENCE` | **Risk Level:** `HIGH` | **Confidence:** `Low`
-- ⚠ **Human Technical Review Required:** Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).
+- **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `CRITICAL` | **Confidence:** `High`
 
 ---
 

@@ -2,25 +2,25 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-ADFEFC71",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: valve",
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
   "publication_readiness": "REVIEW_REQUIRED",
   "readiness_reasons": [
     "1 requirement(s) cite or match superseded standard(s).",
-    "1 requirement(s) flagged with HIGH risk.",
-    "1 requirement(s) require technical engineer review."
+    "1 requirement(s) flagged with CRITICAL risk.",
+    "1 requirement(s) have potentially missing specification parameters."
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-ADFEFC71",
     "requirements_analyzed": 1,
-    "recommendations_count": 0,
-    "review_required_count": 1,
+    "recommendations_count": 1,
+    "review_required_count": 0,
     "insufficient_evidence_count": 0,
     "superseded_count": 1,
     "withdrawn_count": 0,
@@ -34,15 +34,15 @@
     },
     "completeness_distribution": {
       "KNOWN": 0,
-      "POTENTIALLY_MISSING": 0,
-      "UNKNOWN": 1,
+      "POTENTIALLY_MISSING": 1,
+      "UNKNOWN": 0,
       "NOT_APPLICABLE": 0
     },
     "risk_distribution": {
       "LOW": 0,
       "MEDIUM": 0,
-      "HIGH": 1,
-      "CRITICAL": 0
+      "HIGH": 0,
+      "CRITICAL": 1
     },
     "lifecycle_distribution": {
       "Active": 0,
@@ -54,20 +54,20 @@
     "review_queue": [
       {
         "requirement_id": "REQ-001",
-        "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
-        "risk_level": "HIGH",
-        "decision": "RECOMMEND_WITH_REVIEW",
-        "candidate_standard": "NONE",
+        "requirement_text": "Supply of catering lunch boxes and mineral water for office staff meeting.",
+        "risk_level": "CRITICAL",
+        "decision": "RECOMMEND",
+        "candidate_standard": "IS 15410 : 2025",
         "evidence_strength": "STRONG",
-        "primary_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)",
-        "priority": 2
+        "primary_reason": "Tender cited or recommended superseded standard 'IS 15410 : 2025'.",
+        "priority": 1
       }
     ],
     "publication_readiness": "REVIEW_REQUIRED",
     "readiness_reasons": [
       "1 requirement(s) cite or match superseded standard(s).",
-      "1 requirement(s) flagged with HIGH risk.",
-      "1 requirement(s) require technical engineer review."
+      "1 requirement(s) flagged with CRITICAL risk.",
+      "1 requirement(s) have potentially missing specification parameters."
     ],
     "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
     "dependency_count": 0,
@@ -88,7 +88,7 @@
       "covered_in_tender": 0,
       "potential_gaps": 0,
       "verified_gaps": 0,
-      "items_requiring_review": 1
+      "items_requiring_review": 0
     },
     "gap_summary": {
       "verified_missing_count": 0,
@@ -110,90 +110,91 @@
   "requirements": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
-      "category": "product_equipment",
+      "requirement_text": "Supply of catering lunch boxes and mineral water for office staff meeting.",
+      "category": "installation_execution",
       "components": [
         {
-          "text": "Repair",
-          "component_type": "installation",
-          "domain": "execution",
+          "text": "catering",
+          "component_type": "application",
+          "domain": "food_safety",
           "extracted_attributes": {
-            "action": "repair"
+            "application_type": "food_hygiene_haccp",
+            "standard_focus": "IS 2491 / IS 15000"
           }
         },
         {
-          "text": "replacement",
-          "component_type": "installation",
-          "domain": "execution",
-          "extracted_attributes": {
-            "action": "replacement"
-          }
-        },
-        {
-          "text": "valves",
-          "component_type": "product",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "category": "flow_control_valve"
-          }
-        },
-        {
-          "text": "mechanical distribution system",
+          "text": "catering lunch boxes",
           "component_type": "application",
           "domain": "mechanical",
           "extracted_attributes": {
             "is_process": false
           }
+        },
+        {
+          "text": "mineral water",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "office staff meeting",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
         }
       ],
-      "recommended_standard": "NONE",
-      "recommended_title": "REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE",
-      "relevance_score": 0.813,
+      "recommended_standard": "IS 15410 : 2025",
+      "recommended_title": "PLASTIC BOTTLES/CONTAINERS FOR PACKAGING OF NATURAL MINERAL WATER AND PACKAGED DRINKING WATER - SPECIFICATION  (first revision)",
+      "relevance_score": 0.984,
       "lifecycle_status": "UNKNOWN",
       "successor_standard": null,
       "superseded_citation": null,
       "evidence_strength": "STRONG",
       "provenance": "VERIFIED",
-      "evidence_text": "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE",
+      "evidence_text": "Catalogue Record Title: PLASTIC BOTTLES/CONTAINERS FOR PACKAGING OF NATURAL MINERAL WATER AND PACKAGED DRINKING WATER - SPECIFICATION  (first revision)",
       "evidence_source": "BSB Edge Portal",
       "why_this": [
-        "Standard title directly matches requirement component(s): 'Repair'.",
-        "Authoritative scope explicitly covers application: \"Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE\"",
+        "Standard title directly matches requirement component(s): 'mineral water'.",
+        "Authoritative scope explicitly covers application: \"Catalogue Record Title: PLASTIC BOTTLES/CONTAINERS FOR PACKAGING OF NATURAL MINERAL WATER AND PACKAGED DRINKING WATER -...\"",
         "Standard is currently active in the BIS repository with verified currency.",
         "Provenance established via BSB Edge Portal (VERIFIED).",
         "Candidate addresses multiple decomposed technical aspects of the requirement."
       ],
       "why_not": [
-        "Alternative standard IS 10939 : 2023 has lower composite relevance (0.662 vs 0.813)."
+        "Alternative standard IS 14543 : 2024 scored lower across the 5-dimension critic evaluation."
       ],
-      "completeness_label": "UNKNOWN",
+      "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [
-        "Valve Type",
-        "Nominal Size / Diameter (DN)",
-        "Pressure Rating (PN / Class)",
-        "Body Metallurgy / Material",
-        "Fluid Medium / Service"
+        "Regulatory Hygiene Framework"
       ],
       "known_parameters": {},
       "related_standards": [],
-      "decision": "INSUFFICIENT_EVIDENCE",
-      "risk_level": "HIGH",
-      "risk_reasons": [
-        "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)"
-      ],
-      "human_review_required": true,
-      "confidence": "Low",
-      "review_reason": "Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
-      "candidate_standard": null,
-      "evidence_standard": null,
-      "why_it_matches": "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE",
+      "decision": "RECOMMEND",
+      "risk_level": "CRITICAL",
+      "risk_reasons": [],
+      "human_review_required": false,
+      "confidence": "High",
+      "review_reason": "Authoritative active standard IS 15410 : 2025 verified against scope with High confidence.",
+      "candidate_standard": "IS 15410 : 2025",
+      "evidence_standard": "IS 15410 : 2025",
+      "why_it_matches": "Catalogue Record Title: PLASTIC BOTTLES/CONTAINERS FOR PACKAGING OF NATURAL MINERAL WATER AND PACKAGED DRINKING WATER -...",
       "dependencies": [],
       "regulatory": {
         "certification": {
           "category": "BIS_PRODUCT_CERTIFICATION",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS 15410 : 2025",
           "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
           "source": "https://www.manakonline.in",
           "source_url": "https://www.manakonline.in",
@@ -201,7 +202,7 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 0.9,
           "human_review_required": true,
-          "explanation": "Mandatory BIS certification is NOT identified for IS 18284 : 2023 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "explanation": "Mandatory BIS certification is NOT identified for IS 15410 : 2025 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
           "additional_metadata": {
             "mandate_type": "VOLUNTARY_OR_UNREGULATED"
           }
@@ -210,7 +211,7 @@
           "category": "QCO",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS 15410 : 2025",
           "legal_basis": "",
           "source": "e-Gazette of India / DPIIT QCO Registry",
           "source_url": "e-Gazette of India / DPIIT QCO Registry",
@@ -218,14 +219,14 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 0.9,
           "human_review_required": true,
-          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 18284 : 2023. Verify ministry specific notifications.",
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 15410 : 2025. Verify ministry specific notifications.",
           "additional_metadata": {}
         },
         "crs": {
           "category": "CRS",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS 15410 : 2025",
           "legal_basis": "",
           "source": "MeitY / BIS Compulsory Registration Portal",
           "source_url": "MeitY / BIS Compulsory Registration Portal",
@@ -240,32 +241,32 @@
           "category": "HALLMARKING",
           "status": "NOT_APPLICABLE",
           "matched_product": "",
-          "standard_number": "IS 18284 : 2023",
+          "standard_number": "IS 15410 : 2025",
           "legal_basis": "BIS (Hallmarking) Regulations, 2018",
-          "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
-          "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "source": "Ministry of Consumer Affairs",
+          "source_url": "Ministry of Consumer Affairs",
           "effective_date": null,
           "provenance": "OFFICIAL_PRIMARY",
-          "confidence": 1.0,
+          "confidence": 0.9,
           "human_review_required": false,
-          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (valves); not applicable.",
+          "explanation": "Hallmarking is not applicable to this product category.",
           "additional_metadata": {}
         }
       },
-      "ambiguity_state": "REVIEW_REQUIRED",
-      "ambiguity_reason": "Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel)."
+      "ambiguity_state": "CLEAR",
+      "ambiguity_reason": "Primary applicable standard IS 15410 : 2025 is clearly identifiable and sufficiently supported."
     }
   ],
   "review_queue": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
-      "risk_level": "HIGH",
-      "decision": "RECOMMEND_WITH_REVIEW",
-      "candidate_standard": "NONE",
+      "requirement_text": "Supply of catering lunch boxes and mineral water for office staff meeting.",
+      "risk_level": "CRITICAL",
+      "decision": "RECOMMEND",
+      "candidate_standard": "IS 15410 : 2025",
       "evidence_strength": "STRONG",
-      "primary_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)",
-      "priority": 2
+      "primary_reason": "Tender cited or recommended superseded standard 'IS 15410 : 2025'.",
+      "priority": 1
     }
   ],
   "evidence_summary": {

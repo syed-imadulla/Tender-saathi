@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-VALVE`
-- **Source File:** `Sample: valve`
+- **Tender ID:** `TS-F853EFBB`
+- **Source File:** `eProcurement System Government of India8.pdf`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -21,6 +21,7 @@
 - 1 requirement(s) cite or match superseded standard(s).
 - 1 requirement(s) flagged with HIGH risk.
 - 1 requirement(s) require technical engineer review.
+- 1 requirement(s) have potentially missing specification parameters.
 
 ## 3. Executive Summary
 
@@ -39,14 +40,14 @@
 ### Governance Distributions
 
 - **Evidence Strength:** STRONG: `1` | MODERATE: `0` | WEAK: `0` | NONE: `0`
-- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `0` | UNKNOWN: `1` | NOT_APPLICABLE: `0`
+- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `1` | UNKNOWN: `0` | NOT_APPLICABLE: `0`
 - **Risk Distribution:** CRITICAL: `0` | HIGH: `1` | MEDIUM: `0` | LOW: `0`
 
 ### Standards Ecosystem & Dependency Coverage
 
 - **Normative References:** `0`
 - **Testing Method Dependencies:** `0`
-- **Installation / Laying Standards:** `0`
+- **Installation / Laying Standards:** `1`
 - **Allied Standards:** `0`
 - **Potential Standard Gaps:** `0`
 - **Verified Standard Gaps:** `0`
@@ -55,35 +56,37 @@
 
 | # | Priority | Requirement ID | Candidate Standard | Issue / Primary Reason |
 |---|---|---|---|---|
-| 1 | **HIGH** | `REQ-001` | `NONE` | Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class) |
+| 1 | **HIGH** | `TS-F853EFBB-R001` | `NONE` | Low confidence retrieval match (<0.35 score) |
 
 ## 5. Requirement-by-Requirement Review
 
-### 5.1 Requirement `REQ-001` [PRODUCT_EQUIPMENT]
+### 5.1 Requirement `TS-F853EFBB-R001` [PRODUCT_EQUIPMENT]
 
 **Original Requirement Text:**
-> "Repair and replacement of valves in the mechanical distribution system."
+> "Tender for Opening of Himalayan Low-Oil Food Outlet on BOT basis at IIT Ropar"
 
-- **Decomposed Technical Components:** `general: Repair`, `general: replacement`, `general: valves`, `general: mechanical distribution system`
-- **Recommended Standard:** **NONE** — *REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE*
+- **Decomposed Technical Components:** `general: Food Outlet`, `general: cooking appliances`, `general: refrigeration units`, `general: food preparation counters`, `general: point of sale system`, `general: temperature monitoring system`, `general: lighting fixtures`, `general: power distribution panels`, `general: 230V`, `general: food outlet operation`, `general: supply`, `general: installation`, `general: testing`
+- **Recommended Standard:** **NONE** — *Oil of himalayan cedarwood - Specification (Second Revision)*
 - **Candidate Standard:** `None (Abstained)` | **Evidence Standard:** `None` (Safe Abstention)
-- **Why It Matches:** Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE
-- **Lifecycle Status:** **UNKNOWN** | **Composite Relevance Score:** `0.813`
-- **Ambiguity & Verification State:** `REVIEW_REQUIRED` — *Reason:* Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).
+- **Why It Matches:** Catalogue Record Title: Oil of himalayan cedarwood - Specification (Second Revision)
+- **Lifecycle Status:** **UNKNOWN** | **Composite Relevance Score:** `0.743`
+- **Ambiguity & Verification State:** `REVIEW_REQUIRED` — *Reason:* Primary applicable standard IS 1615 : 1996 is clearly identifiable and sufficiently supported.
 - **Evidence Strength:** `STRONG` | **Provenance:** `VERIFIED`
-- **Verbatim Evidence (BSB Edge Portal):** "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE"
+- **Verbatim Evidence (BSB Edge Portal):** "Catalogue Record Title: Oil of himalayan cedarwood - Specification (Second Revision)"
 - **Why This Standard?:**
-  - Standard title directly matches requirement component(s): 'Repair'.
-  - Authoritative scope explicitly covers application: "Catalogue Record Title: REPAIR OF DISTRIBUTION TRANSFORMERS - CODE OF PRACTICE"
+  - Official title aligns with specification: 'Oil of himalayan cedarwood - Specification (Second Revision)'.
+  - Authoritative scope explicitly covers application: "Catalogue Record Title: Oil of himalayan cedarwood - Specification (Second Revision)"
   - Standard is currently active in the BIS repository with verified currency.
   - Provenance established via BSB Edge Portal (VERIFIED).
   - Candidate addresses multiple decomposed technical aspects of the requirement.
 - **Why Not Alternatives?:**
-  - Alternative standard IS 10939 : 2023 has lower composite relevance (0.662 vs 0.813).
-- **Specification Review Completeness:** `UNKNOWN` (Potentially missing: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material, Fluid Medium / Service)
+  - Alternative standard IS 10563 : 2026 has lower composite relevance (0.693 vs 0.743).
+- **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Regulatory Hygiene Framework)
+- **Standards Dependencies Mapped (1):**
+  - [CODE OF PRACTICE] `IS 2491 : 2013` — *Food hygiene - General principles - Code of practice (Third Revision)* ()
 - **Regulatory & Statutory Intelligence:** Product Certification: `NOT_IDENTIFIED` | QCO: `NOT_IDENTIFIED` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
 - **Standards Review Decision:** `INSUFFICIENT_EVIDENCE` | **Risk Level:** `HIGH` | **Confidence:** `Low`
-- ⚠ **Human Technical Review Required:** Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).
+- ⚠ **Human Technical Review Required:** Low confidence retrieval match (<0.35 score). Technical engineer verification required.
 
 ---
 

@@ -1,0 +1,414 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-A194647C",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "text input",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "REVIEW_REQUIRED",
+  "readiness_reasons": [
+    "1 requirement(s) cite or match superseded standard(s).",
+    "1 requirement(s) flagged with CRITICAL risk.",
+    "1 requirement(s) require technical engineer review.",
+    "1 requirement(s) have potentially missing specification parameters."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-A194647C",
+    "requirements_analyzed": 1,
+    "recommendations_count": 0,
+    "review_required_count": 1,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 1,
+    "withdrawn_count": 0,
+    "active_count": 0,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 1,
+      "UNKNOWN": 0,
+      "NOT_APPLICABLE": 0
+    },
+    "risk_distribution": {
+      "LOW": 0,
+      "MEDIUM": 0,
+      "HIGH": 0,
+      "CRITICAL": 1
+    },
+    "lifecycle_distribution": {
+      "Active": 0,
+      "Superseded": 1,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 2,
+    "review_queue": [
+      {
+        "requirement_id": "REQ-001",
+        "requirement_text": "Electromechanical Works and Sewerage Pipeline works from Collection Chamber to STP.",
+        "risk_level": "CRITICAL",
+        "decision": "RECOMMEND_WITH_REVIEW",
+        "candidate_standard": "IS 14333 : 2022",
+        "evidence_strength": "STRONG",
+        "primary_reason": "Potentially missing engineering parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR",
+        "priority": 1
+      }
+    ],
+    "publication_readiness": "REVIEW_REQUIRED",
+    "readiness_reasons": [
+      "1 requirement(s) cite or match superseded standard(s).",
+      "1 requirement(s) flagged with CRITICAL risk.",
+      "1 requirement(s) require technical engineer review.",
+      "1 requirement(s) have potentially missing specification parameters."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 4,
+    "normative_reference_count": 1,
+    "allied_standard_count": 0,
+    "test_standard_count": 0,
+    "installation_standard_count": 3,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 1,
+    "related_for_review_count": 1,
+    "standards_coverage": {
+      "direct_standards_identified": 1,
+      "total_dependencies": 4,
+      "normative_references": 1,
+      "testing_dependencies": 0,
+      "installation_dependencies": 3,
+      "allied_standards": 0,
+      "covered_in_tender": 0,
+      "potential_gaps": 1,
+      "verified_gaps": 0,
+      "items_requiring_review": 1
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 1,
+      "related_for_review_count": 1
+    },
+    "certification_checks": 1,
+    "qco_checks": 1,
+    "crs_checks": 1,
+    "hallmarking_checks": 1,
+    "regulatory_review_items": 1,
+    "unknown_regulatory_items": 0,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 0,
+    "mandatory_certification_count": 0,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
+  },
+  "requirements": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "Electromechanical Works and Sewerage Pipeline works from Collection Chamber to STP.",
+      "category": "installation_execution",
+      "components": [
+        {
+          "text": "Sewerage Pipeline",
+          "component_type": "material",
+          "domain": "piping",
+          "extracted_attributes": {
+            "category": "pipe_material"
+          }
+        },
+        {
+          "text": "STP",
+          "component_type": "application",
+          "domain": "infrastructure",
+          "extracted_attributes": {
+            "facility_type": "stp"
+          }
+        },
+        {
+          "text": "collection chamber",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "sewage treatment plant",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "sewerage",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "wastewater treatment",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "testing",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        }
+      ],
+      "recommended_standard": "IS 14333 : 2022",
+      "recommended_title": "Polyethylene Pipes for Sewerage and Industrial Chemicals and Effluent - Specification (First Revision)",
+      "relevance_score": 0.927,
+      "lifecycle_status": "UNKNOWN",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "Catalogue Record Title: Polyethylene Pipes for Sewerage and Industrial Chemicals and Effluent - Specification (First Revision)",
+      "evidence_source": "BSB Edge Portal",
+      "why_this": [
+        "Standard title directly matches requirement component(s): 'sewerage'.",
+        "Authoritative scope explicitly covers application: \"Catalogue Record Title: Polyethylene Pipes for Sewerage and Industrial Chemicals and Effluent - Specification (First Rev...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BSB Edge Portal (VERIFIED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement.",
+        "Cites normative reference IS 4984 : 2016 (high density polyethylene pipes for potable water supplies)."
+      ],
+      "why_not": [
+        "Alternative standard IS 14402 : 1996 has lower composite relevance (0.792 vs 0.927)."
+      ],
+      "completeness_label": "POTENTIALLY_MISSING",
+      "potentially_missing_parameters": [
+        "Piping Material",
+        "Diameter / Nominal Bore (DN/OD)",
+        "Pressure Class / Schedule / SDR"
+      ],
+      "known_parameters": {},
+      "related_standards": [
+        {
+          "standard_number": "IS 4984 : 2016",
+          "title": "high density polyethylene pipes for potable water supplies",
+          "relationship_type": "REFERENCES",
+          "direction": "OUTGOING",
+          "lifecycle_status": "WITHDRAWN",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Clause 2 References cites IS 4984 for high-density polyethylene raw material specifications and extrusion testing.",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=25232",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        },
+        {
+          "standard_number": "IS 7634 (Part 2) : 2012",
+          "title": "Storage Units - Specification",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Foreword recommends installation, laying, and jointing of polyethylene sewer pipes per IS 7634 Part 2.",
+          "source_url": "https://standardsbis.bsbedge.com/search_redirect.aspx?id=27283",
+          "review_note": "Laying / civil installation code of practice associated with IS 7634 (Part 2) : 2012. Review for installation compliance."
+        }
+      ],
+      "decision": "REVIEW_REQUIRED",
+      "risk_level": "CRITICAL",
+      "risk_reasons": [
+        "Potentially missing engineering parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR"
+      ],
+      "human_review_required": false,
+      "confidence": "Medium",
+      "review_reason": "Authoritative active standard IS 14333 : 2022 verified against scope with Medium confidence.",
+      "candidate_standard": "IS 14333 : 2022",
+      "evidence_standard": "IS 14333 : 2022",
+      "why_it_matches": "Catalogue Record Title: Polyethylene Pipes for Sewerage and Industrial Chemicals and Effluent - Specification (First Rev...",
+      "dependencies": [
+        {
+          "standard_number": "IS 4984 : 2016",
+          "title": "high density polyethylene pipes for potable water supplies",
+          "relationship_type": "REFERENCES",
+          "dependency_status": "NORMATIVE_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "WITHDRAWN",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "Clause 2 References cites IS 4984 for high-density polyethylene raw material specifications and extrusion testing.",
+          "source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "confidence": 1.0,
+          "why_related": "IS 4984 : 2016 (high density polyethylene pipes for potable water supplies) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 14333 : 2022. Evidence: Clause 2 References cites IS 4984 for high-density polyethylene raw material specifications and extrusion testing. [Provenance: VERIFIED].",
+          "functional_category": "normative",
+          "is_applicable_to_requirement": true,
+          "applicability_decision": "APPLICABLE",
+          "dependency_state": "NORMATIVE_DEPENDENCY",
+          "evidence": "Clause 2 References cites IS 4984 for high-density polyethylene raw material specifications and extrusion testing.",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 4984 : 2016 (high density polyethylene pipes for potable water supplies) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 14333 : 2022. Evidence: Clause 2 References cites IS 4984 for high-density polyethylene raw material specifications and extrusion testing. [Provenance: VERIFIED]."
+        },
+        {
+          "standard_number": "IS 7634 (Part 2) : 2012",
+          "title": "Storage Units - Specification",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "dependency_status": "CODE_OF_PRACTICE",
+          "direction": "OUTGOING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Foreword recommends installation, laying, and jointing of polyethylene sewer pipes per IS 7634 Part 2.",
+          "source": "CURATED_STANDARDS_DOC",
+          "confidence": 0.9,
+          "why_related": "IS 7634 (Part 2) : 2012 (Storage Units - Specification) is identified as an evidence-backed code of practice for installation and civil execution associated with IS 14333 : 2022. Evidence: Foreword recommends installation, laying, and jointing of polyethylene sewer pipes per IS 7634 Part 2. [Provenance: CURATED].",
+          "functional_category": "installation",
+          "is_applicable_to_requirement": true,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "CODE_OF_PRACTICE",
+          "evidence": "Foreword recommends installation, laying, and jointing of polyethylene sewer pipes per IS 7634 Part 2.",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 7634 (Part 2) : 2012 (Storage Units - Specification) is identified as an evidence-backed code of practice for installation and civil execution associated with IS 14333 : 2022. Evidence: Foreword recommends installation, laying, and jointing of polyethylene sewer pipes per IS 7634 Part 2. [Provenance: CURATED]."
+        },
+        {
+          "standard_number": "IS 4111 (Part 2) : 1985",
+          "title": "Code of Practice for Ancillary Structures in Sewerage System: Part 2 Flushing Tanks (First Revision)",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'sewerage' in title; Domain keyword match: sewerage; 1 title keyword matches; BM25 match (norm: 0.80, terms: [sewerage]); Semantic similarity: 0.362",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        },
+        {
+          "standard_number": "IS 11972 : 1987",
+          "title": "Code of practice for safety precautions to be taken when entering a sewerage system",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'sewerage' in title; Domain keyword match: sewerage; 1 title keyword matches; BM25 match (norm: 0.87, terms: [sewerage])",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        }
+      ],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 14333 : 2022",
+          "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS certification is NOT identified for IS 14333 : 2022 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "additional_metadata": {
+            "mandate_type": "VOLUNTARY_OR_UNREGULATED"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 14333 : 2022",
+          "legal_basis": "",
+          "source": "e-Gazette of India / DPIIT QCO Registry",
+          "source_url": "e-Gazette of India / DPIIT QCO Registry",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 14333 : 2022. Verify ministry specific notifications.",
+          "additional_metadata": {}
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 14333 : 2022",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS 14333 : 2022",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs",
+          "source_url": "Ministry of Consumer Affairs",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": false,
+          "explanation": "Hallmarking is not applicable to this product category.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "CLEAR",
+      "ambiguity_reason": "Primary applicable standard IS 14333 : 2022 is clearly identifiable and sufficiently supported."
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "Electromechanical Works and Sewerage Pipeline works from Collection Chamber to STP.",
+      "risk_level": "CRITICAL",
+      "decision": "RECOMMEND_WITH_REVIEW",
+      "candidate_standard": "IS 14333 : 2022",
+      "evidence_strength": "STRONG",
+      "primary_reason": "Potentially missing engineering parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR",
+      "priority": 1
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 1,
+      "CURATED": 0,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}

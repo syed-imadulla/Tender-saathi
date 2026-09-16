@@ -1,0 +1,384 @@
+{
+  "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
+  "subtitle": "Standards review aid for procurement specifications",
+  "tender_info": {
+    "tender_id": "TS-E2B9A020",
+    "tender_title": null,
+    "organisation": null,
+    "source_file": "eProcurement System Government of India13.pdf",
+    "date": null,
+    "requirements_analyzed": 1
+  },
+  "publication_readiness": "REVIEW_REQUIRED",
+  "readiness_reasons": [
+    "1 requirement(s) cite or match superseded standard(s).",
+    "1 requirement(s) flagged with HIGH risk.",
+    "1 requirement(s) require technical engineer review."
+  ],
+  "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
+  "executive_summary": {
+    "tender_id": "TS-E2B9A020",
+    "requirements_analyzed": 1,
+    "recommendations_count": 0,
+    "review_required_count": 1,
+    "insufficient_evidence_count": 0,
+    "superseded_count": 1,
+    "withdrawn_count": 0,
+    "active_count": 0,
+    "unknown_lifecycle_count": 0,
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "completeness_distribution": {
+      "KNOWN": 0,
+      "POTENTIALLY_MISSING": 0,
+      "UNKNOWN": 1,
+      "NOT_APPLICABLE": 0
+    },
+    "risk_distribution": {
+      "LOW": 0,
+      "MEDIUM": 0,
+      "HIGH": 1,
+      "CRITICAL": 0
+    },
+    "lifecycle_distribution": {
+      "Active": 0,
+      "Superseded": 1,
+      "Withdrawn": 0,
+      "Unknown": 0
+    },
+    "related_standards_count": 0,
+    "review_queue": [
+      {
+        "requirement_id": "TS-E2B9A020-R001",
+        "requirement_text": "Repair and CC Works, Plaster Repairing, Plumbing Fittings, Painting, Roofing and other allied works in Strom Water Pump Room of Maurice Nagar, University of Delhi",
+        "risk_level": "HIGH",
+        "decision": "RECOMMEND_WITH_REVIEW",
+        "candidate_standard": "IS 17650 (Part 2) : 2021",
+        "evidence_strength": "STRONG",
+        "primary_reason": "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)",
+        "priority": 2
+      }
+    ],
+    "publication_readiness": "REVIEW_REQUIRED",
+    "readiness_reasons": [
+      "1 requirement(s) cite or match superseded standard(s).",
+      "1 requirement(s) flagged with HIGH risk.",
+      "1 requirement(s) require technical engineer review."
+    ],
+    "readiness_note": "Standards review readiness assessment for procurement officers. Does NOT constitute legal compliance certification.",
+    "dependency_count": 6,
+    "normative_reference_count": 0,
+    "allied_standard_count": 0,
+    "test_standard_count": 0,
+    "installation_standard_count": 6,
+    "verified_missing_count": 0,
+    "potentially_missing_count": 0,
+    "related_for_review_count": 0,
+    "standards_coverage": {
+      "direct_standards_identified": 1,
+      "total_dependencies": 6,
+      "normative_references": 0,
+      "testing_dependencies": 0,
+      "installation_dependencies": 6,
+      "allied_standards": 0,
+      "covered_in_tender": 0,
+      "potential_gaps": 0,
+      "verified_gaps": 0,
+      "items_requiring_review": 1
+    },
+    "gap_summary": {
+      "verified_missing_count": 0,
+      "potentially_missing_count": 0,
+      "related_for_review_count": 0
+    },
+    "certification_checks": 1,
+    "qco_checks": 1,
+    "crs_checks": 1,
+    "hallmarking_checks": 1,
+    "regulatory_review_items": 1,
+    "unknown_regulatory_items": 0,
+    "upcoming_qco_items": 0,
+    "mandatory_qco_count": 0,
+    "mandatory_certification_count": 0,
+    "crs_applicable_count": 0,
+    "hallmarking_applicable_count": 0
+  },
+  "requirements": [
+    {
+      "requirement_id": "TS-E2B9A020-R001",
+      "requirement_text": "Repair and CC Works, Plaster Repairing, Plumbing Fittings, Painting, Roofing and other allied works in Strom Water Pump Room of Maurice Nagar, University of Delhi",
+      "category": "product_equipment",
+      "components": [
+        {
+          "text": "Plaster Repairing",
+          "component_type": "material",
+          "domain": "civil",
+          "extracted_attributes": {
+            "category": "cement_plaster",
+            "standard_focus": "IS 1661 / IS 269"
+          }
+        },
+        {
+          "text": "Water Pump",
+          "component_type": "product",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "category": "pump_rotodynamic",
+            "is_process": false
+          }
+        },
+        {
+          "text": "Strom Water Pump Room",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "repair",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "construction",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "plastering",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "plumbing",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "painting",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "roofing",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        }
+      ],
+      "recommended_standard": "IS 17650 (Part 2) : 2021",
+      "recommended_title": "Water efficient plumbing products - Requirements: Part 2 Sanitary fittings",
+      "relevance_score": 0.862,
+      "lifecycle_status": "UNKNOWN",
+      "successor_standard": null,
+      "superseded_citation": null,
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "Catalogue Record Title: Asbestos Cement Building types and Pipe Fittings, Gutters and Gutter Fittings and Roofing Fittings -  Part 3 : Roofing Fittings",
+      "evidence_source": "BSB Edge Portal",
+      "why_this": [
+        "Standard title directly matches requirement component(s): 'roofing'.",
+        "Authoritative scope explicitly covers application: \"Catalogue Record Title: Asbestos Cement Building types and Pipe Fittings, Gutters and Gutter Fittings and Roofing Fittin...\"",
+        "Standard is currently active in the BIS repository with verified currency.",
+        "Provenance established via BSB Edge Portal (VERIFIED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
+      ],
+      "why_not": [
+        "Alternative standard IS 1626 (Part 1) : 1994 scored lower across the 5-dimension critic evaluation."
+      ],
+      "completeness_label": "UNKNOWN",
+      "potentially_missing_parameters": [
+        "Pump Mechanism / Type",
+        "Discharge / Flow Rate (Q)",
+        "Total Dynamic Head (H)",
+        "Motor Coupling / Prime Mover",
+        "Process Application"
+      ],
+      "known_parameters": {},
+      "related_standards": [],
+      "decision": "REVIEW_REQUIRED",
+      "risk_level": "HIGH",
+      "risk_reasons": [
+        "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)"
+      ],
+      "human_review_required": false,
+      "confidence": "Medium",
+      "review_reason": "Authoritative active standard IS 17650 (Part 2) : 2021 verified against scope with Medium confidence.",
+      "candidate_standard": "IS 17650 (Part 2) : 2021",
+      "evidence_standard": "IS 17650 (Part 2) : 2021",
+      "why_it_matches": "Catalogue Record Title: Asbestos Cement Building types and Pipe Fittings, Gutters and Gutter Fittings and Roofing Fittin...",
+      "dependencies": [
+        {
+          "standard_number": "IS 12183 (Part 1) : 1987",
+          "title": "Code of Practice for Plumbing in Multi-storeyed Buildings: Part 1 Water Supply",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'plumbing' in title; 2 title keyword matches; BM25 match (norm: 0.46, terms: [plumbing, water]); Semantic similarity: 0.437",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        },
+        {
+          "standard_number": "IS 1661 : 1972",
+          "title": "Code of practice for application of cement and cement - Lime plaster finishes (First Revision)",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Domain keyword match: plaster; 1 title keyword matches; BM25 match (norm: 0.96, terms: [plaster, cement, finishes, application]); Semantic similarity: 0.426",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        },
+        {
+          "standard_number": "IS 2395 (Part 2) : 1994",
+          "title": "Code of practice for painting concrete, masonry and plaster surfaces: Part 2 Schedules (First Revision)",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'painting' in title; Domain keyword match: plaster; 2 title keyword matches; BM25 match (norm: 0.51, terms: [plaster, painting])",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        },
+        {
+          "standard_number": "IS 2395 (Part 1) : 1994",
+          "title": "Painting of Concrete, Masonry and Plaster Surfaces - Code of Practice - Part 1 : Operations and Workmanship",
+          "relationship_type": "CODE_OF_PRACTICE",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'painting' in title; Domain keyword match: plaster; 2 title keyword matches; BM25 match (norm: 0.52, terms: [plaster, painting])",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        },
+        {
+          "standard_number": "IS 12053 : 1987",
+          "title": "Code of Practice for the Preparation and Application of Putty for Repairing Plywood and Other Wood Based Panels",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Component 'repair' in title; 2 title keyword matches; BM25 match (norm: 0.54, terms: [repairing, application]); Component BM25 matched 'Plaster Repairing'",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        },
+        {
+          "standard_number": "IS 2394 : 1984",
+          "title": "Code of Practice For Application of Lime Plaster Finish (First Revision)",
+          "relationship_type": "INSTALLATION_STANDARD",
+          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "functional_category": "installation",
+          "evidence": "Deterministic: Domain keyword match: plaster; 1 title keyword matches; BM25 match (norm: 0.45, terms: [plaster, application]); Semantic similarity: 0.382",
+          "is_satisfied": false,
+          "context_applicability": "APPLICABLE",
+          "provenance": "VERIFIED"
+        }
+      ],
+      "regulatory": {
+        "certification": {
+          "category": "BIS_PRODUCT_CERTIFICATION",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 17650 (Part 2) : 2021",
+          "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
+          "source": "https://www.manakonline.in",
+          "source_url": "https://www.manakonline.in",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "Mandatory BIS certification is NOT identified for IS 17650 (Part 2) : 2021 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "additional_metadata": {
+            "mandate_type": "VOLUNTARY_OR_UNREGULATED"
+          }
+        },
+        "qco": {
+          "category": "QCO",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 17650 (Part 2) : 2021",
+          "legal_basis": "",
+          "source": "e-Gazette of India / DPIIT QCO Registry",
+          "source_url": "e-Gazette of India / DPIIT QCO Registry",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.9,
+          "human_review_required": true,
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 17650 (Part 2) : 2021. Verify ministry specific notifications.",
+          "additional_metadata": {}
+        },
+        "crs": {
+          "category": "CRS",
+          "status": "NOT_IDENTIFIED",
+          "matched_product": "",
+          "standard_number": "IS 17650 (Part 2) : 2021",
+          "legal_basis": "",
+          "source": "MeitY / BIS Compulsory Registration Portal",
+          "source_url": "MeitY / BIS Compulsory Registration Portal",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 0.95,
+          "human_review_required": false,
+          "explanation": "Product / standard not identified under the Compulsory Registration Scheme (CRS).",
+          "additional_metadata": {}
+        },
+        "hallmarking": {
+          "category": "HALLMARKING",
+          "status": "NOT_APPLICABLE",
+          "matched_product": "",
+          "standard_number": "IS 17650 (Part 2) : 2021",
+          "legal_basis": "BIS (Hallmarking) Regulations, 2018",
+          "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
+          "effective_date": null,
+          "provenance": "OFFICIAL_PRIMARY",
+          "confidence": 1.0,
+          "human_review_required": false,
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (fittings, pump); not applicable.",
+          "additional_metadata": {}
+        }
+      },
+      "ambiguity_state": "CLEAR",
+      "ambiguity_reason": "Primary applicable standard IS 1626 (Part 3) : 1994 is clearly identifiable and sufficiently supported."
+    }
+  ],
+  "review_queue": [
+    {
+      "requirement_id": "TS-E2B9A020-R001",
+      "requirement_text": "Repair and CC Works, Plaster Repairing, Plumbing Fittings, Painting, Roofing and other allied works in Strom Water Pump Room of Maurice Nagar, University of Delhi",
+      "risk_level": "HIGH",
+      "decision": "RECOMMEND_WITH_REVIEW",
+      "candidate_standard": "IS 17650 (Part 2) : 2021",
+      "evidence_strength": "STRONG",
+      "primary_reason": "Potentially missing engineering parameters: Pump Mechanism / Type, Discharge / Flow Rate (Q), Total Dynamic Head (H)",
+      "priority": 2
+    }
+  ],
+  "evidence_summary": {
+    "evidence_distribution": {
+      "STRONG": 1,
+      "MODERATE": 0,
+      "WEAK": 0,
+      "NONE": 0
+    },
+    "provenance_distribution": {
+      "VERIFIED": 1,
+      "CURATED": 0,
+      "INFERRED": 0,
+      "UNKNOWN": 0
+    },
+    "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
+  },
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+}
