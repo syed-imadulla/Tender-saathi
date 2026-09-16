@@ -14,7 +14,7 @@
  *   - Bump CACHE_NAME when deploying breaking asset changes to force cache refresh.
  */
 
-const CACHE_NAME = 'tendersaathi-v1';
+const CACHE_NAME = 'tendersaathi-v2';
 
 // Assets to precache on install (app shell)
 const PRECACHE_URLS = [
@@ -62,11 +62,38 @@ self.addEventListener('activate', (event) => {
 // ---------------------------------------------------------------------------
 self.addEventListener('fetch', (event) => {
   const { request } = event;
+
+  // Ignore non-HTTP/HTTPS schemes (e.g. chrome-extension://, moz-extension://, data:, blob:)
+  if (!request.url.startsWith('http://') && !request.url.startsWith('https://')) {
+    return;
+  }
+
   const url = new URL(request.url);
+
+  // Ignore Vite development endpoints, HMR websocket tokens, and hot-updates
+  if (
+    url.pathname.startsWith('/@') ||
+    url.searchParams.has('token') ||
+    url.searchParams.has('t') ||
+    url.pathname.includes('/node_modules/') ||
+    url.pathname.includes('hot-update')
+  ) {
+    return;
+  }
+
+  // Skip WebSocket upgrade requests
+  if (request.headers.get('Upgrade') === 'websocket') {
+    return;
+  }
 
   // API requests: always go to network; return structured offline error if down
   if (url.pathname.startsWith('/api/')) {
     event.respondWith(networkOnlyWithOfflineError(request));
+    return;
+  }
+
+  // Only handle GET requests for caching
+  if (request.method !== 'GET') {
     return;
   }
 
@@ -110,8 +137,8 @@ async function networkOnlyWithOfflineError(request) {
  * Falls back to network and caches new responses.
  */
 async function cacheFirstWithNetworkFallback(request) {
-  // Only cache GET requests
-  if (request.method !== 'GET') {
+  // Only cache GET requests with HTTP/HTTPS
+  if (request.method !== 'GET' || (!request.url.startsWith('http://') && !request.url.startsWith('https://'))) {
     return fetch(request);
   }
 
@@ -124,8 +151,12 @@ async function cacheFirstWithNetworkFallback(request) {
     const response = await fetch(request);
     // Cache successful opaque or ok responses
     if (response && (response.ok || response.type === 'opaque')) {
-      const cache = await caches.open(CACHE_NAME);
-      cache.put(request, response.clone());
+      try {
+        const cache = await caches.open(CACHE_NAME);
+        await cache.put(request, response.clone());
+      } catch (cacheErr) {
+        console.warn('[SW] Caching skipped:', cacheErr);
+      }
     }
     return response;
   } catch {

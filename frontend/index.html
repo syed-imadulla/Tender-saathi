@@ -17,7 +17,8 @@
     <meta name="theme-color" content="#1a1f36" />
     <meta name="background-color" content="#f8f8f6" />
 
-    <!-- Apple / iOS PWA -->
+    <!-- Apple / Mobile PWA -->
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="TenderSaathi" />
@@ -35,16 +36,32 @@
     <!-- Service Worker Registration -->
     <script>
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-          navigator.serviceWorker.register('/sw.js').then(
-            function (reg) {
-              console.log('[TenderSaathi] Service worker registered:', reg.scope);
-            },
-            function (err) {
-              console.warn('[TenderSaathi] Service worker registration failed:', err);
+        // In local development, unregister service workers to avoid stale HMR / caching issues
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+          navigator.serviceWorker.getRegistrations().then(function (registrations) {
+            for (var reg of registrations) {
+              reg.unregister();
             }
-          );
-        });
+          });
+          if ('caches' in window) {
+            caches.keys().then(function (names) {
+              for (var name of names) {
+                caches.delete(name);
+              }
+            });
+          }
+        } else {
+          window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/sw.js').then(
+              function (reg) {
+                console.log('[TenderSaathi] Service worker registered:', reg.scope);
+              },
+              function (err) {
+                console.warn('[TenderSaathi] Service worker registration failed:', err);
+              }
+            );
+          });
+        }
       }
     </script>
   </head>
