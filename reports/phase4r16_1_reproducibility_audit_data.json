@@ -1,0 +1,1982 @@
+{
+  "metadata": {
+    "phase": "4R16.1",
+    "timestamp": "2026-09-15 10:31:50",
+    "git_commit": "f300d850d2a643cbe8eb2ccd91d0df1712fce3b7",
+    "git_branch": "bis",
+    "python_version": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+    "evaluation_entry_point": "src.recommend.StandardsRecommender.recommend_for_requirement",
+    "dataset": "dataset/ground_truth/ground_truth.csv",
+    "total_evaluable_queries": 19
+  },
+  "artifacts_verified": {
+    "ground_truth_csv": {
+      "path": "dataset/ground_truth/ground_truth.csv",
+      "sha256": "cfcbca27a729bd0619886be9128cfba272b912bd21115604b45af7eb59fa404b",
+      "size_bytes": 17990
+    },
+    "current_snapshot_json": {
+      "path": "data/catalogue/current_snapshot.json",
+      "sha256": "c138c87f7c8deec32afc94538f5dd4058ef8b1b511cdfee689e14eb76f2618cd",
+      "size_bytes": 1054
+    },
+    "active_snapshot_db": {
+      "path": "data/catalogue/snapshots/snapshot_20260914_104415/bis_catalogue.db",
+      "sha256": "c61f4718dc60f5c24880aa5b66500a3112b6602442b329bfb4c0454a3800de8a",
+      "size_bytes": 40382464
+    },
+    "active_snapshot_bm25": {
+      "path": "data/catalogue/snapshots/snapshot_20260914_104415/bis_bm25_index.json",
+      "sha256": "dcd107bbdb72df9546836bef12641d7b18416542d62790c789540a85e83420cb",
+      "size_bytes": 35400927
+    },
+    "active_snapshot_semantic_embeddings": {
+      "path": "data/catalogue/snapshots/snapshot_20260914_104415/bis_semantic_embeddings.npy",
+      "sha256": "f099285ced61c7a688171be0395bda52118936a668c85a7fcdaf3f233a893508",
+      "size_bytes": 54073472
+    },
+    "active_snapshot_semantic_doc_ids": {
+      "path": "data/catalogue/snapshots/snapshot_20260914_104415/bis_semantic_doc_ids.json",
+      "sha256": "88c03b4737a39b0217f19093b4550e24c67983546c24d5d2f9bfb21f00daed95",
+      "size_bytes": 699210
+    },
+    "root_catalogue_db": {
+      "path": "data/catalogue/bis_catalogue.db",
+      "sha256": "bd04dab6f7d5cd4ea58fa69c917b1fa5d375f721ee4ec03691dfc7eb1b0850b3",
+      "size_bytes": 41009152
+    }
+  },
+  "runtime_configuration": {
+    "candidate_pool_size": 15,
+    "retrieval_mode": "hybrid",
+    "fusion_strategy": "rrf",
+    "rrf_k": 60,
+    "bm25_stage_k": 50,
+    "semantic_stage_k": 50,
+    "deterministic_stage_k": 50,
+    "llm_enabled": false,
+    "ambiguity_engine_active": true,
+    "applicability_gate_active": true,
+    "fix1_terminology_active": true,
+    "fix2a_role_prioritization_active": true,
+    "successor_injection_active": true
+  },
+  "five_run_determinism_test": {
+    "total_runs": 5,
+    "is_stable": false,
+    "divergent_queries": [
+      "T001-R003_ranking"
+    ],
+    "run_accuracies": [
+      "9/19",
+      "9/19",
+      "9/19",
+      "9/19",
+      "9/19"
+    ]
+  },
+  "authoritative_baseline_metrics": {
+    "total_queries": 19,
+    "correct_count": 9,
+    "accuracy_pct": 47.37,
+    "abstained_count": 5,
+    "abstention_pct": 26.32,
+    "wrong_count": 5,
+    "wrong_pct": 26.32
+  },
+  "discrepancy_analysis_target_queries": {
+    "T001-R002": {
+      "query_id": "T001-R002",
+      "requirement_text": "replacement of damaged pipelines by Hubless",
+      "expected_standard": "IS 15905 : 2011; IS 1239 (Part 1) : 2004",
+      "authoritative_winner": "IS 15905 : 2024",
+      "authoritative_outcome": "CORRECT",
+      "scratch_winner": "IS 15947 (Part 2) : 2012",
+      "scratch_outcome": "WRONG",
+      "first_divergence_stage": "Stage 2.5 (Successor Injection / Promotion)",
+      "root_cause_explanation": "In authoritative production, Step 2.5 identifies IS 15905:2024 as the active successor of withdrawn IS 15905:2011 (rank 1), promoting it to score 0.8544 and placing it at the top of the pool. The scratch script omitted Step 2.5, leaving IS 15905:2011 at rank 1 with is_inactive=True (lifecycle_rank=1) and IS 15905:2024 at rank 8. Stage 1 demoted IS 15905:2011, and IS 15947 (Part 2):2012 was selected."
+    },
+    "T009-R001": {
+      "query_id": "T009-R001",
+      "requirement_text": "Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD",
+      "expected_standard": "SP 30 : 2023; IS 732 : 2019",
+      "authoritative_winner": "IS 4051 : 2025",
+      "authoritative_outcome": "WRONG",
+      "scratch_winner": "IS 12457 : 1988",
+      "scratch_outcome": "WRONG",
+      "first_divergence_stage": "Stage 2.5 (Successor Injection / Promotion) & Tie-Breaking",
+      "root_cause_explanation": "In authoritative production, Step 2.5 identifies IS 4051:2025 as the successor of IS 4051:1967, promoting its score from 0.5732 to 0.6216 and re-sorting the pool. In Stage 1/Stage 2 arbitration, IS 4051:2025 (role=INSTALLATION) outranks IS 12457:1988 (role=CODE_OF_PRACTICE) because of promoted priority. The scratch script omitted Step 2.5 and raw search order placed IS 12457 at RRF rank 1."
+    },
+    "T014-R002": {
+      "query_id": "T014-R002",
+      "requirement_text": "commissioning of three numbers of Process Water Pump motors 3.3 kV",
+      "expected_standard": "IS/IEC 60034-1 : 2017; IS 5120 : 1977",
+      "authoritative_winner": "IS 14578 : 2025",
+      "authoritative_outcome": "WRONG",
+      "scratch_winner": "IS 8789 : 2021",
+      "scratch_outcome": "WRONG",
+      "first_divergence_stage": "Stage 2.5 (Successor Injection / Promotion)",
+      "root_cause_explanation": "In authoritative production, Step 2.5 identifies IS 14578:2025 as the successor of IS 14578:1999, promoting it above IS 8789:2021. The scratch script omitted Step 2.5, causing IS 8789:2021 to win."
+    }
+  },
+  "scratch_harness_audit": {
+    "file": "scratch/phase4r16_lifecycle_domain_investigation.py",
+    "duplicated_pipeline_logic": true,
+    "omitted_step_2_5_successor_injection": true,
+    "used_raw_top_100_slice_instead_of_pool": true,
+    "database_connection_divergence": "Connected directly to unpromoted data/catalogue/bis_catalogue.db instead of snapshot DB",
+    "re_implemented_stage1_stage2_sorting": true
+  },
+  "all_19_query_traces": {
+    "T001-R002": {
+      "requirement_id": "T001-R002",
+      "raw_text": "replacement of damaged pipelines by Hubless",
+      "working_text": "replacement of damaged pipelines by Hubless",
+      "expanded_query": "replacement of damaged pipelines by Hubless",
+      "components": [
+        "replacement",
+        "pipelines"
+      ],
+      "expected_standard": "IS 15905 : 2011; IS 1239 (Part 1) : 2004",
+      "final_recommendation": "IS 15905 : 2024",
+      "top_candidate": "IS 15905 : 2024",
+      "human_review_required": false,
+      "is_correct": true,
+      "is_abstained": false,
+      "status": "CORRECT",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 15905 : 2011",
+          "relevance_score": 0.8444,
+          "bm25_score": 0.9362,
+          "semantic_score": 0.341
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 10990 (Part 2) : 1992",
+          "relevance_score": 0.8366,
+          "bm25_score": 0.6667,
+          "semantic_score": 0.4111
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 8262 (Part 1) : 1976",
+          "relevance_score": 0.8244,
+          "bm25_score": 0.6953,
+          "semantic_score": 0.4338
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 15947 (Part 2) : 2012",
+          "relevance_score": 0.8075,
+          "bm25_score": 0.7106,
+          "semantic_score": 0.404
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 10990 (Part 2) : 2023",
+          "relevance_score": 0.7958,
+          "bm25_score": 0.6532,
+          "semantic_score": 0.3807
+        }
+      ],
+      "production_recommendations_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 15905 : 2024",
+          "relevance_score": 0.854,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 10990 (Part 3) : 2023",
+          "relevance_score": 0.847,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 15947 (Part 2) : 2012",
+          "relevance_score": 0.807,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 10990 (Part 2) : 2023",
+          "relevance_score": 0.796,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 6753 : 1972",
+          "relevance_score": 0.786,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        }
+      ]
+    },
+    "T001-R003": {
+      "requirement_id": "T001-R003",
+      "raw_text": "wall tiles",
+      "working_text": "wall tiles",
+      "expanded_query": "wall tiles (ceramic pressed)",
+      "components": [
+        "wall tiles"
+      ],
+      "expected_standard": "IS 15622 : 2017",
+      "final_recommendation": null,
+      "top_candidate": "IS 4112 : 1967",
+      "human_review_required": true,
+      "is_correct": false,
+      "is_abstained": true,
+      "status": "ABSTAINED",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 4112 : 1967",
+          "relevance_score": 0.927,
+          "bm25_score": 0.8358,
+          "semantic_score": 0.5597
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 3463 : 1966",
+          "relevance_score": 0.9062,
+          "bm25_score": 0.9,
+          "semantic_score": 0.5429
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 777 : 1988",
+          "relevance_score": 0.8588,
+          "bm25_score": 0.8775,
+          "semantic_score": 0.4838
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 13755 : 1993",
+          "relevance_score": 0.6184,
+          "bm25_score": 0.9773,
+          "semantic_score": 0.5535
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 13712 : 2019",
+          "relevance_score": 0.6119,
+          "bm25_score": 0.5836,
+          "semantic_score": 0.7114
+        }
+      ],
+      "production_recommendations_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 4112 : 1967",
+          "relevance_score": 0.927,
+          "confidence": "High",
+          "role": "INSTALLATION",
+          "status": "WITHDRAWN",
+          "version_role": "REPLACED_OR_SUPERSEDED"
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 3463 : 1966",
+          "relevance_score": 0.906,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "WITHDRAWN",
+          "version_role": "REPLACED_OR_SUPERSEDED"
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 777 : 1988",
+          "relevance_score": 0.859,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "WITHDRAWN",
+          "version_role": "REPLACED_OR_SUPERSEDED"
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 15622 : 2017",
+          "relevance_score": 0.613,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 13712 : 2019",
+          "relevance_score": 0.612,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        }
+      ]
+    },
+    "T001-R004": {
+      "requirement_id": "T001-R004",
+      "raw_text": "upgradation of all sanitary fittings at AGL Department in Main School Building at IIT ISM Dhanbad",
+      "working_text": "upgradation of all sanitary fittings at AGL Department in Main School Building at IIT ISM Dhanbad",
+      "expanded_query": "upgradation of all sanitary fittings at AGL Department in Main School Building at IIT ISM Dhanbad (vitreous china appliances)",
+      "components": [
+        "upgradation",
+        "sanitary fittings"
+      ],
+      "expected_standard": "IS 2556 (Part 1 to 17); IS 781 : 1984; IS 774 : 2021",
+      "final_recommendation": "IS 2556 (Part 9) : 2004",
+      "top_candidate": "IS 2556 (Part 9) : 2004",
+      "human_review_required": false,
+      "is_correct": true,
+      "is_abstained": false,
+      "status": "CORRECT",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 2556 (Part 1) : 2021",
+          "relevance_score": 0.8945,
+          "bm25_score": 0.8805,
+          "semantic_score": 0.538
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 2556 (Part 1) : 1994",
+          "relevance_score": 0.8821,
+          "bm25_score": 0.9603,
+          "semantic_score": 0.4908
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 17650 (Part 2) : 2021",
+          "relevance_score": 0.851,
+          "bm25_score": 0.9,
+          "semantic_score": 0.469
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 2556 (Part 6) : 2021",
+          "relevance_score": 0.8399,
+          "bm25_score": 0.8282,
+          "semantic_score": 0.4797
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 2064 : 1993",
+          "relevance_score": 0.8201,
+          "bm25_score": 0.4418,
+          "semantic_score": 0.4506
+        }
+      ],
+      "production_recommendations_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 2556 (Part 9) : 2004",
+          "relevance_score": 0.904,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 2556 (Part 1) : 2021",
+          "relevance_score": 0.894,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 17650 (Part 2) : 2021",
+          "relevance_score": 0.851,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 2556 (Part 6) : 2021",
+          "relevance_score": 0.84,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 2064 : 1993",
+          "relevance_score": 0.82,
+          "confidence": "High",
+          "role": "INSTALLATION",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        }
+      ]
+    },
+    "T002-R003": {
+      "requirement_id": "T002-R003",
+      "raw_text": "Flange Joint Maintenance",
+      "working_text": "Flange Joint Maintenance",
+      "expanded_query": "Flange Joint Maintenance (steel pipe flanges)",
+      "components": [
+        "Flange",
+        "Maintenance"
+      ],
+      "expected_standard": "IS 6392 : 1971; IS 2712 : 2020",
+      "final_recommendation": "IS 13257 : 1992",
+      "top_candidate": "IS 13257 : 1992",
+      "human_review_required": false,
+      "is_correct": false,
+      "is_abstained": false,
+      "status": "WRONG",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 13257 : 1992",
+          "relevance_score": 0.9477,
+          "bm25_score": 1.0,
+          "semantic_score": 0.5326
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 6392 : 1971",
+          "relevance_score": 0.7987,
+          "bm25_score": 0.9472,
+          "semantic_score": 0.653
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 10864 : 2013",
+          "relevance_score": 0.7864,
+          "bm25_score": 0.7153,
+          "semantic_score": 0.4927
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 10864 : 2024",
+          "relevance_score": 0.7798,
+          "bm25_score": 0.7153,
+          "semantic_score": 0.4722
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 3516 : 1966",
+          "relevance_score": 0.7139,
+          "bm25_score": 0.6517,
+          "semantic_score": 0.5699
+        }
+      ],
+      "production_recommendations_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 13257 : 1992",
+          "relevance_score": 0.948,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 6392 : 2020",
+          "relevance_score": 0.809,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 10864 : 2024",
+          "relevance_score": 0.796,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 3516 : 1966",
+          "relevance_score": 0.714,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 6392 : 1971",
+          "relevance_score": 0.799,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "WITHDRAWN",
+          "version_role": "REPLACED_OR_SUPERSEDED"
+        }
+      ]
+    },
+    "T003-R001": {
+      "requirement_id": "T003-R001",
+      "raw_text": "Replacement / repair of distribution boards and defective lights at various locations in main sports stadium",
+      "working_text": "Replacement / repair of distribution boards and defective lights at various locations in main sports stadium",
+      "expanded_query": "Replacement / repair of distribution boards and defective lights at various locations in main sports stadium (low voltage switchgear controlgear assemblies intended to be operated by ordinary persons)",
+      "components": [
+        "Replacement",
+        "repair",
+        "defective lights",
+        "sports stadium"
+      ],
+      "expected_standard": "IS/IEC 61439-3 : 2012; IS 10322 (Part 5 / Sec 5) : 2013",
+      "final_recommendation": "IS/IEC 61439 (Part 3) : 2012",
+      "top_candidate": "IS/IEC 61439 (Part 3) : 2012",
+      "human_review_required": false,
+      "is_correct": true,
+      "is_abstained": false,
+      "status": "CORRECT",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS/IEC 61439 (Part 3) : 2012",
+          "relevance_score": 0.651,
+          "bm25_score": 1.0,
+          "semantic_score": 0.4675
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS/IEC 61439 (Part 3) : 2024",
+          "relevance_score": 0.5821,
+          "bm25_score": 0.9637,
+          "semantic_score": 0.4369
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS/IEC 61439 (Part 5) : 2014",
+          "relevance_score": 0.6561,
+          "bm25_score": 0.5568,
+          "semantic_score": 0.4864
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS/IEC 61439 (Part 2) : 2020",
+          "relevance_score": 0.6075,
+          "bm25_score": 0.5187,
+          "semantic_score": 0.4601
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS/IEC 61439 (Part 1) : 2011",
+          "relevance_score": 0.5982,
+          "bm25_score": 0.4632,
+          "semantic_score": 0.463
+        }
+      ],
+      "production_recommendations_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS/IEC 61439 (Part 3) : 2012",
+          "relevance_score": 0.651,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS/IEC 61439 (Part 3) : 2024",
+          "relevance_score": 0.582,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 18284 : 2023",
+          "relevance_score": 0.598,
+          "confidence": "Medium",
+          "role": "CODE_OF_PRACTICE",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS/IEC 61439 (Part 5) : 2023",
+          "relevance_score": 0.546,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS/IEC 61439 (Part 5) : 2014",
+          "relevance_score": 0.656,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "WITHDRAWN",
+          "version_role": "REPLACED_OR_SUPERSEDED"
+        }
+      ]
+    },
+    "T004-R002": {
+      "requirement_id": "T004-R002",
+      "raw_text": "power cables from outside of electrical room to AMF room",
+      "working_text": "power cables from outside of electrical room to AMF room",
+      "expanded_query": "power cables from outside of electrical room to AMF room",
+      "components": [
+        "power cables"
+      ],
+      "expected_standard": "IS 7098 (Part 1) : 1988; IS 1255 : 1983",
+      "final_recommendation": "IS 1255 : 1983",
+      "top_candidate": "IS 1255 : 1983",
+      "human_review_required": false,
+      "is_correct": true,
+      "is_abstained": false,
+      "status": "CORRECT",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 1255 : 1983",
+          "relevance_score": 0.6792,
+          "bm25_score": 0.9,
+          "semantic_score": 0.3311
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 12909 : 1990",
+          "relevance_score": 0.6042,
+          "bm25_score": 0.4803,
+          "semantic_score": 0.2994
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 302 (Part 2) (Sec 30) : 2007",
+          "relevance_score": 0.5658,
+          "bm25_score": 0.9058,
+          "semantic_score": 0.0
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 19544 (Part 1) : 2026",
+          "relevance_score": 0.4972,
+          "bm25_score": 0.7937,
+          "semantic_score": 0.0
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 7152 : 2021",
+          "relevance_score": 0.4804,
+          "bm25_score": 0.9524,
+          "semantic_score": 0.0
+        }
+      ],
+      "production_recommendations_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 1255 : 1983",
+          "relevance_score": 0.679,
+          "confidence": "Medium",
+          "role": "INSTALLATION",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 12909 : 1990",
+          "relevance_score": 0.604,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 302 (Part 2) (Sec 30) : 2007",
+          "relevance_score": 0.566,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 19544 (Part 1) : 2026",
+          "relevance_score": 0.497,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 7152 : 2021",
+          "relevance_score": 0.48,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        }
+      ]
+    },
+    "T004-R005": {
+      "requirement_id": "T004-R005",
+      "raw_text": "Dismantling,Shifting and reinstallation of feeder pillar, power",
+      "working_text": "Dismantling,Shifting and reinstallation of feeder pillar, power",
+      "expanded_query": "Dismantling,Shifting and reinstallation of feeder pillar, power (distribution pillars voltages not exceeding 1000 V AC outdoor low voltage specification)",
+      "components": [
+        "Dismantling",
+        "Shifting",
+        "reinstallation",
+        "feeder pillar"
+      ],
+      "expected_standard": "IS 5039 : 1983; IS/IEC 61439-5 : 2014",
+      "final_recommendation": null,
+      "top_candidate": "IS 5039 : 1983",
+      "human_review_required": true,
+      "is_correct": false,
+      "is_abstained": true,
+      "status": "ABSTAINED",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 5039 : 1983",
+          "relevance_score": 0.8951,
+          "bm25_score": 1.0,
+          "semantic_score": 0.6022
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 2675 : 1983",
+          "relevance_score": 0.636,
+          "bm25_score": 0.7855,
+          "semantic_score": 0.4239
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 2959 : 1985",
+          "relevance_score": 0.6305,
+          "bm25_score": 0.6829,
+          "semantic_score": 0.4309
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 16463 (Part 12) : 2017",
+          "relevance_score": 0.544,
+          "bm25_score": 0.4496,
+          "semantic_score": 0.4195
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 9046 : 1978",
+          "relevance_score": 0.5149,
+          "bm25_score": 0.4639,
+          "semantic_score": 0.39
+        }
+      ],
+      "production_recommendations_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 5039 : 1983",
+          "relevance_score": 0.895,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "WITHDRAWN",
+          "version_role": "REPLACED_OR_SUPERSEDED"
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 19761 : 2026",
+          "relevance_score": 0.486,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 16636 : 2017",
+          "relevance_score": 0.456,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 17220 : 2019",
+          "relevance_score": 0.424,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 12960 : 1990",
+          "relevance_score": 0.533,
+          "confidence": "Medium",
+          "role": "TEST_METHOD",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        }
+      ]
+    },
+    "T005-R001": {
+      "requirement_id": "T005-R001",
+      "raw_text": "Cable connection of DG Set in Newly constructed building of the Dept. of Molecular , Human Genetics",
+      "working_text": "Cable connection of DG Set in Newly constructed building of the Dept. of Molecular , Human Genetics",
+      "expanded_query": "Cable connection of DG Set in Newly constructed building of the Dept. of Molecular , Human Genetics (diesel generator generating crosslinked polyethylene insulated thermoplastic sheathed cables code practice installation maintenance power)",
+      "components": [
+        "Cable",
+        "DG Set"
+      ],
+      "expected_standard": "IS 3043 : 2018; IS 7098 (Part 1) : 1988; IS 1293 : 2019",
+      "final_recommendation": null,
+      "top_candidate": "IS 7098 (Part 2) : 2011",
+      "human_review_required": true,
+      "is_correct": false,
+      "is_abstained": true,
+      "status": "ABSTAINED",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 7098 (Part 1) : 2025",
+          "relevance_score": 0.6559,
+          "bm25_score": 0.8917,
+          "semantic_score": 0.5998
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 7098 (Part 2) : 2011",
+          "relevance_score": 0.6405,
+          "bm25_score": 0.859,
+          "semantic_score": 0.5719
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 7098 (Part 3) : 1993",
+          "relevance_score": 0.6324,
+          "bm25_score": 0.681,
+          "semantic_score": 0.6003
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 3961 (Part 7) : 2017",
+          "relevance_score": 0.6238,
+          "bm25_score": 1.0,
+          "semantic_score": 0.5337
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 7098 (Part 1) : 1988",
+          "relevance_score": 0.6071,
+          "bm25_score": 0.7442,
+          "semantic_score": 0.5462
+        }
+      ],
+      "production_recommendations_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 7098 (Part 2) : 2011",
+          "relevance_score": 0.64,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 7098 (Part 3) : 1993",
+          "relevance_score": 0.666,
+          "confidence": "Low",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 7098 (Part 1) : 2025",
+          "relevance_score": 0.656,
+          "confidence": "Low",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 3961 (Part 7) : 2017",
+          "relevance_score": 0.624,
+          "confidence": "Low",
+          "role": "CODE_OF_PRACTICE",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 10334 : 2026",
+          "relevance_score": 0.605,
+          "confidence": "Low",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        }
+      ]
+    },
+    "T006-R001": {
+      "requirement_id": "T006-R001",
+      "raw_text": "UPVC Partition Wall Work for Conversion of Seafood Authentication Laboratory into Conventional Microbiology Laboratory",
+      "working_text": "UPVC Partition Wall Work for Conversion of Seafood Authentication Laboratory into Conventional Microbiology Laboratory",
+      "expanded_query": "UPVC Partition Wall Work for Conversion of Seafood Authentication Laboratory into Conventional Microbiology Laboratory (unplasticized polyvinyl chloride)",
+      "components": [
+        "UPVC Partition Wall",
+        "Laboratory"
+      ],
+      "expected_standard": "IS 16088 : 2016",
+      "final_recommendation": "IS 9271 : 2004",
+      "top_candidate": "IS 9271 : 2004",
+      "human_review_required": false,
+      "is_correct": false,
+      "is_abstained": false,
+      "status": "WRONG",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 9271 : 2004",
+          "relevance_score": 0.9361,
+          "bm25_score": 1.0,
+          "semantic_score": 0.4263
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 17113 (Part 4) : 2022",
+          "relevance_score": 0.9104,
+          "bm25_score": 0.4578,
+          "semantic_score": 0.421
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 17113 (Part 3) : 2022",
+          "relevance_score": 0.782,
+          "bm25_score": 0.4236,
+          "semantic_score": 0.3774
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 14735 : 1999",
+          "relevance_score": 0.7755,
+          "bm25_score": 0.7121,
+          "semantic_score": 0.4462
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 17385 : 2020",
+          "relevance_score": 0.6212,
+          "bm25_score": 0.0,
+          "semantic_score": 0.4296
+        }
+      ],
+      "production_recommendations_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 9271 : 2004",
+          "relevance_score": 0.936,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 14735 : 1999",
+          "relevance_score": 0.775,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS/ISO 24998 : 2008",
+          "relevance_score": 0.589,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 10072 : 2024",
+          "relevance_score": 0.542,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 10073 : 2025",
+          "relevance_score": 0.511,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        }
+      ]
+    },
+    "T007-R003": {
+      "requirement_id": "T007-R003",
+      "raw_text": "Low-Oil Food Outlet on BOT",
+      "working_text": "Low-Oil Food Outlet on BOT",
+      "expanded_query": "Low-Oil Food Outlet on BOT (hygiene safety)",
+      "components": [
+        "Food Outlet"
+      ],
+      "expected_standard": "IS 2491 : 2013; IS 15000 : 2013",
+      "final_recommendation": null,
+      "top_candidate": "IS 2491 : 2024",
+      "human_review_required": true,
+      "is_correct": false,
+      "is_abstained": true,
+      "status": "ABSTAINED",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 2491 : 2013",
+          "relevance_score": 0.627,
+          "bm25_score": 0.7478,
+          "semantic_score": 0.4235
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 2491 : 2024",
+          "relevance_score": 0.6124,
+          "bm25_score": 0.7478,
+          "semantic_score": 0.3842
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 14366 : 1996",
+          "relevance_score": 0.6027,
+          "bm25_score": 0.9773,
+          "semantic_score": 0.3489
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 10563 : 1983",
+          "relevance_score": 0.5991,
+          "bm25_score": 0.5901,
+          "semantic_score": 0.0
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 14367 : 1996",
+          "relevance_score": 0.5903,
+          "bm25_score": 0.9773,
+          "semantic_score": 0.3461
+        }
+      ],
+      "production_recommendations_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 2491 : 2024",
+          "relevance_score": 0.637,
+          "confidence": "Low",
+          "role": "CODE_OF_PRACTICE",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 10563 : 2026",
+          "relevance_score": 0.609,
+          "confidence": "Low",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 14366 : 1996",
+          "relevance_score": 0.603,
+          "confidence": "Low",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 14367 : 1996",
+          "relevance_score": 0.59,
+          "confidence": "Low",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 15176 : 2002",
+          "relevance_score": 0.566,
+          "confidence": "Low",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        }
+      ]
+    },
+    "T009-R001": {
+      "requirement_id": "T009-R001",
+      "raw_text": "Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD",
+      "working_text": "Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD",
+      "expanded_query": "Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD (installations national code)",
+      "components": [
+        "Repairs",
+        "Maintenance",
+        "FSD"
+      ],
+      "expected_standard": "SP 30 : 2023; IS 732 : 2019",
+      "final_recommendation": "IS 4051 : 2025",
+      "top_candidate": "IS 4051 : 2025",
+      "human_review_required": false,
+      "is_correct": false,
+      "is_abstained": false,
+      "status": "WRONG",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 19529 : 2026",
+          "relevance_score": 0.8413,
+          "bm25_score": 0.8093,
+          "semantic_score": 0.5137
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 4051 : 1967",
+          "relevance_score": 0.6116,
+          "bm25_score": 0.8748,
+          "semantic_score": 0.5288
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 12457 : 1988",
+          "relevance_score": 0.5854,
+          "bm25_score": 0.8715,
+          "semantic_score": 0.0
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 4051 : 2025",
+          "relevance_score": 0.5732,
+          "bm25_score": 0.836,
+          "semantic_score": 0.5056
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 13040 : 1991",
+          "relevance_score": 0.5242,
+          "bm25_score": 0.722,
+          "semantic_score": 0.0
+        }
+      ],
+      "production_recommendations_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 4051 : 2025",
+          "relevance_score": 0.622,
+          "confidence": "Medium",
+          "role": "INSTALLATION",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 12457 : 1988",
+          "relevance_score": 0.585,
+          "confidence": "Medium",
+          "role": "CODE_OF_PRACTICE",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 13040 : 1991",
+          "relevance_score": 0.524,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS/IEC 60079 (Part 17) : 2023",
+          "relevance_score": 0.495,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 1866 : 2017",
+          "relevance_score": 0.487,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        }
+      ]
+    },
+    "T010-R001": {
+      "requirement_id": "T010-R001",
+      "raw_text": "Sewerage Pipeline works from Collection Chamber to STP 9/4/26",
+      "working_text": "Sewerage Pipeline works from Collection Chamber to STP 9/4/26",
+      "expanded_query": "Sewerage Pipeline works from Collection Chamber to STP 9/4/26",
+      "components": [
+        "Sewerage Pipeline",
+        "STP"
+      ],
+      "expected_standard": "IS 458 : 2021; IS 783 : 1985; IS 14333 : 1996",
+      "final_recommendation": "IS 14333 : 2022",
+      "top_candidate": "IS 14333 : 2022",
+      "human_review_required": false,
+      "is_correct": true,
+      "is_abstained": false,
+      "status": "CORRECT",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 14333 : 1996",
+          "relevance_score": 0.9374,
+          "bm25_score": 0.9519,
+          "semantic_score": 0.4899
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 14333 : 2022",
+          "relevance_score": 0.8593,
+          "bm25_score": 0.8673,
+          "semantic_score": 0.4448
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 4111 (Part 4) : 1968",
+          "relevance_score": 0.8009,
+          "bm25_score": 0.7729,
+          "semantic_score": 0.4863
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 16098 (Part 1) : 2013",
+          "relevance_score": 0.8007,
+          "bm25_score": 0.7163,
+          "semantic_score": 0.4665
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS/ISO 7396 (Part 1) : 2007",
+          "relevance_score": 0.7877,
+          "bm25_score": 0.957,
+          "semantic_score": 0.4326
+        }
+      ],
+      "production_recommendations_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 14333 : 2022",
+          "relevance_score": 0.947,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 16098 (Part 2) : 2013",
+          "relevance_score": 0.811,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 16098 (Part 1) : 2013",
+          "relevance_score": 0.801,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 14333 : 1996",
+          "relevance_score": 0.937,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "WITHDRAWN",
+          "version_role": "REPLACED_OR_SUPERSEDED"
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS/ISO 7396 (Part 1) : 2007",
+          "relevance_score": 0.788,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "WITHDRAWN",
+          "version_role": "REPLACED_OR_SUPERSEDED"
+        }
+      ]
+    },
+    "T011-R001": {
+      "requirement_id": "T011-R001",
+      "raw_text": "Providing and laying underground cable for STP for main supply of electricity under CEDCO BSF Bangalore",
+      "working_text": "Providing and laying underground cable for STP for main supply of electricity under CEDCO BSF Bangalore",
+      "expanded_query": "Providing and laying underground cable for STP for main supply of electricity under CEDCO BSF Bangalore (code practice installation maintenance power cables trench bedding warning tiles pulling crosslinked polyethylene insulated thermoplastic sheathed)",
+      "components": [
+        "laying underground",
+        "underground cable",
+        "STP"
+      ],
+      "expected_standard": "IS 7098 (Part 1) : 1988; IS 1255 : 1983",
+      "final_recommendation": null,
+      "top_candidate": null,
+      "human_review_required": true,
+      "is_correct": false,
+      "is_abstained": true,
+      "status": "ABSTAINED",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 10334 : 1982",
+          "relevance_score": 0.6884,
+          "bm25_score": 0.5112,
+          "semantic_score": 0.4662
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 10334 : 2026",
+          "relevance_score": 0.6665,
+          "bm25_score": 0.5112,
+          "semantic_score": 0.4558
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 7098 (Part 2) : 2011",
+          "relevance_score": 0.6457,
+          "bm25_score": 0.859,
+          "semantic_score": 0.5156
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 7098 (Part 1) : 2025",
+          "relevance_score": 0.6226,
+          "bm25_score": 0.8917,
+          "semantic_score": 0.4916
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 7098 (Part 3) : 1993",
+          "relevance_score": 0.6218,
+          "bm25_score": 0.681,
+          "semantic_score": 0.5149
+        }
+      ],
+      "production_recommendations_top5": []
+    },
+    "T012-R002": {
+      "requirement_id": "T012-R002",
+      "raw_text": "Plaster Repairing",
+      "working_text": "Plaster Repairing",
+      "expanded_query": "Plaster Repairing (cement finishes application of)",
+      "components": [
+        "Plaster Repairing"
+      ],
+      "expected_standard": "IS 1661 : 1972; IS 269 : 2015",
+      "final_recommendation": "IS 1661 : 1972",
+      "top_candidate": "IS 1661 : 1972",
+      "human_review_required": false,
+      "is_correct": true,
+      "is_abstained": false,
+      "status": "CORRECT",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 1661 : 1972",
+          "relevance_score": 0.9208,
+          "bm25_score": 1.0,
+          "semantic_score": 0.6119
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 2394 : 1984",
+          "relevance_score": 0.8462,
+          "bm25_score": 0.4715,
+          "semantic_score": 0.5867
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 8272 : 1984",
+          "relevance_score": 0.8015,
+          "bm25_score": 0.3349,
+          "semantic_score": 0.5251
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 2095 (Part 1) : 2011",
+          "relevance_score": 0.7895,
+          "bm25_score": 0.3238,
+          "semantic_score": 0.4803
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 2095 (Part 2) : 2001",
+          "relevance_score": 0.7851,
+          "bm25_score": 0.3281,
+          "semantic_score": 0.4681
+        }
+      ],
+      "production_recommendations_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 1661 : 1972",
+          "relevance_score": 0.921,
+          "confidence": "High",
+          "role": "INSTALLATION",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 2394 : 1984",
+          "relevance_score": 0.846,
+          "confidence": "High",
+          "role": "INSTALLATION",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 8272 : 1984",
+          "relevance_score": 0.801,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 2095 (Part 2) : 2022",
+          "relevance_score": 0.799,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 2095 (Part 1) : 2023",
+          "relevance_score": 0.783,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        }
+      ]
+    },
+    "T012-R003": {
+      "requirement_id": "T012-R003",
+      "raw_text": "Plumbing Fittings",
+      "working_text": "Plumbing Fittings",
+      "expanded_query": "Plumbing Fittings (pipe mild steel)",
+      "components": [],
+      "expected_standard": "IS 1239 (Part 2) : 1992; IS 778 : 1984",
+      "final_recommendation": "IS 1239 (Part 2) : 2011",
+      "top_candidate": "IS 1239 (Part 2) : 2011",
+      "human_review_required": false,
+      "is_correct": true,
+      "is_abstained": false,
+      "status": "CORRECT",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 1239 (Part 2) : 2011",
+          "relevance_score": 0.6414,
+          "bm25_score": 1.0,
+          "semantic_score": 0.587
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 11428 (Part 13) : 1985",
+          "relevance_score": 0.6356,
+          "bm25_score": 0.8649,
+          "semantic_score": 0.6161
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 1879 : 2010",
+          "relevance_score": 0.5839,
+          "bm25_score": 0.6978,
+          "semantic_score": 0.6019
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 17650 (Part 2) : 2021",
+          "relevance_score": 0.7453,
+          "bm25_score": 0.8437,
+          "semantic_score": 0.4323
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 14810 : 2000",
+          "relevance_score": 0.6084,
+          "bm25_score": 0.5955,
+          "semantic_score": 0.436
+        }
+      ],
+      "production_recommendations_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 1239 (Part 2) : 2011",
+          "relevance_score": 0.641,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 11428 (Part 13) : 1985",
+          "relevance_score": 0.636,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 1879 : 2010",
+          "relevance_score": 0.584,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 17650 (Part 2) : 2021",
+          "relevance_score": 0.745,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 14810 : 2000",
+          "relevance_score": 0.608,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        }
+      ]
+    },
+    "T013-R002": {
+      "requirement_id": "T013-R002",
+      "raw_text": "SITC of VFD water pump panel",
+      "working_text": "SITC of VFD water pump panel",
+      "expanded_query": "SITC of VFD water pump panel (variable frequency drive adjustable speed electrical power systems)",
+      "components": [
+        "SITC",
+        "VFD",
+        "water pump",
+        "panel"
+      ],
+      "expected_standard": "IS/IEC 61800-2 : 2015; IS/IEC 61439-2 : 2011",
+      "final_recommendation": "IS 10069 : 2023",
+      "top_candidate": "IS 10069 : 2023",
+      "human_review_required": false,
+      "is_correct": false,
+      "is_abstained": false,
+      "status": "WRONG",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 17123 (Part 1) : 2019",
+          "relevance_score": 0.6408,
+          "bm25_score": 0.9875,
+          "semantic_score": 0.4878
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 17123 (Part 2) : 2025",
+          "relevance_score": 0.6238,
+          "bm25_score": 1.0,
+          "semantic_score": 0.4738
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 17123 (Part 1) : 2025",
+          "relevance_score": 0.6167,
+          "bm25_score": 0.9517,
+          "semantic_score": 0.4746
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS/IEC 61800 (Part 2) : 2015",
+          "relevance_score": 0.5769,
+          "bm25_score": 0.9692,
+          "semantic_score": 0.4511
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 17123 (Part 9) (Sec 2) : 2025",
+          "relevance_score": 0.5759,
+          "bm25_score": 0.7855,
+          "semantic_score": 0.4943
+        }
+      ],
+      "production_recommendations_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 10069 : 2023",
+          "relevance_score": 0.634,
+          "confidence": "Medium",
+          "role": "TEST_METHOD",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 10069 : 2017",
+          "relevance_score": 0.624,
+          "confidence": "Medium",
+          "role": "TEST_METHOD",
+          "status": "WITHDRAWN",
+          "version_role": "REPLACED_OR_SUPERSEDED"
+        }
+      ]
+    },
+    "T013-R003": {
+      "requirement_id": "T013-R003",
+      "raw_text": "Insulation work",
+      "working_text": "Insulation work",
+      "expanded_query": "Insulation work (thermal materials application and finishing of)",
+      "components": [
+        "Insulation work"
+      ],
+      "expected_standard": "IS 14164 : 2008; IS 8183 : 1993",
+      "final_recommendation": "IS 14164 : 2008",
+      "top_candidate": "IS 14164 : 2008",
+      "human_review_required": false,
+      "is_correct": true,
+      "is_abstained": false,
+      "status": "CORRECT",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 14164 : 2008",
+          "relevance_score": 0.8393,
+          "bm25_score": 0.8359,
+          "semantic_score": 0.7348
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 7413 : 1981",
+          "relevance_score": 0.6613,
+          "bm25_score": 1.0,
+          "semantic_score": 0.7031
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 13013 (Part 1) : 1990",
+          "relevance_score": 0.6534,
+          "bm25_score": 0.7092,
+          "semantic_score": 0.5197
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 7240 : 1981",
+          "relevance_score": 0.6174,
+          "bm25_score": 0.7469,
+          "semantic_score": 0.6888
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 9743 : 2020",
+          "relevance_score": 0.5991,
+          "bm25_score": 0.9052,
+          "semantic_score": 0.5671
+        }
+      ],
+      "production_recommendations_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 14164 : 2008",
+          "relevance_score": 0.839,
+          "confidence": "High",
+          "role": "INSTALLATION",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 11239 (Part 5) : 2019",
+          "relevance_score": 0.754,
+          "confidence": "High",
+          "role": "TEST_METHOD",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 13013 (Part 1) : 1990",
+          "relevance_score": 0.653,
+          "confidence": "Medium",
+          "role": "CODE_OF_PRACTICE",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 9743 : 2020",
+          "relevance_score": 0.599,
+          "confidence": "Medium",
+          "role": "PRIMARY_PRODUCT",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 3069 : 2020",
+          "relevance_score": 0.723,
+          "confidence": "Medium",
+          "role": "ALLIED",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        }
+      ]
+    },
+    "T014-R002": {
+      "requirement_id": "T014-R002",
+      "raw_text": "commissioning of three numbers of Process Water Pump motors 3.3 kV",
+      "working_text": "commissioning of three numbers of Process Water Pump motors 3.3 kV",
+      "expanded_query": "commissioning of three numbers of Process Water Pump motors 3.3 kV (rotating electrical machines phase induction)",
+      "components": [
+        "commissioning",
+        "Process Water Pump",
+        "motors",
+        "3.3 kV"
+      ],
+      "expected_standard": "IS/IEC 60034-1 : 2017; IS 5120 : 1977",
+      "final_recommendation": "IS 14578 : 2025",
+      "top_candidate": "IS 14578 : 2025",
+      "human_review_required": false,
+      "is_correct": false,
+      "is_abstained": false,
+      "status": "WRONG",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 12066 : 1987",
+          "relevance_score": 0.9084,
+          "bm25_score": 0.7953,
+          "semantic_score": 0.6542
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 15999 (Part 26) : 2016",
+          "relevance_score": 0.8875,
+          "bm25_score": 1.0,
+          "semantic_score": 0.6241
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 14578 : 1999",
+          "relevance_score": 0.8525,
+          "bm25_score": 0.7776,
+          "semantic_score": 0.6395
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 12615 : 2011",
+          "relevance_score": 0.8287,
+          "bm25_score": 0.7776,
+          "semantic_score": 0.5722
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 325 : 1996",
+          "relevance_score": 0.824,
+          "bm25_score": 0.8747,
+          "semantic_score": 0.5624
+        }
+      ],
+      "production_recommendations_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 14578 : 2025",
+          "relevance_score": 0.863,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 8789 : 2021",
+          "relevance_score": 0.825,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 13529 : 2021",
+          "relevance_score": 0.816,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 12066 : 1987",
+          "relevance_score": 0.908,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "WITHDRAWN",
+          "version_role": "REPLACED_OR_SUPERSEDED"
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 15999 (Part 26) : 2016",
+          "relevance_score": 0.887,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "WITHDRAWN",
+          "version_role": "REPLACED_OR_SUPERSEDED"
+        }
+      ]
+    },
+    "T020-R001": {
+      "requirement_id": "T020-R001",
+      "raw_text": "Repair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn",
+      "working_text": "Repair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn",
+      "expanded_query": "Repair/ maint of CPVC pipe in lieu of rusted GI pipe at Laitumkhrah Grn (chlorinated polyvinyl chloride galvanized iron steel)",
+      "components": [
+        "Repair",
+        "maint",
+        "CPVC pipe",
+        "GI pipe"
+      ],
+      "expected_standard": "IS 15778 : 2007; IS 1239 (Part 1) : 2004",
+      "final_recommendation": "IS 15778 : 2007",
+      "top_candidate": "IS 15778 : 2007",
+      "human_review_required": false,
+      "is_correct": true,
+      "is_abstained": false,
+      "status": "CORRECT",
+      "raw_retrieval_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 15778 : 2007",
+          "relevance_score": 0.9795,
+          "bm25_score": 0.8172,
+          "semantic_score": 0.5695
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 18837 : 2024",
+          "relevance_score": 0.9788,
+          "bm25_score": 1.0,
+          "semantic_score": 0.5021
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 16088 : 2012",
+          "relevance_score": 0.9736,
+          "bm25_score": 0.8346,
+          "semantic_score": 0.5349
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 15225 : 2002",
+          "relevance_score": 0.9389,
+          "bm25_score": 0.6114,
+          "semantic_score": 0.4995
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 16534 : 2017",
+          "relevance_score": 0.9303,
+          "bm25_score": 0.8886,
+          "semantic_score": 0.4664
+        }
+      ],
+      "production_recommendations_top5": [
+        {
+          "rank": 1,
+          "standard_number": "IS 15778 : 2007",
+          "relevance_score": 0.98,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 2,
+          "standard_number": "IS 18837 : 2024",
+          "relevance_score": 0.979,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 3,
+          "standard_number": "IS 16088 : 2012",
+          "relevance_score": 0.974,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 4,
+          "standard_number": "IS 15225 : 2002",
+          "relevance_score": 0.939,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "UNKNOWN",
+          "version_role": "CURRENT_ACTIVE"
+        },
+        {
+          "rank": 5,
+          "standard_number": "IS 16534 : 2017",
+          "relevance_score": 0.93,
+          "confidence": "High",
+          "role": "PRIMARY_PRODUCT",
+          "status": "ACTIVE",
+          "version_role": "CURRENT_ACTIVE"
+        }
+      ]
+    }
+  }
+}

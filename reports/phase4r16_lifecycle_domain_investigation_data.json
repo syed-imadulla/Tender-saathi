@@ -1,0 +1,2676 @@
+{
+  "metadata": {
+    "phase": "4R16",
+    "timestamp": "2026-09-15 10:08:56",
+    "benchmark_count": 19,
+    "catalogue": "data/catalogue/bis_catalogue.db"
+  },
+  "part_a_t002_r003_trace": {
+    "requirement_text": "Flange Joint Maintenance",
+    "expected_standard": "IS 6392 : 1971; IS 2712 : 2020",
+    "final_recommendation": "IS 13257 : 1992",
+    "candidates_audit": [
+      {
+        "orig_retrieval_rank": 1,
+        "standard_id": "IS-13257-1992",
+        "standard_number": "IS 13257 : 1992",
+        "title": "Ring type joint gaskets and grooves for pipe flanges - Specification",
+        "technical_committee": "MED 30",
+        "aspect": "Product Specification",
+        "is_expected": false,
+        "bm25_score": 1.0,
+        "semantic_score": 0.5326,
+        "deterministic_score": 0.924,
+        "retrieval_score": 0.9425,
+        "lifecycle_status": "UNKNOWN",
+        "is_inactive": false,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": -1,
+        "stage1_tuple": [
+          0,
+          -1,
+          0
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.983,
+        "applicability_reasons": [],
+        "confidence": "High",
+        "confidence_rank": 0,
+        "cand_domains": [
+          "PIPES_AND_FITTINGS"
+        ],
+        "req_domains": [],
+        "evidence_strength": "STRONG",
+        "stage2_tuple": [
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "orig_retrieval_rank": 2,
+        "standard_id": "IS-6392-1971",
+        "standard_number": "IS 6392 : 1971",
+        "title": "Specification for steel pipe flanges",
+        "technical_committee": "MTD 19",
+        "aspect": "Product Specification",
+        "is_expected": true,
+        "bm25_score": 0.9472,
+        "semantic_score": 0.653,
+        "deterministic_score": 0.672,
+        "retrieval_score": 0.7987,
+        "lifecycle_status": "WITHDRAWN",
+        "is_inactive": true,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": -1,
+        "stage1_tuple": [
+          1,
+          -1,
+          1
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.94,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [
+          "PIPES_AND_FITTINGS"
+        ],
+        "req_domains": [],
+        "evidence_strength": "WEAK",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "orig_retrieval_rank": 3,
+        "standard_id": "IS-10864-2013",
+        "standard_number": "IS 10864 : 2013",
+        "title": "Metal jacketed gaskets for pipe flanges and heat exchanger flanges - Specification (First Revision)",
+        "technical_committee": "MED 30",
+        "aspect": "Product Specification",
+        "is_expected": false,
+        "bm25_score": 0.7153,
+        "semantic_score": 0.4927,
+        "deterministic_score": 0.672,
+        "retrieval_score": 0.7864,
+        "lifecycle_status": "WITHDRAWN",
+        "is_inactive": true,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": -1,
+        "stage1_tuple": [
+          1,
+          -1,
+          2
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.936,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [
+          "PIPES_AND_FITTINGS"
+        ],
+        "req_domains": [],
+        "evidence_strength": "WEAK",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "orig_retrieval_rank": 4,
+        "standard_id": "IS-10864-2024",
+        "standard_number": "IS 10864 : 2024",
+        "title": "Metal jacketed gaskets for pipe flanges and heat exchanger flanges - Specification Second Revision",
+        "technical_committee": "MED 30",
+        "aspect": "Product Specification",
+        "is_expected": false,
+        "bm25_score": 0.7153,
+        "semantic_score": 0.4722,
+        "deterministic_score": 0.672,
+        "retrieval_score": 0.7798,
+        "lifecycle_status": "UNKNOWN",
+        "is_inactive": false,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": -1,
+        "stage1_tuple": [
+          0,
+          -1,
+          3
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.934,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [
+          "PIPES_AND_FITTINGS"
+        ],
+        "req_domains": [],
+        "evidence_strength": "WEAK",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "orig_retrieval_rank": 5,
+        "standard_id": "IS-3516-1966",
+        "standard_number": "IS 3516 : 1966",
+        "title": "Specification for cast iron pipe flanges and flanged fittings for petroleum industry",
+        "technical_committee": "MTD 06",
+        "aspect": "Product Specification",
+        "is_expected": false,
+        "bm25_score": 0.6517,
+        "semantic_score": 0.5699,
+        "deterministic_score": 0.672,
+        "retrieval_score": 0.7139,
+        "lifecycle_status": "UNKNOWN",
+        "is_inactive": false,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": -1,
+        "stage1_tuple": [
+          0,
+          -1,
+          4
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.914,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [
+          "PIPES_AND_FITTINGS"
+        ],
+        "req_domains": [],
+        "evidence_strength": "WEAK",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "orig_retrieval_rank": 6,
+        "standard_id": "IS-13159-Part-1-1993",
+        "standard_number": "IS 13159 (Part 1) : 1993",
+        "title": "Pipe flanges and flanged fittings specification: Part 1 dimensions",
+        "technical_committee": "MED 17",
+        "aspect": "Dimensions",
+        "is_expected": false,
+        "bm25_score": 0.659,
+        "semantic_score": 0.513,
+        "deterministic_score": 0.672,
+        "retrieval_score": 0.6875,
+        "lifecycle_status": "WITHDRAWN",
+        "is_inactive": true,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": -1,
+        "stage1_tuple": [
+          1,
+          -1,
+          5
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.906,
+        "applicability_reasons": [],
+        "confidence": "Low",
+        "confidence_rank": 2,
+        "cand_domains": [
+          "PIPES_AND_FITTINGS"
+        ],
+        "req_domains": [],
+        "evidence_strength": "WEAK",
+        "stage2_tuple": [
+          0,
+          2,
+          1,
+          7
+        ]
+      },
+      {
+        "orig_retrieval_rank": 7,
+        "standard_id": "IS-13159-Part-1-2026",
+        "standard_number": "IS 13159 (Part 1) : 2026",
+        "title": "Pipe Flanges and Flanged Fittings \u2014 Code of Practice  (First Revision)",
+        "technical_committee": "MED 17",
+        "aspect": "Dimensions",
+        "is_expected": false,
+        "bm25_score": 0.6445,
+        "semantic_score": 0.5198,
+        "deterministic_score": 0.672,
+        "retrieval_score": 0.6831,
+        "lifecycle_status": "UNKNOWN",
+        "is_inactive": false,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": -1,
+        "stage1_tuple": [
+          0,
+          -1,
+          6
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.905,
+        "applicability_reasons": [],
+        "confidence": "Low",
+        "confidence_rank": 2,
+        "cand_domains": [
+          "PIPES_AND_FITTINGS"
+        ],
+        "req_domains": [],
+        "evidence_strength": "WEAK",
+        "stage2_tuple": [
+          0,
+          2,
+          1,
+          3
+        ]
+      },
+      {
+        "orig_retrieval_rank": 8,
+        "standard_id": "IS-4866-1968",
+        "standard_number": "IS 4866 : 1968",
+        "title": "Welded shell flanges for carbon steel pressure vessels and equipment - (SEE IS 4864 TO IS 4870)",
+        "technical_committee": "MED 17",
+        "aspect": "Product Specification",
+        "is_expected": false,
+        "bm25_score": 0.5103,
+        "semantic_score": 0.5842,
+        "deterministic_score": 0.672,
+        "retrieval_score": 0.7142,
+        "lifecycle_status": "WITHDRAWN",
+        "is_inactive": true,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          1,
+          0,
+          7
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.914,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "WEAK",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          8
+        ]
+      },
+      {
+        "orig_retrieval_rank": 9,
+        "standard_id": "IS-4868-1968",
+        "standard_number": "IS 4868 : 1968",
+        "title": "Welded shell flanges for stainless steel pressure vessels and equipment - (SEE IS 4864 TO IS 4870)",
+        "technical_committee": "MED 17",
+        "aspect": "Product Specification",
+        "is_expected": false,
+        "bm25_score": 0.5103,
+        "semantic_score": 0.5856,
+        "deterministic_score": 0.672,
+        "retrieval_score": 0.714,
+        "lifecycle_status": "WITHDRAWN",
+        "is_inactive": true,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          1,
+          0,
+          8
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.914,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "WEAK",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          9
+        ]
+      },
+      {
+        "orig_retrieval_rank": 10,
+        "standard_id": "IS-6392-2020",
+        "standard_number": "IS 6392 : 2020",
+        "title": "Steel Pipes Flanges \u2014 Specification ( First Revision )",
+        "technical_committee": "MTD 19",
+        "aspect": "Product Specification",
+        "is_expected": true,
+        "bm25_score": 0.571,
+        "semantic_score": 0.6298,
+        "deterministic_score": 0.672,
+        "retrieval_score": 0.7061,
+        "lifecycle_status": "ACTIVE",
+        "is_inactive": false,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          0,
+          0,
+          9
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.912,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [
+          "PIPES_AND_FITTINGS"
+        ],
+        "req_domains": [],
+        "evidence_strength": "WEAK",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "orig_retrieval_rank": 11,
+        "standard_id": "IS-4867-1968",
+        "standard_number": "IS 4867 : 1968",
+        "title": "Welded neck shell flanges for carbon steel pressure vessels and equipment - (SEE IS 4864 TO IS 4870)",
+        "technical_committee": "MED 17",
+        "aspect": "Product Specification",
+        "is_expected": false,
+        "bm25_score": 0.4997,
+        "semantic_score": 0.5519,
+        "deterministic_score": 0.672,
+        "retrieval_score": 0.6888,
+        "lifecycle_status": "WITHDRAWN",
+        "is_inactive": true,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          1,
+          0,
+          10
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.907,
+        "applicability_reasons": [],
+        "confidence": "Low",
+        "confidence_rank": 2,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "WEAK",
+        "stage2_tuple": [
+          0,
+          2,
+          1,
+          10
+        ]
+      },
+      {
+        "orig_retrieval_rank": 12,
+        "standard_id": "IS-4869-1968",
+        "standard_number": "IS 4869 : 1968",
+        "title": "Welded shell flanges with hub for stainless steel pressure vessels and equipment - (SEE IS 4864 TO IS 4870)",
+        "technical_committee": "MED 17",
+        "aspect": "Product Specification",
+        "is_expected": false,
+        "bm25_score": 0.4997,
+        "semantic_score": 0.5468,
+        "deterministic_score": 0.672,
+        "retrieval_score": 0.675,
+        "lifecycle_status": "WITHDRAWN",
+        "is_inactive": true,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          1,
+          0,
+          11
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.902,
+        "applicability_reasons": [],
+        "confidence": "Low",
+        "confidence_rank": 2,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "WEAK",
+        "stage2_tuple": [
+          0,
+          2,
+          1,
+          11
+        ]
+      },
+      {
+        "orig_retrieval_rank": 13,
+        "standard_id": "IS-425-1953",
+        "standard_number": "IS 425 : 1953",
+        "title": "Shellac adhesive for steam flange joints",
+        "technical_committee": "PCD 12",
+        "aspect": null,
+        "is_expected": false,
+        "bm25_score": 0.8892,
+        "semantic_score": 0.3909,
+        "deterministic_score": 0.96,
+        "retrieval_score": 0.65,
+        "lifecycle_status": "WITHDRAWN",
+        "is_inactive": true,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          1,
+          0,
+          12
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.895,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "STRONG",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          12
+        ]
+      },
+      {
+        "orig_retrieval_rank": 14,
+        "standard_id": "IS-10738-Part-1-1983",
+        "standard_number": "IS 10738 (Part 1) : 1983",
+        "title": "Specification for flanges for waveguides: Part 1 general requirements and tests",
+        "technical_committee": "LITD 06",
+        "aspect": "Product Specification",
+        "is_expected": false,
+        "bm25_score": 0.3389,
+        "semantic_score": 0.445,
+        "deterministic_score": 0.672,
+        "retrieval_score": 0.6311,
+        "lifecycle_status": "WITHDRAWN",
+        "is_inactive": true,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          1,
+          0,
+          13
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.889,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "MODERATE",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          13
+        ]
+      },
+      {
+        "orig_retrieval_rank": 15,
+        "standard_id": "IS-10738-Part-3-Sec-1-1991",
+        "standard_number": "IS 10738 (Part 3) (Sec 1) : 1991",
+        "title": "Specification for flanges for waveguides: Part 3 flanges - For flat rectangular: Sec 1 general",
+        "technical_committee": "LITD 06",
+        "aspect": "Others",
+        "is_expected": false,
+        "bm25_score": 0.4082,
+        "semantic_score": 0.4121,
+        "deterministic_score": 0.672,
+        "retrieval_score": 0.6299,
+        "lifecycle_status": "WITHDRAWN",
+        "is_inactive": true,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          1,
+          0,
+          14
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.889,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "MODERATE",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          14
+        ]
+      }
+    ],
+    "why_wrong_won": "In Stage 1 sort, IS 13257 (UNKNOWN status) received lifecycle_rank=0, while IS 6392:1971 (WITHDRAWN status) received lifecycle_rank=1. Even though IS 6392:1971 had rank 2 and specific phrase bonus, its lifecycle demotion placed it at Stage 2 idx=5 vs IS 13257 at idx=0."
+  },
+  "part_b_t009_r001_trace": {
+    "requirement_text": "Annual Repairs and Maintenance Contract for electrical and mechanical services alongwith requisite materials at FSD",
+    "expected_standard": "SP 30 : 2023; IS 732 : 2019",
+    "final_recommendation": "IS 4051 : 2025",
+    "candidates_audit": [
+      {
+        "orig_retrieval_rank": 1,
+        "standard_id": "IS-19529-2026",
+        "standard_number": "IS 19529 : 2026",
+        "title": "MAINTENANCE AND REPAIR SERVICES  REQUIREMENTS",
+        "technical_committee": "SSD 22",
+        "aspect": null,
+        "is_expected": false,
+        "bm25_score": 0.8093,
+        "semantic_score": 0.5137,
+        "deterministic_score": 0.299,
+        "retrieval_score": 0.8413,
+        "lifecycle_status": "UNKNOWN",
+        "is_inactive": false,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          0,
+          0,
+          0
+        ],
+        "applicability_decision": "NOT_APPLICABLE",
+        "applicability_score": 0.1,
+        "applicability_reasons": [
+          "No substantive technical vocabulary overlap with standard scope (generic words only).",
+          "Zero substantive technical term overlap between requirement and standard."
+        ],
+        "confidence": "High",
+        "confidence_rank": 0,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "WEAK"
+      },
+      {
+        "orig_retrieval_rank": 2,
+        "standard_id": "IS-4051-1967",
+        "standard_number": "IS 4051 : 1967",
+        "title": "Code of practice for installation and maintenance of electrical equipment in mines",
+        "technical_committee": "ETD 22",
+        "aspect": "Code of Practice",
+        "is_expected": false,
+        "bm25_score": 0.8748,
+        "semantic_score": 0.5288,
+        "deterministic_score": 0.0,
+        "retrieval_score": 0.6116,
+        "lifecycle_status": "WITHDRAWN",
+        "is_inactive": true,
+        "technical_role": "INSTALLATION",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          1,
+          0,
+          1
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.883,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "STRONG",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          9
+        ]
+      },
+      {
+        "orig_retrieval_rank": 3,
+        "standard_id": "IS-12457-1988",
+        "standard_number": "IS 12457 : 1988",
+        "title": "Code of practice for evaluation, repairs and acceptance limits of surface defects in steel plates and wide flats",
+        "technical_committee": "MTD 04",
+        "aspect": "Code of Practice",
+        "is_expected": false,
+        "bm25_score": 0.8715,
+        "semantic_score": 0.0,
+        "deterministic_score": 0.299,
+        "retrieval_score": 0.5854,
+        "lifecycle_status": "UNKNOWN",
+        "is_inactive": false,
+        "technical_role": "CODE_OF_PRACTICE",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          0,
+          0,
+          2
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.876,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "STRONG",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "orig_retrieval_rank": 4,
+        "standard_id": "IS-4051-2025",
+        "standard_number": "IS 4051 : 2025",
+        "title": "Installation and Maintenance of Electrical Equipment in Mines - Code of Practice  (First Revision)",
+        "technical_committee": "ETD 22",
+        "aspect": "Code of Practice",
+        "is_expected": false,
+        "bm25_score": 0.836,
+        "semantic_score": 0.5056,
+        "deterministic_score": 0.0,
+        "retrieval_score": 0.5732,
+        "lifecycle_status": "UNKNOWN",
+        "is_inactive": false,
+        "technical_role": "INSTALLATION",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          0,
+          0,
+          3
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.872,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "STRONG",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "orig_retrieval_rank": 5,
+        "standard_id": "IS-13040-1991",
+        "standard_number": "IS 13040 : 1991",
+        "title": "Dolly blocks for use in steel body repairs - General requirements",
+        "technical_committee": "PGD 34",
+        "aspect": "Product Specification",
+        "is_expected": false,
+        "bm25_score": 0.722,
+        "semantic_score": 0.0,
+        "deterministic_score": 0.299,
+        "retrieval_score": 0.5242,
+        "lifecycle_status": "ACTIVE",
+        "is_inactive": false,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          0,
+          0,
+          4
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.857,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "STRONG",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          2
+        ]
+      },
+      {
+        "orig_retrieval_rank": 6,
+        "standard_id": "IS-7733-1975",
+        "standard_number": "IS 7733 : 1975",
+        "title": "Code of practice for electrical wiring installations in hospitals",
+        "technical_committee": "ETD 20",
+        "aspect": null,
+        "is_expected": false,
+        "bm25_score": 0.9487,
+        "semantic_score": 0.4284,
+        "deterministic_score": 0.0,
+        "retrieval_score": 0.5164,
+        "lifecycle_status": "WITHDRAWN",
+        "is_inactive": true,
+        "technical_role": "INSTALLATION",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          1,
+          0,
+          5
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.855,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "STRONG",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          10
+        ]
+      },
+      {
+        "orig_retrieval_rank": 7,
+        "standard_id": "IS-IEC-60079-Part-17-2023",
+        "standard_number": "IS/IEC 60079 (Part 17) : 2023",
+        "title": "Explosive atmospheres - Part 17: Electrical installations inspection and maintenance (Second Revision)",
+        "technical_committee": "ETD 22",
+        "aspect": "Code of Practice",
+        "is_expected": false,
+        "bm25_score": 0.891,
+        "semantic_score": 0.4274,
+        "deterministic_score": 0.0,
+        "retrieval_score": 0.4946,
+        "lifecycle_status": "UNKNOWN",
+        "is_inactive": false,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          0,
+          0,
+          6
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.848,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "STRONG",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          3
+        ]
+      },
+      {
+        "orig_retrieval_rank": 8,
+        "standard_id": "IS-1866-2017",
+        "standard_number": "IS 1866 : 2017",
+        "title": "Mineral insulating oils in electrical equipment supervision and maintenance guidance (Fourth Revision)",
+        "technical_committee": "ETD 03",
+        "aspect": "Code of Practice",
+        "is_expected": false,
+        "bm25_score": 0.5864,
+        "semantic_score": 0.4007,
+        "deterministic_score": 0.299,
+        "retrieval_score": 0.4871,
+        "lifecycle_status": "ACTIVE",
+        "is_inactive": false,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          0,
+          0,
+          7
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.846,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "STRONG",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          4
+        ]
+      },
+      {
+        "orig_retrieval_rank": 9,
+        "standard_id": "IS-13408-Part-1-1992",
+        "standard_number": "IS 13408 (Part 1) : 1992",
+        "title": "Code of Practice for the Selection, Installation and Maintenance of Electrical Apparatus for Use in Potentially Explosive Atmospheres (Other than Mining Applications or Explosives Processing and Manufacture) - Part 1 : General",
+        "technical_committee": "ETD 22",
+        "aspect": null,
+        "is_expected": false,
+        "bm25_score": 0.6779,
+        "semantic_score": 0.0,
+        "deterministic_score": 0.299,
+        "retrieval_score": 0.4839,
+        "lifecycle_status": "WITHDRAWN",
+        "is_inactive": true,
+        "technical_role": "INSTALLATION",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          1,
+          0,
+          8
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.845,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "STRONG",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          11
+        ]
+      },
+      {
+        "orig_retrieval_rank": 10,
+        "standard_id": "IS-732-2019",
+        "standard_number": "IS 732 : 2019",
+        "title": "Code of practice for electrical wiring installations (Fourth Revision)",
+        "technical_committee": "ETD 20",
+        "aspect": "Code of Practice",
+        "is_expected": true,
+        "bm25_score": 0.9056,
+        "semantic_score": 0.4144,
+        "deterministic_score": 0.0,
+        "retrieval_score": 0.4729,
+        "lifecycle_status": "ACTIVE",
+        "is_inactive": false,
+        "technical_role": "INSTALLATION",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          0,
+          0,
+          9
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.842,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "STRONG",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          5
+        ]
+      },
+      {
+        "orig_retrieval_rank": 11,
+        "standard_id": "IS-10028-Part-3-1981",
+        "standard_number": "IS 10028 (Part 3) : 1981",
+        "title": "Code of practice for selection, installation and maintenance of transformers: Part 3 maintenance",
+        "technical_committee": "ETD 16",
+        "aspect": "Code of Practice",
+        "is_expected": false,
+        "bm25_score": 0.668,
+        "semantic_score": 0.4658,
+        "deterministic_score": 0.0,
+        "retrieval_score": 0.4478,
+        "lifecycle_status": "UNKNOWN",
+        "is_inactive": false,
+        "technical_role": "INSTALLATION",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          0,
+          0,
+          10
+        ],
+        "applicability_decision": "NOT_APPLICABLE",
+        "applicability_score": 0.1,
+        "applicability_reasons": [
+          "No substantive technical vocabulary overlap with standard scope (generic words only).",
+          "Zero substantive technical term overlap between requirement and standard."
+        ],
+        "confidence": "Low",
+        "confidence_rank": 2,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "WEAK"
+      },
+      {
+        "orig_retrieval_rank": 12,
+        "standard_id": "IS-IEC-60079-Part-17-2013",
+        "standard_number": "IS/IEC 60079 (Part 17) : 2013",
+        "title": "Explosive atmospheres: Part 17 electrical installations inspection and maintenance (First Revision)",
+        "technical_committee": "ETD 22",
+        "aspect": "Code of Practice",
+        "is_expected": false,
+        "bm25_score": 0.891,
+        "semantic_score": 0.4057,
+        "deterministic_score": 0.0,
+        "retrieval_score": 0.4391,
+        "lifecycle_status": "ACTIVE",
+        "is_inactive": false,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          0,
+          0,
+          11
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.832,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "STRONG",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          6
+        ]
+      },
+      {
+        "orig_retrieval_rank": 13,
+        "standard_id": "IS-13450-Part-1-Sec-12-2024",
+        "standard_number": "IS 13450 (Part 1) (Sec 12) : 2024",
+        "title": "Medical electrical equipment : Part 1 General requirements for basic safety and essential performance, Section 12 Requirements for medical electrical equipment and medical electrical systems intended for use in the emergency medical services environment",
+        "technical_committee": "MHD 15",
+        "aspect": "Others",
+        "is_expected": false,
+        "bm25_score": 0.0,
+        "semantic_score": 0.408,
+        "deterministic_score": 0.336,
+        "retrieval_score": 0.439,
+        "lifecycle_status": "UNKNOWN",
+        "is_inactive": false,
+        "technical_role": "PRIMARY_PRODUCT",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          0,
+          0,
+          12
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.832,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "STRONG",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          7
+        ]
+      },
+      {
+        "orig_retrieval_rank": 14,
+        "standard_id": "IS-12309-Part-2-1988",
+        "standard_number": "IS 12309 (Part 2) : 1988",
+        "title": "Code of practice for installation and maintenance of aerodrome lighting fittings: Part 2 maintenance",
+        "technical_committee": "ETD 49",
+        "aspect": "Code of Practice",
+        "is_expected": false,
+        "bm25_score": 0.6571,
+        "semantic_score": 0.4353,
+        "deterministic_score": 0.0,
+        "retrieval_score": 0.3934,
+        "lifecycle_status": "UNKNOWN",
+        "is_inactive": false,
+        "technical_role": "INSTALLATION",
+        "role_rank": 0,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          0,
+          0,
+          13
+        ],
+        "applicability_decision": "NOT_APPLICABLE",
+        "applicability_score": 0.1,
+        "applicability_reasons": [
+          "No substantive technical vocabulary overlap with standard scope (generic words only).",
+          "Zero substantive technical term overlap between requirement and standard."
+        ],
+        "confidence": "Low",
+        "confidence_rank": 2,
+        "cand_domains": [
+          "PIPES_AND_FITTINGS"
+        ],
+        "req_domains": [],
+        "evidence_strength": "WEAK"
+      },
+      {
+        "orig_retrieval_rank": 15,
+        "standard_id": "IS-10386-Part-5-2014",
+        "standard_number": "IS 10386 (Part 5) : 2014",
+        "title": "Safety code for construction, operation and maintenance of river valley projects: Part 5 electrical aspects (First Revision)",
+        "technical_committee": "WRD 21",
+        "aspect": "Code of Practice",
+        "is_expected": false,
+        "bm25_score": 0.745,
+        "semantic_score": 0.0,
+        "deterministic_score": 0.299,
+        "retrieval_score": 0.5304,
+        "lifecycle_status": "UNKNOWN",
+        "is_inactive": false,
+        "technical_role": "SAFETY",
+        "role_rank": 1,
+        "spec_bonus": 0,
+        "stage1_tuple": [
+          0,
+          1,
+          14
+        ],
+        "applicability_decision": "APPLICABLE",
+        "applicability_score": 0.859,
+        "applicability_reasons": [],
+        "confidence": "Medium",
+        "confidence_rank": 1,
+        "cand_domains": [],
+        "req_domains": [],
+        "evidence_strength": "STRONG",
+        "stage2_tuple": [
+          0,
+          1,
+          1,
+          8
+        ]
+      }
+    ],
+    "why_wrong_won": "IS 12457 is 'Code of practice for evaluation, repairs and acceptance limits of surface defects in steel plates and wide flats' (MTD 04, Metallurgical). It passed the Applicability Gate because tender contains 'Repairs and Maintenance', matching 'repairs' in title. Because tender contains 'Repairs', is_work_or_repair_req=True, bypassing Fix 2A. Both IS 12457 and IS 732 got Medium confidence. Tie was broken by Stage 1 idx (IS 12457 was RRF rank 3 -> idx 0, IS 732 was RRF rank 10 -> idx 5). The system lacks a domain conflict mechanism between Metallurgical/Plate manufacturing (MTD) and Electrical building wiring (ETD)."
+  },
+  "retrieval_depth_metrics": {
+    "Recall@15": "17/19 (89.5%)",
+    "Recall@30": "17/19 (89.5%)",
+    "Recall@50": "18/19 (94.7%)",
+    "Recall@100": "18/19 (94.7%)",
+    "Hit@1": "11/19 (57.9%)",
+    "MRR": 0.6496
+  },
+  "part_a_lifecycle_simulations": {
+    "A_Current": {
+      "strategy": "A_Current",
+      "correct_count": 8,
+      "accuracy_pct": 42.1,
+      "abstained_count": 5,
+      "wrong_count": 6,
+      "improvements": [],
+      "regressions": [],
+      "per_query": {
+        "T001-R002": {
+          "winner": "IS 15947 (Part 2) : 2012",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T001-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T001-R004": {
+          "winner": "IS 2556 (Part 1) : 2021",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T002-R003": {
+          "winner": "IS 13257 : 1992",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T003-R001": {
+          "winner": "IS/IEC 61439 (Part 3) : 2012",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R002": {
+          "winner": "IS 1255 : 1983",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R005": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T005-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T006-R001": {
+          "winner": "IS 9271 : 2004",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T007-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T009-R001": {
+          "winner": "IS 12457 : 1988",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T010-R001": {
+          "winner": "IS 14333 : 2022",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T011-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T012-R002": {
+          "winner": "IS 1661 : 1972",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T012-R003": {
+          "winner": "IS 1239 (Part 2) : 2011",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T013-R002": {
+          "winner": "IS 10069 : 2023",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T013-R003": {
+          "winner": "IS 14164 : 2008",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T014-R002": {
+          "winner": "IS 8789 : 2021",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T020-R001": {
+          "winner": "IS 15778 : 2007",
+          "is_correct": true,
+          "is_abstained": false
+        }
+      }
+    },
+    "B_Ignore_Lifecycle_Ranking": {
+      "strategy": "B_Ignore_Lifecycle_Ranking",
+      "correct_count": 8,
+      "accuracy_pct": 42.1,
+      "abstained_count": 5,
+      "wrong_count": 6,
+      "improvements": [],
+      "regressions": [],
+      "per_query": {
+        "T001-R002": {
+          "winner": "IS 10990 (Part 2) : 1992",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T001-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T001-R004": {
+          "winner": "IS 2556 (Part 1) : 2021",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T002-R003": {
+          "winner": "IS 13257 : 1992",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T003-R001": {
+          "winner": "IS/IEC 61439 (Part 3) : 2012",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R002": {
+          "winner": "IS 1255 : 1983",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R005": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T005-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T006-R001": {
+          "winner": "IS 9271 : 2004",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T007-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T009-R001": {
+          "winner": "IS 4051 : 1967",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T010-R001": {
+          "winner": "IS 14333 : 1996",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T011-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T012-R002": {
+          "winner": "IS 1661 : 1972",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T012-R003": {
+          "winner": "IS 1239 (Part 2) : 2011",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T013-R002": {
+          "winner": "IS 10069 : 2017",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T013-R003": {
+          "winner": "IS 14164 : 2008",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T014-R002": {
+          "winner": "IS 12066 : 1987",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T020-R001": {
+          "winner": "IS 15778 : 2007",
+          "is_correct": true,
+          "is_abstained": false
+        }
+      }
+    },
+    "C_Lifecycle_Warning_Only": {
+      "strategy": "C_Lifecycle_Warning_Only",
+      "correct_count": 8,
+      "accuracy_pct": 42.1,
+      "abstained_count": 5,
+      "wrong_count": 6,
+      "improvements": [],
+      "regressions": [],
+      "per_query": {
+        "T001-R002": {
+          "winner": "IS 10990 (Part 2) : 1992",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T001-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T001-R004": {
+          "winner": "IS 2556 (Part 1) : 2021",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T002-R003": {
+          "winner": "IS 13257 : 1992",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T003-R001": {
+          "winner": "IS/IEC 61439 (Part 3) : 2012",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R002": {
+          "winner": "IS 1255 : 1983",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R005": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T005-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T006-R001": {
+          "winner": "IS 9271 : 2004",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T007-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T009-R001": {
+          "winner": "IS 4051 : 1967",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T010-R001": {
+          "winner": "IS 14333 : 1996",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T011-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T012-R002": {
+          "winner": "IS 1661 : 1972",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T012-R003": {
+          "winner": "IS 1239 (Part 2) : 2011",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T013-R002": {
+          "winner": "IS 10069 : 2017",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T013-R003": {
+          "winner": "IS 14164 : 2008",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T014-R002": {
+          "winner": "IS 12066 : 1987",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T020-R001": {
+          "winner": "IS 15778 : 2007",
+          "is_correct": true,
+          "is_abstained": false
+        }
+      }
+    },
+    "D_Explicit_Citation_Preserved_No_Demotion": {
+      "strategy": "D_Explicit_Citation_Preserved_No_Demotion",
+      "correct_count": 8,
+      "accuracy_pct": 42.1,
+      "abstained_count": 5,
+      "wrong_count": 6,
+      "improvements": [],
+      "regressions": [],
+      "per_query": {
+        "T001-R002": {
+          "winner": "IS 10990 (Part 2) : 1992",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T001-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T001-R004": {
+          "winner": "IS 2556 (Part 1) : 2021",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T002-R003": {
+          "winner": "IS 13257 : 1992",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T003-R001": {
+          "winner": "IS/IEC 61439 (Part 3) : 2012",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R002": {
+          "winner": "IS 1255 : 1983",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R005": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T005-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T006-R001": {
+          "winner": "IS 9271 : 2004",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T007-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T009-R001": {
+          "winner": "IS 4051 : 1967",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T010-R001": {
+          "winner": "IS 14333 : 1996",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T011-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T012-R002": {
+          "winner": "IS 1661 : 1972",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T012-R003": {
+          "winner": "IS 1239 (Part 2) : 2011",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T013-R002": {
+          "winner": "IS 10069 : 2017",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T013-R003": {
+          "winner": "IS 14164 : 2008",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T014-R002": {
+          "winner": "IS 12066 : 1987",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T020-R001": {
+          "winner": "IS 15778 : 2007",
+          "is_correct": true,
+          "is_abstained": false
+        }
+      }
+    },
+    "E_Unknown_Separated": {
+      "strategy": "E_Unknown_Separated",
+      "correct_count": 5,
+      "accuracy_pct": 26.3,
+      "abstained_count": 5,
+      "wrong_count": 9,
+      "improvements": [],
+      "regressions": [
+        "T004-R002",
+        "T012-R003",
+        "T020-R001"
+      ],
+      "per_query": {
+        "T001-R002": {
+          "winner": "IS 10990 (Part 2) : 2023",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T001-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T001-R004": {
+          "winner": "IS 2556 (Part 1) : 2021",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T002-R003": {
+          "winner": "IS 13257 : 1992",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T003-R001": {
+          "winner": "IS/IEC 61439 (Part 3) : 2012",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R002": {
+          "winner": "IS 302 (Part 2) (Sec 30) : 2007",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T004-R005": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T005-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T006-R001": {
+          "winner": "IS 9271 : 2004",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T007-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T009-R001": {
+          "winner": "IS 13040 : 1991",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T010-R001": {
+          "winner": "IS 14333 : 2022",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T011-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T012-R002": {
+          "winner": "IS 1661 : 1972",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T012-R003": {
+          "winner": "IS 11428 (Part 13) : 1985",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T013-R002": {
+          "winner": "IS 10069 : 2023",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T013-R003": {
+          "winner": "IS 14164 : 2008",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T014-R002": {
+          "winner": "IS 13529 : 2021",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T020-R001": {
+          "winner": "IS 16534 : 2017",
+          "is_correct": false,
+          "is_abstained": false
+        }
+      }
+    }
+  },
+  "part_b_domain_simulations": {
+    "1_Current_Arbitration": {
+      "simulation_index": 1,
+      "simulation_name": "1_Current_Arbitration",
+      "correct_count": 8,
+      "accuracy_pct": 42.1,
+      "abstained_count": 5,
+      "wrong_count": 6,
+      "improvements": [],
+      "regressions": [],
+      "per_query": {
+        "T001-R002": {
+          "winner": "IS 15947 (Part 2) : 2012",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T001-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T001-R004": {
+          "winner": "IS 2556 (Part 1) : 2021",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T002-R003": {
+          "winner": "IS 13257 : 1992",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T003-R001": {
+          "winner": "IS/IEC 61439 (Part 3) : 2012",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R002": {
+          "winner": "IS 1255 : 1983",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R005": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T005-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T006-R001": {
+          "winner": "IS 9271 : 2004",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T007-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T009-R001": {
+          "winner": "IS 12457 : 1988",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T010-R001": {
+          "winner": "IS 14333 : 2022",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T011-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T012-R002": {
+          "winner": "IS 1661 : 1972",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T012-R003": {
+          "winner": "IS 1239 (Part 2) : 2011",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T013-R002": {
+          "winner": "IS 10069 : 2023",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T013-R003": {
+          "winner": "IS 14164 : 2008",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T014-R002": {
+          "winner": "IS 8789 : 2021",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T020-R001": {
+          "winner": "IS 15778 : 2007",
+          "is_correct": true,
+          "is_abstained": false
+        }
+      }
+    },
+    "2_Retrieval_Rank_Plus_Applicability": {
+      "simulation_index": 2,
+      "simulation_name": "2_Retrieval_Rank_Plus_Applicability",
+      "correct_count": 8,
+      "accuracy_pct": 42.1,
+      "abstained_count": 5,
+      "wrong_count": 6,
+      "improvements": [],
+      "regressions": [],
+      "per_query": {
+        "T001-R002": {
+          "winner": "IS 15947 (Part 2) : 2012",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T001-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T001-R004": {
+          "winner": "IS 2556 (Part 1) : 2021",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T002-R003": {
+          "winner": "IS 13257 : 1992",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T003-R001": {
+          "winner": "IS/IEC 61439 (Part 3) : 2012",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R002": {
+          "winner": "IS 1255 : 1983",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R005": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T005-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T006-R001": {
+          "winner": "IS 9271 : 2004",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T007-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T009-R001": {
+          "winner": "IS 12457 : 1988",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T010-R001": {
+          "winner": "IS 14333 : 2022",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T011-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T012-R002": {
+          "winner": "IS 1661 : 1972",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T012-R003": {
+          "winner": "IS 1239 (Part 2) : 2011",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T013-R002": {
+          "winner": "IS 10069 : 2023",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T013-R003": {
+          "winner": "IS 14164 : 2008",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T014-R002": {
+          "winner": "IS 8789 : 2021",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T020-R001": {
+          "winner": "IS 15778 : 2007",
+          "is_correct": true,
+          "is_abstained": false
+        }
+      }
+    },
+    "3_Technical_Role_Plus_Retrieval": {
+      "simulation_index": 3,
+      "simulation_name": "3_Technical_Role_Plus_Retrieval",
+      "correct_count": 8,
+      "accuracy_pct": 42.1,
+      "abstained_count": 5,
+      "wrong_count": 6,
+      "improvements": [],
+      "regressions": [],
+      "per_query": {
+        "T001-R002": {
+          "winner": "IS 15947 (Part 2) : 2012",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T001-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T001-R004": {
+          "winner": "IS 2556 (Part 1) : 2021",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T002-R003": {
+          "winner": "IS 13257 : 1992",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T003-R001": {
+          "winner": "IS/IEC 61439 (Part 3) : 2012",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R002": {
+          "winner": "IS 1255 : 1983",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R005": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T005-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T006-R001": {
+          "winner": "IS 9271 : 2004",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T007-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T009-R001": {
+          "winner": "IS 12457 : 1988",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T010-R001": {
+          "winner": "IS 14333 : 2022",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T011-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T012-R002": {
+          "winner": "IS 1661 : 1972",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T012-R003": {
+          "winner": "IS 1239 (Part 2) : 2011",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T013-R002": {
+          "winner": "IS 10069 : 2023",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T013-R003": {
+          "winner": "IS 14164 : 2008",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T014-R002": {
+          "winner": "IS 8789 : 2021",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T020-R001": {
+          "winner": "IS 15778 : 2007",
+          "is_correct": true,
+          "is_abstained": false
+        }
+      }
+    },
+    "4_Domain_Compatibility_Plus_Retrieval": {
+      "simulation_index": 4,
+      "simulation_name": "4_Domain_Compatibility_Plus_Retrieval",
+      "correct_count": 8,
+      "accuracy_pct": 42.1,
+      "abstained_count": 5,
+      "wrong_count": 6,
+      "improvements": [],
+      "regressions": [],
+      "per_query": {
+        "T001-R002": {
+          "winner": "IS 15947 (Part 2) : 2012",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T001-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T001-R004": {
+          "winner": "IS 2556 (Part 1) : 2021",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T002-R003": {
+          "winner": "IS 13257 : 1992",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T003-R001": {
+          "winner": "IS/IEC 61439 (Part 3) : 2012",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R002": {
+          "winner": "IS 1255 : 1983",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R005": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T005-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T006-R001": {
+          "winner": "IS 9271 : 2004",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T007-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T009-R001": {
+          "winner": "IS 12457 : 1988",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T010-R001": {
+          "winner": "IS 14333 : 2022",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T011-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T012-R002": {
+          "winner": "IS 1661 : 1972",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T012-R003": {
+          "winner": "IS 1239 (Part 2) : 2011",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T013-R002": {
+          "winner": "IS 10069 : 2023",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T013-R003": {
+          "winner": "IS 14164 : 2008",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T014-R002": {
+          "winner": "IS 8789 : 2021",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T020-R001": {
+          "winner": "IS 15778 : 2007",
+          "is_correct": true,
+          "is_abstained": false
+        }
+      }
+    },
+    "5_Domain_Conflict_Penalty_Plus_Retrieval": {
+      "simulation_index": 5,
+      "simulation_name": "5_Domain_Conflict_Penalty_Plus_Retrieval",
+      "correct_count": 8,
+      "accuracy_pct": 42.1,
+      "abstained_count": 5,
+      "wrong_count": 6,
+      "improvements": [],
+      "regressions": [],
+      "per_query": {
+        "T001-R002": {
+          "winner": "IS 15947 (Part 2) : 2012",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T001-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T001-R004": {
+          "winner": "IS 2556 (Part 1) : 2021",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T002-R003": {
+          "winner": "IS 13257 : 1992",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T003-R001": {
+          "winner": "IS/IEC 61439 (Part 3) : 2012",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R002": {
+          "winner": "IS 1255 : 1983",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R005": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T005-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T006-R001": {
+          "winner": "IS 9271 : 2004",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T007-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T009-R001": {
+          "winner": "IS 12457 : 1988",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T010-R001": {
+          "winner": "IS 14333 : 2022",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T011-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T012-R002": {
+          "winner": "IS 1661 : 1972",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T012-R003": {
+          "winner": "IS 1239 (Part 2) : 2011",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T013-R002": {
+          "winner": "IS 10069 : 2023",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T013-R003": {
+          "winner": "IS 14164 : 2008",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T014-R002": {
+          "winner": "IS 8789 : 2021",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T020-R001": {
+          "winner": "IS 15778 : 2007",
+          "is_correct": true,
+          "is_abstained": false
+        }
+      }
+    },
+    "6_Domain_Compat_Plus_Role_Plus_Retrieval": {
+      "simulation_index": 6,
+      "simulation_name": "6_Domain_Compat_Plus_Role_Plus_Retrieval",
+      "correct_count": 8,
+      "accuracy_pct": 42.1,
+      "abstained_count": 5,
+      "wrong_count": 6,
+      "improvements": [],
+      "regressions": [],
+      "per_query": {
+        "T001-R002": {
+          "winner": "IS 15947 (Part 2) : 2012",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T001-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T001-R004": {
+          "winner": "IS 2556 (Part 1) : 2021",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T002-R003": {
+          "winner": "IS 13257 : 1992",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T003-R001": {
+          "winner": "IS/IEC 61439 (Part 3) : 2012",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R002": {
+          "winner": "IS 1255 : 1983",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R005": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T005-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T006-R001": {
+          "winner": "IS 9271 : 2004",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T007-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T009-R001": {
+          "winner": "IS 12457 : 1988",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T010-R001": {
+          "winner": "IS 14333 : 2022",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T011-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T012-R002": {
+          "winner": "IS 1661 : 1972",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T012-R003": {
+          "winner": "IS 1239 (Part 2) : 2011",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T013-R002": {
+          "winner": "IS 10069 : 2023",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T013-R003": {
+          "winner": "IS 14164 : 2008",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T014-R002": {
+          "winner": "IS 8789 : 2021",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T020-R001": {
+          "winner": "IS 15778 : 2007",
+          "is_correct": true,
+          "is_abstained": false
+        }
+      }
+    },
+    "7_Strong_Negative_Conflict_Gate": {
+      "simulation_index": 7,
+      "simulation_name": "7_Strong_Negative_Conflict_Gate",
+      "correct_count": 8,
+      "accuracy_pct": 42.1,
+      "abstained_count": 5,
+      "wrong_count": 6,
+      "improvements": [],
+      "regressions": [],
+      "per_query": {
+        "T001-R002": {
+          "winner": "IS 15947 (Part 2) : 2012",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T001-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T001-R004": {
+          "winner": "IS 2556 (Part 1) : 2021",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T002-R003": {
+          "winner": "IS 13257 : 1992",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T003-R001": {
+          "winner": "IS/IEC 61439 (Part 3) : 2012",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R002": {
+          "winner": "IS 1255 : 1983",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R005": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T005-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T006-R001": {
+          "winner": "IS 9271 : 2004",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T007-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T009-R001": {
+          "winner": "IS 4051 : 2025",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T010-R001": {
+          "winner": "IS 14333 : 2022",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T011-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T012-R002": {
+          "winner": "IS 1661 : 1972",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T012-R003": {
+          "winner": "IS 1239 (Part 2) : 2011",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T013-R002": {
+          "winner": "IS 10069 : 2023",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T013-R003": {
+          "winner": "IS 14164 : 2008",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T014-R002": {
+          "winner": "IS 8789 : 2021",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T020-R001": {
+          "winner": "IS 15778 : 2007",
+          "is_correct": true,
+          "is_abstained": false
+        }
+      }
+    },
+    "8_Combined_Lifecycle_And_Domain_Calibration": {
+      "simulation_index": 8,
+      "simulation_name": "8_Combined_Lifecycle_And_Domain_Calibration",
+      "correct_count": 8,
+      "accuracy_pct": 42.1,
+      "abstained_count": 5,
+      "wrong_count": 6,
+      "improvements": [],
+      "regressions": [],
+      "per_query": {
+        "T001-R002": {
+          "winner": "IS 10990 (Part 2) : 1992",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T001-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T001-R004": {
+          "winner": "IS 2556 (Part 1) : 2021",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T002-R003": {
+          "winner": "IS 13257 : 1992",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T003-R001": {
+          "winner": "IS/IEC 61439 (Part 3) : 2012",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R002": {
+          "winner": "IS 1255 : 1983",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T004-R005": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T005-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T006-R001": {
+          "winner": "IS 9271 : 2004",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T007-R003": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T009-R001": {
+          "winner": "IS 4051 : 1967",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T010-R001": {
+          "winner": "IS 14333 : 1996",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T011-R001": {
+          "winner": null,
+          "is_correct": false,
+          "is_abstained": true
+        },
+        "T012-R002": {
+          "winner": "IS 1661 : 1972",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T012-R003": {
+          "winner": "IS 1239 (Part 2) : 2011",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T013-R002": {
+          "winner": "IS 10069 : 2017",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T013-R003": {
+          "winner": "IS 14164 : 2008",
+          "is_correct": true,
+          "is_abstained": false
+        },
+        "T014-R002": {
+          "winner": "IS 12066 : 1987",
+          "is_correct": false,
+          "is_abstained": false
+        },
+        "T020-R001": {
+          "winner": "IS 15778 : 2007",
+          "is_correct": true,
+          "is_abstained": false
+        }
+      }
+    }
+  },
+  "cross_benchmark_summary": {},
+  "safety_checks": {
+    "check_1_ambiguity_overridden": {
+      "description": "Did the simulation override an intentional ambiguity abstention?",
+      "evaluations": {},
+      "A_Current": [],
+      "B_Ignore_Lifecycle_Ranking": [],
+      "C_Lifecycle_Warning_Only": [],
+      "D_Explicit_Citation_Preserved_No_Demotion": [],
+      "E_Unknown_Separated": [],
+      "1_Current_Arbitration": [],
+      "2_Retrieval_Rank_Plus_Applicability": [],
+      "3_Technical_Role_Plus_Retrieval": [],
+      "4_Domain_Compatibility_Plus_Retrieval": [],
+      "5_Domain_Conflict_Penalty_Plus_Retrieval": [],
+      "6_Domain_Compat_Plus_Role_Plus_Retrieval": [],
+      "7_Strong_Negative_Conflict_Gate": [],
+      "8_Combined_Lifecycle_And_Domain_Calibration": []
+    },
+    "check_2_unknown_made_authoritative": {
+      "description": "Did the simulation cause an unverified UNKNOWN standard to outrank an authoritative product standard?",
+      "evaluations": {},
+      "A_Current": true,
+      "B_Ignore_Lifecycle_Ranking": true,
+      "C_Lifecycle_Warning_Only": true,
+      "D_Explicit_Citation_Preserved_No_Demotion": true,
+      "E_Unknown_Separated": true,
+      "1_Current_Arbitration": true,
+      "2_Retrieval_Rank_Plus_Applicability": true,
+      "3_Technical_Role_Plus_Retrieval": true,
+      "4_Domain_Compatibility_Plus_Retrieval": true,
+      "5_Domain_Conflict_Penalty_Plus_Retrieval": true,
+      "6_Domain_Compat_Plus_Role_Plus_Retrieval": true,
+      "7_Strong_Negative_Conflict_Gate": true,
+      "8_Combined_Lifecycle_And_Domain_Calibration": true
+    },
+    "check_3_withdrawn_shown_as_active": {
+      "description": "Did the simulation hide the withdrawn/superseded status or omit the warning?",
+      "evaluations": {},
+      "A_Current": "SAFE (Validation metadata and superseded warning preserved)",
+      "B_Ignore_Lifecycle_Ranking": "SAFE (Validation metadata and superseded warning preserved)",
+      "C_Lifecycle_Warning_Only": "SAFE (Validation metadata and superseded warning preserved)",
+      "D_Explicit_Citation_Preserved_No_Demotion": "SAFE (Validation metadata and superseded warning preserved)",
+      "E_Unknown_Separated": "SAFE (Validation metadata and superseded warning preserved)",
+      "1_Current_Arbitration": "SAFE (Validation metadata and superseded warning preserved)",
+      "2_Retrieval_Rank_Plus_Applicability": "SAFE (Validation metadata and superseded warning preserved)",
+      "3_Technical_Role_Plus_Retrieval": "SAFE (Validation metadata and superseded warning preserved)",
+      "4_Domain_Compatibility_Plus_Retrieval": "SAFE (Validation metadata and superseded warning preserved)",
+      "5_Domain_Conflict_Penalty_Plus_Retrieval": "SAFE (Validation metadata and superseded warning preserved)",
+      "6_Domain_Compat_Plus_Role_Plus_Retrieval": "SAFE (Validation metadata and superseded warning preserved)",
+      "7_Strong_Negative_Conflict_Gate": "SAFE (Validation metadata and superseded warning preserved)",
+      "8_Combined_Lifecycle_And_Domain_Calibration": "SAFE (Validation metadata and superseded warning preserved)"
+    },
+    "check_4_niche_selected_by_lexical": {
+      "description": "Did a niche standard win merely because of spurious lexical token overlap?",
+      "evaluations": {},
+      "A_Current": true,
+      "B_Ignore_Lifecycle_Ranking": false,
+      "C_Lifecycle_Warning_Only": false,
+      "D_Explicit_Citation_Preserved_No_Demotion": false,
+      "E_Unknown_Separated": true,
+      "1_Current_Arbitration": true,
+      "2_Retrieval_Rank_Plus_Applicability": true,
+      "3_Technical_Role_Plus_Retrieval": true,
+      "4_Domain_Compatibility_Plus_Retrieval": true,
+      "5_Domain_Conflict_Penalty_Plus_Retrieval": true,
+      "6_Domain_Compat_Plus_Role_Plus_Retrieval": true,
+      "7_Strong_Negative_Conflict_Gate": false,
+      "8_Combined_Lifecycle_And_Domain_Calibration": false
+    },
+    "check_5_regression_count": {
+      "description": "Did the simulation regress any previously correct recommendation?",
+      "evaluations": {},
+      "A_Current": {
+        "regression_count": 0,
+        "regressed_queries": []
+      },
+      "B_Ignore_Lifecycle_Ranking": {
+        "regression_count": 0,
+        "regressed_queries": []
+      },
+      "C_Lifecycle_Warning_Only": {
+        "regression_count": 0,
+        "regressed_queries": []
+      },
+      "D_Explicit_Citation_Preserved_No_Demotion": {
+        "regression_count": 0,
+        "regressed_queries": []
+      },
+      "E_Unknown_Separated": {
+        "regression_count": 3,
+        "regressed_queries": [
+          "T004-R002",
+          "T012-R003",
+          "T020-R001"
+        ]
+      },
+      "1_Current_Arbitration": {
+        "regression_count": 0,
+        "regressed_queries": []
+      },
+      "2_Retrieval_Rank_Plus_Applicability": {
+        "regression_count": 0,
+        "regressed_queries": []
+      },
+      "3_Technical_Role_Plus_Retrieval": {
+        "regression_count": 0,
+        "regressed_queries": []
+      },
+      "4_Domain_Compatibility_Plus_Retrieval": {
+        "regression_count": 0,
+        "regressed_queries": []
+      },
+      "5_Domain_Conflict_Penalty_Plus_Retrieval": {
+        "regression_count": 0,
+        "regressed_queries": []
+      },
+      "6_Domain_Compat_Plus_Role_Plus_Retrieval": {
+        "regression_count": 0,
+        "regressed_queries": []
+      },
+      "7_Strong_Negative_Conflict_Gate": {
+        "regression_count": 0,
+        "regressed_queries": []
+      },
+      "8_Combined_Lifecycle_And_Domain_Calibration": {
+        "regression_count": 0,
+        "regressed_queries": []
+      }
+    }
+  }
+}
