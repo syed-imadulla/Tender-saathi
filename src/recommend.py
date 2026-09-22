@@ -353,14 +353,22 @@ class StandardsRecommender:
         is_prod_req = any(re.search(rf'\b{w}\b', t_low) for w in prod_nouns)
 
         if is_prod_req and any(classify_standard_role(c.standard_number, c.full_title, c.scope_summary) == "PRIMARY_PRODUCT" for c in applicable_candidates):
-            def role_priority(c: SearchResult) -> int:
+            best_score = max(c.relevance_score for c in applicable_candidates) if applicable_candidates else 0.0
+            def role_priority(c: SearchResult) -> Tuple[int, float]:
                 role = classify_standard_role(c.standard_number, c.full_title, c.scope_summary)
-                if role == "PRIMARY_PRODUCT":
-                    return 0
-                elif role in ["INSTALLATION", "CODE_OF_PRACTICE"]:
-                    return 1
-                return 2
+                # Product preference only applies when candidate score is within 0.15 of the best score
+                if (best_score - c.relevance_score) <= 0.15:
+                    if role == "PRIMARY_PRODUCT":
+                        r_order = 0
+                    elif role in ["INSTALLATION", "CODE_OF_PRACTICE", "FACILITY_PREMISE"]:
+                        r_order = 1
+                    else:
+                        r_order = 2
+                else:
+                    r_order = 3
+                return (r_order, -c.relevance_score)
             applicable_candidates.sort(key=role_priority)
+
 
         # If ALL candidates fail the applicability gate: ABSTAIN cleanly
         if not applicable_candidates:
@@ -567,13 +575,8 @@ class StandardsRecommender:
                 standard_role=rec_role
             ))
 
-        # Select top_rec prioritizing PRIMARY_PRODUCT if seeking a manufactured product
-        if is_prod_req and any(r.standard_role == "PRIMARY_PRODUCT" for r in recommendations):
-            top_rec = next(r for r in recommendations if r.standard_role == "PRIMARY_PRODUCT")
-            alternatives = [r.standard_number for r in recommendations if r.standard_number != top_rec.standard_number][:3]
-        else:
-            top_rec = recommendations[0]
-            alternatives = [r.standard_number for r in recommendations[1:4]]
+        top_rec = recommendations[0]
+        alternatives = [r.standard_number for r in recommendations[1:4]]
 
         # Human Review and Risk Decision Logic
         if superseded_explicit_warnings:

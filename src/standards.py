@@ -117,7 +117,31 @@ def classify_standard_role(standard_number: str, title: Optional[str] = None, sc
     if is_known_product and not is_cop_num:
         return "PRIMARY_PRODUCT"
 
-    # 1. Code of Practice / Installation / Management Systems
+    # 1. Household and commercial electrical appliances & portable tools
+    appliance_keywords = [
+        "safety of household and similar electrical appliances",
+        "household and similar electrical appliances",
+        "food grinding machines",
+        "kitchen machines",
+        "electric food mixer",
+        "portable electric tools",
+        "hand-held electric tools"
+    ]
+    if any(k in t for k in appliance_keywords) or (("household" in t or "similar electrical appliances" in t) and ("safety" in t or "appliances" in t)):
+        return "APPLIANCE_TOOL"
+
+    # 2. Facility / premise / establishment codes of practice & hygiene guidelines
+    facility_keywords = [
+        "food hygiene", "general principles of food hygiene", "sanitary and hygienic requirements",
+        "national electrical code", "code of practice for electrical wiring installations",
+        "code of practice for construction of", "guidelines for establishment",
+        "food safety management systems", "haccp"
+    ]
+    if any(k in t for k in facility_keywords) or any(k in sc for k in facility_keywords):
+        if "code of practice" in t or "code of practice" in s or "haccp" in t or is_cop_num:
+            return "FACILITY_PREMISE"
+
+    # 3. Code of Practice / Installation / Management Systems
     if "code of practice" in t or "code of practice" in s or is_cop_num or "haccp" in t or "haccp" in s or "guidelines" in t:
         if any(w in t or w in sc for w in ["installation", "laying", "erection", "fixing", "maintenance", "jointing", "execution"]):
             return "INSTALLATION"
@@ -126,19 +150,19 @@ def classify_standard_role(standard_number: str, title: Optional[str] = None, sc
     if any(w in t for w in ["installation and maintenance", "installation of", "laying of", "code of practice for laying"]):
         return "INSTALLATION"
 
-    # 2. Test Methods
+    # 4. Test Methods
     if any(w in t for w in ["method of test", "methods of test", "test method", "methods for test", "sampling and test", "sampling and methods of test"]):
         return "TEST_METHOD"
 
-    # 3. Safety Standards
+    # 5. Safety Standards
     if any(w in t for w in ["safety requirements", "code of safety", "safety code", "fire safety"]):
         return "SAFETY"
 
-    # 4. Allied / Terminology
+    # 6. Allied / Terminology
     if any(w in t for w in ["glossary of terms", "terminology", "vocabulary", "symbols"]):
         return "ALLIED"
 
-    # 5. Default is primary product specification
+    # 7. Default is primary product specification
     return "PRIMARY_PRODUCT"
 
 

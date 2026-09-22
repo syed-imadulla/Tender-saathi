@@ -64,6 +64,9 @@ def _extract_voltage(text: str) -> Optional[str]:
 def _extract_product_family(text: str) -> str:
     text = text.lower()
     if "cable" in text: return "cable"
+    if any(w in text for w in ["bib tap", "pillar tap", "stop tap"]): return "tap"
+    if "cistern" in text: return "cistern"
+    if any(w in text for w in ["sanitary", "closet", "wash basin", "urinal"]): return "sanitaryware"
     if "valve" in text: return "valve"
     if "pump" in text: return "pump"
     if "pipe" in text or "tube" in text: return "pipe"
@@ -73,17 +76,30 @@ def _extract_product_family(text: str) -> str:
     if "transformer" in text: return "transformer"
     if "flange" in text: return "flange"
     if "gasket" in text: return "gasket"
-    if any(w in text for w in ["bib tap", "pillar tap", "stop tap"]): return "tap"
-    if "cistern" in text: return "cistern"
-    if any(w in text for w in ["sanitary", "closet", "wash basin", "urinal"]): return "sanitaryware"
     if "luminaire" in text or "lighting" in text: return "luminaire"
     return "other"
 
 def extract_standard_attributes(standard_number: str, title: str, scope: str = "") -> StandardAttributes:
     """Derives attributes from standard metadata."""
-    combined = f"{title} {scope}"
+    if title and ";" in title and "[" in title:
+        segments = title.split(";")
+        std_clean = standard_number.split("(")[0].strip()
+        for seg in segments:
+            if f"[{std_clean}" in seg or f"[{standard_number}" in seg or std_clean in seg:
+                title = seg.strip()
+                break
+    clean_scope = scope or ""
+    if "partial match:" in clean_scope.lower() or "proposed standard" in clean_scope.lower():
+        clean_scope = ""
+
     attrs = StandardAttributes()
-    attrs.product_family = _extract_product_family(combined)
+    fam_from_title = _extract_product_family(title)
+    if fam_from_title != "other":
+        attrs.product_family = fam_from_title
+    else:
+        attrs.product_family = _extract_product_family(clean_scope)
+
+    combined = f"{title} {clean_scope}"
     attrs.material = _extract_material(combined)
     attrs.voltage_rating = _extract_voltage(combined)
     

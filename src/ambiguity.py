@@ -408,12 +408,21 @@ class AmbiguityEngine:
                         text, c_top, alt, completeness_report, decomposed_components, tender_attrs
                     )
                     if is_mat:
-                        competing_found = True
-                        chosen_c1 = c_top
-                        chosen_c2 = alt
-                        chosen_param = param
-                        chosen_expl = expl
-                        break
+                        top_score = max(c_top.final_score, c_top.relevance_score)
+                        alt_score = max(alt.final_score, alt.relevance_score)
+                        relative_ratio = (alt_score / top_score) if top_score > 0 else 0.0
+                        abs_delta = round(abs(top_score - alt_score), 4)
+                        has_grounding = (alt.bm25_score > 0.05 or alt.semantic_score >= 0.35 or alt.deterministic_score >= 0.50 or alt.relevance_score >= 0.35 or alt.final_score >= 0.35)
+
+                        # Calibrated Competition Gate:
+                        # Only true competition if alternative candidate has genuine score proximity and grounding
+                        if relative_ratio >= 0.70 and abs_delta <= 0.20 and has_grounding:
+                            competing_found = True
+                            chosen_c1 = c_top
+                            chosen_c2 = alt
+                            chosen_param = param
+                            chosen_expl = expl
+                            break
                 
                 if competing_found and chosen_c1 and chosen_c2:
                     delta = round(abs(chosen_c1.final_score - chosen_c2.final_score), 3)
@@ -439,6 +448,46 @@ class AmbiguityEngine:
                             provenance=chosen_c2.verification_status
                         ).to_dict()
                     ]
+
+                    # Component Isolation:
+                    # If the overall top candidate has high confidence for an independent component
+                    # that is NOT part of the competing pair, do not collapse the entire recommendation.
+                    primary_lead = applicable_candidates[0]
+                    lead_score = max(primary_lead.final_score, primary_lead.relevance_score)
+                    lead_attrs = extract_standard_attributes(
+                        primary_lead.standard_number, primary_lead.full_title, primary_lead.scope_summary
+                    )
+                    c1_attrs = extract_standard_attributes(
+                        chosen_c1.standard_number, chosen_c1.full_title, chosen_c1.scope_summary
+                    )
+                    lead_role = classify_standard_role(primary_lead.standard_number, primary_lead.full_title, primary_lead.scope_summary)
+                    c1_role = classify_standard_role(chosen_c1.standard_number, chosen_c1.full_title, chosen_c1.scope_summary)
+                    is_distinct_component = (
+                        (not lead_attrs.product_family or not c1_attrs.product_family or lead_attrs.product_family != c1_attrs.product_family)
+                        and (lead_role != c1_role or lead_role in ["CODE_OF_PRACTICE", "INSTALLATION", "FACILITY_PREMISE"])
+                    )
+                    if lead_score >= 0.75 and primary_lead.standard_number not in [chosen_c1.standard_number, chosen_c2.standard_number] and is_distinct_component:
+                        reason_msg = (
+                            f"Primary standard {primary_lead.standard_number} is confident, but co-procured component "
+                            f"has competing alternatives ({chosen_c1.standard_number} vs {chosen_c2.standard_number}) lacking {chosen_param}."
+                        )
+                        return AmbiguityReport(
+                            ambiguity_state=AmbiguityState.REVIEW_REQUIRED,
+                            ambiguity_reason=reason_msg,
+                            retrieval_status="CANDIDATES_FOUND",
+                            applicability_status="VIABLE_CANDIDATE",
+                            evidence_status="VALID",
+                            competing_interpretations=competing,
+                            separation_margin=delta,
+                            missing_information=[chosen_param],
+                            human_review_required=True,
+                            suggested_clarification_question=(
+                                f"For co-procured component, confirm specification between {chosen_c1.standard_number} and {chosen_c2.standard_number}. "
+                                f"Please specify {chosen_param}."
+                            ),
+                            decision_confidence="High"
+                        )
+
                     reason_msg = (
                         f"Multiple competing Indian Standards ({chosen_c1.standard_number} and {chosen_c2.standard_number}) "
                         f"have competing applicability for the same procurement object. "

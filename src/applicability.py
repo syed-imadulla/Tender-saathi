@@ -25,6 +25,7 @@ from typing import List, Dict, Any, Optional, Set, Tuple
 
 from src.search import SearchResult
 from src.decompose import RequirementComponent
+from src.standards import classify_standard_role
 
 
 class ApplicabilityDecision(str, Enum):
@@ -565,13 +566,26 @@ class ApplicabilityGate:
             application_match = False
             conflict_flags.append("EQUIPMENT_MISMATCH: power drive system vs switchgear assembly")
             rejection_reasons.append("Equipment mismatch: Standard covers adjustable speed power drive systems (VFD), but requirement specifies switchgear/controlgear assembly without power drive system.")
-
         is_5039 = "5039" in std_num
         has_transformer = bool(re.search(r'\b(?:transformer|transformers|distribution\s+transformer|kva|mva|oil\s+immersed\s+transformer)\b', req_text_low))
         if is_5039 and has_transformer:
             application_match = False
             conflict_flags.append("EQUIPMENT_MISMATCH: distribution transformer vs distribution pillar IS 5039")
             rejection_reasons.append("Equipment mismatch: Requirement specifies outdoor oil-immersed distribution transformer, but IS 5039 covers distribution pillars (feeder pillars / junction boxes). Applicable standard is IS 1180 (Part 1).")
+
+        # Procurement Object Level Compatibility: Facility/Premise vs Appliance/Tool
+        cand_role = classify_standard_role(std_num, title, scope)
+        is_facility_req = (
+            any(comp.component_type == "application" and comp.domain in ["food_safety", "infrastructure"] for comp in (components or []))
+            or any(w in req_text_low for w in ["food outlet", "canteen", "cafeteria", "catering", "dining hall", "food storage depot", "warehouse", "sports stadium", "hospital premises", "cleanroom", "laboratory premises", "stp premises"])
+        )
+        if is_facility_req and cand_role == "APPLIANCE_TOOL":
+            application_match = False
+            conflict_flags.append("EQUIPMENT_MISMATCH: facility_premise vs appliance_tool")
+            rejection_reasons.append(
+                "Procurement object mismatch: Requirement specifies facility, premise, or commercial establishment, "
+                "but candidate standard covers individual domestic or commercial appliances/tools."
+            )
 
         # 7. Evidence Support
         evidence_support = (
