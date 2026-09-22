@@ -150,9 +150,9 @@ DOMAINS = {
     "PIPES_AND_FITTINGS": {
         "keywords": {
             "pipe", "pipes", "piping", "fitting", "fittings", "tube", "tubes",
-            "cpvc", "upvc", "pvc", "hdpe", "ductile iron", "cast iron pipe",
-            "gi pipe", "plumbing", "water supply", "potable water distribution",
-            "drainage", "sewerage pipe"
+            "cpvc", "upvc", "pvc pipe", "pvc pipes", "pvc fitting", "pvc fittings", "pvc conduit",
+            "hdpe", "ductile iron", "cast iron pipe", "gi pipe", "plumbing", "water supply",
+            "potable water distribution", "drainage", "sewerage pipe"
         },
         "description": "Pipes, Tubes & Plumbing Distribution"
     },
@@ -160,6 +160,8 @@ DOMAINS = {
         "keywords": {
             "cable", "cables", "conductor", "conductors", "wire", "wires",
             "transformer", "switchgear", "vfd", "motor", "inverter",
+            "electrical machine", "electrical machines", "rotating electrical machines", "rotating machine",
+            "electric motor", "induction motor", "generator",
             "substation", "circuit breaker", "panel", "voltage", "1.1 kv",
             "3.3 kv", "11 kv", "33 kv", "ht cable", "lt cable", "power distribution"
         },
@@ -320,14 +322,15 @@ class ApplicabilityGate:
             prof.steel_grade_process = "mild_steel"
 
         # Pump installation type
-        is_explicitly_non_submersible = bool(re.search(r'\b(?:non[-\s]+submersible|not\s+submersible|surface\s+pump|surface\s+coupled|end\s+suction|horizontal\s+split)\b', t_low))
-        if is_explicitly_non_submersible:
+        has_submersible_kw = bool(re.search(r'\b(?:submersible|borewell|bore\s*well|borehole|tube\s*well|tubewell|openwell|submerged)\b', t_low))
+        is_explicitly_non_submersible = bool(re.search(r'\b(?:non[-\s]+submersible|not\s+submersible)\b', t_low))
+        if is_explicitly_non_submersible or (not has_submersible_kw and bool(re.search(r'\b(?:surface\s+pump|surface\s+coupled|end\s+suction|horizontal\s+split|process\s+(?:water\s+)?pump|coupled\s+with|coupled\s+to)\b', t_low))):
             prof.pump_installation = "surface_coupled"
         elif bool(re.search(r'\b(?:borewell|bore\s*well|borehole|tube\s*well|tubewell)\b', t_low)):
             prof.pump_installation = "submersible_borewell"
         elif "openwell" in t_low:
             prof.pump_installation = "openwell"
-        elif "submersible" in t_low:
+        elif "submersible" in t_low or has_submersible_kw:
             prof.pump_installation = "submersible"
 
         return prof
@@ -385,7 +388,9 @@ class ApplicabilityGate:
             req_domains.extend(self.detect_domains(app_text))
         req_domains = list(set(req_domains))
 
-        cand_domains = self.detect_domains(f"{title} {scope}")
+        cand_domains = self.detect_domains(title)
+        if not cand_domains and scope:
+            cand_domains = self.detect_domains(scope)
 
         # 3. Check Domain Conflict
         # A conflict only occurs if candidate and requirement domains are DISJOINT (no shared domain)
@@ -503,6 +508,17 @@ class ApplicabilityGate:
                 )
 
         # E. Pump Installation Compatibility (Submersible Borewell vs Openwell vs Surface)
+        if cand_prof.pump_installation in ["submersible", "submersible_borewell", "openwell"]:
+            is_pump_req = bool(re.search(r'\b(?:pump|pumps|pumpset|pumpsets)\b', req_text_low))
+            has_sub_req = bool(re.search(r'\b(?:submersible|borewell|bore\s*well|borehole|tube\s*well|tubewell|openwell|submerged)\b', req_text_low))
+            if is_pump_req and not has_sub_req:
+                application_match = False
+                conflict_flags.append(f"APPLICATION_CONFLICT: non-submersible pump vs {cand_prof.pump_installation}")
+                rejection_reasons.append(
+                    f"Application conflict: Standard covers {cand_prof.pump_installation.replace('_', ' ')} pumpsets, "
+                    f"but requirement specifies non-submersible / surface pump application."
+                )
+
         if req_prof.pump_installation and cand_prof.pump_installation:
             is_sub_cand = cand_prof.pump_installation in ["submersible", "submersible_borewell", "openwell"]
             is_sub_req = req_prof.pump_installation in ["submersible", "submersible_borewell", "openwell"]
@@ -515,12 +531,17 @@ class ApplicabilityGate:
                 )
             elif req_prof.pump_installation == "submersible_borewell" and cand_prof.pump_installation == "openwell":
                 application_match = False
-                conflict_flags.append(f"APPLICATION_CONFLICT: openwell pump vs borewell requirement")
+                conflict_flags.append("APPLICATION_CONFLICT: openwell pump vs borewell requirement")
                 rejection_reasons.append(
-                    f"Application conflict: Standard covers openwell pumpsets, but requirement specifies a borewell installation."
+                    "Application conflict: Standard covers openwell pumpsets, but requirement specifies a borewell installation."
                 )
 
         # Specialized technologies outside standard catalogue scope
+        if ("subsea" in req_text_low and "umbilical" in req_text_low) or "dynamic umbilical" in req_text_low or "deep ocean" in req_text_low:
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: deep ocean subsea umbilical")
+            rejection_reasons.append("Application conflict: Terrestrial building power cable standards do not cover deep ocean subsea dynamic electro-hydraulic umbilicals.")
+
         if any(k in req_text_low for k in ["liquid sodium", "fast breeder", "liquid metal sodium"]) or ("sodium" in req_text_low and "coolant" in req_text_low):
             application_match = False
             conflict_flags.append("APPLICATION_CONFLICT: nuclear liquid sodium coolant")
@@ -530,6 +551,11 @@ class ApplicabilityGate:
             application_match = False
             conflict_flags.append("APPLICATION_CONFLICT: display optical film")
             rejection_reasons.append("Application conflict: Agricultural, mechanical, or photography standards do not cover advanced television display optical film.")
+
+        if any(k in req_text_low for k in ["prepreg", "supersonic aerospace", "aerospace fuselage"]):
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: aerospace structural prepreg")
+            rejection_reasons.append("Application conflict: General plastic/translucent sheets or industrial standards do not cover supersonic aerospace fuselage prepregs.")
 
         # Equipment scope gates
         is_cand_vfd = "61800" in std_num or "power drive" in cand_corpus_low
