@@ -33,18 +33,52 @@ class ApplicabilityDecision(str, Enum):
     NOT_APPLICABLE = "NOT_APPLICABLE"
 
 
+class ApplicabilityState(str, Enum):
+    APPLICABLE = "APPLICABLE"
+    INCOMPATIBLE = "INCOMPATIBLE"
+    UNKNOWN = "UNKNOWN"
+
+
+class ApplicabilityReasonCode(str, Enum):
+    APPLICABLE = "APPLICABLE"
+    INCOMPATIBLE_APPLICATION = "INCOMPATIBLE_APPLICATION"
+    INCOMPATIBLE_DOMAIN = "INCOMPATIBLE_DOMAIN"
+    EQUIPMENT_MISMATCH = "EQUIPMENT_MISMATCH"
+    PARAMETER_OUT_OF_SCOPE = "PARAMETER_OUT_OF_SCOPE"
+    MISSING_APPLICATION_CONTEXT = "MISSING_APPLICATION_CONTEXT"
+    INSUFFICIENT_SCOPE_EVIDENCE = "INSUFFICIENT_SCOPE_EVIDENCE"
+    LIFECYCLE_INVALID = "LIFECYCLE_INVALID"
+
+
+@dataclass
+class ApplicationProfile:
+    """Operating environment and functional service traits extracted from text/scope."""
+    service_fluid: Optional[str] = None          # potable_water, fire_extinguishing, drainage_sewerage, industrial_chemical
+    operating_medium: Optional[str] = None       # underground, overhead, subsea, marine, aircraft, terrestrial
+    voltage_tier: Optional[str] = None           # lv_lt (<=1.1kV), mv_ht (3.3kV-33kV), ehv (>33kV)
+    steel_grade_process: Optional[str] = None    # tmt_deformed, mild_steel
+    pump_installation: Optional[str] = None      # submersible_borewell, openwell, surface_coupled
+
+
 @dataclass
 class ApplicabilityResult:
     standard_number: str
     title: str
-    applicable: bool                      # True if APPLICABLE or REVIEW_REQUIRED (not rejected)
-    decision: str                         # APPLICABLE, REVIEW_REQUIRED, NOT_APPLICABLE
-    applicability_score: float            # 0.0 to 1.0 composite applicability score
-    domain_match: bool                    # Does standard belong to same engineering domain?
-    product_match: bool                   # Does standard cover the product/equipment being procured?
-    scope_match: bool                     # Does authoritative standard scope support the requirement?
-    application_match: bool               # Does the use case/application environment match?
-    evidence_support: bool                # Is there genuine domain/technical evidence (not mere stopwords)?
+    applicable: bool                                      # True ONLY if state == APPLICABLE or REVIEW_REQUIRED
+    decision: str                                         # APPLICABLE, REVIEW_REQUIRED, NOT_APPLICABLE
+    applicability_score: float                            # 0.0 to 1.0 composite applicability score
+    domain_match: bool                                    # Does standard belong to same engineering domain?
+    product_match: bool                                   # Does standard cover the product/equipment being procured?
+    scope_match: bool                                     # Does authoritative standard scope support the requirement?
+    application_match: bool                               # Does the use case/application environment match?
+    evidence_support: bool                                # Is there genuine domain/technical evidence (not mere stopwords)?
+    state: ApplicabilityState = ApplicabilityState.UNKNOWN
+    reason_code: ApplicabilityReasonCode = ApplicabilityReasonCode.APPLICABLE
+    human_reason: str = ""
+    evidence_text: Optional[str] = None
+    evidence_source: str = "BIS Catalogue Title/Scope"
+    missing_information: Optional[str] = None
+    clarification_prompt: Optional[str] = None
     conflict_flags: List[str] = field(default_factory=list)
     reasons: List[str] = field(default_factory=list)
     rejection_reasons: List[str] = field(default_factory=list)
@@ -55,6 +89,13 @@ class ApplicabilityResult:
             "title": self.title,
             "applicable": self.applicable,
             "decision": self.decision,
+            "state": self.state.value if isinstance(self.state, ApplicabilityState) else str(self.state),
+            "reason_code": self.reason_code.value if isinstance(self.reason_code, ApplicabilityReasonCode) else str(self.reason_code),
+            "human_reason": self.human_reason,
+            "evidence_text": self.evidence_text,
+            "evidence_source": self.evidence_source,
+            "missing_information": self.missing_information,
+            "clarification_prompt": self.clarification_prompt,
             "applicability_score": round(self.applicability_score, 3),
             "domain_match": self.domain_match,
             "product_match": self.product_match,
@@ -236,6 +277,61 @@ class ApplicabilityGate:
                     tokens.add(stemmed)
         return tokens
 
+    def extract_application_profile(self, text: str) -> ApplicationProfile:
+        """
+        Extracts operational, environmental, and service traits from requirement text or BIS metadata.
+        Operates strictly on explicit engineering tokens, never inferring or assuming boundaries.
+        """
+        t_low = text.lower()
+        prof = ApplicationProfile()
+
+        # Service fluid / operational application
+        if any(w in t_low for w in ["potable", "drinking water", "hot and cold water", "domestic water", "potable water supply"]):
+            prof.service_fluid = "potable_water"
+        elif any(w in t_low for w in ["sprinkler", "fire extinguishing", "fire fighting", "fire protection", "wet pipe", "deluge"]):
+            prof.service_fluid = "fire_extinguishing"
+        elif any(w in t_low for w in ["drainage", "sewerage", "sewer", "gravity sewer", "non-pressure drainage", "waste water"]):
+            prof.service_fluid = "drainage_sewerage"
+        elif any(w in t_low for w in ["chemical", "corrosive", "effluent", "petrochemical", "refinery", "acid"]):
+            prof.service_fluid = "industrial_chemical"
+
+        # Operating medium / installation environment
+        if any(w in t_low for w in ["subsea", "deep ocean", "umbilical", "offshore subsea"]):
+            prof.operating_medium = "subsea"
+        elif any(w in t_low for w in ["shipboard", "marine", "shipbuilding", "naval", "for ships", "in ships"]):
+            prof.operating_medium = "marine"
+        elif any(w in t_low for w in ["aircraft", "aviation", "aerospace", "fuselage", "avionics"]):
+            prof.operating_medium = "aircraft"
+        elif any(w in t_low for w in ["underground", "buried", "trench", "direct burial"]):
+            prof.operating_medium = "underground"
+        elif any(w in t_low for w in ["overhead", "overhead transmission", "overhead line", "aerial"]):
+            prof.operating_medium = "overhead"
+
+        # Voltage tier (explicitly derived from text)
+        if bool(re.search(r'\b(?:11\s*kv|33\s*kv|3\.3\s*kv|6\.6\s*kv|22\s*kv|66\s*kv|ht\s+cable|medium\s+voltage|high\s+voltage)\b', t_low)):
+            prof.voltage_tier = "mv_ht"
+        elif bool(re.search(r'\b(?:1\.1\s*kv|1100\s*v|415\s*v|lt\s+cable|low\s+voltage)\b', t_low)):
+            prof.voltage_tier = "lv_lt"
+
+        # Steel grade / process
+        if bool(re.search(r'\b(?:fe\s*500d?|fe\s*415|fe\s*550d?|fe\s*600|tmt|thermo\s*mechanically\s*treated|high\s+strength\s+deformed|deformed\s+bar|ctd)\b', t_low)):
+            prof.steel_grade_process = "tmt_deformed"
+        elif bool(re.search(r'\b(?:mild\s+steel|fe\s*250|plain\s+round)\b', t_low)) and "deformed" not in t_low:
+            prof.steel_grade_process = "mild_steel"
+
+        # Pump installation type
+        is_explicitly_non_submersible = bool(re.search(r'\b(?:non[-\s]+submersible|not\s+submersible|surface\s+pump|surface\s+coupled|end\s+suction|horizontal\s+split)\b', t_low))
+        if is_explicitly_non_submersible:
+            prof.pump_installation = "surface_coupled"
+        elif bool(re.search(r'\b(?:borewell|bore\s*well|borehole|tube\s*well|tubewell)\b', t_low)):
+            prof.pump_installation = "submersible_borewell"
+        elif "openwell" in t_low:
+            prof.pump_installation = "openwell"
+        elif "submersible" in t_low:
+            prof.pump_installation = "submersible"
+
+        return prof
+
     def detect_domains(self, text: str) -> List[str]:
         """Detects engineering domains present in text based on technical keywords."""
         t_low = text.lower()
@@ -350,16 +446,79 @@ class ApplicabilityGate:
             if not substantive_overlap:
                 rejection_reasons.append("No substantive technical vocabulary overlap with standard scope (generic words only).")
 
-        # 6. Application Match
+        # 6. Application Match & Operational Traits (Generalized Trait Matching)
         application_match = True
+        boundary_match = True
         req_text_low = requirement_text.lower()
         cand_corpus_low = cand_corpus.lower()
 
-        # If application strongly conflicts with standard title/scope
-        if "refinery" in cand_corpus_low and ("domestic" in req_text_low or "potable" in req_text_low):
+        # Extract structured operational profiles
+        req_prof = self.extract_application_profile(requirement_text)
+        cand_prof = self.extract_application_profile(cand_corpus)
+
+        # A. Fluid / Service Compatibility (e.g. Potable Water vs Fire Extinguishing vs Drainage)
+        if req_prof.service_fluid and cand_prof.service_fluid:
+            if req_prof.service_fluid != cand_prof.service_fluid:
+                application_match = False
+                conflict_flags.append(f"APPLICATION_CONFLICT: service fluid {req_prof.service_fluid} vs {cand_prof.service_fluid}")
+                rejection_reasons.append(
+                    f"Application conflict: Standard is scoped for {cand_prof.service_fluid.replace('_', ' ')}, "
+                    f"which is incompatible with requirement's specified {req_prof.service_fluid.replace('_', ' ')}."
+                )
+
+        # B. Operating Medium / Environment Compatibility (e.g. Subsea / Marine / Aircraft vs Terrestrial)
+        if cand_prof.operating_medium in ["subsea", "marine", "aircraft"]:
+            if req_prof.operating_medium != cand_prof.operating_medium:
+                application_match = False
+                conflict_flags.append(f"APPLICATION_CONFLICT: {cand_prof.operating_medium} standard vs terrestrial installation")
+                rejection_reasons.append(
+                    f"Application conflict: Standard is specifically scoped for {cand_prof.operating_medium} applications, "
+                    f"but requirement specifies terrestrial/civil procurement."
+                )
+
+        if req_prof.operating_medium == "underground" and cand_prof.operating_medium == "overhead":
             application_match = False
-            conflict_flags.append("APPLICATION_CONFLICT: industrial/petrochemical vs domestic water")
-            rejection_reasons.append("Application conflict: Petrochemical standard applied to domestic potable installation.")
+            conflict_flags.append("APPLICATION_CONFLICT: overhead transmission lines vs underground power cable")
+            rejection_reasons.append("Application conflict: Standard covers overhead lines, but requirement specifies underground installation.")
+
+        # C. Voltage Tier / Numerical Boundary Compatibility (Authoritative BIS Limits)
+        if req_prof.voltage_tier and cand_prof.voltage_tier:
+            if req_prof.voltage_tier != cand_prof.voltage_tier:
+                boundary_match = False
+                application_match = False
+                conflict_flags.append(f"VOLTAGE_CONFLICT: requirement {req_prof.voltage_tier} vs standard {cand_prof.voltage_tier}")
+                rejection_reasons.append(
+                    f"Voltage rating conflict: Requirement specifies {req_prof.voltage_tier.upper()}, "
+                    f"which falls outside standard working voltage rating ({cand_prof.voltage_tier.upper()})."
+                )
+
+        # D. Steel Grade / Process Compatibility (Deformed / TMT vs Mild Steel)
+        if req_prof.steel_grade_process and cand_prof.steel_grade_process:
+            if req_prof.steel_grade_process != cand_prof.steel_grade_process:
+                application_match = False
+                conflict_flags.append(f"GRADE_OR_PROCESS_CONFLICT: {req_prof.steel_grade_process} vs {cand_prof.steel_grade_process}")
+                rejection_reasons.append(
+                    f"Grade/process conflict: Requirement specifies {req_prof.steel_grade_process.replace('_', ' ')}, "
+                    f"but standard covers {cand_prof.steel_grade_process.replace('_', ' ')}."
+                )
+
+        # E. Pump Installation Compatibility (Submersible Borewell vs Openwell vs Surface)
+        if req_prof.pump_installation and cand_prof.pump_installation:
+            is_sub_cand = cand_prof.pump_installation in ["submersible", "submersible_borewell", "openwell"]
+            is_sub_req = req_prof.pump_installation in ["submersible", "submersible_borewell", "openwell"]
+            if (is_sub_req and not is_sub_cand) or (not is_sub_req and is_sub_cand):
+                application_match = False
+                conflict_flags.append(f"APPLICATION_CONFLICT: {req_prof.pump_installation} vs {cand_prof.pump_installation}")
+                rejection_reasons.append(
+                    f"Application conflict: Requirement specifies {req_prof.pump_installation.replace('_', ' ')} pump installation, "
+                    f"which is incompatible with standard's {cand_prof.pump_installation.replace('_', ' ')} pump design."
+                )
+            elif req_prof.pump_installation == "submersible_borewell" and cand_prof.pump_installation == "openwell":
+                application_match = False
+                conflict_flags.append(f"APPLICATION_CONFLICT: openwell pump vs borewell requirement")
+                rejection_reasons.append(
+                    f"Application conflict: Standard covers openwell pumpsets, but requirement specifies a borewell installation."
+                )
 
         # Specialized technologies outside standard catalogue scope
         if any(k in req_text_low for k in ["liquid sodium", "fast breeder", "liquid metal sodium"]) or ("sodium" in req_text_low and "coolant" in req_text_low):
@@ -367,17 +526,12 @@ class ApplicabilityGate:
             conflict_flags.append("APPLICATION_CONFLICT: nuclear liquid sodium coolant")
             rejection_reasons.append("Application conflict: General water/steam piping or standard pumps do not cover liquid metal sodium nuclear coolant circuits.")
 
-        if ("subsea" in req_text_low and "umbilical" in req_text_low) or "dynamic umbilical" in req_text_low or "deep ocean" in req_text_low:
-            application_match = False
-            conflict_flags.append("APPLICATION_CONFLICT: deep ocean subsea umbilical")
-            rejection_reasons.append("Application conflict: Terrestrial building power cable standards do not cover deep ocean subsea dynamic electro-hydraulic umbilicals.")
-
         if "quantum dot" in req_text_low or ("optical film" in req_text_low and "television" in req_text_low):
             application_match = False
             conflict_flags.append("APPLICATION_CONFLICT: display optical film")
             rejection_reasons.append("Application conflict: Agricultural, mechanical, or photography standards do not cover advanced television display optical film.")
 
-        # Equipment scope gate: Adjustable speed electrical power drives (IS/IEC 61800) vs Switchgear assemblies
+        # Equipment scope gates
         is_cand_vfd = "61800" in std_num or "power drive" in cand_corpus_low
         has_vfd_kw = bool(re.search(r'\b(?:vfd|variable\s+frequency|variable\s+speed|power\s+drive|frequency\s+converter|inverter\s+drive|ac\s+drive|drive\s+panel)\b', req_text_low))
         is_swg_req = bool(re.search(r'\b(?:switchgear|controlgear)\b', req_text_low))
@@ -386,41 +540,6 @@ class ApplicabilityGate:
             conflict_flags.append("EQUIPMENT_MISMATCH: power drive system vs switchgear assembly")
             rejection_reasons.append("Equipment mismatch: Standard covers adjustable speed power drive systems (VFD), but requirement specifies switchgear/controlgear assembly without power drive system.")
 
-        # Product boundary gates (Section 10 critical safety tests):
-        # 1. XLPE Cable Voltage Tier Gate: IS 7098 Part 1 (<= 1100 V) vs Part 2 (3.3 kV to 33 kV)
-        is_7098 = "7098" in std_num
-        if is_7098:
-            has_mv_or_ht = bool(re.search(r'\b(?:11\s*kv|33\s*kv|3\.3\s*kv|6\.6\s*kv|22\s*kv|ht\s+cable|medium\s+voltage|high\s+voltage)\b', req_text_low))
-            has_lv_or_lt = bool(re.search(r'\b(?:1\.1\s*kv|1100\s*v|lt\s+cable|low\s+voltage)\b', req_text_low))
-            is_part_1 = "part 1" in std_num.lower() or "part-1" in std_num.lower() or "part 1" in cand_corpus_low
-            is_part_2 = "part 2" in std_num.lower() or "part-2" in std_num.lower() or "part 2" in cand_corpus_low
-
-            if is_part_1 and has_mv_or_ht and not has_lv_or_lt:
-                application_match = False
-                conflict_flags.append("VOLTAGE_CONFLICT: 11 kV / HT cable exceeds IS 7098 Part 1 maximum voltage rating (1.1 kV / 1100 V)")
-                rejection_reasons.append("Voltage rating conflict: IS 7098 (Part 1) only covers working voltages up to and including 1100 V (1.1 kV). For medium/high voltage (e.g. 11 kV), applicable standard is IS 7098 (Part 2).")
-            elif is_part_2 and has_lv_or_lt and not has_mv_or_ht:
-                application_match = False
-                conflict_flags.append("VOLTAGE_CONFLICT: LT / 1.1 kV cable is below IS 7098 Part 2 minimum voltage rating (3.3 kV)")
-                rejection_reasons.append("Voltage rating conflict: IS 7098 (Part 2) covers voltages from 3.3 kV up to 33 kV. For low voltage / 1.1 kV, applicable standard is IS 7098 (Part 1).")
-
-        # 2. Steel Reinforcement Process & Grade Gate: IS 432 (Mild steel) vs IS 1786 (High strength deformed / TMT)
-        is_432 = "432" in std_num
-        has_tmt_or_deformed = bool(re.search(r'\b(?:fe\s*500d?|fe\s*415|fe\s*550d?|fe\s*600|tmt|thermo\s*mechanically\s*treated|high\s+strength\s+deformed|deformed\s+bar|ctd)\b', req_text_low))
-        if is_432 and has_tmt_or_deformed:
-            application_match = False
-            conflict_flags.append("GRADE_OR_PROCESS_CONFLICT: Fe 500D / TMT vs mild steel IS 432")
-            rejection_reasons.append("Grade/process conflict: Requirement specifies high strength deformed / TMT reinforcement steel bars (Fe 500/500D), but IS 432 covers only mild steel (Fe 250) and medium tensile steel bars. Applicable standard is IS 1786.")
-
-        # 3. Piping Application Gate: IS 4985 (Potable water pressure) vs IS 15328 (Underground drainage/sewerage)
-        is_4985 = "4985" in std_num
-        has_drainage_or_sewer = bool(re.search(r'\b(?:drainage|sewerage|sewer|underground\s+drainage|gravity\s+drainage|non-pressure\s+drainage)\b', req_text_low))
-        if is_4985 and has_drainage_or_sewer:
-            application_match = False
-            conflict_flags.append("APPLICATION_CONFLICT: underground drainage/sewerage vs potable water supply IS 4985")
-            rejection_reasons.append("Application conflict: Requirement specifies underground drainage/sewerage piping, but IS 4985 covers unplasticized PVC pipes for potable water supplies. Applicable standard for underground drainage/sewerage is IS 15328.")
-
-        # 4. Equipment Type Gate: IS 5039 (Distribution pillars / junction boxes) vs IS 1180 (Distribution transformers)
         is_5039 = "5039" in std_num
         has_transformer = bool(re.search(r'\b(?:transformer|transformers|distribution\s+transformer|kva|mva|oil\s+immersed\s+transformer)\b', req_text_low))
         if is_5039 and has_transformer:
@@ -428,18 +547,7 @@ class ApplicabilityGate:
             conflict_flags.append("EQUIPMENT_MISMATCH: distribution transformer vs distribution pillar IS 5039")
             rejection_reasons.append("Equipment mismatch: Requirement specifies outdoor oil-immersed distribution transformer, but IS 5039 covers distribution pillars (feeder pillars / junction boxes). Applicable standard is IS 1180 (Part 1).")
 
-        # 5. Pump Type Gate: IS 8034 specifically covers submersible pumpsets
-        is_8034 = "8034" in std_num
-        is_pump_req = bool(re.search(r'\b(?:pump|pumps|pumpset|pumpsets)\b', req_text_low))
-        is_explicitly_non_submersible = bool(re.search(r'\b(?:non[-\s]+submersible|not\s+submersible)\b', req_text_low))
-        has_submersible = bool(re.search(r'(?<!\bnon-)(?<!\bnon\s)(?<!\bnot\s)\b(?:submersible|borewell|deep\s*well|submerged)\b', req_text_low)) and not is_explicitly_non_submersible
-        if is_8034 and is_pump_req and not has_submersible:
-            application_match = False
-            conflict_flags.append("APPLICATION_CONFLICT: non-submersible pump vs submersible pumpset IS 8034")
-            rejection_reasons.append("Application conflict: IS 8034 specifically covers submersible pumpsets. Requirement specifies a non-submersible / surface coupled process pump.")
-
         # 7. Evidence Support
-        # Standard exists and has scope, but does it evidence THIS requirement?
         evidence_support = (
             candidate.verification_status in ["VERIFIED", "CURATED"] and
             scope_match and
@@ -447,18 +555,51 @@ class ApplicabilityGate:
             application_match
         )
 
-        # 8. Score Calculation & TRUST OVERRIDE RULE
-        if has_domain_conflict or not application_match:
-            # HARD OVERRIDE: Retrieval score cannot override domain or application conflict!
+        # 8. Tri-State Classification & Machine-Readable Reason Determination
+        evidence_text = title if len(title) > 10 else (scope[:200] if scope else None)
+        evidence_source = "BIS Catalogue Title" if evidence_text == title else "BIS Scope Summary"
+        missing_info: Optional[str] = None
+        clarification_prompt: Optional[str] = None
+
+        if has_domain_conflict:
+            state = ApplicabilityState.INCOMPATIBLE
+            reason_code = ApplicabilityReasonCode.INCOMPATIBLE_DOMAIN
+            decision = ApplicabilityDecision.NOT_APPLICABLE.value
+            applicable = False
             applicability_score = 0.0
+            human_reason = rejection_reasons[0] if rejection_reasons else "Incompatible engineering domain."
+        elif not boundary_match or any("VOLTAGE_CONFLICT" in f for f in conflict_flags):
+            state = ApplicabilityState.INCOMPATIBLE
+            reason_code = ApplicabilityReasonCode.PARAMETER_OUT_OF_SCOPE
             decision = ApplicabilityDecision.NOT_APPLICABLE.value
             applicable = False
+            applicability_score = 0.0
+            human_reason = rejection_reasons[0] if rejection_reasons else "Requirement parameter outside standard boundary."
+        elif any("EQUIPMENT_MISMATCH" in f for f in conflict_flags):
+            state = ApplicabilityState.INCOMPATIBLE
+            reason_code = ApplicabilityReasonCode.EQUIPMENT_MISMATCH
+            decision = ApplicabilityDecision.NOT_APPLICABLE.value
+            applicable = False
+            applicability_score = 0.0
+            human_reason = rejection_reasons[0] if rejection_reasons else "Primary equipment mismatch."
+        elif not application_match:
+            state = ApplicabilityState.INCOMPATIBLE
+            reason_code = ApplicabilityReasonCode.INCOMPATIBLE_APPLICATION
+            decision = ApplicabilityDecision.NOT_APPLICABLE.value
+            applicable = False
+            applicability_score = 0.0
+            human_reason = rejection_reasons[0] if rejection_reasons else "Operating environment or application conflict."
         elif not substantive_overlap and not is_explicitly_cited:
-            # Zero technical overlap -> pure false positive from retrieval forcing
-            applicability_score = 0.10
+            # Zero substantive technical overlap -> insufficient evidence / UNKNOWN
+            state = ApplicabilityState.UNKNOWN
+            reason_code = ApplicabilityReasonCode.INSUFFICIENT_SCOPE_EVIDENCE
             decision = ApplicabilityDecision.NOT_APPLICABLE.value
             applicable = False
-            rejection_reasons.append("Zero substantive technical term overlap between requirement and standard.")
+            applicability_score = 0.10
+            human_reason = "Zero substantive technical vocabulary overlap between requirement and standard scope."
+            missing_info = "technical parameters and product specification"
+            clarification_prompt = f"Please specify the technical parameters or standard number applicable to {requirement_text[:50]}."
+            rejection_reasons.append(human_reason)
         else:
             # Calculate composite applicability score
             domain_weight = 0.35 if domain_match else 0.0
@@ -468,34 +609,61 @@ class ApplicabilityGate:
 
             base_score = domain_weight + product_weight + scope_weight + evidence_weight
 
-            # Explicit citation boost (gives strong citation ground, but still requires lifecycle/compatibility)
             if is_explicitly_cited:
                 base_score = max(base_score, 0.85)
                 reasons.append(f"Standard {std_num} was explicitly cited in tender specification.")
 
-            # Influence of cross-encoder / final retrieval score as secondary ranking signal
             retrieval_signal = min(1.0, max(0.0, float(candidate.final_score or candidate.relevance_score)))
             applicability_score = round(0.70 * base_score + 0.30 * retrieval_signal, 3)
 
-            # Decision classification based on conservative thresholds
-            if applicability_score >= self.applicability_threshold and not conflict_flags:
-                decision = ApplicabilityDecision.APPLICABLE.value
-                applicable = True
-                reasons.append(f"Applicability score {applicability_score:.2f} exceeds threshold ({self.applicability_threshold:.2f})")
-            elif applicability_score >= self.review_threshold:
+            # Check if multi-use material lacks requirement context (e.g. CPVC without service fluid)
+            # If standard has a specific service fluid but requirement did NOT specify any service fluid:
+            is_multiuse_material = any(m in req_text_low for m in ["cpvc", "pvc pipe", "polyvinyl chloride"])
+            if is_multiuse_material and not req_prof.service_fluid and cand_prof.service_fluid and not is_explicitly_cited:
+                state = ApplicabilityState.UNKNOWN
+                reason_code = ApplicabilityReasonCode.MISSING_APPLICATION_CONTEXT
                 decision = ApplicabilityDecision.REVIEW_REQUIRED.value
                 applicable = True
-                reasons.append(f"Moderate applicability ({applicability_score:.2f}). Requires technical engineer review.")
+                human_reason = f"Requirement specifies multi-use material without operating application context (standard covers {cand_prof.service_fluid.replace('_', ' ')})."
+                missing_info = "intended service application (e.g., potable water distribution vs fire sprinkler system)"
+                clarification_prompt = "Is this piping intended for potable hot and cold water distribution (IS 15778) or automatic sprinkler fire extinguishing (IS 16088)?"
+                reasons.append(human_reason)
+            elif applicability_score >= self.applicability_threshold and not conflict_flags:
+                state = ApplicabilityState.APPLICABLE
+                reason_code = ApplicabilityReasonCode.APPLICABLE
+                decision = ApplicabilityDecision.APPLICABLE.value
+                applicable = True
+                human_reason = f"Applicability score {applicability_score:.2f} confirms technical and domain compatibility."
+                reasons.append(human_reason)
+            elif applicability_score >= self.review_threshold:
+                state = ApplicabilityState.UNKNOWN
+                reason_code = ApplicabilityReasonCode.INSUFFICIENT_SCOPE_EVIDENCE
+                decision = ApplicabilityDecision.REVIEW_REQUIRED.value
+                applicable = True
+                human_reason = f"Moderate technical match ({applicability_score:.2f}). Requires technical review."
+                missing_info = "detailed engineering rating"
+                clarification_prompt = "Please verify technical parameters or applicable code of practice."
+                reasons.append(human_reason)
             else:
+                state = ApplicabilityState.UNKNOWN
+                reason_code = ApplicabilityReasonCode.INSUFFICIENT_SCOPE_EVIDENCE
                 decision = ApplicabilityDecision.NOT_APPLICABLE.value
                 applicable = False
-                rejection_reasons.append(f"Applicability score {applicability_score:.2f} is below review threshold ({self.review_threshold:.2f})")
+                human_reason = f"Applicability score {applicability_score:.2f} is below review threshold ({self.review_threshold:.2f})."
+                rejection_reasons.append(human_reason)
 
         return ApplicabilityResult(
             standard_number=std_num,
             title=title,
             applicable=applicable,
             decision=decision,
+            state=state,
+            reason_code=reason_code,
+            human_reason=human_reason,
+            evidence_text=evidence_text,
+            evidence_source=evidence_source,
+            missing_information=missing_info,
+            clarification_prompt=clarification_prompt,
             applicability_score=applicability_score,
             domain_match=domain_match,
             product_match=product_match,
