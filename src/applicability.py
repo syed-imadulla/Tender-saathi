@@ -537,7 +537,7 @@ class ApplicabilityGate:
                 )
 
         # Specialized technologies outside standard catalogue scope
-        if ("subsea" in req_text_low and "umbilical" in req_text_low) or "dynamic umbilical" in req_text_low or "deep ocean" in req_text_low:
+        if (any(k in req_text_low for k in ["subsea", "underwater", "deep sea"]) and "umbilical" in req_text_low) or "dynamic umbilical" in req_text_low or "deep ocean" in req_text_low:
             application_match = False
             conflict_flags.append("APPLICATION_CONFLICT: deep ocean subsea umbilical")
             rejection_reasons.append("Application conflict: Terrestrial building power cable standards do not cover deep ocean subsea dynamic electro-hydraulic umbilicals.")
