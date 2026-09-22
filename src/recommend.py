@@ -404,9 +404,10 @@ class StandardsRecommender:
 
             if ambiguity_report.ambiguity_state == AmbiguityState.NO_RELIABLE_MATCH:
                 why_not_reasons = []
-                for cand, app_res in rejected_candidates[:3]:
-                    reasons_str = "; ".join(app_res.rejection_reasons) if app_res.rejection_reasons else "Insufficient domain applicability"
-                    why_not_reasons.append(f"Standard {cand.standard_number} ({cand.full_title}) rejected: {reasons_str}")
+                for cand, app_res in rejected_candidates[:4]:
+                    r_code = app_res.reason_code.value if hasattr(app_res.reason_code, 'value') else str(app_res.reason_code)
+                    r_msg = app_res.human_reason or ("; ".join(app_res.rejection_reasons) if app_res.rejection_reasons else "Insufficient domain applicability")
+                    why_not_reasons.append(f"[{r_code}] Standard {cand.standard_number} ({cand.full_title}) rejected: {r_msg}")
                 if not why_not_reasons:
                     why_not_reasons = ["No reliable candidate standards retrieved from catalogue."]
                 user_facing_explanation = (
