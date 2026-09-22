@@ -31,6 +31,7 @@ from src.audit import TenderAuditEngine, TenderAuditResult
 from src.applicability import ApplicabilityGate, ApplicabilityResult, ApplicabilityDecision
 from src.regulatory.regulatory_engine import RegulatoryEngine
 from src.ambiguity import AmbiguityEngine, AmbiguityState, AmbiguityReport
+from src.evidence_intelligence import StandardsEvidenceBuilder
 
 
 # ---------------------------------------------------------------------------
@@ -56,6 +57,7 @@ class StandardRecommendation:
     final_score: float = 0.0
     applicability: Optional[Dict[str, Any]] = None
     standard_role: str = "PRIMARY_PRODUCT"
+    structured_evidence: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -125,6 +127,7 @@ class RequirementRecommendationResult:
     unresolved_components: List[str] = field(default_factory=list)
     standard_role: str = "PRIMARY_PRODUCT"
     multilingual: Optional[Dict[str, Any]] = None
+    structured_evidence: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
 
@@ -194,6 +197,7 @@ class StandardsRecommender:
         self.ambiguity_engine = ambiguity_engine or AmbiguityEngine()
         from src.multilingual import MultilingualTechnicalNormalizer
         self.multilingual_normalizer = MultilingualTechnicalNormalizer()
+        self.evidence_builder = StandardsEvidenceBuilder(self.db)
 
 
     def recommend_for_requirement(self, req: Any, tender_cited_standards: Optional[List[str]] = None) -> RequirementRecommendationResult:
@@ -456,6 +460,19 @@ class StandardsRecommender:
                 critic_reasons = [ambiguity_report.ambiguity_reason]
                 why_it_matches = "Conflicting technical parameters or standard scopes detected in specification."
 
+            abstain_struct_ev = self.evidence_builder.build_structured_evidence(
+                standard_number=None,
+                requirement_text=working_text,
+                title=title,
+                candidate_search_result=None,
+                applicability_result=None,
+                ambiguity_report=ambiguity_report,
+                explicit_citation=False,
+                missing_information=ambiguity_report.missing_information if ambiguity_report else [],
+                human_review_required=True,
+                decision_reason=user_facing_explanation
+            )
+
             return RequirementRecommendationResult(
                 requirement_id=req_id,
                 requirement_text=text,
@@ -507,7 +524,8 @@ class StandardsRecommender:
                 competing_interpretations=ambiguity_report.competing_interpretations,
                 suggested_clarification_question=ambiguity_report.suggested_clarification_question,
                 unresolved_components=ambiguity_report.unresolved_components,
-                multilingual=multilingual_payload
+                multilingual=multilingual_payload,
+                structured_evidence=abstain_struct_ev.to_dict()
             )
 
         # Step 5: Validate and Ground Candidates
@@ -555,6 +573,21 @@ class StandardsRecommender:
                 rec_std_num = sr.standard_number
 
             rec_role = classify_standard_role(sr.standard_number, sr.full_title, sr.scope_summary)
+            cand_app_obj = candidate_applicability_map.get(sr.standard_number)
+            cand_human_review = (not val_info.is_active or conf == "Low" or sr.relevance_score < 0.35)
+            cand_decision_reason = warning or ("Low confidence retrieval match." if conf == "Low" else "Applicable standard candidate.")
+            cand_struct_ev = self.evidence_builder.build_structured_evidence(
+                standard_number=rec_std_num,
+                requirement_text=working_text,
+                title=sr.full_title,
+                candidate_search_result=sr,
+                applicability_result=cand_app_obj,
+                ambiguity_report=ambiguity_report,
+                explicit_citation=any(e in sr.standard_number for e in explicit_stds),
+                missing_information=ambiguity_report.missing_information if ambiguity_report else [],
+                human_review_required=cand_human_review,
+                decision_reason=cand_decision_reason
+            )
             recommendations.append(StandardRecommendation(
                 standard_number=rec_std_num,
                 title=sr.full_title,
@@ -572,7 +605,8 @@ class StandardsRecommender:
                 reranker_score=round(sr.reranker_score, 3) if sr.reranker_score is not None else None,
                 final_score=round(sr.final_score, 3),
                 applicability=app_dict,
-                standard_role=rec_role
+                standard_role=rec_role,
+                structured_evidence=cand_struct_ev.to_dict()
             ))
 
         top_rec = recommendations[0]
@@ -718,6 +752,23 @@ class StandardsRecommender:
             human_review_required = True
             ambiguity_state_val = "REVIEW_REQUIRED"
 
+        top_app = candidate_applicability_map.get(top_rec.standard_number) or (
+            candidate_applicability_map.get(top_rec.standard_number.split(":")[0].strip()) if ":" in top_rec.standard_number else None
+        )
+        top_sr = next((sr for sr in applicable_candidates if sr.standard_number in top_rec.standard_number or top_rec.standard_number in sr.standard_number), None)
+        top_struct_ev = self.evidence_builder.build_structured_evidence(
+            standard_number=top_rec.standard_number,
+            requirement_text=working_text,
+            title=top_rec.title,
+            candidate_search_result=top_sr,
+            applicability_result=top_app,
+            ambiguity_report=ambiguity_report,
+            explicit_citation=any(e in top_rec.standard_number for e in explicit_stds),
+            missing_information=ambiguity_report.missing_information if ambiguity_report else [],
+            human_review_required=human_review_required,
+            decision_reason=decision_reason
+        )
+
         return RequirementRecommendationResult(
             requirement_id=req_id,
             requirement_text=text,
@@ -772,7 +823,8 @@ class StandardsRecommender:
             suggested_clarification_question=ambiguity_report.suggested_clarification_question,
             unresolved_components=unresolved_missing,
             standard_role=top_rec.standard_role,
-            multilingual=multilingual_payload
+            multilingual=multilingual_payload,
+            structured_evidence=top_struct_ev.to_dict()
         )
 
 
