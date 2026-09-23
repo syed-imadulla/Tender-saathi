@@ -2,21 +2,22 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-C4A622BA",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: valve",
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
   "publication_readiness": "REVIEW_REQUIRED",
   "readiness_reasons": [
     "1 requirement(s) flagged with HIGH risk.",
-    "1 requirement(s) require technical engineer review."
+    "1 requirement(s) require technical engineer review.",
+    "1 requirement(s) have potentially missing specification parameters."
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-C4A622BA",
     "requirements_analyzed": 1,
     "recommendations_count": 0,
     "review_required_count": 1,
@@ -33,8 +34,8 @@
     },
     "completeness_distribution": {
       "KNOWN": 0,
-      "POTENTIALLY_MISSING": 0,
-      "UNKNOWN": 1,
+      "POTENTIALLY_MISSING": 1,
+      "UNKNOWN": 0,
       "NOT_APPLICABLE": 0
     },
     "risk_distribution": {
@@ -49,41 +50,42 @@
       "Withdrawn": 0,
       "Unknown": 0
     },
-    "related_standards_count": 1,
+    "related_standards_count": 0,
     "review_queue": [
       {
         "requirement_id": "REQ-001",
-        "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+        "requirement_text": "Submersible pump sets for clear cold water in 150mm borewell conforming to IS 8034.",
         "risk_level": "HIGH",
         "decision": "REVIEW_REQUIRED",
-        "candidate_standard": "IS/ISO 10434 : 2020",
+        "candidate_standard": "IS 8034 : 2018",
         "evidence_strength": "STRONG",
-        "primary_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)",
+        "primary_reason": "Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover",
         "priority": 2,
         "category": "CLARIFICATION_REQUIRED",
         "component_id": null,
-        "review_action": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+        "review_action": "Verify application of IS 8034 and review the following notes: Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
         "uncertainty": "",
-        "what_to_check": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)"
+        "what_to_check": "Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover"
       }
     ],
     "publication_readiness": "REVIEW_REQUIRED",
     "readiness_reasons": [
       "1 requirement(s) flagged with HIGH risk.",
-      "1 requirement(s) require technical engineer review."
+      "1 requirement(s) require technical engineer review.",
+      "1 requirement(s) have potentially missing specification parameters."
     ],
     "readiness_note": "Deterministic, evidence-backed standards review audit for procurement officers. Does NOT constitute legal compliance certification.",
-    "dependency_count": 1,
+    "dependency_count": 0,
     "normative_reference_count": 0,
     "allied_standard_count": 0,
     "test_standard_count": 0,
     "installation_standard_count": 0,
     "verified_missing_count": 0,
     "potentially_missing_count": 0,
-    "related_for_review_count": 1,
+    "related_for_review_count": 0,
     "standards_coverage": {
       "direct_standards_identified": 1,
-      "total_dependencies": 1,
+      "total_dependencies": 0,
       "normative_references": 0,
       "testing_dependencies": 0,
       "installation_dependencies": 0,
@@ -96,7 +98,7 @@
     "gap_summary": {
       "verified_missing_count": 0,
       "potentially_missing_count": 0,
-      "related_for_review_count": 1
+      "related_for_review_count": 0
     },
     "certification_checks": 1,
     "qco_checks": 1,
@@ -146,20 +148,20 @@
     "coverage_matrix": [
       {
         "requirement_id": "REQ-001",
-        "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+        "requirement_text": "Submersible pump sets for clear cold water in 150mm borewell conforming to IS 8034.",
         "coverage_state": "REVIEW_REQUIRED",
         "primary_standards": [
-          "IS/ISO 10434 : 2020"
+          "IS 8034 : 2018"
         ],
         "component_breakdown": [],
         "gap_details": null,
         "lifecycle_concerns": [],
         "ambiguity_details": {
           "ambiguity_state": "REVIEW_REQUIRED",
-          "ambiguity_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+          "ambiguity_reason": "Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
           "missing_information": [],
           "competing_interpretations": [],
-          "suggested_clarification_question": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+          "suggested_clarification_question": "Verify application of IS 8034 and review the following notes: Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
           "unresolved_components": []
         },
         "findings": [
@@ -169,29 +171,29 @@
             "finding_type": "AMBIGUOUS_REQUIREMENT",
             "title": "Ambiguous requirement with competing interpretations",
             "standards": [
-              "IS/ISO 10434 : 2020"
+              "IS 8034 : 2018"
             ],
             "applicability_decision": "VIABLE_CANDIDATE",
             "evidence_strength": "STRONG",
             "supporting_facts": [
-              "Ambiguity reason: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+              "Ambiguity reason: Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
               "Missing technical parameters: Technical parameters unspecified"
             ],
             "lifecycle_status": "ACTIVE",
             "lifecycle_note": null,
             "relationships": [],
             "provenance": {
-              "source": "BSB_EDGE_MANUALLY_VERIFIED",
+              "source": "BIS_OFFICIAL_CATALOGUE",
               "source_type": "STANDARDS_DB",
-              "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS%2fISO+10434&id=45967",
-              "raw_record_ref": "IS/ISO 10434 : 2020",
+              "source_url": "https://standardsbis.bsbedge.com",
+              "raw_record_ref": "IS 8034 : 2018",
               "ingestion_run_id": null,
               "verification_status": "VERIFIED",
-              "retrieved_at": "2026-09-04T13:00:00Z"
+              "retrieved_at": "2026-09-12T09:35:36.514250+00:00"
             },
             "uncertainty": "Requirement is underspecified or subject to competing interpretations. Safe abstention preserved.",
             "human_review_required": true,
-            "review_action": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+            "review_action": "Verify application of IS 8034 and review the following notes: Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
             "severity": "MEDIUM"
           }
         ]
@@ -204,29 +206,29 @@
         "finding_type": "AMBIGUOUS_REQUIREMENT",
         "title": "Ambiguous requirement with competing interpretations",
         "standards": [
-          "IS/ISO 10434 : 2020"
+          "IS 8034 : 2018"
         ],
         "applicability_decision": "VIABLE_CANDIDATE",
         "evidence_strength": "STRONG",
         "supporting_facts": [
-          "Ambiguity reason: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+          "Ambiguity reason: Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
           "Missing technical parameters: Technical parameters unspecified"
         ],
         "lifecycle_status": "ACTIVE",
         "lifecycle_note": null,
         "relationships": [],
         "provenance": {
-          "source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "source": "BIS_OFFICIAL_CATALOGUE",
           "source_type": "STANDARDS_DB",
-          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS%2fISO+10434&id=45967",
-          "raw_record_ref": "IS/ISO 10434 : 2020",
+          "source_url": "https://standardsbis.bsbedge.com",
+          "raw_record_ref": "IS 8034 : 2018",
           "ingestion_run_id": null,
           "verification_status": "VERIFIED",
-          "retrieved_at": "2026-09-04T13:00:00Z"
+          "retrieved_at": "2026-09-12T09:35:36.514250+00:00"
         },
         "uncertainty": "Requirement is underspecified or subject to competing interpretations. Safe abstention preserved.",
         "human_review_required": true,
-        "review_action": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+        "review_action": "Verify application of IS 8034 and review the following notes: Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
         "severity": "MEDIUM"
       }
     ],
@@ -239,35 +241,35 @@
         "finding_type": "AMBIGUOUS_REQUIREMENT",
         "title": "Ambiguous requirement with competing interpretations",
         "standards": [
-          "IS/ISO 10434 : 2020"
+          "IS 8034 : 2018"
         ],
         "applicability_decision": "VIABLE_CANDIDATE",
         "evidence_strength": "STRONG",
         "supporting_facts": [
-          "Ambiguity reason: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+          "Ambiguity reason: Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
           "Missing technical parameters: Technical parameters unspecified"
         ],
         "lifecycle_status": "ACTIVE",
         "lifecycle_note": null,
         "relationships": [],
         "provenance": {
-          "source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "source": "BIS_OFFICIAL_CATALOGUE",
           "source_type": "STANDARDS_DB",
-          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS%2fISO+10434&id=45967",
-          "raw_record_ref": "IS/ISO 10434 : 2020",
+          "source_url": "https://standardsbis.bsbedge.com",
+          "raw_record_ref": "IS 8034 : 2018",
           "ingestion_run_id": null,
           "verification_status": "VERIFIED",
-          "retrieved_at": "2026-09-04T13:00:00Z"
+          "retrieved_at": "2026-09-12T09:35:36.514250+00:00"
         },
         "uncertainty": "Requirement is underspecified or subject to competing interpretations. Safe abstention preserved.",
         "human_review_required": true,
-        "review_action": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+        "review_action": "Verify application of IS 8034 and review the following notes: Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
         "severity": "MEDIUM"
       }
     ],
     "multi_standard_items": [],
     "structured_audit_report": {
-      "tender_id": "SAMPLE-VALVE",
+      "tender_id": "TS-C4A622BA",
       "summary": {
         "requirements_analyzed": 1,
         "supported_standards_count": 0,
@@ -291,20 +293,20 @@
       "coverage_matrix": [
         {
           "requirement_id": "REQ-001",
-          "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+          "requirement_text": "Submersible pump sets for clear cold water in 150mm borewell conforming to IS 8034.",
           "coverage_state": "REVIEW_REQUIRED",
           "primary_standards": [
-            "IS/ISO 10434 : 2020"
+            "IS 8034 : 2018"
           ],
           "component_breakdown": [],
           "gap_details": null,
           "lifecycle_concerns": [],
           "ambiguity_details": {
             "ambiguity_state": "REVIEW_REQUIRED",
-            "ambiguity_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+            "ambiguity_reason": "Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
             "missing_information": [],
             "competing_interpretations": [],
-            "suggested_clarification_question": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+            "suggested_clarification_question": "Verify application of IS 8034 and review the following notes: Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
             "unresolved_components": []
           },
           "findings": [
@@ -314,29 +316,29 @@
               "finding_type": "AMBIGUOUS_REQUIREMENT",
               "title": "Ambiguous requirement with competing interpretations",
               "standards": [
-                "IS/ISO 10434 : 2020"
+                "IS 8034 : 2018"
               ],
               "applicability_decision": "VIABLE_CANDIDATE",
               "evidence_strength": "STRONG",
               "supporting_facts": [
-                "Ambiguity reason: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+                "Ambiguity reason: Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
                 "Missing technical parameters: Technical parameters unspecified"
               ],
               "lifecycle_status": "ACTIVE",
               "lifecycle_note": null,
               "relationships": [],
               "provenance": {
-                "source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "source": "BIS_OFFICIAL_CATALOGUE",
                 "source_type": "STANDARDS_DB",
-                "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS%2fISO+10434&id=45967",
-                "raw_record_ref": "IS/ISO 10434 : 2020",
+                "source_url": "https://standardsbis.bsbedge.com",
+                "raw_record_ref": "IS 8034 : 2018",
                 "ingestion_run_id": null,
                 "verification_status": "VERIFIED",
-                "retrieved_at": "2026-09-04T13:00:00Z"
+                "retrieved_at": "2026-09-12T09:35:36.514250+00:00"
               },
               "uncertainty": "Requirement is underspecified or subject to competing interpretations. Safe abstention preserved.",
               "human_review_required": true,
-              "review_action": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+              "review_action": "Verify application of IS 8034 and review the following notes: Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
               "severity": "MEDIUM"
             }
           ]
@@ -352,29 +354,29 @@
           "finding_type": "AMBIGUOUS_REQUIREMENT",
           "title": "Ambiguous requirement with competing interpretations",
           "standards": [
-            "IS/ISO 10434 : 2020"
+            "IS 8034 : 2018"
           ],
           "applicability_decision": "VIABLE_CANDIDATE",
           "evidence_strength": "STRONG",
           "supporting_facts": [
-            "Ambiguity reason: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+            "Ambiguity reason: Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
             "Missing technical parameters: Technical parameters unspecified"
           ],
           "lifecycle_status": "ACTIVE",
           "lifecycle_note": null,
           "relationships": [],
           "provenance": {
-            "source": "BSB_EDGE_MANUALLY_VERIFIED",
+            "source": "BIS_OFFICIAL_CATALOGUE",
             "source_type": "STANDARDS_DB",
-            "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS%2fISO+10434&id=45967",
-            "raw_record_ref": "IS/ISO 10434 : 2020",
+            "source_url": "https://standardsbis.bsbedge.com",
+            "raw_record_ref": "IS 8034 : 2018",
             "ingestion_run_id": null,
             "verification_status": "VERIFIED",
-            "retrieved_at": "2026-09-04T13:00:00Z"
+            "retrieved_at": "2026-09-12T09:35:36.514250+00:00"
           },
           "uncertainty": "Requirement is underspecified or subject to competing interpretations. Safe abstention preserved.",
           "human_review_required": true,
-          "review_action": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+          "review_action": "Verify application of IS 8034 and review the following notes: Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
           "severity": "MEDIUM"
         }
       ],
@@ -401,18 +403,18 @@
       "human_review_queue": [
         {
           "requirement_id": "REQ-001",
-          "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+          "requirement_text": "Submersible pump sets for clear cold water in 150mm borewell conforming to IS 8034.",
           "risk_level": "HIGH",
           "decision": "REVIEW_REQUIRED",
-          "candidate_standard": "IS/ISO 10434 : 2020",
+          "candidate_standard": "IS 8034 : 2018",
           "evidence_strength": "STRONG",
-          "primary_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)",
+          "primary_reason": "Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover",
           "priority": 2,
           "category": "CLARIFICATION_REQUIRED",
           "component_id": null,
-          "review_action": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+          "review_action": "Verify application of IS 8034 and review the following notes: Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
           "uncertainty": "",
-          "what_to_check": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)"
+          "what_to_check": "Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover"
         }
       ],
       "disclaimers_and_notes": [
@@ -427,126 +429,119 @@
   "requirements": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+      "requirement_text": "Submersible pump sets for clear cold water in 150mm borewell conforming to IS 8034.",
       "category": "product_equipment",
       "components": [
         {
-          "text": "Repair",
-          "component_type": "installation",
-          "domain": "execution",
-          "extracted_attributes": {
-            "action": "repair"
-          }
-        },
-        {
-          "text": "replacement",
-          "component_type": "installation",
-          "domain": "execution",
-          "extracted_attributes": {
-            "action": "replacement"
-          }
-        },
-        {
-          "text": "valves",
+          "text": "Submersible pump",
           "component_type": "product",
           "domain": "mechanical",
           "extracted_attributes": {
-            "category": "flow_control_valve"
+            "category": "pump_rotodynamic",
+            "is_process": false
           }
         },
         {
-          "text": "mechanical distribution system",
+          "text": "150mm",
+          "component_type": "specification",
+          "domain": "general",
+          "extracted_attributes": {
+            "spec_type": "dimension",
+            "value": "150mm"
+          }
+        },
+        {
+          "text": "submersible pump set",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "motor",
+          "component_type": "electrical",
+          "domain": "electrical",
+          "extracted_attributes": {
+            "domain": "electrical"
+          }
+        },
+        {
+          "text": "clear cold water",
           "component_type": "application",
           "domain": "mechanical",
           "extracted_attributes": {
             "is_process": false
           }
+        },
+        {
+          "text": "150mm borewell",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
         }
       ],
-      "recommended_standard": "IS/ISO 10434 : 2020",
-      "recommended_title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
-      "relevance_score": 0.581,
+      "recommended_standard": "IS 8034 : 2018",
+      "recommended_title": "Submersible Pumpsets - Specification",
+      "relevance_score": 1.0,
       "lifecycle_status": "Active",
       "successor_standard": null,
       "superseded_citation": null,
       "evidence_strength": "STRONG",
       "provenance": "VERIFIED",
-      "evidence_text": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends.",
-      "evidence_source": "BSB Edge Portal",
+      "evidence_text": "Tender explicitly requires compliance with IS 8034.",
+      "evidence_source": "Tender Document",
       "why_this": [
-        "Standard title directly matches requirement component(s): 'valves'.",
-        "Authoritative scope explicitly covers application: \"This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petroc...\"",
+        "Standard title directly matches requirement component(s): 'Submersible pump'.",
+        "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 8034.\"",
         "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via BSB Edge Portal (VERIFIED).",
+        "Provenance established via Tender Document (VERIFIED).",
         "Candidate addresses multiple decomposed technical aspects of the requirement."
       ],
       "why_not": [
-        "Alternative standard IS 778 has lower composite relevance (0.522 vs 0.581)."
+        "Alternative standard IS 14846 has lower composite relevance (0.301 vs 1.000)."
       ],
-      "completeness_label": "UNKNOWN",
+      "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [
-        "Valve Type",
-        "Nominal Size / Diameter (DN)",
-        "Pressure Rating (PN / Class)",
-        "Body Metallurgy / Material",
-        "Fluid Medium / Service"
+        "Discharge / Flow Rate (Q)",
+        "Total Dynamic Head (H)",
+        "Motor Coupling / Prime Mover",
+        "Process Application"
       ],
       "known_parameters": {},
-      "related_standards": [
-        {
-          "standard_number": "IS 10611 : 1983",
-          "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
-          "relationship_type": "SUPERSEDES",
-          "direction": "OUTGOING",
-          "lifecycle_status": "Superseded",
-          "provenance": "VERIFIED",
-          "evidence_strength": "STRONG",
-          "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
-          "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS%2fISO+10434&id=45967",
-          "review_note": "Authoritative successor standard supersedes IS 10611 : 1983. Review legacy specifications."
-        }
-      ],
+      "related_standards": [],
       "decision": "REVIEW_REQUIRED",
       "risk_level": "HIGH",
       "risk_reasons": [
-        "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)"
+        "Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover"
       ],
       "human_review_required": true,
-      "confidence": "Low",
-      "review_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
-      "candidate_standard": "IS/ISO 10434 : 2020",
-      "evidence_standard": "IS/ISO 10434 : 2020",
-      "why_it_matches": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petroc...",
-      "dependencies": [
-        {
-          "standard_number": "IS 10611 : 1983",
-          "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
-          "relationship_type": "SUPERSEDES",
-          "dependency_status": "RELATED_FOR_REVIEW",
-          "direction": "OUTGOING",
-          "lifecycle_status": "Superseded",
-          "provenance": "VERIFIED",
-          "evidence_strength": "STRONG",
-          "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
-          "source": "SQLITE_DB",
-          "confidence": 1.0,
-          "why_related": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434 : 2020. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED].",
-          "functional_category": "lifecycle",
-          "is_applicable_to_requirement": false,
-          "applicability_decision": "REVIEW_REQUIRED",
-          "dependency_state": "RELATED_FOR_REVIEW",
-          "evidence": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
-          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-          "applicability_assessment": "REVIEW_REQUIRED",
-          "explanation": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434 : 2020. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED]."
-        }
-      ],
+      "confidence": "High",
+      "review_reason": "Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
+      "candidate_standard": "IS 8034 : 2018",
+      "evidence_standard": "IS 8034 : 2018",
+      "why_it_matches": "Tender explicitly requires compliance with IS 8034.",
+      "dependencies": [],
       "regulatory": {
         "certification": {
           "category": "BIS_PRODUCT_CERTIFICATION",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS/ISO 10434 : 2020",
+          "standard_number": "IS 8034 : 2018",
           "legal_basis": "BIS (Conformity Assessment) Regulations, 2018",
           "source": "https://www.manakonline.in",
           "source_url": "https://www.manakonline.in",
@@ -554,7 +549,7 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 0.9,
           "human_review_required": true,
-          "explanation": "Mandatory BIS certification is NOT identified for IS/ISO 10434 : 2020 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
+          "explanation": "Mandatory BIS certification is NOT identified for IS 8034 : 2018 in current statutory schedules. Note: Existence of an Indian Standard specification does not in itself make BIS certification mandatory; voluntary certification under Scheme-I may be available upon application.",
           "additional_metadata": {
             "mandate_type": "VOLUNTARY_OR_UNREGULATED"
           }
@@ -563,7 +558,7 @@
           "category": "QCO",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS/ISO 10434 : 2020",
+          "standard_number": "IS 8034 : 2018",
           "legal_basis": "",
           "source": "e-Gazette of India / DPIIT QCO Registry",
           "source_url": "e-Gazette of India / DPIIT QCO Registry",
@@ -571,14 +566,14 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 0.9,
           "human_review_required": true,
-          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS/ISO 10434 : 2020. Verify ministry specific notifications.",
+          "explanation": "No mandatory Quality Control Order (QCO) identified in authoritative gazette registry for IS 8034 : 2018. Verify ministry specific notifications.",
           "additional_metadata": {}
         },
         "crs": {
           "category": "CRS",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS/ISO 10434 : 2020",
+          "standard_number": "IS 8034 : 2018",
           "legal_basis": "",
           "source": "MeitY / BIS Compulsory Registration Portal",
           "source_url": "MeitY / BIS Compulsory Registration Portal",
@@ -593,7 +588,7 @@
           "category": "HALLMARKING",
           "status": "NOT_APPLICABLE",
           "matched_product": "",
-          "standard_number": "IS/ISO 10434 : 2020",
+          "standard_number": "IS 8034 : 2018",
           "legal_basis": "BIS (Hallmarking) Regulations, 2018",
           "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
           "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
@@ -601,30 +596,30 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 1.0,
           "human_review_required": false,
-          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (valves); not applicable.",
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (pump); not applicable.",
           "additional_metadata": {}
         }
       },
       "ambiguity_state": "REVIEW_REQUIRED",
-      "ambiguity_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+      "ambiguity_reason": "Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
       "human_decision": null
     }
   ],
   "review_queue": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+      "requirement_text": "Submersible pump sets for clear cold water in 150mm borewell conforming to IS 8034.",
       "risk_level": "HIGH",
       "decision": "REVIEW_REQUIRED",
-      "candidate_standard": "IS/ISO 10434 : 2020",
+      "candidate_standard": "IS 8034 : 2018",
       "evidence_strength": "STRONG",
-      "primary_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)",
+      "primary_reason": "Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover",
       "priority": 2,
       "category": "CLARIFICATION_REQUIRED",
       "component_id": null,
-      "review_action": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+      "review_action": "Verify application of IS 8034 and review the following notes: Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended.",
       "uncertainty": "",
-      "what_to_check": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)"
+      "what_to_check": "Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover"
     }
   ],
   "evidence_summary": {

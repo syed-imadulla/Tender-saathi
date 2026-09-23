@@ -2,28 +2,30 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-6865CF43",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: valve",
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
   "publication_readiness": "REVIEW_REQUIRED",
   "readiness_reasons": [
-    "1 requirement(s) flagged with HIGH risk.",
-    "1 requirement(s) require technical engineer review."
+    "1 requirement(s) cite or match superseded standard(s).",
+    "1 requirement(s) flagged with CRITICAL risk.",
+    "1 requirement(s) require technical engineer review.",
+    "1 requirement(s) have potentially missing specification parameters."
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-VALVE",
+    "tender_id": "TS-6865CF43",
     "requirements_analyzed": 1,
     "recommendations_count": 0,
     "review_required_count": 1,
     "insufficient_evidence_count": 0,
-    "superseded_count": 0,
+    "superseded_count": 1,
     "withdrawn_count": 0,
-    "active_count": 1,
+    "active_count": 0,
     "unknown_lifecycle_count": 0,
     "evidence_distribution": {
       "STRONG": 1,
@@ -33,19 +35,19 @@
     },
     "completeness_distribution": {
       "KNOWN": 0,
-      "POTENTIALLY_MISSING": 0,
-      "UNKNOWN": 1,
+      "POTENTIALLY_MISSING": 1,
+      "UNKNOWN": 0,
       "NOT_APPLICABLE": 0
     },
     "risk_distribution": {
       "LOW": 0,
       "MEDIUM": 0,
-      "HIGH": 1,
-      "CRITICAL": 0
+      "HIGH": 0,
+      "CRITICAL": 1
     },
     "lifecycle_distribution": {
-      "Active": 1,
-      "Superseded": 0,
+      "Active": 0,
+      "Superseded": 1,
       "Withdrawn": 0,
       "Unknown": 0
     },
@@ -53,24 +55,26 @@
     "review_queue": [
       {
         "requirement_id": "REQ-001",
-        "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
-        "risk_level": "HIGH",
+        "requirement_text": "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.",
+        "risk_level": "CRITICAL",
         "decision": "REVIEW_REQUIRED",
         "candidate_standard": "IS/ISO 10434 : 2020",
         "evidence_strength": "STRONG",
-        "primary_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)",
-        "priority": 2,
+        "primary_reason": "Tender explicitly cited a superseded standard requiring replacement verification.",
+        "priority": 1,
         "category": "CLARIFICATION_REQUIRED",
         "component_id": null,
-        "review_action": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+        "review_action": "Verify application of IS/ISO 10434 and review the following notes: Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
         "uncertainty": "",
-        "what_to_check": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)"
+        "what_to_check": "Tender explicitly cited a superseded standard requiring replacement verification."
       }
     ],
     "publication_readiness": "REVIEW_REQUIRED",
     "readiness_reasons": [
-      "1 requirement(s) flagged with HIGH risk.",
-      "1 requirement(s) require technical engineer review."
+      "1 requirement(s) cite or match superseded standard(s).",
+      "1 requirement(s) flagged with CRITICAL risk.",
+      "1 requirement(s) require technical engineer review.",
+      "1 requirement(s) have potentially missing specification parameters."
     ],
     "readiness_note": "Deterministic, evidence-backed standards review audit for procurement officers. Does NOT constitute legal compliance certification.",
     "dependency_count": 1,
@@ -80,7 +84,7 @@
     "installation_standard_count": 0,
     "verified_missing_count": 0,
     "potentially_missing_count": 0,
-    "related_for_review_count": 1,
+    "related_for_review_count": 0,
     "standards_coverage": {
       "direct_standards_identified": 1,
       "total_dependencies": 1,
@@ -88,7 +92,7 @@
       "testing_dependencies": 0,
       "installation_dependencies": 0,
       "allied_standards": 0,
-      "covered_in_tender": 0,
+      "covered_in_tender": 1,
       "potential_gaps": 0,
       "verified_gaps": 0,
       "items_requiring_review": 1
@@ -96,7 +100,7 @@
     "gap_summary": {
       "verified_missing_count": 0,
       "potentially_missing_count": 0,
-      "related_for_review_count": 1
+      "related_for_review_count": 0
     },
     "certification_checks": 1,
     "qco_checks": 1,
@@ -146,7 +150,7 @@
     "coverage_matrix": [
       {
         "requirement_id": "REQ-001",
-        "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+        "requirement_text": "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.",
         "coverage_state": "REVIEW_REQUIRED",
         "primary_standards": [
           "IS/ISO 10434 : 2020"
@@ -156,10 +160,10 @@
         "lifecycle_concerns": [],
         "ambiguity_details": {
           "ambiguity_state": "REVIEW_REQUIRED",
-          "ambiguity_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+          "ambiguity_reason": "Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
           "missing_information": [],
           "competing_interpretations": [],
-          "suggested_clarification_question": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+          "suggested_clarification_question": "Verify application of IS/ISO 10434 and review the following notes: Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
           "unresolved_components": []
         },
         "findings": [
@@ -174,10 +178,10 @@
             "applicability_decision": "VIABLE_CANDIDATE",
             "evidence_strength": "STRONG",
             "supporting_facts": [
-              "Ambiguity reason: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+              "Ambiguity reason: Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
               "Missing technical parameters: Technical parameters unspecified"
             ],
-            "lifecycle_status": "ACTIVE",
+            "lifecycle_status": "UNKNOWN",
             "lifecycle_note": null,
             "relationships": [],
             "provenance": {
@@ -191,7 +195,7 @@
             },
             "uncertainty": "Requirement is underspecified or subject to competing interpretations. Safe abstention preserved.",
             "human_review_required": true,
-            "review_action": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+            "review_action": "Verify application of IS/ISO 10434 and review the following notes: Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
             "severity": "MEDIUM"
           }
         ]
@@ -209,10 +213,10 @@
         "applicability_decision": "VIABLE_CANDIDATE",
         "evidence_strength": "STRONG",
         "supporting_facts": [
-          "Ambiguity reason: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+          "Ambiguity reason: Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
           "Missing technical parameters: Technical parameters unspecified"
         ],
-        "lifecycle_status": "ACTIVE",
+        "lifecycle_status": "UNKNOWN",
         "lifecycle_note": null,
         "relationships": [],
         "provenance": {
@@ -226,7 +230,7 @@
         },
         "uncertainty": "Requirement is underspecified or subject to competing interpretations. Safe abstention preserved.",
         "human_review_required": true,
-        "review_action": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+        "review_action": "Verify application of IS/ISO 10434 and review the following notes: Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
         "severity": "MEDIUM"
       }
     ],
@@ -244,10 +248,10 @@
         "applicability_decision": "VIABLE_CANDIDATE",
         "evidence_strength": "STRONG",
         "supporting_facts": [
-          "Ambiguity reason: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+          "Ambiguity reason: Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
           "Missing technical parameters: Technical parameters unspecified"
         ],
-        "lifecycle_status": "ACTIVE",
+        "lifecycle_status": "UNKNOWN",
         "lifecycle_note": null,
         "relationships": [],
         "provenance": {
@@ -261,13 +265,13 @@
         },
         "uncertainty": "Requirement is underspecified or subject to competing interpretations. Safe abstention preserved.",
         "human_review_required": true,
-        "review_action": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+        "review_action": "Verify application of IS/ISO 10434 and review the following notes: Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
         "severity": "MEDIUM"
       }
     ],
     "multi_standard_items": [],
     "structured_audit_report": {
-      "tender_id": "SAMPLE-VALVE",
+      "tender_id": "TS-6865CF43",
       "summary": {
         "requirements_analyzed": 1,
         "supported_standards_count": 0,
@@ -291,7 +295,7 @@
       "coverage_matrix": [
         {
           "requirement_id": "REQ-001",
-          "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+          "requirement_text": "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.",
           "coverage_state": "REVIEW_REQUIRED",
           "primary_standards": [
             "IS/ISO 10434 : 2020"
@@ -301,10 +305,10 @@
           "lifecycle_concerns": [],
           "ambiguity_details": {
             "ambiguity_state": "REVIEW_REQUIRED",
-            "ambiguity_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+            "ambiguity_reason": "Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
             "missing_information": [],
             "competing_interpretations": [],
-            "suggested_clarification_question": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+            "suggested_clarification_question": "Verify application of IS/ISO 10434 and review the following notes: Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
             "unresolved_components": []
           },
           "findings": [
@@ -319,10 +323,10 @@
               "applicability_decision": "VIABLE_CANDIDATE",
               "evidence_strength": "STRONG",
               "supporting_facts": [
-                "Ambiguity reason: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+                "Ambiguity reason: Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
                 "Missing technical parameters: Technical parameters unspecified"
               ],
-              "lifecycle_status": "ACTIVE",
+              "lifecycle_status": "UNKNOWN",
               "lifecycle_note": null,
               "relationships": [],
               "provenance": {
@@ -336,7 +340,7 @@
               },
               "uncertainty": "Requirement is underspecified or subject to competing interpretations. Safe abstention preserved.",
               "human_review_required": true,
-              "review_action": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+              "review_action": "Verify application of IS/ISO 10434 and review the following notes: Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
               "severity": "MEDIUM"
             }
           ]
@@ -357,10 +361,10 @@
           "applicability_decision": "VIABLE_CANDIDATE",
           "evidence_strength": "STRONG",
           "supporting_facts": [
-            "Ambiguity reason: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+            "Ambiguity reason: Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
             "Missing technical parameters: Technical parameters unspecified"
           ],
-          "lifecycle_status": "ACTIVE",
+          "lifecycle_status": "UNKNOWN",
           "lifecycle_note": null,
           "relationships": [],
           "provenance": {
@@ -374,7 +378,7 @@
           },
           "uncertainty": "Requirement is underspecified or subject to competing interpretations. Safe abstention preserved.",
           "human_review_required": true,
-          "review_action": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+          "review_action": "Verify application of IS/ISO 10434 and review the following notes: Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
           "severity": "MEDIUM"
         }
       ],
@@ -401,18 +405,18 @@
       "human_review_queue": [
         {
           "requirement_id": "REQ-001",
-          "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
-          "risk_level": "HIGH",
+          "requirement_text": "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.",
+          "risk_level": "CRITICAL",
           "decision": "REVIEW_REQUIRED",
           "candidate_standard": "IS/ISO 10434 : 2020",
           "evidence_strength": "STRONG",
-          "primary_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)",
-          "priority": 2,
+          "primary_reason": "Tender explicitly cited a superseded standard requiring replacement verification.",
+          "priority": 1,
           "category": "CLARIFICATION_REQUIRED",
           "component_id": null,
-          "review_action": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+          "review_action": "Verify application of IS/ISO 10434 and review the following notes: Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
           "uncertainty": "",
-          "what_to_check": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)"
+          "what_to_check": "Tender explicitly cited a superseded standard requiring replacement verification."
         }
       ],
       "disclaimers_and_notes": [
@@ -427,27 +431,11 @@
   "requirements": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
+      "requirement_text": "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.",
       "category": "product_equipment",
       "components": [
         {
-          "text": "Repair",
-          "component_type": "installation",
-          "domain": "execution",
-          "extracted_attributes": {
-            "action": "repair"
-          }
-        },
-        {
-          "text": "replacement",
-          "component_type": "installation",
-          "domain": "execution",
-          "extracted_attributes": {
-            "action": "replacement"
-          }
-        },
-        {
-          "text": "valves",
+          "text": "gate valves",
           "component_type": "product",
           "domain": "mechanical",
           "extracted_attributes": {
@@ -455,37 +443,46 @@
           }
         },
         {
-          "text": "mechanical distribution system",
+          "text": "bolted bonnet steel gate valve",
+          "component_type": "equipment",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "domain": "mechanical"
+          }
+        },
+        {
+          "text": "gate valve",
           "component_type": "application",
           "domain": "mechanical",
           "extracted_attributes": {
             "is_process": false
           }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
         }
       ],
       "recommended_standard": "IS/ISO 10434 : 2020",
       "recommended_title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
-      "relevance_score": 0.581,
+      "relevance_score": 1.0,
       "lifecycle_status": "Active",
       "successor_standard": null,
-      "superseded_citation": null,
+      "superseded_citation": "IS 10611 1983",
       "evidence_strength": "STRONG",
       "provenance": "VERIFIED",
       "evidence_text": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends.",
       "evidence_source": "BSB Edge Portal",
       "why_this": [
-        "Standard title directly matches requirement component(s): 'valves'.",
-        "Authoritative scope explicitly covers application: \"This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petroc...\"",
-        "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via BSB Edge Portal (VERIFIED).",
-        "Candidate addresses multiple decomposed technical aspects of the requirement."
+        "Recommended authoritative active successor standard recorded in BIS database."
       ],
       "why_not": [
-        "Alternative standard IS 778 has lower composite relevance (0.522 vs 0.581)."
+        "Original cited standard is superseded/obsolete."
       ],
-      "completeness_label": "UNKNOWN",
+      "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [
-        "Valve Type",
         "Nominal Size / Diameter (DN)",
         "Pressure Rating (PN / Class)",
         "Body Metallurgy / Material",
@@ -507,16 +504,16 @@
         }
       ],
       "decision": "REVIEW_REQUIRED",
-      "risk_level": "HIGH",
+      "risk_level": "CRITICAL",
       "risk_reasons": [
-        "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)"
+        "Tender explicitly cited a superseded standard requiring replacement verification."
       ],
       "human_review_required": true,
-      "confidence": "Low",
-      "review_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+      "confidence": "High",
+      "review_reason": "Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.",
       "candidate_standard": "IS/ISO 10434 : 2020",
       "evidence_standard": "IS/ISO 10434 : 2020",
-      "why_it_matches": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petroc...",
+      "why_it_matches": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends.",
       "dependencies": [
         {
           "standard_number": "IS 10611 : 1983",
@@ -601,30 +598,30 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 1.0,
           "human_review_required": false,
-          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (valves); not applicable.",
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (steel, valves); not applicable.",
           "additional_metadata": {}
         }
       },
       "ambiguity_state": "REVIEW_REQUIRED",
-      "ambiguity_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+      "ambiguity_reason": "Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
       "human_decision": null
     }
   ],
   "review_queue": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Repair and replacement of valves in the mechanical distribution system.",
-      "risk_level": "HIGH",
+      "requirement_text": "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983.",
+      "risk_level": "CRITICAL",
       "decision": "REVIEW_REQUIRED",
       "candidate_standard": "IS/ISO 10434 : 2020",
       "evidence_strength": "STRONG",
-      "primary_reason": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)",
-      "priority": 2,
+      "primary_reason": "Tender explicitly cited a superseded standard requiring replacement verification.",
+      "priority": 1,
       "category": "CLARIFICATION_REQUIRED",
       "component_id": null,
-      "review_action": "Verify application of IS/ISO 10434 and review the following notes: Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
+      "review_action": "Verify application of IS/ISO 10434 and review the following notes: Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
       "uncertainty": "",
-      "what_to_check": "Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)"
+      "what_to_check": "Tender explicitly cited a superseded standard requiring replacement verification."
     }
   ],
   "evidence_summary": {

@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-CPVC`
-- **Source File:** `Sample: cpvc`
+- **Tender ID:** `TS-43A87090`
+- **Source File:** `text input`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -36,7 +36,7 @@
 
 ### Governance Distributions
 
-- **Evidence Strength:** STRONG: `1` | MODERATE: `0` | WEAK: `0` | NONE: `0`
+- **Evidence Strength:** STRONG: `0` | MODERATE: `1` | WEAK: `0` | NONE: `0`
 - **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `1` | UNKNOWN: `0` | NOT_APPLICABLE: `0`
 - **Risk Distribution:** CRITICAL: `0` | HIGH: `0` | MEDIUM: `0` | LOW: `1`
 
@@ -58,24 +58,24 @@
 ### 5.1 Requirement `REQ-001` [MATERIAL]
 
 **Original Requirement Text:**
-> "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778."
+> "Chlorinated polyvinyl chloride CPVC pipes for potable water distribution in building."
 
-- **Decomposed Technical Components:** `general: CPVC pipes`
+- **Decomposed Technical Components:** `general: CPVC pipes`, `general: potable water`
 - **Recommended Standard:** **IS 15778 : 2007** — *Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*
 - **Candidate Standard:** `IS 15778 : 2007` | **Evidence Standard:** `IS 15778 : 2007` (Candidate == Evidence Grounding Established)
-- **Why It Matches:** Tender explicitly requires compliance with IS 15778.
-- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `1.000`
+- **Why It Matches:** IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.
+- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.912`
 - **Ambiguity & Verification State:** `CLEAR` — *Reason:* Primary applicable standard IS 15778 is clearly identifiable and sufficiently supported.
-- **Evidence Strength:** `STRONG` | **Provenance:** `CURATED`
-- **Verbatim Evidence (Tender Document):** "Tender explicitly requires compliance with IS 15778."
+- **Evidence Strength:** `MODERATE` | **Provenance:** `CURATED`
+- **Verbatim Evidence (BIS Standards Catalogue):** "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
 - **Why This Standard?:**
   - Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.
-  - Authoritative scope explicitly covers application: "Tender explicitly requires compliance with IS 15778."
+  - Authoritative scope explicitly covers application: "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
   - Standard is currently active in the BIS repository with verified currency.
-  - Provenance established via Tender Document (VERIFIED).
+  - Provenance established via BIS Standards Catalogue (CURATED).
+  - Candidate addresses multiple decomposed technical aspects of the requirement.
 - **Why Not Alternatives?:**
-  - Alternative standard SP 57 (QAWSM) has lower composite relevance (0.566 vs 1.000).
-  - Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification.
+  - Alternative standard IS 16088 has lower composite relevance (0.366 vs 0.912).
 - **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
 - **Related Standards Identified for Review (Graph Depth = 1):**
   - [→ TEST_METHOD] `IS 12235 : 2004` — *Title not in local index* (Unknown) — *Note:* Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance.
@@ -89,9 +89,6 @@
   - [INSTALLATION STANDARD] `IS 783 : 1985` — *Code of Practice for Laying of Concrete Pipes* ()
 - **Regulatory & Statutory Intelligence:** Product Certification: `APPLICABLE` | QCO: `CURRENT` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
 - **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `High`
-- **Human Review Decision:** **ACCEPT**
-- **Reviewer Note:** "Verified by procurement officer"
-- **Decision Recorded:** `2026-09-23T16:33:11.559707+00:00`
 
 ---
 
@@ -112,6 +109,4 @@ TenderSaathi is a standards-review aid for procurement specifications. Final app
 
 ## 8. Human Review & Decision Trail
 
-| # | Requirement ID | Original System Finding | Human Decision | Reviewer Standard | Reviewer Note | Reviewed Timestamp |
-|---|---|---|---|---|---|---|
-| 1 | `REQ-001` | Authoritative active standard IS 15778 : 2007 verified against scope with High confidence. | **ACCEPT** | `—` | Verified by procurement officer | 2026-09-23T16:33:11.559707+00:00 |
+*No human review decisions have been recorded for this tender. All requirements remain in automated analysis state.*

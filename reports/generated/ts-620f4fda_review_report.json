@@ -2,10 +2,10 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-620F4FDA",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: cpvc",
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
@@ -15,7 +15,7 @@
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-620F4FDA",
     "requirements_analyzed": 1,
     "recommendations_count": 1,
     "review_required_count": 0,
@@ -25,8 +25,8 @@
     "active_count": 1,
     "unknown_lifecycle_count": 0,
     "evidence_distribution": {
-      "STRONG": 1,
-      "MODERATE": 0,
+      "STRONG": 0,
+      "MODERATE": 1,
       "WEAK": 0,
       "NONE": 0
     },
@@ -49,7 +49,23 @@
       "Unknown": 0
     },
     "related_standards_count": 3,
-    "review_queue": [],
+    "review_queue": [
+      {
+        "requirement_id": "REQ-001",
+        "requirement_text": "Chlorinated polyvinyl chloride CPVC pipes for potable water distribution in building.",
+        "risk_level": "LOW",
+        "decision": "RECOMMEND",
+        "candidate_standard": "IS 15778 : 2007",
+        "evidence_strength": "MODERATE",
+        "primary_reason": "Evidence-backed dependency 'IS 12235 : 2004' is potentially missing from tender.",
+        "priority": 4,
+        "category": "POTENTIAL_COVERAGE_GAP",
+        "component_id": null,
+        "review_action": "Review component standards coverage.",
+        "uncertainty": "",
+        "what_to_check": "Evidence-backed dependency 'IS 12235 : 2004' is potentially missing from tender."
+      }
+    ],
     "publication_readiness": "READY_FOR_REVIEW",
     "readiness_reasons": [
       "All 1 requirement(s) have grounded standards evidence with no critical or high risk flags."
@@ -91,66 +107,103 @@
     "mandatory_certification_count": 1,
     "crs_applicable_count": 0,
     "hallmarking_applicable_count": 0,
-    "supported_standards_count": 1,
+    "supported_standards_count": 0,
     "safe_abstention_count": 0,
     "clarification_required_count": 0,
     "lifecycle_concern_count": 0,
     "potential_gap_count": 0,
-    "multi_standard_count": 0,
-    "human_review_count": 0,
+    "multi_standard_count": 1,
+    "human_review_count": 1,
     "coverage_distribution": {
-      "COVERED": 1,
-      "PARTIAL": 0,
+      "COVERED": 0,
+      "PARTIAL": 1,
       "REVIEW_REQUIRED": 0,
       "POTENTIAL_GAP": 0,
       "UNKNOWN": 0
     },
     "audit_summary": {
       "requirements_analyzed": 1,
-      "supported_standards_count": 1,
+      "supported_standards_count": 0,
       "safe_abstention_count": 0,
       "clarification_required_count": 0,
       "lifecycle_concern_count": 0,
       "potential_gap_count": 0,
-      "multi_standard_count": 0,
-      "human_review_count": 0,
+      "multi_standard_count": 1,
+      "human_review_count": 1,
       "coverage_distribution": {
-        "COVERED": 1,
-        "PARTIAL": 0,
+        "COVERED": 0,
+        "PARTIAL": 1,
         "REVIEW_REQUIRED": 0,
         "POTENTIAL_GAP": 0,
         "UNKNOWN": 0
       },
       "finding_distribution": {
-        "STANDARD_COVERED": 1
+        "PARTIAL_STANDARD_COVERAGE": 1
       }
     },
     "coverage_matrix": [
       {
         "requirement_id": "REQ-001",
-        "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
-        "coverage_state": "COVERED",
+        "requirement_text": "Chlorinated polyvinyl chloride CPVC pipes for potable water distribution in building.",
+        "coverage_state": "PARTIAL",
         "primary_standards": [
-          "IS 15778 : 2007"
+          "IS 15778 : 2007",
+          "IS 16088 : 2016",
+          "SP 57 (QAWSM) : 1993",
+          "IS 783 : 1985"
         ],
-        "component_breakdown": [],
+        "component_breakdown": [
+          {
+            "component_id": "C1",
+            "component_name": "Component 1",
+            "standard": "IS 15778 : 2007",
+            "status": "COVERED"
+          },
+          {
+            "component_id": "C2",
+            "component_name": "Component 2",
+            "standard": "IS 16088 : 2016",
+            "status": "COVERED"
+          },
+          {
+            "component_id": "C3",
+            "component_name": "Component 3",
+            "standard": "SP 57 (QAWSM) : 1993",
+            "status": "COVERED"
+          },
+          {
+            "component_id": "C4",
+            "component_name": "Component 4",
+            "standard": "IS 783 : 1985",
+            "status": "COVERED"
+          },
+          {
+            "component_id": "C5",
+            "component_name": "Component 5",
+            "standard": null,
+            "status": "POTENTIAL_GAP"
+          }
+        ],
         "gap_details": null,
         "lifecycle_concerns": [],
         "ambiguity_details": null,
         "findings": [
           {
-            "finding_id": "COV-REQ-001",
+            "finding_id": "MULTI-REQ-001",
             "requirement_id": "REQ-001",
-            "finding_type": "STANDARD_COVERED",
-            "title": "Applicable Standard Identified: IS 15778 : 2007",
+            "finding_type": "PARTIAL_STANDARD_COVERAGE",
+            "title": "Multi-component requirement with partial standards coverage",
             "standards": [
-              "IS 15778 : 2007"
+              "IS 15778 : 2007",
+              "IS 16088 : 2016",
+              "SP 57 (QAWSM) : 1993",
+              "IS 783 : 1985"
             ],
-            "applicability_decision": "APPLICABLE",
-            "evidence_strength": "STRONG",
+            "applicability_decision": "REVIEW_REQUIRED",
+            "evidence_strength": "MODERATE",
             "supporting_facts": [
-              "Candidate standard 'IS 15778 : 2007' is verified applicable with STRONG evidence.",
-              "Available evidence supports applicable standards for the analyzed requirement/components, with no unresolved blocker."
+              "Decomposed into 5 technical components.",
+              "Covered components: 4 of 5."
             ],
             "lifecycle_status": "ACTIVE",
             "lifecycle_note": null,
@@ -164,28 +217,31 @@
               "verification_status": "CURATED",
               "retrieved_at": "2026-09-12T09:56:24.334042+00:00"
             },
-            "uncertainty": "Available evidence supports standard applicability. Does NOT constitute legal compliance certification.",
-            "human_review_required": false,
-            "review_action": "Standard identified; proceed with standard technical review.",
-            "severity": "INFO"
+            "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
+            "human_review_required": true,
+            "review_action": "Review individual component coverage across distinct standards.",
+            "severity": "MEDIUM"
           }
         ]
       }
     ],
     "audit_findings": [
       {
-        "finding_id": "COV-REQ-001",
+        "finding_id": "MULTI-REQ-001",
         "requirement_id": "REQ-001",
-        "finding_type": "STANDARD_COVERED",
-        "title": "Applicable Standard Identified: IS 15778 : 2007",
+        "finding_type": "PARTIAL_STANDARD_COVERAGE",
+        "title": "Multi-component requirement with partial standards coverage",
         "standards": [
-          "IS 15778 : 2007"
+          "IS 15778 : 2007",
+          "IS 16088 : 2016",
+          "SP 57 (QAWSM) : 1993",
+          "IS 783 : 1985"
         ],
-        "applicability_decision": "APPLICABLE",
-        "evidence_strength": "STRONG",
+        "applicability_decision": "REVIEW_REQUIRED",
+        "evidence_strength": "MODERATE",
         "supporting_facts": [
-          "Candidate standard 'IS 15778 : 2007' is verified applicable with STRONG evidence.",
-          "Available evidence supports applicable standards for the analyzed requirement/components, with no unresolved blocker."
+          "Decomposed into 5 technical components.",
+          "Covered components: 4 of 5."
         ],
         "lifecycle_status": "ACTIVE",
         "lifecycle_note": null,
@@ -199,64 +255,184 @@
           "verification_status": "CURATED",
           "retrieved_at": "2026-09-12T09:56:24.334042+00:00"
         },
-        "uncertainty": "Available evidence supports standard applicability. Does NOT constitute legal compliance certification.",
-        "human_review_required": false,
-        "review_action": "Standard identified; proceed with standard technical review.",
-        "severity": "INFO"
+        "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
+        "human_review_required": true,
+        "review_action": "Review individual component coverage across distinct standards.",
+        "severity": "MEDIUM"
       }
     ],
     "gap_findings": [],
     "lifecycle_findings": [],
     "ambiguity_findings": [],
-    "multi_standard_items": [],
+    "multi_standard_items": [
+      {
+        "requirement_id": "REQ-001",
+        "requirement_text": "Chlorinated polyvinyl chloride CPVC pipes for potable water distribution in building.",
+        "coverage_state": "PARTIAL",
+        "primary_standards": [
+          "IS 15778 : 2007",
+          "IS 16088 : 2016",
+          "SP 57 (QAWSM) : 1993",
+          "IS 783 : 1985"
+        ],
+        "component_breakdown": [
+          {
+            "component_id": "C1",
+            "component_name": "Component 1",
+            "standard": "IS 15778 : 2007",
+            "status": "COVERED"
+          },
+          {
+            "component_id": "C2",
+            "component_name": "Component 2",
+            "standard": "IS 16088 : 2016",
+            "status": "COVERED"
+          },
+          {
+            "component_id": "C3",
+            "component_name": "Component 3",
+            "standard": "SP 57 (QAWSM) : 1993",
+            "status": "COVERED"
+          },
+          {
+            "component_id": "C4",
+            "component_name": "Component 4",
+            "standard": "IS 783 : 1985",
+            "status": "COVERED"
+          },
+          {
+            "component_id": "C5",
+            "component_name": "Component 5",
+            "standard": null,
+            "status": "POTENTIAL_GAP"
+          }
+        ],
+        "gap_details": null,
+        "lifecycle_concerns": [],
+        "ambiguity_details": null,
+        "findings": [
+          {
+            "finding_id": "MULTI-REQ-001",
+            "requirement_id": "REQ-001",
+            "finding_type": "PARTIAL_STANDARD_COVERAGE",
+            "title": "Multi-component requirement with partial standards coverage",
+            "standards": [
+              "IS 15778 : 2007",
+              "IS 16088 : 2016",
+              "SP 57 (QAWSM) : 1993",
+              "IS 783 : 1985"
+            ],
+            "applicability_decision": "REVIEW_REQUIRED",
+            "evidence_strength": "MODERATE",
+            "supporting_facts": [
+              "Decomposed into 5 technical components.",
+              "Covered components: 4 of 5."
+            ],
+            "lifecycle_status": "ACTIVE",
+            "lifecycle_note": null,
+            "relationships": [],
+            "provenance": {
+              "source": "VALIDATED_RESEARCH_GOVERNMENT_GAZETTE_QCO",
+              "source_type": "STANDARDS_DB",
+              "source_url": "IS 15778:2007 Clause 1 Scope; Order S.O. 982(E)",
+              "raw_record_ref": "IS 15778 : 2007",
+              "ingestion_run_id": null,
+              "verification_status": "CURATED",
+              "retrieved_at": "2026-09-12T09:56:24.334042+00:00"
+            },
+            "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
+            "human_review_required": true,
+            "review_action": "Review individual component coverage across distinct standards.",
+            "severity": "MEDIUM"
+          }
+        ]
+      }
+    ],
     "structured_audit_report": {
-      "tender_id": "SAMPLE-CPVC",
+      "tender_id": "TS-620F4FDA",
       "summary": {
         "requirements_analyzed": 1,
-        "supported_standards_count": 1,
+        "supported_standards_count": 0,
         "safe_abstention_count": 0,
         "clarification_required_count": 0,
         "lifecycle_concern_count": 0,
         "potential_gap_count": 0,
-        "multi_standard_count": 0,
-        "human_review_count": 0,
+        "multi_standard_count": 1,
+        "human_review_count": 1,
         "coverage_distribution": {
-          "COVERED": 1,
-          "PARTIAL": 0,
+          "COVERED": 0,
+          "PARTIAL": 1,
           "REVIEW_REQUIRED": 0,
           "POTENTIAL_GAP": 0,
           "UNKNOWN": 0
         },
         "finding_distribution": {
-          "STANDARD_COVERED": 1
+          "PARTIAL_STANDARD_COVERAGE": 1
         }
       },
       "coverage_matrix": [
         {
           "requirement_id": "REQ-001",
-          "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
-          "coverage_state": "COVERED",
+          "requirement_text": "Chlorinated polyvinyl chloride CPVC pipes for potable water distribution in building.",
+          "coverage_state": "PARTIAL",
           "primary_standards": [
-            "IS 15778 : 2007"
+            "IS 15778 : 2007",
+            "IS 16088 : 2016",
+            "SP 57 (QAWSM) : 1993",
+            "IS 783 : 1985"
           ],
-          "component_breakdown": [],
+          "component_breakdown": [
+            {
+              "component_id": "C1",
+              "component_name": "Component 1",
+              "standard": "IS 15778 : 2007",
+              "status": "COVERED"
+            },
+            {
+              "component_id": "C2",
+              "component_name": "Component 2",
+              "standard": "IS 16088 : 2016",
+              "status": "COVERED"
+            },
+            {
+              "component_id": "C3",
+              "component_name": "Component 3",
+              "standard": "SP 57 (QAWSM) : 1993",
+              "status": "COVERED"
+            },
+            {
+              "component_id": "C4",
+              "component_name": "Component 4",
+              "standard": "IS 783 : 1985",
+              "status": "COVERED"
+            },
+            {
+              "component_id": "C5",
+              "component_name": "Component 5",
+              "standard": null,
+              "status": "POTENTIAL_GAP"
+            }
+          ],
           "gap_details": null,
           "lifecycle_concerns": [],
           "ambiguity_details": null,
           "findings": [
             {
-              "finding_id": "COV-REQ-001",
+              "finding_id": "MULTI-REQ-001",
               "requirement_id": "REQ-001",
-              "finding_type": "STANDARD_COVERED",
-              "title": "Applicable Standard Identified: IS 15778 : 2007",
+              "finding_type": "PARTIAL_STANDARD_COVERAGE",
+              "title": "Multi-component requirement with partial standards coverage",
               "standards": [
-                "IS 15778 : 2007"
+                "IS 15778 : 2007",
+                "IS 16088 : 2016",
+                "SP 57 (QAWSM) : 1993",
+                "IS 783 : 1985"
               ],
-              "applicability_decision": "APPLICABLE",
-              "evidence_strength": "STRONG",
+              "applicability_decision": "REVIEW_REQUIRED",
+              "evidence_strength": "MODERATE",
               "supporting_facts": [
-                "Candidate standard 'IS 15778 : 2007' is verified applicable with STRONG evidence.",
-                "Available evidence supports applicable standards for the analyzed requirement/components, with no unresolved blocker."
+                "Decomposed into 5 technical components.",
+                "Covered components: 4 of 5."
               ],
               "lifecycle_status": "ACTIVE",
               "lifecycle_note": null,
@@ -270,69 +446,106 @@
                 "verification_status": "CURATED",
                 "retrieved_at": "2026-09-12T09:56:24.334042+00:00"
               },
-              "uncertainty": "Available evidence supports standard applicability. Does NOT constitute legal compliance certification.",
-              "human_review_required": false,
-              "review_action": "Standard identified; proceed with standard technical review.",
-              "severity": "INFO"
+              "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
+              "human_review_required": true,
+              "review_action": "Review individual component coverage across distinct standards.",
+              "severity": "MEDIUM"
             }
           ]
         }
       ],
-      "covered_requirements": [
-        {
-          "requirement_id": "REQ-001",
-          "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
-          "coverage_state": "COVERED",
-          "primary_standards": [
-            "IS 15778 : 2007"
-          ],
-          "component_breakdown": [],
-          "gap_details": null,
-          "lifecycle_concerns": [],
-          "ambiguity_details": null,
-          "findings": [
-            {
-              "finding_id": "COV-REQ-001",
-              "requirement_id": "REQ-001",
-              "finding_type": "STANDARD_COVERED",
-              "title": "Applicable Standard Identified: IS 15778 : 2007",
-              "standards": [
-                "IS 15778 : 2007"
-              ],
-              "applicability_decision": "APPLICABLE",
-              "evidence_strength": "STRONG",
-              "supporting_facts": [
-                "Candidate standard 'IS 15778 : 2007' is verified applicable with STRONG evidence.",
-                "Available evidence supports applicable standards for the analyzed requirement/components, with no unresolved blocker."
-              ],
-              "lifecycle_status": "ACTIVE",
-              "lifecycle_note": null,
-              "relationships": [],
-              "provenance": {
-                "source": "VALIDATED_RESEARCH_GOVERNMENT_GAZETTE_QCO",
-                "source_type": "STANDARDS_DB",
-                "source_url": "IS 15778:2007 Clause 1 Scope; Order S.O. 982(E)",
-                "raw_record_ref": "IS 15778 : 2007",
-                "ingestion_run_id": null,
-                "verification_status": "CURATED",
-                "retrieved_at": "2026-09-12T09:56:24.334042+00:00"
-              },
-              "uncertainty": "Available evidence supports standard applicability. Does NOT constitute legal compliance certification.",
-              "human_review_required": false,
-              "review_action": "Standard identified; proceed with standard technical review.",
-              "severity": "INFO"
-            }
-          ]
-        }
-      ],
+      "covered_requirements": [],
       "potential_gaps": [],
       "lifecycle_concerns": [],
       "ambiguous_requirements": [],
-      "multi_standard_requirements": [],
+      "multi_standard_requirements": [
+        {
+          "requirement_id": "REQ-001",
+          "requirement_text": "Chlorinated polyvinyl chloride CPVC pipes for potable water distribution in building.",
+          "coverage_state": "PARTIAL",
+          "primary_standards": [
+            "IS 15778 : 2007",
+            "IS 16088 : 2016",
+            "SP 57 (QAWSM) : 1993",
+            "IS 783 : 1985"
+          ],
+          "component_breakdown": [
+            {
+              "component_id": "C1",
+              "component_name": "Component 1",
+              "standard": "IS 15778 : 2007",
+              "status": "COVERED"
+            },
+            {
+              "component_id": "C2",
+              "component_name": "Component 2",
+              "standard": "IS 16088 : 2016",
+              "status": "COVERED"
+            },
+            {
+              "component_id": "C3",
+              "component_name": "Component 3",
+              "standard": "SP 57 (QAWSM) : 1993",
+              "status": "COVERED"
+            },
+            {
+              "component_id": "C4",
+              "component_name": "Component 4",
+              "standard": "IS 783 : 1985",
+              "status": "COVERED"
+            },
+            {
+              "component_id": "C5",
+              "component_name": "Component 5",
+              "standard": null,
+              "status": "POTENTIAL_GAP"
+            }
+          ],
+          "gap_details": null,
+          "lifecycle_concerns": [],
+          "ambiguity_details": null,
+          "findings": [
+            {
+              "finding_id": "MULTI-REQ-001",
+              "requirement_id": "REQ-001",
+              "finding_type": "PARTIAL_STANDARD_COVERAGE",
+              "title": "Multi-component requirement with partial standards coverage",
+              "standards": [
+                "IS 15778 : 2007",
+                "IS 16088 : 2016",
+                "SP 57 (QAWSM) : 1993",
+                "IS 783 : 1985"
+              ],
+              "applicability_decision": "REVIEW_REQUIRED",
+              "evidence_strength": "MODERATE",
+              "supporting_facts": [
+                "Decomposed into 5 technical components.",
+                "Covered components: 4 of 5."
+              ],
+              "lifecycle_status": "ACTIVE",
+              "lifecycle_note": null,
+              "relationships": [],
+              "provenance": {
+                "source": "VALIDATED_RESEARCH_GOVERNMENT_GAZETTE_QCO",
+                "source_type": "STANDARDS_DB",
+                "source_url": "IS 15778:2007 Clause 1 Scope; Order S.O. 982(E)",
+                "raw_record_ref": "IS 15778 : 2007",
+                "ingestion_run_id": null,
+                "verification_status": "CURATED",
+                "retrieved_at": "2026-09-12T09:56:24.334042+00:00"
+              },
+              "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
+              "human_review_required": true,
+              "review_action": "Review individual component coverage across distinct standards.",
+              "severity": "MEDIUM"
+            }
+          ]
+        }
+      ],
       "evidence_audit": {
         "evidence_distribution": {
-          "STRONG": 1,
-          "MODERATE": 0,
+          "STRONG": 0,
+          "MODERATE": 1,
           "WEAK": 0,
           "NONE": 0
         },
@@ -348,7 +561,23 @@
           "UNKNOWN": 0
         }
       },
-      "human_review_queue": [],
+      "human_review_queue": [
+        {
+          "requirement_id": "REQ-001",
+          "requirement_text": "Chlorinated polyvinyl chloride CPVC pipes for potable water distribution in building.",
+          "risk_level": "LOW",
+          "decision": "RECOMMEND",
+          "candidate_standard": "IS 15778 : 2007",
+          "evidence_strength": "MODERATE",
+          "primary_reason": "Evidence-backed dependency 'IS 12235 : 2004' is potentially missing from tender.",
+          "priority": 4,
+          "category": "POTENTIAL_COVERAGE_GAP",
+          "component_id": null,
+          "review_action": "Review component standards coverage.",
+          "uncertainty": "",
+          "what_to_check": "Evidence-backed dependency 'IS 12235 : 2004' is potentially missing from tender."
+        }
+      ],
       "disclaimers_and_notes": [
         "Deterministic, evidence-backed standards review audit for procurement officers. Does NOT constitute legal compliance certification.",
         "A status of COVERED indicates that available evidence supports applicable standards for the analyzed requirement/components, with no unresolved blocker. It does not imply legal compliance or certification.",
@@ -361,7 +590,7 @@
   "requirements": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
+      "requirement_text": "Chlorinated polyvinyl chloride CPVC pipes for potable water distribution in building.",
       "category": "material",
       "components": [
         {
@@ -371,27 +600,55 @@
           "extracted_attributes": {
             "category": "pipe_material"
           }
+        },
+        {
+          "text": "potable water",
+          "component_type": "application",
+          "domain": "water_supply",
+          "extracted_attributes": {
+            "application_type": "drinking_water"
+          }
+        },
+        {
+          "text": "potable water distribution",
+          "component_type": "application",
+          "domain": "mechanical",
+          "extracted_attributes": {
+            "is_process": false
+          }
+        },
+        {
+          "text": "supply",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
+        },
+        {
+          "text": "installation",
+          "component_type": "action",
+          "domain": "general",
+          "extracted_attributes": {}
         }
       ],
       "recommended_standard": "IS 15778 : 2007",
       "recommended_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
-      "relevance_score": 1.0,
+      "relevance_score": 0.912,
       "lifecycle_status": "Active",
       "successor_standard": null,
       "superseded_citation": null,
-      "evidence_strength": "STRONG",
+      "evidence_strength": "MODERATE",
       "provenance": "CURATED",
-      "evidence_text": "Tender explicitly requires compliance with IS 15778.",
-      "evidence_source": "Tender Document",
+      "evidence_text": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.",
+      "evidence_source": "BIS Standards Catalogue",
       "why_this": [
         "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.",
-        "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 15778.\"",
+        "Authoritative scope explicitly covers application: \"Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.\"",
         "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via Tender Document (VERIFIED)."
+        "Provenance established via BIS Standards Catalogue (CURATED).",
+        "Candidate addresses multiple decomposed technical aspects of the requirement."
       ],
       "why_not": [
-        "Alternative standard SP 57 (QAWSM) has lower composite relevance (0.566 vs 1.000).",
-        "Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification."
+        "Alternative standard IS 16088 has lower composite relevance (0.366 vs 0.912)."
       ],
       "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [
@@ -445,7 +702,7 @@
       "review_reason": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence.",
       "candidate_standard": "IS 15778 : 2007",
       "evidence_standard": "IS 15778 : 2007",
-      "why_it_matches": "Tender explicitly requires compliance with IS 15778.",
+      "why_it_matches": "IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.",
       "dependencies": [
         {
           "standard_number": "IS 12235 : 2004",
@@ -604,28 +861,36 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 1.0,
           "human_review_required": false,
-          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (fittings, pipes); not applicable.",
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (pipes); not applicable.",
           "additional_metadata": {}
         }
       },
       "ambiguity_state": "CLEAR",
       "ambiguity_reason": "Primary applicable standard IS 15778 is clearly identifiable and sufficiently supported.",
-      "human_decision": {
-        "requirement_id": "REQ-001",
-        "decision": "ACCEPT",
-        "reviewer_standard": null,
-        "reviewer_note": "Verified by procurement officer",
-        "reviewed_at": "2026-09-23T16:33:11.559707+00:00",
-        "system_standard": "IS 15778 : 2007",
-        "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
-      }
+      "human_decision": null
     }
   ],
-  "review_queue": [],
+  "review_queue": [
+    {
+      "requirement_id": "REQ-001",
+      "requirement_text": "Chlorinated polyvinyl chloride CPVC pipes for potable water distribution in building.",
+      "risk_level": "LOW",
+      "decision": "RECOMMEND",
+      "candidate_standard": "IS 15778 : 2007",
+      "evidence_strength": "MODERATE",
+      "primary_reason": "Evidence-backed dependency 'IS 12235 : 2004' is potentially missing from tender.",
+      "priority": 4,
+      "category": "POTENTIAL_COVERAGE_GAP",
+      "component_id": null,
+      "review_action": "Review component standards coverage.",
+      "uncertainty": "",
+      "what_to_check": "Evidence-backed dependency 'IS 12235 : 2004' is potentially missing from tender."
+    }
+  ],
   "evidence_summary": {
     "evidence_distribution": {
-      "STRONG": 1,
-      "MODERATE": 0,
+      "STRONG": 0,
+      "MODERATE": 1,
       "WEAK": 0,
       "NONE": 0
     },
@@ -637,16 +902,6 @@
     },
     "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
   },
-  "human_decisions": [
-    {
-      "requirement_id": "REQ-001",
-      "decision": "ACCEPT",
-      "reviewer_standard": null,
-      "reviewer_note": "Verified by procurement officer",
-      "reviewed_at": "2026-09-23T16:33:11.559707+00:00",
-      "system_standard": "IS 15778 : 2007",
-      "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
-    }
-  ],
+  "human_decisions": [],
   "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
 }

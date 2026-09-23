@@ -2,10 +2,10 @@
   "title": "TenderSaathi Evidence-Backed Indian Standards Review Report",
   "subtitle": "Standards review aid for procurement specifications",
   "tender_info": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-9AD56A61",
     "tender_title": null,
     "organisation": null,
-    "source_file": "Sample: cpvc",
+    "source_file": "text input",
     "date": null,
     "requirements_analyzed": 1
   },
@@ -15,7 +15,7 @@
   ],
   "readiness_disclaimer": "This report is a standards-review aid and does not constitute legal compliance certification.",
   "executive_summary": {
-    "tender_id": "SAMPLE-CPVC",
+    "tender_id": "TS-9AD56A61",
     "requirements_analyzed": 1,
     "recommendations_count": 1,
     "review_required_count": 0,
@@ -25,8 +25,8 @@
     "active_count": 1,
     "unknown_lifecycle_count": 0,
     "evidence_distribution": {
-      "STRONG": 1,
-      "MODERATE": 0,
+      "STRONG": 0,
+      "MODERATE": 1,
       "WEAK": 0,
       "NONE": 0
     },
@@ -128,7 +128,7 @@
     "coverage_matrix": [
       {
         "requirement_id": "REQ-001",
-        "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
+        "requirement_text": "Supply of CPVC pipes for domestic water plumbing.",
         "coverage_state": "COVERED",
         "primary_standards": [
           "IS 15778 : 2007"
@@ -147,9 +147,9 @@
               "IS 15778 : 2007"
             ],
             "applicability_decision": "APPLICABLE",
-            "evidence_strength": "STRONG",
+            "evidence_strength": "MODERATE",
             "supporting_facts": [
-              "Candidate standard 'IS 15778 : 2007' is verified applicable with STRONG evidence.",
+              "Candidate standard 'IS 15778 : 2007' is verified applicable with MODERATE evidence.",
               "Available evidence supports applicable standards for the analyzed requirement/components, with no unresolved blocker."
             ],
             "lifecycle_status": "ACTIVE",
@@ -182,9 +182,9 @@
           "IS 15778 : 2007"
         ],
         "applicability_decision": "APPLICABLE",
-        "evidence_strength": "STRONG",
+        "evidence_strength": "MODERATE",
         "supporting_facts": [
-          "Candidate standard 'IS 15778 : 2007' is verified applicable with STRONG evidence.",
+          "Candidate standard 'IS 15778 : 2007' is verified applicable with MODERATE evidence.",
           "Available evidence supports applicable standards for the analyzed requirement/components, with no unresolved blocker."
         ],
         "lifecycle_status": "ACTIVE",
@@ -210,7 +210,7 @@
     "ambiguity_findings": [],
     "multi_standard_items": [],
     "structured_audit_report": {
-      "tender_id": "SAMPLE-CPVC",
+      "tender_id": "TS-9AD56A61",
       "summary": {
         "requirements_analyzed": 1,
         "supported_standards_count": 1,
@@ -234,7 +234,7 @@
       "coverage_matrix": [
         {
           "requirement_id": "REQ-001",
-          "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
+          "requirement_text": "Supply of CPVC pipes for domestic water plumbing.",
           "coverage_state": "COVERED",
           "primary_standards": [
             "IS 15778 : 2007"
@@ -253,9 +253,9 @@
                 "IS 15778 : 2007"
               ],
               "applicability_decision": "APPLICABLE",
-              "evidence_strength": "STRONG",
+              "evidence_strength": "MODERATE",
               "supporting_facts": [
-                "Candidate standard 'IS 15778 : 2007' is verified applicable with STRONG evidence.",
+                "Candidate standard 'IS 15778 : 2007' is verified applicable with MODERATE evidence.",
                 "Available evidence supports applicable standards for the analyzed requirement/components, with no unresolved blocker."
               ],
               "lifecycle_status": "ACTIVE",
@@ -281,7 +281,7 @@
       "covered_requirements": [
         {
           "requirement_id": "REQ-001",
-          "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
+          "requirement_text": "Supply of CPVC pipes for domestic water plumbing.",
           "coverage_state": "COVERED",
           "primary_standards": [
             "IS 15778 : 2007"
@@ -300,9 +300,9 @@
                 "IS 15778 : 2007"
               ],
               "applicability_decision": "APPLICABLE",
-              "evidence_strength": "STRONG",
+              "evidence_strength": "MODERATE",
               "supporting_facts": [
-                "Candidate standard 'IS 15778 : 2007' is verified applicable with STRONG evidence.",
+                "Candidate standard 'IS 15778 : 2007' is verified applicable with MODERATE evidence.",
                 "Available evidence supports applicable standards for the analyzed requirement/components, with no unresolved blocker."
               ],
               "lifecycle_status": "ACTIVE",
@@ -331,8 +331,8 @@
       "multi_standard_requirements": [],
       "evidence_audit": {
         "evidence_distribution": {
-          "STRONG": 1,
-          "MODERATE": 0,
+          "STRONG": 0,
+          "MODERATE": 1,
           "WEAK": 0,
           "NONE": 0
         },
@@ -361,7 +361,7 @@
   "requirements": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
+      "requirement_text": "Supply of CPVC pipes for domestic water plumbing.",
       "category": "material",
       "components": [
         {
@@ -375,22 +375,22 @@
       ],
       "recommended_standard": "IS 15778 : 2007",
       "recommended_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
-      "relevance_score": 1.0,
+      "relevance_score": 0.881,
       "lifecycle_status": "Active",
       "successor_standard": null,
       "superseded_citation": null,
-      "evidence_strength": "STRONG",
+      "evidence_strength": "MODERATE",
       "provenance": "CURATED",
-      "evidence_text": "Tender explicitly requires compliance with IS 15778.",
-      "evidence_source": "Tender Document",
+      "evidence_text": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.",
+      "evidence_source": "BIS Standards Catalogue",
       "why_this": [
         "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.",
-        "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 15778.\"",
+        "Authoritative scope explicitly covers application: \"Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.\"",
         "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via Tender Document (VERIFIED)."
+        "Provenance established via BIS Standards Catalogue (CURATED)."
       ],
       "why_not": [
-        "Alternative standard SP 57 (QAWSM) has lower composite relevance (0.566 vs 1.000).",
+        "Alternative standard SP 57 (QAWSM) has lower composite relevance (0.607 vs 0.881).",
         "Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification."
       ],
       "completeness_label": "POTENTIALLY_MISSING",
@@ -445,7 +445,7 @@
       "review_reason": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence.",
       "candidate_standard": "IS 15778 : 2007",
       "evidence_standard": "IS 15778 : 2007",
-      "why_it_matches": "Tender explicitly requires compliance with IS 15778.",
+      "why_it_matches": "IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.",
       "dependencies": [
         {
           "standard_number": "IS 12235 : 2004",
@@ -483,7 +483,7 @@
           "confidence": 0.9,
           "why_related": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed installation, laying, and execution standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
           "functional_category": "installation",
-          "is_applicable_to_requirement": true,
+          "is_applicable_to_requirement": false,
           "applicability_decision": "REVIEW_REQUIRED",
           "dependency_state": "INSTALLATION_DEPENDENCY",
           "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
@@ -604,28 +604,20 @@
           "provenance": "OFFICIAL_PRIMARY",
           "confidence": 1.0,
           "human_review_required": false,
-          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (fittings, pipes); not applicable.",
+          "explanation": "Hallmarking is strictly limited to precious metals (gold and silver). Incompatible product domain identified (pipes); not applicable.",
           "additional_metadata": {}
         }
       },
       "ambiguity_state": "CLEAR",
       "ambiguity_reason": "Primary applicable standard IS 15778 is clearly identifiable and sufficiently supported.",
-      "human_decision": {
-        "requirement_id": "REQ-001",
-        "decision": "ACCEPT",
-        "reviewer_standard": null,
-        "reviewer_note": "Verified by procurement officer",
-        "reviewed_at": "2026-09-23T16:33:11.559707+00:00",
-        "system_standard": "IS 15778 : 2007",
-        "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
-      }
+      "human_decision": null
     }
   ],
   "review_queue": [],
   "evidence_summary": {
     "evidence_distribution": {
-      "STRONG": 1,
-      "MODERATE": 0,
+      "STRONG": 0,
+      "MODERATE": 1,
       "WEAK": 0,
       "NONE": 0
     },
@@ -637,16 +629,6 @@
     },
     "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
   },
-  "human_decisions": [
-    {
-      "requirement_id": "REQ-001",
-      "decision": "ACCEPT",
-      "reviewer_standard": null,
-      "reviewer_note": "Verified by procurement officer",
-      "reviewed_at": "2026-09-23T16:33:11.559707+00:00",
-      "system_standard": "IS 15778 : 2007",
-      "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
-    }
-  ],
+  "human_decisions": [],
   "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
 }

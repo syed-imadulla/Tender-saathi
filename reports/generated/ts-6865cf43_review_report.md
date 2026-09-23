@@ -9,8 +9,8 @@
 
 ## 1. Tender Information
 
-- **Tender ID:** `SAMPLE-VALVE`
-- **Source File:** `Sample: valve`
+- **Tender ID:** `TS-6865CF43`
+- **Source File:** `text input`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -18,8 +18,10 @@
 **Status:** 🟡 REVIEW_REQUIRED
 
 ### Key Observations:
-- 1 requirement(s) flagged with HIGH risk.
+- 1 requirement(s) cite or match superseded standard(s).
+- 1 requirement(s) flagged with CRITICAL risk.
 - 1 requirement(s) require technical engineer review.
+- 1 requirement(s) have potentially missing specification parameters.
 
 ## 3. Executive Summary
 
@@ -29,8 +31,8 @@
 | **Direct Recommendations** | 0 | Active standards grounded in evidence |
 | **Review Required** | 1 | Flagged for engineering attention |
 | **Insufficient Evidence** | 0 | No reliable standard matched |
-| **Active Standards** | 1 | Verified current in BIS catalogue |
-| **Superseded Standards** | 0 | Outdated standards identified |
+| **Active Standards** | 0 | Verified current in BIS catalogue |
+| **Superseded Standards** | 1 | Outdated standards identified |
 | **Withdrawn Standards** | 0 | Cancelled standards |
 | **Unknown Lifecycle** | 0 | Unindexed in local catalogue |
 | **Related Standards to Review** | 1 | Discovered via relationship graph (depth=1) |
@@ -38,8 +40,8 @@
 ### Governance Distributions
 
 - **Evidence Strength:** STRONG: `1` | MODERATE: `0` | WEAK: `0` | NONE: `0`
-- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `0` | UNKNOWN: `1` | NOT_APPLICABLE: `0`
-- **Risk Distribution:** CRITICAL: `0` | HIGH: `1` | MEDIUM: `0` | LOW: `0`
+- **Specification Review Completeness:** KNOWN: `0` | POTENTIALLY_MISSING: `1` | UNKNOWN: `0` | NOT_APPLICABLE: `0`
+- **Risk Distribution:** CRITICAL: `1` | HIGH: `0` | MEDIUM: `0` | LOW: `0`
 
 ### Standards Ecosystem & Dependency Coverage
 
@@ -54,39 +56,35 @@
 
 | # | Priority | Requirement ID | Candidate Standard | Issue / Primary Reason |
 |---|---|---|---|---|
-| 1 | **HIGH** | `REQ-001` | `IS/ISO 10434 : 2020` | Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class) |
+| 1 | **CRITICAL** | `REQ-001` | `IS/ISO 10434 : 2020` | Tender explicitly cited a superseded standard requiring replacement verification. |
 
 ## 5. Requirement-by-Requirement Review
 
 ### 5.1 Requirement `REQ-001` [PRODUCT_EQUIPMENT]
 
 **Original Requirement Text:**
-> "Repair and replacement of valves in the mechanical distribution system."
+> "Procurement of bolted bonnet steel gate valves conforming to IS 10611 : 1983."
 
-- **Decomposed Technical Components:** `general: Repair`, `general: replacement`, `general: valves`, `general: mechanical distribution system`
+- **Decomposed Technical Components:** `general: gate valves`, `general: bolted bonnet steel gate valve`, `general: gate valve`, `general: supply`
 - **Recommended Standard:** **IS/ISO 10434 : 2020** — *Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries*
 - **Candidate Standard:** `IS/ISO 10434 : 2020` | **Evidence Standard:** `IS/ISO 10434 : 2020` (Candidate == Evidence Grounding Established)
-- **Why It Matches:** This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petroc...
-- **Lifecycle Status:** **ACTIVE** | **Composite Relevance Score:** `0.581`
-- **Ambiguity & Verification State:** `REVIEW_REQUIRED` — *Reason:* Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).
+- **Why It Matches:** This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends.
+- **Lifecycle Status:** **ACTIVE** (Active successor replacing cited superseded `IS 10611 1983`) | **Composite Relevance Score:** `1.000`
+- **Ambiguity & Verification State:** `REVIEW_REQUIRED` — *Reason:* Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).
 - **Evidence Strength:** `STRONG` | **Provenance:** `VERIFIED`
 - **Verbatim Evidence (BSB Edge Portal):** "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded ends."
 - **Why This Standard?:**
-  - Standard title directly matches requirement component(s): 'valves'.
-  - Authoritative scope explicitly covers application: "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petroc..."
-  - Standard is currently active in the BIS repository with verified currency.
-  - Provenance established via BSB Edge Portal (VERIFIED).
-  - Candidate addresses multiple decomposed technical aspects of the requirement.
+  - Recommended authoritative active successor standard recorded in BIS database.
 - **Why Not Alternatives?:**
-  - Alternative standard IS 778 has lower composite relevance (0.522 vs 0.581).
-- **Specification Review Completeness:** `UNKNOWN` (Potentially missing: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material, Fluid Medium / Service)
+  - Original cited standard is superseded/obsolete.
+- **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material, Fluid Medium / Service)
 - **Related Standards Identified for Review (Graph Depth = 1):**
   - [→ SUPERSEDES] `IS 10611 : 1983` — *Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries* (Superseded) — *Note:* Authoritative successor standard supersedes IS 10611 : 1983. Review legacy specifications.
 - **Standards Dependencies Mapped (1):**
   - [SUPERSEDES] `IS 10611 : 1983` — *Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries* (IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434 : 2020. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED].)
 - **Regulatory & Statutory Intelligence:** Product Certification: `NOT_IDENTIFIED` | QCO: `NOT_IDENTIFIED` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
-- **Standards Review Decision:** `REVIEW_REQUIRED` | **Risk Level:** `HIGH` | **Confidence:** `Low`
-- ⚠ **Human Technical Review Required:** Potentially missing engineering parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class); Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).
+- **Standards Review Decision:** `REVIEW_REQUIRED` | **Risk Level:** `CRITICAL` | **Confidence:** `High`
+- ⚠ **Human Technical Review Required:** Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.
 
 ---
 
