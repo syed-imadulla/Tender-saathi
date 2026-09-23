@@ -311,6 +311,30 @@ class HybridRetrievalEngine:
                 reverse=True
             )
 
+        # Calibrated role-aware reranking:
+        # Prioritize candidates covering the true procurement head noun over modifier-only matches
+        from src.decompose import extract_procurement_head_noun
+        head_noun, modifier_noun = extract_procurement_head_noun(query, components)
+
+        def calibrated_hybrid_sort_key(cand: HybridCandidate):
+            tier = 1
+            if head_noun and modifier_noun:
+                text_to_check = f"{cand.full_title} {cand.raw_record.get('scope', '')}".lower()
+                has_hn = head_noun in text_to_check
+                has_mod = modifier_noun in text_to_check
+                if has_hn:
+                    tier = 0
+                elif has_mod:
+                    tier = 2
+            return (
+                tier,
+                -cand.final_score,
+                -len(cand.matched_components),
+                -len(cand.reasons)
+            )
+
+        scored_candidates.sort(key=calibrated_hybrid_sort_key)
+
         # Convert to SearchResult objects
         search_results: List[SearchResult] = []
         for cand in scored_candidates[:top_k]:

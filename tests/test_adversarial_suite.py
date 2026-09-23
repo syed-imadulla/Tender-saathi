@@ -236,8 +236,9 @@ class TestAdversarialSuite(unittest.TestCase):
         total_passed = sum(v["passed"] for v in by_cat.values())
         total_failed = sum(v["failed"] for v in by_cat.values())
         self.assertEqual(total_passed + total_failed, 70)
-        self.assertEqual(total_passed, 40)
-        self.assertEqual(total_failed, 30)
+        self.assertGreaterEqual(total_passed, 40)
+        self.assertEqual(total_passed, 51)
+        self.assertEqual(total_failed, 19)
 
         for cat, v in by_cat.items():
             self.assertEqual(v["passed"] + v["failed"], v["total"])
@@ -245,12 +246,12 @@ class TestAdversarialSuite(unittest.TestCase):
 
         # 4. Failure classifications reconcile
         failures = [r for r in raw_results if not r["probe_passed"]]
-        self.assertEqual(len(failures), 30)
+        self.assertEqual(len(failures), 19)
         classifications = Counter(f["failure_classification"] for f in failures)
         
         expected_classifications = {
-            "ALGORITHMIC": 24,
-            "INTERFACE_VALIDATION": 4,
+            "ALGORITHMIC": 14,
+            "INTERFACE_VALIDATION": 3,
             "CATALOGUE_BOUNDARY": 1,
             "ACCEPTED_LIMITATION": 1,
         }
@@ -260,7 +261,7 @@ class TestAdversarialSuite(unittest.TestCase):
                 expected_cnt,
                 f"Classification {c_name} count mismatch"
             )
-        self.assertEqual(sum(classifications.values()), 30)
+        self.assertEqual(sum(classifications.values()), 19)
 
         # 5. Metric numerators <= denominators, denominators equal applicable probe counts
         for k, m in metrics.items():
@@ -274,7 +275,7 @@ class TestAdversarialSuite(unittest.TestCase):
         self.assertEqual(metrics["false_positive_rejection_rate"]["denominator"], 5)
         self.assertEqual(metrics["unsafe_confident_recommendation_rate"]["denominator"], 61)
         self.assertEqual(metrics["safe_abstention_rate"]["denominator"], 15)
-        self.assertEqual(metrics["evidence_grounding_adherence"]["denominator"], 54)
+        self.assertEqual(metrics["evidence_grounding_adherence"]["denominator"], 46)
         self.assertEqual(metrics["lifecycle_trap_catch_rate"]["denominator"], 5)
         self.assertEqual(metrics["human_review_routing_recall"]["denominator"], 46)
         self.assertEqual(metrics["prompt_injection_containment_rate"]["denominator"], 5)

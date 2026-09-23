@@ -372,3 +372,72 @@ _decomposer_instance = CompoundRequirementDecomposer()
 def decompose_requirement(text: str) -> DecompositionResult:
     """Convenience functional API for requirement decomposition."""
     return _decomposer_instance.decompose(text)
+
+
+def extract_procurement_head_noun(text: str, components: Optional[List[RequirementComponent]] = None) -> Tuple[Optional[str], Optional[str]]:
+    """
+    Extracts the primary procurement head noun and any preceding modifier domain nouns.
+    In English procurement phrasing, the terminal noun in a nominal compound represents
+    the item being procured (e.g. 'transformer oil sampling valve' -> head noun 'valve', modifier 'transformer').
+    
+    Returns (head_noun, modifier_noun).
+    """
+    if not text:
+        return None, None
+        
+    t_low = text.lower()
+    
+    KNOWN_NOUNS = [
+        ("valve", r'\b(?:valves?|sampling\s+valves?|sluice\s+valves?|gate\s+valves?|check\s+valves?|globe\s+valves?|ball\s+valves?|butterfly\s+valves?)\b'),
+        ("pump", r'\b(?:pumps?|pumpsets?|centrifugal\s+pumps?|submersible\s+pumps?)\b'),
+        ("panel", r'\b(?:panels?|control\s+panels?|distribution\s+boards?|switchboards?|feeder\s+pillars?)\b'),
+        ("switchgear", r'\b(?:switchgear|controlgear|circuit\s+breakers?)\b'),
+        ("cable", r'\b(?:cables?|wires?|conductors?)\b'),
+        ("pipe", r'\b(?:pipes?|piping|tubes?)\b'),
+        ("motor", r'\b(?:motors?|induction\s+motors?)\b'),
+        ("transformer", r'\b(?:transformers?|distribution\s+transformers?)\b'),
+        ("solvent", r'\b(?:solvents?|cleaning\s+solvents?|cleaning\s+compounds?|detergents?)\b'),
+        ("tile", r'\b(?:tiles?|ceramic\s+tiles?|vitrified\s+tiles?)\b'),
+        ("heater", r'\b(?:heaters?|immersion\s+heaters?)\b'),
+        ("rail", r'\b(?:crane\s+rails?|rail\s+tracks?)\b'),
+    ]
+    
+    matches = []
+    for noun_key, pattern in KNOWN_NOUNS:
+        for m in re.finditer(pattern, t_low):
+            matches.append((m.start(), m.end(), noun_key, m.group(0)))
+            
+    if not matches:
+        return None, None
+        
+    # Sort by start position
+    matches.sort(key=lambda x: x[0])
+    
+    # If single match, it is the head noun
+    if len(matches) == 1:
+        return matches[0][2], None
+        
+    # If multiple distinct noun keys exist:
+    # Check if they are part of a compound noun phrase (within 40 characters of each other)
+    # The right-most noun in the compound is the head noun, the left-most is the modifier noun.
+    distinct_keys = []
+    for m in matches:
+        if not distinct_keys or distinct_keys[-1][2] != m[2]:
+            distinct_keys.append(m)
+            
+    if len(distinct_keys) >= 2:
+        first_m = distinct_keys[-2]
+        last_m = distinct_keys[-1]
+        span_between = t_low[first_m[1]:last_m[0]]
+        # Prepositional post-modification: "X for Y", "X of Y", "X used on Y" -> X is head noun
+        if re.search(r'\b(?:for|of|in|to|used\s+in|used\s+for|fitted\s+to|installed\s+on|attached\s+to)\b', span_between):
+            head_noun = first_m[2]
+            modifier_noun = last_m[2]
+            return head_noun, modifier_noun
+        elif last_m[0] - first_m[1] <= 45:
+            # Nominal compound: "transformer valve" -> valve is head noun
+            head_noun = last_m[2]
+            modifier_noun = first_m[2]
+            return head_noun, modifier_noun
+            
+    return matches[-1][2], None

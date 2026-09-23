@@ -222,7 +222,7 @@ DOMAIN_DEFINITIONS: Dict[str, Dict[str, Dict[str, Any]]] = {
         "control_drive": {
             "display": "Control Mechanism / Variable Speed Drive",
             "regex": r'\b(vfd|variable\s*frequency\s*drive|vfd\s*panel|dol|star[-\s]*delta|soft\s*starter|mcc|pcc|plc)\b',
-            "critical": True
+            "critical": False
         },
         "enclosure_ip": {
             "display": "Enclosure Ingress Protection (IP)",
@@ -246,6 +246,23 @@ DOMAIN_DEFINITIONS: Dict[str, Dict[str, Dict[str, Any]]] = {
             "regex": r'\b(haccp|gmp|ghp|food\s*safety|hygiene\s*practices|fssai|is\s*2491|is\s*15000)\b',
             "critical": False
         }
+    },
+    "transformer": {
+        "rating_kva": {
+            "display": "Power Rating (kVA / MVA)",
+            "regex": r'\b(?:\d+(?:\.\d+)?\s*(?:kva|mva))\b',
+            "critical": True
+        },
+        "voltage_ratio": {
+            "display": "Voltage Ratio / Primary & Secondary Voltage",
+            "regex": r'\b(?:\d+(?:\.\d+)?\s*kv\s*/\s*\d+(?:\.\d+)?\s*(?:v|kv)|\d+\s*v\s*/\s*\d+\s*v|\d+\s*kv|\d+\s*v)\b',
+            "critical": True
+        },
+        "cooling_type": {
+            "display": "Cooling / Construction Type",
+            "regex": r'\b(onan|onaf|dry\s*type|oil\s*immersed|cast\s*resin)\b',
+            "critical": False
+        }
     }
 }
 
@@ -266,6 +283,8 @@ class DomainCompletenessAnalyzer:
             sorted_comps = sorted(components, key=lambda comp: 0 if getattr(comp, "component_type", "") in ["product", "equipment"] else 1)
             for c in sorted_comps:
                 c_low = c.text.lower()
+                if any(k in c_low for k in ["gasket", "gaskets", "sealing", "jointing"]):
+                    return "gasket"
                 if any(k in c_low for k in ["valve", "sluice", "nrv"]):
                     return "valve"
                 if any(k in c_low for k in ["pipe", "piping", "tubing"]):
@@ -281,10 +300,14 @@ class DomainCompletenessAnalyzer:
                     if "motor" in t_low and "3.3" in t_low:
                         return "pump"
                     return "pump"
+                if any(k in c_low for k in ["transformer", "transformers"]):
+                    return "transformer"
                 if any(k in c_low for k in ["canteen", "cafeteria", "hygiene", "food"]):
                     return "food_hygiene"
 
         # Regex fallback on raw text
+        if re.search(r'\b(?:gaskets?|sealing\s*rings?|jointing)\b', t_low):
+            return "gasket"
         if re.search(r'\b(?:valves?|sluice|nrv)\b', t_low):
             return "valve"
         if re.search(r'\b(?:vfd.*panel|control\s*panel|switchgear|switchboard|mcc|pcc)\b', t_low):
@@ -297,6 +320,8 @@ class DomainCompletenessAnalyzer:
             return "cable"
         if re.search(r'\b(?:motors?|induction\s*motor)\b', t_low):
             return "motor"
+        if re.search(r'\b(?:transformers?)\b', t_low):
+            return "transformer"
         if re.search(r'\b(?:food|canteen|cafeteria|catering|hygiene)\b', t_low):
             return "food_hygiene"
 

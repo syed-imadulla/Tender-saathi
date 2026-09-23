@@ -122,15 +122,41 @@ def validate_standard_status(
             elif not is_active:
                 warning_msg = f"Standard {std_data['standard_number']} has non-active status: {raw_status}."
 
+            # Lifecycle / Older Edition Check:
+            # If an explicit edition year was cited, verify against current active revision year
+            ym = re.search(r'\b(19\d\d|20\d\d)\b', std_clean)
+            cited_year = int(ym.group(1)) if ym else None
+            db_year = std_data.get("year")
+            is_older_edition = False
+
+            if cited_year:
+                if db_year and cited_year < db_year:
+                    is_older_edition = True
+                    is_active = False
+                    successor_std = f"{std_data['standard_number']} : {db_year}"
+                    warning_msg = (
+                        f"Cited edition {cited_year} of standard {std_data['standard_number']} is superseded "
+                        f"by current active edition {db_year}."
+                    )
+                elif cited_year <= 2005:
+                    is_older_edition = True
+                    is_active = False
+                    warning_msg = (
+                        f"Cited edition {cited_year} of standard {std_data['standard_number']} is an older "
+                        f"historical revision requiring technical review for modern revision compliance."
+                    )
+
+            rel_type = "OLDER_VERSION" if is_older_edition else ("SUPERSEDED_BY" if successor_std else None)
+
             return StandardValidationResult(
                 standard_identifier=std_clean,
                 is_known=True,
-                status=raw_status,
+                status="Superseded" if (successor_std or is_older_edition) else raw_status,
                 is_active=is_active,
                 successor_standard=successor_std,
-                successor_title=None,
-                evidence=evidence_str,
-                relationship_type="SUPERSEDED_BY" if successor_std else None,
+                successor_title=std_data.get("full_title") if is_older_edition else None,
+                evidence=evidence_str or (f"Catalogue active edition is {db_year}" if is_older_edition and db_year else None),
+                relationship_type=rel_type,
                 warning_message=warning_msg,
                 standard_metadata=std_data
             )

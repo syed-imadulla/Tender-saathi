@@ -37,6 +37,7 @@ def _extract_material(text: str) -> Optional[str]:
         "cast iron": ["ci", "cast iron", "sluice"],
         "mild steel": ["ms", "mild steel"],
         "stainless steel": ["ss", "stainless steel"],
+        "steel": ["steel", "carbon steel", "cast steel", "forged steel"],
         "brass": ["brass"],
         "gunmetal": ["gunmetal", "leaded tin bronze"],
         "galvanized iron": ["gi", "galvanized iron", "galvanised iron"],

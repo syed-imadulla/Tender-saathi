@@ -520,7 +520,7 @@ class StandardsDatabase:
         """Retrieves a single standard by canonical ID."""
         with self._get_connection() as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT * FROM standards WHERE standard_id = ?", (standard_id,))
+            cursor.execute("SELECT * FROM standards WHERE standard_id = ? OR standard_number = ?", (standard_id, standard_id))
             row = cursor.fetchone()
             if not row:
                 return None

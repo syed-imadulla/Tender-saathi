@@ -243,10 +243,16 @@ class StandardsRecommender:
         # Step 1: Detect explicit standards mentioned and validate status
         explicit_stds = req.explicit_standards or []
         superseded_explicit_warnings = []
+        nonexistent_citation_warnings = []
         explicit_search_results = []
 
         for exp in explicit_stds:
             val_res = validate_standard_status(exp, self.db)
+            if not val_res.is_known:
+                nonexistent_citation_warnings.append(
+                    f"NONEXISTENT_CITATION: Cited standard '{exp}' was not found in the BIS standards catalogue."
+                )
+                continue
             
             with self.db._get_connection() as conn:
                 cursor = conn.cursor()
@@ -264,23 +270,25 @@ class StandardsRecommender:
                     exact_res.final_score = 1.0
                     explicit_search_results.append(exact_res)
 
-                # 2. Inject the authoritative successor if superseded
-                if not val_res.is_active and val_res.successor_standard:
-                    superseded_explicit_warnings.append(val_res.warning_message)
-                    successor_number = val_res.successor_standard.split(" : ")[0].strip()
-                    succ_row = cursor.execute("SELECT * FROM standards WHERE standard_number = ? OR standard_id = ?",
-                                              (successor_number, val_res.successor_standard)).fetchone()
-                    if succ_row:
-                        s_dict = dict(succ_row)
-                        succ_res = self.search_engine.det_engine._format_result(
-                            s_dict,
-                            score=1.0,
-                            reason=f"Authoritative successor for cited standard {exp}"
-                        )
-                        succ_res.deterministic_score = 1.0
-                        succ_res.final_score = 1.0
-                        setattr(succ_res, "_explicit_successor_warning", f"Tender cited superseded standard '{exp}'. Recommended current active replacement.")
-                        explicit_search_results.append(succ_res)
+                # 2. Inject the authoritative successor if superseded or outdated edition
+                if not val_res.is_active:
+                    if val_res.warning_message:
+                        superseded_explicit_warnings.append(val_res.warning_message)
+                    if val_res.successor_standard:
+                        successor_number = val_res.successor_standard.split(" : ")[0].strip()
+                        succ_row = cursor.execute("SELECT * FROM standards WHERE standard_number = ? OR standard_id = ?",
+                                                  (successor_number, val_res.successor_standard)).fetchone()
+                        if succ_row:
+                            s_dict = dict(succ_row)
+                            succ_res = self.search_engine.det_engine._format_result(
+                                s_dict,
+                                score=1.0,
+                                reason=f"Authoritative successor for cited standard {exp}"
+                            )
+                            succ_res.deterministic_score = 1.0
+                            succ_res.final_score = 1.0
+                            setattr(succ_res, "_explicit_successor_warning", f"Tender cited superseded standard '{exp}'. Recommended current active replacement.")
+                            explicit_search_results.append(succ_res)
 
         # Step 2: Multi-modal Search over BIS Standards with Decomposed Components
         # Primary search using full requirement text and decomposed components
@@ -303,17 +311,35 @@ class StandardsRecommender:
                         search_results.append(eh)
 
         # Merge explicit citations into search_results so they are evaluated by the Critic
+        from src.ambiguity import ConflictRegistry
         for esr in explicit_search_results:
+            citation_conflict = ConflictRegistry.check_conflict(working_text, req.components, [esr])
             existing = next((r for r in search_results if r.standard_number == esr.standard_number), None)
-            if not existing:
-                search_results.insert(0, esr)
+            if citation_conflict:
+                rule, reason = citation_conflict
+                esr.relevance_score = 0.10
+                esr.deterministic_score = 0.0
+                esr.final_score = 0.10
+                esr.relevance_reason = f"CONFLICT DETECTED [{rule.rule_id}]: {reason}"
+                setattr(esr, "_conflict_detected", reason)
+                if not existing:
+                    search_results.append(esr)
+                else:
+                    existing.relevance_score = 0.10
+                    existing.deterministic_score = 0.0
+                    existing.final_score = 0.10
+                    existing.relevance_reason = esr.relevance_reason
+                    setattr(existing, "_conflict_detected", reason)
             else:
-                existing.deterministic_score = 1.0
-                existing.final_score = max(existing.final_score, 1.0)
-                existing.relevance_score = 1.0
-                existing.relevance_reason = esr.relevance_reason + " | " + existing.relevance_reason
-                if hasattr(esr, "_explicit_successor_warning"):
-                    setattr(existing, "_explicit_successor_warning", getattr(esr, "_explicit_successor_warning"))
+                if not existing:
+                    search_results.insert(0, esr)
+                else:
+                    existing.deterministic_score = 1.0
+                    existing.final_score = max(existing.final_score, 1.0)
+                    existing.relevance_score = 1.0
+                    existing.relevance_reason = esr.relevance_reason + " | " + existing.relevance_reason
+                    if hasattr(esr, "_explicit_successor_warning"):
+                        setattr(existing, "_explicit_successor_warning", getattr(esr, "_explicit_successor_warning"))
 
         # Step 3: Check Ambiguity Heuristics
         ambiguity_flag = False
@@ -332,7 +358,8 @@ class StandardsRecommender:
         candidate_applicability_map: Dict[str, ApplicabilityResult] = {}
 
         for cand in search_results:
-            is_explicit = any(exp in cand.relevance_reason or exp in cand.standard_number for exp in explicit_stds)
+            has_conflict = getattr(cand, "_conflict_detected", None) is not None
+            is_explicit = any(exp in cand.relevance_reason or exp in cand.standard_number for exp in explicit_stds) and not has_conflict
             app_res = self.applicability_gate.evaluate_candidate(
                 candidate=cand,
                 requirement_text=working_text,
@@ -615,11 +642,11 @@ class StandardsRecommender:
         # Human Review and Risk Decision Logic
         if superseded_explicit_warnings:
             human_review_required = True
-            decision_reason = f"Tender cited superseded standard '{explicit_stds[0]}'. Recommended current active replacement."
-            risk_level = "CRITICAL"
-            risk_reasons = ["Tender explicitly cited a superseded standard requiring replacement verification."]
+            decision_reason = superseded_explicit_warnings[0]
+            risk_level = "CRITICAL" if any("CRITICAL" in w for w in superseded_explicit_warnings) else "HIGH"
+            risk_reasons = list(superseded_explicit_warnings)
             why_this = ["Recommended authoritative active successor standard recorded in BIS database."]
-            why_not = ["Original cited standard is superseded/obsolete."]
+            why_not = ["Original cited standard is superseded, obsolete, or an older revision requiring technical verification."]
             conf = "High"
         elif ambiguity_report.human_review_required or ambiguity_flag:
             human_review_required = True
@@ -746,11 +773,16 @@ class StandardsRecommender:
             else:
                 why_it_matches = f"Standard {top_rec.standard_number} verified against requirement specification."
 
-        # Re-evaluate with any auxiliary/unresolved missing gaps
+        # Re-evaluate with any auxiliary/unresolved missing gaps or nonexistent citations
         unresolved_missing = [(g.title or g.description or g.standard_number or "unspecified") for g in cov_map.standard_gaps if g.gap_severity == "VERIFIED_MISSING"]
-        if unresolved_missing or norm_result.human_review_required or (norm_result.is_multilingual and norm_result.normalization_confidence < 0.60):
+        if unresolved_missing or norm_result.human_review_required or (norm_result.is_multilingual and norm_result.normalization_confidence < 0.60) or nonexistent_citation_warnings:
             human_review_required = True
             ambiguity_state_val = "REVIEW_REQUIRED"
+            for ncw in nonexistent_citation_warnings:
+                risk_reasons.append(ncw)
+                why_not.append(ncw)
+            if nonexistent_citation_warnings:
+                conf = "Medium"
 
         top_app = candidate_applicability_map.get(top_rec.standard_number) or (
             candidate_applicability_map.get(top_rec.standard_number.split(":")[0].strip()) if ":" in top_rec.standard_number else None

@@ -59,6 +59,10 @@ class ApplicationProfile:
     voltage_tier: Optional[str] = None           # lv_lt (<=1.1kV), mv_ht (3.3kV-33kV), ehv (>33kV)
     steel_grade_process: Optional[str] = None    # tmt_deformed, mild_steel
     pump_installation: Optional[str] = None      # submersible_borewell, openwell, surface_coupled
+    service_phase: Optional[str] = None          # steam, liquid_water, slurry
+    pressure_rating_mode: Optional[str] = None   # non_pressure_gravity, pressurized
+    chemical_nature: Optional[str] = None        # clean_water, aggressive_chemical
+    duty_traffic: Optional[str] = None           # heavy_industrial_traffic, architectural_wall
 
 
 @dataclass
@@ -264,6 +268,11 @@ class ApplicabilityGate:
             return w[:-3] + "y"
         if w.endswith("es") and len(w) > 4 and w[-3] in "shxz":
             return w[:-2]
+        if w.endswith("ing") and len(w) > 4:
+            base = w[:-3]
+            if base in ["pip", "tub", "wir"]:
+                return base + "e"
+            return base
         if w.endswith("s") and not w.endswith("ss") and len(w) > 3:
             return w[:-1]
         return w
@@ -333,6 +342,36 @@ class ApplicabilityGate:
             prof.pump_installation = "openwell"
         elif "submersible" in t_low or has_submersible_kw:
             prof.pump_installation = "submersible"
+
+        # Service phase (steam vs liquid water vs slurry)
+        if bool(re.search(r'\b(?:superheated\s+steam|continuous\s+steam|steam\s+lines?|boiler\s+steam|live\s+steam|steam)\b', t_low)):
+            prof.service_phase = "steam"
+        elif bool(re.search(r'\b(?:potable|drinking\s+water|water\s+supply|hot\s+and\s+cold\s+water)\b', t_low)):
+            prof.service_phase = "liquid_water"
+        elif bool(re.search(r'\b(?:slurry|abrasive\s+slurry|sludge)\b', t_low)):
+            prof.service_phase = "slurry"
+
+        # Pressure rating mode
+        if bool(re.search(r'\b(?:non[-\s]*pressure|gravity\s+(?:sewer|flow|drainage))\b', t_low)):
+            prof.pressure_rating_mode = "non_pressure_gravity"
+        elif bool(re.search(r'\b(?:pressure\s+main|pumping\s+main|pressurized)\b', t_low)):
+            prof.pressure_rating_mode = "pressurized"
+        else:
+            p_match = re.search(r'\b(\d+(?:\.\d+)?)\s*(?:bar|kg/cm2|mpa)\b', t_low)
+            if p_match and float(p_match.group(1)) > 1.0:
+                prof.pressure_rating_mode = "pressurized"
+
+        # Chemical nature
+        if bool(re.search(r'\b(?:sul(?:ph|f)uric\s*acid|hydrochloric\s*acid|nitric\s*acid|concentrated\s*acid|caustic|acidic\s*effluent|chemical\s*slurry)\b', t_low)):
+            prof.chemical_nature = "aggressive_chemical"
+        elif bool(re.search(r'\b(?:clean(?:\s*,?\s*cold)?\s*water|clear(?:\s*,?\s*cold)?\s*water|potable\s*water|drinking\s*water)\b', t_low)):
+            prof.chemical_nature = "clean_water"
+
+        # Duty / traffic
+        if bool(re.search(r'\b(?:heavy\s*(?:industrial\s*)?traffic|forklift|heavy\s*vehicular|crane\s*track)\b', t_low)):
+            prof.duty_traffic = "heavy_industrial_traffic"
+        elif bool(re.search(r'\b(?:wall\s*tiles?|wall\s*finishes?|vertical\s*cladding|wall\s*only)\b', t_low)):
+            prof.duty_traffic = "architectural_wall"
 
         return prof
 
@@ -509,17 +548,6 @@ class ApplicabilityGate:
                 )
 
         # E. Pump Installation Compatibility (Submersible Borewell vs Openwell vs Surface)
-        if cand_prof.pump_installation in ["submersible", "submersible_borewell", "openwell"]:
-            is_pump_req = bool(re.search(r'\b(?:pump|pumps|pumpset|pumpsets)\b', req_text_low))
-            has_sub_req = bool(re.search(r'\b(?:submersible|borewell|bore\s*well|borehole|tube\s*well|tubewell|openwell|submerged)\b', req_text_low))
-            if is_pump_req and not has_sub_req:
-                application_match = False
-                conflict_flags.append(f"APPLICATION_CONFLICT: non-submersible pump vs {cand_prof.pump_installation}")
-                rejection_reasons.append(
-                    f"Application conflict: Standard covers {cand_prof.pump_installation.replace('_', ' ')} pumpsets, "
-                    f"but requirement specifies non-submersible / surface pump application."
-                )
-
         if req_prof.pump_installation and cand_prof.pump_installation:
             is_sub_cand = cand_prof.pump_installation in ["submersible", "submersible_borewell", "openwell"]
             is_sub_req = req_prof.pump_installation in ["submersible", "submersible_borewell", "openwell"]
@@ -535,6 +563,59 @@ class ApplicabilityGate:
                 conflict_flags.append("APPLICATION_CONFLICT: openwell pump vs borewell requirement")
                 rejection_reasons.append(
                     "Application conflict: Standard covers openwell pumpsets, but requirement specifies a borewell installation."
+                )
+
+        # F. Service Phase Compatibility (Continuous Steam vs Liquid Water Distribution scope)
+        if req_prof.service_phase == "steam":
+            if cand_prof.service_phase == "liquid_water" and not any(k in cand_corpus_low for k in ["steam", "high temperature", "thermal"]):
+                application_match = False
+                conflict_flags.append("APPLICATION_CONFLICT: steam service vs liquid water scope")
+                rejection_reasons.append(
+                    "Operating environment conflict: Standard scope explicitly covers liquid water distribution, "
+                    "which is incompatible with continuous steam service."
+                )
+
+        # G. Pressure Mode Compatibility (Pressurized vs Non-Pressure Gravity scope)
+        if req_prof.pressure_rating_mode == "pressurized":
+            has_pos_pressure = bool(re.search(r'(?<!non-)(?<!non\s)\b(?:pressure|pressurized|working\s+pressure)\b', cand_corpus_low))
+            if cand_prof.pressure_rating_mode == "non_pressure_gravity" and not has_pos_pressure:
+                application_match = False
+                conflict_flags.append("APPLICATION_CONFLICT: pressurized service vs non-pressure standard")
+                rejection_reasons.append(
+                    "Pressure rating conflict: Standard scope is explicitly designated for non-pressure / gravity drainage, "
+                    "which is incompatible with pressurized pipeline operation."
+                )
+
+        # H. Chemical Compatibility (Aggressive Chemical vs Clean Water scope)
+        if req_prof.chemical_nature == "aggressive_chemical":
+            if cand_prof.chemical_nature == "clean_water" and not any(k in cand_corpus_low for k in ["chemical", "acid", "corrosive", "effluent", "slurry"]):
+                application_match = False
+                conflict_flags.append("APPLICATION_CONFLICT: aggressive chemical vs clean water scope")
+                rejection_reasons.append(
+                    "Chemical compatibility conflict: Standard is explicitly scoped for clean water supplies, "
+                    "which is incompatible with aggressive corrosive chemical service."
+                )
+
+        # I. Duty Compatibility (Heavy Industrial Traffic vs Wall Tile scope)
+        if req_prof.duty_traffic == "heavy_industrial_traffic":
+            if cand_prof.duty_traffic == "architectural_wall" and not any(k in cand_corpus_low for k in ["floor", "pavement", "heavy", "traffic"]):
+                application_match = False
+                conflict_flags.append("APPLICATION_CONFLICT: heavy traffic vs wall tile scope")
+                rejection_reasons.append(
+                    "Duty rating conflict: Standard covers architectural wall finishes, "
+                    "which is incompatible with heavy industrial traffic."
+                )
+
+        # J. Ambient Temperature Compatibility (Flue Gas / Furnace vs Domestic Building Wiring)
+        has_flue_furnace = bool(re.search(r'\b(?:flue\s*gas|furnace|boiler\s*exhaust)\b', req_text_low))
+        if has_flue_furnace:
+            is_domestic_wire = any(k in cand_corpus_low for k in ["domestic", "building wiring", "light duty"])
+            has_heat_spec = any(k in cand_corpus_low for k in ["heat resistant", "high temperature", "furnace", "fire survival", "mineral insulated"])
+            if is_domestic_wire and not has_heat_spec:
+                application_match = False
+                conflict_flags.append("APPLICATION_CONFLICT: furnace/flue gas vs domestic wiring")
+                rejection_reasons.append(
+                    "Operating environment conflict: General building wiring standards do not cover furnace or flue gas environments."
                 )
 
         # Specialized technologies outside standard catalogue scope

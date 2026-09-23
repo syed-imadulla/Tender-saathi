@@ -58,13 +58,15 @@ class StandardsSearchEngine:
         if not query_clean:
             return []
 
-        # Resolve components if not passed
+        # Resolve components and extract procurement head noun if compound query
+        from src.decompose import extract_procurement_head_noun
         if components is None:
             try:
                 from src.decompose import decompose_requirement
                 components = decompose_requirement(query_clean).components
             except Exception:
                 components = []
+        head_noun, modifier_noun = extract_procurement_head_noun(query_clean, components)
 
         results = []
         with self.db._get_connection() as conn:
@@ -72,8 +74,9 @@ class StandardsSearchEngine:
 
             # 1. Exact or Partial Standard Number Check (e.g. "IS 15000", "14846", "IS/ISO 10434")
             # Find all standard numbers in the query
-            from src.extract import STANDARD_REGEX
-            std_num_matches = STANDARD_REGEX.finditer(query_clean)
+            from src.extract import STANDARD_REGEX, sanitize_text_for_citations
+            sanitized_query = sanitize_text_for_citations(query_clean)
+            std_num_matches = STANDARD_REGEX.finditer(sanitized_query)
             exact_numbers = []
             for m in std_num_matches:
                 # Extract just the numeric part for the deterministic search
@@ -268,15 +271,26 @@ class StandardsSearchEngine:
                             reason="; ".join(reasons)
                         ))
 
-        # Sort by relevance score descending with component/title hit tie-breaker
-        results.sort(
-            key=lambda x: (
-                x.relevance_score,
-                x.relevance_reason.count("title"),
-                x.relevance_reason.count("Component")
-            ),
-            reverse=True
-        )
+        # Calibrated role-aware reranking:
+        # Prioritize candidates covering the true procurement head noun over candidates that only match a modifier
+        def calibrated_sort_key(x: SearchResult):
+            tier = 1
+            if head_noun and modifier_noun:
+                text_to_check = f"{x.full_title} {x.scope_summary or ''}".lower()
+                has_hn = head_noun in text_to_check
+                has_mod = modifier_noun in text_to_check
+                if has_hn:
+                    tier = 0
+                elif has_mod:
+                    tier = 2
+            return (
+                tier,
+                -x.relevance_score,
+                -x.relevance_reason.count("title"),
+                -x.relevance_reason.count("Component")
+            )
+
+        results.sort(key=calibrated_sort_key)
         return results[:top_k]
 
     def _format_result(self, row_dict: Dict[str, Any], score: float, reason: str) -> SearchResult:

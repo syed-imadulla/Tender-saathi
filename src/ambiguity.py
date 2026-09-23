@@ -173,6 +173,26 @@ class ConflictRegistry:
             ),
             authoritative_evidence="IS 15622 : 2017 Scope Clause 1.",
             evidence_clause="IS 15622 : 2017 Clause 1"
+        ),
+        "CONF-06-PRODUCT-STANDARD-MISMATCH": ConflictRule(
+            rule_id="CONF-06-PRODUCT-STANDARD-MISMATCH",
+            name="Requirement Product Family Contradicts Standard Scope",
+            technical_rationale=(
+                "Tender requirement specifies one distinct product family (e.g., valves), "
+                "but cites or matches a standard governing a completely different product family (e.g., pipes)."
+            ),
+            authoritative_evidence="BIS Standard Scope and Title Clause 1.",
+            evidence_clause="Clause 1 Scope"
+        ),
+        "CONF-07-INSTALLATION-DUTY-MISMATCH": ConflictRule(
+            rule_id="CONF-07-INSTALLATION-DUTY-MISMATCH",
+            name="Installation Duty Contradicts Standard Scope",
+            technical_rationale=(
+                "Requirement specifies surface-mounted pump application, but candidate standard is scoped "
+                "exclusively for deep borehole submerged installation."
+            ),
+            authoritative_evidence="IS 8034 / IS 9694 Scope Clause 1.",
+            evidence_clause="Clause 1 Scope"
         )
     }
 
@@ -188,17 +208,110 @@ class ConflictRegistry:
         Returns (rule, reason) if triggered, otherwise None.
         """
         t_low = text.lower()
+        working_candidates = list(candidates)
+        if not working_candidates:
+            from src.extract import detect_explicit_standards
+            from src.standards import StandardsDatabase
+            from src.search import SearchResult
+            db = StandardsDatabase()
+            for std_id in detect_explicit_standards(text):
+                row = db.get_standard(std_id)
+                if row:
+                    working_candidates.append(SearchResult(
+                        standard_id=row.get("standard_id", std_id),
+                        standard_number=row.get("standard_number", std_id),
+                        year=row.get("year"),
+                        full_title=row.get("full_title", "") or row.get("title", ""),
+                        status=row.get("status", "ACTIVE"),
+                        version_role="CURRENT_ACTIVE",
+                        relevance_score=1.0,
+                        relevance_reason="explicit_citation",
+                        scope_summary=row.get("scope", "") or ""
+                    ))
 
-        # Rule CONF-04: Low-voltage wire/cable standard (IS 694) cited for MV/HV (3.3 kV to 33 kV)
-        has_mv_hv_voltage = bool(re.search(r'\b(?:3\.3\s*kv|6\.6\s*kv|11\s*kv|22\s*kv|33\s*kv|66\s*kv|medium\s*voltage|mv\b|high\s*voltage|substation|transmission\s*line)\b', t_low))
-        has_is694 = bool(re.search(r'\bis\s*694\b', t_low)) or any(bool(re.search(r'\b694\b', c.standard_number)) for c in candidates[:3])
-        if has_mv_hv_voltage and has_is694:
+        # Rule CONF-04: Voltage Tier Incompatibility (e.g. LV/LT requirement vs MV/HT standard, or vice versa)
+        has_mv_hv_req = bool(re.search(r'\b(?:3\.3\s*kv|6\.6\s*kv|11\s*kv|22\s*kv|33\s*kv|66\s*kv|medium\s*voltage|mv\b|high\s*voltage|substation|transmission\s*line)\b', t_low))
+        has_lv_lt_req = bool(re.search(r'\b(?:415\s*v|240\s*v|1100\s*v|1\.1\s*kv|low\s*voltage|lt\s+cable|lt\s+power)\b', t_low))
+        has_is694 = bool(re.search(r'\bis\s*694\b', t_low)) or any(bool(re.search(r'\b694\b', c.standard_number)) for c in working_candidates)
+
+        if has_mv_hv_req and has_is694:
             rule = cls.RULES["CONF-04-VOLTAGE-CONFLICT"]
             reason = (
                 f"Conflict detected [{rule.rule_id}]: Low-voltage cable standard IS 694 (rated up to 1100 V) "
                 f"specified for medium/high voltage (>1.1 kV) installation. {rule.technical_rationale}"
             )
             return rule, reason
+
+        for cand in working_candidates:
+            cand_title_low = cand.full_title.lower() + " " + cand.standard_number.lower()
+            is_cand_mv_hv = any(k in cand_title_low for k in ["3.3 kv", "part 2", "part 3", "medium voltage", "high voltage", "eht"]) and "cable" in cand_title_low
+            is_cand_lv_lt = any(k in cand_title_low for k in ["up to and including 1100 v", "part 1"]) and "cable" in cand_title_low
+
+            # Check if candidate standard is truly cited in tender text (with part-awareness)
+            std_base = cand.standard_number.split("(")[0].strip()
+            std_base_digits = re.findall(r'\d{3,5}', std_base)
+            norm_text = t_low.replace(" ", "").replace("-", "")
+            base_in_text = any(d in norm_text for d in std_base_digits) if std_base_digits else False
+
+            is_cited = False
+            if base_in_text:
+                part_match = re.search(r'part\s*(\d+)', cand.standard_number, re.IGNORECASE)
+                if part_match:
+                    cand_part_num = part_match.group(1)
+                    text_part_match = re.search(r'part\s*[-:]?\s*(\d+)', t_low)
+                    if text_part_match:
+                        is_cited = (text_part_match.group(1) == cand_part_num)
+                    else:
+                        is_cited = True
+                else:
+                    is_cited = True
+            if is_cited:
+                if has_lv_lt_req and is_cand_mv_hv:
+                    rule = cls.RULES["CONF-04-VOLTAGE-CONFLICT"]
+                    reason = (
+                        f"Conflict detected [{rule.rule_id}]: Tender specifies Low Voltage (LT / 415V / 1.1kV), "
+                        f"but explicitly cites Medium/High Voltage (>1.1 kV) standard {cand.standard_number} ({cand.full_title})."
+                    )
+                    return rule, reason
+                elif has_mv_hv_req and is_cand_lv_lt:
+                    rule = cls.RULES["CONF-04-VOLTAGE-CONFLICT"]
+                    reason = (
+                        f"Conflict detected [{rule.rule_id}]: Tender specifies Medium/High Voltage (>1.1 kV), "
+                        f"but explicitly cites Low Voltage standard {cand.standard_number} ({cand.full_title})."
+                    )
+                    return rule, reason
+
+        # Rule CONF-06: Product vs Cited Standard mismatch (e.g. Valves citing Piping standard)
+        is_valve_procurement = bool(re.search(r'\b(?:valves?|gate\s*valves?|sluice\s*valves?|globe\s*valves?|check\s*valves?)\b', t_low)) and not bool(re.search(r'\b(?:pipes?|piping|pipelines?)\b', t_low))
+        if is_valve_procurement:
+            for cand in working_candidates:
+                std_digits = re.findall(r'\d{3,5}', cand.standard_number)
+                is_cited = any(re.search(rf'\b{d}\b', t_low) for d in std_digits)
+                if is_cited:
+                    cand_title = cand.full_title.lower()
+                    if ("pipe" in cand_title or "pipes" in cand_title) and "valve" not in cand_title:
+                        rule = cls.RULES["CONF-06-PRODUCT-STANDARD-MISMATCH"]
+                        reason = (
+                            f"Conflict detected [{rule.rule_id}]: Requirement specifies valve procurement, "
+                            f"but cites piping standard {cand.standard_number} ({cand.full_title})."
+                        )
+                        return rule, reason
+
+        # Rule CONF-07: Installation duty mismatch (Surface pump citing Submersible standard)
+        has_surface_duty = bool(re.search(r'\b(?:surface\s+mounted|surface\s+booster|surface\s+horizontal|horizontal\s+booster|surface\s+pump|horizontal\s+split|end\s+suction|without\s+(?:water\s+)?immersion)\b', t_low))
+        if has_surface_duty:
+            for cand in working_candidates:
+                std_digits = re.findall(r'\d{3,5}', cand.standard_number)
+                is_cited = any(re.search(rf'\b{d}\b', t_low) for d in std_digits)
+                if is_cited:
+                    cand_title = cand.full_title.lower()
+                    if "submersible" in cand_title or "borehole" in cand_title or "borewell" in cand_title:
+                        rule = cls.RULES["CONF-07-INSTALLATION-DUTY-MISMATCH"]
+                        reason = (
+                            f"Conflict detected [{rule.rule_id}]: Requirement specifies surface pump installation, "
+                            f"but cites borehole submersible standard {cand.standard_number}."
+                        )
+                        return rule, reason
 
         # Rule CONF-05: Ceramic tile standard (IS 15622) cited for heavy machinery / crane rail track
         has_heavy_rail = any(kw in t_low for kw in ["crane rail", "crane rail track", "rmqc", "quay crane"])
@@ -488,10 +601,16 @@ class AmbiguityEngine:
                             decision_confidence="High"
                         )
 
+                    c1_attrs = extract_standard_attributes(chosen_c1.standard_number, chosen_c1.full_title, chosen_c1.scope_summary)
+                    domain_name = c1_attrs.product_family if c1_attrs and c1_attrs.product_family != "other" else (completeness_report.domain if completeness_report else "")
+                    domain_ctx = f" for '{domain_name}' equipment" if domain_name and domain_name != "other" else ""
+                    missing_ctx = ""
+                    if completeness_report and completeness_report.potentially_missing_parameters:
+                        missing_ctx = f" (Potentially missing parameters: {', '.join(completeness_report.potentially_missing_parameters[:3])})"
                     reason_msg = (
                         f"Multiple competing Indian Standards ({chosen_c1.standard_number} and {chosen_c2.standard_number}) "
-                        f"have competing applicability for the same procurement object. "
-                        f"The tender does not contain distinguishing specifications ({chosen_param}) to select between them."
+                        f"have competing applicability for the same procurement object{domain_ctx}. "
+                        f"The tender does not contain distinguishing specifications ({chosen_param}) to select between them{missing_ctx}."
                     )
                     return AmbiguityReport(
                         ambiguity_state=AmbiguityState.AMBIGUOUS,
@@ -516,37 +635,102 @@ class AmbiguityEngine:
         # no competing candidate interpretations were established in Stage 4.
         # -------------------------------------------------------------------
         if not explicit_standards and applicable_candidates:
-            # Generalize completeness by using attributes
             tender_attrs = extract_tender_attributes(text)
             c_top = applicable_candidates[0]
             top_attrs = extract_standard_attributes(c_top.standard_number, c_top.full_title, c_top.scope_summary)
             
-            missing = []
-            if top_attrs.product_family != "other":
-                if top_attrs.material and not tender_attrs.material: missing.append("material")
-                if top_attrs.voltage_rating and not tender_attrs.voltage_rating: missing.append("voltage rating")
-                if top_attrs.valve_type and not tender_attrs.valve_type: missing.append("valve type")
-                if top_attrs.pump_type and not tender_attrs.pump_type: missing.append("pump type")
-                
-            if len(missing) >= 2:
-                domain = top_attrs.product_family
-                question = self._build_incomplete_clarification_question(domain, missing)
-                reason_msg = (
-                    f"Tender requirement specifies '{domain}' equipment but omits critical discriminating "
-                    f"technical parameters ({', '.join(missing)}). A specific Indian Standard "
-                    f"cannot be safely selected without guessing."
-                )
-                return AmbiguityReport(
-                    ambiguity_state=AmbiguityState.INCOMPLETE,
-                    ambiguity_reason=reason_msg,
-                    retrieval_status="CANDIDATES_FOUND",
-                    applicability_status="VIABLE_CANDIDATE",
-                    evidence_status="VALID",
-                    missing_information=missing,
-                    human_review_required=True,
-                    suggested_clarification_question=question,
-                    decision_confidence="High"
-                )
+            # Component Isolation: If top candidate is confident (score >= 0.70) for a distinct
+            # infrastructure/installation domain (e.g. earthing IS 3043 for DG sets), do not collapse.
+            c_top_score = max(c_top.final_score, c_top.relevance_score)
+            c_top_role = classify_standard_role(c_top.standard_number, c_top.full_title, c_top.scope_summary)
+            is_infra_lead = c_top_score >= 0.70 and c_top_role in ["CODE_OF_PRACTICE", "INSTALLATION", "FACILITY_PREMISE"]
+            
+            if not is_infra_lead:
+                # Pool consists strictly of viable candidates under consideration:
+                # same standard role, close score proximity (>= 0.70 ratio, <= 0.20 delta), and same procurement object
+                pool = [c_top]
+                for c in applicable_candidates[1:5]:
+                    c_role = classify_standard_role(c.standard_number, c.full_title, c.scope_summary)
+                    if c_role != c_top_role:
+                        continue
+                    c_score = max(c.final_score, c.relevance_score)
+                    rel_ratio = (c_score / c_top_score) if c_top_score > 0 else 0.0
+                    abs_delta = round(abs(c_top_score - c_score), 4)
+                    has_grounding = (c.bm25_score > 0.05 or c.semantic_score >= 0.35 or c.deterministic_score >= 0.50 or c.relevance_score >= 0.35 or c.final_score >= 0.35)
+                    # Viable candidate under consideration: close relative or absolute score proximity
+                    if (rel_ratio >= 0.65 and abs_delta <= 0.25) and has_grounding:
+                        c_attrs = extract_standard_attributes(c.standard_number, c.full_title, c.scope_summary)
+                        if same_procurement_object(top_attrs, c_attrs):
+                            pool.append(c)
+
+                missing_top = []
+                if top_attrs.product_family != "other":
+                    if top_attrs.material and not tender_attrs.material: missing_top.append("material")
+                    if top_attrs.voltage_rating and not tender_attrs.voltage_rating: missing_top.append("voltage rating")
+                    if top_attrs.valve_type and not tender_attrs.valve_type: missing_top.append("valve type")
+                    if top_attrs.pump_type and not tender_attrs.pump_type: missing_top.append("pump type")
+
+                if len(missing_top) >= 2:
+                    domain_name = top_attrs.product_family
+                    question = self._build_incomplete_clarification_question(domain_name, missing_top)
+                    reason_msg = (
+                        f"Tender requirement specifies '{domain_name}' equipment but omits critical discriminating "
+                        f"technical parameters ({', '.join(missing_top)}). A specific Indian Standard "
+                        f"cannot be safely selected without guessing."
+                    )
+                    return AmbiguityReport(
+                        ambiguity_state=AmbiguityState.INCOMPLETE,
+                        ambiguity_reason=reason_msg,
+                        retrieval_status="CANDIDATES_FOUND",
+                        applicability_status="VIABLE_CANDIDATE",
+                        evidence_status="VALID",
+                        missing_information=missing_top,
+                        human_review_required=True,
+                        suggested_clarification_question=question,
+                        decision_confidence="High"
+                    )
+
+                if len(pool) >= 2:
+                    pool_attrs = [extract_standard_attributes(c.standard_number, c.full_title, c.scope_summary) for c in pool]
+                    missing_discriminators = []
+                    
+                    pool_materials = {a.material for a in pool_attrs if a.material}
+                    if len(pool_materials) > 1 and not tender_attrs.material:
+                        missing_discriminators.append("material")
+                        
+                    pool_voltages = {a.voltage_rating for a in pool_attrs if a.voltage_rating}
+                    if len(pool_voltages) > 1 and not tender_attrs.voltage_rating:
+                        missing_discriminators.append("voltage rating")
+                        
+                    pool_valves = {a.valve_type for a in pool_attrs if a.valve_type}
+                    if len(pool_valves) > 1 and not tender_attrs.valve_type:
+                        missing_discriminators.append("valve type")
+                        
+                    pool_pumps = {a.pump_type for a in pool_attrs if a.pump_type}
+                    if len(pool_pumps) > 1 and not tender_attrs.pump_type:
+                        missing_discriminators.append("pump type")
+
+                    if missing_discriminators:
+                        domain_name = top_attrs.product_family if top_attrs.product_family != "other" else (completeness_report.domain if completeness_report else "equipment")
+                        unique_missing = list(dict.fromkeys(missing_discriminators))
+                        question = self._build_incomplete_clarification_question(domain_name, unique_missing)
+                        cand_names = [c.standard_number for c in pool[:3]]
+                        reason_msg = (
+                            f"Tender requirement specifies '{domain_name}' equipment but omits critical discriminating "
+                            f"technical parameters ({', '.join(unique_missing)}). A specific Indian Standard "
+                            f"cannot be safely selected between candidate interpretations ({', '.join(cand_names)}) without guessing."
+                        )
+                        return AmbiguityReport(
+                            ambiguity_state=AmbiguityState.INCOMPLETE,
+                            ambiguity_reason=reason_msg,
+                            retrieval_status="CANDIDATES_FOUND",
+                            applicability_status="VIABLE_CANDIDATE",
+                            evidence_status="VALID",
+                            missing_information=unique_missing,
+                            human_review_required=True,
+                            suggested_clarification_question=question,
+                            decision_confidence="High"
+                        )
 
         # -------------------------------------------------------------------
         # Stage 6: Evidence Trust Validation

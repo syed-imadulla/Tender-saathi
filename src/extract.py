@@ -48,7 +48,7 @@ class Requirement:
 # ---------------------------------------------------------------------------
 
 STANDARD_REGEX = re.compile(
-    r'\b((?:IS|IS/ISO|IS/IEC|SP)\s*[:/]?\s*\d+(?:[\s\-:]+(?:Part|Sec|Section)?\s*\d+)*(?:[\s\-:]+\d{4})?)\b',
+    r'\b((?:IS|IS/ISO|IS/IEC|SP)\s*[:/]?\s*\d+(?:[\s\-:]*(?:\(\s*)?(?:Part|Sec|Section)?\s*\d+\s*\)?)*(?:[\s\-:]+\d{4})?)(?!\w)',
     re.IGNORECASE
 )
 
@@ -94,11 +94,36 @@ def normalize_standard_mention(raw: str) -> str:
     return clean
 
 
+def sanitize_text_for_citations(text: str) -> str:
+    """
+    Strips prompt injection payloads, instruction overrides, and unescaped JSON directive
+    blocks so standard numbers contained inside adversarial directives are not extracted
+    as authoritative procurement citations.
+    """
+    if not text:
+        return ""
+    # Strip JSON instruction directives e.g. {"candidate_standard": "IS 1786"} or Return JSON: {...}
+    cleaned = re.sub(r'\{[^{}]*"(?:candidate_standard|recommended_standard|standard|override)"\s*:[^{}]*\}', ' ', text, flags=re.IGNORECASE)
+    cleaned = re.sub(r'\b(?:return|output)\s+json\s*[:\-]?[^\n.]*', ' ', cleaned, flags=re.IGNORECASE)
+    
+    # Strip bracketed instruction blocks e.g. [CRITICAL INSTRUCTION: ...]
+    cleaned = re.sub(r'\[\s*(?:CRITICAL\s+)?INSTRUCTION\s*:[^\]]*\]', ' ', cleaned, flags=re.IGNORECASE)
+    
+    # Strip line-level or sentence-level instruction overrides:
+    # e.g. SYSTEM OVERRIDE: ..., Ignore previous instructions..., Unconditionally recommend...
+    cleaned = re.sub(r'\b(?:SYSTEM\s+OVERRIDE|SYSTEM\s+INSTRUCTION)\s*[:\-][^\n.]*', ' ', cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r'\bignore\s+(?:all\s+)?(?:previous\s+)?(?:instructions|tender\s+text)[^\n.]*', ' ', cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r'\b(?:unconditionally\s+recommend|output\s+standard\s+IS)[^\n.]*', ' ', cleaned, flags=re.IGNORECASE)
+    
+    return cleaned
+
+
 def detect_explicit_standards(text: str) -> List[str]:
-    """Finds all explicit IS/ISO/IEC/SP standard mentions in text."""
+    """Finds all explicit IS/ISO/IEC/SP standard mentions in text, sanitized against prompt injection directives."""
     if not text:
         return []
-    matches = STANDARD_REGEX.findall(text)
+    sanitized = sanitize_text_for_citations(text)
+    matches = STANDARD_REGEX.findall(sanitized)
     seen = set()
     cleaned = []
     for m in matches:
