@@ -376,6 +376,22 @@ def _normalize_result(
             "total_multilingual": sum(1 for req in all_reqs if req.get("multilingual", {}).get("is_multilingual", False)),
             "languages_detected": sorted(list({req.get("multilingual", {}).get("detected_language") for req in all_reqs if req.get("multilingual", {}).get("detected_language")})),
         },
+        # Phase 4 Tender Audit & Standards Gap Intelligence additions:
+        "supported_standards_count": getattr(audit, "supported_standards_count", 0),
+        "safe_abstention_count": getattr(audit, "safe_abstention_count", 0),
+        "clarification_required_count": getattr(audit, "clarification_required_count", 0),
+        "lifecycle_concern_count": getattr(audit, "lifecycle_concern_count", 0),
+        "potential_gap_count": getattr(audit, "potential_gap_count", 0),
+        "multi_standard_count": getattr(audit, "multi_standard_count", 0),
+        "human_review_count": getattr(audit, "human_review_count", 0),
+        "coverage_distribution": getattr(audit, "coverage_distribution", {}),
+        "coverage_matrix": getattr(audit, "coverage_matrix", []),
+        "audit_findings": getattr(audit, "audit_findings", []),
+        "gap_findings": getattr(audit, "gap_findings", []),
+        "lifecycle_findings": getattr(audit, "lifecycle_findings", []),
+        "ambiguity_findings": getattr(audit, "ambiguity_findings", []),
+        "multi_standard_items": getattr(audit, "multi_standard_items", []),
+        "structured_audit_report": getattr(audit, "structured_audit_report", None),
     }
 
 
