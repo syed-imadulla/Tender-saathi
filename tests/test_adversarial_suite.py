@@ -19,6 +19,7 @@ import json
 import os
 import unittest
 import hashlib
+from collections import Counter
 from src.eval_adversarial import AdversarialHarness, MultiDimensionalGrader, ProbeExecutionResult
 from src.critic import are_standards_equivalent
 from src.extract import extract_from_text
@@ -193,6 +194,91 @@ class TestAdversarialSuite(unittest.TestCase):
         # We record that res was generated and latency was captured
         self.assertIsNotNone(res.candidate_standard)
         self.assertTrue(res.latency_ms > 0)
+
+    # 12. Report Consistency & Aggregation Verification
+    def test_12_report_consistency_and_aggregation(self):
+        """
+        12. Verifies internal report consistency between:
+        - adversarial_evaluation_suite.json
+        - adversarial_evaluation_results.json
+        - adversarial_evaluation_report.md
+        - 06-FINDINGS.md
+        """
+        results_path = "reports/adversarial/adversarial_evaluation_results.json"
+        self.assertTrue(os.path.exists(results_path), f"Results file missing: {results_path}")
+        with open(results_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        raw_results = data["probe_results"]
+        metrics = data["metrics"]
+
+        # 1. Total count is exactly 70
+        self.assertEqual(len(raw_results), 70, "Total probes must be exactly 70")
+
+        # 2. Exactly 14 categories x 5 probes = 70
+        category_counts = Counter(r["category"] for r in raw_results)
+        self.assertEqual(len(category_counts), 14, "Must have exactly 14 categories")
+        for cat, cnt in category_counts.items():
+            self.assertEqual(cnt, 5, f"Category {cat} must have exactly 5 probes")
+
+        # 3. Category totals reconcile: passed + failed == total
+        by_cat = {}
+        for r in raw_results:
+            cat = r["category"]
+            if cat not in by_cat:
+                by_cat[cat] = {"passed": 0, "failed": 0, "total": 0}
+            by_cat[cat]["total"] += 1
+            if r["probe_passed"]:
+                by_cat[cat]["passed"] += 1
+            else:
+                by_cat[cat]["failed"] += 1
+
+        total_passed = sum(v["passed"] for v in by_cat.values())
+        total_failed = sum(v["failed"] for v in by_cat.values())
+        self.assertEqual(total_passed + total_failed, 70)
+        self.assertEqual(total_passed, 40)
+        self.assertEqual(total_failed, 30)
+
+        for cat, v in by_cat.items():
+            self.assertEqual(v["passed"] + v["failed"], v["total"])
+            self.assertEqual(v["total"], 5)
+
+        # 4. Failure classifications reconcile
+        failures = [r for r in raw_results if not r["probe_passed"]]
+        self.assertEqual(len(failures), 30)
+        classifications = Counter(f["failure_classification"] for f in failures)
+        
+        expected_classifications = {
+            "ALGORITHMIC": 24,
+            "INTERFACE_VALIDATION": 4,
+            "CATALOGUE_BOUNDARY": 1,
+            "ACCEPTED_LIMITATION": 1,
+        }
+        for c_name, expected_cnt in expected_classifications.items():
+            self.assertEqual(
+                classifications.get(c_name, 0),
+                expected_cnt,
+                f"Classification {c_name} count mismatch"
+            )
+        self.assertEqual(sum(classifications.values()), 30)
+
+        # 5. Metric numerators <= denominators, denominators equal applicable probe counts
+        for k, m in metrics.items():
+            if m.get("percentage") != "N/A":
+                num = m["numerator"]
+                den = m["denominator"]
+                self.assertLessEqual(num, den, f"Metric {k} numerator exceeds denominator")
+                self.assertGreater(den, 0, f"Metric {k} denominator must be > 0")
+
+        # Specific applicable probe count checks
+        self.assertEqual(metrics["false_positive_rejection_rate"]["denominator"], 5)
+        self.assertEqual(metrics["unsafe_confident_recommendation_rate"]["denominator"], 61)
+        self.assertEqual(metrics["safe_abstention_rate"]["denominator"], 15)
+        self.assertEqual(metrics["evidence_grounding_adherence"]["denominator"], 54)
+        self.assertEqual(metrics["lifecycle_trap_catch_rate"]["denominator"], 5)
+        self.assertEqual(metrics["human_review_routing_recall"]["denominator"], 46)
+        self.assertEqual(metrics["prompt_injection_containment_rate"]["denominator"], 5)
+        self.assertEqual(metrics["graceful_crash_free_rate"]["denominator"], 5)
 
 
 if __name__ == "__main__":

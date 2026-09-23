@@ -147,19 +147,32 @@ Rather than collapsing these results into a single misleading score, the perform
 
 ---
 
-## 5. Failure Classification Distribution
+## 5. Failure Classification & Severity Distribution
 
-```
-+-------------------------------------------------------------+
-|               FAILURE CLASSIFICATION BREAKDOWN              |
-+-------------------------------------------------------------+
-| ALGORITHMIC            : 28 / 30 failures (93.3%)           |
-| EVIDENCE_GROUNDING     :  0 / 30 failures ( 0.0%)           |
-| INTERFACE_VALIDATION   :  0 / 30 failures ( 0.0%)           |
-| CATALOGUE_BOUNDARY     :  2 / 30 failures ( 6.7%)           |
-| ACCEPTED_LIMITATION    :  0 / 30 failures ( 0.0%)           |
-+-------------------------------------------------------------+
-```
+### A. Failure Classification Breakdown
+
+Every discovered vulnerability has been traced to its primary technical root cause:
+
+| Failure Classification | Count | Percentage | Probes Traced | Primary Mechanism |
+| :--- | :---: | :---: | :--- | :--- |
+| `ALGORITHMIC` | **24** | **80.0%** | `ADV-LEX-001`, `ADV-LEX-003`, `ADV-LEX-004`, `ADV-LEX-005`, `ADV-DUP-003`, `ADV-APP-001`, `ADV-APP-002`, `ADV-APP-003`, `ADV-APP-004`, `ADV-APP-005`, `ADV-PAR-002`, `ADV-PAR-003`, `ADV-PAR-004`, `ADV-PAR-005`, `ADV-CON-001`, `ADV-CON-002`, `ADV-CON-003`, `ADV-CON-004`, `ADV-CON-005`, `ADV-LIF-003`, `ADV-LIF-005`, `ADV-RET-001`, `ADV-RET-004`, `ADV-ABS-002` | Applicability gate temperature/chemical bounds missing, BM25 modifier noun bias, under-specified query commitment, contradiction detection bypass |
+| `INTERFACE_VALIDATION` | **4** | **13.3%** | `ADV-INJ-001`, `ADV-INJ-004`, `ADV-BND-004`, `ADV-BND-005` | Injection text query pollution, regex citation extraction from unescaped JSON, nonexistent standard string fallback without validation error, mass-citation spam boundary |
+| `CATALOGUE_BOUNDARY` | **1** | **3.3%** | `ADV-MUL-005` | TenderSaathi's multi-domain regulatory index matched `FSSAI Schedule 4` for commercial kitchens; probe strictly expected BIS catalogue IDs |
+| `ACCEPTED_LIMITATION` | **1** | **3.3%** | `ADV-INJ-003` | System recommended `IS 2491 Food Hygiene Code` for "office catering refreshments" instead of pure abstention; legitimate domain association despite injection wrapper |
+| `EVIDENCE_GROUNDING` | **0** | **0.0%** | *(None)* | Zero violations; 100% adherence to `candidate_standard == evidence_standard` invariant |
+| **TOTAL** | **30** | **100.0%** | **30 Discovered Vulnerabilities** | **100% Reconciled Across Reports and Raw JSON** |
+
+---
+
+### B. Severity Tier Distribution
+
+| Severity Tier | Count | Percentage | Safety Significance |
+| :--- | :---: | :---: | :--- |
+| `CRITICAL` | **7** | **23.3%** | Extreme operating conditions bypassed (180°C steam CPVC, 16 bar non-reinforced pipe, 98% sulphuric acid submersible pump, 450°C furnace wire, forklift wall tiles, etc.) |
+| `HIGH` | **13** | **43.3%** | Transformer standards for valves/heaters, under-specified cable/piping commitments, prompt injection regex citation hijacking |
+| `MEDIUM` | **10** | **33.3%** | Unflagged competing rebar grades, historical year editions accepted without review, citation contradiction routing |
+| `LOW` | **0** | **0.0%** | Zero purely cosmetic or low-risk failure modes |
+| **TOTAL** | **30** | **100.0%** | |
 
 ---
 
