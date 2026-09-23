@@ -311,3 +311,34 @@ export interface AnalysisStep {
   label: string;
   done: boolean;
 }
+
+// Phase 5: Human Review & Decision Types
+export type HumanDecisionType = 'PENDING' | 'ACCEPT' | 'EDIT' | 'DISMISS';
+
+export interface HumanReviewDecision {
+  requirement_id: string;
+  decision: HumanDecisionType;
+  reviewer_standard?: string | null;
+  reviewer_note?: string;
+  reviewed_at?: string;
+  system_standard?: string | null;
+  system_finding?: string | null;
+}
+
+export interface ReviewProgressSummary {
+  total_review_items: number;
+  reviewed_count: number;
+  pending_count: number;
+  accepted_count: number;
+  edited_count: number;
+  dismissed_count: number;
+  review_status: 'REVIEW_REQUIRED' | 'IN_PROGRESS' | 'REVIEW_COMPLETE';
+}
+
+export interface TenderReviewResponse {
+  status: string;
+  tender_id: string;
+  decisions: HumanReviewDecision[];
+  progress: ReviewProgressSummary;
+}
+

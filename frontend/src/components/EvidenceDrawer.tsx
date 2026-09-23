@@ -1,12 +1,13 @@
-// EvidenceDrawer.tsx — Evidence and audit trail panel with progressive disclosure
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './EvidenceDrawer.css';
-import type { Requirement } from '../types';
+import type { Requirement, HumanReviewDecision, HumanDecisionType } from '../types';
 import { areStandardsEquivalent } from './RequirementCard';
 
 interface EvidenceDrawerProps {
   req: Requirement;
   onClose: () => void;
+  currentDecision?: HumanReviewDecision;
+  onSaveDecision?: (decision: HumanReviewDecision) => void;
 }
 
 function CollapseSection({
@@ -137,7 +138,55 @@ const FACET_KEYS = [
   { key: 'work_type', label: 'Work type' },
 ];
 
-export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
+export default function EvidenceDrawer({
+  req,
+  onClose,
+  currentDecision,
+  onSaveDecision,
+}: EvidenceDrawerProps) {
+  const [selectedDecision, setSelectedDecision] = useState<HumanDecisionType>(
+    currentDecision?.decision || 'PENDING'
+  );
+  const [reviewerStandard, setReviewerStandard] = useState<string>(
+    currentDecision?.reviewer_standard || ''
+  );
+  const [reviewerNote, setReviewerNote] = useState<string>(
+    currentDecision?.reviewer_note || ''
+  );
+  const [isSaved, setIsSaved] = useState<boolean>(false);
+
+  useEffect(() => {
+    setSelectedDecision(currentDecision?.decision || 'PENDING');
+    setReviewerStandard(currentDecision?.reviewer_standard || '');
+    setReviewerNote(currentDecision?.reviewer_note || '');
+    setIsSaved(false);
+  }, [req.id, currentDecision]);
+
+  const hasSystemRecommendation = Boolean(
+    req.candidate_standard &&
+    req.candidate_standard !== 'NONE' &&
+    req.candidate_standard !== 'INSUFFICIENT_INFORMATION' &&
+    req.decision !== 'INSUFFICIENT_EVIDENCE' &&
+    req.decision !== 'NO_RELIABLE_MATCH' &&
+    req.decision !== 'REJECT'
+  );
+
+  const handleSave = () => {
+    if (onSaveDecision) {
+      onSaveDecision({
+        requirement_id: req.id,
+        decision: selectedDecision,
+        reviewer_standard: selectedDecision === 'EDIT' ? reviewerStandard.trim() : null,
+        reviewer_note: reviewerNote.trim(),
+        reviewed_at: new Date().toISOString(),
+        system_standard: req.candidate_standard,
+        system_finding: req.why_flagged || req.title || '',
+      });
+      setIsSaved(true);
+      setTimeout(() => setIsSaved(false), 2500);
+    }
+  };
+
   const ai = req.ai_understanding || {
     facets: {},
     provider: 'unknown',
@@ -248,6 +297,232 @@ export default function EvidenceDrawer({ req, onClose }: EvidenceDrawerProps) {
                 )}
               </div>
             )}
+          </section>
+
+          {/* Phase 5: Human Review & Decision Section */}
+          <section className="drawer-section drawer-section--human-decision">
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+              <span className="drawer-section__label" style={{ margin: 0 }}>
+                Human Review & Decision
+              </span>
+              <span className={`badge ${
+                selectedDecision === 'ACCEPT'
+                  ? 'badge--active'
+                  : selectedDecision === 'EDIT'
+                  ? 'badge--superseded'
+                  : selectedDecision === 'DISMISS'
+                  ? 'badge--low'
+                  : 'badge--review'
+              }`} style={{ fontSize: '0.75rem', fontWeight: 700 }}>
+                {selectedDecision === 'PENDING' ? 'Pending Review' : selectedDecision}
+              </span>
+            </div>
+
+            <div className="human-decision-card" style={{
+              background: '#f8fafc',
+              border: '1px solid #e2e8f0',
+              borderRadius: '8px',
+              padding: '14px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '12px'
+            }}>
+              {/* Action Buttons */}
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                {hasSystemRecommendation ? (
+                  <>
+                    <button
+                      type="button"
+                      className={`btn-decision btn-decision--accept ${selectedDecision === 'ACCEPT' ? 'is-active' : ''}`}
+                      onClick={() => setSelectedDecision('ACCEPT')}
+                      style={{
+                        padding: '7px 14px',
+                        borderRadius: '6px',
+                        fontSize: '0.82rem',
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        border: selectedDecision === 'ACCEPT' ? '2px solid #16a34a' : '1px solid #cbd5e1',
+                        background: selectedDecision === 'ACCEPT' ? '#dcfce7' : '#ffffff',
+                        color: selectedDecision === 'ACCEPT' ? '#15803d' : '#334155'
+                      }}
+                    >
+                      <span>✓</span> Accept Recommendation
+                    </button>
+                    <button
+                      type="button"
+                      className={`btn-decision btn-decision--edit ${selectedDecision === 'EDIT' ? 'is-active' : ''}`}
+                      onClick={() => setSelectedDecision('EDIT')}
+                      style={{
+                        padding: '7px 14px',
+                        borderRadius: '6px',
+                        fontSize: '0.82rem',
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        border: selectedDecision === 'EDIT' ? '2px solid #2563eb' : '1px solid #cbd5e1',
+                        background: selectedDecision === 'EDIT' ? '#dbeafe' : '#ffffff',
+                        color: selectedDecision === 'EDIT' ? '#1d4ed8' : '#334155'
+                      }}
+                    >
+                      <span>✎</span> Edit Standard
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      type="button"
+                      className={`btn-decision btn-decision--edit ${selectedDecision === 'EDIT' ? 'is-active' : ''}`}
+                      onClick={() => setSelectedDecision('EDIT')}
+                      style={{
+                        padding: '7px 14px',
+                        borderRadius: '6px',
+                        fontSize: '0.82rem',
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        border: selectedDecision === 'EDIT' ? '2px solid #2563eb' : '1px solid #cbd5e1',
+                        background: selectedDecision === 'EDIT' ? '#dbeafe' : '#ffffff',
+                        color: selectedDecision === 'EDIT' ? '#1d4ed8' : '#334155'
+                      }}
+                    >
+                      <span>✎</span> Specify Standard (Resolve)
+                    </button>
+                  </>
+                )}
+                <button
+                  type="button"
+                  className={`btn-decision btn-decision--dismiss ${selectedDecision === 'DISMISS' ? 'is-active' : ''}`}
+                  onClick={() => setSelectedDecision('DISMISS')}
+                  style={{
+                    padding: '7px 14px',
+                    borderRadius: '6px',
+                    fontSize: '0.82rem',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    border: selectedDecision === 'DISMISS' ? '2px solid #64748b' : '1px solid #cbd5e1',
+                    background: selectedDecision === 'DISMISS' ? '#f1f5f9' : '#ffffff',
+                    color: selectedDecision === 'DISMISS' ? '#0f172a' : '#475569'
+                  }}
+                >
+                  <span>✕</span> Dismiss / Not Applicable
+                </button>
+              </div>
+
+              {!hasSystemRecommendation && (
+                <div style={{ fontSize: '0.78rem', color: '#64748b', fontStyle: 'italic', background: '#ffffff', padding: '6px 10px', borderRadius: '4px', border: '1px solid #e2e8f0' }}>
+                  ℹ Safe Abstention / Unresolved requirement: The system did not generate a positive standard recommendation. "Accept Recommendation" is disabled to prevent false attribution.
+                </div>
+              )}
+
+              {/* Reviewer Standard Input when EDIT is chosen */}
+              {selectedDecision === 'EDIT' && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                  <label htmlFor="reviewer-standard-input" style={{ fontSize: '0.78rem', fontWeight: 600, color: '#334155' }}>
+                    Reviewer-Designated Standard:
+                  </label>
+                  <input
+                    id="reviewer-standard-input"
+                    type="text"
+                    value={reviewerStandard}
+                    onChange={(e) => setReviewerStandard(e.target.value)}
+                    placeholder="e.g. IS 4985 : 2021"
+                    style={{
+                      padding: '8px 12px',
+                      borderRadius: '6px',
+                      border: '1px solid #cbd5e1',
+                      fontSize: '0.85rem',
+                      fontFamily: 'monospace'
+                    }}
+                  />
+                  <span style={{ fontSize: '0.72rem', color: '#64748b' }}>
+                    Note: The edited standard will be attributed strictly to the human reviewer and will not inherit system evidence.
+                  </span>
+                </div>
+              )}
+
+              {/* Reviewer Notes & Quick Rationale Chips */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <label htmlFor="reviewer-note-input" style={{ fontSize: '0.78rem', fontWeight: 600, color: '#334155' }}>
+                    Reviewer Note / Justification:
+                  </label>
+                  <span style={{ fontSize: '0.72rem', color: '#94a3b8' }}>Optional</span>
+                </div>
+                <textarea
+                  id="reviewer-note-input"
+                  rows={2}
+                  value={reviewerNote}
+                  onChange={(e) => setReviewerNote(e.target.value)}
+                  placeholder="Add technical rationale, verification comments, or application notes..."
+                  style={{
+                    padding: '8px 12px',
+                    borderRadius: '6px',
+                    border: '1px solid #cbd5e1',
+                    fontSize: '0.82rem',
+                    resize: 'vertical',
+                    fontFamily: 'inherit'
+                  }}
+                />
+                <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', alignItems: 'center' }}>
+                  <span style={{ fontSize: '0.7rem', color: '#64748b', fontWeight: 500 }}>Quick tags:</span>
+                  {['Verified application', 'Scope mismatch', 'Missing specification', 'Departmental standard applies'].map((chip) => (
+                    <button
+                      key={chip}
+                      type="button"
+                      onClick={() => {
+                        setReviewerNote((prev) => prev ? `${prev} · ${chip}` : chip);
+                      }}
+                      style={{
+                        padding: '2px 8px',
+                        borderRadius: '12px',
+                        background: '#e2e8f0',
+                        border: 'none',
+                        fontSize: '0.7rem',
+                        color: '#334155',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      + {chip}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Save Button & Feedback */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '4px' }}>
+                <button
+                  type="button"
+                  onClick={handleSave}
+                  style={{
+                    padding: '8px 18px',
+                    borderRadius: '6px',
+                    background: '#0f172a',
+                    color: '#ffffff',
+                    fontWeight: 600,
+                    fontSize: '0.82rem',
+                    border: 'none',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Save Decision
+                </button>
+                {isSaved && (
+                  <span style={{ fontSize: '0.8rem', color: '#16a34a', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    ✓ Decision saved to review trail
+                  </span>
+                )}
+              </div>
+            </div>
           </section>
 
           {/* 3. Why It Matches / Why Rejected */}

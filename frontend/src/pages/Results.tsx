@@ -1,5 +1,5 @@
 // Results.tsx — TenderSaathi Indian Standards Recommendation Results Page
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import './Results.css';
 import Header from '../components/Header';
 import {
@@ -9,8 +9,14 @@ import {
   RelatedCard,
 } from '../components/RequirementCard';
 import EvidenceDrawer from '../components/EvidenceDrawer';
-import { downloadReport, triggerDownload } from '../api';
-import type { AnalysisResult, Requirement, RelatedStandard } from '../types';
+import { downloadReport, triggerDownload, submitReviewDecisions, getReviewDecisions } from '../api';
+import type {
+  AnalysisResult,
+  Requirement,
+  RelatedStandard,
+  HumanReviewDecision,
+  ReviewProgressSummary,
+} from '../types';
 
 interface ResultsProps {
   result: AnalysisResult;
@@ -21,6 +27,9 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
   const [activeEvidenceReq, setActiveEvidenceReq] = useState<Requirement | null>(null);
   const [isDownloading, setIsDownloading] = useState(false);
   const [showReportMenu, setShowReportMenu] = useState(false);
+  const [humanDecisions, setHumanDecisions] = useState<Record<string, HumanReviewDecision>>({});
+  const [serverProgress, setServerProgress] = useState<ReviewProgressSummary | null>(null);
+  const [reviewFilterTab, setReviewFilterTab] = useState<'all' | 'pending' | 'reviewed'>('all');
 
   const { tender } = result;
   const allReqs = result.requirements || [];
@@ -152,6 +161,100 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
     });
     return counts;
   }, [result.summary, allReqs]);
+
+  // Fetch existing review decisions for this tender
+  useEffect(() => {
+    let mounted = true;
+    getReviewDecisions(tender.id)
+      .then((res) => {
+        if (mounted && res && res.decisions) {
+          const map: Record<string, HumanReviewDecision> = {};
+          res.decisions.forEach((d) => {
+            map[d.requirement_id] = d;
+          });
+          setHumanDecisions(map);
+          if (res.progress) {
+            setServerProgress(res.progress);
+          }
+        }
+      })
+      .catch(() => {
+        // Silently ignore if no review session cached yet
+      });
+    return () => {
+      mounted = false;
+    };
+  }, [tender.id]);
+
+  const handleSaveDecision = async (decision: HumanReviewDecision) => {
+    const updated = {
+      ...humanDecisions,
+      [decision.requirement_id]: decision,
+    };
+    setHumanDecisions(updated);
+    try {
+      const resp = await submitReviewDecisions(tender.id, Object.values(updated));
+      if (resp && resp.progress) {
+        setServerProgress(resp.progress);
+      }
+    } catch (err) {
+      console.warn('Failed to persist human decision to server:', err);
+    }
+  };
+
+  // Review Progress Computation
+  const reviewProgress = useMemo(() => {
+    const allDecs = Object.values(humanDecisions);
+    const acceptedCount = allDecs.filter((d) => d.decision === 'ACCEPT').length;
+    const editedCount = allDecs.filter((d) => d.decision === 'EDIT').length;
+    const dismissedCount = allDecs.filter((d) => d.decision === 'DISMISS').length;
+    const reviewedCount = acceptedCount + editedCount + dismissedCount;
+
+    const totalItems = attentionList.length > 0 ? attentionList.length : allReqs.length;
+    const pendingCount = Math.max(0, totalItems - reviewedCount);
+
+    let status: 'REVIEW_REQUIRED' | 'IN_PROGRESS' | 'REVIEW_COMPLETE' = 'REVIEW_REQUIRED';
+    if (totalItems > 0 && reviewedCount >= totalItems) {
+      status = 'REVIEW_COMPLETE';
+    } else if (reviewedCount > 0) {
+      status = 'IN_PROGRESS';
+    }
+
+    return (
+      serverProgress || {
+        total_review_items: totalItems,
+        reviewed_count: reviewedCount,
+        pending_count: pendingCount,
+        accepted_count: acceptedCount,
+        edited_count: editedCount,
+        dismissed_count: dismissedCount,
+        review_status: status,
+      }
+    );
+  }, [humanDecisions, attentionList.length, allReqs.length, serverProgress]);
+
+  const percentReviewed = useMemo(() => {
+    if (!reviewProgress.total_review_items || reviewProgress.total_review_items === 0) return 100;
+    return Math.min(100, Math.round((reviewProgress.reviewed_count / reviewProgress.total_review_items) * 100));
+  }, [reviewProgress]);
+
+  // Filtered attention list according to reviewFilterTab
+  const filteredAttentionList = useMemo(() => {
+    if (reviewFilterTab === 'all') return attentionList;
+    return attentionList.filter((req) => {
+      const dec = humanDecisions[req.id];
+      const isReviewed = dec && dec.decision !== 'PENDING';
+      return reviewFilterTab === 'reviewed' ? isReviewed : !isReviewed;
+    });
+  }, [attentionList, reviewFilterTab, humanDecisions]);
+
+  const pendingAttentionCount = useMemo(() => {
+    return attentionList.filter((req) => !humanDecisions[req.id] || humanDecisions[req.id].decision === 'PENDING').length;
+  }, [attentionList, humanDecisions]);
+
+  const reviewedAttentionCount = useMemo(() => {
+    return attentionList.filter((req) => humanDecisions[req.id] && humanDecisions[req.id].decision !== 'PENDING').length;
+  }, [attentionList, humanDecisions]);
 
   // Download handler
   const handleDownload = async (format: 'markdown' | 'json') => {
@@ -326,6 +429,96 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
           </span>
         </div>
 
+        {/* 2c. Human Review & Decision Progress Workflow */}
+        <section
+          className="review-progress-card"
+          aria-label="Human Review and Decision Progress"
+          style={{
+            background: '#ffffff',
+            border: '1px solid #e2e8f0',
+            borderRadius: '12px',
+            padding: '16px 20px',
+            marginBottom: '20px',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.02)',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <span style={{ fontSize: '0.82rem', fontWeight: 800, color: '#1e293b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                Human Review & Decision Workflow
+              </span>
+              <span
+                style={{
+                  fontWeight: 700,
+                  fontSize: '0.78rem',
+                  padding: '2px 8px',
+                  borderRadius: '4px',
+                  background:
+                    reviewProgress.review_status === 'REVIEW_COMPLETE'
+                      ? '#dcfce7'
+                      : reviewProgress.review_status === 'IN_PROGRESS'
+                      ? '#dbeafe'
+                      : '#fef3c7',
+                  color:
+                    reviewProgress.review_status === 'REVIEW_COMPLETE'
+                      ? '#15803d'
+                      : reviewProgress.review_status === 'IN_PROGRESS'
+                      ? '#1d4ed8'
+                      : '#b45309',
+                }}
+              >
+                {reviewProgress.review_status === 'REVIEW_COMPLETE'
+                  ? 'REVIEW COMPLETE'
+                  : reviewProgress.review_status === 'IN_PROGRESS'
+                  ? 'REVIEW IN PROGRESS'
+                  : 'REVIEW REQUIRED'}
+              </span>
+            </div>
+            <span style={{ fontSize: '0.82rem', fontWeight: 700, color: '#334155' }}>
+              {reviewProgress.reviewed_count} / {reviewProgress.total_review_items} Reviewed ({percentReviewed}%)
+            </span>
+          </div>
+
+          {/* Progress bar meter */}
+          <div
+            style={{
+              height: '8px',
+              background: '#f1f5f9',
+              borderRadius: '999px',
+              overflow: 'hidden',
+              marginBottom: '14px',
+              display: 'flex',
+            }}
+          >
+            <div
+              style={{
+                width: `${percentReviewed}%`,
+                background: reviewProgress.review_status === 'REVIEW_COMPLETE' ? '#16a34a' : '#2563eb',
+                transition: 'width 250ms ease',
+              }}
+            />
+          </div>
+
+          {/* Stat pills breakdown */}
+          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
+            <div style={{ fontSize: '0.78rem', background: '#fffbeb', border: '1px solid #fde68a', color: '#92400e', padding: '3px 10px', borderRadius: '6px', fontWeight: 600 }}>
+              Pending: <strong>{reviewProgress.pending_count}</strong>
+            </div>
+            <div style={{ fontSize: '0.78rem', background: '#ecfdf5', border: '1px solid #a7f3d0', color: '#065f46', padding: '3px 10px', borderRadius: '6px', fontWeight: 600 }}>
+              Accepted: <strong>{reviewProgress.accepted_count}</strong>
+            </div>
+            <div style={{ fontSize: '0.78rem', background: '#eff6ff', border: '1px solid #bfdbfe', color: '#1e40af', padding: '3px 10px', borderRadius: '6px', fontWeight: 600 }}>
+              Edited: <strong>{reviewProgress.edited_count}</strong>
+            </div>
+            <div style={{ fontSize: '0.78rem', background: '#f8fafc', border: '1px solid #cbd5e1', color: '#475569', padding: '3px 10px', borderRadius: '6px', fontWeight: 600 }}>
+              Dismissed: <strong>{reviewProgress.dismissed_count}</strong>
+            </div>
+            <span style={{ fontSize: '0.72rem', color: '#64748b', fontStyle: 'italic', marginLeft: 'auto' }}>
+              "Review Complete" indicates all identified review items have received a decision.
+            </span>
+          </div>
+        </section>
+
         {/* Ambiguity & Verification States Summary Bar */}
         <div className="ambiguity-summary-bar" style={{
           background: '#ffffff',
@@ -394,6 +587,7 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
                   req={req}
                   isPrimary={i === 0 && recCount > 1}
                   onOpenEvidence={setActiveEvidenceReq}
+                  currentDecision={humanDecisions[req.id]}
                 />
               ))
             ) : (
@@ -431,14 +625,76 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
               </span>
             </div>
 
+            {/* Filter Tabs for Review Queue */}
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '16px', flexWrap: 'wrap' }}>
+              <button
+                type="button"
+                onClick={() => setReviewFilterTab('all')}
+                style={{
+                  padding: '6px 14px',
+                  borderRadius: '6px',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  background: reviewFilterTab === 'all' ? '#1e293b' : '#f1f5f9',
+                  color: reviewFilterTab === 'all' ? '#ffffff' : '#475569',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'background 150ms ease',
+                }}
+              >
+                All ({attentionList.length})
+              </button>
+              <button
+                type="button"
+                onClick={() => setReviewFilterTab('pending')}
+                style={{
+                  padding: '6px 14px',
+                  borderRadius: '6px',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  background: reviewFilterTab === 'pending' ? '#d97706' : '#fef3c7',
+                  color: reviewFilterTab === 'pending' ? '#ffffff' : '#92400e',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'background 150ms ease',
+                }}
+              >
+                Pending Review ({pendingAttentionCount})
+              </button>
+              <button
+                type="button"
+                onClick={() => setReviewFilterTab('reviewed')}
+                style={{
+                  padding: '6px 14px',
+                  borderRadius: '6px',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  background: reviewFilterTab === 'reviewed' ? '#16a34a' : '#dcfce7',
+                  color: reviewFilterTab === 'reviewed' ? '#ffffff' : '#166534',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'background 150ms ease',
+                }}
+              >
+                Reviewed ({reviewedAttentionCount})
+              </button>
+            </div>
+
             <div className="attention-list">
-              {attentionList.map((req, i) => (
-                <AttentionCard
-                  key={req.id || i}
-                  req={req}
-                  onOpenEvidence={setActiveEvidenceReq}
-                />
-              ))}
+              {filteredAttentionList.length > 0 ? (
+                filteredAttentionList.map((req, i) => (
+                  <AttentionCard
+                    key={req.id || i}
+                    req={req}
+                    onOpenEvidence={setActiveEvidenceReq}
+                    currentDecision={humanDecisions[req.id]}
+                  />
+                ))
+              ) : (
+                <div style={{ padding: '20px', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0', textAlign: 'center', color: '#64748b', fontSize: '0.85rem' }}>
+                  No items match the selected filter.
+                </div>
+              )}
             </div>
           </section>
         )}
@@ -466,6 +722,7 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
                   key={req.id || i}
                   req={req}
                   onOpenEvidence={setActiveEvidenceReq}
+                  currentDecision={humanDecisions[req.id]}
                 />
               ))}
             </div>
@@ -522,6 +779,8 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
         <EvidenceDrawer
           req={activeEvidenceReq}
           onClose={() => setActiveEvidenceReq(null)}
+          currentDecision={humanDecisions[activeEvidenceReq.id]}
+          onSaveDecision={handleSaveDecision}
         />
       )}
     </div>

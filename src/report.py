@@ -46,6 +46,21 @@ class TenderInformation:
 
 
 @dataclass
+class HumanReviewDecisionRecord:
+    """Explicit human decision record on an analyzed procurement requirement."""
+    requirement_id: str
+    decision: str  # "PENDING", "ACCEPT", "EDIT", "DISMISS"
+    reviewer_standard: Optional[str] = None
+    reviewer_note: Optional[str] = None
+    reviewed_at: Optional[str] = None
+    system_standard: Optional[str] = None
+    system_finding: Optional[str] = None
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass
 class RequirementReviewSection:
     """Detailed standards evaluation for an individual procurement requirement."""
     requirement_id: str
@@ -81,6 +96,7 @@ class RequirementReviewSection:
     regulatory: Optional[Dict[str, Any]] = None
     ambiguity_state: str = "CLEAR"
     ambiguity_reason: str = ""
+    human_decision: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -115,6 +131,7 @@ class TenderReviewReport:
     requirements: List[RequirementReviewSection] = field(default_factory=list)
     review_queue: List[ReviewQueueItem] = field(default_factory=list)
     evidence_summary: Optional[EvidenceSummary] = None
+    human_decisions: List[Dict[str, Any]] = field(default_factory=list)
     footer_disclaimer: str = (
         "TenderSaathi is a standards-review aid for procurement specifications. "
         "Final applicability, specification, procurement, regulatory and legal decisions "
@@ -133,6 +150,7 @@ class TenderReviewReport:
             "requirements": [r.to_dict() for r in self.requirements],
             "review_queue": [q.to_dict() for q in self.review_queue],
             "evidence_summary": self.evidence_summary.to_dict() if self.evidence_summary else None,
+            "human_decisions": self.human_decisions,
             "footer_disclaimer": self.footer_disclaimer
         }
         return d
@@ -328,6 +346,21 @@ class TenderReviewReport:
             if req.human_review_required:
                 md.append(f"- ⚠ **Human Technical Review Required:** {req.review_reason or 'Verification required'}")
 
+            # Phase 5: Human Review Decision (Preserved separately from system findings)
+            if req.human_decision:
+                hd = req.human_decision
+                dec_val = hd.get("decision", "PENDING")
+                rev_std = hd.get("reviewer_standard")
+                rev_note = hd.get("reviewer_note")
+                dec_str = f"**{dec_val}**"
+                if dec_val == "EDIT" and rev_std:
+                    dec_str += f" (Reviewer-designated standard: `{rev_std}`)"
+                md.append(f"- **Human Review Decision:** {dec_str}")
+                if rev_note:
+                    md.append(f"- **Reviewer Note:** \"{rev_note}\"")
+                if hd.get("reviewed_at"):
+                    md.append(f"- **Decision Recorded:** `{hd.get('reviewed_at')}`")
+
             md.append("\n---\n")
 
         # 7. Evidence & Provenance Summary
@@ -344,6 +377,31 @@ class TenderReviewReport:
         # 8. Report Footer / Disclaimer
         md.append("## 7. Officer Notice & Disclaimer\n")
         md.append(f"{self.footer_disclaimer}\n")
+
+        # 9. Human Review & Decision Trail (Phase 5)
+        md.append("## 8. Human Review & Decision Trail\n")
+        if not self.human_decisions:
+            md.append("*No human review decisions have been recorded for this tender. All requirements remain in automated analysis state.*\n")
+        else:
+            md.append("| # | Requirement ID | Original System Finding | Human Decision | Reviewer Standard | Reviewer Note | Reviewed Timestamp |")
+            md.append("|---|---|---|---|---|---|---|")
+            for idx, hd in enumerate(self.human_decisions, 1):
+                if hasattr(hd, "requirement_id"):
+                    req_id = getattr(hd, "requirement_id", "N/A")
+                    orig = getattr(hd, "system_finding", None) or getattr(hd, "system_standard", None) or "N/A"
+                    dec = getattr(hd, "decision", "PENDING")
+                    rev_std = getattr(hd, "reviewer_standard", None) or "—"
+                    note = getattr(hd, "reviewer_note", None) or "—"
+                    ts = getattr(hd, "reviewed_at", None) or "—"
+                else:
+                    req_id = hd.get("requirement_id", "N/A")
+                    orig = hd.get("system_finding") or hd.get("system_standard") or "N/A"
+                    dec = hd.get("decision", "PENDING")
+                    rev_std = hd.get("reviewer_standard") or "—"
+                    note = hd.get("reviewer_note") or "—"
+                    ts = hd.get("reviewed_at") or "—"
+                md.append(f"| {idx} | `{req_id}` | {orig} | **{dec}** | `{rev_std}` | {note} | {ts} |")
+            md.append("")
 
         return "\n".join(md)
 
@@ -374,11 +432,33 @@ class ReportGenerator:
         self,
         audit_result: TenderAuditResult,
         requirement_results: List[RequirementRecommendationResult],
-        tender_metadata: Optional[Dict[str, Any]] = None
+        tender_metadata: Optional[Dict[str, Any]] = None,
+        human_decisions: Optional[List[Dict[str, Any]]] = None
     ) -> TenderReviewReport:
         """Assembles a full TenderReviewReport."""
         meta = tender_metadata or {}
         tender_id = audit_result.tender_id
+
+        # Index human decisions by requirement_id
+        decision_map: Dict[str, Dict[str, Any]] = {}
+        normalized_human_decisions: List[Dict[str, Any]] = []
+        if human_decisions:
+            for d in human_decisions:
+                if isinstance(d, dict) and "requirement_id" in d:
+                    decision_map[d["requirement_id"]] = d
+                    normalized_human_decisions.append(d)
+                elif hasattr(d, "requirement_id"):
+                    d_dict = asdict(d) if hasattr(d, "__dataclass_fields__") else {
+                        "requirement_id": getattr(d, "requirement_id"),
+                        "decision": getattr(d, "decision", "PENDING"),
+                        "reviewer_standard": getattr(d, "reviewer_standard", None),
+                        "reviewer_note": getattr(d, "reviewer_note", ""),
+                        "reviewed_at": getattr(d, "reviewed_at", None),
+                        "system_standard": getattr(d, "system_standard", None),
+                        "system_finding": getattr(d, "system_finding", None),
+                    }
+                    decision_map[getattr(d, "requirement_id")] = d_dict
+                    normalized_human_decisions.append(d_dict)
 
         # 1. Tender Information
         tender_info = TenderInformation(
@@ -523,6 +603,7 @@ class ReportGenerator:
                 regulatory=reg,
                 ambiguity_state=amb_state,
                 ambiguity_reason=amb_reason,
+                human_decision=decision_map.get(r.requirement_id),
             ))
 
         # 4. Evidence Summary
@@ -538,7 +619,8 @@ class ReportGenerator:
             executive_summary=exec_summary,
             requirements=req_sections,
             review_queue=audit_result.review_queue,
-            evidence_summary=evidence_summary
+            evidence_summary=evidence_summary,
+            human_decisions=normalized_human_decisions
         )
 
     def generate_and_save(
@@ -546,10 +628,16 @@ class ReportGenerator:
         audit_result: TenderAuditResult,
         requirement_results: List[RequirementRecommendationResult],
         output_dir: str = "reports/generated",
-        tender_metadata: Optional[Dict[str, Any]] = None
+        tender_metadata: Optional[Dict[str, Any]] = None,
+        human_decisions: Optional[List[Dict[str, Any]]] = None
     ) -> tuple[str, str]:
         """Generates report and saves both Markdown and JSON files to output_dir."""
-        report = self.generate_report(audit_result, requirement_results, tender_metadata=tender_metadata)
+        report = self.generate_report(
+            audit_result,
+            requirement_results,
+            tender_metadata=tender_metadata,
+            human_decisions=human_decisions
+        )
         t_id = audit_result.tender_id or "TENDER"
         safe_id = re.sub(r'[^\w\-]', '_', t_id).lower()
 

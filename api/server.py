@@ -20,7 +20,7 @@ import uuid
 import tempfile
 import traceback
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional, Dict, Any, List
 
 # Ensure project root on path before any src imports
@@ -410,7 +410,7 @@ def _normalize_result(
             "id": tender_id,
             "source": source_name,
             "file_size": file_size,
-            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
         },
         "summary": summary,
         "readiness": audit.publication_readiness,
@@ -475,6 +475,10 @@ def _run_analysis(
         "md_path": md_path,
         "json_path": json_path,
         "normalized": normalized,
+        "audit": audit,
+        "results": results,
+        "tender_meta": tender_meta,
+        "human_decisions": {},
     }
 
     return normalized
@@ -489,7 +493,7 @@ def health():
     return jsonify({
         "status": "ok",
         "service": "TenderSaathi API",
-        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
     })
 
 
@@ -626,6 +630,162 @@ def report_markdown_latest():
         return jsonify({"error": "No analysis results yet."}), 404
     tid = list(_report_cache.keys())[-1]
     return report_markdown(tid)
+
+
+# ---------------------------------------------------------------------------
+# Phase 5: Human Review & Decision Endpoints
+# ---------------------------------------------------------------------------
+
+@app.route("/api/tender/<tender_id>/review", methods=["POST"])
+def submit_tender_review(tender_id: str):
+    """
+    Records human review decisions and notes for a tender session.
+    Regenerates the Markdown and JSON reports in cache so immediate downloads
+    include the complete Human Review & Decision Trail.
+    """
+    cache = _report_cache.get(tender_id)
+    if not cache:
+        return jsonify({"error": f"Tender session '{tender_id}' not found. Run analysis first."}), 404
+
+    body = request.get_json(silent=True) or {}
+    raw_decisions = body.get("decisions")
+    if raw_decisions is None:
+        if "requirement_id" in body and "decision" in body:
+            raw_decisions = [body]
+        else:
+            return jsonify({"error": "Missing 'decisions' field."}), 400
+
+    if not isinstance(raw_decisions, list):
+        return jsonify({"error": "'decisions' must be a list."}), 400
+
+    results_by_id = {r.requirement_id: r for r in cache.get("results", [])}
+    human_decisions_dict = cache.setdefault("human_decisions", {})
+
+    now_ts = datetime.now(timezone.utc).isoformat()
+
+    valid_states = {"PENDING", "ACCEPT", "EDIT", "DISMISS"}
+
+    for d in raw_decisions:
+        if not isinstance(d, dict):
+            continue
+        req_id = d.get("requirement_id")
+        if not req_id:
+            continue
+        dec = str(d.get("decision", "PENDING")).upper().strip()
+        if dec not in valid_states:
+            dec = "PENDING"
+
+        orig_res = results_by_id.get(req_id)
+        sys_std = orig_res.candidate_standard if orig_res else None
+        sys_finding = orig_res.reason if orig_res else (orig_res.title if orig_res else None)
+
+        record = {
+            "requirement_id": req_id,
+            "decision": dec,
+            "reviewer_standard": str(d.get("reviewer_standard", "")).strip() if dec == "EDIT" else None,
+            "reviewer_note": str(d.get("reviewer_note", "")).strip(),
+            "reviewed_at": d.get("reviewed_at") or now_ts,
+            "system_standard": sys_std,
+            "system_finding": sys_finding,
+        }
+        human_decisions_dict[req_id] = record
+
+    all_decisions = list(human_decisions_dict.values())
+
+    # Calculate review progress
+    audit_obj = cache.get("audit")
+    reqs_in_tender = len(cache.get("results", []))
+    review_queue = getattr(audit_obj, "review_queue", []) if audit_obj else []
+    total_review_items = len(review_queue) if review_queue else reqs_in_tender
+
+    accepted_count = sum(1 for d in all_decisions if d.get("decision") == "ACCEPT")
+    edited_count = sum(1 for d in all_decisions if d.get("decision") == "EDIT")
+    dismissed_count = sum(1 for d in all_decisions if d.get("decision") == "DISMISS")
+    reviewed_count = accepted_count + edited_count + dismissed_count
+    pending_count = max(0, total_review_items - reviewed_count)
+
+    if total_review_items > 0 and pending_count == 0:
+        review_status = "REVIEW_COMPLETE"
+    elif reviewed_count > 0:
+        review_status = "IN_PROGRESS"
+    else:
+        review_status = "REVIEW_REQUIRED"
+
+    progress = {
+        "total_review_items": total_review_items,
+        "reviewed_count": reviewed_count,
+        "pending_count": pending_count,
+        "accepted_count": accepted_count,
+        "edited_count": edited_count,
+        "dismissed_count": dismissed_count,
+        "review_status": review_status,
+    }
+
+    # Regenerate reports with human review decision trail
+    report_gen = get_report_gen()
+    if audit_obj and "results" in cache:
+        md_path, json_path = report_gen.generate_and_save(
+            audit_result=audit_obj,
+            requirement_results=cache["results"],
+            output_dir=REPORT_DIR,
+            tender_metadata=cache.get("tender_meta"),
+            human_decisions=all_decisions,
+        )
+        cache["md_path"] = md_path
+        cache["json_path"] = json_path
+
+    return jsonify({
+        "status": "ok",
+        "tender_id": tender_id,
+        "decisions": all_decisions,
+        "progress": progress,
+    })
+
+
+@app.route("/api/tender/<tender_id>/review", methods=["GET"])
+def get_tender_review(tender_id: str):
+    """Retrieves current human review decisions and progress for a tender session."""
+    cache = _report_cache.get(tender_id)
+    if not cache:
+        return jsonify({"error": f"Tender session '{tender_id}' not found."}), 404
+
+    human_decisions_dict = cache.get("human_decisions", {})
+    all_decisions = list(human_decisions_dict.values())
+
+    audit_obj = cache.get("audit")
+    reqs_in_tender = len(cache.get("results", []))
+    review_queue = getattr(audit_obj, "review_queue", []) if audit_obj else []
+    total_review_items = len(review_queue) if review_queue else reqs_in_tender
+
+    accepted_count = sum(1 for d in all_decisions if d.get("decision") == "ACCEPT")
+    edited_count = sum(1 for d in all_decisions if d.get("decision") == "EDIT")
+    dismissed_count = sum(1 for d in all_decisions if d.get("decision") == "DISMISS")
+    reviewed_count = accepted_count + edited_count + dismissed_count
+    pending_count = max(0, total_review_items - reviewed_count)
+
+    if total_review_items > 0 and pending_count == 0:
+        review_status = "REVIEW_COMPLETE"
+    elif reviewed_count > 0:
+        review_status = "IN_PROGRESS"
+    else:
+        review_status = "REVIEW_REQUIRED"
+
+    progress = {
+        "total_review_items": total_review_items,
+        "reviewed_count": reviewed_count,
+        "pending_count": pending_count,
+        "accepted_count": accepted_count,
+        "edited_count": edited_count,
+        "dismissed_count": dismissed_count,
+        "review_status": review_status,
+    }
+
+    return jsonify({
+        "status": "ok",
+        "tender_id": tender_id,
+        "decisions": all_decisions,
+        "progress": progress,
+    })
 
 
 

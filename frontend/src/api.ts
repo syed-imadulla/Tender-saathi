@@ -2,7 +2,7 @@
 // All requests go through /api (proxied to Flask on :5000 by Vite)
 // No API keys ever stored here.
 
-import type { AnalysisResult } from './types';
+import type { AnalysisResult, HumanReviewDecision, TenderReviewResponse } from './types';
 
 const BASE = '/api';
 
@@ -92,3 +92,23 @@ export function triggerDownload(blob: Blob, filename: string): void {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
+
+export async function submitReviewDecisions(
+  tenderId: string,
+  decisions: HumanReviewDecision[]
+): Promise<TenderReviewResponse> {
+  const res = await fetch(`${BASE}/tender/${tenderId}/review`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ decisions }),
+  });
+  return handleResponse<TenderReviewResponse>(res);
+}
+
+export async function getReviewDecisions(
+  tenderId: string
+): Promise<TenderReviewResponse> {
+  const res = await fetch(`${BASE}/tender/${tenderId}/review`);
+  return handleResponse<TenderReviewResponse>(res);
+}
+

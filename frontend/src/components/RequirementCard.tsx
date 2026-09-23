@@ -1,6 +1,49 @@
-// RequirementCard.tsx — Specialized cards for the TenderSaathi Recommendation UI
 import './RequirementCard.css';
-import type { Requirement, RelatedStandard } from '../types';
+import type { Requirement, RelatedStandard, HumanReviewDecision } from '../types';
+
+export function HumanDecisionBadge({ decision }: { decision?: HumanReviewDecision }) {
+  if (!decision || decision.decision === 'PENDING') return null;
+  const dec = decision.decision;
+  let bg = '#dcfce7';
+  let color = '#15803d';
+  let border = '#86efac';
+  let label = '✓ Accepted';
+
+  if (dec === 'EDIT') {
+    bg = '#dbeafe';
+    color = '#1d4ed8';
+    border = '#93c5fd';
+    label = decision.reviewer_standard ? `✎ Edited: ${decision.reviewer_standard}` : '✎ Edited';
+  } else if (dec === 'DISMISS') {
+    bg = '#f1f5f9';
+    color = '#475569';
+    border = '#cbd5e1';
+    label = '✕ Dismissed';
+  }
+
+  return (
+    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+      <span
+        style={{
+          background: bg,
+          color: color,
+          border: `1px solid ${border}`,
+          borderRadius: '4px',
+          padding: '2px 8px',
+          fontSize: '0.74rem',
+          fontWeight: 700,
+        }}
+      >
+        {label}
+      </span>
+      {decision.reviewer_note && (
+        <span style={{ fontSize: '0.72rem', color: '#64748b', fontStyle: 'italic', maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          "{decision.reviewer_note}"
+        </span>
+      )}
+    </div>
+  );
+}
 
 export function areStandardsEquivalent(std1?: string | null, std2?: string | null): boolean {
   if (!std1 || !std2) return false;
@@ -72,9 +115,10 @@ export interface RecommendationCardProps {
   req: Requirement;
   isPrimary?: boolean;
   onOpenEvidence: (req: Requirement) => void;
+  currentDecision?: HumanReviewDecision;
 }
 
-export function RecommendationCard({ req, isPrimary = false, onOpenEvidence }: RecommendationCardProps) {
+export function RecommendationCard({ req, isPrimary = false, onOpenEvidence, currentDecision }: RecommendationCardProps) {
   const isSupersededNotice = Boolean(req.superseded_citation);
   const isStrongMatch = req.decision === 'RECOMMEND' || (req.evidence_strength === 'STRONG' && req.relevance_score >= 0.85 && !isSupersededNotice);
   const isPotentialMatch = !isStrongMatch && (req.decision === 'RECOMMEND_WITH_REVIEW' || req.decision === 'REVIEW_REQUIRED' || req.human_review_required);
@@ -106,6 +150,7 @@ export function RecommendationCard({ req, isPrimary = false, onOpenEvidence }: R
             <h3 className="rec-card__standard-num">{req.candidate_standard}</h3>
             {isPrimary && <span className="rec-badge rec-badge--primary">Primary recommendation</span>}
             {isExplicitlyCited && <span className="rec-badge rec-badge--cited">Explicitly cited in tender</span>}
+            <HumanDecisionBadge decision={currentDecision} />
             {req.evidence_strength && req.evidence_strength !== 'NONE' && (
               <span className={`rec-badge ${req.evidence_strength === 'STRONG' ? 'rec-badge--strong' : 'rec-badge--moderate'}`}>
                 {req.evidence_strength === 'STRONG' ? 'Strong Evidence' : 'Supporting Evidence'}
@@ -186,9 +231,10 @@ export function RecommendationCard({ req, isPrimary = false, onOpenEvidence }: R
 export interface AttentionCardProps {
   req: Requirement;
   onOpenEvidence: (req: Requirement) => void;
+  currentDecision?: HumanReviewDecision;
 }
 
-export function AttentionCard({ req, onOpenEvidence }: AttentionCardProps) {
+export function AttentionCard({ req, onOpenEvidence, currentDecision }: AttentionCardProps) {
   const ambiguityState = req.ambiguity_state || (
     req.decision === 'NO_RELIABLE_MATCH' ? 'NO_RELIABLE_MATCH' :
     req.missing_parameters && req.missing_parameters.length > 0 ? 'INCOMPLETE' :
@@ -288,14 +334,17 @@ export function AttentionCard({ req, onOpenEvidence }: AttentionCardProps) {
         </div>
 
 
-        <button
-          type="button"
-          className="attention-card__see-why"
-          onClick={() => onOpenEvidence(req)}
-          aria-label="See technical details and audit evidence"
-        >
-          Audit Details →
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <HumanDecisionBadge decision={currentDecision} />
+          <button
+            type="button"
+            className="attention-card__see-why"
+            onClick={() => onOpenEvidence(req)}
+            aria-label="See technical details and audit evidence"
+          >
+            Audit Details →
+          </button>
+        </div>
       </div>
 
       <div className="attention-card__body">
@@ -382,9 +431,10 @@ export function AttentionCard({ req, onOpenEvidence }: AttentionCardProps) {
 export interface UpdateCardProps {
   req: Requirement;
   onOpenEvidence: (req: Requirement) => void;
+  currentDecision?: HumanReviewDecision;
 }
 
-export function UpdateCard({ req, onOpenEvidence }: UpdateCardProps) {
+export function UpdateCard({ req, onOpenEvidence, currentDecision }: UpdateCardProps) {
   const citedStandard = req.superseded_citation || req.candidate_standard;
   const currentReference = req.successor_standard || req.candidate_standard;
 
@@ -406,14 +456,17 @@ export function UpdateCard({ req, onOpenEvidence }: UpdateCardProps) {
           </div>
         </div>
 
-        <button
-          type="button"
-          className="update-card__see-why"
-          onClick={() => onOpenEvidence(req)}
-          aria-label={`See evidence regarding superseded standard ${citedStandard}`}
-        >
-          See why →
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <HumanDecisionBadge decision={currentDecision} />
+          <button
+            type="button"
+            className="update-card__see-why"
+            onClick={() => onOpenEvidence(req)}
+            aria-label={`See evidence regarding superseded standard ${citedStandard}`}
+          >
+            See why →
+          </button>
+        </div>
       </div>
 
       <div className="update-card__body">
