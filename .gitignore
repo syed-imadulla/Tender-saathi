@@ -54,3 +54,7 @@ htmlcov/
 # Temporary / Scratch files
 scratch/
 tmp/
+
+# Generated reports & manifest snapshots
+reports/generated/ts-*
+data/catalogue/manifests/manifest_snapshot_*

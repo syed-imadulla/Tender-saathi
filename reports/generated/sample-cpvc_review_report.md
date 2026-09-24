@@ -98,7 +98,7 @@
 - **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `High`
 - **Human Review Decision:** **ACCEPT**
 - **Reviewer Note:** "Verified by procurement officer"
-- **Decision Recorded:** `2026-09-24T15:37:40.534622+00:00`
+- **Decision Recorded:** `2026-09-24T16:29:22.233837+00:00`
 
 ---
 
@@ -121,4 +121,4 @@ TenderSaathi is a standards-review aid for procurement specifications. Final app
 
 | # | Requirement ID | Original System Finding | Human Decision | Reviewer Standard | Reviewer Note | Reviewed Timestamp |
 |---|---|---|---|---|---|---|
-| 1 | `REQ-001` | Authoritative active standard IS 15778 : 2007 verified against scope with High confidence. | **ACCEPT** | `—` | Verified by procurement officer | 2026-09-24T15:37:40.534622+00:00 |
+| 1 | `REQ-001` | Authoritative active standard IS 15778 : 2007 verified against scope with High confidence. | **ACCEPT** | `—` | Verified by procurement officer | 2026-09-24T16:29:22.233837+00:00 |

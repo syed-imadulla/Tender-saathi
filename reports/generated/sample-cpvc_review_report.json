@@ -789,7 +789,7 @@
         "decision": "ACCEPT",
         "reviewer_standard": null,
         "reviewer_note": "Verified by procurement officer",
-        "reviewed_at": "2026-09-24T15:37:40.534622+00:00",
+        "reviewed_at": "2026-09-24T16:29:22.233837+00:00",
         "system_standard": "IS 15778 : 2007",
         "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
       },
@@ -1102,7 +1102,7 @@
       "decision": "ACCEPT",
       "reviewer_standard": null,
       "reviewer_note": "Verified by procurement officer",
-      "reviewed_at": "2026-09-24T15:37:40.534622+00:00",
+      "reviewed_at": "2026-09-24T16:29:22.233837+00:00",
       "system_standard": "IS 15778 : 2007",
       "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
     }
