@@ -32,6 +32,7 @@ from src.applicability import ApplicabilityGate, ApplicabilityResult, Applicabil
 from src.regulatory.regulatory_engine import RegulatoryEngine
 from src.ambiguity import AmbiguityEngine, AmbiguityState, AmbiguityReport
 from src.evidence_intelligence import StandardsEvidenceBuilder
+from src.regulatory.external_authority import ExternalAuthorityRegistry
 
 
 # ---------------------------------------------------------------------------
@@ -128,6 +129,11 @@ class RequirementRecommendationResult:
     standard_role: str = "PRIMARY_PRODUCT"
     multilingual: Optional[Dict[str, Any]] = None
     structured_evidence: Optional[Dict[str, Any]] = None
+    # Phase 9: Multi-Component, External Regulatory & Lifecycle Currency fields:
+    component_recommendations: List[Dict[str, Any]] = field(default_factory=list)
+    external_regulations: List[Dict[str, Any]] = field(default_factory=list)
+    lifecycle_warnings: List[Dict[str, Any]] = field(default_factory=list)
+    amendment_metadata: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
 
@@ -198,6 +204,97 @@ class StandardsRecommender:
         from src.multilingual import MultilingualTechnicalNormalizer
         self.multilingual_normalizer = MultilingualTechnicalNormalizer()
         self.evidence_builder = StandardsEvidenceBuilder(self.db)
+        self.external_authority_registry = ExternalAuthorityRegistry()
+
+    def _evaluate_component_recommendations(
+        self,
+        req_id: str,
+        components: List[Any],
+        category: str
+    ) -> List[Dict[str, Any]]:
+        """
+        Evaluates independent technical components from compound requirements
+        without mutual suppression, providing per-component candidates and dependencies.
+        """
+        component_bundles: List[Dict[str, Any]] = []
+        substantive_types = {"material", "product", "equipment", "electrical", "control"}
+
+        substantive_comps = [
+            c for c in components
+            if (getattr(c, "component_type", None) or (c.get("component_type") if isinstance(c, dict) else None)) in substantive_types
+        ]
+
+        # Deduplicate components by text
+        seen_texts = set()
+        dedup_comps = []
+        for c in substantive_comps:
+            t = (getattr(c, "text", None) or (c.get("text") if isinstance(c, dict) else str(c))).strip().lower()
+            if t and t not in seen_texts:
+                seen_texts.add(t)
+                dedup_comps.append(c)
+
+        for idx, comp in enumerate(dedup_comps):
+            comp_text = getattr(comp, "text", None) or (comp.get("text") if isinstance(comp, dict) else str(comp))
+            comp_domain = getattr(comp, "domain", None) or (comp.get("domain") if isinstance(comp, dict) else category)
+            comp_role = getattr(comp, "role", None) or (comp.get("role") if isinstance(comp, dict) else getattr(comp, "component_type", None)) or "COMPONENT"
+            comp_id = f"{req_id}-C{idx + 1}"
+
+            comp_query = f"{comp_text} {comp_domain}".strip()
+            c_search = self.search_engine.search(comp_query, top_k=3, mode="hybrid")
+
+            matched_c = None
+            for cs in c_search:
+                app_check = self.applicability_gate.evaluate_candidate(
+                    candidate=cs,
+                    requirement_text=comp_query,
+                    components=[comp] if isinstance(comp, RequirementComponent) else [],
+                    parsed_ai=None,
+                    is_explicitly_cited=False
+                )
+                if app_check.applicable and cs.relevance_score >= 0.40:
+                    matched_c = (cs, app_check)
+                    break
+
+            if matched_c:
+                c_std, c_app = matched_c
+                sub_dep = self.dependency_engine.analyze_dependencies(
+                    requirement=comp_text,
+                    primary_standard=c_std.standard_number,
+                    primary_title=c_std.full_title
+                )
+                component_bundles.append({
+                    "component_id": comp_id,
+                    "component_text": comp_text,
+                    "component_domain": comp_domain,
+                    "component_role": comp_role,
+                    "candidate_standard": c_std.standard_number,
+                    "title": c_std.full_title,
+                    "confidence": "High" if c_std.relevance_score >= 0.75 else "Medium",
+                    "relevance_score": round(c_std.relevance_score, 3),
+                    "evidence": c_std.scope_summary or c_std.relevance_reason or f"Standard applies to technical component '{comp_text}'.",
+                    "applicability_decision": "APPLICABLE",
+                    "dependencies": sub_dep.to_dict(),
+                    "human_review_required": False,
+                    "why_matched": f"Component '{comp_text}' matches standard {c_std.standard_number} ({c_std.full_title})."
+                })
+            else:
+                component_bundles.append({
+                    "component_id": comp_id,
+                    "component_text": comp_text,
+                    "component_domain": comp_domain,
+                    "component_role": comp_role,
+                    "candidate_standard": None,
+                    "title": "Review Required",
+                    "confidence": "Low",
+                    "relevance_score": 0.0,
+                    "evidence": f"No unambiguous Indian Standard confirmed for component '{comp_text}'.",
+                    "applicability_decision": "REVIEW_REQUIRED",
+                    "dependencies": {},
+                    "human_review_required": True,
+                    "why_matched": f"Component '{comp_text}' requires engineering review."
+                })
+
+        return component_bundles
 
 
     def recommend_for_requirement(self, req: Any, tender_cited_standards: Optional[List[str]] = None) -> RequirementRecommendationResult:
@@ -477,6 +574,15 @@ class StandardsRecommender:
             unresolved_components=None
         )
 
+        # Phase 9: Multi-component bundles & External Authority Signals
+        component_recs = self._evaluate_component_recommendations(
+            req_id=req_id,
+            components=req.components or [],
+            category=cat
+        )
+        external_signals = self.external_authority_registry.match_signals(working_text)
+        external_regs = [s.to_dict() for s in external_signals]
+
         # Clean Abstention for INCOMPLETE, AMBIGUOUS, CONFLICTING, NO_RELIABLE_MATCH
         if ambiguity_report.ambiguity_state in [
             AmbiguityState.INCOMPLETE,
@@ -597,7 +703,11 @@ class StandardsRecommender:
                 suggested_clarification_question=ambiguity_report.suggested_clarification_question,
                 unresolved_components=ambiguity_report.unresolved_components,
                 multilingual=multilingual_payload,
-                structured_evidence=abstain_struct_ev.to_dict()
+                structured_evidence=abstain_struct_ev.to_dict(),
+                component_recommendations=component_recs,
+                external_regulations=external_regs,
+                lifecycle_warnings=[],
+                amendment_metadata=None
             )
 
         # Step 5: Validate and Ground Candidates
@@ -854,6 +964,12 @@ class StandardsRecommender:
             if any_conflict_detected:
                 conf = "Low"
 
+        if dep_report.lifecycle_warnings:
+            for lw in dep_report.lifecycle_warnings:
+                msg = f"Lifecycle warning for dependency {lw.get('standard_number')}: {lw.get('reason')} (Active successor: {lw.get('active_successor')})"
+                if msg not in risk_reasons:
+                    risk_reasons.append(msg)
+
         top_app = candidate_applicability_map.get(top_rec.standard_number) or (
             candidate_applicability_map.get(top_rec.standard_number.split(":")[0].strip()) if ":" in top_rec.standard_number else None
         )
@@ -926,7 +1042,11 @@ class StandardsRecommender:
             unresolved_components=unresolved_missing,
             standard_role=top_rec.standard_role,
             multilingual=multilingual_payload,
-            structured_evidence=top_struct_ev.to_dict()
+            structured_evidence=top_struct_ev.to_dict(),
+            component_recommendations=component_recs,
+            external_regulations=external_regs,
+            lifecycle_warnings=dep_report.lifecycle_warnings,
+            amendment_metadata=dep_report.amendment_metadata
         )
 
 

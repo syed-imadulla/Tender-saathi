@@ -55,6 +55,9 @@ class AuditFindingType:
     PARTIAL_STANDARD_COVERAGE = "PARTIAL_STANDARD_COVERAGE"
     POTENTIAL_STANDARD_GAP = "POTENTIAL_STANDARD_GAP"
     LIFECYCLE_CONCERN = "LIFECYCLE_CONCERN"
+    LIFECYCLE_DEPENDENCY_SUPERSEDED = "LIFECYCLE_DEPENDENCY_SUPERSEDED"
+    EXTERNAL_STATUTORY_SIGNAL = "EXTERNAL_STATUTORY_SIGNAL"
+    MULTI_COMPONENT_COVERAGE = "MULTI_COMPONENT_COVERAGE"
     AMBIGUOUS_REQUIREMENT = "AMBIGUOUS_REQUIREMENT"
     CLARIFICATION_REQUIRED = "CLARIFICATION_REQUIRED"
     EVIDENCE_INSUFFICIENT = "EVIDENCE_INSUFFICIENT"
@@ -109,6 +112,8 @@ class RequirementCoverageItem:
     gap_details: Optional[Dict[str, Any]] = None
     lifecycle_concerns: List[Dict[str, Any]] = field(default_factory=list)
     ambiguity_details: Optional[Dict[str, Any]] = None
+    lifecycle_warnings: List[Dict[str, Any]] = field(default_factory=list)
+    external_regulations: List[Dict[str, Any]] = field(default_factory=list)
     findings: List[AuditFinding] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -831,6 +836,53 @@ class TenderAuditEngine:
         if lifecycle_finding:
             findings.append(lifecycle_finding)
 
+        # Phase 9: Lifecycle dependency superseded findings
+        for idx, lw in enumerate(getattr(r, "lifecycle_warnings", []) or []):
+            findings.append(AuditFinding(
+                finding_id=f"LIFECYCLE-DEP-{req_id}-{idx+1}",
+                requirement_id=req_id,
+                finding_type=AuditFindingType.LIFECYCLE_DEPENDENCY_SUPERSEDED,
+                title=f"Superseded Related Dependency: {lw.get('standard_number')}",
+                standards=[lw.get("standard_number")] if lw.get("standard_number") else [],
+                applicability_decision="REVIEW_REQUIRED",
+                evidence_strength="STRONG",
+                supporting_facts=[
+                    f"Dependency {lw.get('standard_number')} is superseded in BIS catalogue.",
+                    f"Active successor: {lw.get('active_successor') or 'No active successor recorded'}.",
+                    f"Reason: {lw.get('reason') or 'Superseded'}"
+                ],
+                lifecycle_status="WITHDRAWN",
+                lifecycle_note=f"Active successor: {lw.get('active_successor')}",
+                uncertainty="Related standard is superseded; procurement specifications should update to active successor.",
+                human_review_required=True,
+                review_action=f"Verify substitution of {lw.get('standard_number')} with {lw.get('active_successor') or 'successor'}.",
+                severity="HIGH",
+                provenance={"source": "BIS_CATALOGUE", "verified": True}
+            ))
+
+        # Phase 9: External statutory signals
+        for idx, es in enumerate(getattr(r, "external_regulations", []) or []):
+            findings.append(AuditFinding(
+                finding_id=f"STATUTORY-{req_id}-{idx+1}",
+                requirement_id=req_id,
+                finding_type=AuditFindingType.EXTERNAL_STATUTORY_SIGNAL,
+                title=f"Statutory Advisory Signal: {es.get('authority_name')} ({es.get('statutory_instrument')})",
+                standards=es.get("related_indian_standards", []),
+                applicability_decision="ADVISORY_SIGNAL",
+                evidence_strength="STRONG",
+                supporting_facts=[
+                    f"Authority: {es.get('authority_name')} ({es.get('authority_code')})",
+                    f"Instrument: {es.get('statutory_instrument')}, Clause: {es.get('applicable_clause')}",
+                    f"Advisory: {es.get('advisory_summary')}"
+                ],
+                lifecycle_status="ACTIVE",
+                uncertainty="External regulatory advisory signal. Does NOT constitute legal compliance certification.",
+                human_review_required=False,
+                review_action=f"Review statutory compliance with {es.get('statutory_instrument')}.",
+                severity="INFO",
+                provenance={"source": es.get("statutory_provenance", "OFFICIAL_GAZETTE"), "verified": True}
+            ))
+
         # 2. Administrative / Non-technical check: UNKNOWN != GAP
         if self._is_non_technical_clause(r):
             finding = AuditFinding(
@@ -1102,6 +1154,21 @@ class TenderAuditEngine:
 
     def _check_multi_component(self, r: RequirementRecommendationResult) -> Tuple[bool, List[Dict[str, Any]]]:
         """Evaluates whether requirement involves composite multi-standard components."""
+        comp_recs = getattr(r, "component_recommendations", []) or []
+        if comp_recs and len(comp_recs) > 1:
+            breakdown = [
+                {
+                    "component_id": c.get("component_id"),
+                    "component_name": c.get("component_text"),
+                    "standard": c.get("candidate_standard"),
+                    "status": CoverageState.COVERED if c.get("applicability_decision") == "APPLICABLE" else CoverageState.REVIEW_REQUIRED,
+                    "confidence": c.get("confidence", "Medium"),
+                    "evidence": c.get("evidence", "")
+                }
+                for c in comp_recs
+            ]
+            return True, breakdown
+
         comps = getattr(r, "decomposed_components", []) or []
         recs = getattr(r, "recommendations", []) or []
 

@@ -92,23 +92,15 @@ class TestMilestone5Graph(unittest.TestCase):
 
     # 7. INFERRED relationship cannot become STRONG evidence
     def test_07_inferred_cannot_become_strong(self):
-        """Ensure that INFERRED provenance relationships produce WEAK evidence strength."""
-        # Create a mock relationship with INFERRED provenance
-        inferred_rel = StandardRelationship(
-            source_standard="IS 99999",
-            target_standard="IS 88888",
-            relationship_type="REFERENCES",
-            evidence="Inferred co-citation in tender corpus",
-            provenance="INFERRED"
-        )
-        # Test mapping logic
-        if inferred_rel.provenance == "INFERRED":
-            ev_strength = "WEAK"
-        elif inferred_rel.provenance == "CURATED":
-            ev_strength = "MODERATE"
-        else:
-            ev_strength = "STRONG"
-        self.assertEqual(ev_strength, "WEAK", "INFERRED relationship must never produce STRONG evidence.")
+        """Ensure that INFERRED provenance relationships are strictly rejected from production graph."""
+        with self.assertRaises(ValueError):
+            StandardRelationship(
+                source_standard="IS 99999",
+                target_standard="IS 88888",
+                relationship_type="REFERENCES",
+                evidence="Inferred co-citation in tender corpus",
+                provenance="INFERRED"
+            )
 
     # 8. Graph connectivity does not automatically mean tender applicability
     def test_08_connectivity_not_automatic_applicability(self):
@@ -209,7 +201,7 @@ class TestMilestone5Graph(unittest.TestCase):
         self.assertIsNotNone(exp)
         self.assertIn("IS 15000", exp)
         self.assertIn("IS 2491", exp)
-        self.assertIn("REFERENCES", exp)
+        self.assertTrue("NORMATIVE_REFERENCE" in exp or "REFERENCES" in exp)
 
 
 if __name__ == "__main__":

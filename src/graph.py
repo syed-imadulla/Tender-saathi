@@ -17,29 +17,21 @@ import re
 from dataclasses import dataclass, asdict, field
 from typing import List, Dict, Any, Optional, Set
 
-from src.standards import StandardsDatabase
+from src.standards import (
+    StandardsDatabase,
+    CANONICAL_RELATIONSHIP_TYPES,
+    LEGACY_RELATIONSHIP_ALIASES,
+    ALLOWED_PROVENANCE_LEVELS,
+    PROHIBITED_PROVENANCE_LEVELS,
+    RelationshipType,
+    normalize_relationship_type,
+    StandardRole,
+    classify_standard_role
+)
 from src.validate import validate_standard_status, StandardValidationResult
 
 
-SUPPORTED_RELATIONSHIP_TYPES = {
-    "SUPERSEDES",
-    "AMENDS",
-    "REFERENCES",
-    "NORMATIVE_REFERENCE",
-    "TEST_METHOD",
-    "CODE_OF_PRACTICE",
-    "INSTALLATION_STANDARD",
-    "TERMINOLOGY_STANDARD",
-    "SAFETY_STANDARD",
-    "ALLIED_STANDARD",
-    "CERTIFICATION_RELATED",
-    "QCO_RELATED",
-    "RELATED_FOR_REVIEW",
-    # Legacy / aliases preserved for backward compatibility
-    "CODE_OF_PRACTICE_FOR",
-    "IDENTICAL_ADOPTION",
-    "SUPERSEDED_BY"
-}
+SUPPORTED_RELATIONSHIP_TYPES = CANONICAL_RELATIONSHIP_TYPES | set(LEGACY_RELATIONSHIP_ALIASES.keys())
 
 
 # ---------------------------------------------------------------------------
@@ -48,19 +40,86 @@ SUPPORTED_RELATIONSHIP_TYPES = {
 
 @dataclass
 class StandardRelationship:
-    """Represents a directed evidentiary relationship between two standards."""
+    """
+    Represents a directed evidentiary relationship between two standards.
+    Strictly enforces canonical relationship taxonomy and provenance invariants:
+    - Production graph relationships may ONLY use VERIFIED or CURATED provenance.
+    - INFERRED provenance is strictly rejected with ValueError.
+    - Mandatory fields: source_standard, target_standard, relationship_type, evidence,
+      evidence_clause, provenance, confidence, source.
+    """
     source_standard: str                  # Canonical or display representation of source
     target_standard: str                  # Canonical or display representation of target
-    relationship_type: str                # Typed relationship (from SUPPORTED_RELATIONSHIP_TYPES)
+    relationship_type: str                # Typed canonical relationship or legacy alias
     evidence: str                         # Verbatim clause / snippet or foreword statement
-    provenance: str                       # VERIFIED, CURATED, INFERRED
-    source_url: Optional[str] = None      # Portal URL if available
+    evidence_clause: Optional[str] = None # Clause / section where evidence appears
+    provenance: str = "VERIFIED"          # Must strictly be "VERIFIED" or "CURATED"
     confidence: float = 1.0               # 0.0 to 1.0
+    source: str = "BSB_EDGE_MANUALLY_VERIFIED" # Official evidentiary source
+    source_url: Optional[str] = None      # Portal URL if available
     direction: str = "OUTGOING"           # "OUTGOING" (source -> target) or "INCOMING" (target <- source)
-    source: str = "BIS_PORTAL"            # e.g. "BSB_EDGE_MANUALLY_VERIFIED", "BIS_PORTAL", "RELATIONSHIPS_JSON"
+
+    def __post_init__(self):
+        # 1. Enforce non-empty source_standard and target_standard
+        if not self.source_standard or not str(self.source_standard).strip():
+            raise ValueError("source_standard must be a non-empty string.")
+        if not self.target_standard or not str(self.target_standard).strip():
+            raise ValueError("target_standard must be a non-empty string.")
+        self.source_standard = str(self.source_standard).strip()
+        self.target_standard = str(self.target_standard).strip()
+
+        # 2. Enforce non-empty evidence
+        if not self.evidence or not str(self.evidence).strip():
+            raise ValueError("evidence must be a non-empty string.")
+        self.evidence = str(self.evidence).strip()
+
+        # 3. Enforce strict provenance invariant: ONLY VERIFIED or CURATED; INFERRED is rejected
+        prov_norm = str(self.provenance or "").strip().upper()
+        if prov_norm not in ALLOWED_PROVENANCE_LEVELS:
+            raise ValueError(
+                f"Invalid relationship provenance: '{self.provenance}'. "
+                f"Production graph relationships may ONLY use: {sorted(ALLOWED_PROVENANCE_LEVELS)}. "
+                f"INFERRED provenance is strictly rejected."
+            )
+        self.provenance = prov_norm
+
+        # 4. Enforce confidence within [0.0, 1.0]
+        try:
+            conf_val = float(self.confidence)
+            if not (0.0 <= conf_val <= 1.0):
+                raise ValueError
+            self.confidence = conf_val
+        except (TypeError, ValueError):
+            raise ValueError(f"confidence must be a float between 0.0 and 1.0, got: {self.confidence}")
+
+        # 5. Enforce non-empty source
+        if not self.source or not str(self.source).strip():
+            raise ValueError("source must be a non-empty string.")
+        self.source = str(self.source).strip()
+
+        # 6. Extract or normalize evidence_clause
+        if not self.evidence_clause and self.evidence:
+            m = re.search(r'\b(Clause\s+\d+(?:\.\d+)*|Foreword|Section\s+\d+|Annex\s+[A-Z])\b', self.evidence, re.IGNORECASE)
+            if m:
+                self.evidence_clause = m.group(1).title()
+
+        # 7. Normalize relationship_type and handle SUPERSEDED_BY reversal
+        raw_type = str(self.relationship_type or "").strip().upper()
+        if raw_type == "SUPERSEDED_BY":
+            # Reverse relationship: target_standard SUPERSEDES source_standard
+            self.source_standard, self.target_standard = self.target_standard, self.source_standard
+            self.relationship_type = RelationshipType("SUPERSEDES")
+            if self.direction == "OUTGOING":
+                self.direction = "INCOMING"
+            elif self.direction == "INCOMING":
+                self.direction = "OUTGOING"
+        else:
+            self.relationship_type = RelationshipType(raw_type)
 
     def to_dict(self) -> Dict[str, Any]:
-        return asdict(self)
+        d = asdict(self)
+        d["relationship_type"] = self.relationship_type
+        return d
 
 
 @dataclass

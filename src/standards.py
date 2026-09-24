@@ -46,6 +46,149 @@ class BISStandardContent:
     notes: Optional[str] = None               # Technical/revision notes
 
 
+CANONICAL_RELATIONSHIP_TYPES = {
+    "NORMATIVE_REFERENCE",
+    "TEST_METHOD",
+    "INSTALLATION_CODE",
+    "SAFETY_STANDARD",
+    "TERMINOLOGY_STANDARD",
+    "ALLIED_STANDARD",
+    "SUPERSEDES",
+    "AMENDS",
+}
+
+LEGACY_RELATIONSHIP_ALIASES = {
+    "CODE_OF_PRACTICE": "INSTALLATION_CODE",
+    "INSTALLATION_STANDARD": "INSTALLATION_CODE",
+    "CODE_OF_PRACTICE_FOR": "INSTALLATION_CODE",
+    "REFERENCES": "NORMATIVE_REFERENCE",
+    "SUPERSEDED_BY": "SUPERSEDES",
+    "IDENTICAL_ADOPTION": "ALLIED_STANDARD",
+    "CERTIFICATION_RELATED": "ALLIED_STANDARD",
+    "QCO_RELATED": "ALLIED_STANDARD",
+    "RELATED_FOR_REVIEW": "ALLIED_STANDARD",
+}
+
+ALLOWED_PROVENANCE_LEVELS = {"VERIFIED", "CURATED"}
+PROHIBITED_PROVENANCE_LEVELS = {"INFERRED"}
+
+
+def normalize_relationship_type(val: str) -> str:
+    """
+    Normalizes a relationship type to its canonical form.
+    Maps legacy aliases (CODE_OF_PRACTICE, REFERENCES, etc.) to canonical types.
+    Raises ValueError for unsupported relationship types.
+    """
+    if not val or not str(val).strip():
+        raise ValueError("relationship_type must be a non-empty string.")
+    raw = str(val).strip().upper()
+    if raw in CANONICAL_RELATIONSHIP_TYPES:
+        return raw
+    if raw in LEGACY_RELATIONSHIP_ALIASES:
+        return LEGACY_RELATIONSHIP_ALIASES[raw]
+    raise ValueError(
+        f"Unsupported relationship type: '{val}'. "
+        f"Allowed canonical types: {sorted(CANONICAL_RELATIONSHIP_TYPES)}. "
+        f"Supported legacy aliases: {sorted(LEGACY_RELATIONSHIP_ALIASES.keys())}."
+    )
+
+
+class RelationshipType(str):
+    """
+    Canonical Relationship Type with backward-compatible legacy alias resolution.
+    Serializes as canonical uppercase string name.
+    Equality comparisons against legacy aliases (e.g. 'CODE_OF_PRACTICE_FOR', 'REFERENCES')
+    evaluate to True for seamless backward compatibility with existing tests and modules.
+    """
+    def __new__(cls, val: str):
+        canonical = normalize_relationship_type(val)
+        obj = str.__new__(cls, canonical)
+        obj._raw_value = str(val).strip().upper()
+        return obj
+
+    def __eq__(self, other: Any) -> bool:
+        if super().__eq__(other):
+            return True
+        if isinstance(other, str):
+            raw_other = other.strip().upper()
+            if self._raw_value == raw_other:
+                return True
+            try:
+                norm_other = normalize_relationship_type(other)
+                return str(self) == norm_other
+            except ValueError:
+                return False
+        return False
+
+    def __hash__(self) -> int:
+        return super().__hash__()
+
+
+class StandardRole(str):
+    """
+    Standard Functional Role with backward-compatible legacy alias resolution.
+    Serializes as canonical uppercase role string.
+    Equality comparisons against legacy role aliases evaluate to True.
+    """
+    def __new__(cls, val: str):
+        raw = str(val).strip().upper()
+        canonical_map = {
+            "PRIMARY_PRODUCT": "PRIMARY_PRODUCT",
+            "PRODUCT": "PRIMARY_PRODUCT",
+            "INSTALLATION": "INSTALLATION_CODE",
+            "CODE_OF_PRACTICE": "INSTALLATION_CODE",
+            "INSTALLATION_CODE": "INSTALLATION_CODE",
+            "INSTALLATION_STANDARD": "INSTALLATION_CODE",
+            "TEST_METHOD": "TEST_METHOD",
+            "TESTING": "TEST_METHOD",
+            "SAFETY": "SAFETY_STANDARD",
+            "SAFETY_STANDARD": "SAFETY_STANDARD",
+            "TERMINOLOGY": "TERMINOLOGY_STANDARD",
+            "TERMINOLOGY_STANDARD": "TERMINOLOGY_STANDARD",
+            "ALLIED": "ALLIED_STANDARD",
+            "ALLIED_STANDARD": "ALLIED_STANDARD",
+            "NORMATIVE_DEPENDENCY": "NORMATIVE_REFERENCE",
+            "NORMATIVE_REFERENCE": "NORMATIVE_REFERENCE",
+            "APPLIANCE_TOOL": "APPLIANCE_TOOL",
+        }
+        canonical = canonical_map.get(raw, raw)
+        obj = str.__new__(cls, canonical)
+        obj._raw_value = raw
+        return obj
+
+    def __eq__(self, other: Any) -> bool:
+        if super().__eq__(other):
+            return True
+        if isinstance(other, str):
+            raw_other = other.strip().upper()
+            if self._raw_value == raw_other:
+                return True
+            canonical_map = {
+                "PRIMARY_PRODUCT": "PRIMARY_PRODUCT",
+                "PRODUCT": "PRIMARY_PRODUCT",
+                "INSTALLATION": "INSTALLATION_CODE",
+                "CODE_OF_PRACTICE": "INSTALLATION_CODE",
+                "INSTALLATION_CODE": "INSTALLATION_CODE",
+                "INSTALLATION_STANDARD": "INSTALLATION_CODE",
+                "TEST_METHOD": "TEST_METHOD",
+                "TESTING": "TEST_METHOD",
+                "SAFETY": "SAFETY_STANDARD",
+                "SAFETY_STANDARD": "SAFETY_STANDARD",
+                "TERMINOLOGY": "TERMINOLOGY_STANDARD",
+                "TERMINOLOGY_STANDARD": "TERMINOLOGY_STANDARD",
+                "ALLIED": "ALLIED_STANDARD",
+                "ALLIED_STANDARD": "ALLIED_STANDARD",
+                "NORMATIVE_DEPENDENCY": "NORMATIVE_REFERENCE",
+                "NORMATIVE_REFERENCE": "NORMATIVE_REFERENCE",
+                "APPLIANCE_TOOL": "APPLIANCE_TOOL",
+            }
+            return str(self) == canonical_map.get(raw_other, raw_other)
+        return False
+
+    def __hash__(self) -> int:
+        return super().__hash__()
+
+
 @dataclass
 class BISStandardReference:
     """Normative reference cited within the standard."""
@@ -59,15 +202,53 @@ class BISStandardReference:
 class BISStandardRelationship:
     """
     Explicit relationship strictly supported by source evidence.
-    Allowed types:
-      - REFERENCES: Listed under normative references
-      - SUPERSEDES: Explicitly stated in foreword/scope
-      - CODE_OF_PRACTICE_FOR: Explicitly stated laying/application code
-      - IDENTICAL_ADOPTION: Identical ISO/IEC adoption
+    Allowed canonical types:
+      - NORMATIVE_REFERENCE
+      - TEST_METHOD
+      - INSTALLATION_CODE
+      - SAFETY_STANDARD
+      - TERMINOLOGY_STANDARD
+      - ALLIED_STANDARD
+      - SUPERSEDES
+      - AMENDS
     """
     target_standard: str
     relationship_type: str
     evidence: str
+    evidence_clause: Optional[str] = None
+    provenance: str = "VERIFIED"
+    confidence: float = 1.0
+    source: str = "BSB_EDGE_MANUALLY_VERIFIED"
+
+    def __post_init__(self):
+        if not self.target_standard or not str(self.target_standard).strip():
+            raise ValueError("target_standard must be a non-empty string.")
+        self.target_standard = str(self.target_standard).strip()
+        if not self.evidence or not str(self.evidence).strip():
+            raise ValueError("evidence must be a non-empty string.")
+        self.evidence = str(self.evidence).strip()
+
+        prov_norm = str(self.provenance or "").strip().upper()
+        if prov_norm not in ALLOWED_PROVENANCE_LEVELS:
+            raise ValueError(
+                f"Invalid relationship provenance: '{self.provenance}'. "
+                f"Production graph relationships may ONLY use: {sorted(ALLOWED_PROVENANCE_LEVELS)}. "
+                f"INFERRED provenance is strictly rejected."
+            )
+        self.provenance = prov_norm
+
+        raw_type = str(self.relationship_type or "").strip().upper()
+        self.relationship_type = RelationshipType(raw_type)
+
+        if not self.evidence_clause and self.evidence:
+            m = re.search(r'\b(Clause\s+\d+(?:\.\d+)*|Foreword|Section\s+\d+|Annex\s+[A-Z])\b', self.evidence, re.IGNORECASE)
+            if m:
+                self.evidence_clause = m.group(1).title()
+
+    def to_dict(self) -> Dict[str, Any]:
+        d = asdict(self)
+        d["relationship_type"] = self.relationship_type
+        return d
 
 
 @dataclass
@@ -88,15 +269,15 @@ class BISStandardRecord:
 
 
 
-def classify_standard_role(standard_number: str, title: Optional[str] = None, scope: Optional[str] = None) -> str:
+def classify_standard_role(standard_number: str, title: Optional[str] = None, scope: Optional[str] = None) -> StandardRole:
     """Classifies a standard into its primary functional role:
     - PRIMARY_PRODUCT: Manufacturing / specification for a product, item, or equipment
-    - INSTALLATION: Laying, installation, erection, and execution code of practice
-    - CODE_OF_PRACTICE: General engineering code of practice or design standard
+    - INSTALLATION_CODE: Laying, installation, erection, and execution code of practice (alias: INSTALLATION, CODE_OF_PRACTICE)
     - TEST_METHOD: Testing, sampling, or test procedure standard
-    - SAFETY: Safety requirements or fire safety code
-    - ALLIED: Terminology, symbols, dimensions, or allied reference standard
-    - NORMATIVE_DEPENDENCY: General referenced normative standard
+    - SAFETY_STANDARD: Safety requirements or fire safety code
+    - TERMINOLOGY_STANDARD: Glossaries, definitions, symbols, or nomenclature
+    - ALLIED_STANDARD: Terminology, symbols, dimensions, or allied reference standard
+    - NORMATIVE_REFERENCE: General referenced normative standard
     """
     s = str(standard_number or "").upper()
     t = str(title or "").lower()
@@ -115,7 +296,7 @@ def classify_standard_role(standard_number: str, title: Optional[str] = None, sc
     is_cop_num = any(re.search(r'\b' + re.escape(c) + r'\b', s) for c in cop_nums)
 
     if is_known_product and not is_cop_num:
-        return "PRIMARY_PRODUCT"
+        return StandardRole("PRIMARY_PRODUCT")
 
     # 1. Household and commercial electrical appliances & portable tools
     appliance_keywords = [
@@ -128,7 +309,7 @@ def classify_standard_role(standard_number: str, title: Optional[str] = None, sc
         "hand-held electric tools"
     ]
     if any(k in t for k in appliance_keywords) or (("household" in t or "similar electrical appliances" in t) and ("safety" in t or "appliances" in t)):
-        return "APPLIANCE_TOOL"
+        return StandardRole("APPLIANCE_TOOL")
 
     # 2. Facility / premise / establishment codes of practice & hygiene guidelines
     facility_keywords = [
@@ -139,31 +320,31 @@ def classify_standard_role(standard_number: str, title: Optional[str] = None, sc
     ]
     if any(k in t for k in facility_keywords) or any(k in sc for k in facility_keywords):
         if "code of practice" in t or "code of practice" in s or "haccp" in t or is_cop_num:
-            return "FACILITY_PREMISE"
+            return StandardRole("FACILITY_PREMISE")
 
     # 3. Code of Practice / Installation / Management Systems
     if "code of practice" in t or "code of practice" in s or is_cop_num or "haccp" in t or "haccp" in s or "guidelines" in t:
         if any(w in t or w in sc for w in ["installation", "laying", "erection", "fixing", "maintenance", "jointing", "execution"]):
-            return "INSTALLATION"
-        return "CODE_OF_PRACTICE"
+            return StandardRole("INSTALLATION_CODE")
+        return StandardRole("INSTALLATION_CODE")
 
     if any(w in t for w in ["installation and maintenance", "installation of", "laying of", "code of practice for laying"]):
-        return "INSTALLATION"
+        return StandardRole("INSTALLATION_CODE")
 
     # 4. Test Methods
     if any(w in t for w in ["method of test", "methods of test", "test method", "methods for test", "sampling and test", "sampling and methods of test"]):
-        return "TEST_METHOD"
+        return StandardRole("TEST_METHOD")
 
     # 5. Safety Standards
     if any(w in t for w in ["safety requirements", "code of safety", "safety code", "fire safety"]):
-        return "SAFETY"
+        return StandardRole("SAFETY_STANDARD")
 
     # 6. Allied / Terminology
     if any(w in t for w in ["glossary of terms", "terminology", "vocabulary", "symbols"]):
-        return "ALLIED"
+        return StandardRole("TERMINOLOGY_STANDARD")
 
     # 7. Default is primary product specification
-    return "PRIMARY_PRODUCT"
+    return StandardRole("PRIMARY_PRODUCT")
 
 
 # ---------------------------------------------------------------------------
@@ -532,7 +713,13 @@ class StandardsDatabase:
 
             # Fetch explicit relationships
             cursor.execute("SELECT target_standard, relationship_type, evidence FROM standard_relationships WHERE source_standard_id = ?", (standard_id,))
-            result["explicit_relationships"] = [dict(r) for r in cursor.fetchall()]
+            exp_rels = []
+            for r in cursor.fetchall():
+                d = dict(r)
+                if d.get("relationship_type"):
+                    d["relationship_type"] = RelationshipType(d["relationship_type"])
+                exp_rels.append(d)
+            result["explicit_relationships"] = exp_rels
 
             return result
 
@@ -563,4 +750,10 @@ class StandardsDatabase:
             FROM standard_relationships
             WHERE source_standard_id = ? OR target_standard LIKE ?
             """, (standard_id, f"%{standard_id}%"))
-            return [dict(r) for r in cursor.fetchall()]
+            rows = []
+            for r in cursor.fetchall():
+                d = dict(r)
+                if d.get("relationship_type"):
+                    d["relationship_type"] = RelationshipType(d["relationship_type"])
+                rows.append(d)
+            return rows

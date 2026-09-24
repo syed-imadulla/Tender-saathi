@@ -48,28 +48,28 @@
       "Withdrawn": 0,
       "Unknown": 0
     },
-    "related_standards_count": 3,
+    "related_standards_count": 4,
     "review_queue": [],
     "publication_readiness": "READY_FOR_REVIEW",
     "readiness_reasons": [
       "All 1 requirement(s) have grounded standards evidence with no critical or high risk flags."
     ],
     "readiness_note": "Deterministic, evidence-backed standards review audit for procurement officers. Does NOT constitute legal compliance certification.",
-    "dependency_count": 4,
+    "dependency_count": 5,
     "normative_reference_count": 0,
-    "allied_standard_count": 1,
+    "allied_standard_count": 2,
     "test_standard_count": 1,
     "installation_standard_count": 2,
     "verified_missing_count": 0,
     "potentially_missing_count": 2,
-    "related_for_review_count": 1,
+    "related_for_review_count": 2,
     "standards_coverage": {
       "direct_standards_identified": 1,
-      "total_dependencies": 4,
+      "total_dependencies": 5,
       "normative_references": 0,
       "testing_dependencies": 1,
       "installation_dependencies": 2,
-      "allied_standards": 1,
+      "allied_standards": 2,
       "covered_in_tender": 0,
       "potential_gaps": 2,
       "verified_gaps": 0,
@@ -78,7 +78,7 @@
     "gap_summary": {
       "verified_missing_count": 0,
       "potentially_missing_count": 2,
-      "related_for_review_count": 1
+      "related_for_review_count": 2
     },
     "certification_checks": 1,
     "qco_checks": 1,
@@ -122,6 +122,7 @@
         "UNKNOWN": 0
       },
       "finding_distribution": {
+        "EXTERNAL_STATUTORY_SIGNAL": 1,
         "STANDARD_COVERED": 1
       }
     },
@@ -137,7 +138,42 @@
         "gap_details": null,
         "lifecycle_concerns": [],
         "ambiguity_details": null,
+        "lifecycle_warnings": [],
+        "external_regulations": [],
         "findings": [
+          {
+            "finding_id": "STATUTORY-REQ-001-1",
+            "requirement_id": "REQ-001",
+            "finding_type": "EXTERNAL_STATUTORY_SIGNAL",
+            "title": "Statutory Advisory Signal: Central Public Works Department (CPWD Specifications 2019 / 2023 (Civil & Electrical Works))",
+            "standards": [
+              "IS 458",
+              "IS 783",
+              "IS 1239",
+              "IS 4985",
+              "IS 15778",
+              "IS 15905",
+              "IS 732"
+            ],
+            "applicability_decision": "ADVISORY_SIGNAL",
+            "evidence_strength": "STRONG",
+            "supporting_facts": [
+              "Authority: Central Public Works Department (CPWD)",
+              "Instrument: CPWD Specifications 2019 / 2023 (Civil & Electrical Works), Clause: Section 19 (Water Supply), Section 20 (Drainage), Section 31 (Electrical)",
+              "Advisory: CPWD Works Specifications govern execution, laying, jointing and testing of water supply pipelines, sewerage conduits and electrical installations for central works, mandating compliance with IS 783 (laying concrete pipes), IS 15778 (CPVC plumbing), and IS 1239 (mild steel piping)."
+            ],
+            "lifecycle_status": "ACTIVE",
+            "lifecycle_note": null,
+            "relationships": [],
+            "provenance": {
+              "source": "OFFICIAL_MANUAL",
+              "verified": true
+            },
+            "uncertainty": "External regulatory advisory signal. Does NOT constitute legal compliance certification.",
+            "human_review_required": false,
+            "review_action": "Review statutory compliance with CPWD Specifications 2019 / 2023 (Civil & Electrical Works).",
+            "severity": "INFO"
+          },
           {
             "finding_id": "COV-REQ-001",
             "requirement_id": "REQ-001",
@@ -173,6 +209,39 @@
       }
     ],
     "audit_findings": [
+      {
+        "finding_id": "STATUTORY-REQ-001-1",
+        "requirement_id": "REQ-001",
+        "finding_type": "EXTERNAL_STATUTORY_SIGNAL",
+        "title": "Statutory Advisory Signal: Central Public Works Department (CPWD Specifications 2019 / 2023 (Civil & Electrical Works))",
+        "standards": [
+          "IS 458",
+          "IS 783",
+          "IS 1239",
+          "IS 4985",
+          "IS 15778",
+          "IS 15905",
+          "IS 732"
+        ],
+        "applicability_decision": "ADVISORY_SIGNAL",
+        "evidence_strength": "STRONG",
+        "supporting_facts": [
+          "Authority: Central Public Works Department (CPWD)",
+          "Instrument: CPWD Specifications 2019 / 2023 (Civil & Electrical Works), Clause: Section 19 (Water Supply), Section 20 (Drainage), Section 31 (Electrical)",
+          "Advisory: CPWD Works Specifications govern execution, laying, jointing and testing of water supply pipelines, sewerage conduits and electrical installations for central works, mandating compliance with IS 783 (laying concrete pipes), IS 15778 (CPVC plumbing), and IS 1239 (mild steel piping)."
+        ],
+        "lifecycle_status": "ACTIVE",
+        "lifecycle_note": null,
+        "relationships": [],
+        "provenance": {
+          "source": "OFFICIAL_MANUAL",
+          "verified": true
+        },
+        "uncertainty": "External regulatory advisory signal. Does NOT constitute legal compliance certification.",
+        "human_review_required": false,
+        "review_action": "Review statutory compliance with CPWD Specifications 2019 / 2023 (Civil & Electrical Works).",
+        "severity": "INFO"
+      },
       {
         "finding_id": "COV-REQ-001",
         "requirement_id": "REQ-001",
@@ -228,6 +297,7 @@
           "UNKNOWN": 0
         },
         "finding_distribution": {
+          "EXTERNAL_STATUTORY_SIGNAL": 1,
           "STANDARD_COVERED": 1
         }
       },
@@ -243,7 +313,42 @@
           "gap_details": null,
           "lifecycle_concerns": [],
           "ambiguity_details": null,
+          "lifecycle_warnings": [],
+          "external_regulations": [],
           "findings": [
+            {
+              "finding_id": "STATUTORY-REQ-001-1",
+              "requirement_id": "REQ-001",
+              "finding_type": "EXTERNAL_STATUTORY_SIGNAL",
+              "title": "Statutory Advisory Signal: Central Public Works Department (CPWD Specifications 2019 / 2023 (Civil & Electrical Works))",
+              "standards": [
+                "IS 458",
+                "IS 783",
+                "IS 1239",
+                "IS 4985",
+                "IS 15778",
+                "IS 15905",
+                "IS 732"
+              ],
+              "applicability_decision": "ADVISORY_SIGNAL",
+              "evidence_strength": "STRONG",
+              "supporting_facts": [
+                "Authority: Central Public Works Department (CPWD)",
+                "Instrument: CPWD Specifications 2019 / 2023 (Civil & Electrical Works), Clause: Section 19 (Water Supply), Section 20 (Drainage), Section 31 (Electrical)",
+                "Advisory: CPWD Works Specifications govern execution, laying, jointing and testing of water supply pipelines, sewerage conduits and electrical installations for central works, mandating compliance with IS 783 (laying concrete pipes), IS 15778 (CPVC plumbing), and IS 1239 (mild steel piping)."
+              ],
+              "lifecycle_status": "ACTIVE",
+              "lifecycle_note": null,
+              "relationships": [],
+              "provenance": {
+                "source": "OFFICIAL_MANUAL",
+                "verified": true
+              },
+              "uncertainty": "External regulatory advisory signal. Does NOT constitute legal compliance certification.",
+              "human_review_required": false,
+              "review_action": "Review statutory compliance with CPWD Specifications 2019 / 2023 (Civil & Electrical Works).",
+              "severity": "INFO"
+            },
             {
               "finding_id": "COV-REQ-001",
               "requirement_id": "REQ-001",
@@ -290,7 +395,42 @@
           "gap_details": null,
           "lifecycle_concerns": [],
           "ambiguity_details": null,
+          "lifecycle_warnings": [],
+          "external_regulations": [],
           "findings": [
+            {
+              "finding_id": "STATUTORY-REQ-001-1",
+              "requirement_id": "REQ-001",
+              "finding_type": "EXTERNAL_STATUTORY_SIGNAL",
+              "title": "Statutory Advisory Signal: Central Public Works Department (CPWD Specifications 2019 / 2023 (Civil & Electrical Works))",
+              "standards": [
+                "IS 458",
+                "IS 783",
+                "IS 1239",
+                "IS 4985",
+                "IS 15778",
+                "IS 15905",
+                "IS 732"
+              ],
+              "applicability_decision": "ADVISORY_SIGNAL",
+              "evidence_strength": "STRONG",
+              "supporting_facts": [
+                "Authority: Central Public Works Department (CPWD)",
+                "Instrument: CPWD Specifications 2019 / 2023 (Civil & Electrical Works), Clause: Section 19 (Water Supply), Section 20 (Drainage), Section 31 (Electrical)",
+                "Advisory: CPWD Works Specifications govern execution, laying, jointing and testing of water supply pipelines, sewerage conduits and electrical installations for central works, mandating compliance with IS 783 (laying concrete pipes), IS 15778 (CPVC plumbing), and IS 1239 (mild steel piping)."
+              ],
+              "lifecycle_status": "ACTIVE",
+              "lifecycle_note": null,
+              "relationships": [],
+              "provenance": {
+                "source": "OFFICIAL_MANUAL",
+                "verified": true
+              },
+              "uncertainty": "External regulatory advisory signal. Does NOT constitute legal compliance certification.",
+              "human_review_required": false,
+              "review_action": "Review statutory compliance with CPWD Specifications 2019 / 2023 (Civil & Electrical Works).",
+              "severity": "INFO"
+            },
             {
               "finding_id": "COV-REQ-001",
               "requirement_id": "REQ-001",
@@ -397,7 +537,8 @@
         "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.",
         "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 15778.\"",
         "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via Tender Document (VERIFIED)."
+        "Provenance established via Tender Document (VERIFIED).",
+        "Official code of practice associated with IS 7634 (Part 3) : 2003."
       ],
       "why_not": [
         "Alternative standard SP 57 (QAWSM) has lower composite relevance (0.566 vs 1.000).",
@@ -425,14 +566,14 @@
         {
           "standard_number": "IS 7634 (Part 3) : 2003",
           "title": "Title not in local index",
-          "relationship_type": "INSTALLATION_STANDARD",
+          "relationship_type": "INSTALLATION_CODE",
           "direction": "OUTGOING",
           "lifecycle_status": "Unknown",
           "provenance": "CURATED",
           "evidence_strength": "MODERATE",
           "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
           "source_url": null,
-          "review_note": "Installation, laying, and jointing standard associated with IS 7634 (Part 3) : 2003. Review for installation execution."
+          "review_note": "Laying / civil installation code of practice associated with IS 7634 (Part 3) : 2003. Review for installation compliance."
         },
         {
           "standard_number": "IS 4985 : 2000",
@@ -443,6 +584,18 @@
           "provenance": "CURATED",
           "evidence_strength": "MODERATE",
           "evidence_text": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+          "source_url": null,
+          "review_note": "Allied product or component standard. Review for equipment interface compatibility."
+        },
+        {
+          "standard_number": "IS 4985 : 2021",
+          "title": "Title not in local index",
+          "relationship_type": "ALLIED_STANDARD",
+          "direction": "INCOMING",
+          "lifecycle_status": "Unknown",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Allied thermoplastic piping specification for potable water distribution networks.",
           "source_url": null,
           "review_note": "Allied product or component standard. Review for equipment interface compatibility."
         }
@@ -482,8 +635,8 @@
         {
           "standard_number": "IS 7634 (Part 3) : 2003",
           "title": "Title not in local index",
-          "relationship_type": "INSTALLATION_STANDARD",
-          "dependency_status": "INSTALLATION_DEPENDENCY",
+          "relationship_type": "INSTALLATION_CODE",
+          "dependency_status": "INSTALLATION_CODE",
           "direction": "OUTGOING",
           "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
           "provenance": "CURATED",
@@ -491,15 +644,15 @@
           "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
           "source": "CURATED_STANDARDS_DOC",
           "confidence": 0.9,
-          "why_related": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed installation, laying, and execution standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
+          "why_related": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed related standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
           "functional_category": "installation",
           "is_applicable_to_requirement": true,
           "applicability_decision": "REVIEW_REQUIRED",
-          "dependency_state": "INSTALLATION_DEPENDENCY",
+          "dependency_state": "INSTALLATION_CODE",
           "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
           "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
           "applicability_assessment": "REVIEW_REQUIRED",
-          "explanation": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed installation, laying, and execution standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
+          "explanation": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed related standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
         },
         {
           "standard_number": "IS 4985 : 2000",
@@ -524,9 +677,31 @@
           "explanation": "IS 4985 : 2000 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED]."
         },
         {
+          "standard_number": "IS 4985 : 2021",
+          "title": "Title not in local index",
+          "relationship_type": "ALLIED_STANDARD",
+          "dependency_status": "ALLIED_DEPENDENCY",
+          "direction": "INCOMING",
+          "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Allied thermoplastic piping specification for potable water distribution networks.",
+          "source": "CURATED_STANDARDS_DOC",
+          "confidence": 0.85,
+          "why_related": "IS 4985 : 2021 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED].",
+          "functional_category": "allied",
+          "is_applicable_to_requirement": false,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "ALLIED_DEPENDENCY",
+          "evidence": "Allied thermoplastic piping specification for potable water distribution networks.",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 4985 : 2021 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED]."
+        },
+        {
           "standard_number": "SP 57 (QAWSM) : 1993",
           "title": "Handbook on Pipes and Fittings for Drinking Water Supply",
-          "relationship_type": "CODE_OF_PRACTICE",
+          "relationship_type": "INSTALLATION_STANDARD",
           "dependency_status": "INSTALLATION_DEPENDENCY",
           "functional_category": "installation",
           "evidence": "Curated reference standard for Handbook on Pipes and Fittings for Drinking Water Supply",
@@ -614,10 +789,295 @@
         "decision": "ACCEPT",
         "reviewer_standard": null,
         "reviewer_note": "Verified by procurement officer",
-        "reviewed_at": "2026-09-24T11:59:58.175229+00:00",
+        "reviewed_at": "2026-09-24T15:37:40.534622+00:00",
         "system_standard": "IS 15778 : 2007",
         "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
-      }
+      },
+      "component_recommendations": [
+        {
+          "component_id": "REQ-001-C1",
+          "component_text": "CPVC pipes",
+          "component_domain": "piping",
+          "component_role": "PRIMARY_PRODUCT",
+          "candidate_standard": "IS 15778",
+          "title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
+          "confidence": "High",
+          "relevance_score": 0.98,
+          "evidence": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.",
+          "applicability_decision": "APPLICABLE",
+          "dependencies": {
+            "primary_standard": "IS 15778",
+            "primary_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
+            "total_dependencies": 4,
+            "normative_references": [],
+            "test_methods": [
+              {
+                "standard_number": "IS 12235 : 2004",
+                "title": "Title not in local index",
+                "relationship_type": "TEST_METHOD",
+                "dependency_status": "TEST_DEPENDENCY",
+                "direction": "OUTGOING",
+                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+                "provenance": "CURATED",
+                "evidence_strength": "MODERATE",
+                "evidence_text": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
+                "source": "CURATED_STANDARDS_DOC",
+                "confidence": 0.95,
+                "why_related": "IS 12235 : 2004 (Title not in local index) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED].",
+                "functional_category": "testing",
+                "is_applicable_to_requirement": false,
+                "applicability_decision": "REVIEW_REQUIRED",
+                "dependency_state": "TEST_DEPENDENCY",
+                "evidence": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 12235 : 2004 (Title not in local index) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED]."
+              }
+            ],
+            "installation_codes": [
+              {
+                "standard_number": "IS 7634 (Part 3) : 2003",
+                "title": "Title not in local index",
+                "relationship_type": "INSTALLATION_CODE",
+                "dependency_status": "INSTALLATION_CODE",
+                "direction": "OUTGOING",
+                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+                "provenance": "CURATED",
+                "evidence_strength": "MODERATE",
+                "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+                "source": "CURATED_STANDARDS_DOC",
+                "confidence": 0.9,
+                "why_related": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
+                "functional_category": "installation",
+                "is_applicable_to_requirement": false,
+                "applicability_decision": "REVIEW_REQUIRED",
+                "dependency_state": "INSTALLATION_CODE",
+                "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
+              }
+            ],
+            "installation_standards": [
+              {
+                "standard_number": "IS 7634 (Part 3) : 2003",
+                "title": "Title not in local index",
+                "relationship_type": "INSTALLATION_CODE",
+                "dependency_status": "INSTALLATION_CODE",
+                "direction": "OUTGOING",
+                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+                "provenance": "CURATED",
+                "evidence_strength": "MODERATE",
+                "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+                "source": "CURATED_STANDARDS_DOC",
+                "confidence": 0.9,
+                "why_related": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
+                "functional_category": "installation",
+                "is_applicable_to_requirement": false,
+                "applicability_decision": "REVIEW_REQUIRED",
+                "dependency_state": "INSTALLATION_CODE",
+                "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
+              }
+            ],
+            "codes_of_practice": [
+              {
+                "standard_number": "IS 7634 (Part 3) : 2003",
+                "title": "Title not in local index",
+                "relationship_type": "INSTALLATION_CODE",
+                "dependency_status": "INSTALLATION_CODE",
+                "direction": "OUTGOING",
+                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+                "provenance": "CURATED",
+                "evidence_strength": "MODERATE",
+                "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+                "source": "CURATED_STANDARDS_DOC",
+                "confidence": 0.9,
+                "why_related": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
+                "functional_category": "installation",
+                "is_applicable_to_requirement": false,
+                "applicability_decision": "REVIEW_REQUIRED",
+                "dependency_state": "INSTALLATION_CODE",
+                "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
+              }
+            ],
+            "safety_standards": [],
+            "terminology_standards": [],
+            "allied_standards": [
+              {
+                "standard_number": "IS 4985 : 2000",
+                "title": "Title not in local index",
+                "relationship_type": "ALLIED_STANDARD",
+                "dependency_status": "ALLIED_DEPENDENCY",
+                "direction": "OUTGOING",
+                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+                "provenance": "CURATED",
+                "evidence_strength": "MODERATE",
+                "evidence_text": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+                "source": "CURATED_STANDARDS_DOC",
+                "confidence": 0.85,
+                "why_related": "IS 4985 : 2000 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED].",
+                "functional_category": "allied",
+                "is_applicable_to_requirement": false,
+                "applicability_decision": "REVIEW_REQUIRED",
+                "dependency_state": "ALLIED_DEPENDENCY",
+                "evidence": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 4985 : 2000 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED]."
+              },
+              {
+                "standard_number": "IS 4985 : 2021",
+                "title": "Title not in local index",
+                "relationship_type": "ALLIED_STANDARD",
+                "dependency_status": "ALLIED_DEPENDENCY",
+                "direction": "INCOMING",
+                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+                "provenance": "CURATED",
+                "evidence_strength": "MODERATE",
+                "evidence_text": "Allied thermoplastic piping specification for potable water distribution networks.",
+                "source": "CURATED_STANDARDS_DOC",
+                "confidence": 0.85,
+                "why_related": "IS 4985 : 2021 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED].",
+                "functional_category": "allied",
+                "is_applicable_to_requirement": false,
+                "applicability_decision": "REVIEW_REQUIRED",
+                "dependency_state": "ALLIED_DEPENDENCY",
+                "evidence": "Allied thermoplastic piping specification for potable water distribution networks.",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 4985 : 2021 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED]."
+              }
+            ],
+            "certification_related": [],
+            "qco_related": [],
+            "related_for_review": [],
+            "all_dependencies": [
+              {
+                "standard_number": "IS 12235 : 2004",
+                "title": "Title not in local index",
+                "relationship_type": "TEST_METHOD",
+                "dependency_status": "TEST_DEPENDENCY",
+                "direction": "OUTGOING",
+                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+                "provenance": "CURATED",
+                "evidence_strength": "MODERATE",
+                "evidence_text": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
+                "source": "CURATED_STANDARDS_DOC",
+                "confidence": 0.95,
+                "why_related": "IS 12235 : 2004 (Title not in local index) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED].",
+                "functional_category": "testing",
+                "is_applicable_to_requirement": false,
+                "applicability_decision": "REVIEW_REQUIRED",
+                "dependency_state": "TEST_DEPENDENCY",
+                "evidence": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 12235 : 2004 (Title not in local index) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED]."
+              },
+              {
+                "standard_number": "IS 7634 (Part 3) : 2003",
+                "title": "Title not in local index",
+                "relationship_type": "INSTALLATION_CODE",
+                "dependency_status": "INSTALLATION_CODE",
+                "direction": "OUTGOING",
+                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+                "provenance": "CURATED",
+                "evidence_strength": "MODERATE",
+                "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+                "source": "CURATED_STANDARDS_DOC",
+                "confidence": 0.9,
+                "why_related": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
+                "functional_category": "installation",
+                "is_applicable_to_requirement": false,
+                "applicability_decision": "REVIEW_REQUIRED",
+                "dependency_state": "INSTALLATION_CODE",
+                "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
+              },
+              {
+                "standard_number": "IS 4985 : 2000",
+                "title": "Title not in local index",
+                "relationship_type": "ALLIED_STANDARD",
+                "dependency_status": "ALLIED_DEPENDENCY",
+                "direction": "OUTGOING",
+                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+                "provenance": "CURATED",
+                "evidence_strength": "MODERATE",
+                "evidence_text": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+                "source": "CURATED_STANDARDS_DOC",
+                "confidence": 0.85,
+                "why_related": "IS 4985 : 2000 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED].",
+                "functional_category": "allied",
+                "is_applicable_to_requirement": false,
+                "applicability_decision": "REVIEW_REQUIRED",
+                "dependency_state": "ALLIED_DEPENDENCY",
+                "evidence": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 4985 : 2000 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED]."
+              },
+              {
+                "standard_number": "IS 4985 : 2021",
+                "title": "Title not in local index",
+                "relationship_type": "ALLIED_STANDARD",
+                "dependency_status": "ALLIED_DEPENDENCY",
+                "direction": "INCOMING",
+                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
+                "provenance": "CURATED",
+                "evidence_strength": "MODERATE",
+                "evidence_text": "Allied thermoplastic piping specification for potable water distribution networks.",
+                "source": "CURATED_STANDARDS_DOC",
+                "confidence": 0.85,
+                "why_related": "IS 4985 : 2021 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED].",
+                "functional_category": "allied",
+                "is_applicable_to_requirement": false,
+                "applicability_decision": "REVIEW_REQUIRED",
+                "dependency_state": "ALLIED_DEPENDENCY",
+                "evidence": "Allied thermoplastic piping specification for potable water distribution networks.",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 4985 : 2021 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED]."
+              }
+            ],
+            "lifecycle_warnings": [],
+            "amendment_metadata": null
+          },
+          "human_review_required": false,
+          "why_matched": "Component 'CPVC pipes' matches standard IS 15778 (Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification)."
+        }
+      ],
+      "external_regulations": [
+        {
+          "authority_code": "CPWD",
+          "authority_name": "Central Public Works Department",
+          "statutory_instrument": "CPWD Specifications 2019 / 2023 (Civil & Electrical Works)",
+          "applicable_clause": "Section 19 (Water Supply), Section 20 (Drainage), Section 31 (Electrical)",
+          "related_indian_standards": [
+            "IS 458",
+            "IS 783",
+            "IS 1239",
+            "IS 4985",
+            "IS 15778",
+            "IS 15905",
+            "IS 732"
+          ],
+          "signal_type": "ADVISORY_CODE_OF_PRACTICE",
+          "advisory_summary": "CPWD Works Specifications govern execution, laying, jointing and testing of water supply pipelines, sewerage conduits and electrical installations for central works, mandating compliance with IS 783 (laying concrete pipes), IS 15778 (CPVC plumbing), and IS 1239 (mild steel piping).",
+          "statutory_provenance": "OFFICIAL_MANUAL",
+          "disclaimer": "Regulatory signals are advisory engineering heuristics based on published statutory frameworks and gazette notifications. They do not constitute statutory legal certifications or official compliance certificates.",
+          "review_status": "ADVISORY_REVIEW"
+        }
+      ],
+      "lifecycle_warnings": [],
+      "amendment_metadata": null
     }
   ],
   "review_queue": [],
@@ -642,7 +1102,7 @@
       "decision": "ACCEPT",
       "reviewer_standard": null,
       "reviewer_note": "Verified by procurement officer",
-      "reviewed_at": "2026-09-24T11:59:58.175229+00:00",
+      "reviewed_at": "2026-09-24T15:37:40.534622+00:00",
       "system_standard": "IS 15778 : 2007",
       "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
     }

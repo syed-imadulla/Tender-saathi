@@ -315,6 +315,11 @@ def _normalize_result(
                 "human_review_required": False,
                 "normalization_method": "fast_path",
             },
+            # Phase 9: Standards Relationships & Regulatory Intelligence
+            "component_recommendations": getattr(r, "component_recommendations", []) or [],
+            "external_regulations": getattr(r, "external_regulations", []) or [],
+            "lifecycle_warnings": getattr(r, "lifecycle_warnings", []) or [],
+            "amendment_metadata": getattr(r, "amendment_metadata", None),
         }
 
         all_reqs.append(req_dict)

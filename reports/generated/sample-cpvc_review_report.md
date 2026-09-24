@@ -32,7 +32,7 @@
 | **Superseded Standards** | 0 | Outdated standards identified |
 | **Withdrawn Standards** | 0 | Cancelled standards |
 | **Unknown Lifecycle** | 0 | Unindexed in local catalogue |
-| **Related Standards to Review** | 3 | Discovered via relationship graph (depth=1) |
+| **Related Standards to Review** | 4 | Discovered via relationship graph (depth=1) |
 
 ### Governance Distributions
 
@@ -45,7 +45,7 @@
 - **Normative References:** `0`
 - **Testing Method Dependencies:** `1`
 - **Installation / Laying Standards:** `2`
-- **Allied Standards:** `1`
+- **Allied Standards:** `2`
 - **Potential Standard Gaps:** `2`
 - **Verified Standard Gaps:** `0`
 
@@ -73,24 +73,32 @@
   - Authoritative scope explicitly covers application: "Tender explicitly requires compliance with IS 15778."
   - Standard is currently active in the BIS repository with verified currency.
   - Provenance established via Tender Document (VERIFIED).
+  - Official code of practice associated with IS 7634 (Part 3) : 2003.
 - **Why Not Alternatives?:**
   - Alternative standard SP 57 (QAWSM) has lower composite relevance (0.566 vs 1.000).
   - Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification.
 - **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
 - **Related Standards Identified for Review (Graph Depth = 1):**
   - [→ TEST_METHOD] `IS 12235 : 2004` — *Title not in local index* (Unknown) — *Note:* Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance.
-  - [→ INSTALLATION_STANDARD] `IS 7634 (Part 3) : 2003` — *Title not in local index* (Unknown) — *Note:* Installation, laying, and jointing standard associated with IS 7634 (Part 3) : 2003. Review for installation execution.
+  - [→ INSTALLATION_CODE] `IS 7634 (Part 3) : 2003` — *Title not in local index* (Unknown) — *Note:* Laying / civil installation code of practice associated with IS 7634 (Part 3) : 2003. Review for installation compliance.
   - [→ ALLIED_STANDARD] `IS 4985 : 2000` — *Title not in local index* (Unknown) — *Note:* Allied product or component standard. Review for equipment interface compatibility.
-- **Standards Dependencies Mapped (4):**
+  - [← ALLIED_STANDARD] `IS 4985 : 2021` — *Title not in local index* (Unknown) — *Note:* Allied product or component standard. Review for equipment interface compatibility.
+- **Standards Dependencies Mapped (5):**
   - [TEST METHOD] `IS 12235 : 2004` — *Title not in local index* (IS 12235 : 2004 (Title not in local index) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778 : 2007. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED].)
-  - [INSTALLATION STANDARD] `IS 7634 (Part 3) : 2003` — *Title not in local index* (IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed installation, laying, and execution standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].)
+  - [INSTALLATION CODE] `IS 7634 (Part 3) : 2003` — *Title not in local index* (IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed related standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].)
   - [ALLIED STANDARD] `IS 4985 : 2000` — *Title not in local index* (IS 4985 : 2000 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED].)
-  - [CODE OF PRACTICE] `SP 57 (QAWSM) : 1993` — *Handbook on Pipes and Fittings for Drinking Water Supply* ()
+  - [ALLIED STANDARD] `IS 4985 : 2021` — *Title not in local index* (IS 4985 : 2021 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED].)
+  - [INSTALLATION STANDARD] `SP 57 (QAWSM) : 1993` — *Handbook on Pipes and Fittings for Drinking Water Supply* ()
 - **Regulatory & Statutory Intelligence:** Product Certification: `APPLICABLE` | QCO: `CURRENT` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
+- **Multi-Component Requirement Bundles (1):**
+  - **CPVC pipes** [PRIMARY_PRODUCT] → `IS 15778` (*Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*) [APPLICABLE]
+- **External Statutory Advisory Signals (Non-BIS Regulations):**
+  > *Advisory Note: External statutory signals provide regulatory context and do NOT constitute legal compliance certification.*
+  - **Central Public Works Department (CPWD)**: *CPWD Specifications 2019 / 2023 (Civil & Electrical Works)*, Clause Section 19 (Water Supply), Section 20 (Drainage), Section 31 (Electrical) — CPWD Works Specifications govern execution, laying, jointing and testing of water supply pipelines, sewerage conduits and electrical installations for central works, mandating compliance with IS 783 (laying concrete pipes), IS 15778 (CPVC plumbing), and IS 1239 (mild steel piping).
 - **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `High`
 - **Human Review Decision:** **ACCEPT**
 - **Reviewer Note:** "Verified by procurement officer"
-- **Decision Recorded:** `2026-09-24T11:59:58.175229+00:00`
+- **Decision Recorded:** `2026-09-24T15:37:40.534622+00:00`
 
 ---
 
@@ -113,4 +121,4 @@ TenderSaathi is a standards-review aid for procurement specifications. Final app
 
 | # | Requirement ID | Original System Finding | Human Decision | Reviewer Standard | Reviewer Note | Reviewed Timestamp |
 |---|---|---|---|---|---|---|
-| 1 | `REQ-001` | Authoritative active standard IS 15778 : 2007 verified against scope with High confidence. | **ACCEPT** | `—` | Verified by procurement officer | 2026-09-24T11:59:58.175229+00:00 |
+| 1 | `REQ-001` | Authoritative active standard IS 15778 : 2007 verified against scope with High confidence. | **ACCEPT** | `—` | Verified by procurement officer | 2026-09-24T15:37:40.534622+00:00 |

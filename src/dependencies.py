@@ -21,8 +21,17 @@ from typing import List, Dict, Any, Optional, Set
 import re
 
 from src.graph import StandardsGraph, StandardRelationship, RelatedStandardResult
+from src.standards import (
+    CANONICAL_RELATIONSHIP_TYPES,
+    LEGACY_RELATIONSHIP_ALIASES,
+    ALLOWED_PROVENANCE_LEVELS,
+    PROHIBITED_PROVENANCE_LEVELS,
+    RelationshipType,
+    normalize_relationship_type,
+)
 from src.applicability import ApplicabilityGate, ApplicabilityResult
 from src.extract import Requirement
+from src.validate import validate_standard_status
 
 
 
@@ -35,11 +44,11 @@ class DependencyItem:
     """Represents a specific standard dependency linked to a primary standard."""
     standard_number: str                  # e.g. "IS 12235 : 2004"
     title: str                            # Title of the dependency standard
-    relationship_type: str                # TEST_METHOD, INSTALLATION_STANDARD, NORMATIVE_REFERENCE, etc.
+    relationship_type: str                # TEST_METHOD, INSTALLATION_CODE, NORMATIVE_REFERENCE, etc.
     dependency_status: str                # NORMATIVE_DEPENDENCY, TEST_DEPENDENCY, INSTALLATION_DEPENDENCY, etc.
     direction: str                        # "OUTGOING" or "INCOMING"
     lifecycle_status: str                 # "Active", "Superseded", "Withdrawn", "Unknown"
-    provenance: str                       # "VERIFIED", "CURATED", "INFERRED"
+    provenance: str                       # Strictly "VERIFIED" or "CURATED"
     evidence_strength: str                # "STRONG", "MODERATE", "WEAK"
     evidence_text: str                    # Authoritative text establishing relationship
     source: str                           # "BSB_EDGE_MANUALLY_VERIFIED", "RELATIONSHIPS_JSON", etc.
@@ -55,6 +64,20 @@ class DependencyItem:
     explanation: str = ""
 
     def __post_init__(self):
+        # Enforce strict provenance invariant (VERIFIED or CURATED only; INFERRED rejected)
+        prov_norm = str(self.provenance or "").strip().upper()
+        if prov_norm not in ALLOWED_PROVENANCE_LEVELS:
+            raise ValueError(
+                f"Invalid dependency provenance: '{self.provenance}'. "
+                f"Production dependencies may ONLY use: {sorted(ALLOWED_PROVENANCE_LEVELS)}. "
+                f"INFERRED provenance is strictly rejected."
+            )
+        self.provenance = prov_norm
+
+        # Normalize relationship_type
+        if self.relationship_type:
+            self.relationship_type = RelationshipType(str(self.relationship_type))
+
         if not self.dependency_state or self.dependency_state == "UNKNOWN":
             self.dependency_state = self.dependency_status or "UNKNOWN"
         if not self.dependency_status:
@@ -77,7 +100,9 @@ class DependencyItem:
             self.why_related = self.explanation
 
     def to_dict(self) -> Dict[str, Any]:
-        return asdict(self)
+        d = asdict(self)
+        d["relationship_type"] = self.relationship_type
+        return d
 
 
 @dataclass
@@ -88,6 +113,7 @@ class StandardsDependencyReport:
     total_dependencies: int
     normative_references: List[DependencyItem] = field(default_factory=list)
     test_methods: List[DependencyItem] = field(default_factory=list)
+    installation_codes: List[DependencyItem] = field(default_factory=list)
     installation_standards: List[DependencyItem] = field(default_factory=list)
     codes_of_practice: List[DependencyItem] = field(default_factory=list)
     safety_standards: List[DependencyItem] = field(default_factory=list)
@@ -97,6 +123,8 @@ class StandardsDependencyReport:
     qco_related: List[DependencyItem] = field(default_factory=list)
     related_for_review: List[DependencyItem] = field(default_factory=list)
     all_dependencies: List[DependencyItem] = field(default_factory=list)
+    lifecycle_warnings: List[Dict[str, Any]] = field(default_factory=list)
+    amendment_metadata: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -105,6 +133,7 @@ class StandardsDependencyReport:
             "total_dependencies": self.total_dependencies,
             "normative_references": [d.to_dict() for d in self.normative_references],
             "test_methods": [d.to_dict() for d in self.test_methods],
+            "installation_codes": [d.to_dict() for d in self.installation_codes],
             "installation_standards": [d.to_dict() for d in self.installation_standards],
             "codes_of_practice": [d.to_dict() for d in self.codes_of_practice],
             "safety_standards": [d.to_dict() for d in self.safety_standards],
@@ -113,7 +142,9 @@ class StandardsDependencyReport:
             "certification_related": [d.to_dict() for d in self.certification_related],
             "qco_related": [d.to_dict() for d in self.qco_related],
             "related_for_review": [d.to_dict() for d in self.related_for_review],
-            "all_dependencies": [d.to_dict() for d in self.all_dependencies]
+            "all_dependencies": [d.to_dict() for d in self.all_dependencies],
+            "lifecycle_warnings": self.lifecycle_warnings,
+            "amendment_metadata": self.amendment_metadata
         }
 
 
@@ -153,8 +184,9 @@ class StandardsDependencyEngine:
                 total_dependencies=0
             )
 
-        # Retrieve direct relationships from graph (depth = 1)
-        direct_rels = self.graph.get_direct_relationships(primary_standard, depth=depth)
+        # Retrieve direct relationships from graph strictly limited to depth = 1
+        effective_depth = min(depth, 1) if depth is not None else 1
+        direct_rels = self.graph.get_direct_relationships(primary_standard, depth=effective_depth)
 
         report = StandardsDependencyReport(
             primary_standard=primary_standard,
@@ -181,7 +213,7 @@ class StandardsDependencyEngine:
                 continue
             seen_stds.add(clean_name)
 
-            # Resolve standard details
+            # Resolve standard details & validate lifecycle currency
             std_info = self.graph._resolve_standard_info(clean_name)
             title = std_info.get("full_title") or std_info.get("title") or clean_name
             raw_status = std_info.get("status") or "Unknown"
@@ -189,6 +221,23 @@ class StandardsDependencyEngine:
                 status = "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE"
             else:
                 status = raw_status
+
+            # Check if this dependency standard is superseded or withdrawn
+            val_res = validate_standard_status(clean_name, self.graph.db)
+            if val_res.status in ("Superseded", "Withdrawn") or (not val_res.is_active and val_res.successor_standard):
+                status = val_res.status
+                report.lifecycle_warnings.append({
+                    "dependency_standard": clean_name,
+                    "warning_type": "SUPERSEDED_DEPENDENCY",
+                    "status": val_res.status,
+                    "successor_standard": val_res.successor_standard,
+                    "successor_title": val_res.successor_title,
+                    "advisory": (
+                        f"Normative dependency {clean_name} has been superseded"
+                        + (f" by {val_res.successor_standard}" if val_res.successor_standard else "")
+                        + ". Review current testing/design alignment."
+                    )
+                })
 
             # Determine functional category & dependency state
             func_cat, dep_state = self._classify_dependency_role(rel.relationship_type)
@@ -242,15 +291,15 @@ class StandardsDependencyEngine:
                 report.normative_references.append(dep_item)
             elif rel.relationship_type == "TEST_METHOD":
                 report.test_methods.append(dep_item)
-            elif rel.relationship_type == "INSTALLATION_STANDARD":
+            elif rel.relationship_type in ["INSTALLATION_CODE", "INSTALLATION_STANDARD", "CODE_OF_PRACTICE", "CODE_OF_PRACTICE_FOR"]:
+                report.installation_codes.append(dep_item)
                 report.installation_standards.append(dep_item)
-            elif rel.relationship_type in ["CODE_OF_PRACTICE", "CODE_OF_PRACTICE_FOR"]:
                 report.codes_of_practice.append(dep_item)
             elif rel.relationship_type == "SAFETY_STANDARD":
                 report.safety_standards.append(dep_item)
             elif rel.relationship_type == "TERMINOLOGY_STANDARD":
                 report.terminology_standards.append(dep_item)
-            elif rel.relationship_type == "ALLIED_STANDARD":
+            elif rel.relationship_type in ["ALLIED_STANDARD", "IDENTICAL_ADOPTION"]:
                 report.allied_standards.append(dep_item)
             elif rel.relationship_type == "CERTIFICATION_RELATED":
                 report.certification_related.append(dep_item)
@@ -259,23 +308,58 @@ class StandardsDependencyEngine:
             else:
                 report.related_for_review.append(dep_item)
 
+        # Inspect catalogue metadata for primary standard amendments / currency
+        clean_p_digits_val = self.graph._extract_digits(primary_standard)
+        with self.graph.db._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+            SELECT amendments_count, reaffirmed_year, year, status
+            FROM standards
+            WHERE ( ? != '' AND standard_number LIKE ? ) OR standard_id LIKE ?
+            LIMIT 1
+            """, (clean_p_digits_val or "", f"%{clean_p_digits_val}%" if clean_p_digits_val else "", f"%{clean_p_digits_val}%" if clean_p_digits_val else ""))
+            p_row = cursor.fetchone()
+            if p_row:
+                amd_cnt = p_row["amendments_count"]
+                reaff = p_row["reaffirmed_year"]
+                p_status = p_row["status"]
+                if amd_cnt is not None and amd_cnt > 0:
+                    summary = f"Current edition incorporates {amd_cnt} published amendment(s)"
+                    if reaff:
+                        summary += f" (Reaffirmed {reaff})"
+                    report.amendment_metadata = {
+                        "standard_number": primary_standard,
+                        "amendments_count": amd_cnt,
+                        "reaffirmed_year": reaff,
+                        "status": p_status,
+                        "currency_summary": summary
+                    }
+                elif reaff:
+                    report.amendment_metadata = {
+                        "standard_number": primary_standard,
+                        "amendments_count": 0,
+                        "reaffirmed_year": reaff,
+                        "status": p_status,
+                        "currency_summary": f"Current edition reaffirmed in {reaff}"
+                    }
+
         report.total_dependencies = len(report.all_dependencies)
         return report
 
     def _classify_dependency_role(self, rel_type: str) -> tuple:
         """Maps relationship_type to functional category and dependency status."""
-        rtype = (rel_type or "").upper()
+        rtype = (str(rel_type) or "").upper()
         if rtype in ["TEST_METHOD"]:
             return ("testing", "TEST_DEPENDENCY")
-        elif rtype in ["INSTALLATION_STANDARD"]:
-            return ("installation", "INSTALLATION_DEPENDENCY")
-        elif rtype in ["CODE_OF_PRACTICE", "CODE_OF_PRACTICE_FOR"]:
-            return ("installation", "CODE_OF_PRACTICE")
+        elif rtype in ["INSTALLATION_CODE", "INSTALLATION_STANDARD", "CODE_OF_PRACTICE", "CODE_OF_PRACTICE_FOR"]:
+            return ("installation", "INSTALLATION_CODE")
         elif rtype in ["NORMATIVE_REFERENCE", "REFERENCES"]:
             return ("normative", "NORMATIVE_DEPENDENCY")
         elif rtype in ["SAFETY_STANDARD"]:
             return ("safety", "SAFETY_DEPENDENCY")
-        elif rtype in ["ALLIED_STANDARD"]:
+        elif rtype in ["TERMINOLOGY_STANDARD"]:
+            return ("terminology", "TERMINOLOGY_DEPENDENCY")
+        elif rtype in ["ALLIED_STANDARD", "IDENTICAL_ADOPTION"]:
             return ("allied", "ALLIED_DEPENDENCY")
         elif rtype in ["CERTIFICATION_RELATED"]:
             return ("certification", "CERTIFICATION_DEPENDENCY")
@@ -283,8 +367,11 @@ class StandardsDependencyEngine:
             return ("certification", "QCO_DEPENDENCY")
         elif rtype in ["SUPERSEDES", "SUPERSEDED_BY"]:
             return ("lifecycle", "RELATED_FOR_REVIEW")
+        elif rtype in ["AMENDS"]:
+            return ("lifecycle", "AMENDMENT_DEPENDENCY")
         else:
             return ("other", "RELATED_FOR_REVIEW")
+
 
     def _evaluate_context_applicability(
         self,

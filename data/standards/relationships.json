@@ -214,5 +214,437 @@
     "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
     "provenance": "VERIFIED",
     "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 458 : 2021",
+    "target_standard": "IS 269 : 2015",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 Normative References cites IS 269 for 33 Grade Ordinary Portland Cement used in precast concrete pipe production.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 458 : 2021",
+    "target_standard": "IS 1489 (Part 1) : 2015",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 Normative References cites IS 1489 (Part 1) for Portland Pozzolana Cement (fly ash based) in concrete pipe manufacturing.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 458 : 2021",
+    "target_standard": "IS 432 (Part 1) : 1982",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 Normative References cites IS 432 (Part 1) for mild steel and medium tensile steel bars for concrete reinforcement cage fabrication.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 458 : 2021",
+    "target_standard": "IS 1786 : 2008",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 Normative References cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement in pressure and non-pressure pipes.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 783 : 1985",
+    "target_standard": "IS 3597 : 1998",
+    "relationship_type": "TEST_METHOD",
+    "evidence": "Clause 2 References and Clause 13 Testing cite IS 3597 for field and water test methods for installed concrete pipelines.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 4985 : 2021",
+    "target_standard": "IS 12235 : 2004",
+    "relationship_type": "TEST_METHOD",
+    "evidence": "Clause 2 Normative References and Clause 10 Sampling and Test Methods cite IS 12235 series for hydrostatic, dimension and impact testing of UPVC pipes.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 0.95
+  },
+  {
+    "source_standard": "IS 4985 : 2021",
+    "target_standard": "IS 7634 (Part 3) : 2003",
+    "relationship_type": "INSTALLATION_CODE",
+    "evidence": "Clause 1 Scope recommends laying and jointing of unplasticized PVC pipes in accordance with IS 7634 (Part 3) Code of practice for plastics pipe work.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 0.95
+  },
+  {
+    "source_standard": "IS 4985 : 2021",
+    "target_standard": "IS 15778 : 2007",
+    "relationship_type": "ALLIED_STANDARD",
+    "evidence": "Allied thermoplastic piping specification for potable water distribution networks.",
+    "evidence_source": "CURATED_STANDARDS_DOC",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  {
+    "source_standard": "IS 1239 (Part 1) : 2004",
+    "target_standard": "IS 1239 (Part 2) : 1992",
+    "relationship_type": "ALLIED_STANDARD",
+    "evidence": "Foreword and Clause 1 Scope declare IS 1239 (Part 2) Mild steel tubulars and other wrought steel pipe fittings as companion specification for complete piping assemblies.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 15905 : 2011",
+    "target_standard": "IS 3989 : 1984",
+    "relationship_type": "ALLIED_STANDARD",
+    "evidence": "Allied cast iron soil pipe specification covering socketed centrifugally cast pipes for drainage and waste systems.",
+    "evidence_source": "CURATED_STANDARDS_DOC",
+    "provenance": "CURATED",
+    "confidence": 0.9
+  },
+  {
+    "source_standard": "IS 15905 : 2011",
+    "target_standard": "IS 1729 : 2002",
+    "relationship_type": "SUPERSEDES",
+    "evidence": "Modern Hubless cast iron soil piping systems per IS 15905 supersede traditional sand cast drainage pipes per IS 1729 in sanitary specifications.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 0.95
+  },
+  {
+    "source_standard": "IS 8329 : 2000",
+    "target_standard": "IS 9523 : 2000",
+    "relationship_type": "ALLIED_STANDARD",
+    "evidence": "Clause 2 References cites IS 9523 for Ductile iron fittings for pressure pipes for water, gas and sewage as companion component standard.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 7098 (Part 1) : 1988",
+    "target_standard": "IS 1255 : 1983",
+    "relationship_type": "INSTALLATION_CODE",
+    "evidence": "Clause 1 Scope note and Clause 19 Installation recommend installation, laying, and jointing of power cables per IS 1255 Code of practice.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 7098 (Part 1) : 1988",
+    "target_standard": "IS 8130 : 2013",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 References and Clause 5 Conductors cite IS 8130 for Conductors for insulated electric cables and flexible cords.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 7098 (Part 1) : 1988",
+    "target_standard": "IS 5831 : 1984",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 References cites IS 5831 for PVC insulation and sheath of electric cables.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 7098 (Part 1) : 1988",
+    "target_standard": "IS 10810 : 1984",
+    "relationship_type": "TEST_METHOD",
+    "evidence": "Clause 15 Tests cites IS 10810 series for methods of test for electric cables.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 0.95
+  },
+  {
+    "source_standard": "IS 7098 (Part 2) : 2011",
+    "target_standard": "IS 1255 : 1983",
+    "relationship_type": "INSTALLATION_CODE",
+    "evidence": "Clause 1 Scope note recommends installation, jointing and testing per IS 1255 Code of practice for installation and maintenance of power cables.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 7098 (Part 2) : 2011",
+    "target_standard": "IS 8130 : 2013",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 References cites IS 8130 for Conductors for insulated electric cables.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 7098 (Part 2) : 2011",
+    "target_standard": "IS 10810 : 1984",
+    "relationship_type": "TEST_METHOD",
+    "evidence": "Clause 16 Tests cites IS 10810 series for high voltage and dielectric tests for medium voltage power cables.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 0.95
+  },
+  {
+    "source_standard": "IS 694 : 2010",
+    "target_standard": "IS 732 : 2019",
+    "relationship_type": "INSTALLATION_CODE",
+    "evidence": "Foreword recommends installation and wiring execution per IS 732 Code of practice for electrical wiring installations.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 0.95
+  },
+  {
+    "source_standard": "IS 3043 : 2018",
+    "target_standard": "IS 732 : 2019",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 References cites IS 732 Code of practice for electrical wiring installations for system earthing arrangements and protective conductors.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 3043 : 2018",
+    "target_standard": "IS 2062 : 2011",
+    "relationship_type": "ALLIED_STANDARD",
+    "evidence": "Clause 2 References cites IS 2062 for Steel for general structural purposes used in earthing flats, pipes, and strip electrodes.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 0.95
+  },
+  {
+    "source_standard": "IS 14846 : 2000",
+    "target_standard": "IS 210 : 1993",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 References cites IS 210 for Grey iron castings used for valve body, bonnet, and wedge.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 14846 : 2000",
+    "target_standard": "IS 318 : 1981",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 References cites IS 318 for Leaded tin bronze ingots and castings used for valve stem nuts and facings.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 14846 : 2000",
+    "target_standard": "IS 1538 : 1993",
+    "relationship_type": "ALLIED_STANDARD",
+    "evidence": "Clause 2 References cites IS 1538 for Cast iron fittings for pressure pipes for water, gas and sewage for flanged pipe attachments.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 14846 : 2000",
+    "target_standard": "IS 2712 : 1979",
+    "relationship_type": "ALLIED_STANDARD",
+    "evidence": "Clause 2 References cites IS 2712 for Compressed asbestos fibre jointing used for body-bonnet flange gasket seals.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 14846 : 2000",
+    "target_standard": "IS 2062 : 1992",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 References cites IS 2062 for Steel for general structural purposes used in operating devices and extension spindles.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 14846 : 2000",
+    "target_standard": "IS 4854 (Part 1) : 1969",
+    "relationship_type": "TERMINOLOGY_STANDARD",
+    "evidence": "Clause 2 References cites IS 4854 (Part 1) for Glossary of terms for valves and their parts (Screw down stop, check and gate valves).",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 14846 : 2000",
+    "target_standard": "IS 6392 : 1971",
+    "relationship_type": "ALLIED_STANDARD",
+    "evidence": "Allied standard for steel pipe flanges matching waterworks valve nominal ratings.",
+    "evidence_source": "CURATED_STANDARDS_DOC",
+    "provenance": "CURATED",
+    "confidence": 0.9
+  },
+  {
+    "source_standard": "IS 778 : 1984",
+    "target_standard": "IS 318 : 1981",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 References cites IS 318 for Specification for leaded tin bronze ingots and castings.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 778 : 1984",
+    "target_standard": "IS 2712 : 1971",
+    "relationship_type": "ALLIED_STANDARD",
+    "evidence": "Clause 2 References cites IS 2712 for Specification for compressed asbestos fibre jointing.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS/ISO 10434 : 2020",
+    "target_standard": "IS 6392 : 1971",
+    "relationship_type": "ALLIED_STANDARD",
+    "evidence": "Allied flange specification for connecting high-pressure bolted bonnet steel gate valves.",
+    "evidence_source": "CURATED_STANDARDS_DOC",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  {
+    "source_standard": "IS/IEC 60034-1 : 2017",
+    "target_standard": "IS 325 : 1996",
+    "relationship_type": "SUPERSEDES",
+    "evidence": "National Foreword declares IS/IEC 60034-1 supersedes IS 325 : 1996 for rating and performance of three-phase induction motors.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 12615 : 2018",
+    "target_standard": "IS/IEC 60034-1 : 2017",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 References cites IS/IEC 60034-1 for general rating, operating conditions, and performance of rotating electrical machines.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 8034 : 2018",
+    "target_standard": "IS 11346 : 2002",
+    "relationship_type": "TEST_METHOD",
+    "evidence": "Clause 2 References and Clause 15 Testing cite IS 11346 for Code of practice for testing of submersible pump sets.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 8034 : 2018",
+    "target_standard": "IS 5120 : 1977",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 References cites IS 5120 for Technical requirements for rotodynamic special purpose pumps.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 0.95
+  },
+  {
+    "source_standard": "IS 5120 : 1977",
+    "target_standard": "IS 10981 : 1983",
+    "relationship_type": "TEST_METHOD",
+    "evidence": "Clause 2 References and Clause 14 cite IS 10981 for Class C acceptance tests for centrifugal, mixed flow and axial pumps.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 5120 : 1977",
+    "target_standard": "IS 9079 : 2002",
+    "relationship_type": "ALLIED_STANDARD",
+    "evidence": "Allied pump specification covering electric monobloc pumpsets for clear, cold water.",
+    "evidence_source": "CURATED_STANDARDS_DOC",
+    "provenance": "CURATED",
+    "confidence": 0.85
+  },
+  {
+    "source_standard": "IS 1180 (Part 1) : 2014",
+    "target_standard": "IS 2026 (Part 1) : 2011",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 References cites IS 2026 (Part 1) for Power transformers: Part 1 General requirements.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 1180 (Part 1) : 2014",
+    "target_standard": "IS 2026 (Part 2) : 2010",
+    "relationship_type": "TEST_METHOD",
+    "evidence": "Clause 2 References and Clause 21.3 cite IS 2026 (Part 2) for Temperature rise tests for liquid-immersed transformers.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 1180 (Part 1) : 2014",
+    "target_standard": "IS 2026 (Part 3) : 2009",
+    "relationship_type": "TEST_METHOD",
+    "evidence": "Clause 2 References and Clause 21.2 cite IS 2026 (Part 3) for Insulation levels, dielectric tests and external clearances in air.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 1180 (Part 1) : 2014",
+    "target_standard": "IS 335 : 2018",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 References cites IS 335 for Unused insulating mineral oils for transformers and switchgear.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 1180 (Part 1) : 2014",
+    "target_standard": "IS 2099 : 1986",
+    "relationship_type": "ALLIED_STANDARD",
+    "evidence": "Clause 2 References cites IS 2099 for Bushings for alternating voltages above 1000 V.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 0.95
+  },
+  {
+    "source_standard": "IS 2026 (Part 1) : 2011",
+    "target_standard": "IS 2026 (Part 2) : 2010",
+    "relationship_type": "TEST_METHOD",
+    "evidence": "Clause 2 References and Clause 9 cite IS 2026 (Part 2) for temperature rise testing.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 2026 (Part 1) : 2011",
+    "target_standard": "IS 2026 (Part 3) : 2009",
+    "relationship_type": "TEST_METHOD",
+    "evidence": "Clause 2 References and Clause 10 cite IS 2026 (Part 3) for dielectric tests and insulation levels.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 2026 (Part 1) : 2011",
+    "target_standard": "IS 335 : 2018",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2 References cites IS 335 for Specification for unused mineral insulating oils for transformers and switchgear.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS/IEC 61439-3 : 2012",
+    "target_standard": "IS 8623 (Part 1) : 1993",
+    "relationship_type": "SUPERSEDES",
+    "evidence": "Foreword confirms IS/IEC 61439-3 supersedes the legacy IS 8623 (Part 3) : 1993 for distribution boards.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS/IEC 61439-3 : 2012",
+    "target_standard": "IS/IEC 61439-2 : 2011",
+    "relationship_type": "ALLIED_STANDARD",
+    "evidence": "Clause 2 References and Foreword establish IS/IEC 61439-2 for power switchgear and controlgear assemblies as companion system standard.",
+    "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+    "provenance": "VERIFIED",
+    "confidence": 0.95
   }
 ]

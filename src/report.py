@@ -97,6 +97,10 @@ class RequirementReviewSection:
     ambiguity_state: str = "CLEAR"
     ambiguity_reason: str = ""
     human_decision: Optional[Dict[str, Any]] = None
+    component_recommendations: List[Dict[str, Any]] = field(default_factory=list)
+    external_regulations: List[Dict[str, Any]] = field(default_factory=list)
+    lifecycle_warnings: List[Dict[str, Any]] = field(default_factory=list)
+    amendment_metadata: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -340,6 +344,28 @@ class TenderReviewReport:
                 reg_crs = req.regulatory.get("crs", {}).get("status", "NOT_IDENTIFIED")
                 reg_hall = req.regulatory.get("hallmarking", {}).get("status", "NOT_APPLICABLE")
                 md.append(f"- **Regulatory & Statutory Intelligence:** Product Certification: `{reg_cert}` | QCO: `{reg_qco}` | CRS: `{reg_crs}` | Hallmarking: `{reg_hall}`")
+
+            # Multi-Component Requirement Bundles (Phase 9)
+            if req.component_recommendations:
+                md.append(f"- **Multi-Component Requirement Bundles ({len(req.component_recommendations)}):**")
+                for cr in req.component_recommendations:
+                    c_std = cr.get("candidate_standard") or "Review Required"
+                    c_title = cr.get("title", "")
+                    c_dec = cr.get("applicability_decision", "REVIEW_REQUIRED")
+                    md.append(f"  - **{cr.get('component_text')}** [{cr.get('component_role', 'COMPONENT')}] → `{c_std}` (*{c_title}*) [{c_dec}]")
+
+            # Lifecycle Warnings on Related Dependencies (Phase 9)
+            if req.lifecycle_warnings:
+                md.append(f"- ⚠ **Lifecycle Warnings on Related Standards:**")
+                for lw in req.lifecycle_warnings:
+                    md.append(f"  - Standard `{lw.get('standard_number')}`: {lw.get('reason')} (Active Successor: `{lw.get('active_successor')}`)")
+
+            # External Statutory Advisory Signals (Phase 9)
+            if req.external_regulations:
+                md.append(f"- **External Statutory Advisory Signals (Non-BIS Regulations):**")
+                md.append(f"  > *Advisory Note: External statutory signals provide regulatory context and do NOT constitute legal compliance certification.*")
+                for er in req.external_regulations:
+                    md.append(f"  - **{er.get('authority_name')} ({er.get('authority_code')})**: *{er.get('statutory_instrument')}*, Clause {er.get('applicable_clause')} — {er.get('advisory_summary')}")
 
             # Decision & Risk
             md.append(f"- **Standards Review Decision:** `{req.decision}` | **Risk Level:** `{req.risk_level}` | **Confidence:** `{req.confidence}`")
@@ -604,6 +630,10 @@ class ReportGenerator:
                 ambiguity_state=amb_state,
                 ambiguity_reason=amb_reason,
                 human_decision=decision_map.get(r.requirement_id),
+                component_recommendations=getattr(r, "component_recommendations", []) or [],
+                external_regulations=getattr(r, "external_regulations", []) or [],
+                lifecycle_warnings=getattr(r, "lifecycle_warnings", []) or [],
+                amendment_metadata=getattr(r, "amendment_metadata", None),
             ))
 
         # 4. Evidence Summary

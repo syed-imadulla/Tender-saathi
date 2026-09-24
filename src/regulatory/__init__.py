@@ -18,6 +18,7 @@ from src.regulatory.qco import QCOEngine
 from src.regulatory.crs import CRSEngine
 from src.regulatory.hallmarking import HallmarkingEngine
 from src.regulatory.regulatory_engine import RegulatoryEngine
+from src.regulatory.external_authority import ExternalAuthoritySignal, ExternalAuthorityRegistry
 
 __all__ = [
     "RegulatoryProvenanceLevel",
@@ -29,4 +30,6 @@ __all__ = [
     "CRSEngine",
     "HallmarkingEngine",
     "RegulatoryEngine",
+    "ExternalAuthoritySignal",
+    "ExternalAuthorityRegistry",
 ]
