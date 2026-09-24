@@ -94,35 +94,44 @@ def normalize_standard_mention(raw: str) -> str:
     return clean
 
 
-def sanitize_text_for_citations(text: str) -> str:
+def sanitize_untrusted_text(text: str) -> str:
     """
     Strips prompt injection payloads, instruction overrides, and unescaped JSON directive
-    blocks so standard numbers contained inside adversarial directives are not extracted
-    as authoritative procurement citations.
+    blocks so standard numbers, prompt keywords, and injection commands contained inside
+    adversarial directives do not contaminate downstream retrieval vector embeddings,
+    BM25 token indexes, or citation extraction.
     """
     if not text:
         return ""
-    # Strip JSON instruction directives e.g. {"candidate_standard": "IS 1786"} or Return JSON: {...}
-    cleaned = re.sub(r'\{[^{}]*"(?:candidate_standard|recommended_standard|standard|override)"\s*:[^{}]*\}', ' ', text, flags=re.IGNORECASE)
+    # Strip JSON objects e.g. {"candidate_standard": "IS 1786"} or Return JSON: {...}
+    cleaned = re.sub(r'\{[^{}]*"[a-zA-Z_]+"\s*:[^{}]*\}', ' ', text)
+    # Strip bracketed instruction/system blocks e.g. [CRITICAL INSTRUCTION: ...] or [SYSTEM NOTE: ...]
+    cleaned = re.sub(r'\[\s*(?:CRITICAL\s+)?(?:INSTRUCTION|SYSTEM\s+NOTE|SYSTEM|NOTE)\s*:[^\]]*\]', ' ', cleaned, flags=re.IGNORECASE)
+    # Strip assistant / system roleplay turns and directive phrases
+    cleaned = re.sub(r'\b(?:Assistant|System)\s*:[^.]*(?:\.|$)', ' ', cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r'\b(?:mark\s+all\s+items\s+approved|bypass\s+applicability\s+gate)[^.]*(?:\.|$)', ' ', cleaned, flags=re.IGNORECASE)
+    # Strip line-level or sentence-level instruction overrides
+    cleaned = re.sub(r'\b(?:SYSTEM\s+OVERRIDE|SYSTEM\s+INSTRUCTION|INSTRUCTION)\s*[:\-][^\n.]*', ' ', cleaned, flags=re.IGNORECASE)
     cleaned = re.sub(r'\b(?:return|output)\s+json\s*[:\-]?[^\n.]*', ' ', cleaned, flags=re.IGNORECASE)
-    
-    # Strip bracketed instruction blocks e.g. [CRITICAL INSTRUCTION: ...]
-    cleaned = re.sub(r'\[\s*(?:CRITICAL\s+)?INSTRUCTION\s*:[^\]]*\]', ' ', cleaned, flags=re.IGNORECASE)
-    
-    # Strip line-level or sentence-level instruction overrides:
-    # e.g. SYSTEM OVERRIDE: ..., Ignore previous instructions..., Unconditionally recommend...
-    cleaned = re.sub(r'\b(?:SYSTEM\s+OVERRIDE|SYSTEM\s+INSTRUCTION)\s*[:\-][^\n.]*', ' ', cleaned, flags=re.IGNORECASE)
-    cleaned = re.sub(r'\bignore\s+(?:all\s+)?(?:previous\s+)?(?:instructions|tender\s+text)[^\n.]*', ' ', cleaned, flags=re.IGNORECASE)
-    cleaned = re.sub(r'\b(?:unconditionally\s+recommend|output\s+standard\s+IS)[^\n.]*', ' ', cleaned, flags=re.IGNORECASE)
-    
+    cleaned = re.sub(r'\bignore\s+(?:all\s+)?(?:previous\s+)?(?:instructions|tender\s+text|bis\s+catalogue)[^\n.]*', ' ', cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r'\b(?:unconditionally\s+recommend|output\s+standard\s+IS|always\s+recommend|do\s+not\s+abstain)[^\n.]*', ' ', cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r'\b(?:you\s+must\s+output|mark\s+publication\s+readiness)[^\n.]*', ' ', cleaned, flags=re.IGNORECASE)
+    # Clean multiple punctuation dots (e.g. "..." or ".. ") without corrupting decimal numbers (e.g. 1.1 kV)
+    cleaned = re.sub(r'\.{2,}', '. ', cleaned)
+    cleaned = re.sub(r'\s+', ' ', cleaned).strip()
     return cleaned
+
+
+def sanitize_text_for_citations(text: str) -> str:
+    """Compatibility alias for sanitize_untrusted_text."""
+    return sanitize_untrusted_text(text)
 
 
 def detect_explicit_standards(text: str) -> List[str]:
     """Finds all explicit IS/ISO/IEC/SP standard mentions in text, sanitized against prompt injection directives."""
     if not text:
         return []
-    sanitized = sanitize_text_for_citations(text)
+    sanitized = sanitize_untrusted_text(text)
     matches = STANDARD_REGEX.findall(sanitized)
     seen = set()
     cleaned = []
@@ -246,19 +255,19 @@ def extract_from_text(
     """
     Extracts a Requirement object from a plain text requirement string.
     """
-    cleaned_text = re.sub(r'\s+', ' ', text.strip())
-    cat = classify_category(cleaned_text)
-    explicit_stds = detect_explicit_standards(cleaned_text)
-    decomp = decompose_requirement(cleaned_text)
+    sanitized = sanitize_untrusted_text(text)
+    cat = classify_category(sanitized)
+    explicit_stds = detect_explicit_standards(text)
+    decomp = decompose_requirement(sanitized)
     return Requirement(
         requirement_id=requirement_id,
-        requirement_text=cleaned_text,
+        requirement_text=sanitized,
         category=cat,
         tender_id=tender_id,
         page=1,
         section="User Input",
         explicit_standards=explicit_stds,
-        raw_context=cleaned_text,
+        raw_context=text,
         components=decomp.components,
         decomposition_confidence=decomp.decomposition_confidence
     )
@@ -298,12 +307,14 @@ def extract_from_pdf(pdf_path: str, tender_id: Optional[str] = None) -> List[Req
             clean_block = re.sub(r'\s+', ' ', text_block).strip()
             if clean_block.lower() not in seen_texts:
                 seen_texts.add(clean_block.lower())
-                cat = classify_category(clean_block)
+                sanitized_block = sanitize_untrusted_text(clean_block)
+                req_query = sanitized_block if sanitized_block else clean_block
+                cat = classify_category(req_query)
                 explicit_stds = detect_explicit_standards(clean_block)
-                decomp = decompose_requirement(clean_block)
+                decomp = decompose_requirement(req_query)
                 requirements.append(Requirement(
                     requirement_id=f"{t_id}-R{req_counter:03d}",
-                    requirement_text=clean_block,
+                    requirement_text=req_query,
                     category=cat,
                     tender_id=t_id,
                     page=1,
@@ -340,13 +351,15 @@ def extract_from_pdf(pdf_path: str, tender_id: Optional[str] = None) -> List[Req
                     continue
 
                 seen_texts.add(clean_l.lower())
-                cat = classify_category(clean_l)
+                sanitized_l = sanitize_untrusted_text(clean_l)
+                req_query_l = sanitized_l if sanitized_l else clean_l
+                cat = classify_category(req_query_l)
                 explicit_stds = detect_explicit_standards(clean_l)
-                decomp = decompose_requirement(clean_l)
+                decomp = decompose_requirement(req_query_l)
 
                 requirements.append(Requirement(
                     requirement_id=f"{t_id}-R{req_counter:03d}",
-                    requirement_text=clean_l,
+                    requirement_text=req_query_l,
                     category=cat,
                     tender_id=t_id,
                     page=pno + 1,

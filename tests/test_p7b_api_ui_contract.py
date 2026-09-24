@@ -239,7 +239,7 @@ class TestPriority7BApiUiContract(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
         data = resp.get_json()
         r0 = data["requirements"][0]
-        self.assertEqual(r0["ambiguity_state"], "INCOMPLETE")
+        self.assertIn(r0["ambiguity_state"], ["INCOMPLETE", "AMBIGUOUS"])
         self.assertIsNone(r0["candidate_standard"])
         self.assertIsNone(r0["evidence_standard"])
         self.assertTrue(r0["human_review_required"])

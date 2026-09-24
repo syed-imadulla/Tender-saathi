@@ -44,7 +44,7 @@
 
 - **Normative References:** `0`
 - **Testing Method Dependencies:** `1`
-- **Installation / Laying Standards:** `3`
+- **Installation / Laying Standards:** `2`
 - **Allied Standards:** `1`
 - **Potential Standard Gaps:** `2`
 - **Verified Standard Gaps:** `0`
@@ -81,17 +81,16 @@
   - [→ TEST_METHOD] `IS 12235 : 2004` — *Title not in local index* (Unknown) — *Note:* Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance.
   - [→ INSTALLATION_STANDARD] `IS 7634 (Part 3) : 2003` — *Title not in local index* (Unknown) — *Note:* Installation, laying, and jointing standard associated with IS 7634 (Part 3) : 2003. Review for installation execution.
   - [→ ALLIED_STANDARD] `IS 4985 : 2000` — *Title not in local index* (Unknown) — *Note:* Allied product or component standard. Review for equipment interface compatibility.
-- **Standards Dependencies Mapped (5):**
+- **Standards Dependencies Mapped (4):**
   - [TEST METHOD] `IS 12235 : 2004` — *Title not in local index* (IS 12235 : 2004 (Title not in local index) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778 : 2007. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED].)
   - [INSTALLATION STANDARD] `IS 7634 (Part 3) : 2003` — *Title not in local index* (IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed installation, laying, and execution standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].)
   - [ALLIED STANDARD] `IS 4985 : 2000` — *Title not in local index* (IS 4985 : 2000 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED].)
   - [CODE OF PRACTICE] `SP 57 (QAWSM) : 1993` — *Handbook on Pipes and Fittings for Drinking Water Supply* ()
-  - [INSTALLATION STANDARD] `IS 783 : 1985` — *Code of Practice for Laying of Concrete Pipes* ()
 - **Regulatory & Statutory Intelligence:** Product Certification: `APPLICABLE` | QCO: `CURRENT` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
 - **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `High`
 - **Human Review Decision:** **ACCEPT**
 - **Reviewer Note:** "Verified by procurement officer"
-- **Decision Recorded:** `2026-09-23T19:51:22.723123+00:00`
+- **Decision Recorded:** `2026-09-24T11:59:58.175229+00:00`
 
 ---
 
@@ -114,4 +113,4 @@ TenderSaathi is a standards-review aid for procurement specifications. Final app
 
 | # | Requirement ID | Original System Finding | Human Decision | Reviewer Standard | Reviewer Note | Reviewed Timestamp |
 |---|---|---|---|---|---|---|
-| 1 | `REQ-001` | Authoritative active standard IS 15778 : 2007 verified against scope with High confidence. | **ACCEPT** | `—` | Verified by procurement officer | 2026-09-23T19:51:22.723123+00:00 |
+| 1 | `REQ-001` | Authoritative active standard IS 15778 : 2007 verified against scope with High confidence. | **ACCEPT** | `—` | Verified by procurement officer | 2026-09-24T11:59:58.175229+00:00 |

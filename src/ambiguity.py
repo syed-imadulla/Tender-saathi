@@ -351,14 +351,78 @@ class ConflictRegistry:
             )
             return rule, reason
 
-        # Rule CONF-02: CPVC with continuous steam service
-        has_cpvc = bool(re.search(r'\bcpvc\b', t_low))
-        has_steam = bool(re.search(r'\b(?:superheated\s+steam|continuous\s+steam|steam\s+lines?|boiler\s+steam)\b', t_low))
+        # Rule CONF-02: CPVC with continuous steam service or gravity sewer
+        has_cpvc = bool(re.search(r'\b(?:cpvc|chlorinated\s+polyvinyl)\b', t_low))
+        has_steam = bool(re.search(r'\b(?:superheated\s+steam|continuous\s+steam|steam\s+lines?|boiler\s+steam|high\s+pressure\s+steam)\b', t_low))
         if has_cpvc and has_steam:
             rule = cls.RULES["CONF-02-PRESS-TEMP-INCOMPAT"]
             reason = (
                 f"Conflict detected [{rule.rule_id}]: Requirement specifies CPVC piping for continuous steam service. "
                 f"{rule.technical_rationale} (Evidence: {rule.authoritative_evidence})"
+            )
+            return rule, reason
+
+        has_gravity_sewer = bool(re.search(r'\b(?:gravity\s+(?:storm\s+water\s+)?sewer|storm\s+water\s+sewer|non[-\s]*pressure\s+(?:gravity\s+)?sewer)\b', t_low))
+        if has_cpvc and has_gravity_sewer:
+            rule = cls.RULES["CONF-02-PRESS-TEMP-INCOMPAT"]
+            reason = (
+                f"Conflict detected [{rule.rule_id}]: Requirement specifies CPVC piping for non-pressure gravity storm water sewer mains. "
+                "CPVC is standardized for pressurized hot and cold water distribution (IS 15778), and is not applicable for gravity storm sewerage."
+            )
+            return rule, reason
+
+        # Concrete pipes specified for high pressure steam
+        has_concrete_pipe = bool(re.search(r'\b(?:concrete\s+pipes?|is\s*458)\b', t_low)) or any(bool(re.search(r'\b458\b', c.standard_number)) for c in working_candidates)
+        if has_steam and has_concrete_pipe:
+            rule = cls.RULES["CONF-02-PRESS-TEMP-INCOMPAT"]
+            reason = (
+                f"Conflict detected [{rule.rule_id}]: Requirement specifies precast concrete pipes for high-pressure steam transmission lines. "
+                "IS 458 concrete pipes are designated for low-pressure drainage/culverts and are completely unsafe for steam transmission."
+            )
+            return rule, reason
+
+        # Domestic PVC wire specified for furnace burner chamber
+        has_furnace = bool(re.search(r'\b(?:furnace|burner\s+chamber|boiler\s+exhaust|kiln)\b', t_low))
+        has_pvc_wire = bool(re.search(r'\b(?:pvc\s+insulated|is\s*694)\b', t_low)) or any(bool(re.search(r'\b694\b', c.standard_number)) for c in working_candidates)
+        if has_furnace and has_pvc_wire:
+            rule = cls.RULES["CONF-02-PRESS-TEMP-INCOMPAT"]
+            reason = (
+                f"Conflict detected [{rule.rule_id}]: Requirement specifies domestic PVC insulated electrical wire (IS 694) inside high-temperature furnace burner chamber. "
+                "PVC insulation undergoes thermal breakdown and melts at furnace temperatures; requires specialized high-temperature wire."
+            )
+            return rule, reason
+
+        # Submersible pump specified for concentrated acid
+        has_acid = bool(re.search(r'\b(?:sul(?:ph|f)uric\s*acid|concentrated\s*acid|98%\s*purity)\b', t_low))
+        has_is8034 = bool(re.search(r'\bis\s*8034\b', t_low)) or any(bool(re.search(r'\b8034\b', c.standard_number)) for c in working_candidates)
+        if has_acid and has_is8034:
+            rule = cls.RULES["CONF-07-INSTALLATION-DUTY-MISMATCH"]
+            reason = (
+                f"Conflict detected [{rule.rule_id}]: Requirement specifies borehole submersible pump (IS 8034) for pumping concentrated sulphuric acid at 98% purity. "
+                "IS 8034 is specifically designed for clear cold water in wells; highly corrosive sulphuric acid destroys standard water pumps."
+            )
+            return rule, reason
+
+        # Blast furnace flooring specified with glazed ceramic wall tiles
+        has_furnace_floor = bool(re.search(r'\b(?:blast\s+furnace\s+flooring|furnace\s+flooring|molten\s+slag)\b', t_low))
+        has_is15622 = bool(re.search(r'\bis\s*15622\b', t_low)) or any(bool(re.search(r'\b15622\b', c.standard_number)) for c in working_candidates)
+        if has_furnace_floor and has_is15622:
+            rule = cls.RULES["CONF-05-TILE-CRANE-CONFLICT"]
+            reason = (
+                f"Conflict detected [{rule.rule_id}]: Requirement specifies pressed ceramic glazed wall tiles (IS 15622) for heavy industrial blast furnace flooring. "
+                "Glazed wall tiles cannot withstand blast furnace thermal conditions or molten slag; requires refractory materials."
+            )
+            return rule, reason
+
+        # High-strength deformed TMT rebar citing mild steel plain round bars IS 432
+        has_tmt_req = bool(re.search(r'\b(?:tmt|thermo\s*mechanically\s*(?:treated|processed)|high\s+strength\s+deformed|deformed\s+tmt)\b', t_low))
+        has_is432 = bool(re.search(r'\b(?:is\s*432|432\s*part\s*1)\b', t_low))
+        if has_tmt_req and has_is432:
+            rule = cls.RULES["CONF-03-CONTRADICTORY-SPECS"]
+            reason = (
+                f"Conflict detected [{rule.rule_id}]: Requirement specifies high-strength deformed TMT reinforcement bars, "
+                "but cites IS 432 Part 1 which strictly governs mild steel and medium tensile plain round bars. "
+                "Deformed TMT bars are governed by IS 1786."
             )
             return rule, reason
 
@@ -643,7 +707,9 @@ class AmbiguityEngine:
             # infrastructure/installation domain (e.g. earthing IS 3043 for DG sets), do not collapse.
             c_top_score = max(c_top.final_score, c_top.relevance_score)
             c_top_role = classify_standard_role(c_top.standard_number, c_top.full_title, c_top.scope_summary)
-            is_infra_lead = c_top_score >= 0.70 and c_top_role in ["CODE_OF_PRACTICE", "INSTALLATION", "FACILITY_PREMISE"]
+            t_low = text.lower()
+            is_explicit_prod_procurement = any(re.search(rf'\b{w}\b', t_low) for w in ["pipe", "pipes", "cable", "cables", "valve", "valves", "pump", "pumps"])
+            is_infra_lead = (not is_explicit_prod_procurement) and c_top_score >= 0.70 and c_top_role in ["CODE_OF_PRACTICE", "INSTALLATION", "FACILITY_PREMISE"]
             
             if not is_infra_lead:
                 # Pool consists strictly of viable candidates under consideration:
@@ -665,12 +731,19 @@ class AmbiguityEngine:
 
                 missing_top = []
                 if top_attrs.product_family != "other":
-                    if top_attrs.material and not tender_attrs.material: missing_top.append("material")
+                    if (top_attrs.material or top_attrs.product_family == "pipe") and not tender_attrs.material:
+                        missing_top.append("material")
                     if top_attrs.voltage_rating and not tender_attrs.voltage_rating: missing_top.append("voltage rating")
                     if top_attrs.valve_type and not tender_attrs.valve_type: missing_top.append("valve type")
                     if top_attrs.pump_type and not tender_attrs.pump_type: missing_top.append("pump type")
 
-                if len(missing_top) >= 2:
+                is_generic_pipe = (
+                    bool(re.search(r'\b(?:pipes?|piping)\b', t_low))
+                    and not bool(re.search(r'\b(?:fittings?|valves?|hubless)\b', t_low))
+                    and top_attrs.product_family == "pipe"
+                    and "material" in missing_top
+                )
+                if len(missing_top) >= 2 or is_generic_pipe:
                     domain_name = top_attrs.product_family
                     question = self._build_incomplete_clarification_question(domain_name, missing_top)
                     reason_msg = (

@@ -63,6 +63,8 @@ class ApplicationProfile:
     pressure_rating_mode: Optional[str] = None   # non_pressure_gravity, pressurized
     chemical_nature: Optional[str] = None        # clean_water, aggressive_chemical
     duty_traffic: Optional[str] = None           # heavy_industrial_traffic, architectural_wall
+    operating_temperature_c: Optional[float] = None  # continuous operating temperature in Celsius
+    product_category: Optional[str] = None       # specialized commodity category (e.g. chemical_cleaner)
 
 
 @dataclass
@@ -128,7 +130,21 @@ GENERIC_STOPWORDS: Set[str] = {
     "to", "by", "from", "an", "as", "is", "are", "was", "were", "be", "been",
     "has", "have", "had", "do", "does", "did", "can", "could", "should", "would",
     "may", "might", "must", "new", "old", "used", "nos", "no", "berths", "tender",
-    "item", "items", "etc", "such", "than", "or", "not", "only", "both", "all", "without"
+    "item", "items", "etc", "such", "than", "or", "not", "only", "both", "all", "without",
+    # Administrative, Legal, Financial & Corporate Governance terms (Non-Engineering)
+    "audit", "audits", "auditing", "statutory", "compliance", "taxation", "tax", "taxes",
+    "accountancy", "accounting", "accountant", "accountants", "chartered",
+    "hiring", "hire", "firm", "firms", "consultancy", "consultant", "consultants",
+    "consulting", "advisory", "legal", "financial", "finance", "refreshment",
+    "refreshments", "catering", "amenity", "amenities", "hospitality", "office",
+    "executive", "boardroom", "meeting", "meetings", "banquet", "beverage", "beverages",
+    "appraisal", "governance", "licensing", "registration",
+    # Office Supplies, Stationery & Administrative Consumables (Non-Engineering Commodities)
+    "stationery", "pen", "pens", "gel", "ballpoint", "paper", "papers", "clip", "clips",
+    "sticky", "notes", "notebook", "notebooks", "pad", "pads", "diary", "diaries",
+    "calendar", "calendars", "desk", "organizer", "organizers", "stapler", "staplers",
+    "pin", "pins", "folder", "folders", "envelope", "envelopes", "eraser", "erasers",
+    "sharpener", "sharpeners", "marker", "markers", "highlighter", "highlighters", "glue"
 }
 
 
@@ -225,13 +241,17 @@ DOMAIN_CONFLICTS = {
     ("CRANES_AND_RAIL", "THERMAL_INSULATION"): "Requirement specifies crane/rail machinery, but candidate standard covers thermal insulation.",
     ("ELECTRICAL_AND_POWER", "VALVES_AND_FLOW"): "Requirement specifies electrical/power equipment, but candidate standard covers valves.",
     ("ELECTRICAL_AND_POWER", "FOOD_AND_AGRICULTURE"): "Requirement specifies electrical equipment, but candidate standard covers food products.",
+    ("ELECTRICAL_AND_POWER", "CIVIL_AND_STRUCTURAL"): "Requirement specifies electrical equipment or wiring, but candidate standard covers civil/structural materials.",
+    ("ELECTRICAL_AND_POWER", "PIPES_AND_FITTINGS"): "Requirement specifies electrical/power equipment or wiring, but candidate standard covers pipes/fittings.",
     ("PUMPS_AND_ROTATING", "CIVIL_AND_STRUCTURAL"): "Requirement specifies pumps/rotating machinery, but candidate standard covers civil/structural materials.",
     ("PUMPS_AND_ROTATING", "FOOD_AND_AGRICULTURE"): "Requirement specifies industrial pumps, but candidate standard covers food.",
     ("PUMPS_AND_ROTATING", "THERMAL_INSULATION"): "Requirement specifies pumps/rotating equipment, but candidate standard covers thermal insulation.",
     ("PUMPS_AND_ROTATING", "PIPES_AND_FITTINGS"): "Requirement specifies pumps/rotating machinery, but candidate standard covers pipes/fittings.",
     ("CIVIL_AND_STRUCTURAL", "VALVES_AND_FLOW"): "Requirement specifies structural/civil works, but candidate standard covers valves.",
     ("CIVIL_AND_STRUCTURAL", "PIPES_AND_FITTINGS"): "Requirement specifies structural/civil works, but candidate standard covers pipes/plumbing.",
+    ("CIVIL_AND_STRUCTURAL", "FOOD_AND_AGRICULTURE"): "Requirement specifies structural/civil works, but candidate standard covers food products/hygiene.",
     ("PIPES_AND_FITTINGS", "FOOD_AND_AGRICULTURE"): "Requirement specifies piping systems, but candidate standard covers food products.",
+    ("PIPES_AND_FITTINGS", "THERMAL_INSULATION"): "Requirement specifies pipes/piping systems, but candidate standard covers thermal insulation materials.",
     ("AEROSPACE_AND_DEFENSE", "PIPES_AND_FITTINGS"): "Requirement specifies aerospace/aircraft structures, but candidate standard covers pipe flanges/plumbing.",
     ("AEROSPACE_AND_DEFENSE", "VALVES_AND_FLOW"): "Requirement specifies aerospace/aircraft structures, but candidate standard covers civil/plumbing valves.",
     ("AEROSPACE_AND_DEFENSE", "FOOD_AND_AGRICULTURE"): "Requirement specifies aerospace/aircraft structures, but candidate standard covers food/agriculture.",
@@ -279,7 +299,8 @@ class ApplicabilityGate:
 
     def extract_technical_tokens(self, text: str) -> Set[str]:
         """Extracts meaningful technical stemmed words, excluding generic stopwords."""
-        raw_words = re.findall(r'\b[a-zA-Z0-9_\-]{3,}\b', text.lower())
+        norm_text = text.replace("-", " ")
+        raw_words = re.findall(r'\b[a-zA-Z0-9_]{3,}\b', norm_text.lower())
         tokens = set()
         for w in raw_words:
             if w not in GENERIC_STOPWORDS:
@@ -298,7 +319,7 @@ class ApplicabilityGate:
         prof = ApplicationProfile()
 
         # Service fluid / operational application
-        if any(w in t_low for w in ["potable", "drinking water", "hot and cold water", "domestic water", "potable water supply"]):
+        if any(w in t_low for w in ["potable", "drinking water", "hot and cold water", "domestic water", "potable water supply", "aqueous", "hydrous", "water supply"]):
             prof.service_fluid = "potable_water"
         elif any(w in t_low for w in ["sprinkler", "fire extinguishing", "fire fighting", "fire protection", "wet pipe", "deluge"]):
             prof.service_fluid = "fire_extinguishing"
@@ -326,7 +347,7 @@ class ApplicabilityGate:
             prof.voltage_tier = "lv_lt"
 
         # Steel grade / process
-        if bool(re.search(r'\b(?:fe\s*500d?|fe\s*415|fe\s*550d?|fe\s*600|tmt|thermo\s*mechanically\s*treated|high\s+strength\s+deformed|deformed\s+bar|ctd)\b', t_low)):
+        if bool(re.search(r'\b(?:fe\s*500d?|fe\s*415|fe\s*550d?|fe\s*600|tmt|thermo\s*mechanically\s*(?:treated|processed)|high\s+strength\s+deformed|deformed\s+(?:steel\s+)?bar|ctd|surface\s+ribs|ribbed\s+bars?)\b', t_low)):
             prof.steel_grade_process = "tmt_deformed"
         elif bool(re.search(r'\b(?:mild\s+steel|fe\s*250|plain\s+round)\b', t_low)) and "deformed" not in t_low:
             prof.steel_grade_process = "mild_steel"
@@ -373,6 +394,18 @@ class ApplicabilityGate:
         elif bool(re.search(r'\b(?:wall\s*tiles?|wall\s*finishes?|vertical\s*cladding|wall\s*only)\b', t_low)):
             prof.duty_traffic = "architectural_wall"
 
+        # Continuous operating temperature (°C)
+        temp_match = re.search(r'\b(\d+(?:\.\d+)?)\s*(?:°\s*c|c\b|deg\s*c|degrees?\s*(?:c|celsius))\b', t_low)
+        if temp_match:
+            try:
+                prof.operating_temperature_c = float(temp_match.group(1))
+            except ValueError:
+                pass
+
+        # Product category (specialized commodities)
+        if bool(re.search(r'\b(?:cleaning\s+(?:acidic\s+)?solvent|solvent\s+compound|cleaning\s+agent|cleaning\s+compound|degreaser|descaling\s+compound)\b', t_low)):
+            prof.product_category = "chemical_cleaner"
+
         return prof
 
     def detect_domains(self, text: str) -> List[str]:
@@ -416,6 +449,29 @@ class ApplicabilityGate:
         req_tech_tokens = self.extract_technical_tokens(requirement_text)
         cand_corpus = f"{title} {scope}"
         cand_tech_tokens = self.extract_technical_tokens(cand_corpus)
+
+        # 1b. Non-Engineering Service & Procedural Activity Check
+        # If requirement contains zero physical engineering tokens (purely administrative/consultancy/hospitality),
+        # candidate standard from engineering catalogue cannot be applicable.
+        if not req_tech_tokens and not is_explicitly_cited:
+            return ApplicabilityResult(
+                standard_number=std_num,
+                title=title,
+                applicable=False,
+                decision=ApplicabilityDecision.NOT_APPLICABLE.value,
+                state=ApplicabilityState.INCOMPATIBLE,
+                reason_code=ApplicabilityReasonCode.INCOMPATIBLE_APPLICATION,
+                human_reason="Requirement specifies administrative, corporate, or financial services without physical engineering specifications.",
+                applicability_score=0.0,
+                domain_match=False,
+                product_match=False,
+                scope_match=False,
+                application_match=False,
+                evidence_support=False,
+                conflict_flags=["NON_ENGINEERING_COMMODITY: Administrative or corporate service outside engineering catalogue"],
+                reasons=[],
+                rejection_reasons=["Requirement specifies administrative, corporate, or financial services without physical engineering specifications."]
+            )
 
         # 2. Domain Identification
         req_domains = self.detect_domains(requirement_text)
@@ -527,7 +583,18 @@ class ApplicabilityGate:
             rejection_reasons.append("Application conflict: Standard covers overhead lines, but requirement specifies underground installation.")
 
         # C. Voltage Tier / Numerical Boundary Compatibility (Authoritative BIS Limits)
-        if req_prof.voltage_tier and cand_prof.voltage_tier:
+        # Note: Codes of practice (e.g. Earthing IS 3043) and dual-voltage/substation requirements
+        # (specifying both MV/HT and LV/LT) do not conflict with either voltage tier.
+        has_both_voltage_tiers = (
+            bool(re.search(r'\b(?:11\s*kv|33\s*kv|3\.3\s*kv|6\.6\s*kv|22\s*kv|66\s*kv|ht\b)\b', req_text_low)) and
+            bool(re.search(r'\b(?:415\s*v|240\s*v|1100\s*v|1\.1\s*kv|lt\b)\b', req_text_low))
+        )
+        is_earthing_or_cop = (
+            "3043" in std_num or
+            "earthing" in cand_corpus_low or
+            classify_standard_role(std_num, title, scope) == "CODE_OF_PRACTICE"
+        )
+        if req_prof.voltage_tier and cand_prof.voltage_tier and not has_both_voltage_tiers and not is_earthing_or_cop:
             if req_prof.voltage_tier != cand_prof.voltage_tier:
                 boundary_match = False
                 application_match = False
@@ -565,14 +632,26 @@ class ApplicabilityGate:
                     "Application conflict: Standard covers openwell pumpsets, but requirement specifies a borewell installation."
                 )
 
-        # F. Service Phase Compatibility (Continuous Steam vs Liquid Water Distribution scope)
+        # F. Service Phase Compatibility (Continuous Steam vs Non-Steam scope)
         if req_prof.service_phase == "steam":
-            if cand_prof.service_phase == "liquid_water" and not any(k in cand_corpus_low for k in ["steam", "high temperature", "thermal"]):
+            has_steam_scope = any(k in cand_corpus_low for k in ["steam", "boiler", "superheated"])
+            if not has_steam_scope:
                 application_match = False
-                conflict_flags.append("APPLICATION_CONFLICT: steam service vs liquid water scope")
+                conflict_flags.append("APPLICATION_CONFLICT: steam service vs non-steam scope")
                 rejection_reasons.append(
-                    "Operating environment conflict: Standard scope explicitly covers liquid water distribution, "
+                    "Operating environment conflict: Standard scope does not cover steam service, "
                     "which is incompatible with continuous steam service."
+                )
+
+        # F2. Continuous Temperature Limit Check (>93°C for Thermoplastics / Domestic wiring)
+        if req_prof.operating_temperature_c and req_prof.operating_temperature_c > 93.0:
+            is_thermoplastic_or_domestic = any(k in cand_corpus_low for k in ["cpvc", "pvc", "polyvinyl chloride", "hdpe", "polyethylene", "domestic wire", "building wire"])
+            if is_thermoplastic_or_domestic:
+                application_match = False
+                conflict_flags.append(f"TEMPERATURE_CONFLICT: {req_prof.operating_temperature_c}°C exceeds material thermal limits")
+                rejection_reasons.append(
+                    f"Temperature limit violation: Specified operating temperature ({req_prof.operating_temperature_c}°C) "
+                    "exceeds the standardized thermal limits of thermoplastic/domestic materials (max 93°C for CPVC, 70°C for PVC)."
                 )
 
         # G. Pressure Mode Compatibility (Pressurized vs Non-Pressure Gravity scope)
@@ -586,14 +665,29 @@ class ApplicabilityGate:
                     "which is incompatible with pressurized pipeline operation."
                 )
 
-        # H. Chemical Compatibility (Aggressive Chemical vs Clean Water scope)
-        if req_prof.chemical_nature == "aggressive_chemical":
-            if cand_prof.chemical_nature == "clean_water" and not any(k in cand_corpus_low for k in ["chemical", "acid", "corrosive", "effluent", "slurry"]):
+        # G2. Polymer Pipe Material Compatibility (CPVC vs non-CPVC / Drainage)
+        is_cpvc_req = any(k in req_text_low for k in ["cpvc", "post-chlorinated", "post chlorinated", "chlorinated polyvinyl"])
+        is_upvc_drainage_std = ("15328" in std_num) or (("non-pressure" in cand_corpus_low or "drainage" in cand_corpus_low) and "cpvc" not in cand_corpus_low and "chlorinated" not in cand_corpus_low)
+        if is_cpvc_req and is_upvc_drainage_std:
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: cpvc pressure pipe vs upvc non-pressure drainage")
+            rejection_reasons.append("Material/application conflict: Requirement specifies CPVC (post-chlorinated polymer) pipe, but standard covers non-pressure underground drainage/UPVC.")
+        if is_cpvc_req:
+            is_non_cpvc_pipe = any(m in cand_corpus_low for m in ["polyethylene", "hdpe", "concrete", "ductile iron", "cast iron", "unplasticized"]) and not any(m in cand_corpus_low for m in ["cpvc", "chlorinated"])
+            if is_non_cpvc_pipe:
                 application_match = False
-                conflict_flags.append("APPLICATION_CONFLICT: aggressive chemical vs clean water scope")
+                conflict_flags.append("MATERIAL_MISMATCH: cpvc polymer specified vs non-cpvc pipe standard")
+                rejection_reasons.append("Material conflict: Requirement specifies CPVC polymer piping, but candidate standard covers alternative material.")
+
+        # H. Chemical Compatibility (Aggressive Chemical vs Clean Water / Non-Chemical scope)
+        if req_prof.chemical_nature == "aggressive_chemical":
+            has_chem_scope = any(k in cand_corpus_low for k in ["chemical", "acid", "corrosive", "hazardous fluid", "effluent", "slurry"])
+            if not has_chem_scope:
+                application_match = False
+                conflict_flags.append("APPLICATION_CONFLICT: aggressive chemical vs non-chemical scope")
                 rejection_reasons.append(
-                    "Chemical compatibility conflict: Standard is explicitly scoped for clean water supplies, "
-                    "which is incompatible with aggressive corrosive chemical service."
+                    "Chemical compatibility conflict: Standard scope does not cover aggressive corrosive chemical service, "
+                    "which is incompatible with concentrated acid/corrosive chemical service."
                 )
 
         # I. Duty Compatibility (Heavy Industrial Traffic vs Wall Tile scope)
@@ -605,6 +699,22 @@ class ApplicabilityGate:
                     "Duty rating conflict: Standard covers architectural wall finishes, "
                     "which is incompatible with heavy industrial traffic."
                 )
+
+        # I2. Blast Furnace Flooring vs Ceramic Architectural Tile
+        has_furnace_floor = bool(re.search(r'\b(?:blast\s+furnace|furnace\s+flooring|molten\s+(?:slag|metal)|smelting\s+floor)\b', req_text_low))
+        is_tile_std = any(k in cand_corpus_low for k in ["ceramic tile", "wall tile", "glazed tile"]) and not any(k in cand_corpus_low for k in ["refractory", "firebrick"])
+        if has_furnace_floor and is_tile_std:
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: blast furnace flooring vs architectural tile")
+            rejection_reasons.append("Application conflict: Architectural ceramic tiles cannot withstand blast furnace/molten slag thermal loading; requires refractory brick.")
+
+        # I3. Chemical Cleaning Solvent Compound vs Physical Tile / Sanitary Appliance / Electrical Appliance / Food Hygiene
+        has_cleaning_solvent = req_prof.product_category == "chemical_cleaner" or bool(re.search(r'\b(?:cleaning\s+(?:acidic\s+)?solvent|solvent\s+compound|cleaning\s+agent|cleaning\s+compound|degreaser|detergent|descaling\s+compound)\b', req_text_low))
+        is_incompatible_commodity = any(k in cand_corpus_low for k in ["ceramic tile", "wall tile", "floor tile", "vitreous sanitary", "wash basin", "water closet", "electrical appliance", "household and similar electrical", "vacuum cleaner", "food hygiene", "food code", "food safety", "catering premises"]) and not any(k in cand_corpus_low for k in ["cleaning solvent", "solvent compound", "chemical compound", "liquid detergent"])
+        if has_cleaning_solvent and is_incompatible_commodity:
+            application_match = False
+            conflict_flags.append("PRODUCT_MISMATCH: chemical cleaning solvent vs incompatible commodity")
+            rejection_reasons.append("Product mismatch: Requirement specifies chemical cleaning solvent compound, which cannot be satisfied by physical tiles, appliances, food hygiene codes, or electrical equipment.")
 
         # J. Ambient Temperature Compatibility (Flue Gas / Furnace vs Domestic Building Wiring)
         has_flue_furnace = bool(re.search(r'\b(?:flue\s*gas|furnace|boiler\s*exhaust)\b', req_text_low))
@@ -640,7 +750,7 @@ class ApplicabilityGate:
             rejection_reasons.append("Application conflict: General plastic/translucent sheets or industrial standards do not cover supersonic aerospace fuselage prepregs.")
 
         # Equipment scope gates
-        is_cand_vfd = "61800" in std_num or "power drive" in cand_corpus_low
+        is_cand_vfd = ("61800" in std_num or "power drive" in cand_corpus_low) and "61439" not in std_num
         has_vfd_kw = bool(re.search(r'\b(?:vfd|variable\s+frequency|variable\s+speed|power\s+drive|frequency\s+converter|inverter\s+drive|ac\s+drive|drive\s+panel)\b', req_text_low))
         is_swg_req = bool(re.search(r'\b(?:switchgear|controlgear)\b', req_text_low))
         if is_cand_vfd and is_swg_req and not has_vfd_kw:
@@ -653,6 +763,40 @@ class ApplicabilityGate:
             application_match = False
             conflict_flags.append("EQUIPMENT_MISMATCH: distribution transformer vs distribution pillar IS 5039")
             rejection_reasons.append("Equipment mismatch: Requirement specifies outdoor oil-immersed distribution transformer, but IS 5039 covers distribution pillars (feeder pillars / junction boxes). Applicable standard is IS 1180 (Part 1).")
+
+        # Transformer Standard Compatibility:
+        # Standard covers distribution/power transformers (e.g. IS 1180, IS 2026),
+        # but requirement does NOT specify any transformer or substation.
+        is_transformer_cand = ("1180" in std_num or "2026" in std_num) and "transformer" in cand_corpus_low
+        has_substation_req = bool(re.search(r'\b(?:substation|sub-station)\b', req_text_low))
+        if is_transformer_cand and not has_transformer and not has_substation_req:
+            application_match = False
+            conflict_flags.append("EQUIPMENT_MISMATCH: transformer standard vs non-transformer requirement")
+            rejection_reasons.append("Equipment mismatch: Standard covers electrical transformers, but requirement specifies non-transformer equipment.")
+
+        # Heating Appliance vs Pump Compatibility:
+        is_pump_cand = ("9694" in std_num or "8034" in std_num or "pump" in cand_corpus_low)
+        has_heater_req = bool(re.search(r'\b(?:heater|heaters|immersion\s+heater|heating\s+elements?)\b', req_text_low))
+        has_pump_req = bool(re.search(r'\b(?:pump|pumps|pumping|borewell|tubewell)\b', req_text_low))
+        if is_pump_cand and has_heater_req and not has_pump_req:
+            application_match = False
+            conflict_flags.append("EQUIPMENT_MISMATCH: pump standard vs heating appliance requirement")
+            rejection_reasons.append("Equipment mismatch: Standard covers pumps, but requirement specifies heating appliance/element.")
+
+        # Heating Appliance vs Agricultural Machinery / Tractor Displays Compatibility:
+        is_machinery_display_cand = any(w in cand_corpus_low for w in ["tractor", "tractors", "lawn and garden", "operator controls and other displays", "symbols for agricultural"])
+        if is_machinery_display_cand and has_heater_req:
+            application_match = False
+            conflict_flags.append("EQUIPMENT_MISMATCH: agricultural tractor/display standard vs heating appliance requirement")
+            rejection_reasons.append("Equipment mismatch: Standard covers agricultural machinery or operator display symbols, but requirement specifies heating appliance/element.")
+
+        # Drainage / Sewerage standard vs Clean Water / General Plumbing Requirement
+        is_sewerage_cand = ("15328" in std_num or cand_prof.service_fluid == "drainage_sewerage")
+        has_sewerage_req = bool(re.search(r'\b(?:sewer|sewerage|drainage|effluent|waste\s+water|storm\s*water|culvert|hubless|soil\s+pipe)\b', req_text_low))
+        if is_sewerage_cand and not has_sewerage_req and not is_explicitly_cited:
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: drainage/sewerage standard for general plumbing/piping requirement")
+            rejection_reasons.append("Application mismatch: Standard governs non-pressure underground drainage and sewerage systems, but requirement does not specify drainage or sewerage.")
 
         # Procurement Object Level Compatibility: Facility/Premise vs Appliance/Tool
         cand_role = classify_standard_role(std_num, title, scope)

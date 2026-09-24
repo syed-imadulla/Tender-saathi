@@ -29,9 +29,9 @@ def _extract_material(text: str) -> Optional[str]:
     text = text.lower()
     materials = {
         "xlpe": ["xlpe", "cross linked polyethylene", "cross-linked polyethylene", "crosslinked polyethylene"],
-        "pvc": ["pvc", "polyvinyl chloride"],
-        "cpvc": ["cpvc", "chlorinated polyvinyl chloride"],
-        "upvc": ["upvc", "unplasticized pvc"],
+        "cpvc": ["cpvc", "chlorinated polyvinyl chloride", "chlorinated poly(vinyl chloride)", "post-chlorinated", "post chlorinated", "chlorinated vinyl"],
+        "upvc": ["upvc", "unplasticized pvc", "unplasticized polyvinyl chloride", "unplasticized poly(vinyl chloride)", "pvc-u"],
+        "pvc": ["pvc", "polyvinyl chloride", "poly(vinyl chloride)"],
         "hdpe": ["hdpe", "high density polyethylene"],
         "ductile iron": ["di", "ductile iron", "spheroidal graphite iron"],
         "cast iron": ["ci", "cast iron", "sluice"],
@@ -54,7 +54,7 @@ def _extract_material(text: str) -> Optional[str]:
 
 def _extract_voltage(text: str) -> Optional[str]:
     text = text.lower()
-    lv_keywords = ["lv", "low voltage", "up to 1100 v", "1100 v", "415 v", "415v", "240v"]
+    lv_keywords = ["lv", "low voltage", "up to 1100 v", "1100 v", "1100v", "1.1 kv", "1.1kv", "415 v", "415v", "240v"]
     if any(re.search(rf"\b{re.escape(w)}\b", text) for w in lv_keywords):
         return "LV"
     hv_keywords = ["mv", "hv", "medium voltage", "high voltage", "3.3 kv", "11 kv", "33 kv", "66 kv"]

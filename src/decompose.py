@@ -24,6 +24,15 @@ import re
 # Data Models
 # ---------------------------------------------------------------------------
 
+class ComponentRole:
+    """Generic component architectural roles for composite and multi-standard specifications."""
+    ENERGY_TRANSFORMATION_COMPONENT = "ENERGY_TRANSFORMATION_COMPONENT"
+    DISTRIBUTION_COMPONENT = "DISTRIBUTION_COMPONENT"
+    PROTECTION_EARTHING_COMPONENT = "PROTECTION_EARTHING_COMPONENT"
+    PRIMARY_PRODUCT = "PRIMARY_PRODUCT"
+    AUXILIARY_COMPONENT = "AUXILIARY_COMPONENT"
+
+
 @dataclass
 class RequirementComponent:
     """A discrete technical component extracted from a requirement."""
@@ -31,6 +40,8 @@ class RequirementComponent:
     component_type: str                        # material, product, equipment, electrical, control, installation, testing, application, specification
     domain: str                                # electrical, mechanical, civil, piping, sanitary, food_safety, general
     extracted_attributes: Dict[str, Any] = field(default_factory=dict)
+    role: Optional[str] = None
+    search_concepts: List[str] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -99,12 +110,28 @@ ENTITY_PATTERNS = [
         lambda m: {"category": "drive_control", "standard_focus": "IS/IEC 61800"}
     ),
 
-    # --- ELECTRICAL SWITCHGEAR & PANELS ---
+    # --- ENERGY TRANSFORMATION & POWER CONVERSION ---
     (
-        re.compile(r'\b(control\s+panel|starter\s+panel|feeder\s+pillar|distribution\s+pillar|distribution\s+board|sub-distribution\s+board|switchgear|controlgear|mccb|mcb|dbo|panel)\b', re.IGNORECASE),
+        re.compile(r'\b(distribution\s+transformers?|power\s+transformers?|oil\s+immersed\s+transformers?|step[-\s]*down\s+transformers?|transformers?)\b', re.IGNORECASE),
+        "equipment",
+        "electrical",
+        lambda m: {
+            "category": "energy_transformation",
+            "role": ComponentRole.ENERGY_TRANSFORMATION_COMPONENT,
+            "search_concepts": ["distribution transformer", "power transformer"]
+        }
+    ),
+
+    # --- ELECTRICAL SWITCHGEAR & DISTRIBUTION PILLARS ---
+    (
+        re.compile(r'\b(distribution\s+pillars?|lt\s+(?:cable\s+)?distribution\s+pillars?|feeder\s+pillars?|control\s+panel|starter\s+panel|distribution\s+boards?|sub-distribution\s+board|switchgear|controlgear|mccb|mcb|dbo|panel)\b', re.IGNORECASE),
         "electrical",
         "electrical",
-        lambda m: {"category": "switchgear_enclosure", "standard_focus": "IS/IEC 61439"}
+        lambda m: {
+            "category": "distribution_assembly",
+            "role": ComponentRole.DISTRIBUTION_COMPONENT,
+            "search_concepts": ["distribution pillar", "switchgear assembly"] if "pillar" in m.group(0).lower() else ["switchgear controlgear assembly"]
+        }
     ),
 
     # --- ELECTRICAL MACHINES & MOTORS ---
@@ -123,12 +150,28 @@ ENTITY_PATTERNS = [
         lambda m: {"category": "cable_distribution", "standard_focus": "IS 7098 / IS 1554"}
     ),
 
-    # --- EARTHING & POWER APPARATUS ---
+    # --- EARTHING & SURGE PROTECTION ---
     (
-        re.compile(r'\b(neutral\s+earthing|earthing|earth\s+electrode|transformer|dg\s+set|diesel\s+generator|plugs?\s+and\s+sockets?|power\s+sockets?)\b', re.IGNORECASE),
+        re.compile(r'\b(copper\s+earthing\s+stations?|earthing\s+stations?|neutral\s+earthing|earthing|earth\s+electrode|copper\s+earthing|surge\s+arresters?)\b', re.IGNORECASE),
         "equipment",
         "electrical",
-        lambda m: {"category": "earthing_generation", "standard_focus": "IS 3043 / IS 1293"}
+        lambda m: {
+            "category": "earthing_protection",
+            "role": ComponentRole.PROTECTION_EARTHING_COMPONENT,
+            "search_concepts": ["earthing code of practice", "copper earthing station"]
+        }
+    ),
+
+    # --- ELECTRICAL HEATING APPLIANCES & IMMERSION HEATERS ---
+    (
+        re.compile(r'\b(immersion\s+heater(?:\s+elements?)?|heating\s+elements?|oil\s+immersion\s+heaters?|electric\s+immersion\s+heaters?|immersion\s+heaters?)\b', re.IGNORECASE),
+        "equipment",
+        "electrical",
+        lambda m: {
+            "category": "heating_appliance",
+            "role": ComponentRole.PRIMARY_PRODUCT,
+            "search_concepts": ["safety household similar electrical appliances", "electric immersion water heaters"]
+        }
     ),
 
     # --- LIGHTING ---
@@ -174,12 +217,40 @@ ENTITY_PATTERNS = [
         lambda m: {"category": "thermal_insulation", "standard_focus": "IS 14164 / IS 8183"}
     ),
 
-    # --- PIPING MATERIALS ---
+    # --- STRUCTURAL REINFORCEMENT & TMT STEEL BARS ---
     (
-        re.compile(r'\b(cpvc\s+pipes?|hubless\s+pipes?|cast\s+iron\s+pipes?|gi\s+pipes?|galvanized\s+iron\s+pipes?|pvc\s+pipes?|hdpe\s+pipes?|precast\s+concrete\s+pipes?|rcc\s+pipes?|polyethylene\s+pipes?|mild\s+steel\s+pipes?|steel\s+tubes?|sewerage\s+pipelines?|sewerage\s+pipes?|pipelines?|pipes?)\b', re.IGNORECASE),
+        re.compile(r'\b(thermo[-\s]*mechanically\s+(?:treated|processed)(?:\s+ferrous)?(?:\s+cylindrical)?(?:\s+rods?|\s+bars?)?|high\s+strength\s+deformed\s+(?:steel\s+)?bars?|tmt\s+(?:steel\s+)?bars?|deformed\s+steel\s+bars?|surface\s+ribs|rebar|reinforcement\s+bars?|steel\s+reinforcement)\b', re.IGNORECASE),
+        "material",
+        "civil",
+        lambda m: {
+            "category": "steel_reinforcement",
+            "role": ComponentRole.PRIMARY_PRODUCT,
+            "search_concepts": ["high strength deformed steel bars", "tmt steel bars"]
+        }
+    ),
+
+    # --- PIPING MATERIALS & CHEMICAL POLYMER CONDUITS ---
+    (
+        re.compile(r'\b(post[-\s]*chlorinated\s+vinyl(?:\s+synthetic)?\s+polymers?|chlorinated\s+polyvinyl\s+chloride(?:\s+pipes?)?|cpvc\s+pipes?|fluid\s+conveyance\s+conduits?|aqueous\s+hydrous\s+fluid\s+conveyance\s+conduits?|conduits?|hubless\s+pipes?|cast\s+iron\s+pipes?|gi\s+pipes?|galvanized\s+iron\s+pipes?|plastic\s+(?:water\s+supply\s+)?pipes?|plastic\s+piping|upvc\s+pipes?|pvc\s+pipes?|hdpe\s+pipes?|precast\s+concrete\s+pipes?|rcc\s+pipes?|polyethylene\s+pipes?|mild\s+steel\s+pipes?|steel\s+tubes?|sewerage\s+pipelines?|sewerage\s+pipes?|pipelines?|pipes?)\b', re.IGNORECASE),
         "material",
         "piping",
-        lambda m: {"category": "pipe_material"}
+        lambda m: {
+            "category": "pipe_material",
+            "role": ComponentRole.PRIMARY_PRODUCT,
+            "search_concepts": (
+                ["chlorinated polyvinyl chloride pipes", "cpvc pipes"]
+                if any(k in m.group(0).lower() for k in ["cpvc", "post-chlorinated", "post chlorinated", "chlorinated polyvinyl"])
+                else (
+                    ["unplasticized polyvinyl chloride upvc pipes", "chlorinated polyvinyl chloride cpvc pipes"]
+                    if "plastic" in m.group(0).lower()
+                    else (
+                        ["unplasticized polyvinyl chloride upvc pipes potable water", "polyvinyl chloride pipes"]
+                        if any(k in m.group(0).lower() for k in ["pvc", "upvc"])
+                        else []
+                    )
+                )
+            )
+        }
     ),
 
     # --- SANITARY WARE & FITTINGS ---
@@ -321,7 +392,9 @@ class CompoundRequirementDecomposer:
                     text=match_str,
                     component_type=comp_type,
                     domain=domain,
-                    extracted_attributes=attrs
+                    extracted_attributes=attrs,
+                    role=attrs.get("role") if isinstance(attrs, dict) else None,
+                    search_concepts=attrs.get("search_concepts", []) if isinstance(attrs, dict) else []
                 ))
 
         # Sort components in order of appearance in original text

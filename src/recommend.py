@@ -311,9 +311,30 @@ class StandardsRecommender:
                         search_results.append(eh)
 
         # Merge explicit citations into search_results so they are evaluated by the Critic
-        from src.ambiguity import ConflictRegistry
+        from src.ambiguity import ConflictRegistry, ConflictRule
         for esr in explicit_search_results:
             citation_conflict = ConflictRegistry.check_conflict(working_text, req.components, [esr])
+            # Pre-Citation Operational Envelope Gate (Milestone 8, Task 3):
+            # Prior to granting deterministic citation bonus (1.0), evaluate the candidate against
+            # the Applicability Gate's operational envelope and domain checks.
+            if not citation_conflict:
+                app_eval = self.applicability_gate.evaluate_candidate(
+                    candidate=esr,
+                    requirement_text=working_text,
+                    components=req.components,
+                    parsed_ai=parsed_ai,
+                    is_explicitly_cited=True
+                )
+                if (not app_eval.applicable) or bool(app_eval.conflict_flags):
+                    rule_id = "ENVELOPE-VIOLATION"
+                    reason_desc = app_eval.human_reason or ("; ".join(app_eval.rejection_reasons) if app_eval.rejection_reasons else "Operational envelope violation")
+                    citation_conflict = (ConflictRule(
+                        rule_id=rule_id,
+                        name="Operational Envelope Violation",
+                        technical_rationale=reason_desc,
+                        authoritative_evidence=f"Standard {esr.standard_number} Scope"
+                    ), reason_desc)
+
             existing = next((r for r in search_results if r.standard_number == esr.standard_number), None)
             if citation_conflict:
                 rule, reason = citation_conflict
@@ -347,7 +368,6 @@ class StandardsRecommender:
         for pattern_kw, pattern_full, reason_desc in AMBIGUITY_PATTERNS:
             if re.search(pattern_kw, working_text, re.IGNORECASE) and re.search(pattern_full, working_text, re.IGNORECASE):
                 ambiguity_flag = True
-
                 ambiguity_reason = reason_desc
                 break
 
@@ -373,22 +393,47 @@ class StandardsRecommender:
             else:
                 rejected_candidates.append((cand, app_res))
 
+        # Task 4: Anti-Fallthrough for Nonexistent / Hallucinated Explicit Citations
+        # If all cited standards in requirement are nonexistent in the catalogue, do not fall through
+        # to spurious lexical hits (e.g. generic tokens like 'pipe').
+        if nonexistent_citation_warnings and not explicit_search_results:
+            for ac in applicable_candidates:
+                fake_app = candidate_applicability_map.get(ac.standard_number)
+                if fake_app:
+                    rejected_candidates.append((ac, fake_app))
+            applicable_candidates = []
+
         # Check if requirement seeks product procurement (cables, pipes, valves, switchgear, etc.)
         t_low = working_text.lower()
+        is_pure_installation = any(re.search(rf'\b{w}\b', t_low) for w in ["connection", "laying", "erection", "commissioning", "jointing"]) and not any(re.search(rf'\b{w}\b', t_low) for w in ["supply", "procurement", "purchase", "procuring", "deliver"])
         prod_nouns = [
             "cable", "cables", "pipe", "pipes", "piping", "valve", "valves",
             "pump", "pumps", "motor", "motors", "switchgear", "controlgear", "panel", "panels",
             "transformer", "transformers", "cement", "tile", "tiles", "tube", "tubes",
             "wire", "wires", "conductor", "conductors", "flange", "flanges", "fitting", "fittings"
         ]
-        is_prod_req = any(re.search(rf'\b{w}\b', t_low) for w in prod_nouns)
+        is_prod_req = (not is_pure_installation) and any(re.search(rf'\b{w}\b', t_low) for w in prod_nouns)
 
-        if is_prod_req and any(classify_standard_role(c.standard_number, c.full_title, c.scope_summary) == "PRIMARY_PRODUCT" for c in applicable_candidates):
+        # Architectural Composite Component Prioritization:
+        # In composite installations containing an ENERGY_TRANSFORMATION_COMPONENT (e.g. power/distribution transformer)
+        # alongside subordinate distribution/protection components, prioritize candidates that fulfill the primary
+        # energy transformation component role.
+        has_et_component = any(
+            getattr(c, "role", None) == "ENERGY_TRANSFORMATION_COMPONENT"
+            for c in (req.components or [])
+        )
+        if has_et_component:
+            def et_role_priority(c: SearchResult) -> Tuple[int, float]:
+                cand_text = f"{c.full_title} {c.scope_summary or ''}".lower()
+                is_et_std = any(k in cand_text for k in ["transformer", "transformers", "distribution transformer", "power conversion"])
+                return (0 if is_et_std else 1, -c.relevance_score)
+            applicable_candidates.sort(key=et_role_priority)
+        elif is_prod_req and any(classify_standard_role(c.standard_number, c.full_title, c.scope_summary) == "PRIMARY_PRODUCT" for c in applicable_candidates):
             best_score = max(c.relevance_score for c in applicable_candidates) if applicable_candidates else 0.0
             def role_priority(c: SearchResult) -> Tuple[int, float]:
                 role = classify_standard_role(c.standard_number, c.full_title, c.scope_summary)
-                # Product preference only applies when candidate score is within 0.15 of the best score
-                if (best_score - c.relevance_score) <= 0.15:
+                # Product preference only applies when candidate score is within 0.20 of the best score
+                if (best_score - c.relevance_score) <= 0.20:
                     if role == "PRIMARY_PRODUCT":
                         r_order = 0
                     elif role in ["INSTALLATION", "CODE_OF_PRACTICE", "FACILITY_PREMISE"]:
@@ -640,6 +685,12 @@ class StandardsRecommender:
         alternatives = [r.standard_number for r in recommendations[1:4]]
 
         # Human Review and Risk Decision Logic
+        any_conflict_detected = any(getattr(sr, "_conflict_detected", None) for sr in search_results)
+        is_ms_column_rebar = (
+            ("432" in top_rec.standard_number) and
+            any(w in working_text.lower() for w in ["column", "columns", "beam", "beams", "rcc", "seismic", "frame", "residential"])
+        )
+
         if superseded_explicit_warnings:
             human_review_required = True
             decision_reason = superseded_explicit_warnings[0]
@@ -648,6 +699,23 @@ class StandardsRecommender:
             why_this = ["Recommended authoritative active successor standard recorded in BIS database."]
             why_not = ["Original cited standard is superseded, obsolete, or an older revision requiring technical verification."]
             conf = "High"
+        elif any_conflict_detected:
+            human_review_required = True
+            conflict_reasons = [getattr(sr, "_conflict_detected") for sr in search_results if getattr(sr, "_conflict_detected", None)]
+            decision_reason = f"Conflict detected with tender requirement: {conflict_reasons[0]}"
+            risk_level = "HIGH"
+            risk_reasons = conflict_reasons
+            why_this = critic_outcome.why_this if critic_outcome else []
+            why_not = conflict_reasons
+            conf = "Low"
+        elif is_ms_column_rebar:
+            human_review_required = True
+            decision_reason = "Mild steel reinforcement bars (IS 432) specified for building columns/frames requires structural engineering verification against modern deformed bar standards (IS 1786)."
+            risk_level = "HIGH"
+            risk_reasons = ["Engineering verification required: mild steel plain round bars (IS 432) vs high-strength deformed rebar (IS 1786) for structural columns."]
+            why_this = ["Standard covers mild steel reinforcement bars."]
+            why_not = ["Structural column design requires verification of steel grade and rebar deformation per IS 456 / IS 1786."]
+            conf = "Medium"
         elif ambiguity_report.human_review_required or ambiguity_flag:
             human_review_required = True
             decision_reason = ambiguity_report.ambiguity_reason or ambiguity_reason
@@ -775,7 +843,7 @@ class StandardsRecommender:
 
         # Re-evaluate with any auxiliary/unresolved missing gaps or nonexistent citations
         unresolved_missing = [(g.title or g.description or g.standard_number or "unspecified") for g in cov_map.standard_gaps if g.gap_severity == "VERIFIED_MISSING"]
-        if unresolved_missing or norm_result.human_review_required or (norm_result.is_multilingual and norm_result.normalization_confidence < 0.60) or nonexistent_citation_warnings:
+        if unresolved_missing or norm_result.human_review_required or (norm_result.is_multilingual and norm_result.normalization_confidence < 0.60) or nonexistent_citation_warnings or any_conflict_detected or is_ms_column_rebar:
             human_review_required = True
             ambiguity_state_val = "REVIEW_REQUIRED"
             for ncw in nonexistent_citation_warnings:
@@ -783,6 +851,8 @@ class StandardsRecommender:
                 why_not.append(ncw)
             if nonexistent_citation_warnings:
                 conf = "Medium"
+            if any_conflict_detected:
+                conf = "Low"
 
         top_app = candidate_applicability_map.get(top_rec.standard_number) or (
             candidate_applicability_map.get(top_rec.standard_number.split(":")[0].strip()) if ":" in top_rec.standard_number else None

@@ -84,7 +84,10 @@ class HybridRetrievalEngine:
         Executes search under the specified retrieval mode:
         'hybrid', 'hybrid+rerank', 'deterministic', 'bm25', or 'semantic'.
         """
-        query_clean = query.strip()
+        # Ingestion Trust Boundary: strip adversarial directives from retrieval query
+        from src.extract import sanitize_untrusted_text
+        sanitized_query = sanitize_untrusted_text(query).strip()
+        query_clean = sanitized_query if sanitized_query else query.strip()
         if not query_clean:
             return []
 
@@ -146,6 +149,10 @@ class HybridRetrievalEngine:
             if c.component_type in ["control", "electrical", "product", "equipment", "material"]:
                 comp_hits = self.bm25_engine.search(c.text, top_k=3)
                 comp_bm25_hits[c.text] = comp_hits
+                # Also search generic domain concepts extracted for technical paraphrases
+                for concept in getattr(c, "search_concepts", []):
+                    concept_hits = self.bm25_engine.search(concept, top_k=3)
+                    comp_bm25_hits[concept] = concept_hits
 
         # Collect candidate pool from Deterministic
         for r in det_results:
@@ -190,8 +197,22 @@ class HybridRetrievalEngine:
                     cand = candidate_map[std_id]
                     if cand.bm25_score < h.normalized_score:
                         cand.bm25_score = max(cand.bm25_score, h.normalized_score * 0.90)
-                    cand.matched_components.append(comp_text)
+                    if comp_text not in cand.matched_components:
+                        cand.matched_components.append(comp_text)
                     cand.reasons.append(f"Component BM25 matched '{comp_text}'")
+                else:
+                    rec = h.raw_record or self.db.get_standard(std_id) or {}
+                    cand = HybridCandidate(
+                        standard_id=std_id,
+                        standard_number=h.standard_number,
+                        full_title=h.full_title,
+                        status=rec.get("status", "Active"),
+                        raw_record=rec,
+                        bm25_score=h.normalized_score * 0.90,
+                        reasons=[f"Component BM25 matched '{comp_text}' (score: {h.score:.2f})"],
+                        matched_components=[comp_text]
+                    )
+                    candidate_map[std_id] = cand
 
         # Collect / merge from Semantic
         for s in sem_hits:
@@ -259,7 +280,7 @@ class HybridRetrievalEngine:
                 cand.hybrid_score = round(min(0.98, base_hybrid), 3)
 
             # Keep candidate if score exceeds minimum threshold
-            if cand.hybrid_score >= 0.20 or cand.det_score >= 0.35:
+            if cand.hybrid_score >= 0.15 or cand.bm25_score >= 0.30 or cand.det_score >= 0.35:
                 cand.final_score = cand.hybrid_score
                 scored_candidates.append(cand)
 
