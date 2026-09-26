@@ -4,7 +4,8 @@
 
 import type { AnalysisResult, HumanReviewDecision, TenderReviewResponse } from './types';
 
-const BASE = '/api';
+const rawBase = ((import.meta as unknown as { env?: Record<string, string> }).env?.VITE_API_URL) || '/api';
+const BASE = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
 
 async function handleResponse<T>(res: Response): Promise<T> {
   const contentType = res.headers.get('Content-Type') || '';
@@ -17,6 +18,9 @@ async function handleResponse<T>(res: Response): Promise<T> {
       // ignore parse error
     }
     throw new Error(msg);
+  }
+  if (contentType.includes('text/html')) {
+    throw new Error('API route returned HTML instead of JSON. Ensure BACKEND_URL or VITE_API_URL is configured.');
   }
   if (contentType.includes('application/json')) {
     return res.json() as Promise<T>;

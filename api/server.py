@@ -56,11 +56,22 @@ except Exception as _ing_err:
     )
 
 # ---------------------------------------------------------------------------
-# Flask app
+# Flask app & CORS Configuration
 # ---------------------------------------------------------------------------
 
+_cors_origins_env = os.environ.get("CORS_ORIGINS", "")
+if _cors_origins_env.strip() == "*":
+    _cors_origins: Any = "*"
+elif _cors_origins_env.strip():
+    _cors_origins = [o.strip().rstrip("/") for o in _cors_origins_env.split(",") if o.strip()]
+    for _dev_origin in ("http://localhost:5173", "http://localhost:3000", "http://127.0.0.1:5173"):
+        if _dev_origin not in _cors_origins:
+            _cors_origins.append(_dev_origin)
+else:
+    _cors_origins = ["http://localhost:5173", "http://localhost:3000", "http://127.0.0.1:5173"]
+
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5173", "http://localhost:3000", "http://127.0.0.1:5173"])
+CORS(app, origins=_cors_origins)
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("tendersaathi.api")
@@ -100,7 +111,7 @@ def get_report_gen() -> ReportGenerator:
 # ---------------------------------------------------------------------------
 
 _report_cache: Dict[str, Dict[str, Any]] = {}
-REPORT_DIR = os.path.join(ROOT_DIR, "reports", "generated")
+REPORT_DIR = os.environ.get("REPORT_DIR", os.path.join(ROOT_DIR, "reports", "generated"))
 
 
 # ---------------------------------------------------------------------------
