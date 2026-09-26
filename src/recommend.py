@@ -14,7 +14,7 @@ Tender PDF / Text
 """
 
 from dataclasses import dataclass, field, asdict
-from typing import List, Optional, Dict, Any
+from typing import List, Optional, Dict, Any, Tuple
 import re
 
 from src.standards import StandardsDatabase, classify_standard_role
