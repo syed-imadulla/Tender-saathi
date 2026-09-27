@@ -13,18 +13,24 @@ interface ScopeMetric {
 }
 
 const SCOPE_METRICS: ScopeMetric[] = [
-  { value: '502', label: 'Catalogue records' },
+  { value: '35,208', label: 'BIS catalogue records' },
   { value: '90', label: 'Core standards' },
   { value: '20', label: 'Govt tender PDFs tested' },
   { value: '40', label: 'Multilingual benchmarks' },
-  { value: '319/319', label: 'Validation tests passing' },
+  { value: '506/506', label: 'Validation tests passing' },
+  { value: '100%', label: 'Deterministic fallback reliability' },
 ];
 
 export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!isOpen) return;
+
+    if (bodyRef.current) {
+      bodyRef.current.scrollTop = 0;
+    }
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -78,11 +84,11 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
           </button>
         </header>
 
-        <div className="about-modal__body">
+        <div className="about-modal__body" ref={bodyRef}>
           {/* Mission summary */}
           <section className="about-modal__section">
             <p className="about-modal__lead">
-              TenderSaathi helps procurement teams review tender specifications before publication. It identifies potentially relevant Indian Standards, checks applicability, examines lifecycle and related dependencies, and shows the evidence behind every finding.
+              TenderSaathi helps procurement teams review tender specifications before publication. It combines <strong>Groq LLM requirement intelligence</strong> with a deterministic validation pipeline to identify applicable Indian Standards, verify lifecycle dependencies, and anchor every finding in verifiable BIS evidence.
             </p>
           </section>
 
@@ -93,19 +99,27 @@ export default function AboutModal({ isOpen, onClose }: AboutModalProps) {
               We audit the tender against the standards it should contain.”
             </h3>
             <p className="about-modal__usp-sub">
-              Every finding is anchored in verified BIS evidence. Uncertainty is surfaced openly, and unsupported conclusions are deliberately abstained from.
+              Every finding is anchored in verified BIS evidence. Groq LLM extracts technical facets while deterministic rules prevent hallucinations. Unsupported conclusions are deliberately abstained from.
             </p>
           </section>
 
           {/* Philosophy Banner */}
           <div className="about-modal__pillars">
-            <div className="pillar-item">AI interprets.</div>
+            <div className="pillar-item">Groq AI interprets.</div>
             <div className="pillar-dot">·</div>
             <div className="pillar-item">Rules validate.</div>
             <div className="pillar-dot">·</div>
             <div className="pillar-item">Evidence supports.</div>
             <div className="pillar-dot">·</div>
             <div className="pillar-item pillar-item--accent">Humans decide.</div>
+          </div>
+
+          {/* Hybrid Architecture Badge */}
+          <div className="about-modal__tech-badge">
+            <div className="tech-badge__tag">HYBRID AI ARCHITECTURE</div>
+            <div className="tech-badge__desc">
+              <strong>Groq LLM (openai/gpt-oss-120b)</strong> domain facet extraction paired with an offline <strong>Deterministic Fallback Parser</strong> and <strong>Okapi BM25 & Semantic Hybrid Retrieval</strong>.
+            </div>
           </div>
 
           {/* Prototype Scope Metrics */}

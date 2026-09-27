@@ -97,6 +97,30 @@
   font-weight: 700;
 }
 
+/* Hybrid Architecture Badge */
+.about-modal__tech-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+
+.tech-badge__tag {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #15803d;
+}
+
+.tech-badge__desc {
+  font-size: 0.84rem;
+  color: #1e293b;
+  line-height: 1.45;
+}
+
 /* Scope metrics */
 .about-modal__scope {
   background: #fafbfc;
