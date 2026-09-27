@@ -60,7 +60,7 @@
 **Original Requirement Text:**
 > "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778."
 
-- **Decomposed Technical Components:** `general: CPVC pipes`
+- **Decomposed Technical Components:** `general: CPVC pipes`, `general: CPVC fittings`, `general: domestic hot and cold water distribution`, `general: supply`, `general: installation`
 - **Recommended Standard:** **IS 15778 : 2007** — *Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*
 - **Candidate Standard:** `IS 15778 : 2007` | **Evidence Standard:** `IS 15778 : 2007` (Candidate == Evidence Grounding Established)
 - **Why It Matches:** Tender explicitly requires compliance with IS 15778.
@@ -73,9 +73,10 @@
   - Authoritative scope explicitly covers application: "Tender explicitly requires compliance with IS 15778."
   - Standard is currently active in the BIS repository with verified currency.
   - Provenance established via Tender Document (VERIFIED).
+  - Candidate addresses multiple decomposed technical aspects of the requirement.
   - Official code of practice associated with IS 7634 (Part 3) : 2003.
 - **Why Not Alternatives?:**
-  - Alternative standard SP 57 (QAWSM) has lower composite relevance (0.566 vs 1.000).
+  - Alternative standard SP 57 (QAWSM) has lower composite relevance (0.607 vs 1.000).
   - Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification.
 - **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
 - **Related Standards Identified for Review (Graph Depth = 1):**
@@ -90,15 +91,15 @@
   - [ALLIED STANDARD] `IS 4985 : 2021` — *Title not in local index* (IS 4985 : 2021 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED].)
   - [INSTALLATION STANDARD] `SP 57 (QAWSM) : 1993` — *Handbook on Pipes and Fittings for Drinking Water Supply* ()
 - **Regulatory & Statutory Intelligence:** Product Certification: `APPLICABLE` | QCO: `CURRENT` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
-- **Multi-Component Requirement Bundles (1):**
+- **Multi-Component Requirement Bundles (2):**
   - **CPVC pipes** [PRIMARY_PRODUCT] → `IS 15778` (*Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*) [APPLICABLE]
+  - **CPVC fittings** [equipment] → `IS 15778` (*Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*) [APPLICABLE]
 - **External Statutory Advisory Signals (Non-BIS Regulations):**
   > *Advisory Note: External statutory signals provide regulatory context and do NOT constitute legal compliance certification.*
   - **Central Public Works Department (CPWD)**: *CPWD Specifications 2019 / 2023 (Civil & Electrical Works)*, Clause Section 19 (Water Supply), Section 20 (Drainage), Section 31 (Electrical) — CPWD Works Specifications govern execution, laying, jointing and testing of water supply pipelines, sewerage conduits and electrical installations for central works, mandating compliance with IS 783 (laying concrete pipes), IS 15778 (CPVC plumbing), and IS 1239 (mild steel piping).
 - **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `High`
 - **Human Review Decision:** **ACCEPT**
-- **Reviewer Note:** "Verified by procurement officer"
-- **Decision Recorded:** `2026-09-24T16:29:22.233837+00:00`
+- **Decision Recorded:** `2026-09-27T06:57:32.110498+00:00`
 
 ---
 
@@ -121,4 +122,4 @@ TenderSaathi is a standards-review aid for procurement specifications. Final app
 
 | # | Requirement ID | Original System Finding | Human Decision | Reviewer Standard | Reviewer Note | Reviewed Timestamp |
 |---|---|---|---|---|---|---|
-| 1 | `REQ-001` | Authoritative active standard IS 15778 : 2007 verified against scope with High confidence. | **ACCEPT** | `—` | Verified by procurement officer | 2026-09-24T16:29:22.233837+00:00 |
+| 1 | `REQ-001` | Authoritative active standard IS 15778 : 2007 verified against scope with High confidence. | **ACCEPT** | `—` | — | 2026-09-27T06:57:32.110498+00:00 |

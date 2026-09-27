@@ -51,7 +51,7 @@
       "Withdrawn": 0,
       "Unknown": 0
     },
-    "related_standards_count": 1,
+    "related_standards_count": 2,
     "review_queue": [
       {
         "requirement_id": "REQ-001",
@@ -77,21 +77,21 @@
       "1 requirement(s) have potentially missing specification parameters."
     ],
     "readiness_note": "Deterministic, evidence-backed standards review audit for procurement officers. Does NOT constitute legal compliance certification.",
-    "dependency_count": 1,
+    "dependency_count": 2,
     "normative_reference_count": 0,
-    "allied_standard_count": 0,
+    "allied_standard_count": 1,
     "test_standard_count": 0,
     "installation_standard_count": 0,
     "verified_missing_count": 0,
     "potentially_missing_count": 0,
-    "related_for_review_count": 0,
+    "related_for_review_count": 1,
     "standards_coverage": {
       "direct_standards_identified": 1,
-      "total_dependencies": 1,
+      "total_dependencies": 2,
       "normative_references": 0,
       "testing_dependencies": 0,
       "installation_dependencies": 0,
-      "allied_standards": 0,
+      "allied_standards": 1,
       "covered_in_tender": 1,
       "potential_gaps": 0,
       "verified_gaps": 0,
@@ -100,7 +100,7 @@
     "gap_summary": {
       "verified_missing_count": 0,
       "potentially_missing_count": 0,
-      "related_for_review_count": 0
+      "related_for_review_count": 1
     },
     "certification_checks": 1,
     "qco_checks": 1,
@@ -144,6 +144,7 @@
         "UNKNOWN": 0
       },
       "finding_distribution": {
+        "LIFECYCLE_DEPENDENCY_SUPERSEDED": 2,
         "AMBIGUOUS_REQUIREMENT": 1
       }
     },
@@ -166,7 +167,59 @@
           "suggested_clarification_question": "Verify application of IS/ISO 10434 and review the following notes: Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
           "unresolved_components": []
         },
+        "lifecycle_warnings": [],
+        "external_regulations": [],
         "findings": [
+          {
+            "finding_id": "LIFECYCLE-DEP-REQ-001-1",
+            "requirement_id": "REQ-001",
+            "finding_type": "LIFECYCLE_DEPENDENCY_SUPERSEDED",
+            "title": "Superseded Related Dependency: None",
+            "standards": [],
+            "applicability_decision": "REVIEW_REQUIRED",
+            "evidence_strength": "STRONG",
+            "supporting_facts": [
+              "Dependency None is superseded in BIS catalogue.",
+              "Active successor: No active successor recorded.",
+              "Reason: Superseded"
+            ],
+            "lifecycle_status": "WITHDRAWN",
+            "lifecycle_note": "Active successor: None",
+            "relationships": [],
+            "provenance": {
+              "source": "BIS_CATALOGUE",
+              "verified": true
+            },
+            "uncertainty": "Related standard is superseded; procurement specifications should update to active successor.",
+            "human_review_required": true,
+            "review_action": "Verify substitution of None with successor.",
+            "severity": "HIGH"
+          },
+          {
+            "finding_id": "LIFECYCLE-DEP-REQ-001-2",
+            "requirement_id": "REQ-001",
+            "finding_type": "LIFECYCLE_DEPENDENCY_SUPERSEDED",
+            "title": "Superseded Related Dependency: None",
+            "standards": [],
+            "applicability_decision": "REVIEW_REQUIRED",
+            "evidence_strength": "STRONG",
+            "supporting_facts": [
+              "Dependency None is superseded in BIS catalogue.",
+              "Active successor: No active successor recorded.",
+              "Reason: Superseded"
+            ],
+            "lifecycle_status": "WITHDRAWN",
+            "lifecycle_note": "Active successor: None",
+            "relationships": [],
+            "provenance": {
+              "source": "BIS_CATALOGUE",
+              "verified": true
+            },
+            "uncertainty": "Related standard is superseded; procurement specifications should update to active successor.",
+            "human_review_required": true,
+            "review_action": "Verify substitution of None with successor.",
+            "severity": "HIGH"
+          },
           {
             "finding_id": "AMB-REQ-001",
             "requirement_id": "REQ-001",
@@ -202,6 +255,56 @@
       }
     ],
     "audit_findings": [
+      {
+        "finding_id": "LIFECYCLE-DEP-REQ-001-1",
+        "requirement_id": "REQ-001",
+        "finding_type": "LIFECYCLE_DEPENDENCY_SUPERSEDED",
+        "title": "Superseded Related Dependency: None",
+        "standards": [],
+        "applicability_decision": "REVIEW_REQUIRED",
+        "evidence_strength": "STRONG",
+        "supporting_facts": [
+          "Dependency None is superseded in BIS catalogue.",
+          "Active successor: No active successor recorded.",
+          "Reason: Superseded"
+        ],
+        "lifecycle_status": "WITHDRAWN",
+        "lifecycle_note": "Active successor: None",
+        "relationships": [],
+        "provenance": {
+          "source": "BIS_CATALOGUE",
+          "verified": true
+        },
+        "uncertainty": "Related standard is superseded; procurement specifications should update to active successor.",
+        "human_review_required": true,
+        "review_action": "Verify substitution of None with successor.",
+        "severity": "HIGH"
+      },
+      {
+        "finding_id": "LIFECYCLE-DEP-REQ-001-2",
+        "requirement_id": "REQ-001",
+        "finding_type": "LIFECYCLE_DEPENDENCY_SUPERSEDED",
+        "title": "Superseded Related Dependency: None",
+        "standards": [],
+        "applicability_decision": "REVIEW_REQUIRED",
+        "evidence_strength": "STRONG",
+        "supporting_facts": [
+          "Dependency None is superseded in BIS catalogue.",
+          "Active successor: No active successor recorded.",
+          "Reason: Superseded"
+        ],
+        "lifecycle_status": "WITHDRAWN",
+        "lifecycle_note": "Active successor: None",
+        "relationships": [],
+        "provenance": {
+          "source": "BIS_CATALOGUE",
+          "verified": true
+        },
+        "uncertainty": "Related standard is superseded; procurement specifications should update to active successor.",
+        "human_review_required": true,
+        "review_action": "Verify substitution of None with successor.",
+        "severity": "HIGH"
+      },
       {
         "finding_id": "AMB-REQ-001",
         "requirement_id": "REQ-001",
@@ -289,6 +392,7 @@
           "UNKNOWN": 0
         },
         "finding_distribution": {
+          "LIFECYCLE_DEPENDENCY_SUPERSEDED": 2,
           "AMBIGUOUS_REQUIREMENT": 1
         }
       },
@@ -311,7 +415,59 @@
             "suggested_clarification_question": "Verify application of IS/ISO 10434 and review the following notes: Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
             "unresolved_components": []
           },
+          "lifecycle_warnings": [],
+          "external_regulations": [],
           "findings": [
+            {
+              "finding_id": "LIFECYCLE-DEP-REQ-001-1",
+              "requirement_id": "REQ-001",
+              "finding_type": "LIFECYCLE_DEPENDENCY_SUPERSEDED",
+              "title": "Superseded Related Dependency: None",
+              "standards": [],
+              "applicability_decision": "REVIEW_REQUIRED",
+              "evidence_strength": "STRONG",
+              "supporting_facts": [
+                "Dependency None is superseded in BIS catalogue.",
+                "Active successor: No active successor recorded.",
+                "Reason: Superseded"
+              ],
+              "lifecycle_status": "WITHDRAWN",
+              "lifecycle_note": "Active successor: None",
+              "relationships": [],
+              "provenance": {
+                "source": "BIS_CATALOGUE",
+                "verified": true
+              },
+              "uncertainty": "Related standard is superseded; procurement specifications should update to active successor.",
+              "human_review_required": true,
+              "review_action": "Verify substitution of None with successor.",
+              "severity": "HIGH"
+            },
+            {
+              "finding_id": "LIFECYCLE-DEP-REQ-001-2",
+              "requirement_id": "REQ-001",
+              "finding_type": "LIFECYCLE_DEPENDENCY_SUPERSEDED",
+              "title": "Superseded Related Dependency: None",
+              "standards": [],
+              "applicability_decision": "REVIEW_REQUIRED",
+              "evidence_strength": "STRONG",
+              "supporting_facts": [
+                "Dependency None is superseded in BIS catalogue.",
+                "Active successor: No active successor recorded.",
+                "Reason: Superseded"
+              ],
+              "lifecycle_status": "WITHDRAWN",
+              "lifecycle_note": "Active successor: None",
+              "relationships": [],
+              "provenance": {
+                "source": "BIS_CATALOGUE",
+                "verified": true
+              },
+              "uncertainty": "Related standard is superseded; procurement specifications should update to active successor.",
+              "human_review_required": true,
+              "review_action": "Verify substitution of None with successor.",
+              "severity": "HIGH"
+            },
             {
               "finding_id": "AMB-REQ-001",
               "requirement_id": "REQ-001",
@@ -440,7 +596,9 @@
           "domain": "mechanical",
           "extracted_attributes": {
             "category": "flow_control_valve"
-          }
+          },
+          "role": null,
+          "search_concepts": []
         },
         {
           "text": "bolted bonnet steel gate valve",
@@ -448,13 +606,17 @@
           "domain": "mechanical",
           "extracted_attributes": {
             "domain": "mechanical"
-          }
+          },
+          "role": null,
+          "search_concepts": []
         },
         {
           "text": "supply",
           "component_type": "action",
           "domain": "general",
-          "extracted_attributes": {}
+          "extracted_attributes": {},
+          "role": null,
+          "search_concepts": []
         }
       ],
       "recommended_standard": "IS/ISO 10434 : 2020",
@@ -493,12 +655,25 @@
           "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
           "source_url": "https://standardsbis.bsbedge.com/BIS_SearchStandard.aspx?Standard_Number=IS%2fISO+10434&id=45967",
           "review_note": "Authoritative successor standard supersedes IS 10611 : 1983. Review legacy specifications."
+        },
+        {
+          "standard_number": "IS 6392 : 1971",
+          "title": "Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]",
+          "relationship_type": "ALLIED_STANDARD",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Active",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Allied flange specification for connecting high-pressure bolted bonnet steel gate valves.",
+          "source_url": "IS 6392:1971 Scope Clause 1; IS 2712:2020 Clause 1",
+          "review_note": "Allied product or component standard. Review for equipment interface compatibility."
         }
       ],
       "decision": "REVIEW_REQUIRED",
       "risk_level": "CRITICAL",
       "risk_reasons": [
-        "CRITICAL: IS 10611 1983 is SUPERSEDED by IS/ISO 10434 : 2020 ('Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries'). Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'"
+        "CRITICAL: IS 10611 1983 is SUPERSEDED by IS/ISO 10434 : 2020 ('Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries'). Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+        "Lifecycle warning for dependency None: None (Active successor: None)"
       ],
       "human_review_required": true,
       "confidence": "High",
@@ -528,6 +703,28 @@
           "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
           "applicability_assessment": "REVIEW_REQUIRED",
           "explanation": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434 : 2020. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED]."
+        },
+        {
+          "standard_number": "IS 6392 : 1971",
+          "title": "Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]",
+          "relationship_type": "ALLIED_STANDARD",
+          "dependency_status": "ALLIED_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Superseded",
+          "provenance": "CURATED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Allied flange specification for connecting high-pressure bolted bonnet steel gate valves.",
+          "source": "CURATED_STANDARDS_DOC",
+          "confidence": 0.85,
+          "why_related": "IS 6392 : 1971 (Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]) is identified as an evidence-backed allied product or equipment specification standard associated with IS/ISO 10434 : 2020. Evidence: Allied flange specification for connecting high-pressure bolted bonnet steel gate valves. [Provenance: CURATED].",
+          "functional_category": "allied",
+          "is_applicable_to_requirement": false,
+          "applicability_decision": "REVIEW_REQUIRED",
+          "dependency_state": "ALLIED_DEPENDENCY",
+          "evidence": "Allied flange specification for connecting high-pressure bolted bonnet steel gate valves.",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 6392 : 1971 (Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]) is identified as an evidence-backed allied product or equipment specification standard associated with IS/ISO 10434 : 2020. Evidence: Allied flange specification for connecting high-pressure bolted bonnet steel gate valves. [Provenance: CURATED]."
         }
       ],
       "regulatory": {
@@ -596,7 +793,311 @@
       },
       "ambiguity_state": "REVIEW_REQUIRED",
       "ambiguity_reason": "Tender cited superseded standard 'IS 10611 1983'. Recommended current active replacement.; Potentially missing engineering parameters: Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material; Valve body metallurgy/material is not specified in tender. Human review recommended to confirm metallurgy (copper alloy vs cast iron vs steel).",
-      "human_decision": null
+      "human_decision": null,
+      "component_recommendations": [
+        {
+          "component_id": "REQ-001-C1",
+          "component_text": "gate valves",
+          "component_domain": "mechanical",
+          "component_role": "product",
+          "candidate_standard": "IS/ISO 10434",
+          "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "confidence": "High",
+          "relevance_score": 0.759,
+          "evidence": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded e...",
+          "applicability_decision": "APPLICABLE",
+          "dependencies": {
+            "primary_standard": "IS/ISO 10434",
+            "primary_title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+            "total_dependencies": 2,
+            "normative_references": [],
+            "test_methods": [],
+            "installation_codes": [],
+            "installation_standards": [],
+            "codes_of_practice": [],
+            "safety_standards": [],
+            "terminology_standards": [],
+            "allied_standards": [
+              {
+                "standard_number": "IS 6392 : 1971",
+                "title": "Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]",
+                "relationship_type": "ALLIED_STANDARD",
+                "dependency_status": "ALLIED_DEPENDENCY",
+                "direction": "OUTGOING",
+                "lifecycle_status": "Superseded",
+                "provenance": "CURATED",
+                "evidence_strength": "MODERATE",
+                "evidence_text": "Allied flange specification for connecting high-pressure bolted bonnet steel gate valves.",
+                "source": "CURATED_STANDARDS_DOC",
+                "confidence": 0.85,
+                "why_related": "IS 6392 : 1971 (Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]) is identified as an evidence-backed allied product or equipment specification standard associated with IS/ISO 10434. Evidence: Allied flange specification for connecting high-pressure bolted bonnet steel gate valves. [Provenance: CURATED].",
+                "functional_category": "allied",
+                "is_applicable_to_requirement": false,
+                "applicability_decision": "REVIEW_REQUIRED",
+                "dependency_state": "ALLIED_DEPENDENCY",
+                "evidence": "Allied flange specification for connecting high-pressure bolted bonnet steel gate valves.",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 6392 : 1971 (Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]) is identified as an evidence-backed allied product or equipment specification standard associated with IS/ISO 10434. Evidence: Allied flange specification for connecting high-pressure bolted bonnet steel gate valves. [Provenance: CURATED]."
+              }
+            ],
+            "certification_related": [],
+            "qco_related": [],
+            "related_for_review": [
+              {
+                "standard_number": "IS 10611 : 1983",
+                "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+                "relationship_type": "SUPERSEDES",
+                "dependency_status": "RELATED_FOR_REVIEW",
+                "direction": "OUTGOING",
+                "lifecycle_status": "Superseded",
+                "provenance": "VERIFIED",
+                "evidence_strength": "STRONG",
+                "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+                "source": "SQLITE_DB",
+                "confidence": 1.0,
+                "why_related": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED].",
+                "functional_category": "lifecycle",
+                "is_applicable_to_requirement": false,
+                "applicability_decision": "REVIEW_REQUIRED",
+                "dependency_state": "RELATED_FOR_REVIEW",
+                "evidence": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED]."
+              }
+            ],
+            "all_dependencies": [
+              {
+                "standard_number": "IS 10611 : 1983",
+                "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+                "relationship_type": "SUPERSEDES",
+                "dependency_status": "RELATED_FOR_REVIEW",
+                "direction": "OUTGOING",
+                "lifecycle_status": "Superseded",
+                "provenance": "VERIFIED",
+                "evidence_strength": "STRONG",
+                "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+                "source": "SQLITE_DB",
+                "confidence": 1.0,
+                "why_related": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED].",
+                "functional_category": "lifecycle",
+                "is_applicable_to_requirement": false,
+                "applicability_decision": "REVIEW_REQUIRED",
+                "dependency_state": "RELATED_FOR_REVIEW",
+                "evidence": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED]."
+              },
+              {
+                "standard_number": "IS 6392 : 1971",
+                "title": "Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]",
+                "relationship_type": "ALLIED_STANDARD",
+                "dependency_status": "ALLIED_DEPENDENCY",
+                "direction": "OUTGOING",
+                "lifecycle_status": "Superseded",
+                "provenance": "CURATED",
+                "evidence_strength": "MODERATE",
+                "evidence_text": "Allied flange specification for connecting high-pressure bolted bonnet steel gate valves.",
+                "source": "CURATED_STANDARDS_DOC",
+                "confidence": 0.85,
+                "why_related": "IS 6392 : 1971 (Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]) is identified as an evidence-backed allied product or equipment specification standard associated with IS/ISO 10434. Evidence: Allied flange specification for connecting high-pressure bolted bonnet steel gate valves. [Provenance: CURATED].",
+                "functional_category": "allied",
+                "is_applicable_to_requirement": false,
+                "applicability_decision": "REVIEW_REQUIRED",
+                "dependency_state": "ALLIED_DEPENDENCY",
+                "evidence": "Allied flange specification for connecting high-pressure bolted bonnet steel gate valves.",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 6392 : 1971 (Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]) is identified as an evidence-backed allied product or equipment specification standard associated with IS/ISO 10434. Evidence: Allied flange specification for connecting high-pressure bolted bonnet steel gate valves. [Provenance: CURATED]."
+              }
+            ],
+            "lifecycle_warnings": [
+              {
+                "dependency_standard": "IS 10611 : 1983",
+                "warning_type": "SUPERSEDED_DEPENDENCY",
+                "status": "Superseded",
+                "successor_standard": "IS/ISO 10434 : 2020",
+                "successor_title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+                "advisory": "Normative dependency IS 10611 : 1983 has been superseded by IS/ISO 10434 : 2020. Review current testing/design alignment."
+              },
+              {
+                "dependency_standard": "IS 6392 : 1971",
+                "warning_type": "SUPERSEDED_DEPENDENCY",
+                "status": "Superseded",
+                "successor_standard": null,
+                "successor_title": "Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]",
+                "advisory": "Normative dependency IS 6392 : 1971 has been superseded. Review current testing/design alignment."
+              }
+            ],
+            "amendment_metadata": null
+          },
+          "human_review_required": false,
+          "why_matched": "Component 'gate valves' matches standard IS/ISO 10434 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries)."
+        },
+        {
+          "component_id": "REQ-001-C2",
+          "component_text": "bolted bonnet steel gate valve",
+          "component_domain": "mechanical",
+          "component_role": "equipment",
+          "candidate_standard": "IS/ISO 10434",
+          "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "confidence": "High",
+          "relevance_score": 0.863,
+          "evidence": "This Indian Standard which is identical with ISO 10434 : 2020 'Bolted bonnet steel gate valves for the petroleum, petrochemical and allied industries' covers bolted bonnet steel gate valves with flanged and butt-welded e...",
+          "applicability_decision": "APPLICABLE",
+          "dependencies": {
+            "primary_standard": "IS/ISO 10434",
+            "primary_title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+            "total_dependencies": 2,
+            "normative_references": [],
+            "test_methods": [],
+            "installation_codes": [],
+            "installation_standards": [],
+            "codes_of_practice": [],
+            "safety_standards": [],
+            "terminology_standards": [],
+            "allied_standards": [
+              {
+                "standard_number": "IS 6392 : 1971",
+                "title": "Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]",
+                "relationship_type": "ALLIED_STANDARD",
+                "dependency_status": "ALLIED_DEPENDENCY",
+                "direction": "OUTGOING",
+                "lifecycle_status": "Superseded",
+                "provenance": "CURATED",
+                "evidence_strength": "MODERATE",
+                "evidence_text": "Allied flange specification for connecting high-pressure bolted bonnet steel gate valves.",
+                "source": "CURATED_STANDARDS_DOC",
+                "confidence": 0.85,
+                "why_related": "IS 6392 : 1971 (Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]) is identified as an evidence-backed allied product or equipment specification standard associated with IS/ISO 10434. Evidence: Allied flange specification for connecting high-pressure bolted bonnet steel gate valves. [Provenance: CURATED].",
+                "functional_category": "allied",
+                "is_applicable_to_requirement": false,
+                "applicability_decision": "REVIEW_REQUIRED",
+                "dependency_state": "ALLIED_DEPENDENCY",
+                "evidence": "Allied flange specification for connecting high-pressure bolted bonnet steel gate valves.",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 6392 : 1971 (Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]) is identified as an evidence-backed allied product or equipment specification standard associated with IS/ISO 10434. Evidence: Allied flange specification for connecting high-pressure bolted bonnet steel gate valves. [Provenance: CURATED]."
+              }
+            ],
+            "certification_related": [],
+            "qco_related": [],
+            "related_for_review": [
+              {
+                "standard_number": "IS 10611 : 1983",
+                "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+                "relationship_type": "SUPERSEDES",
+                "dependency_status": "RELATED_FOR_REVIEW",
+                "direction": "OUTGOING",
+                "lifecycle_status": "Superseded",
+                "provenance": "VERIFIED",
+                "evidence_strength": "STRONG",
+                "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+                "source": "SQLITE_DB",
+                "confidence": 1.0,
+                "why_related": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED].",
+                "functional_category": "lifecycle",
+                "is_applicable_to_requirement": false,
+                "applicability_decision": "REVIEW_REQUIRED",
+                "dependency_state": "RELATED_FOR_REVIEW",
+                "evidence": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED]."
+              }
+            ],
+            "all_dependencies": [
+              {
+                "standard_number": "IS 10611 : 1983",
+                "title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+                "relationship_type": "SUPERSEDES",
+                "dependency_status": "RELATED_FOR_REVIEW",
+                "direction": "OUTGOING",
+                "lifecycle_status": "Superseded",
+                "provenance": "VERIFIED",
+                "evidence_strength": "STRONG",
+                "evidence_text": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+                "source": "SQLITE_DB",
+                "confidence": 1.0,
+                "why_related": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED].",
+                "functional_category": "lifecycle",
+                "is_applicable_to_requirement": false,
+                "applicability_decision": "REVIEW_REQUIRED",
+                "dependency_state": "RELATED_FOR_REVIEW",
+                "evidence": "National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.'",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 10611 : 1983 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries) is identified as an evidence-backed authoritative successor standard associated with IS/ISO 10434. Evidence: National Foreword explicitly states: 'This standard supersedes IS 10611 : 1983 Steel gate valves (flanged and butt-welded ends) for petroleum, petrochemicals and allied industries.' [Provenance: VERIFIED]."
+              },
+              {
+                "standard_number": "IS 6392 : 1971",
+                "title": "Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]",
+                "relationship_type": "ALLIED_STANDARD",
+                "dependency_status": "ALLIED_DEPENDENCY",
+                "direction": "OUTGOING",
+                "lifecycle_status": "Superseded",
+                "provenance": "CURATED",
+                "evidence_strength": "MODERATE",
+                "evidence_text": "Allied flange specification for connecting high-pressure bolted bonnet steel gate valves.",
+                "source": "CURATED_STANDARDS_DOC",
+                "confidence": 0.85,
+                "why_related": "IS 6392 : 1971 (Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]) is identified as an evidence-backed allied product or equipment specification standard associated with IS/ISO 10434. Evidence: Allied flange specification for connecting high-pressure bolted bonnet steel gate valves. [Provenance: CURATED].",
+                "functional_category": "allied",
+                "is_applicable_to_requirement": false,
+                "applicability_decision": "REVIEW_REQUIRED",
+                "dependency_state": "ALLIED_DEPENDENCY",
+                "evidence": "Allied flange specification for connecting high-pressure bolted bonnet steel gate valves.",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 6392 : 1971 (Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]) is identified as an evidence-backed allied product or equipment specification standard associated with IS/ISO 10434. Evidence: Allied flange specification for connecting high-pressure bolted bonnet steel gate valves. [Provenance: CURATED]."
+              }
+            ],
+            "lifecycle_warnings": [
+              {
+                "dependency_standard": "IS 10611 : 1983",
+                "warning_type": "SUPERSEDED_DEPENDENCY",
+                "status": "Superseded",
+                "successor_standard": "IS/ISO 10434 : 2020",
+                "successor_title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+                "advisory": "Normative dependency IS 10611 : 1983 has been superseded by IS/ISO 10434 : 2020. Review current testing/design alignment."
+              },
+              {
+                "dependency_standard": "IS 6392 : 1971",
+                "warning_type": "SUPERSEDED_DEPENDENCY",
+                "status": "Superseded",
+                "successor_standard": null,
+                "successor_title": "Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]",
+                "advisory": "Normative dependency IS 6392 : 1971 has been superseded. Review current testing/design alignment."
+              }
+            ],
+            "amendment_metadata": null
+          },
+          "human_review_required": false,
+          "why_matched": "Component 'bolted bonnet steel gate valve' matches standard IS/ISO 10434 (Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries)."
+        }
+      ],
+      "external_regulations": [],
+      "lifecycle_warnings": [
+        {
+          "dependency_standard": "IS 10611 : 1983",
+          "warning_type": "SUPERSEDED_DEPENDENCY",
+          "status": "Superseded",
+          "successor_standard": "IS/ISO 10434 : 2020",
+          "successor_title": "Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries",
+          "advisory": "Normative dependency IS 10611 : 1983 has been superseded by IS/ISO 10434 : 2020. Review current testing/design alignment."
+        },
+        {
+          "dependency_standard": "IS 6392 : 1971",
+          "warning_type": "SUPERSEDED_DEPENDENCY",
+          "status": "Superseded",
+          "successor_standard": null,
+          "successor_title": "Steel Pipe Flanges; Compressed Asbestos/Non-Asbestos Fiber Jointing Sheets - Specification [IS 6392]",
+          "advisory": "Normative dependency IS 6392 : 1971 has been superseded. Review current testing/design alignment."
+        }
+      ],
+      "amendment_metadata": null
     }
   ],
   "review_queue": [

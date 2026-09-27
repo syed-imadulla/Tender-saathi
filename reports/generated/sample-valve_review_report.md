@@ -77,6 +77,8 @@
   - Candidate standard IS 778 competes within separation threshold: material (steel vs copper).
 - **Specification Review Completeness:** `UNKNOWN` (Potentially missing: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class), Body Metallurgy / Material, Fluid Medium / Service)
 - **Regulatory & Statutory Intelligence:** Product Certification: `UNKNOWN` | QCO: `NOT_IDENTIFIED` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
+- **Multi-Component Requirement Bundles (1):**
+  - **valves** [product] → `IS/ISO 10434` (*Bolted Bonnet Steel Gate Valves for the Petroleum, Petrochemical and Allied Industries*) [APPLICABLE]
 - **Standards Review Decision:** `INSUFFICIENT_EVIDENCE` | **Risk Level:** `HIGH` | **Confidence:** `Low`
 - ⚠ **Human Technical Review Required:** Multiple competing Indian Standards (IS/ISO 10434 and IS 778) have competing applicability for the same procurement object for 'valve' equipment. The tender does not contain distinguishing specifications (material (steel vs copper)) to select between them (Potentially missing parameters: Valve Type, Nominal Size / Diameter (DN), Pressure Rating (PN / Class)).
 

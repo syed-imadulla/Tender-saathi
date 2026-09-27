@@ -289,7 +289,15 @@ def _normalize_result(
                 "provider": getattr(r, "ai_provider", None) or "unknown",
                 "model": getattr(r, "ai_model", None) or "unknown",
                 "is_fallback": getattr(r, "is_ai_fallback", True),
+                "understanding_method": (
+                    ai_und.get("understanding_method")
+                    or ("groq_llm" if not getattr(r, "is_ai_fallback", True) else "deterministic_fallback")
+                ),
             },
+            "understanding_method": (
+                ai_und.get("understanding_method")
+                or ("groq_llm" if not getattr(r, "is_ai_fallback", True) else "deterministic_fallback")
+            ),
             # Score breakdown
             "scores": scores,
             # Milestone 9: Applicability Gate results
@@ -421,6 +429,9 @@ def _normalize_result(
             ai_model = getattr(r, "ai_model", "unknown") or "unknown"
             break
 
+    is_ai_fallback_all = all(getattr(r, "is_ai_fallback", True) for r in results) if results else True
+    overall_understanding_method = "groq_llm" if not is_ai_fallback_all else "deterministic_fallback"
+
     return {
         "tender": {
             "id": tender_id,
@@ -428,6 +439,7 @@ def _normalize_result(
             "file_size": file_size,
             "timestamp": datetime.now(timezone.utc).isoformat(),
         },
+        "understanding_method": overall_understanding_method,
         "summary": summary,
         "readiness": audit.publication_readiness,
         "readiness_reasons": audit.readiness_reasons,
@@ -441,7 +453,8 @@ def _normalize_result(
             "ai_provider": ai_provider,
             "ai_model": ai_model,
             "retrieval_mode": "hybrid+rerank",
-            "is_ai_fallback": all(getattr(r, "is_ai_fallback", True) for r in results),
+            "is_ai_fallback": is_ai_fallback_all,
+            "understanding_method": overall_understanding_method,
         },
     }
 

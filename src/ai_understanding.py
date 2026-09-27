@@ -54,8 +54,14 @@ class ParsedRequirement:
     is_fallback: bool = True
     raw_response: Optional[str] = None
 
+    @property
+    def understanding_method(self) -> str:
+        return "groq_llm" if not self.is_fallback else "deterministic_fallback"
+
     def to_dict(self) -> Dict[str, Any]:
-        return asdict(self)
+        d = asdict(self)
+        d["understanding_method"] = self.understanding_method
+        return d
 
     def to_components(self) -> List[RequirementComponent]:
         """Converts structured facets into RequirementComponent objects for retrieval."""
@@ -138,6 +144,11 @@ class AIRequirementParser:
     Parses procurement specifications using Groq LLM (or OpenRouter if explicitly configured)
     with strict JSON validation, standard-code stripping, and automatic deterministic fallback.
     """
+    _shared_cache: Dict[str, ParsedRequirement] = {}
+
+    @classmethod
+    def clear_cache(cls) -> None:
+        cls._shared_cache.clear()
 
     def __init__(
         self,
@@ -147,10 +158,13 @@ class AIRequirementParser:
         api_key: Optional[str] = None,
         timeout: float = 8.0
     ):
-        env_enabled = os.getenv("TENDERSAATHI_LLM_ENABLED", "false").lower() in ("true", "1", "yes")
-        self.enabled = env_enabled if enabled is None else enabled
         self.provider = (provider or os.getenv("TENDERSAATHI_LLM_PROVIDER", "groq")).lower()
-        self.model = model or os.getenv("TENDERSAATHI_LLM_MODEL", "openai/gpt-oss-120b")
+        self.model = (
+            model
+            or os.getenv("GROQ_MODEL")
+            or os.getenv("TENDERSAATHI_LLM_MODEL")
+            or "openai/gpt-oss-120b"
+        )
         self.timeout = timeout
 
         # API keys (never logged or exposed)
@@ -163,7 +177,18 @@ class AIRequirementParser:
         else:
             self._api_key = os.getenv("LLM_API_KEY", "").strip()
 
+        # Enabled flag: respect explicit argument; else check env; else auto-enable if API key present
+        if enabled is not None:
+            self.enabled = enabled
+        else:
+            env_enabled = os.getenv("TENDERSAATHI_LLM_ENABLED")
+            if env_enabled is not None:
+                self.enabled = env_enabled.lower() in ("true", "1", "yes")
+            else:
+                self.enabled = bool(self._api_key)
+
         self.decomposer = CompoundRequirementDecomposer()
+        self._cache = self._shared_cache
 
     def parse(self, text: str) -> ParsedRequirement:
         """
@@ -179,14 +204,21 @@ class AIRequirementParser:
                 is_fallback=True
             )
 
+        # Check cache (only hit if same model and provider or cached deterministic)
+        cache_key = f"{self.provider}:{self.model}:{text_clean}"
+        if cache_key in self._cache:
+            return self._cache[cache_key]
+
         if not self.enabled or not self._api_key:
-            return self._fallback_decompose(text_clean, reason="LLM disabled or missing API key")
+            res = self._fallback_decompose(text_clean, reason="LLM disabled or missing API key")
+            self._cache[cache_key] = res
+            return res
 
         try:
             raw_response = self._call_llm_api(text_clean)
             parsed_json = self._validate_and_sanitize_response(raw_response)
             if parsed_json is not None:
-                return ParsedRequirement(
+                res = ParsedRequirement(
                     equipment=parsed_json["equipment"],
                     control=parsed_json["control"],
                     electrical=parsed_json["electrical"],
@@ -198,6 +230,8 @@ class AIRequirementParser:
                     is_fallback=False,
                     raw_response=raw_response
                 )
+                self._cache[cache_key] = res
+                return res
         except Exception:
             # Any network error, timeout, or unexpected exception falls back cleanly
             pass
@@ -208,6 +242,26 @@ class AIRequirementParser:
         """Invokes the configured LLM API (Groq or OpenRouter)."""
         if not self._api_key:
             raise ValueError(f"{self.provider.capitalize()} API key not configured")
+
+        # Attempt using groq SDK if installed
+        if self.provider == "groq":
+            try:
+                import groq  # type: ignore[import-not-found]
+                client = groq.Groq(api_key=self._api_key, timeout=self.timeout, max_retries=0)
+                completion = client.chat.completions.create(
+                    model=self.model,
+                    messages=[
+                        {"role": "system", "content": SYSTEM_PROMPT},
+                        {"role": "user", "content": f"Requirement: {text}"}
+                    ],
+                    temperature=0.0,
+                    response_format={"type": "json_object"}
+                )
+                return completion.choices[0].message.content or ""
+            except ImportError:
+                pass
+            except Exception:
+                raise RuntimeError(f"{self.provider.capitalize()} API request failed") from None
 
         if self.provider == "groq":
             url = "https://api.groq.com/openai/v1/chat/completions"
@@ -230,7 +284,7 @@ class AIRequirementParser:
         headers = {
             "Authorization": f"Bearer {self._api_key}",
             "Content-Type": "application/json",
-            "User-Agent": "TenderSaathi-AI/1.0"
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 TenderSaathi/1.0"
         }
 
         req = urllib.request.Request(url, data=data, headers=headers)

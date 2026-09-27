@@ -9,3 +9,4 @@ flask>=3.0.0
 flask-cors>=4.0.0
 pillow>=9.0.0
 pytesseract>=0.3.10
+groq>=0.9.0

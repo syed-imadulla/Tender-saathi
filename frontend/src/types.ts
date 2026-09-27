@@ -22,6 +22,7 @@ export interface AIUnderstanding {
   provider: string;
   model: string;
   is_fallback: boolean;
+  understanding_method?: string;
 }
 
 export interface ApplicabilityData {
@@ -285,6 +286,7 @@ export interface TenderInfo {
 
 export interface AnalysisResult {
   tender: TenderInfo;
+  understanding_method?: string;
   summary: AnalysisSummary;
   readiness: 'READY_FOR_REVIEW' | 'REVIEW_REQUIRED' | 'INSUFFICIENT_EVIDENCE';
   readiness_reasons: string[];
@@ -299,6 +301,7 @@ export interface AnalysisResult {
     ai_model: string;
     retrieval_mode: string;
     is_ai_fallback: boolean;
+    understanding_method?: string;
   };
 }
 

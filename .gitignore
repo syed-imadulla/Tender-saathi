@@ -58,3 +58,6 @@ tmp/
 # Generated reports & manifest snapshots
 reports/generated/ts-*
 data/catalogue/manifests/manifest_snapshot_*
+.vercel
+.env*
+!.env.example

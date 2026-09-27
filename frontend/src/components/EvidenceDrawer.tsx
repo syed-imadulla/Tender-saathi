@@ -1001,11 +1001,9 @@ export default function EvidenceDrawer({
 
             <div className="drawer-ai-attr">
               {isAiFallback ? (
-                <span>Understood using: <strong>Deterministic parser</strong></span>
+                <span>Understood using: <strong>Deterministic parser (fallback)</strong></span>
               ) : (
-                <span>
-                  Understood by: <strong>Groq · {ai.model || 'openai/gpt-oss-120b'}</strong>
-                </span>
+                <span>Understood using: <strong>Groq LLM</strong></span>
               )}
             </div>
 

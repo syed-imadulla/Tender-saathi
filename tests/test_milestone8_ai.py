@@ -43,6 +43,9 @@ class TestMilestone8AI(unittest.TestCase):
     def setUpClass(cls):
         cls.db = StandardsDatabase()
 
+    def setUp(self):
+        AIRequirementParser.clear_cache()
+
     # 1. AI parser schema validation
     def test_01_ai_parser_schema_validation(self):
         parser = AIRequirementParser(enabled=False)
@@ -309,6 +312,51 @@ class TestMilestone8AI(unittest.TestCase):
         prefix = "".join(["g", "s", "k", "_"])
         self.assertNotIn(prefix, content)
         self.assertNotIn("sk-or-", content)
+
+
+    # 27. understanding_method property matches fallback state
+    def test_27_understanding_method_property(self):
+        p_groq = ParsedRequirement(is_fallback=False, ai_provider="groq", ai_model="openai/gpt-oss-120b")
+        self.assertEqual(p_groq.understanding_method, "groq_llm")
+        self.assertEqual(p_groq.to_dict()["understanding_method"], "groq_llm")
+
+        p_fallback = ParsedRequirement(is_fallback=True, ai_provider="deterministic")
+        self.assertEqual(p_fallback.understanding_method, "deterministic_fallback")
+        self.assertEqual(p_fallback.to_dict()["understanding_method"], "deterministic_fallback")
+
+    # 28. Groq response -> structured requirement -> existing downstream pipeline
+    def test_28_groq_response_to_downstream_pipeline(self):
+        mock_groq_content = json.dumps({
+            "equipment": ["CPVC pipes"],
+            "control": [],
+            "electrical": [],
+            "voltage": [],
+            "application": ["domestic water supply"],
+            "work_type": ["supply", "installation"]
+        })
+        recommender = StandardsRecommender(db=self.db)
+        with patch.object(recommender.ai_parser, "_call_llm_api", return_value=mock_groq_content):
+            res = recommender.recommend_for_text(
+                "Supply and installation of ISI marked CPVC pipes for domestic water supply system"
+            )
+            self.assertIsNotNone(res)
+            self.assertEqual(res.ai_provider, "groq")
+            self.assertFalse(res.is_ai_fallback)
+            self.assertEqual(res.ai_understanding["understanding_method"], "groq_llm")
+            self.assertEqual(res.candidate_standard, "IS 15778 : 2007")
+
+    # 29. Groq unavailable -> deterministic fallback -> successful analysis
+    def test_29_groq_unavailable_fallback_to_deterministic(self):
+        recommender = StandardsRecommender(db=self.db)
+        with patch.object(recommender.ai_parser, "_call_llm_api", side_effect=RuntimeError("Groq API rate limit reached")):
+            res = recommender.recommend_for_text(
+                "Supply and installation of ISI marked CPVC pipes for domestic water supply system"
+            )
+            self.assertIsNotNone(res)
+            self.assertEqual(res.ai_provider, "deterministic")
+            self.assertTrue(res.is_ai_fallback)
+            self.assertEqual(res.ai_understanding["understanding_method"], "deterministic_fallback")
+            self.assertEqual(res.candidate_standard, "IS 15778 : 2007")
 
 
 if __name__ == "__main__":
