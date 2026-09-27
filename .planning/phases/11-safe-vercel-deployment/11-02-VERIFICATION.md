@@ -2,7 +2,7 @@
 
 ## Overview
 Phase 11 production deployment follows the decoupled architecture with:
-1. **Frontend**: React 18 + Vite 5 SPA hosted on Vercel (`https://frontend-five-khaki-apgfbql8e6.vercel.app`)
+1. **Frontend**: React 18 + Vite 5 SPA hosted on Vercel (`https://tendersaathi.vercel.app`)
 2. **Backend**: Dedicated containerized Python 3.11 WSGI service hosted on Azure Container Apps (`https://tender-saathi-backend.whiteground-dc69e38a.centralindia.azurecontainerapps.io`)
 
 ---
@@ -58,6 +58,6 @@ Phase 11 production deployment follows the decoupled architecture with:
 ## Deployment Evidence
 - **Git Commit SHA**: `435b3dcdfda91fd4c698206a986f5abef1b69979`
 - **Azure Backend URL**: `https://tender-saathi-backend.whiteground-dc69e38a.centralindia.azurecontainerapps.io`
-- **Vercel Production URL**: `https://frontend-five-khaki-apgfbql8e6.vercel.app`
+- **Vercel Production URL**: `https://tendersaathi.vercel.app`
 - **Deployment Timestamp**: `2026-09-27T05:49:44Z`
 - **Docker Image Digest**: `sha256:788d2112bd5d2b3651dbda2d9504df0829f4e55ca0004bfd0a82f7342e1baa1c` (`tendersaathiacr.azurecr.io/tender-saathi-backend:v11`)
