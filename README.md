@@ -3,13 +3,24 @@
 **Evidence-Backed Indian Standards Intelligence & Tender Specification Audit Engine**
 
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![Tests Passing](https://img.shields.io/badge/Pytest-503%20Passed-brightgreen.svg)]()
+[![Tests Passing](https://img.shields.io/badge/Pytest-506%20Passed-brightgreen.svg)]()
 [![BIS Catalogue](https://img.shields.io/badge/BIS%20Catalogue-35%2C208%20Standards-blue.svg)]()
 [![Benchmark Top-1](https://img.shields.io/badge/Benchmark%20Top--1-90.0%25-success.svg)]()
 [![Adversarial Safety](https://img.shields.io/badge/Adversarial%20Safety-98.57%25%20(69%2F70)-brightgreen.svg)]()
+[![Production Live](https://img.shields.io/badge/Production-Live-success.svg)](https://tendersaathi.vercel.app)
 [![SIH Problem](https://img.shields.io/badge/SIH-SIH26108-orange.svg)]()
 
-> **"AI interprets. Rules validate. Evidence supports. Humans decide."**
+> **"Groq AI interprets. Rules validate. Evidence supports. Humans decide."**
+
+---
+
+## Live Demo
+
+- **Canonical Production Frontend**: [https://tendersaathi.vercel.app](https://tendersaathi.vercel.app)
+- **Production Backend API**: [https://tender-saathi-backend.whiteground-dc69e38a.centralindia.azurecontainerapps.io](https://tender-saathi-backend.whiteground-dc69e38a.centralindia.azurecontainerapps.io)
+- **Backend Health Check**: [`/api/health`](https://tender-saathi-backend.whiteground-dc69e38a.centralindia.azurecontainerapps.io/api/health)
+- **Architecture**: Decoupled deployment (Vercel Frontend + Dedicated Azure Container Apps Backend)
+- **Hybrid AI Engine**: Groq LLM (`openai/gpt-oss-120b`) domain understanding with 100% deterministic offline fallback
 
 ---
 
@@ -84,7 +95,7 @@ Every metric reported below is independently reproducible using the evaluation c
 
 | Metric Category | Verified Performance | Evaluation Reference |
 | :--- | :--- | :--- |
-| **Unit & Integration Suite** | **503 / 503 Passed (100%)** | `python3 -m pytest -q` |
+| **Unit & Integration Suite** | **506 / 506 Passed (100%)** | `python3 -m pytest -q` |
 | **Full BIS Catalogue** | **35,208 standards** indexed | `data/catalogue/bis_catalogue.db` |
 | **Curated Core Standards** | **90 standards**, 72 verified relationships | `data/standards/standards.db` |
 | **Benchmark Top-1 Accuracy** | **90.0% (18/20)** | `python3 -m src.evaluate` |
@@ -137,7 +148,7 @@ npm run dev
 ```
 *UI accessible at `http://localhost:5173`*
 
-*For complete configuration options, see [Installation Guide](docs/getting-started/installation.md) and [Configuration Guide](docs/getting-started/configuration.md).*
+*For complete configuration options, see [Installation Guide](docs/getting-started/installation.md), [Configuration Guide](docs/getting-started/configuration.md), and [Production Deployment Guide](docs/getting-started/deployment.md).*
 
 ---
 
@@ -152,7 +163,7 @@ python3 demo.py
 # 2. End-to-End Tender PDF Validation
 python3 validate_e2e.py
 
-# 3. Run Complete 503-Test Verification Suite
+# 3. Run Complete 506-Test Verification Suite
 python3 -m pytest -q
 
 # 4. Run Retrieval Ablation Benchmark (20-row standard dataset + 5 negative controls)
@@ -235,6 +246,7 @@ In accordance with transparent engineering principles, all operational limits ar
 | **Getting Started** | [Installation Guide](docs/getting-started/installation.md) | Environment setup, virtualenv, dependencies, verification |
 | | [Configuration Guide](docs/getting-started/configuration.md) | Environment variables, offline vs online modes, database paths |
 | | [Run Guide](docs/getting-started/run_guide.md) | Web UI, CLI demos, pytest flags, evaluation commands |
+| | [Production Deployment Guide](docs/getting-started/deployment.md) | Decoupled Vercel frontend & Azure Container Apps backend architecture |
 | **Architecture** | [Architecture Overview](docs/architecture/overview.md) | 10-stage pipeline, ASCII data flows, design invariants |
 | | [Module Reference](docs/architecture/modules.md) | 29 modules in `src/`, pure-Python BM25, embeddings, reranker |
 | | [Relationship Graph](docs/architecture/relationship_graph.md) | 8 relationship types, depth=1 horizon, multi-component bundles |

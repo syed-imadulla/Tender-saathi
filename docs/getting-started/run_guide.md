@@ -52,7 +52,7 @@ python3 validate_e2e.py
 
 ## 3. Running Test Suites
 
-Run the full pytest suite (503 unit, integration, and safety tests):
+Run the full pytest suite (506 unit, integration, and safety tests):
 
 ```bash
 python3 -m pytest -q

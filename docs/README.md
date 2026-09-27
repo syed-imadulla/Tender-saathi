@@ -18,7 +18,8 @@ docs/
 ├── getting-started/               # Developer setup and operational guides
 │   ├── installation.md            # Environment setup (Python virtualenv, Node.js, system deps)
 │   ├── configuration.md           # Configuration options, offline mode & environment variables
-│   └── run_guide.md               # Starting backend API, frontend UI, tests & benchmarks
+│   ├── run_guide.md               # Starting backend API, frontend UI, tests & benchmarks
+│   └── deployment.md              # Decoupled Vercel + Azure production deployment & verification
 ├── api/                           # API specifications
 │   └── rest_api.md                # Complete REST API reference (12 active endpoints)
 ├── data/                          # Standards data and catalogue architecture
@@ -80,7 +81,7 @@ docs/
 | **Adversarial Suite** | 70 probes (14 categories × 5) | `dataset/adversarial/adversarial_evaluation_suite.json` |
 | **Adversarial Score** | 69 / 70 passed (98.57%) | `src/eval_adversarial.py` output |
 | **Accepted Limitation** | `ADV-MUL-005` | Seed catalogue boundary in `standards.db` |
-| **Automated Tests** | 503 passed (0 failed) | `pytest tests/` |
+| **Automated Tests** | 506 passed (0 failed) | `pytest tests/` |
 | **Verified Relationships** | 72 verified relationships | `data/standards/relationships.json` |
 | **Demonstration Domains** | 5 domains | Civil, Electrical, Mechanical, Process, Petroleum |
 | **Relationship Taxonomy** | 8 canonical types | `CANONICAL_RELATIONSHIP_TYPES` in `src/standards.py` |
