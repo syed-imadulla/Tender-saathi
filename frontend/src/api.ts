@@ -4,8 +4,9 @@
 
 import type { AnalysisResult, HumanReviewDecision, TenderReviewResponse } from './types';
 
-const rawBase = ((import.meta as unknown as { env?: Record<string, string> }).env?.VITE_API_URL) || '/api';
-const BASE = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+const rawBase = ((import.meta as unknown as { env?: Record<string, string> }).env?.VITE_API_URL)?.trim() || '/api';
+const cleaned = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
+const BASE = (cleaned === '/api' || cleaned.endsWith('/api')) ? cleaned : `${cleaned}/api`;
 
 async function handleResponse<T>(res: Response): Promise<T> {
   const contentType = res.headers.get('Content-Type') || '';
