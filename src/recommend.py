@@ -59,6 +59,7 @@ class StandardRecommendation:
     applicability: Optional[Dict[str, Any]] = None
     standard_role: str = "PRIMARY_PRODUCT"
     structured_evidence: Optional[Dict[str, Any]] = None
+    trace_record: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -134,9 +135,11 @@ class RequirementRecommendationResult:
     external_regulations: List[Dict[str, Any]] = field(default_factory=list)
     lifecycle_warnings: List[Dict[str, Any]] = field(default_factory=list)
     amendment_metadata: Optional[Dict[str, Any]] = None
+    # Phase 16 Evidence Traceability & Verification fields:
+    trace_record: Optional[Dict[str, Any]] = None
+    component_trace_records: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
-
         return asdict(self)
 
 
@@ -207,6 +210,8 @@ class StandardsRecommender:
         self.multilingual_normalizer = MultilingualTechnicalNormalizer()
         self.evidence_builder = StandardsEvidenceBuilder(self.db)
         self.external_authority_registry = ExternalAuthorityRegistry()
+        from src.traceability import TraceableEvidenceValidator
+        self.evidence_validator = TraceableEvidenceValidator(self.db)
 
     def _evaluate_component_recommendations(
         self,
@@ -709,7 +714,50 @@ class StandardsRecommender:
                 component_recommendations=component_recs,
                 external_regulations=external_regs,
                 lifecycle_warnings=[],
-                amendment_metadata=None
+                amendment_metadata=None,
+                trace_record=self.evidence_validator.build_trace_record(
+                    requirement_id=req_id,
+                    requirement_text=text,
+                    recommendation=type("AbstainRec", (), {
+                        "candidate_standard": None,
+                        "title": "N/A",
+                        "status": "UNKNOWN",
+                        "evidence": "",
+                        "structured_evidence": abstain_struct_ev.to_dict(),
+                        "critic_result": {"decision": critic_decision},
+                        "applicability": primary_app_res,
+                        "ambiguity_state": ambiguity_report.ambiguity_state.value,
+                        "competing_interpretations": ambiguity_report.competing_interpretations,
+                        "human_review_required": True,
+                        "relevance_score": 0.0,
+                        "provenance": "NONE"
+                    })(),
+                    rank_position=1
+                ).to_dict(),
+                component_trace_records=[
+                    self.evidence_validator.build_trace_record(
+                        requirement_id=req_id,
+                        requirement_text=text,
+                        recommendation=type("CompRec", (), {
+                            "candidate_standard": c.get("candidate_standard"),
+                            "title": c.get("title", ""),
+                            "status": c.get("lifecycle_status", "UNKNOWN"),
+                            "evidence": c.get("evidence", ""),
+                            "structured_evidence": c.get("structured_evidence"),
+                            "critic_result": {"decision": "REVIEW_REQUIRED" if c.get("human_review_required") else "RECOMMEND"},
+                            "applicability": {"decision": c.get("applicability_decision", "UNKNOWN")},
+                            "ambiguity_state": "CLEAR",
+                            "competing_interpretations": [],
+                            "human_review_required": c.get("human_review_required", False),
+                            "relevance_score": c.get("relevance_score", 0.0),
+                            "provenance": c.get("provenance", "UNKNOWN")
+                        })(),
+                        sub_requirement_id=c.get("component_id"),
+                        sub_requirement_text=c.get("component_text"),
+                        rank_position=idx + 1
+                    ).to_dict()
+                    for idx, c in enumerate(component_recs) if isinstance(c, dict)
+                ]
             )
 
         # Step 5: Validate and Ground Candidates
@@ -1085,7 +1133,37 @@ class StandardsRecommender:
             component_recommendations=component_recs,
             external_regulations=external_regs,
             lifecycle_warnings=dep_report.lifecycle_warnings,
-            amendment_metadata=dep_report.amendment_metadata
+            amendment_metadata=dep_report.amendment_metadata,
+            trace_record=self.evidence_validator.build_trace_record(
+                requirement_id=req_id,
+                requirement_text=text,
+                recommendation=top_rec,
+                rank_position=1
+            ).to_dict(),
+            component_trace_records=[
+                self.evidence_validator.build_trace_record(
+                    requirement_id=req_id,
+                    requirement_text=text,
+                    recommendation=type("CompRec", (), {
+                        "candidate_standard": c.get("candidate_standard"),
+                        "title": c.get("title", ""),
+                        "status": c.get("lifecycle_status", "UNKNOWN"),
+                        "evidence": c.get("evidence", ""),
+                        "structured_evidence": c.get("structured_evidence"),
+                        "critic_result": {"decision": "REVIEW_REQUIRED" if c.get("human_review_required") else "RECOMMEND"},
+                        "applicability": {"decision": c.get("applicability_decision", "UNKNOWN")},
+                        "ambiguity_state": "CLEAR",
+                        "competing_interpretations": [],
+                        "human_review_required": c.get("human_review_required", False),
+                        "relevance_score": c.get("relevance_score", 0.0),
+                        "provenance": c.get("provenance", "UNKNOWN")
+                    })(),
+                    sub_requirement_id=c.get("component_id"),
+                    sub_requirement_text=c.get("component_text"),
+                    rank_position=idx + 1
+                ).to_dict()
+                for idx, c in enumerate(component_recs) if isinstance(c, dict)
+            ]
         )
 
 

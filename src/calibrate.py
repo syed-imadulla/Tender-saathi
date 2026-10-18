@@ -170,6 +170,22 @@ class TenderSplitter:
             val_tenders.isdisjoint(test_tenders)
         )
 
+        # Audit near-duplicate text leakage across splits
+        text_leakage_warnings = []
+        train_texts = {(c.get("requirement_text") or "").strip().lower(): c.get("requirement_id") for c in train_cases if c.get("requirement_text")}
+        val_texts = {(c.get("requirement_text") or "").strip().lower(): c.get("requirement_id") for c in val_cases if c.get("requirement_text")}
+        test_texts = {(c.get("requirement_text") or "").strip().lower(): c.get("requirement_id") for c in test_cases if c.get("requirement_text")}
+
+        for t_text, t_id in train_texts.items():
+            if len(t_text) < 15:
+                continue
+            for v_text, v_id in val_texts.items():
+                if t_text == v_text or (len(min(t_text, v_text)) > 30 and (t_text in v_text or v_text in t_text)):
+                    text_leakage_warnings.append(f"Near-duplicate text leak between Train ({t_id}) and Val ({v_id})")
+            for ts_text, ts_id in test_texts.items():
+                if t_text == ts_text or (len(min(t_text, ts_text)) > 30 and (t_text in ts_text or ts_text in t_text)):
+                    text_leakage_warnings.append(f"Near-duplicate text leak between Train ({t_id}) and Test ({ts_id})")
+
         return {
             "train": train_cases,
             "val": val_cases,
@@ -185,7 +201,9 @@ class TenderSplitter:
                 "test_cases_count": len(test_cases)
             },
             "leakage_audit": {
-                "is_leakage_free": is_leakage_free,
+                "is_leakage_free": is_leakage_free and (len(text_leakage_warnings) == 0),
+                "is_tender_disjoint": is_leakage_free,
+                "text_leakage_warnings": text_leakage_warnings,
                 "train_tenders": sorted(list(train_tenders)),
                 "val_tenders": sorted(list(val_tenders)),
                 "test_tenders": sorted(list(test_tenders))

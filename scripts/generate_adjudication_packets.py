@@ -25,7 +25,7 @@ import sqlite3
 import datetime
 from typing import Dict, List, Any, Optional
 
-DB_PATH = "data/standards.db"
+DB_PATH = "data/standards/standards.db" if os.path.exists("data/standards/standards.db") else "data/standards.db"
 GT_PATH = "dataset/ground_truth/ground_truth.csv"
 STAGING_PATH = "dataset/ground_truth/candidates_staging.csv"
 OUTPUT_DIR = "reports/adjudication_packets/packets"

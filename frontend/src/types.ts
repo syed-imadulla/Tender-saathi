@@ -135,6 +135,44 @@ export interface Requirement {
   competing_interpretations?: CompetingInterpretation[];
   suggested_clarification_question?: string | null;
   unresolved_components?: string[];
+  // Phase 16: Evidence Traceability & Recommendation Verification
+  trace_record?: TraceRecord | null;
+  component_trace_records?: TraceRecord[];
+}
+
+export interface TraceRecord {
+  requirement_id: string;
+  requirement_text: string;
+  sub_requirement_id?: string | null;
+  sub_requirement_text?: string | null;
+  standard_number?: string | null;
+  official_title?: string | null;
+  standard_year?: number | null;
+  lifecycle_status: string;
+  retrieval_method: string;
+  relevance_score: number;
+  rank_position: number;
+  supporting_passage?: string | null;
+  evidence_type: string;
+  evidence_source: string;
+  document_id?: string | null;
+  source_url?: string | null;
+  content_hash?: string | null;
+  applicability_decision: string;
+  applicability_rejection_reasons?: string[];
+  ambiguity_state: string;
+  competing_standards?: string[];
+  critic_decision: string;
+  final_system_decision: string;
+  human_review_required: boolean;
+  evidence_completeness: 'SUPPORTING_EVIDENCE_AVAILABLE' | 'CATALOGUE_METADATA_ONLY' | 'EVIDENCE_INCOMPLETE' | 'HUMAN_REVIEW_REQUIRED' | 'UNKNOWN_STANDARD' | 'REJECTED_INELIGIBLE' | string;
+  is_catalogue_verified: boolean;
+  is_passage_verified_in_source: boolean;
+  is_lifecycle_verified: boolean;
+  is_human_verified: boolean;
+  is_rejected_candidate: boolean;
+  validation_errors?: string[];
+  validation_warnings?: string[];
 }
 
 export interface RegulatoryItem {

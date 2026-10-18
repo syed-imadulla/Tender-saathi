@@ -1011,6 +1011,86 @@ export default function EvidenceDrawer({
               "AI helps understand the requirement. It does not decide which Indian Standard applies."
             </p>
           </CollapseSection>
+
+          {/* 14. Traceable Evidence Chain & Verification (Phase 16) */}
+          <CollapseSection title="14. Traceable Evidence Chain & Verification" defaultOpen={true}>
+            {req.trace_record ? (
+              <div className="drawer-trace-chain" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 600, color: '#334155' }}>
+                    Evidence Completeness:
+                  </span>
+                  <span className={`badge ${
+                    req.trace_record.evidence_completeness === 'SUPPORTING_EVIDENCE_AVAILABLE'
+                      ? 'badge--active'
+                      : req.trace_record.evidence_completeness === 'CATALOGUE_METADATA_ONLY'
+                      ? 'badge--review'
+                      : req.trace_record.evidence_completeness === 'HUMAN_REVIEW_REQUIRED'
+                      ? 'badge--superseded'
+                      : 'badge--low'
+                  }`}>
+                    {req.trace_record.evidence_completeness.replace(/_/g, ' ')}
+                  </span>
+                </div>
+
+                <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '10px', fontSize: '0.78rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
+                    <div>Catalogue Verified: <strong style={{ color: req.trace_record.is_catalogue_verified ? '#166534' : '#b91c1c' }}>{req.trace_record.is_catalogue_verified ? '✓ In Catalogue' : '✗ Unresolved'}</strong></div>
+                    <div>Source Passage: <strong style={{ color: req.trace_record.is_passage_verified_in_source ? '#166534' : '#b45309' }}>{req.trace_record.is_passage_verified_in_source ? '✓ Verified in Scope' : '✗ Metadata Only'}</strong></div>
+                    <div>Lifecycle Verified: <strong style={{ color: req.trace_record.is_lifecycle_verified ? '#166534' : '#b45309' }}>{req.trace_record.is_lifecycle_verified ? `✓ ${req.trace_record.lifecycle_status}` : '✗ Unknown'}</strong></div>
+                    <div>Human Verified: <strong style={{ color: req.trace_record.is_human_verified ? '#166534' : '#64748b' }}>{req.trace_record.is_human_verified ? '✓ Expert Verified' : '○ Machine Predicted'}</strong></div>
+                  </div>
+
+                  {req.trace_record.supporting_passage && (
+                    <div style={{ marginTop: '8px', paddingTop: '6px', borderTop: '1px solid #e2e8f0' }}>
+                      <span style={{ fontWeight: 600, color: '#475569' }}>Verified Scope Passage:</span>
+                      <blockquote style={{ margin: '4px 0 0 0', padding: '4px 8px', background: '#ffffff', borderLeft: '3px solid #0284c7', fontSize: '0.75rem', fontStyle: 'italic', color: '#1e293b' }}>
+                        "{req.trace_record.supporting_passage}"
+                      </blockquote>
+                      {req.trace_record.content_hash && (
+                        <div style={{ fontSize: '0.68rem', color: '#94a3b8', marginTop: '3px' }}>
+                          SHA-256 Hash: <code>{req.trace_record.content_hash.slice(0, 16)}...</code>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {req.trace_record.validation_warnings && req.trace_record.validation_warnings.length > 0 && (
+                    <div style={{ marginTop: '8px', color: '#b45309', fontSize: '0.74rem' }}>
+                      {req.trace_record.validation_warnings.map((w, idx) => (
+                        <div key={idx}>⚠️ {w}</div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {req.component_trace_records && req.component_trace_records.length > 0 && (
+                  <div style={{ marginTop: '4px' }}>
+                    <span style={{ fontSize: '0.76rem', fontWeight: 600, color: '#475569' }}>
+                      Decomposed Component Evidence Chains ({req.component_trace_records.length}):
+                    </span>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '4px' }}>
+                      {req.component_trace_records.map((cr, idx) => (
+                        <div key={idx} style={{ background: '#f1f5f9', padding: '6px 8px', borderRadius: '4px', fontSize: '0.74rem' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <strong>{cr.sub_requirement_id || `C${idx+1}`}: {cr.standard_number || 'No Match'}</strong>
+                            <span style={{ fontSize: '0.7rem', color: '#64748b' }}>{cr.evidence_completeness}</span>
+                          </div>
+                          <div style={{ color: '#475569', fontSize: '0.72rem', marginTop: '2px' }}>
+                            Sub-requirement: "{cr.sub_requirement_text || '—'}"
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div style={{ fontSize: '0.78rem', color: '#64748b', fontStyle: 'italic' }}>
+                Trace record awaiting generation or unavailable.
+              </div>
+            )}
+          </CollapseSection>
         </div>
       </aside>
     </>

@@ -1,8 +1,8 @@
 {
-  "generated_at_utc": "2026-10-18T07:48:02.801215+00:00",
-  "total_packets": 40,
+  "generated_at_utc": "2026-10-18T09:25:41.123996+00:00",
+  "total_packets": 41,
   "unverified_baseline_count": 20,
-  "machine_predicted_count": 20,
+  "machine_predicted_count": 21,
   "packets_directory": "reports/adjudication_packets/packets",
   "cases": [
     {
@@ -324,6 +324,14 @@
       "procurement_sector": "PROVISIONAL:CATERING",
       "cohort": "MACHINE_PREDICTED",
       "current_expected_decision": "ABSTAIN_UNDER_SPECIFIED"
+    },
+    {
+      "packet_file": "CASE_PROV_ELEC_NEG002.md",
+      "requirement_id": "PROV-ELEC-NEG002",
+      "tender_id": "T-SYNTH-NEG",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "RECOMMEND"
     }
   ]
 }

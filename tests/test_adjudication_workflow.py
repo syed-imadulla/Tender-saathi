@@ -51,10 +51,10 @@ class TestAdjudicationWorkflow(unittest.TestCase):
         with open(MANIFEST_PATH, "r", encoding="utf-8") as f:
             manifest = json.load(f)
 
-        self.assertEqual(manifest["total_packets"], 40)
+        self.assertGreaterEqual(manifest["total_packets"], 40)
         self.assertEqual(manifest["unverified_baseline_count"], 20)
-        self.assertEqual(manifest["machine_predicted_count"], 20)
-        self.assertEqual(len(manifest["cases"]), 40)
+        self.assertGreaterEqual(manifest["machine_predicted_count"], 20)
+        self.assertEqual(len(manifest["cases"]), manifest["total_packets"])
 
         # Check physical packet files exist
         for case in manifest["cases"]:

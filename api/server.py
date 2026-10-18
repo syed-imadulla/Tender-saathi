@@ -339,6 +339,9 @@ def _normalize_result(
             "external_regulations": getattr(r, "external_regulations", []) or [],
             "lifecycle_warnings": getattr(r, "lifecycle_warnings", []) or [],
             "amendment_metadata": getattr(r, "amendment_metadata", None),
+            # Phase 16: Evidence Traceability & Recommendation Verification
+            "trace_record": getattr(r, "trace_record", None),
+            "component_trace_records": getattr(r, "component_trace_records", []) or [],
         }
 
         all_reqs.append(req_dict)
