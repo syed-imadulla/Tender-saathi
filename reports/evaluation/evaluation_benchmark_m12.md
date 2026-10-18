@@ -3,7 +3,7 @@
 > [!IMPORTANT]
 > **Ground Truth Status Disclosure**: Benchmark ground_truth.csv rows are UNVERIFIED_BASELINE and require formal domain expert panel adjudication (Phase 13).
 
-- **Evaluation Timestamp**: `2026-10-18T14:14:15.692885+00:00`
+- **Evaluation Timestamp**: `2026-10-18T14:24:08.376045+00:00`
 - **Dataset Path**: `dataset/ground_truth/ground_truth.csv`
 - **Dataset SHA-256**: `8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`
 - **Evaluation Harness**: `TenderSaathi-M12-MultiMetric`
