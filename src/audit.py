@@ -73,6 +73,13 @@ class ReviewQueueCategory:
     EVIDENCE_INSUFFICIENT = "EVIDENCE_INSUFFICIENT"
 
 
+class ReviewStatus(str, Enum):
+    """Canonical supported states for human review workflow progress (AUDIT-04)."""
+    REVIEW_REQUIRED = "REVIEW_REQUIRED"
+    IN_PROGRESS = "IN_PROGRESS"
+    REVIEW_COMPLETE = "REVIEW_COMPLETE"
+
+
 # ---------------------------------------------------------------------------
 # Phase 4 Data Models
 # ---------------------------------------------------------------------------

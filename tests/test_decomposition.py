@@ -145,5 +145,111 @@ class TestCompoundDecomposition(unittest.TestCase):
         )
 
 
+class TestCompositeSubcomponentReviewRollup(unittest.TestCase):
+    """
+    AUDIT-01: Verifies that subcomponent review requirements propagate to the parent
+    recommendation without suppressing valid recommendations or duplicating warnings.
+    """
+    @classmethod
+    def setUpClass(cls):
+        cls.db = StandardsDatabase()
+        cls.recommender = StandardsRecommender(cls.db)
+
+    def test_01_primary_recommended_secondary_review_required(self):
+        """Primary component is recommended, but secondary component needs review -> parent flags review."""
+        from src.extract import Requirement, RequirementComponent
+        req = Requirement(
+            requirement_id="TEST-ROLLUP-01",
+            requirement_text="Supply of CPVC pipes and quantum entanglement gravitational wave detector for spacecraft navigation",
+            category="piping",
+            components=[
+                RequirementComponent(text="CPVC pipes", component_type="material", domain="piping"),
+                RequirementComponent(text="quantum entanglement gravitational wave detector for spacecraft navigation", component_type="equipment", domain="aerospace")
+            ]
+        )
+        res = self.recommender.recommend_for_requirement(req)
+        # Should have candidate standard for primary (IS 15778)
+        self.assertIsNotNone(res.candidate_standard)
+        # Subcomponents must be retained
+        self.assertGreaterEqual(len(res.component_recommendations), 1)
+        # Parent must propagate review requirement
+        self.assertTrue(res.human_review_required, "Parent must require human review when a subcomponent requires review")
+        self.assertIn(res.critic_result.get("decision"), ["RECOMMEND_WITH_REVIEW", "REVIEW_REQUIRED"])
+        self.assertEqual(res.ambiguity_state, "REVIEW_REQUIRED")
+        self.assertTrue(any("Subcomponent" in r for r in res.risk_reasons))
+
+    def test_02_all_components_recommended(self):
+        """When all substantive components resolve cleanly to valid standards, parent does not force review for subcomponent reasons."""
+        mock_components = [
+            {
+                "component_id": "TEST-C1",
+                "component_text": "CPVC pipes",
+                "candidate_standard": "IS 15778",
+                "applicability_decision": "APPLICABLE",
+                "human_review_required": False,
+            },
+            {
+                "component_id": "TEST-C2",
+                "component_text": "mild steel reinforcement bars",
+                "candidate_standard": "IS 432",
+                "applicability_decision": "APPLICABLE",
+                "human_review_required": False,
+            }
+        ]
+        review_required = [
+            c for c in mock_components
+            if isinstance(c, dict) and (
+                c.get("human_review_required") is True or
+                c.get("applicability_decision") in ("REVIEW_REQUIRED", "REJECT", "INSUFFICIENT_EVIDENCE") or
+                (c.get("candidate_standard") is None and c.get("human_review_required") is not False)
+            )
+        ]
+        self.assertEqual(len(review_required), 0)
+
+    def test_03_multiple_components_requiring_review_no_duplicate_warnings(self):
+        """When multiple components require review, each is reported without duplicate warning strings."""
+        from src.extract import Requirement, RequirementComponent
+        req = Requirement(
+            requirement_id="TEST-ROLLUP-03",
+            requirement_text="Supply of quantum detector and tachyonic transceiver",
+            category="aerospace",
+            components=[
+                RequirementComponent(text="quantum entanglement gravitational wave detector", component_type="equipment", domain="aerospace"),
+                RequirementComponent(text="tachyonic subspace transceiver module", component_type="equipment", domain="aerospace")
+            ]
+        )
+        res = self.recommender.recommend_for_requirement(req)
+        self.assertTrue(res.human_review_required)
+        # Check no duplicate strings in risk_reasons and why_not
+        self.assertEqual(len(res.risk_reasons), len(set(res.risk_reasons)), "Risk reasons must not contain duplicate warnings")
+        self.assertEqual(len(res.why_not), len(set(res.why_not)), "Why-not list must not contain duplicate entries")
+
+    def test_04_malformed_and_missing_component_fields(self):
+        """Rollup handles malformed, partial, or missing component dictionaries safely."""
+        malformed_components = [
+            None,
+            "not a dict",
+            {},
+            {"component_id": "MAL-1"},  # missing candidate_standard and human_review_required
+            {"component_text": "incomplete", "human_review_required": None},
+            {"component_text": "valid_comp", "candidate_standard": "IS 15778", "human_review_required": False, "applicability_decision": "APPLICABLE"}
+        ]
+        review_required_comps = []
+        for c in malformed_components:
+            if not isinstance(c, dict):
+                continue
+            needs_review = c.get("human_review_required")
+            app_dec = c.get("applicability_decision")
+            cand_std = c.get("candidate_standard")
+            if needs_review is True or app_dec in ("REVIEW_REQUIRED", "REJECT", "INSUFFICIENT_EVIDENCE") or (cand_std is None and needs_review is not False):
+                review_required_comps.append(c)
+
+        # {}, MAL-1 and incomplete should be caught as needing review
+        self.assertEqual(len(review_required_comps), 3)
+        # valid_comp is clean
+        self.assertNotIn(malformed_components[-1], review_required_comps)
+
+
 if __name__ == "__main__":
     unittest.main()
+

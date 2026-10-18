@@ -308,6 +308,41 @@ class TestPriority7BApiUiContract(unittest.TestCase):
         self.assertFalse(are_standards_equivalent("IS 1180 (Part 1) : 2014", "IS 1180"))
         self.assertFalse(are_standards_equivalent("IS 7098 (Part 2)", "IS 7098 (Part 1)"))
 
+    def test_21_review_status_enum_consistency_and_zero_items_edge(self):
+        """AUDIT-04: Verifies review_status values strictly match canonical ReviewStatus enum."""
+        from src.audit import ReviewStatus
+        from api.server import _compute_review_progress
+
+        valid_statuses = {
+            ReviewStatus.REVIEW_REQUIRED.value,
+            ReviewStatus.IN_PROGRESS.value,
+            ReviewStatus.REVIEW_COMPLETE.value,
+        }
+        self.assertEqual(valid_statuses, {"REVIEW_REQUIRED", "IN_PROGRESS", "REVIEW_COMPLETE"})
+
+        # Case 1: 0 review items in tender -> REVIEW_COMPLETE
+        prog_zero = _compute_review_progress(total_review_items=0, all_decisions=[])
+        self.assertEqual(prog_zero["review_status"], ReviewStatus.REVIEW_COMPLETE.value)
+        self.assertIn(prog_zero["review_status"], valid_statuses)
+
+        # Case 2: Items present, 0 reviewed -> REVIEW_REQUIRED
+        prog_req = _compute_review_progress(total_review_items=2, all_decisions=[])
+        self.assertEqual(prog_req["review_status"], ReviewStatus.REVIEW_REQUIRED.value)
+        self.assertIn(prog_req["review_status"], valid_statuses)
+
+        # Case 3: In progress -> IN_PROGRESS
+        prog_prog = _compute_review_progress(total_review_items=2, all_decisions=[{"decision": "ACCEPT"}])
+        self.assertEqual(prog_prog["review_status"], ReviewStatus.IN_PROGRESS.value)
+        self.assertIn(prog_prog["review_status"], valid_statuses)
+
+        # Case 4: All reviewed -> REVIEW_COMPLETE
+        prog_comp = _compute_review_progress(
+            total_review_items=2,
+            all_decisions=[{"decision": "ACCEPT"}, {"decision": "DISMISS"}],
+        )
+        self.assertEqual(prog_comp["review_status"], ReviewStatus.REVIEW_COMPLETE.value)
+        self.assertIn(prog_comp["review_status"], valid_statuses)
+
 
 if __name__ == "__main__":
     unittest.main()

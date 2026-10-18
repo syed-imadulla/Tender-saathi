@@ -23,6 +23,58 @@ interface ResultsProps {
   onNewCheck: () => void;
 }
 
+export function filterRecommendedRequirements(allReqs: Requirement[]): Requirement[] {
+  return allReqs.filter((req) => {
+    const std = req.candidate_standard;
+    if (!std || std === 'NONE' || std === 'INSUFFICIENT_INFORMATION') {
+      return false;
+    }
+    // Never treat INSUFFICIENT_EVIDENCE as a recommended standard
+    if (req.decision === 'INSUFFICIENT_EVIDENCE') {
+      return false;
+    }
+    // Pure recommendations must not require human engineering review
+    if (req.decision === 'REVIEW_REQUIRED' || req.human_review_required) {
+      return false;
+    }
+    // If the candidate standard itself is superseded without replacement, don't recommend it
+    if (
+      req.lifecycle_status &&
+      req.lifecycle_status.toLowerCase() === 'superseded' &&
+      !req.successor_standard
+    ) {
+      return false;
+    }
+
+    if (req.decision === 'RECOMMEND') {
+      return true;
+    }
+
+    if (req.successor_standard && req.candidate_standard === req.successor_standard) {
+      return true;
+    }
+
+    return false;
+  });
+}
+
+export function filterAttentionRequirements(allReqs: Requirement[]): Requirement[] {
+  return allReqs.filter((req) => {
+    const hasMissing = req.missing_parameters && req.missing_parameters.length > 0;
+    const isInsufficient =
+      req.decision === 'INSUFFICIENT_EVIDENCE' ||
+      req.candidate_standard === 'INSUFFICIENT_INFORMATION';
+    const needsHumanReview = req.human_review_required || req.decision === 'REVIEW_REQUIRED';
+    const isAbstentionOrNonClear =
+      !req.candidate_standard ||
+      req.candidate_standard === 'NONE' ||
+      req.decision === 'NO_RELIABLE_MATCH' ||
+      req.decision === 'REJECT' ||
+      (req.ambiguity_state && req.ambiguity_state !== 'CLEAR');
+    return hasMissing || isInsufficient || needsHumanReview || isAbstentionOrNonClear;
+  });
+}
+
 export default function Results({ result, onNewCheck }: ResultsProps) {
   const [activeEvidenceReq, setActiveEvidenceReq] = useState<Requirement | null>(null);
   const [isDownloading, setIsDownloading] = useState(false);
@@ -34,63 +86,14 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
   const { tender } = result;
   const allReqs = result.requirements || [];
 
-  // 1. Recommended Standards: Genuine recommendations based on backend decision truth
-  // Rule:
-  // - RECOMMEND -> display as recommendation
-  // - REVIEW_REQUIRED / RECOMMEND_WITH_REVIEW -> display recommendation + review warning
+  // 1. Recommended Standards: Only valid, grounded standards with clear decisions
+  // - Pure recommendations: valid candidate standard with RECOMMEND decision and no human review required
+  // - REVIEW_REQUIRED / human_review_required -> excluded from pure recommendations and rendered in Needs Attention
   // - INSUFFICIENT_EVIDENCE / INSUFFICIENT_INFORMATION / NONE -> excluded from recommendations
-  const recommendedList = useMemo(() => {
-    return allReqs.filter((req) => {
-      const std = req.candidate_standard;
-      if (!std || std === 'NONE' || std === 'INSUFFICIENT_INFORMATION') {
-        return false;
-      }
-      // Never treat INSUFFICIENT_EVIDENCE as a recommended standard
-      if (req.decision === 'INSUFFICIENT_EVIDENCE') {
-        return false;
-      }
-      // If the candidate standard itself is superseded without replacement, don't recommend it
-      if (
-        req.lifecycle_status &&
-        req.lifecycle_status.toLowerCase() === 'superseded' &&
-        !req.successor_standard
-      ) {
-        return false;
-      }
-
-      if (
-        req.decision === 'RECOMMEND' ||
-        req.decision === 'RECOMMEND_WITH_REVIEW' ||
-        req.decision === 'REVIEW_REQUIRED'
-      ) {
-        return true;
-      }
-
-      if (req.successor_standard && req.candidate_standard === req.successor_standard) {
-        return true;
-      }
-
-      return false;
-    });
-  }, [allReqs]);
+  const recommendedList = useMemo(() => filterRecommendedRequirements(allReqs), [allReqs]);
 
   // 2. Needs Attention: Actual missing parameters, ambiguity, human review required, or safe abstentions
-  const attentionList = useMemo(() => {
-    return allReqs.filter((req) => {
-      const hasMissing = req.missing_parameters && req.missing_parameters.length > 0;
-      const isInsufficient =
-        req.decision === 'INSUFFICIENT_EVIDENCE' ||
-        req.candidate_standard === 'INSUFFICIENT_INFORMATION';
-      const needsHumanReview = req.human_review_required || req.decision === 'REVIEW_REQUIRED';
-      const isAbstentionOrNonClear =
-        !req.candidate_standard ||
-        req.candidate_standard === 'NONE' ||
-        req.decision === 'NO_RELIABLE_MATCH' ||
-        req.decision === 'REJECT' ||
-        (req.ambiguity_state && req.ambiguity_state !== 'CLEAR');
-      return hasMissing || isInsufficient || needsHumanReview || isAbstentionOrNonClear;
-    });
-  }, [allReqs]);
+  const attentionList = useMemo(() => filterAttentionRequirements(allReqs), [allReqs]);
 
   // 3. Standards That Need an Update: Superseded citations
   const updateList = useMemo(() => {

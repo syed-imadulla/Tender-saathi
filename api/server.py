@@ -40,7 +40,7 @@ from flask_cors import CORS
 from src.recommend import StandardsRecommender, RequirementRecommendationResult, TenderRecommendationReport
 from src.critic import are_standards_equivalent
 from src.extract import extract_from_text, extract_from_pdf
-from src.audit import TenderAuditEngine, TenderAuditResult
+from src.audit import TenderAuditEngine, TenderAuditResult, ReviewStatus
 from src.report import ReportGenerator
 
 # Ingestion layer (image upload / OCR)
@@ -665,6 +665,35 @@ def report_markdown_latest():
 # Phase 5: Human Review & Decision Endpoints
 # ---------------------------------------------------------------------------
 
+def _compute_review_progress(
+    total_review_items: int,
+    all_decisions: List[Dict[str, Any]]
+) -> Dict[str, Any]:
+    """Computes human review workflow progress matching ReviewProgressSummary contract."""
+    accepted_count = sum(1 for d in all_decisions if d.get("decision") == "ACCEPT")
+    edited_count = sum(1 for d in all_decisions if d.get("decision") == "EDIT")
+    dismissed_count = sum(1 for d in all_decisions if d.get("decision") == "DISMISS")
+    reviewed_count = accepted_count + edited_count + dismissed_count
+    pending_count = max(0, total_review_items - reviewed_count)
+
+    if total_review_items == 0 or (total_review_items > 0 and pending_count == 0):
+        review_status = ReviewStatus.REVIEW_COMPLETE.value
+    elif reviewed_count > 0:
+        review_status = ReviewStatus.IN_PROGRESS.value
+    else:
+        review_status = ReviewStatus.REVIEW_REQUIRED.value
+
+    return {
+        "total_review_items": total_review_items,
+        "reviewed_count": reviewed_count,
+        "pending_count": pending_count,
+        "accepted_count": accepted_count,
+        "edited_count": edited_count,
+        "dismissed_count": dismissed_count,
+        "review_status": review_status,
+    }
+
+
 @app.route("/api/tender/<tender_id>/review", methods=["POST"])
 def submit_tender_review(tender_id: str):
     """
@@ -727,28 +756,7 @@ def submit_tender_review(tender_id: str):
     review_queue = getattr(audit_obj, "review_queue", []) if audit_obj else []
     total_review_items = len(review_queue) if review_queue else reqs_in_tender
 
-    accepted_count = sum(1 for d in all_decisions if d.get("decision") == "ACCEPT")
-    edited_count = sum(1 for d in all_decisions if d.get("decision") == "EDIT")
-    dismissed_count = sum(1 for d in all_decisions if d.get("decision") == "DISMISS")
-    reviewed_count = accepted_count + edited_count + dismissed_count
-    pending_count = max(0, total_review_items - reviewed_count)
-
-    if total_review_items > 0 and pending_count == 0:
-        review_status = "REVIEW_COMPLETE"
-    elif reviewed_count > 0:
-        review_status = "IN_PROGRESS"
-    else:
-        review_status = "REVIEW_REQUIRED"
-
-    progress = {
-        "total_review_items": total_review_items,
-        "reviewed_count": reviewed_count,
-        "pending_count": pending_count,
-        "accepted_count": accepted_count,
-        "edited_count": edited_count,
-        "dismissed_count": dismissed_count,
-        "review_status": review_status,
-    }
+    progress = _compute_review_progress(total_review_items, all_decisions)
 
     # Regenerate reports with human review decision trail
     report_gen = get_report_gen()
@@ -786,28 +794,7 @@ def get_tender_review(tender_id: str):
     review_queue = getattr(audit_obj, "review_queue", []) if audit_obj else []
     total_review_items = len(review_queue) if review_queue else reqs_in_tender
 
-    accepted_count = sum(1 for d in all_decisions if d.get("decision") == "ACCEPT")
-    edited_count = sum(1 for d in all_decisions if d.get("decision") == "EDIT")
-    dismissed_count = sum(1 for d in all_decisions if d.get("decision") == "DISMISS")
-    reviewed_count = accepted_count + edited_count + dismissed_count
-    pending_count = max(0, total_review_items - reviewed_count)
-
-    if total_review_items > 0 and pending_count == 0:
-        review_status = "REVIEW_COMPLETE"
-    elif reviewed_count > 0:
-        review_status = "IN_PROGRESS"
-    else:
-        review_status = "REVIEW_REQUIRED"
-
-    progress = {
-        "total_review_items": total_review_items,
-        "reviewed_count": reviewed_count,
-        "pending_count": pending_count,
-        "accepted_count": accepted_count,
-        "edited_count": edited_count,
-        "dismissed_count": dismissed_count,
-        "review_status": review_status,
-    }
+    progress = _compute_review_progress(total_review_items, all_decisions)
 
     return jsonify({
         "status": "ok",

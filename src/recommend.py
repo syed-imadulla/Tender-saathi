@@ -970,6 +970,43 @@ class StandardsRecommender:
                 if msg not in risk_reasons:
                     risk_reasons.append(msg)
 
+        # AUDIT-01: Parent-level rollup of component review requirements
+        review_required_comps = []
+        for c in (component_recs or []):
+            if not isinstance(c, dict):
+                continue
+            needs_review = c.get("human_review_required")
+            app_dec = c.get("applicability_decision")
+            cand_std = c.get("candidate_standard")
+            if needs_review is True or app_dec in ("REVIEW_REQUIRED", "REJECT", "INSUFFICIENT_EVIDENCE") or (cand_std is None and needs_review is not False):
+                review_required_comps.append(c)
+
+        critic_dict = critic_outcome.primary_critique.to_dict() if critic_outcome and critic_outcome.primary_critique else {}
+
+        if review_required_comps:
+            human_review_required = True
+            ambiguity_state_val = "REVIEW_REQUIRED"
+            for c in review_required_comps:
+                c_text = c.get("component_text") or c.get("component_id") or "subcomponent"
+                c_reason = c.get("why_matched") or c.get("evidence") or "Requires engineering review"
+                msg = f"Subcomponent '{c_text}' requires engineering review: {c_reason}"
+                if msg not in risk_reasons:
+                    risk_reasons.append(msg)
+                if msg not in why_not:
+                    why_not.append(msg)
+
+            if not superseded_explicit_warnings and not any_conflict_detected and not is_ms_column_rebar:
+                decision_reason = f"Primary standard {top_rec.standard_number} identified, but composite subcomponent(s) require engineering review."
+
+            if critic_dict.get("decision") == "RECOMMEND":
+                critic_dict["decision"] = "RECOMMEND_WITH_REVIEW"
+                reasons_list = critic_dict.setdefault("reasons", [])
+                for c in review_required_comps:
+                    c_text = c.get("component_text") or c.get("component_id") or "subcomponent"
+                    comp_msg = f"Subcomponent '{c_text}' requires engineering review."
+                    if comp_msg not in reasons_list:
+                        reasons_list.append(comp_msg)
+
         top_app = candidate_applicability_map.get(top_rec.standard_number) or (
             candidate_applicability_map.get(top_rec.standard_number.split(":")[0].strip()) if ":" in top_rec.standard_number else None
         )
@@ -1005,7 +1042,7 @@ class StandardsRecommender:
             recommendations=recommendations,
             alternatives=alternatives,
             decomposed_components=[c.to_dict() if hasattr(c, "to_dict") else c for c in getattr(req, "components", [])],
-            critic_result=critic_outcome.primary_critique.to_dict() if critic_outcome and critic_outcome.primary_critique else {},
+            critic_result=critic_dict,
             why_this=why_this,
             why_not=why_not,
             risk_level=risk_level,
