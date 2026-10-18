@@ -171,6 +171,9 @@ export interface TraceRecord {
   is_lifecycle_verified: boolean;
   is_human_verified: boolean;
   is_rejected_candidate: boolean;
+  is_local_catalogue_verified?: boolean;
+  is_official_source_authenticated?: boolean;
+  is_normative_clause_verified?: boolean;
   validation_errors?: string[];
   validation_warnings?: string[];
 }

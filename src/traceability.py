@@ -89,6 +89,11 @@ class TraceableEvidenceRecord:
     is_human_verified: bool = False
     is_rejected_candidate: bool = False
 
+    # Explicit Semantics & Authentication Flags (Phase 17)
+    is_local_catalogue_verified: bool = False
+    is_official_source_authenticated: bool = False  # Strictly False: Local SQLite cache is not a live authenticated portal connection
+    is_normative_clause_verified: bool = False       # Strictly False: Full-text clause body text is not ingested in SQLite
+
     # 7. Verification Audit Trail / Errors
     validation_errors: List[str] = field(default_factory=list)
     validation_warnings: List[str] = field(default_factory=list)
@@ -113,7 +118,11 @@ class TraceableEvidenceValidator:
         recommendation: Any,
         sub_requirement_id: Optional[str] = None,
         sub_requirement_text: Optional[str] = None,
-        rank_position: int = 1
+        rank_position: int = 1,
+        human_review_required: Optional[bool] = None,
+        critic_decision: Optional[str] = None,
+        final_decision: Optional[str] = None,
+        applicability: Optional[Dict[str, Any]] = None,
     ) -> TraceableEvidenceRecord:
         """Constructs and validates a TraceableEvidenceRecord from an existing Recommendation result."""
         cand_std = getattr(recommendation, "candidate_standard", None) or getattr(recommendation, "standard_number", None)
@@ -122,35 +131,56 @@ class TraceableEvidenceValidator:
         evidence_str = getattr(recommendation, "evidence", "") or ""
         struct_ev = getattr(recommendation, "structured_evidence", None) or {}
         critic_res = getattr(recommendation, "critic_result", None) or {}
-        applicability = getattr(recommendation, "applicability", None) or {}
+        app_dict = applicability or getattr(recommendation, "applicability", None) or {}
         ambiguity_state = getattr(recommendation, "ambiguity_state", "CLEAR") or "CLEAR"
         competing = [c.get("standard_number") for c in (getattr(recommendation, "competing_interpretations", []) or []) if isinstance(c, dict)]
-        review_req = bool(getattr(recommendation, "human_review_required", False))
-        critic_dec = critic_res.get("decision", "REVIEW_REQUIRED")
+        
+        # Human review resolution
+        if human_review_required is not None:
+            review_req = bool(human_review_required)
+        else:
+            review_req = bool(getattr(recommendation, "human_review_required", False))
+
+        # Critic decision resolution
+        if critic_decision is not None:
+            critic_dec = str(critic_decision)
+        elif "decision" in critic_res:
+            critic_dec = critic_res["decision"]
+        elif not review_req and cand_std:
+            critic_dec = "RECOMMEND"
+        else:
+            critic_dec = "REVIEW_REQUIRED"
         
         # Determine final decision
-        if not cand_std:
+        if final_decision is not None:
+            final_dec = str(final_decision)
+        elif not cand_std:
             final_dec = "WITHHELD_INSUFFICIENT_EVIDENCE"
-        elif review_req or critic_dec in ("ASSISTED_REVIEW_REQUIRED", "REVIEW_REQUIRED"):
+        elif review_req or critic_dec in ("ASSISTED_REVIEW_REQUIRED", "REVIEW_REQUIRED", "RECOMMEND_WITH_REVIEW"):
             final_dec = "ASSISTED_REVIEW_REQUIRED"
         else:
             final_dec = "RECOMMEND"
 
         # Determine passage & provenance from structured_evidence or catalogue
-        passage = struct_ev.get("bis_scope_evidence") or (evidence_str if evidence_str and len(evidence_str) > 15 else None)
+        raw_passage = struct_ev.get("bis_scope_evidence") or (evidence_str if evidence_str and len(evidence_str.strip()) >= 15 else None)
+        passage = raw_passage.strip() if raw_passage and raw_passage.strip() else None
+
         prov_dict = struct_ev.get("provenance") or {}
         source = prov_dict.get("source") or getattr(recommendation, "provenance", "BIS_OFFICIAL_CATALOGUE")
         source_url = prov_dict.get("source_url")
         doc_id = prov_dict.get("raw_record_ref")
 
-        # Compute content hash of passage if available
+        # Compute canonical content hash of passage if available (minimum 15 characters)
         content_hash = None
-        if passage:
-            content_hash = hashlib.sha256(passage.strip().encode("utf-8")).hexdigest()
+        if passage and len(passage) >= 15:
+            canonical_passage = re.sub(r'\s+', ' ', passage)
+            content_hash = hashlib.sha256(canonical_passage.encode("utf-8")).hexdigest()
+        else:
+            passage = None
 
         # Applicability rejection reasons
-        app_decision = applicability.get("decision", "UNKNOWN")
-        app_rejections = applicability.get("rejection_reasons", []) or []
+        app_decision = app_dict.get("decision", "UNKNOWN")
+        app_rejections = app_dict.get("rejection_reasons", []) or []
 
         # Determine evidence type
         if passage and struct_ev.get("scope_status") in ("AUTHORITATIVE_VERIFIED", "VERIFIED"):
@@ -208,6 +238,9 @@ class TraceableEvidenceValidator:
             is_lifecycle_verified=False,
             is_human_verified=False,
             is_rejected_candidate=(app_decision == "NOT_APPLICABLE"),
+            is_local_catalogue_verified=False,
+            is_official_source_authenticated=False,
+            is_normative_clause_verified=False,
             validation_errors=[],
             validation_warnings=[]
         )
@@ -237,13 +270,30 @@ class TraceableEvidenceValidator:
             return TraceableEvidenceRecord(
                 **{**asdict(record),
                    "evidence_completeness": EvidenceCompletenessState.UNKNOWN_STANDARD.value,
+                   "content_hash": None,
                    "validation_errors": errors,
                    "validation_warnings": warnings}
             )
 
-        # 3. Real catalogue entry lookup (normalize year suffix if present)
+        # 3. Source URL format and scheme validation
+        if record.source_url and str(record.source_url).strip():
+            raw_url = str(record.source_url).strip()
+            # Flag forged, dangerous, or invalid web URL schemes
+            if re.match(r'^(javascript|data|file|ftp|about|blob|chrome):', raw_url, re.IGNORECASE):
+                errors.append(f"Invalid Source URL Scheme: URL '{record.source_url}' must start with http:// or https://")
+            elif "://" in raw_url and not (raw_url.startswith("http://") or raw_url.startswith("https://")):
+                errors.append(f"Invalid Source URL Scheme: URL '{record.source_url}' must start with http:// or https://")
+
+        # 4. Real catalogue entry lookup (try exact edition ID first, then full number, then normalized)
+        std_slug = re.sub(r'[\s/:]+', '-', record.standard_number).strip('-')
         norm_std = re.sub(r'\s*:\s*\d{4}\b', '', record.standard_number).strip()
-        std_row = self.db.get_standard(norm_std) or self.db.get_standard(record.standard_number)
+        norm_slug = re.sub(r'[\s/:]+', '-', norm_std).strip('-')
+        std_row = (
+            self.db.get_standard(std_slug)
+            or self.db.get_standard(record.standard_number)
+            or self.db.get_standard(norm_slug)
+            or self.db.get_standard(norm_std)
+        )
         
         if not std_row:
             errors.append(f"Catalogue Verification Failed: Standard '{record.standard_number}' does not exist in active catalogue database")
@@ -255,16 +305,20 @@ class TraceableEvidenceValidator:
             verified_year = std_row.get("year")
             norm_status = cat_status
 
-            # 4. Passage Verification: Check if claimed passage exists in stored catalogue
-            if record.supporting_passage:
-                if cat_scope and (record.supporting_passage.strip() in cat_scope or cat_scope.strip() in record.supporting_passage):
+            # 5. Passage Verification: Check if claimed passage exists in stored catalogue scope
+            if record.supporting_passage and len(record.supporting_passage.strip()) >= 15:
+                clean_pas = re.sub(r'\s+', ' ', record.supporting_passage.strip())
+                clean_scope = re.sub(r'\s+', ' ', cat_scope.strip()) if cat_scope else ""
+                if clean_scope and (clean_pas in clean_scope or (len(clean_scope) >= 30 and clean_scope in clean_pas)):
                     is_pas_verified = True
                 else:
                     errors.append(f"Passage Mismatch: Claimed supporting passage does not match catalogue scope for '{record.standard_number}'")
+            elif record.supporting_passage:
+                errors.append(f"Invalid Supporting Passage: Passage for '{record.standard_number}' is trivial or shorter than 15 characters")
             else:
                 warnings.append("Missing Supporting Passage: Scope passage is not recorded; relying strictly on metadata")
 
-            # 5. Lifecycle and Edition Verification
+            # 6. Lifecycle and Edition Verification
             if cat_status in ("ACTIVE", "WITHDRAWN", "SUPERSEDED"):
                 is_lif_verified = True
                 if record.lifecycle_status != "UNKNOWN" and record.lifecycle_status != cat_status:
@@ -272,19 +326,19 @@ class TraceableEvidenceValidator:
             else:
                 warnings.append(f"Unverified Lifecycle: Standard '{record.standard_number}' has unknown lifecycle status in catalogue")
 
-        # 6. Rejection state and Review-Required protection
+        # 7. Rejection state and Review-Required protection
         if record.is_rejected_candidate and record.final_system_decision == "RECOMMEND":
             errors.append("Safety Gate Violation: Rejected candidate is improperly declared as RECOMMEND")
 
         if record.human_review_required and record.final_system_decision == "RECOMMEND":
             errors.append("Safety Gate Violation: Recommendation requiring human review cannot be presented as fully autonomous RECOMMEND")
 
-        # 7. Final completeness classification based on verified signals
+        # 8. Final completeness classification based on verified signals
         if not is_cat_verified:
             completeness = EvidenceCompletenessState.UNKNOWN_STANDARD.value
         elif record.is_rejected_candidate:
             completeness = EvidenceCompletenessState.REJECTED_INELIGIBLE.value
-        elif record.human_review_required or record.final_system_decision == "ASSISTED_REVIEW_REQUIRED":
+        elif record.human_review_required or record.final_system_decision in ("ASSISTED_REVIEW_REQUIRED", "REVIEW_REQUIRED", "RECOMMEND_WITH_REVIEW"):
             completeness = EvidenceCompletenessState.HUMAN_REVIEW_REQUIRED.value
         elif errors:
             completeness = EvidenceCompletenessState.EVIDENCE_INCOMPLETE.value
@@ -300,9 +354,13 @@ class TraceableEvidenceValidator:
                "standard_year": verified_year,
                "lifecycle_status": norm_status,
                "is_catalogue_verified": is_cat_verified,
+               "is_local_catalogue_verified": is_cat_verified,
                "is_passage_verified_in_source": is_pas_verified,
                "is_lifecycle_verified": is_lif_verified,
+               "is_official_source_authenticated": False,  # Local SQLite database is not live portal authenticated
+               "is_normative_clause_verified": False,       # Full clause-level text not ingested in catalogue database
                "evidence_completeness": completeness,
                "validation_errors": errors,
                "validation_warnings": warnings}
         )
+

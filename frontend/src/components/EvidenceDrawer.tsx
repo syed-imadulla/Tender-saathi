@@ -1035,25 +1035,31 @@ export default function EvidenceDrawer({
 
                 <div style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '10px', fontSize: '0.78rem' }}>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
-                    <div>Catalogue Verified: <strong style={{ color: req.trace_record.is_catalogue_verified ? '#166534' : '#b91c1c' }}>{req.trace_record.is_catalogue_verified ? '✓ In Catalogue' : '✗ Unresolved'}</strong></div>
-                    <div>Source Passage: <strong style={{ color: req.trace_record.is_passage_verified_in_source ? '#166534' : '#b45309' }}>{req.trace_record.is_passage_verified_in_source ? '✓ Verified in Scope' : '✗ Metadata Only'}</strong></div>
-                    <div>Lifecycle Verified: <strong style={{ color: req.trace_record.is_lifecycle_verified ? '#166534' : '#b45309' }}>{req.trace_record.is_lifecycle_verified ? `✓ ${req.trace_record.lifecycle_status}` : '✗ Unknown'}</strong></div>
-                    <div>Human Verified: <strong style={{ color: req.trace_record.is_human_verified ? '#166534' : '#64748b' }}>{req.trace_record.is_human_verified ? '✓ Expert Verified' : '○ Machine Predicted'}</strong></div>
+                    <div>Local Catalogue: <strong style={{ color: req.trace_record.is_catalogue_verified ? '#166534' : '#b91c1c' }}>{req.trace_record.is_catalogue_verified ? '✓ In Local Catalogue' : '✗ Unresolved'}</strong></div>
+                    <div>Local Scope Passage: <strong style={{ color: req.trace_record.is_passage_verified_in_source ? '#166534' : '#b45309' }}>{req.trace_record.is_passage_verified_in_source ? '✓ Verified in Local Scope' : '✗ Metadata Only'}</strong></div>
+                    <div>Official BIS Live Auth: <strong style={{ color: req.trace_record.is_official_source_authenticated ? '#166534' : '#64748b' }}>{req.trace_record.is_official_source_authenticated ? '✓ Authenticated' : '○ Offline Local Cache'}</strong></div>
+                    <div>Clause-Level Grounding: <strong style={{ color: req.trace_record.is_normative_clause_verified ? '#166534' : '#64748b' }}>{req.trace_record.is_normative_clause_verified ? '✓ Clause Grounded' : '○ Scope-Level Only'}</strong></div>
+                    <div>Lifecycle Verified: <strong style={{ color: req.trace_record.is_lifecycle_verified ? '#166534' : '#b45309' }}>{req.trace_record.is_lifecycle_verified ? `✓ ${req.trace_record.lifecycle_status} (Local DB)` : '✗ Unknown'}</strong></div>
+                    <div>Human Expert Review: <strong style={{ color: req.trace_record.is_human_verified ? '#166534' : '#64748b' }}>{req.trace_record.is_human_verified ? '✓ Expert Verified' : '○ Unadjudicated (Machine Predicted)'}</strong></div>
                   </div>
 
                   {req.trace_record.supporting_passage && (
                     <div style={{ marginTop: '8px', paddingTop: '6px', borderTop: '1px solid #e2e8f0' }}>
-                      <span style={{ fontWeight: 600, color: '#475569' }}>Verified Scope Passage:</span>
+                      <span style={{ fontWeight: 600, color: '#475569' }}>Verified Local Scope Passage:</span>
                       <blockquote style={{ margin: '4px 0 0 0', padding: '4px 8px', background: '#ffffff', borderLeft: '3px solid #0284c7', fontSize: '0.75rem', fontStyle: 'italic', color: '#1e293b' }}>
                         "{req.trace_record.supporting_passage}"
                       </blockquote>
                       {req.trace_record.content_hash && (
                         <div style={{ fontSize: '0.68rem', color: '#94a3b8', marginTop: '3px' }}>
-                          SHA-256 Hash: <code>{req.trace_record.content_hash.slice(0, 16)}...</code>
+                          SHA-256 Hash (Canonical Scope): <code>{req.trace_record.content_hash.slice(0, 16)}...</code>
                         </div>
                       )}
                     </div>
                   )}
+
+                  <div style={{ marginTop: '8px', paddingTop: '6px', borderTop: '1px solid #e2e8f0', fontSize: '0.72rem', color: '#64748b', fontStyle: 'italic' }}>
+                    Note: Verification confirms consistency with local BIS standards database scope records. It does not imply live BIS portal authentication, clause-level grounding, or official endorsement by BIS.
+                  </div>
 
                   {req.trace_record.validation_warnings && req.trace_record.validation_warnings.length > 0 && (
                     <div style={{ marginTop: '8px', color: '#b45309', fontSize: '0.74rem' }}>

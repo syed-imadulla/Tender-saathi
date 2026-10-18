@@ -1,8 +1,8 @@
 # Tender Saathi — Active Planning State
 
 **Active Milestone**: Milestone: Expert Ground-Truth Adjudication & Evaluation Calibration  
-**Current Phase**: Phase 16 (`16-evidence-traceability-verification`)  
-**Phase Position**: Evidence Traceability, Scope Verification & Safety Boundaries Implemented — Phase Completed  
+**Current Phase**: Phase 17 (`17-evidence-integrity-verification-semantics-audit`)  
+**Phase Position**: Verification Semantics Clarified, Defect Reconciled, Adversarial Suite Added — Phase Completed  
 **Working Directory**: `/home/syed-imadulla/Desktop/Tender_Saathi`  
 **Git Head**: `ea95ba4` (`main`)
 
@@ -31,16 +31,24 @@
    - Exposed trace records through `/recommend` and `/analyze` in `api/server.py`.
    - Updated frontend TypeScript models and added Section 14 Traceability UI in `EvidenceDrawer.tsx`.
    - Added offline regression test suite in `tests/test_evidence_traceability.py` (10 tests).
-   - Verified 578 backend tests passed offline and frontend built cleanly in 978ms.
+9. **Phase 17 Evidence Integrity and Verification Semantics Audit**: Completed in `docs/evaluation/PHASE17_EVIDENCE_INTEGRITY_AUDIT.md`.
+   - Conducted independent audit of verification semantics across catalogue, recommender, API, and frontend.
+   - Discovered and fixed SEC-17-01: False universal review requirement where `top_rec` lacked `critic_result`, properly reconciling 12 clean autonomous recommendations (`SUPPORTING_EVIDENCE_AVAILABLE`), 5 review-required cases, and 3 negative control abstentions.
+   - Fixed SEC-17-02 (whitespace/trivial passage false positive) and canonicalized SHA-256 whitespace hashing.
+   - Fixed SEC-17-03 (source URL scheme vs documentary citation overloading) and SEC-17-04 (edition slug resolution for multi-edition standards).
+   - Enhanced frontend UI labels in Section 14 to clarify local database scope vs official live authentication.
+   - Added 11 adversarial offline regression tests in `tests/test_evidence_integrity_audit.py`.
+   - Full offline suite passing: 589/589 tests in 57s. Frontend build passing in 1.03s.
    - Preserved active ground-truth SHA-256 (`8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`).
+   - Verdict: **GO** for normative full-text standard ingestion.
 
 ---
 
-## Active Phase Overview: Phase 16
+## Active Phase Overview: Phase 17
 
 | Plan ID | Title | Scope & Target Files | Deliverable | Status |
 |---|---|---|---|---|
-| **16-TRACE** | Evidence Traceability & Verification | `src/traceability.py`, `src/recommend.py`, `api/server.py`, `frontend/src/components/EvidenceDrawer.tsx`, `tests/test_evidence_traceability.py`, `docs/evaluation/PHASE16_EVIDENCE_TRACEABILITY_AUDIT.md` | Traceable evidence records, deterministic validation logic, API/frontend integration, offline regression tests, audit report. | **Complete** |
+| **17-AUDIT** | Evidence Integrity & Verification Semantics Audit | `src/traceability.py`, `src/recommend.py`, `frontend/src/components/EvidenceDrawer.tsx`, `frontend/src/types.ts`, `tests/test_evidence_integrity_audit.py`, `docs/evaluation/PHASE17_EVIDENCE_INTEGRITY_AUDIT.md` | Verification claim semantics, defect remediation, adversarial regression tests, reconciled benchmark metrics, audit report. | **Complete** |
 
 ---
 

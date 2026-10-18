@@ -1138,7 +1138,10 @@ class StandardsRecommender:
                 requirement_id=req_id,
                 requirement_text=text,
                 recommendation=top_rec,
-                rank_position=1
+                rank_position=1,
+                human_review_required=human_review_required,
+                critic_decision=critic_dict.get("decision", "RECOMMEND"),
+                final_decision="ASSISTED_REVIEW_REQUIRED" if human_review_required else "RECOMMEND"
             ).to_dict(),
             component_trace_records=[
                 self.evidence_validator.build_trace_record(
