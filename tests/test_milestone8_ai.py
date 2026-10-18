@@ -335,6 +335,8 @@ class TestMilestone8AI(unittest.TestCase):
             "work_type": ["supply", "installation"]
         })
         recommender = StandardsRecommender(db=self.db)
+        recommender.ai_parser.enabled = True
+        recommender.ai_parser._api_key = "mock_groq_key"
         with patch.object(recommender.ai_parser, "_call_llm_api", return_value=mock_groq_content):
             res = recommender.recommend_for_text(
                 "Supply and installation of ISI marked CPVC pipes for domestic water supply system"
@@ -348,6 +350,8 @@ class TestMilestone8AI(unittest.TestCase):
     # 29. Groq unavailable -> deterministic fallback -> successful analysis
     def test_29_groq_unavailable_fallback_to_deterministic(self):
         recommender = StandardsRecommender(db=self.db)
+        recommender.ai_parser.enabled = True
+        recommender.ai_parser._api_key = "mock_groq_key"
         with patch.object(recommender.ai_parser, "_call_llm_api", side_effect=RuntimeError("Groq API rate limit reached")):
             res = recommender.recommend_for_text(
                 "Supply and installation of ISI marked CPVC pipes for domestic water supply system"

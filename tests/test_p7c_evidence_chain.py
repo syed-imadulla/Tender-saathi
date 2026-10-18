@@ -11,7 +11,9 @@ Verifies the end-to-end audit chain from original tender text to:
 - Dependency role separation and regulatory truthfulness
 """
 
+import json
 import unittest
+from unittest.mock import patch
 from api.server import app, are_standards_equivalent
 from src.standards import StandardsDatabase
 from src.recommend import StandardsRecommender
@@ -76,19 +78,57 @@ class TestPriority7CEvidenceChain(unittest.TestCase):
 
     def test_05_incomplete_clarification_preserved(self):
         """5. INCOMPLETE -> clarification question and missing technical parameters preserved."""
-        # Test real tender PDF known to lack specific technical parameters
-        with open("tenders/raw/eProcurement System Government of India3.pdf", "rb") as f:
-            resp = self.client.post(
-                "/api/analyze/pdf",
-                data={"file": (f, "eProcurement System Government of India3.pdf")},
-                content_type="multipart/form-data"
-            )
+        # Deterministic understanding fixture: pump maintenance scope lacking head/flow/type
+        pump_llm_json = json.dumps({
+            "equipment": ["Pumps", "Mechanical Maintenance Works"],
+            "control": [],
+            "electrical": [],
+            "voltage": [],
+            "application": ["Heavy Water Plant mechanical services"],
+            "work_type": ["Maintenance", "Overhaul"]
+        })
+        with patch("src.ai_understanding.AIRequirementParser._call_llm_api", return_value=pump_llm_json):
+            with open("tenders/raw/eProcurement System Government of India3.pdf", "rb") as f:
+                resp = self.client.post(
+                    "/api/analyze/pdf",
+                    data={"file": (f, "eProcurement System Government of India3.pdf")},
+                    content_type="multipart/form-data"
+                )
         self.assertEqual(resp.status_code, 200)
         data = resp.get_json()
         r0 = data["requirements"][0]
         self.assertEqual(r0["ambiguity_state"], "INCOMPLETE")
         self.assertTrue(r0["human_review_required"])
         self.assertIsNone(r0["candidate_standard"])
+        missing = r0.get("missing_parameters", [])
+        self.assertTrue(len(missing) > 0)
+        self.assertIn("Pump Mechanism / Type", missing)
+        self.assertTrue(bool(r0.get("suggested_clarification_question")))
+
+    def test_05b_ambiguous_competing_candidates_pdf(self):
+        """5b. AMBIGUOUS -> competing standards preserved when ambiguous valve scope extracted."""
+        valve_llm_json = json.dumps({
+            "equipment": ["Valves", "Valve Replacement"],
+            "control": [],
+            "electrical": [],
+            "voltage": [],
+            "application": ["Cooling water and process lines"],
+            "work_type": ["Replacement", "Overhaul"]
+        })
+        with patch("src.ai_understanding.AIRequirementParser._call_llm_api", return_value=valve_llm_json):
+            with open("tenders/raw/eProcurement System Government of India3.pdf", "rb") as f:
+                resp = self.client.post(
+                    "/api/analyze/pdf",
+                    data={"file": (f, "eProcurement System Government of India3.pdf")},
+                    content_type="multipart/form-data"
+                )
+        self.assertEqual(resp.status_code, 200)
+        data = resp.get_json()
+        r0 = data["requirements"][0]
+        self.assertEqual(r0["ambiguity_state"], "AMBIGUOUS")
+        self.assertTrue(r0["human_review_required"])
+        self.assertIsNone(r0["candidate_standard"])
+        self.assertTrue(len(r0.get("competing_interpretations", [])) >= 2)
 
     def test_06_no_reliable_match_no_fake_standard(self):
         """6. NO_RELIABLE_MATCH -> no fake standard manufactured for out-of-scope tenders."""
