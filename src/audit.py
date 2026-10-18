@@ -35,6 +35,8 @@ import re
 if TYPE_CHECKING:
     from src.recommend import RequirementRecommendationResult, TenderRecommendationReport
 
+from src.precedence.conflict_engine import CrossRequirementConflictEngine
+
 
 # ---------------------------------------------------------------------------
 # Phase 4 Categorical Enums and State Constants
@@ -62,6 +64,11 @@ class AuditFindingType:
     CLARIFICATION_REQUIRED = "CLARIFICATION_REQUIRED"
     EVIDENCE_INSUFFICIENT = "EVIDENCE_INSUFFICIENT"
     HUMAN_REVIEW_REQUIRED = "HUMAN_REVIEW_REQUIRED"
+    CROSS_REQUIREMENT_CONTRADICTION = "CROSS_REQUIREMENT_CONTRADICTION"
+    LIFECYCLE_EDITION_DIVERGENCE = "LIFECYCLE_EDITION_DIVERGENCE"
+    UNRESOLVED_NORMATIVE_PRECEDENCE = "UNRESOLVED_NORMATIVE_PRECEDENCE"
+    CO_APPLICABLE_STANDARDS = "CO_APPLICABLE_STANDARDS"
+    TENDER_SPECIFICATION_OVERRIDE = "TENDER_SPECIFICATION_OVERRIDE"
 
 
 class ReviewQueueCategory:
@@ -182,6 +189,7 @@ class StructuredTenderAuditReport:
     evidence_audit: Dict[str, Any] = field(default_factory=dict)
     human_review_queue: List[ReviewQueueItem] = field(default_factory=list)
     disclaimers_and_notes: List[str] = field(default_factory=list)
+    cross_requirement_conflicts: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -196,6 +204,7 @@ class StructuredTenderAuditReport:
             "evidence_audit": self.evidence_audit,
             "human_review_queue": [q.to_dict() for q in self.human_review_queue],
             "disclaimers_and_notes": self.disclaimers_and_notes,
+            "cross_requirement_conflicts": self.cross_requirement_conflicts,
         }
 
 
@@ -263,6 +272,10 @@ class TenderAuditResult:
     ambiguity_findings: List[Dict[str, Any]] = field(default_factory=list)
     multi_standard_items: List[Dict[str, Any]] = field(default_factory=list)
     structured_audit_report: Optional[Dict[str, Any]] = None
+    cross_requirement_conflicts: List[Dict[str, Any]] = field(default_factory=list)
+    has_cross_requirement_contradictions: bool = False
+    has_unresolved_precedence: bool = False
+    has_edition_divergence: bool = False
 
     def to_dict(self) -> Dict[str, Any]:
         d = asdict(self)
@@ -716,6 +729,15 @@ class TenderAuditEngine:
             }
         }
 
+        # Phase 22: Execute Cross-Requirement Conflict & Precedence Analysis
+        conflict_engine = CrossRequirementConflictEngine(db=self.db)
+        cross_res = conflict_engine.analyze_tender_requirements(results, tender_id=tender_id)
+        if cross_res.has_confirmed_contradictions or cross_res.has_unresolved_precedence:
+            if readiness == "READY_FOR_REVIEW":
+                readiness = "REVIEW_REQUIRED"
+            readiness_reasons.append("Tender contains confirmed cross-requirement contradictions or unresolved standards precedence.")
+            human_review_count += 1
+
         structured_report = StructuredTenderAuditReport(
             tender_id=tender_id,
             summary=audit_summary,
@@ -727,7 +749,8 @@ class TenderAuditEngine:
             multi_standard_requirements=multi_standard_items,
             evidence_audit=evidence_audit,
             human_review_queue=review_queue,
-            disclaimers_and_notes=AUDIT_DISCLAIMERS
+            disclaimers_and_notes=AUDIT_DISCLAIMERS,
+            cross_requirement_conflicts=[f.to_dict() for f in cross_res.findings]
         )
 
         return TenderAuditResult(
@@ -784,7 +807,11 @@ class TenderAuditEngine:
             lifecycle_findings=[l.to_dict() for l in lifecycle_findings],
             ambiguity_findings=[a.to_dict() for a in ambiguity_findings],
             multi_standard_items=[m.to_dict() for m in multi_standard_items],
-            structured_audit_report=structured_report.to_dict()
+            structured_audit_report=structured_report.to_dict(),
+            cross_requirement_conflicts=[f.to_dict() for f in cross_res.findings],
+            has_cross_requirement_contradictions=cross_res.has_confirmed_contradictions,
+            has_unresolved_precedence=cross_res.has_unresolved_precedence,
+            has_edition_divergence=cross_res.has_edition_divergence
         )
 
     def audit_report(self, report: TenderRecommendationReport) -> TenderAuditResult:

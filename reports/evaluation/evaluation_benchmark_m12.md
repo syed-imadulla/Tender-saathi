@@ -3,7 +3,7 @@
 > [!IMPORTANT]
 > **Ground Truth Status Disclosure**: Benchmark ground_truth.csv rows are UNVERIFIED_BASELINE and require formal domain expert panel adjudication (Phase 13).
 
-- **Evaluation Timestamp**: `2026-10-18T14:24:08.376045+00:00`
+- **Evaluation Timestamp**: `2026-10-18T14:43:52.547484+00:00`
 - **Dataset Path**: `dataset/ground_truth/ground_truth.csv`
 - **Dataset SHA-256**: `8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`
 - **Evaluation Harness**: `TenderSaathi-M12-MultiMetric`
@@ -47,7 +47,7 @@
 - **Catalogue Currency Consistency**: **100.0%** (17 Top-1 hits audited against active BIS status).
 - **Clause-Level Grounding Status**: `NOT_EVALUABLE_NO_FULL_TEXT_CORPUS`
 - **Limitation Note**: Tender Saathi's catalogue database stores standard numbers, titles, scopes, and committee metadata, but does not index full digital clause-by-clause standard texts for all 19,000+ BIS standards. Full clause-level grounding precision cannot be claimed as an absolute metric without a certified clause text corpus.
-- **Proxy Reference Overlap**: `52.7%` (lexical overlap against ground-truth evidence snippets).
+- **Proxy Reference Overlap**: `53.7%` (lexical overlap against ground-truth evidence snippets).
 
 ---
 

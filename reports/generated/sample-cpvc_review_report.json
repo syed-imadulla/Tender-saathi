@@ -495,8 +495,13 @@
         "A status of POTENTIAL_GAP indicates that the system could not establish sufficient standards coverage from the available evidence. This does NOT indicate that no Indian Standard exists.",
         "Withdrawn standards require technical review. Automatic substitution is strictly prohibited unless an authoritative replacement relationship is verified in the BIS catalogue.",
         "Safe abstentions and ambiguous specifications route to the human review queue with targeted clarification questions rather than speculative standard assignments."
-      ]
-    }
+      ],
+      "cross_requirement_conflicts": []
+    },
+    "cross_requirement_conflicts": [],
+    "has_cross_requirement_contradictions": false,
+    "has_unresolved_precedence": false,
+    "has_edition_divergence": false
   },
   "requirements": [
     {
@@ -789,7 +794,7 @@
         "decision": "ACCEPT",
         "reviewer_standard": null,
         "reviewer_note": "Verified by procurement officer",
-        "reviewed_at": "2026-10-18T14:23:26.181759+00:00",
+        "reviewed_at": "2026-10-18T14:58:52.528622+00:00",
         "system_standard": "IS 15778 : 2007",
         "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
       },
@@ -1121,7 +1126,7 @@
       "decision": "ACCEPT",
       "reviewer_standard": null,
       "reviewer_note": "Verified by procurement officer",
-      "reviewed_at": "2026-10-18T14:23:26.181759+00:00",
+      "reviewed_at": "2026-10-18T14:58:52.528622+00:00",
       "system_standard": "IS 15778 : 2007",
       "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
     }

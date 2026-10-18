@@ -235,6 +235,22 @@ class TenderReviewReport:
         md.append(f"- **Potential Standard Gaps:** `{cov.get('potential_gaps', 0)}`")
         md.append(f"- **Verified Standard Gaps:** `{cov.get('verified_gaps', 0)}`\n")
 
+        # Phase 22: Cross-Requirement Conflict & Precedence Analysis
+        cross_conflicts = es.get("cross_requirement_conflicts", [])
+        if cross_conflicts:
+            md.append("### Cross-Requirement Conflict & Precedence Findings\n")
+            md.append("| Finding ID | Category | State | Parameter / Scope | Evidence Summary | Escalation |")
+            md.append("|---|---|---|---|---|---|")
+            for c in cross_conflicts:
+                fid = c.get("finding_id", "XCF")
+                cat = c.get("conflict_category", "")
+                st = c.get("conflict_state", "")
+                param = c.get("equipment_or_parameter", "")
+                ev = c.get("evidence_text", "")
+                esc = c.get("escalation_action", "NONE")
+                md.append(f"| `{fid}` | `{cat}` | **{st}** | {param} | {ev} | `{esc}` |")
+            md.append("")
+
 
         # 5. Human Review Queue
         md.append("## 4. Prioritized Human Review Queue\n")

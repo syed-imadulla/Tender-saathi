@@ -59,9 +59,9 @@ flowchart LR
 - [x] **Phase 19**: Safe Clause-Level Evidence Integration (`src/corpus/retriever.py`, grounded passage retrieval).
 - [x] **Phase 20**: Evidence-to-Requirement Validation Audit (`RequirementEvidenceSupportState`, 12 adversarial tests).
 - [x] **Phase 21**: Evidence Support Engine Validation Audit (Conservative parameters, unit conversions, inequality directions, tolerance, negation, multi-passage conflict detection, 18-case adversarial matrix).
+- [x] **Phase 22**: Multi-Requirement Conflict Resolution & Standards Precedence Engine (`CrossRequirementConflictEngine`, 7 conflict categories, tender audit integration, post-implementation safety audit, 15 adversarial regression tests).
 
 ---
 
 ### Upcoming Phases
-- [ ] **Phase 22**: Multi-Requirement Systemic Conflict Resolution & Standards Precedence Engine (Precedence DAG, cross-requirement conflict resolution, specialized vs general code mediation).
 - [ ] **Phase 23**: Production Containerized Deployment (Final container packaging, environment secrets auditing, and health monitoring).

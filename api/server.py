@@ -421,6 +421,10 @@ def _normalize_result(
         "ambiguity_findings": getattr(audit, "ambiguity_findings", []),
         "multi_standard_items": getattr(audit, "multi_standard_items", []),
         "structured_audit_report": getattr(audit, "structured_audit_report", None),
+        "cross_requirement_conflicts": getattr(audit, "cross_requirement_conflicts", []),
+        "has_cross_requirement_contradictions": getattr(audit, "has_cross_requirement_contradictions", False),
+        "has_unresolved_precedence": getattr(audit, "has_unresolved_precedence", False),
+        "has_edition_divergence": getattr(audit, "has_edition_divergence", False),
     }
 
 

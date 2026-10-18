@@ -164,3 +164,42 @@ SUPPORT_STATE_DESCRIPTIONS: Dict[RequirementEvidenceSupportState, str] = {
     RequirementEvidenceSupportState.CONFLICTING: "Retrieved normative passage contradicts or excludes specified requirement parameters or ratings.",
     RequirementEvidenceSupportState.UNVERIFIED_COVERAGE: "Normative clause evidence is unavailable in local corpus; requirement coverage is unverified at clause level.",
 }
+
+
+class CrossRequirementConflictState(str, Enum):
+    """
+    Seven distinct outcomes when evaluating systemic interactions between multiple requirements across a tender.
+    Prevents artificial precedence rules while enforcing verifiable contradiction and co-applicability detection.
+    """
+    # 1. No incompatible parameters, operating conditions, or lifecycle clashes detected across requirements
+    NO_CROSS_REQUIREMENT_CONFLICT = "NO_CROSS_REQUIREMENT_CONFLICT"
+
+    # 2. Verifiable technical contradiction between two requirements on the same equipment tag or shared parameter
+    CONFIRMED_CROSS_REQUIREMENT_CONTRADICTION = "CONFIRMED_CROSS_REQUIREMENT_CONTRADICTION"
+
+    # 3. Possible parameter clash, but requirement text lacks distinguishing details (e.g. uncertain circuit sharing)
+    POTENTIAL_CROSS_CONFLICT_MORE_EVIDENCE_NEEDED = "POTENTIAL_CROSS_CONFLICT_MORE_EVIDENCE_NEEDED"
+
+    # 4. Complementary standards serving distinct roles for the same equipment (e.g. Product specification + Installation code)
+    CO_APPLICABLE_COMPLEMENTARY_STANDARDS = "CO_APPLICABLE_COMPLEMENTARY_STANDARDS"
+
+    # 5. Overlapping candidate standards where published source evidence does not establish normative precedence
+    UNRESOLVED_NORMATIVE_PRECEDENCE = "UNRESOLVED_NORMATIVE_PRECEDENCE"
+
+    # 6. Requirements in the same tender cite active and superseded editions of the same standard family
+    LIFECYCLE_EDITION_DIVERGENCE = "LIFECYCLE_EDITION_DIVERGENCE"
+
+    # 7. Explicit tender specification stipulates higher stringency permitted by standard buyer options
+    TENDER_SPECIFICATION_OVERRIDE = "TENDER_SPECIFICATION_OVERRIDE"
+
+
+CROSS_CONFLICT_STATE_DESCRIPTIONS: Dict[CrossRequirementConflictState, str] = {
+    CrossRequirementConflictState.NO_CROSS_REQUIREMENT_CONFLICT: "Requirements concern distinct equipment, disjoint zones, or compatible engineering parameters.",
+    CrossRequirementConflictState.CONFIRMED_CROSS_REQUIREMENT_CONTRADICTION: "Two requirements specify mutually exclusive physical ratings or operating envelopes for the same equipment.",
+    CrossRequirementConflictState.POTENTIAL_CROSS_CONFLICT_MORE_EVIDENCE_NEEDED: "Potential technical tension identified, but evidence is insufficient to confirm whether items share the same circuit or apparatus.",
+    CrossRequirementConflictState.CO_APPLICABLE_COMPLEMENTARY_STANDARDS: "Standards govern complementary facets (e.g. product specification, installation code, or routine test method); no contradiction exists.",
+    CrossRequirementConflictState.UNRESOLVED_NORMATIVE_PRECEDENCE: "Multiple standards appear applicable to the same scope with overlapping mandates, and priority is not established by statutory orders or standard clauses.",
+    CrossRequirementConflictState.LIFECYCLE_EDITION_DIVERGENCE: "Different requirements in the same tender cite divergent editions (e.g., active vs withdrawn) of the same standard family.",
+    CrossRequirementConflictState.TENDER_SPECIFICATION_OVERRIDE: "Tender specification prescribes a more stringent option permitted by the governing standard without breaching statutory safety minimums.",
+}
+
