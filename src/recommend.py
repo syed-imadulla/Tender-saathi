@@ -60,6 +60,7 @@ class StandardRecommendation:
     standard_role: str = "PRIMARY_PRODUCT"
     structured_evidence: Optional[Dict[str, Any]] = None
     trace_record: Optional[Dict[str, Any]] = None
+    clause_evidence: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -138,6 +139,7 @@ class RequirementRecommendationResult:
     # Phase 16 Evidence Traceability & Verification fields:
     trace_record: Optional[Dict[str, Any]] = None
     component_trace_records: List[Dict[str, Any]] = field(default_factory=list)
+    clause_evidence: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -185,7 +187,9 @@ class StandardsRecommender:
         ai_parser: Optional[Any] = None,
         ambiguity_engine: Optional[Any] = None,
         applicability_gate: Optional[Any] = None,
-        critic: Optional[Any] = None
+        critic: Optional[Any] = None,
+        corpus_storage: Optional[Any] = None,
+        clause_retriever: Optional[Any] = None
     ):
         self.db = db or StandardsDatabase()
         self.retrieval_mode = retrieval_mode
@@ -210,8 +214,12 @@ class StandardsRecommender:
         self.multilingual_normalizer = MultilingualTechnicalNormalizer()
         self.evidence_builder = StandardsEvidenceBuilder(self.db)
         self.external_authority_registry = ExternalAuthorityRegistry()
+        from src.corpus.storage import CorpusStorage
+        from src.corpus.retriever import ClauseRetriever
+        self.corpus_storage = corpus_storage or CorpusStorage()
+        self.clause_retriever = clause_retriever or ClauseRetriever(storage=self.corpus_storage)
         from src.traceability import TraceableEvidenceValidator
-        self.evidence_validator = TraceableEvidenceValidator(self.db)
+        self.evidence_validator = TraceableEvidenceValidator(self.db, corpus_storage=self.corpus_storage)
 
     def _evaluate_component_recommendations(
         self,
@@ -269,6 +277,13 @@ class StandardsRecommender:
                     primary_standard=c_std.standard_number,
                     primary_title=c_std.full_title
                 )
+                c_year_match = re.search(r':\s*(\d{4})\b', c_std.standard_number)
+                c_year = int(c_year_match.group(1)) if c_year_match else getattr(c_std, "year", None)
+                c_clause_ev = self.clause_retriever.retrieve_clause_evidence(
+                    standard_number=c_std.standard_number,
+                    edition_year=c_year,
+                    query_text=comp_text
+                )
                 component_bundles.append({
                     "component_id": comp_id,
                     "component_text": comp_text,
@@ -282,7 +297,8 @@ class StandardsRecommender:
                     "applicability_decision": "APPLICABLE",
                     "dependencies": sub_dep.to_dict(),
                     "human_review_required": False,
-                    "why_matched": f"Component '{comp_text}' matches standard {c_std.standard_number} ({c_std.full_title})."
+                    "why_matched": f"Component '{comp_text}' matches standard {c_std.standard_number} ({c_std.full_title}).",
+                    "clause_evidence": c_clause_ev.to_dict()
                 })
             else:
                 component_bundles.append({
@@ -298,7 +314,8 @@ class StandardsRecommender:
                     "applicability_decision": "REVIEW_REQUIRED",
                     "dependencies": {},
                     "human_review_required": True,
-                    "why_matched": f"Component '{comp_text}' requires engineering review."
+                    "why_matched": f"Component '{comp_text}' requires engineering review.",
+                    "clause_evidence": None
                 })
 
         return component_bundles
@@ -730,9 +747,11 @@ class StandardsRecommender:
                         "competing_interpretations": ambiguity_report.competing_interpretations,
                         "human_review_required": True,
                         "relevance_score": 0.0,
-                        "provenance": "NONE"
+                        "provenance": "NONE",
+                        "clause_evidence": None
                     })(),
-                    rank_position=1
+                    rank_position=1,
+                    clause_evidence=None
                 ).to_dict(),
                 component_trace_records=[
                     self.evidence_validator.build_trace_record(
@@ -750,14 +769,17 @@ class StandardsRecommender:
                             "competing_interpretations": [],
                             "human_review_required": c.get("human_review_required", False),
                             "relevance_score": c.get("relevance_score", 0.0),
-                            "provenance": c.get("provenance", "UNKNOWN")
+                            "provenance": c.get("provenance", "UNKNOWN"),
+                            "clause_evidence": c.get("clause_evidence")
                         })(),
                         sub_requirement_id=c.get("component_id"),
                         sub_requirement_text=c.get("component_text"),
-                        rank_position=idx + 1
+                        rank_position=idx + 1,
+                        clause_evidence=c.get("clause_evidence")
                     ).to_dict()
                     for idx, c in enumerate(component_recs) if isinstance(c, dict)
-                ]
+                ],
+                clause_evidence=None
             )
 
         # Step 5: Validate and Ground Candidates
@@ -1074,6 +1096,23 @@ class StandardsRecommender:
             decision_reason=decision_reason
         )
 
+        # Phase 19: Clause Evidence Retrieval for candidate standard
+        std_year_match = re.search(r':\s*(\d{4})\b', top_rec.standard_number)
+        std_year = int(std_year_match.group(1)) if std_year_match else getattr(top_rec, "year", None)
+        if not std_year and hasattr(top_rec, "standard_year"):
+            std_year = getattr(top_rec, "standard_year")
+        if not std_year:
+            std_entry = self.db.get_standard(top_rec.standard_number)
+            if std_entry:
+                std_year = std_entry.get("year")
+
+        top_clause_ev = self.clause_retriever.retrieve_clause_evidence(
+            standard_number=top_rec.standard_number,
+            edition_year=std_year,
+            query_text=working_text
+        )
+        top_rec.clause_evidence = top_clause_ev.to_dict()
+
         return RequirementRecommendationResult(
             requirement_id=req_id,
             requirement_text=text,
@@ -1141,7 +1180,8 @@ class StandardsRecommender:
                 rank_position=1,
                 human_review_required=human_review_required,
                 critic_decision=critic_dict.get("decision", "RECOMMEND"),
-                final_decision="ASSISTED_REVIEW_REQUIRED" if human_review_required else "RECOMMEND"
+                final_decision="ASSISTED_REVIEW_REQUIRED" if human_review_required else "RECOMMEND",
+                clause_evidence=top_clause_ev
             ).to_dict(),
             component_trace_records=[
                 self.evidence_validator.build_trace_record(
@@ -1159,14 +1199,17 @@ class StandardsRecommender:
                         "competing_interpretations": [],
                         "human_review_required": c.get("human_review_required", False),
                         "relevance_score": c.get("relevance_score", 0.0),
-                        "provenance": c.get("provenance", "UNKNOWN")
+                        "provenance": c.get("provenance", "UNKNOWN"),
+                        "clause_evidence": c.get("clause_evidence")
                     })(),
                     sub_requirement_id=c.get("component_id"),
                     sub_requirement_text=c.get("component_text"),
-                    rank_position=idx + 1
+                    rank_position=idx + 1,
+                    clause_evidence=c.get("clause_evidence")
                 ).to_dict()
                 for idx, c in enumerate(component_recs) if isinstance(c, dict)
-            ]
+            ],
+            clause_evidence=top_clause_ev.to_dict()
         )
 
 

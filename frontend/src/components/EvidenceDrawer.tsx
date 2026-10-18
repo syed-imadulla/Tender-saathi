@@ -1057,8 +1057,38 @@ export default function EvidenceDrawer({
                     </div>
                   )}
 
+                  {/* Phase 19: Normative Full-Text Clause Evidence */}
+                  {req.clause_evidence && req.clause_evidence.outcome === 'CLAUSE_EVIDENCE_FOUND' && req.clause_evidence.passage_text ? (
+                    <div style={{ marginTop: '8px', paddingTop: '6px', borderTop: '1px solid #e2e8f0' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontWeight: 600, color: '#0f766e' }}>
+                          Normative Clause Passage ({req.clause_evidence.clause_identifier ? `Clause ${req.clause_evidence.clause_identifier}` : 'Extracted Text'}):
+                        </span>
+                        <span style={{ fontSize: '0.68rem', padding: '1px 6px', borderRadius: '4px', background: req.clause_evidence.is_grounded ? '#dcfce7' : '#f1f5f9', color: req.clause_evidence.is_grounded ? '#166534' : '#64748b', fontWeight: 600 }}>
+                          {req.clause_evidence.is_grounded ? '✓ Structurally Grounded' : '○ Contextual Search'}
+                        </span>
+                      </div>
+                      <blockquote style={{ margin: '4px 0 0 0', padding: '6px 8px', background: '#ffffff', borderLeft: '3px solid #0f766e', fontSize: '0.75rem', color: '#134e4a', whiteSpace: 'pre-line' }}>
+                        "{req.clause_evidence.passage_text}"
+                      </blockquote>
+                      <div style={{ fontSize: '0.68rem', color: '#64748b', marginTop: '4px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px' }}>
+                        <div>Document: <code>{req.clause_evidence.document_id || 'Local Full-Text Corpus'}</code> (Page {req.clause_evidence.page_number || 1})</div>
+                        <div>Quality Status: <strong style={{ color: '#0f766e' }}>{req.clause_evidence.extraction_quality_status || 'EXTRACTED'}</strong></div>
+                        {req.clause_evidence.passage_sha256 && (
+                          <div style={{ gridColumn: 'span 2' }}>
+                            Passage Hash: <code>{req.clause_evidence.passage_sha256.slice(0, 20)}...</code>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ) : req.clause_evidence && req.clause_evidence.outcome !== 'CLAUSE_EVIDENCE_FOUND' ? (
+                    <div style={{ marginTop: '8px', paddingTop: '6px', borderTop: '1px solid #e2e8f0', fontSize: '0.72rem', color: '#64748b' }}>
+                      Full-Text Corpus: <span style={{ fontStyle: 'italic' }}>{req.clause_evidence.outcome.replace(/_/g, ' ')} ({req.clause_evidence.message})</span>
+                    </div>
+                  ) : null}
+
                   <div style={{ marginTop: '8px', paddingTop: '6px', borderTop: '1px solid #e2e8f0', fontSize: '0.72rem', color: '#64748b', fontStyle: 'italic' }}>
-                    Note: Verification confirms consistency with local BIS standards database scope records. It does not imply live BIS portal authentication, clause-level grounding, or official endorsement by BIS.
+                    Note: Verification confirms consistency with local standards database records and extracted full-text corpus files. It does not imply live BIS portal authentication, statutory endorsement, or human engineering sign-off.
                   </div>
 
                   {req.trace_record.validation_warnings && req.trace_record.validation_warnings.length > 0 && (

@@ -247,6 +247,42 @@ class CorpusStorage:
             conn.commit()
             return inserted
 
+    def get_document_by_id(self, doc_id: str) -> Optional[Dict[str, Any]]:
+        """Retrieves a document record by doc_id."""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            row = cursor.execute("SELECT * FROM corpus_documents WHERE doc_id = ?", (doc_id,)).fetchone()
+            if not row:
+                return None
+            return dict(row)
+
+    def get_documents_by_standard(
+        self,
+        standard_number: str,
+        edition_year: Optional[int] = None
+    ) -> List[Dict[str, Any]]:
+        """Retrieves all documents registered for a standard number, optionally filtered by edition year."""
+        query = "SELECT * FROM corpus_documents WHERE UPPER(TRIM(standard_number)) = UPPER(TRIM(?))"
+        params: List[Any] = [standard_number]
+        if edition_year is not None:
+            query += " AND edition_year = ?"
+            params.append(edition_year)
+        query += " ORDER BY edition_year DESC, doc_id ASC"
+
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            rows = cursor.execute(query, params).fetchall()
+            return [dict(r) for r in rows]
+
+    def get_document_by_standard(
+        self,
+        standard_number: str,
+        edition_year: Optional[int] = None
+    ) -> Optional[Dict[str, Any]]:
+        """Retrieves a single matching document for a standard and optional edition."""
+        docs = self.get_documents_by_standard(standard_number, edition_year)
+        return docs[0] if docs else None
+
     def get_passages_by_standard(
         self,
         standard_number: str,

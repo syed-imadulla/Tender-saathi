@@ -1,8 +1,8 @@
 # Tender Saathi — Active Planning State
 
 **Active Milestone**: Milestone: Expert Ground-Truth Adjudication & Evaluation Calibration  
-**Current Phase**: Phase 17 (`17-evidence-integrity-verification-semantics-audit`)  
-**Phase Position**: Verification Semantics Clarified, Defect Reconciled, Adversarial Suite Added — Phase Completed  
+**Current Phase**: Phase 19 (`19-safe-clause-evidence-integration`)  
+**Phase Position**: Clause Retrieval Integrated, 13 Tests Passing, Full Suite 617/617 Passing, Audit Complete — Phase Completed  
 **Working Directory**: `/home/syed-imadulla/Desktop/Tender_Saathi`  
 **Git Head**: `ea95ba4` (`main`)
 
@@ -52,20 +52,28 @@
    - Added CLI runner `scripts/ingest_pilot_corpus.py` and evaluation harness `scripts/evaluate_phase18_ingestion.py`.
    - Full test suite passing: 604/604 tests in 60s. Frontend build passing in 1.09s.
    - Preserved active ground-truth SHA-256 (`8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`).
+11. **Phase 19 Safe Clause-Level Evidence Integration**: Completed in `docs/evaluation/PHASE19_CLAUSE_INTEGRATION_AUDIT.md`.
+   - Safely integrated `src/corpus/retriever.py` into `StandardsRecommender` (`src/recommend.py`), `TraceableEvidenceValidator` (`src/traceability.py`), REST API (`api/server.py`), and frontend UI (`EvidenceDrawer.tsx`).
+   - Enforced 5 distinct evidence outcomes (`CLAUSE_EVIDENCE_FOUND`, `CLAUSE_EVIDENCE_NOT_FOUND`, `CORPUS_NOT_AVAILABLE`, `CORPUS_DOCUMENT_NOT_ELIGIBLE`, `CORPUS_LOOKUP_ERROR`).
+   - Preserved exact candidate generation and ranking behavior (0 / 25 ranking or decision changes on benchmark).
+   - Preserved all anti-falsification verification boundaries: `is_official_source_authenticated = False` and `is_human_verified = False` across all automated retrieval pathways.
+   - Added 13 deterministic offline integration tests in `tests/test_clause_evidence_integration.py` (13/13 passed).
+   - Full backend test suite passing: 617/617 tests in 59.64s. Frontend build passing in 974ms.
+   - Preserved active ground-truth SHA-256 (`8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`).
 
 ---
 
-## Active Phase Overview: Phase 18
+## Active Phase Overview: Phase 19
 
 | Plan ID | Title | Scope & Target Files | Deliverable | Status |
 |---|---|---|---|---|
-| **18-INGEST** | Controlled Normative Standards Corpus Ingestion | `src/corpus/`, `src/traceability.py`, `scripts/ingest_pilot_corpus.py`, `scripts/evaluate_phase18_ingestion.py`, `tests/test_corpus_ingestion.py`, `docs/evaluation/PHASE18_CORPUS_INGESTION_AUDIT.md` | Versioned manifest, deterministic extractor, clause-aware chunker, SQLite full-text storage, 7-state verification semantics, clause retriever, 15 tests, evaluation report. | **Complete** |
+| **19-INTEG** | Safe Clause-Level Evidence Integration | `src/corpus/semantics.py`, `src/corpus/storage.py`, `src/corpus/retriever.py`, `src/traceability.py`, `src/recommend.py`, `api/server.py`, `frontend/src/types.ts`, `frontend/src/components/EvidenceDrawer.tsx`, `tests/test_clause_evidence_integration.py`, `docs/evaluation/PHASE19_CLAUSE_INTEGRATION_AUDIT.md` | Clause retrieval integration, 5-outcome semantics, boundary preservation, 13 integration tests, frontend evidence drawer card, evaluation audit report. | **Complete** |
 
 ---
 
 ## Next Steps (Human Boundary)
 
 1. Qualified external domain engineers (CPWD, BIS, MES) review the 41 packets in `reports/adjudication_packets/packets/`.
-2. Connect the clause retrieval subsystem into the production recommendation feedback loop (`src/recommend.py`) exclusively for standards with active full-text corpus records (Phase 19).
+2. Controlled local intake of authorized full normative standards PDFs into `data/standards/corpus.db` for target procurement domains (Phase 20).
 
 

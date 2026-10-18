@@ -104,3 +104,33 @@ def can_transition(current: VerificationState, target: VerificationState) -> boo
 def get_state_semantics(state: VerificationState) -> Dict[str, str]:
     """Returns detailed semantic description of what the state guarantees and excludes."""
     return STATE_DESCRIPTIONS.get(state, {"meaning": "Unknown", "does_not_mean": "Unknown"})
+
+
+class ClauseEvidenceOutcome(str, Enum):
+    """
+    Distinct outcomes for clause-level evidence lookup in the normative standards corpus.
+    Maintains clean boundaries between corpus availability failures and substantive clause absences.
+    """
+    # 1. Authentic clause passage found in an eligible, extracted corpus document matching standard & edition
+    CLAUSE_EVIDENCE_FOUND = "CLAUSE_EVIDENCE_FOUND"
+
+    # 2. Eligible corpus document exists, but the requested clause identifier was not found in it
+    CLAUSE_EVIDENCE_NOT_FOUND = "CLAUSE_EVIDENCE_NOT_FOUND"
+
+    # 3. Corpus database or storage subsystem is uninitialized, inaccessible, or absent
+    CORPUS_NOT_AVAILABLE = "CORPUS_NOT_AVAILABLE"
+
+    # 4. No corpus document exists for standard/edition, or document is in ineligible state (OCR_REQUIRED, CORRUPT, etc.)
+    CORPUS_DOCUMENT_NOT_ELIGIBLE = "CORPUS_DOCUMENT_NOT_ELIGIBLE"
+
+    # 5. Unexpected operational error during query or retrieval execution
+    CORPUS_LOOKUP_ERROR = "CORPUS_LOOKUP_ERROR"
+
+
+OUTCOME_DESCRIPTIONS: Dict[ClauseEvidenceOutcome, str] = {
+    ClauseEvidenceOutcome.CLAUSE_EVIDENCE_FOUND: "Authentic clause passage located in an eligible local corpus document.",
+    ClauseEvidenceOutcome.CLAUSE_EVIDENCE_NOT_FOUND: "Eligible document was inspected, but requested clause identifier does not exist in it.",
+    ClauseEvidenceOutcome.CORPUS_NOT_AVAILABLE: "Local full-text corpus storage is not initialized or accessible.",
+    ClauseEvidenceOutcome.CORPUS_DOCUMENT_NOT_ELIGIBLE: "No eligible full-text corpus document registered for this standard and edition.",
+    ClauseEvidenceOutcome.CORPUS_LOOKUP_ERROR: "An operational or database error occurred during clause lookup.",
+}

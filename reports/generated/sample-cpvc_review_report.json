@@ -789,7 +789,7 @@
         "decision": "ACCEPT",
         "reviewer_standard": null,
         "reviewer_note": "Verified by procurement officer",
-        "reviewed_at": "2026-10-18T12:37:51.045935+00:00",
+        "reviewed_at": "2026-10-18T13:23:32.466261+00:00",
         "system_standard": "IS 15778 : 2007",
         "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
       },
@@ -1051,7 +1051,25 @@
             "amendment_metadata": null
           },
           "human_review_required": false,
-          "why_matched": "Component 'CPVC pipes' matches standard IS 15778 (Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification)."
+          "why_matched": "Component 'CPVC pipes' matches standard IS 15778 (Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification).",
+          "clause_evidence": {
+            "outcome": "CORPUS_DOCUMENT_NOT_ELIGIBLE",
+            "passage_text": null,
+            "clause_identifier": null,
+            "page_number": null,
+            "page_end": null,
+            "document_id": null,
+            "standard_number": "IS 15778",
+            "edition_year": 2007,
+            "source_citation": null,
+            "source_url": null,
+            "file_sha256": null,
+            "passage_sha256": null,
+            "extraction_quality_status": null,
+            "has_table": false,
+            "is_grounded": false,
+            "message": "No full-text corpus document registered for standard 'IS 15778' (Edition 2007)."
+          }
         }
       ],
       "external_regulations": [
@@ -1102,7 +1120,7 @@
       "decision": "ACCEPT",
       "reviewer_standard": null,
       "reviewer_note": "Verified by procurement officer",
-      "reviewed_at": "2026-10-18T12:37:51.045935+00:00",
+      "reviewed_at": "2026-10-18T13:23:32.466261+00:00",
       "system_standard": "IS 15778 : 2007",
       "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
     }

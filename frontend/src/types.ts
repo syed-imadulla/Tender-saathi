@@ -138,6 +138,27 @@ export interface Requirement {
   // Phase 16: Evidence Traceability & Recommendation Verification
   trace_record?: TraceRecord | null;
   component_trace_records?: TraceRecord[];
+  // Phase 19: Normative Clause Evidence
+  clause_evidence?: ClauseEvidenceData | null;
+}
+
+export interface ClauseEvidenceData {
+  outcome: 'CLAUSE_EVIDENCE_FOUND' | 'CLAUSE_EVIDENCE_NOT_FOUND' | 'CORPUS_NOT_AVAILABLE' | 'CORPUS_DOCUMENT_NOT_ELIGIBLE' | 'CORPUS_LOOKUP_ERROR' | string;
+  passage_text?: string | null;
+  clause_identifier?: string | null;
+  page_number?: number | null;
+  page_end?: number | null;
+  document_id?: string | null;
+  standard_number?: string | null;
+  edition_year?: number | null;
+  source_citation?: string | null;
+  source_url?: string | null;
+  file_sha256?: string | null;
+  passage_sha256?: string | null;
+  extraction_quality_status?: string | null;
+  has_table?: boolean;
+  is_grounded?: boolean;
+  message?: string;
 }
 
 export interface TraceRecord {
@@ -174,6 +195,15 @@ export interface TraceRecord {
   is_local_catalogue_verified?: boolean;
   is_official_source_authenticated?: boolean;
   is_normative_clause_verified?: boolean;
+  // Phase 19: Normative Clause Evidence Fields
+  clause_evidence_outcome?: string | null;
+  clause_identifier?: string | null;
+  clause_passage?: string | null;
+  clause_page_number?: number | null;
+  clause_passage_hash?: string | null;
+  corpus_document_id?: string | null;
+  corpus_file_sha256?: string | null;
+  extraction_quality_status?: string | null;
   validation_errors?: string[];
   validation_warnings?: string[];
 }

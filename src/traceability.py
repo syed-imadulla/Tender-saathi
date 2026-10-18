@@ -92,7 +92,17 @@ class TraceableEvidenceRecord:
     # Explicit Semantics & Authentication Flags (Phase 17)
     is_local_catalogue_verified: bool = False
     is_official_source_authenticated: bool = False  # Strictly False: Local SQLite cache is not a live authenticated portal connection
-    is_normative_clause_verified: bool = False       # Strictly False: Full-text clause body text is not ingested in SQLite
+    is_normative_clause_verified: bool = False       # Strictly False unless genuine matching clause exists in corpus
+
+    # Phase 19: Normative Clause Evidence Fields
+    clause_evidence_outcome: Optional[str] = None
+    clause_identifier: Optional[str] = None
+    clause_passage: Optional[str] = None
+    clause_page_number: Optional[int] = None
+    clause_passage_hash: Optional[str] = None
+    corpus_document_id: Optional[str] = None
+    corpus_file_sha256: Optional[str] = None
+    extraction_quality_status: Optional[str] = None
 
     # 7. Verification Audit Trail / Errors
     validation_errors: List[str] = field(default_factory=list)
@@ -124,6 +134,7 @@ class TraceableEvidenceValidator:
         critic_decision: Optional[str] = None,
         final_decision: Optional[str] = None,
         applicability: Optional[Dict[str, Any]] = None,
+        clause_evidence: Optional[Any] = None,
     ) -> TraceableEvidenceRecord:
         """Constructs and validates a TraceableEvidenceRecord from an existing Recommendation result."""
         cand_std = getattr(recommendation, "candidate_standard", None) or getattr(recommendation, "standard_number", None)
@@ -207,6 +218,18 @@ class TraceableEvidenceValidator:
         else:
             completeness = EvidenceCompletenessState.EVIDENCE_INCOMPLETE.value
 
+        # Clause evidence extraction (Phase 19)
+        cl_ev = clause_evidence or getattr(recommendation, "clause_evidence", None)
+        cl_outcome = getattr(cl_ev, "outcome", None) or (cl_ev.get("outcome") if isinstance(cl_ev, dict) else None)
+        cl_id = getattr(cl_ev, "clause_identifier", None) or (cl_ev.get("clause_identifier") if isinstance(cl_ev, dict) else None)
+        cl_pas = getattr(cl_ev, "passage_text", None) or (cl_ev.get("passage_text") if isinstance(cl_ev, dict) else None)
+        cl_page = getattr(cl_ev, "page_number", None) or (cl_ev.get("page_number") if isinstance(cl_ev, dict) else None)
+        cl_hash = getattr(cl_ev, "passage_sha256", None) or (cl_ev.get("passage_sha256") if isinstance(cl_ev, dict) else None)
+        cl_doc_id = getattr(cl_ev, "document_id", None) or (cl_ev.get("document_id") if isinstance(cl_ev, dict) else None)
+        cl_file_sha = getattr(cl_ev, "file_sha256", None) or (cl_ev.get("file_sha256") if isinstance(cl_ev, dict) else None)
+        cl_status = getattr(cl_ev, "extraction_quality_status", None) or (cl_ev.get("extraction_quality_status") if isinstance(cl_ev, dict) else None)
+        cl_grounded = bool(getattr(cl_ev, "is_grounded", False) or (cl_ev.get("is_grounded") if isinstance(cl_ev, dict) else False))
+
         # Construct candidate record
         record = TraceableEvidenceRecord(
             requirement_id=requirement_id,
@@ -241,7 +264,15 @@ class TraceableEvidenceValidator:
             is_rejected_candidate=(app_decision == "NOT_APPLICABLE"),
             is_local_catalogue_verified=False,
             is_official_source_authenticated=False,
-            is_normative_clause_verified=False,
+            is_normative_clause_verified=cl_grounded,
+            clause_evidence_outcome=cl_outcome,
+            clause_identifier=cl_id,
+            clause_passage=cl_pas,
+            clause_page_number=cl_page,
+            clause_passage_hash=cl_hash,
+            corpus_document_id=cl_doc_id,
+            corpus_file_sha256=cl_file_sha,
+            extraction_quality_status=cl_status,
             validation_errors=[],
             validation_warnings=[]
         )
@@ -336,7 +367,9 @@ class TraceableEvidenceValidator:
 
         # 8. Normative clause verification against corpus storage (if available)
         is_norm_clause_verified = False
-        if self.corpus_storage and record.standard_number:
+        if record.is_normative_clause_verified and record.clause_evidence_outcome == "CLAUSE_EVIDENCE_FOUND":
+            is_norm_clause_verified = True
+        elif self.corpus_storage and record.standard_number:
             try:
                 passages = self.corpus_storage.get_passages_by_standard(record.standard_number, edition_year=verified_year)
                 if passages and record.supporting_passage:

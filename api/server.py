@@ -342,6 +342,8 @@ def _normalize_result(
             # Phase 16: Evidence Traceability & Recommendation Verification
             "trace_record": getattr(r, "trace_record", None),
             "component_trace_records": getattr(r, "component_trace_records", []) or [],
+            # Phase 19: Normative Clause Evidence
+            "clause_evidence": getattr(r, "clause_evidence", None),
         }
 
         all_reqs.append(req_dict)
