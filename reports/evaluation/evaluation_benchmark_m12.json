@@ -2,7 +2,7 @@
   "metadata": {
     "dataset_path": "dataset/ground_truth/ground_truth.csv",
     "dataset_sha256": "8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc",
-    "evaluated_at_utc": "2026-10-18T07:19:31.278635+00:00",
+    "evaluated_at_utc": "2026-10-18T07:44:09.651905+00:00",
     "evaluation_engine_version": "TenderSaathi-M12-MultiMetric",
     "total_evaluated_cases": 25,
     "unverified_baseline_disclosure": "Benchmark ground_truth.csv rows are UNVERIFIED_BASELINE and require formal domain expert panel adjudication (Phase 13)."
@@ -16,12 +16,22 @@
     "mrr": 0.895,
     "interpretation": "Evaluated strictly on cases with gold applicable standard targets. Correct abstentions are excluded and never counted as retrieval hits."
   },
+  "in_domain_selective_classification": {
+    "total_eligible": 20,
+    "covered_count": 14,
+    "coverage_percent": 70.0,
+    "incorrect_covered_count": 0,
+    "selective_risk_percent": 0.0,
+    "interpretation": "Evaluated strictly on in-domain procurement requirements. Measures real recommendation coverage and risk without synthetic negative control distortion."
+  },
   "selective_classification": {
     "total_eligible": 25,
-    "covered_count": 15,
-    "coverage_percent": 60.0,
+    "covered_count": 16,
+    "autonomous_covered_count": 12,
+    "assisted_covered_count": 4,
+    "coverage_percent": 64.0,
     "incorrect_covered_count": 2,
-    "selective_risk_percent": 13.33,
+    "selective_risk_percent": 12.5,
     "interpretation": "Coverage is the fraction of queries given definitive recommendations. Selective Risk is the error rate among covered queries."
   },
   "abstention_quality": {
@@ -42,7 +52,7 @@
     "catalogue_status_consistency_rate_percent": 100.0,
     "clause_grounding_status": "NOT_EVALUABLE_NO_FULL_TEXT_CORPUS",
     "limitations_disclosure": "Tender Saathi's catalogue database stores standard numbers, titles, scopes, and committee metadata, but does not index full digital clause-by-clause standard texts for all 19,000+ BIS standards. Full clause-level grounding precision cannot be claimed as an absolute metric without a certified clause text corpus.",
-    "proxy_evidence_reference_overlap_percent": 53.67
+    "proxy_evidence_reference_overlap_percent": 51.71
   },
   "sector_stratification": {
     "PROVISIONAL:CATERING": {
@@ -62,9 +72,9 @@
     "PROVISIONAL:ELECTRICAL": {
       "sample_size": 9,
       "answerable_count": 9,
-      "top1_accuracy": 88.88888888888889,
-      "top3_accuracy": 88.88888888888889,
-      "mrr": 0.8888888888888888
+      "top1_accuracy": 88.89,
+      "top3_accuracy": 88.89,
+      "mrr": 0.889
     },
     "PROVISIONAL:MECHANICAL": {
       "sample_size": 2,
@@ -76,10 +86,22 @@
     "PROVISIONAL:NEGATIVE_CONTROL": {
       "sample_size": 5,
       "answerable_count": 0,
-      "top1_accuracy": 0.0,
-      "top3_accuracy": 0.0,
-      "mrr": 0.0
+      "top1_accuracy": null,
+      "top3_accuracy": null,
+      "mrr": null
     }
+  },
+  "adjudication_stratification": {
+    "expert_verified_count": 0,
+    "expert_verified_answerable_count": 0,
+    "expert_verified_top1_accuracy_percent": null,
+    "unverified_baseline_count": 20,
+    "unverified_baseline_answerable_count": 19,
+    "unverified_baseline_top1_accuracy_percent": 89.47,
+    "machine_predicted_count": 0,
+    "machine_predicted_answerable_count": 0,
+    "machine_predicted_top1_accuracy_percent": null,
+    "disclosure": "Claims of expert-verified accuracy require formal panel sign-off (human_verified: TRUE). All current baseline cases are UNVERIFIED_BASELINE."
   },
   "per_case_results": [
     {
@@ -97,10 +119,10 @@
       "is_top1_hit": true,
       "is_top3_hit": true,
       "reciprocal_rank": 1.0,
-      "is_safe_abstention": true,
+      "is_safe_abstention": false,
       "status_consistent": true,
       "evidence_proxy_score": 33.3,
-      "latency_ms": 1479.53,
+      "latency_ms": 1292.36,
       "reason": "Primary standard IS 15905 : 2011 identified, but composite subcomponent(s) require engineering review."
     },
     {
@@ -121,7 +143,7 @@
       "is_safe_abstention": false,
       "status_consistent": true,
       "evidence_proxy_score": 66.7,
-      "latency_ms": 881.89,
+      "latency_ms": 973.76,
       "reason": "Authoritative active standard IS 15622 : 2017 verified against scope with High confidence."
     },
     {
@@ -142,7 +164,7 @@
       "is_safe_abstention": false,
       "status_consistent": true,
       "evidence_proxy_score": 44.4,
-      "latency_ms": 984.5,
+      "latency_ms": 1200.74,
       "reason": "Authoritative active standard IS 781 : 1984 verified against scope with High confidence."
     },
     {
@@ -163,7 +185,7 @@
       "is_safe_abstention": true,
       "status_consistent": true,
       "evidence_proxy_score": 0.0,
-      "latency_ms": 1094.77,
+      "latency_ms": 1236.2,
       "reason": "Tender requirement specifies 'valve' equipment but omits critical discriminating technical parameters (material, valve type). A specific Indian Standard cannot be safely selected without guessing."
     },
     {
@@ -184,7 +206,7 @@
       "is_safe_abstention": false,
       "status_consistent": true,
       "evidence_proxy_score": 62.5,
-      "latency_ms": 1227.67,
+      "latency_ms": 947.39,
       "reason": "Authoritative active standard IS 6392 : 1971 verified against scope with High confidence."
     },
     {
@@ -205,7 +227,7 @@
       "is_safe_abstention": false,
       "status_consistent": true,
       "evidence_proxy_score": 50.0,
-      "latency_ms": 1684.85,
+      "latency_ms": 1666.73,
       "reason": "Authoritative active standard IS/IEC 61439-3 : 2012 verified against scope with High confidence."
     },
     {
@@ -226,7 +248,7 @@
       "is_safe_abstention": true,
       "status_consistent": true,
       "evidence_proxy_score": 0.0,
-      "latency_ms": 989.58,
+      "latency_ms": 1190.36,
       "reason": "Multiple competing Indian Standards (IS 7098 (Part 1) and IS 7098 (Part 2)) have competing applicability for the same procurement object for 'cable' equipment. The tender does not contain distinguishing specifications (voltage_rating (LV vs MV/HV)) to select between them (Potentially missing parameters: Voltage Grade, Conductor Material, Insulation Material)."
     },
     {
@@ -247,7 +269,7 @@
       "is_safe_abstention": false,
       "status_consistent": true,
       "evidence_proxy_score": 66.7,
-      "latency_ms": 1070.81,
+      "latency_ms": 1071.26,
       "reason": "Authoritative active standard IS 5039 : 1983 verified against scope with High confidence."
     },
     {
@@ -268,7 +290,7 @@
       "is_safe_abstention": true,
       "status_consistent": true,
       "evidence_proxy_score": 41.7,
-      "latency_ms": 1262.74,
+      "latency_ms": 1175.38,
       "reason": "Primary standard IS 3043 : 2018 identified, but composite subcomponent(s) require engineering review."
     },
     {
@@ -289,7 +311,7 @@
       "is_safe_abstention": false,
       "status_consistent": true,
       "evidence_proxy_score": 66.7,
-      "latency_ms": 1045.28,
+      "latency_ms": 947.13,
       "reason": "Authoritative active standard IS 16088 : 2016 verified against scope with High confidence."
     },
     {
@@ -300,18 +322,18 @@
       "adjudication_status": "UNVERIFIED_BASELINE",
       "human_verified": false,
       "ground_truth_standards": "IS 2491 : 2013; IS 15000 : 2013",
-      "predicted_top1": "IS 2491 : 2013",
-      "predicted_title": "Food Hygiene - General Principles - Code of Practice; FSSAI General Sanitary and Hygienic Requirements [IS 2491]",
-      "system_decision": "REVIEW_REQUIRED",
+      "predicted_top1": "IS 15000 : 2024",
+      "predicted_title": "Hazard Analysis and Critical Control Point (HACCP) - Requirements for Any Organization in the Food Chain",
+      "system_decision": "RECOMMEND_WITH_REVIEW",
       "human_review_required": true,
       "is_top1_hit": true,
       "is_top3_hit": true,
       "reciprocal_rank": 1.0,
-      "is_safe_abstention": true,
+      "is_safe_abstention": false,
       "status_consistent": true,
-      "evidence_proxy_score": 50.0,
-      "latency_ms": 1944.81,
-      "reason": "Potentially missing engineering parameters: Food Preparation Scope, Regulatory Hygiene Framework; Specification lacks key parameters (Food Preparation Scope, Regulatory Hygiene Framework). Human review recommended."
+      "evidence_proxy_score": 16.7,
+      "latency_ms": 1196.33,
+      "reason": "Primary standard IS 15000 : 2024 identified, but composite subcomponent(s) require engineering review."
     },
     {
       "requirement_id": "T009-R001",
@@ -328,10 +350,10 @@
       "is_top1_hit": true,
       "is_top3_hit": true,
       "reciprocal_rank": 1.0,
-      "is_safe_abstention": true,
+      "is_safe_abstention": false,
       "status_consistent": true,
       "evidence_proxy_score": 76.9,
-      "latency_ms": 1305.37,
+      "latency_ms": 1219.14,
       "reason": "Primary standard IS 732 : 2019 identified, but composite subcomponent(s) require engineering review."
     },
     {
@@ -352,7 +374,7 @@
       "is_safe_abstention": true,
       "status_consistent": true,
       "evidence_proxy_score": 0.0,
-      "latency_ms": 1077.86,
+      "latency_ms": 806.94,
       "reason": "Multiple competing Indian Standards (IS 15328 and IS 14333) have competing applicability for the same procurement object for 'pipe' equipment. The tender does not contain distinguishing specifications (material (upvc vs hdpe)) to select between them (Potentially missing parameters: Piping Material, Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)."
     },
     {
@@ -373,7 +395,7 @@
       "is_safe_abstention": true,
       "status_consistent": true,
       "evidence_proxy_score": 25.0,
-      "latency_ms": 1705.97,
+      "latency_ms": 1405.13,
       "reason": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Insulation Material; Specification lacks key parameters (Voltage Grade, Conductor Material, Insulation Material). Human review recommended."
     },
     {
@@ -394,7 +416,7 @@
       "is_safe_abstention": false,
       "status_consistent": true,
       "evidence_proxy_score": 50.0,
-      "latency_ms": 1105.74,
+      "latency_ms": 840.32,
       "reason": "Authoritative active standard IS 1661 : 1972 verified against scope with High confidence."
     },
     {
@@ -415,7 +437,7 @@
       "is_safe_abstention": false,
       "status_consistent": true,
       "evidence_proxy_score": 57.1,
-      "latency_ms": 130.89,
+      "latency_ms": 658.11,
       "reason": "Authoritative active standard IS 1239 (Part 2) : 1992 verified against scope with High confidence."
     },
     {
@@ -436,7 +458,7 @@
       "is_safe_abstention": false,
       "status_consistent": true,
       "evidence_proxy_score": 71.4,
-      "latency_ms": 213.17,
+      "latency_ms": 1260.28,
       "reason": "Authoritative active standard IS/IEC 61800-2 : 2015 verified against scope with High confidence."
     },
     {
@@ -457,7 +479,7 @@
       "is_safe_abstention": false,
       "status_consistent": true,
       "evidence_proxy_score": 42.9,
-      "latency_ms": 162.56,
+      "latency_ms": 747.17,
       "reason": "Authoritative active standard IS 14164 : 2008 verified against scope with High confidence."
     },
     {
@@ -478,7 +500,7 @@
       "is_safe_abstention": true,
       "status_consistent": true,
       "evidence_proxy_score": 57.1,
-      "latency_ms": 201.97,
+      "latency_ms": 1309.69,
       "reason": "Primary standard IS/IEC 60034-1 : 2017 identified, but composite subcomponent(s) require engineering review."
     },
     {
@@ -499,7 +521,7 @@
       "is_safe_abstention": false,
       "status_consistent": true,
       "evidence_proxy_score": 50.0,
-      "latency_ms": 219.09,
+      "latency_ms": 1509.1,
       "reason": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
     },
     {
@@ -520,7 +542,7 @@
       "is_safe_abstention": true,
       "status_consistent": true,
       "evidence_proxy_score": 0.0,
-      "latency_ms": 123.61,
+      "latency_ms": 1106.32,
       "reason": "No reliable Indian Standard match found. We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue. Human review required."
     },
     {
@@ -533,16 +555,16 @@
       "ground_truth_standards": "",
       "predicted_top1": "IS 7098 (Part 1) : 1988",
       "predicted_title": "Crosslinked Polyethylene Insulated Cables - Part 1: Up to 1100 V; Code of Practice for Installation of Power Cables [IS 7098 (Part 1)]",
-      "system_decision": "RECOMMEND",
+      "system_decision": "RECOMMEND_WITH_REVIEW",
       "human_review_required": true,
       "is_top1_hit": false,
       "is_top3_hit": false,
       "reciprocal_rank": 0.0,
-      "is_safe_abstention": true,
+      "is_safe_abstention": false,
       "status_consistent": true,
       "evidence_proxy_score": 0.0,
-      "latency_ms": 202.33,
-      "reason": "Authoritative active standard IS 7098 (Part 1) : 1988 verified against scope with Medium confidence."
+      "latency_ms": 1529.1,
+      "reason": "Primary standard IS 7098 (Part 1) : 1988 identified, but composite subcomponent(s) require engineering review."
     },
     {
       "requirement_id": "NEG-003",
@@ -562,7 +584,7 @@
       "is_safe_abstention": true,
       "status_consistent": true,
       "evidence_proxy_score": 0.0,
-      "latency_ms": 183.91,
+      "latency_ms": 1118.87,
       "reason": "Potentially missing engineering parameters: Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover; Specification lacks key parameters (Discharge / Flow Rate (Q), Total Dynamic Head (H), Motor Coupling / Prime Mover). Human review recommended."
     },
     {
@@ -583,7 +605,7 @@
       "is_safe_abstention": false,
       "status_consistent": true,
       "evidence_proxy_score": 0.0,
-      "latency_ms": 139.18,
+      "latency_ms": 1599.91,
       "reason": "Authoritative active standard IS 1786 : 2008 verified against scope with Medium confidence."
     },
     {
@@ -604,7 +626,7 @@
       "is_safe_abstention": true,
       "status_consistent": true,
       "evidence_proxy_score": 0.0,
-      "latency_ms": 124.2,
+      "latency_ms": 652.12,
       "reason": "No reliable Indian Standard match found. We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue. Human review required."
     }
   ]

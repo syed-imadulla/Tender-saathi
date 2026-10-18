@@ -518,6 +518,7 @@ def compute_deconflated_metrics(
     under_specified_cases = [c for c in evaluated_cases if c.get("expected_decision") == "ABSTAIN_UNDER_SPECIFIED"]
     negative_cases = [c for c in evaluated_cases if c.get("expected_decision") in ("REJECT_INELIGIBLE", "NEGATIVE_CONTROL")]
     other_cases = [c for c in evaluated_cases if c not in answerable_cases and c not in under_specified_cases and c not in negative_cases]
+    in_domain_cases = [c for c in evaluated_cases if c not in negative_cases]
     
     # 2. Retrieval Quality on Answerable Cases
     ans_count = len(answerable_cases)
@@ -537,7 +538,7 @@ def compute_deconflated_metrics(
     mrr = (mrr_sum / ans_count) if ans_count > 0 else 0.0
     
     # 3. Selective Classification: Coverage & Selective Risk
-    # Eligible cases are all standard evaluation benchmark cases
+    # Overall (pooled)
     eligible_count = total_cases
     covered_cases = [
         c for c in evaluated_cases
@@ -547,12 +548,24 @@ def compute_deconflated_metrics(
     covered_count = len(covered_cases)
     coverage_percent = (covered_count / eligible_count * 100.0) if eligible_count > 0 else 0.0
     
-    # Incorrect recommendations among covered queries
-    # A recommendation is incorrect if Top-1 predicted standard does not match gold
-    # (or if the query was an under-specified or negative case that should NOT have received a recommendation)
+    autonomous_covered = [c for c in covered_cases if c.get("system_decision") == "RECOMMEND"]
+    assisted_covered = [c for c in covered_cases if c.get("system_decision") == "RECOMMEND_WITH_REVIEW"]
+    
     incorrect_covered = [c for c in covered_cases if not c.get("is_top1_hit", False)]
     incorrect_covered_count = len(incorrect_covered)
     selective_risk_percent = (incorrect_covered_count / covered_count * 100.0) if covered_count > 0 else 0.0
+
+    # In-Domain Procurement Selective Classification (DEF-01: Segregated from synthetic negative controls)
+    in_dom_eligible = len(in_domain_cases)
+    in_dom_covered = [
+        c for c in in_domain_cases
+        if c.get("system_decision") in ("RECOMMEND", "RECOMMEND_WITH_REVIEW")
+        and c.get("predicted_top1") not in (None, "", "INSUFFICIENT_INFORMATION", "UNKNOWN")
+    ]
+    in_dom_cov_count = len(in_dom_covered)
+    in_dom_cov_percent = (in_dom_cov_count / in_dom_eligible * 100.0) if in_dom_eligible > 0 else 0.0
+    in_dom_incorrect = [c for c in in_dom_covered if not c.get("is_top1_hit", False)]
+    in_dom_risk_percent = (len(in_dom_incorrect) / in_dom_cov_count * 100.0) if in_dom_cov_count > 0 else 0.0
     
     # 4. Abstention & Rejection Quality
     under_count = len(under_specified_cases)
@@ -571,9 +584,8 @@ def compute_deconflated_metrics(
     neg_rejection_rate = ((neg_count - neg_false_rec_count) / neg_count * 100.0) if neg_count > 0 else 0.0
     
     # 5. Evidence Grounding & Consistency
-    # Provenance consistency: Top-1 hits where standard status matches active/gold catalogue status
     top1_hit_cases = [c for c in answerable_cases if c.get("is_top1_hit", False)]
-    status_consistent_count = sum(1 for c in top1_hit_cases if c.get("status_consistent", True))
+    status_consistent_count = sum(1 for c in top1_hit_cases if c.get("status_consistent", False))
     catalogue_status_consistency_rate = (
         (status_consistent_count / len(top1_hit_cases) * 100.0)
         if top1_hit_cases else 0.0
@@ -609,10 +621,43 @@ def compute_deconflated_metrics(
         sector_breakdown[sec] = {
             "sample_size": data["total_count"],
             "answerable_count": ans_n,
-            "top1_accuracy": (data["top1_hits"] / ans_n * 100.0) if ans_n > 0 else 0.0,
-            "top3_accuracy": (data["top3_hits"] / ans_n * 100.0) if ans_n > 0 else 0.0,
-            "mrr": (data["mrr_sum"] / ans_n) if ans_n > 0 else 0.0,
+            "top1_accuracy": round(data["top1_hits"] / ans_n * 100.0, 2) if ans_n > 0 else None,
+            "top3_accuracy": round(data["top3_hits"] / ans_n * 100.0, 2) if ans_n > 0 else None,
+            "mrr": round(data["mrr_sum"] / ans_n, 3) if ans_n > 0 else None,
         }
+
+    # 7. Adjudication Status Stratification (DEF-05)
+    adjudication_buckets: Dict[str, Dict[str, Any]] = {
+        "EXPERT_VERIFIED": {"count": 0, "answerable_count": 0, "top1_hits": 0},
+        "UNVERIFIED_BASELINE": {"count": 0, "answerable_count": 0, "top1_hits": 0},
+        "MACHINE_PREDICTED": {"count": 0, "answerable_count": 0, "top1_hits": 0},
+    }
+    for c in evaluated_cases:
+        status_tag = c.get("adjudication_status", "UNVERIFIED_BASELINE")
+        if status_tag not in adjudication_buckets:
+            adjudication_buckets[status_tag] = {"count": 0, "answerable_count": 0, "top1_hits": 0}
+        adjudication_buckets[status_tag]["count"] += 1
+        if c.get("expected_decision") == "RECOMMEND":
+            adjudication_buckets[status_tag]["answerable_count"] += 1
+            if c.get("is_top1_hit", False):
+                adjudication_buckets[status_tag]["top1_hits"] += 1
+
+    exp_ans = adjudication_buckets["EXPERT_VERIFIED"]["answerable_count"]
+    unv_ans = adjudication_buckets["UNVERIFIED_BASELINE"]["answerable_count"]
+    mac_ans = adjudication_buckets["MACHINE_PREDICTED"]["answerable_count"]
+
+    adjudication_stratification = {
+        "expert_verified_count": adjudication_buckets["EXPERT_VERIFIED"]["count"],
+        "expert_verified_answerable_count": exp_ans,
+        "expert_verified_top1_accuracy_percent": round(adjudication_buckets["EXPERT_VERIFIED"]["top1_hits"] / exp_ans * 100.0, 2) if exp_ans > 0 else None,
+        "unverified_baseline_count": adjudication_buckets["UNVERIFIED_BASELINE"]["count"],
+        "unverified_baseline_answerable_count": unv_ans,
+        "unverified_baseline_top1_accuracy_percent": round(adjudication_buckets["UNVERIFIED_BASELINE"]["top1_hits"] / unv_ans * 100.0, 2) if unv_ans > 0 else None,
+        "machine_predicted_count": adjudication_buckets["MACHINE_PREDICTED"]["count"],
+        "machine_predicted_answerable_count": mac_ans,
+        "machine_predicted_top1_accuracy_percent": round(adjudication_buckets["MACHINE_PREDICTED"]["top1_hits"] / mac_ans * 100.0, 2) if mac_ans > 0 else None,
+        "disclosure": "Claims of expert-verified accuracy require formal panel sign-off (human_verified: TRUE). All current baseline cases are UNVERIFIED_BASELINE."
+    }
         
     return {
         "metadata": {
@@ -632,9 +677,19 @@ def compute_deconflated_metrics(
             "mrr": round(mrr, 3),
             "interpretation": "Evaluated strictly on cases with gold applicable standard targets. Correct abstentions are excluded and never counted as retrieval hits."
         },
+        "in_domain_selective_classification": {
+            "total_eligible": in_dom_eligible,
+            "covered_count": in_dom_cov_count,
+            "coverage_percent": round(in_dom_cov_percent, 2),
+            "incorrect_covered_count": len(in_dom_incorrect),
+            "selective_risk_percent": round(in_dom_risk_percent, 2),
+            "interpretation": "Evaluated strictly on in-domain procurement requirements. Measures real recommendation coverage and risk without synthetic negative control distortion."
+        },
         "selective_classification": {
             "total_eligible": eligible_count,
             "covered_count": covered_count,
+            "autonomous_covered_count": len(autonomous_covered),
+            "assisted_covered_count": len(assisted_covered),
             "coverage_percent": round(coverage_percent, 2),
             "incorrect_covered_count": incorrect_covered_count,
             "selective_risk_percent": round(selective_risk_percent, 2),
@@ -665,6 +720,7 @@ def compute_deconflated_metrics(
             "proxy_evidence_reference_overlap_percent": round(avg_proxy_overlap, 2)
         },
         "sector_stratification": sector_breakdown,
+        "adjudication_stratification": adjudication_stratification,
         "per_case_results": evaluated_cases
     }
 
@@ -729,17 +785,27 @@ class ComprehensiveEvaluationHarness:
                         rr = 1.0 / rank
                     break
 
-        # Check safe abstention
+        # Check safe abstention (strictly for withheld recommendations without ungrounded candidate assignment)
+        is_covered_rec = (
+            decision in ("RECOMMEND", "RECOMMEND_WITH_REVIEW")
+            and pred_top1 not in (None, "", "INSUFFICIENT_INFORMATION", "UNKNOWN")
+        )
         is_safe_abstention = (
-            pred_top1 in (None, "", "INSUFFICIENT_INFORMATION", "UNKNOWN")
-            or rec_res.human_review_required
-            or decision in ("REVIEW_REQUIRED", "INSUFFICIENT_EVIDENCE", "NO_RELIABLE_MATCH")
+            not is_covered_rec
+            and (
+                pred_top1 in (None, "", "INSUFFICIENT_INFORMATION", "UNKNOWN")
+                or decision in ("REVIEW_REQUIRED", "INSUFFICIENT_EVIDENCE", "NO_RELIABLE_MATCH")
+                or rec_res.human_review_required
+            )
         )
 
-        # Status consistency check
+        # Status consistency check (DEF-03: Missing status must not default to True)
         status_consistent = True
-        if is_top1_hit and rec_res.status:
-            status_consistent = (rec_res.status.strip().lower() == str(gold_status).strip().lower())
+        if is_top1_hit:
+            if rec_res.status:
+                status_consistent = (rec_res.status.strip().lower() == str(gold_status).strip().lower())
+            else:
+                status_consistent = False
 
         # Lexical proxy overlap with evidence_reference
         proxy_score = 0.0
@@ -886,14 +952,29 @@ def _generate_comprehensive_markdown_report(metrics: Dict[str, Any]) -> str:
         f"| **Top-1 Accuracy (Answerable)** | **{m_ret['top1_accuracy_percent']:.1f}%** | {m_ret['top1_hits']} / {m_ret['total_answerable']} | Evaluated strictly on answerable queries. Abstentions are excluded. |",
         f"| **Top-3 Accuracy (Answerable)** | **{m_ret['top3_accuracy_percent']:.1f}%** | {m_ret['top3_hits']} / {m_ret['total_answerable']} | Gold standard present in Top-3 primary recommendations. |",
         f"| **Mean Reciprocal Rank (MRR)** | **{m_ret['mrr']:.3f}** | {m_ret['total_answerable']} queries | Harmonic mean of retrieval ranks on answerable queries. |",
-        f"| **Recommendation Coverage** | **{m_sel['coverage_percent']:.1f}%** | {m_sel['covered_count']} / {m_sel['total_eligible']} | Queries where definitive recommendation was issued. |",
-        f"| **Selective Risk (Error Rate)** | **{m_sel['selective_risk_percent']:.1f}%** | {m_sel['incorrect_covered_count']} / {m_sel['covered_count']} | Error rate among queries with definitive recommendations. |",
+        f"| **In-Domain Coverage** | **{metrics.get('in_domain_selective_classification', {}).get('coverage_percent', 0.0):.1f}%** | {metrics.get('in_domain_selective_classification', {}).get('covered_count', 0)} / {metrics.get('in_domain_selective_classification', {}).get('total_eligible', 0)} | Coverage strictly on in-domain procurement requirements ($N=20$). |",
+        f"| **In-Domain Selective Risk** | **{metrics.get('in_domain_selective_classification', {}).get('selective_risk_percent', 0.0):.1f}%** | {metrics.get('in_domain_selective_classification', {}).get('incorrect_covered_count', 0)} / {metrics.get('in_domain_selective_classification', {}).get('covered_count', 0)} | Error rate among in-domain recommendations (0.0% = zero wrong recs). |",
+        f"| **Pooled Recommendation Coverage** | **{m_sel['coverage_percent']:.1f}%** | {m_sel['covered_count']} / {m_sel['total_eligible']} | Overall coverage including synthetic negative controls ($N=25$). |",
+        f"| **Pooled Selective Risk** | **{m_sel['selective_risk_percent']:.1f}%** | {m_sel['incorrect_covered_count']} / {m_sel['covered_count']} | Overall error rate among covered queries (dominated by negative controls). |",
         f"| **Under-Spec Abstention Recall** | **{m_abs['under_specified_abstention_recall_percent']:.1f}%** | {m_abs['safe_abstained_count']} / {m_abs['under_specified_count']} | Vague requirements where system safely abstained/flagged review. |",
         f"| **Negative False Rec Rate** | **{m_neg['false_recommendation_rate_percent']:.1f}%** | {m_neg['false_recommendation_count']} / {m_neg['total_negative_cases']} | Ineligible/unrelated queries falsely recommended (Safety Target: 0.0%). |",
         "",
         "---",
         "",
-        "## 2. Evidence Grounding & Limitations Disclosure",
+        "## 2. Adjudication Status Stratification (Expert Verification Gate)",
+        "",
+        f"> [!NOTE]",
+        f"> {metrics.get('adjudication_stratification', {}).get('disclosure', '')}",
+        "",
+        "| Adjudication Cohort | Total Sample | Answerable Queries | Top-1 Accuracy | Expert Verification Status |",
+        "| :--- | :--- | :--- | :--- | :--- |",
+        f"| **Expert-Verified (`EXPERT_VERIFIED`)** | {metrics.get('adjudication_stratification', {}).get('expert_verified_count', 0)} | {metrics.get('adjudication_stratification', {}).get('expert_verified_answerable_count', 0)} | {str(metrics.get('adjudication_stratification', {}).get('expert_verified_top1_accuracy_percent')) + '%' if metrics.get('adjudication_stratification', {}).get('expert_verified_top1_accuracy_percent') is not None else 'N/A (Awaiting Phase 13)'} | ⏳ 0% Formally Signed Off |",
+        f"| **Unverified Baseline (`UNVERIFIED_BASELINE`)** | {metrics.get('adjudication_stratification', {}).get('unverified_baseline_count', 0)} | {metrics.get('adjudication_stratification', {}).get('unverified_baseline_answerable_count', 0)} | {str(metrics.get('adjudication_stratification', {}).get('unverified_baseline_top1_accuracy_percent')) + '%' if metrics.get('adjudication_stratification', {}).get('unverified_baseline_top1_accuracy_percent') is not None else 'N/A'} | ⚠️ Active Benchmark Baseline |",
+        f"| **Machine-Predicted Staging (`MACHINE_PREDICTED`)** | {metrics.get('adjudication_stratification', {}).get('machine_predicted_count', 0)} | {metrics.get('adjudication_stratification', {}).get('machine_predicted_answerable_count', 0)} | {str(metrics.get('adjudication_stratification', {}).get('machine_predicted_top1_accuracy_percent')) + '%' if metrics.get('adjudication_stratification', {}).get('machine_predicted_top1_accuracy_percent') is not None else 'N/A'} | 🧪 Staged in `candidates_staging.csv` |",
+        "",
+        "---",
+        "",
+        "## 3. Evidence Grounding & Limitations Disclosure",
         "",
         f"- **Catalogue Currency Consistency**: **{m_ev['catalogue_status_consistency_rate_percent']:.1f}%** ({m_ev['top1_evaluated_count']} Top-1 hits audited against active BIS status).",
         f"- **Clause-Level Grounding Status**: `{m_ev['clause_grounding_status']}`",
@@ -902,23 +983,26 @@ def _generate_comprehensive_markdown_report(metrics: Dict[str, Any]) -> str:
         "",
         "---",
         "",
-        "## 3. Sector-Stratified Performance Breakdown",
+        "## 4. Sector-Stratified Performance Breakdown",
         "",
         "| Sector Tag | Sample Size | Answerable | Top-1 Accuracy | Top-3 Accuracy | MRR |",
         "| :--- | :--- | :--- | :--- | :--- | :--- |",
     ]
 
     for sec, sdata in metrics["sector_stratification"].items():
+        top1_s = f"{sdata['top1_accuracy']:.1f}%" if sdata['top1_accuracy'] is not None else "N/A"
+        top3_s = f"{sdata['top3_accuracy']:.1f}%" if sdata['top3_accuracy'] is not None else "N/A"
+        mrr_s = f"{sdata['mrr']:.3f}" if sdata['mrr'] is not None else "N/A"
         lines.append(
             f"| `{sec}` | {sdata['sample_size']} | {sdata['answerable_count']} | "
-            f"{sdata['top1_accuracy']:.1f}% | {sdata['top3_accuracy']:.1f}% | {sdata['mrr']:.3f} |"
+            f"{top1_s} | {top3_s} | {mrr_s} |"
         )
 
     lines.extend([
         "",
         "---",
         "",
-        "## 4. Case-by-Case Outcome Manifest",
+        "## 5. Case-by-Case Outcome Manifest",
         "",
         "| Req ID | Sector | Expected | System Decision | Top-1 Predicted | Hit? | Abstain? |",
         "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |",

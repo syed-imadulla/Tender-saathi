@@ -323,6 +323,165 @@ class TestEvaluationMetrics(unittest.TestCase):
             self.assertEqual(metrics_orig["abstention_quality"], m["abstention_quality"])
             self.assertEqual(metrics_orig["negative_control"], m["negative_control"])
 
+    def test_09_in_domain_vs_negative_control_population_segregation(self):
+        """
+        9. DEF-01 Regression: In-domain procurement selective classification must be
+        segregated from synthetic negative-control open-set rejection.
+        
+        Setup:
+        - 3 In-domain answerable cases: 2 Top-1 hits (RECOMMEND), 1 abstention (REVIEW_REQUIRED).
+        - 2 Negative controls: 1 safe rejection (INSUFFICIENT_EVIDENCE), 1 hallucination (RECOMMEND, wrong).
+        
+        In-domain expected:
+        - Eligible = 3
+        - Covered = 2
+        - In-domain Coverage = 2/3 = 66.67%
+        - Incorrect covered in-domain = 0
+        - In-domain Selective Risk = 0/2 = 0.0%
+        
+        Negative control expected:
+        - Total negative = 2
+        - False recommendations = 1
+        - False recommendation rate = 1/2 = 50.0%
+        """
+        cases = [
+            {"requirement_id": "IN-01", "expected_decision": "RECOMMEND", "system_decision": "RECOMMEND", "predicted_top1": "IS 100", "is_top1_hit": True, "procurement_sector": "PROVISIONAL:CIVIL", "adjudication_status": "UNVERIFIED_BASELINE"},
+            {"requirement_id": "IN-02", "expected_decision": "RECOMMEND", "system_decision": "RECOMMEND", "predicted_top1": "IS 200", "is_top1_hit": True, "procurement_sector": "PROVISIONAL:CIVIL", "adjudication_status": "UNVERIFIED_BASELINE"},
+            {"requirement_id": "IN-03", "expected_decision": "RECOMMEND", "system_decision": "REVIEW_REQUIRED", "predicted_top1": None, "is_top1_hit": False, "is_safe_abstention": True, "procurement_sector": "PROVISIONAL:CIVIL", "adjudication_status": "UNVERIFIED_BASELINE"},
+            {"requirement_id": "NEG-01", "expected_decision": "REJECT_INELIGIBLE", "system_decision": "INSUFFICIENT_EVIDENCE", "predicted_top1": None, "is_top1_hit": False, "is_safe_abstention": True, "procurement_sector": "PROVISIONAL:NEGATIVE_CONTROL", "adjudication_status": "SYNTHETIC_BENCHMARK"},
+            {"requirement_id": "NEG-02", "expected_decision": "REJECT_INELIGIBLE", "system_decision": "RECOMMEND", "predicted_top1": "IS 999", "is_top1_hit": False, "is_safe_abstention": False, "procurement_sector": "PROVISIONAL:NEGATIVE_CONTROL", "adjudication_status": "SYNTHETIC_BENCHMARK"},
+        ]
+
+        metrics = compute_deconflated_metrics(cases)
+        
+        # Verify segregated in-domain metrics exist and are correct
+        self.assertIn("in_domain_selective_classification", metrics, "DEF-01: In-domain selective classification must be explicitly reported!")
+        in_dom = metrics["in_domain_selective_classification"]
+        self.assertEqual(in_dom["total_eligible"], 3)
+        self.assertEqual(in_dom["covered_count"], 2)
+        self.assertAlmostEqual(in_dom["coverage_percent"], 66.67, places=2)
+        self.assertEqual(in_dom["incorrect_covered_count"], 0)
+        self.assertEqual(in_dom["selective_risk_percent"], 0.0)
+
+        # Negative control metric verifies the 1 hallucination
+        self.assertEqual(metrics["negative_control"]["false_recommendation_count"], 1)
+        self.assertEqual(metrics["negative_control"]["false_recommendation_rate_percent"], 50.0)
+
+    def test_10_recommend_with_review_and_safe_abstention_non_contradiction(self):
+        """
+        10. DEF-02 Regression: RECOMMEND_WITH_REVIEW is assisted coverage and must NOT be
+        simultaneously marked as a safe abstention.
+        """
+        cases = [
+            {
+                "requirement_id": "CASE-ASSISTED",
+                "expected_decision": "RECOMMEND",
+                "system_decision": "RECOMMEND_WITH_REVIEW",
+                "predicted_top1": "IS 15905",
+                "is_top1_hit": True,
+                "is_safe_abstention": False,
+                "procurement_sector": "PROVISIONAL:CIVIL",
+                "adjudication_status": "UNVERIFIED_BASELINE"
+            },
+            {
+                "requirement_id": "CASE-AUTO",
+                "expected_decision": "RECOMMEND",
+                "system_decision": "RECOMMEND",
+                "predicted_top1": "IS 1239",
+                "is_top1_hit": True,
+                "is_safe_abstention": False,
+                "procurement_sector": "PROVISIONAL:CIVIL",
+                "adjudication_status": "UNVERIFIED_BASELINE"
+            },
+            {
+                "requirement_id": "CASE-ABSTAIN",
+                "expected_decision": "ABSTAIN_UNDER_SPECIFIED",
+                "system_decision": "REVIEW_REQUIRED",
+                "predicted_top1": None,
+                "is_top1_hit": False,
+                "is_safe_abstention": True,
+                "procurement_sector": "PROVISIONAL:CIVIL",
+                "adjudication_status": "UNVERIFIED_BASELINE"
+            }
+        ]
+
+        metrics = compute_deconflated_metrics(cases)
+        sel = metrics["selective_classification"]
+        
+        # Verify autonomous vs assisted coverage distinction
+        self.assertEqual(sel["covered_count"], 2)
+        self.assertEqual(sel.get("autonomous_covered_count"), 1)
+        self.assertEqual(sel.get("assisted_covered_count"), 1)
+
+    def test_11_lifecycle_status_consistency_missing_status_fails(self):
+        """
+        11. DEF-03 Regression: Missing status must not silently default to status_consistent=True.
+        """
+        cases = [
+            {
+                "requirement_id": "A1",
+                "expected_decision": "RECOMMEND",
+                "is_top1_hit": True,
+                "status_consistent": False,  # Missing or mismatched status
+                "evidence_proxy_score": 50.0
+            }
+        ]
+        metrics = compute_deconflated_metrics(cases)
+        ev = metrics["evidence_grounding"]
+        self.assertEqual(ev["catalogue_status_consistency_rate_percent"], 0.0)
+
+    def test_12_sector_stratification_empty_answerable_returns_none(self):
+        """
+        12. DEF-04 Regression: Sectors with zero answerable cases must return None/null for accuracy/MRR.
+        """
+        cases = [
+            {
+                "requirement_id": "NEG-1",
+                "procurement_sector": "PROVISIONAL:NEGATIVE_CONTROL",
+                "expected_decision": "REJECT_INELIGIBLE",
+                "is_top1_hit": False,
+                "is_top3_hit": False,
+                "reciprocal_rank": 0.0
+            }
+        ]
+        metrics = compute_deconflated_metrics(cases)
+        sec = metrics["sector_stratification"]["PROVISIONAL:NEGATIVE_CONTROL"]
+        self.assertEqual(sec["sample_size"], 1)
+        self.assertEqual(sec["answerable_count"], 0)
+        self.assertIsNone(sec["top1_accuracy"], "DEF-04: Accuracy on 0 answerable cases must be None, not 0.0!")
+        self.assertIsNone(sec["top3_accuracy"], "DEF-04: Accuracy on 0 answerable cases must be None, not 0.0!")
+        self.assertIsNone(sec["mrr"], "DEF-04: MRR on 0 answerable cases must be None, not 0.0!")
+
+    def test_13_adjudication_status_stratification(self):
+        """
+        13. DEF-05 Regression: Adjudication status must be stratified so unverified
+        claims cannot be disguised as expert-verified.
+        """
+        cases = [
+            {
+                "requirement_id": "B1",
+                "expected_decision": "RECOMMEND",
+                "adjudication_status": "UNVERIFIED_BASELINE",
+                "is_top1_hit": True,
+                "procurement_sector": "PROVISIONAL:CIVIL"
+            },
+            {
+                "requirement_id": "B2",
+                "expected_decision": "RECOMMEND",
+                "adjudication_status": "UNVERIFIED_BASELINE",
+                "is_top1_hit": False,
+                "procurement_sector": "PROVISIONAL:CIVIL"
+            }
+        ]
+        metrics = compute_deconflated_metrics(cases)
+        self.assertIn("adjudication_stratification", metrics, "DEF-05: Adjudication stratification required!")
+        adj = metrics["adjudication_stratification"]
+        self.assertEqual(adj["expert_verified_count"], 0)
+        self.assertIsNone(adj["expert_verified_top1_accuracy_percent"])
+        self.assertEqual(adj["unverified_baseline_count"], 2)
+        self.assertEqual(adj["unverified_baseline_top1_accuracy_percent"], 50.0)
+
 
 if __name__ == "__main__":
     unittest.main()
+

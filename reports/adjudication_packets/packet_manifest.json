@@ -1,0 +1,329 @@
+{
+  "generated_at_utc": "2026-10-18T07:48:02.801215+00:00",
+  "total_packets": 40,
+  "unverified_baseline_count": 20,
+  "machine_predicted_count": 20,
+  "packets_directory": "reports/adjudication_packets/packets",
+  "cases": [
+    {
+      "packet_file": "CASE_T001_R002.md",
+      "requirement_id": "T001-R002",
+      "tender_id": "T001",
+      "procurement_sector": "PROVISIONAL:CIVIL_WORKS",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T001_R003.md",
+      "requirement_id": "T001-R003",
+      "tender_id": "T001",
+      "procurement_sector": "PROVISIONAL:CIVIL_WORKS",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T001_R004.md",
+      "requirement_id": "T001-R004",
+      "tender_id": "T001",
+      "procurement_sector": "PROVISIONAL:CIVIL_WORKS",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T002_R002.md",
+      "requirement_id": "T002-R002",
+      "tender_id": "T002",
+      "procurement_sector": "PROVISIONAL:MECHANICAL",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "ABSTAIN_UNDER_SPECIFIED"
+    },
+    {
+      "packet_file": "CASE_T002_R003.md",
+      "requirement_id": "T002-R003",
+      "tender_id": "T002",
+      "procurement_sector": "PROVISIONAL:MECHANICAL",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T003_R001.md",
+      "requirement_id": "T003-R001",
+      "tender_id": "T003",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T004_R002.md",
+      "requirement_id": "T004-R002",
+      "tender_id": "T004",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T004_R005.md",
+      "requirement_id": "T004-R005",
+      "tender_id": "T004",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T005_R001.md",
+      "requirement_id": "T005-R001",
+      "tender_id": "T005",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T006_R001.md",
+      "requirement_id": "T006-R001",
+      "tender_id": "T006",
+      "procurement_sector": "PROVISIONAL:CIVIL_WORKS",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T007_R003.md",
+      "requirement_id": "T007-R003",
+      "tender_id": "T007",
+      "procurement_sector": "PROVISIONAL:CATERING",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T009_R001.md",
+      "requirement_id": "T009-R001",
+      "tender_id": "T009",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T010_R001.md",
+      "requirement_id": "T010-R001",
+      "tender_id": "T010",
+      "procurement_sector": "PROVISIONAL:CIVIL_WORKS",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T011_R001.md",
+      "requirement_id": "T011-R001",
+      "tender_id": "T011",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T012_R002.md",
+      "requirement_id": "T012-R002",
+      "tender_id": "T012",
+      "procurement_sector": "PROVISIONAL:CIVIL_WORKS",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T012_R003.md",
+      "requirement_id": "T012-R003",
+      "tender_id": "T012",
+      "procurement_sector": "PROVISIONAL:CIVIL_WORKS",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T013_R002.md",
+      "requirement_id": "T013-R002",
+      "tender_id": "T013",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T013_R003.md",
+      "requirement_id": "T013-R003",
+      "tender_id": "T013",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T014_R002.md",
+      "requirement_id": "T014-R002",
+      "tender_id": "T014",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T020_R001.md",
+      "requirement_id": "T020-R001",
+      "tender_id": "T020",
+      "procurement_sector": "PROVISIONAL:CIVIL_WORKS",
+      "cohort": "UNVERIFIED_BASELINE",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T001_R001.md",
+      "requirement_id": "T001-R001",
+      "tender_id": "T001",
+      "procurement_sector": "PROVISIONAL:CIVIL_WORKS",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "ABSTAIN_UNDER_SPECIFIED"
+    },
+    {
+      "packet_file": "CASE_T001_R005.md",
+      "requirement_id": "T001-R005",
+      "tender_id": "T001",
+      "procurement_sector": "PROVISIONAL:CIVIL_WORKS",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "ABSTAIN_UNDER_SPECIFIED"
+    },
+    {
+      "packet_file": "CASE_T002_R001.md",
+      "requirement_id": "T002-R001",
+      "tender_id": "T002",
+      "procurement_sector": "PROVISIONAL:MECHANICAL",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "ABSTAIN_UNDER_SPECIFIED"
+    },
+    {
+      "packet_file": "CASE_T002_R004.md",
+      "requirement_id": "T002-R004",
+      "tender_id": "T002",
+      "procurement_sector": "PROVISIONAL:MECHANICAL",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "ABSTAIN_UNDER_SPECIFIED"
+    },
+    {
+      "packet_file": "CASE_T003_R002.md",
+      "requirement_id": "T003-R002",
+      "tender_id": "T003",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T003_R003.md",
+      "requirement_id": "T003-R003",
+      "tender_id": "T003",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T003_R004.md",
+      "requirement_id": "T003-R004",
+      "tender_id": "T003",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "ABSTAIN_UNDER_SPECIFIED"
+    },
+    {
+      "packet_file": "CASE_T004_R001.md",
+      "requirement_id": "T004-R001",
+      "tender_id": "T004",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "ABSTAIN_UNDER_SPECIFIED"
+    },
+    {
+      "packet_file": "CASE_T004_R003.md",
+      "requirement_id": "T004-R003",
+      "tender_id": "T004",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "ABSTAIN_UNDER_SPECIFIED"
+    },
+    {
+      "packet_file": "CASE_T004_R004.md",
+      "requirement_id": "T004-R004",
+      "tender_id": "T004",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T004_R006.md",
+      "requirement_id": "T004-R006",
+      "tender_id": "T004",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "ABSTAIN_UNDER_SPECIFIED"
+    },
+    {
+      "packet_file": "CASE_T005_R002.md",
+      "requirement_id": "T005-R002",
+      "tender_id": "T005",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "ABSTAIN_UNDER_SPECIFIED"
+    },
+    {
+      "packet_file": "CASE_T005_R003.md",
+      "requirement_id": "T005-R003",
+      "tender_id": "T005",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T005_R004.md",
+      "requirement_id": "T005-R004",
+      "tender_id": "T005",
+      "procurement_sector": "PROVISIONAL:ELECTRICAL",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "ABSTAIN_UNDER_SPECIFIED"
+    },
+    {
+      "packet_file": "CASE_T006_R002.md",
+      "requirement_id": "T006-R002",
+      "tender_id": "T006",
+      "procurement_sector": "PROVISIONAL:CIVIL_WORKS",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T006_R003.md",
+      "requirement_id": "T006-R003",
+      "tender_id": "T006",
+      "procurement_sector": "PROVISIONAL:CIVIL_WORKS",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "RECOMMEND"
+    },
+    {
+      "packet_file": "CASE_T006_R004.md",
+      "requirement_id": "T006-R004",
+      "tender_id": "T006",
+      "procurement_sector": "PROVISIONAL:CIVIL_WORKS",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "ABSTAIN_UNDER_SPECIFIED"
+    },
+    {
+      "packet_file": "CASE_T006_R005.md",
+      "requirement_id": "T006-R005",
+      "tender_id": "T006",
+      "procurement_sector": "PROVISIONAL:CIVIL_WORKS",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "ABSTAIN_UNDER_SPECIFIED"
+    },
+    {
+      "packet_file": "CASE_T007_R001.md",
+      "requirement_id": "T007-R001",
+      "tender_id": "T007",
+      "procurement_sector": "PROVISIONAL:CATERING",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "ABSTAIN_UNDER_SPECIFIED"
+    },
+    {
+      "packet_file": "CASE_T007_R002.md",
+      "requirement_id": "T007-R002",
+      "tender_id": "T007",
+      "procurement_sector": "PROVISIONAL:CATERING",
+      "cohort": "MACHINE_PREDICTED",
+      "current_expected_decision": "ABSTAIN_UNDER_SPECIFIED"
+    }
+  ]
+}
