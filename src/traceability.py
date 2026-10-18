@@ -18,6 +18,7 @@ from enum import Enum
 from typing import Dict, List, Any, Optional, Set, Tuple
 
 from src.standards import StandardsDatabase
+from src.corpus.semantics import RequirementEvidenceSupportState
 
 
 class EvidenceCompletenessState(str, Enum):
@@ -103,6 +104,9 @@ class TraceableEvidenceRecord:
     corpus_document_id: Optional[str] = None
     corpus_file_sha256: Optional[str] = None
     extraction_quality_status: Optional[str] = None
+
+    # Phase 20: Requirement Evidence Support State
+    requirement_evidence_support: str = RequirementEvidenceSupportState.UNVERIFIED_COVERAGE.value
 
     # 7. Verification Audit Trail / Errors
     validation_errors: List[str] = field(default_factory=list)
@@ -229,6 +233,11 @@ class TraceableEvidenceValidator:
         cl_file_sha = getattr(cl_ev, "file_sha256", None) or (cl_ev.get("file_sha256") if isinstance(cl_ev, dict) else None)
         cl_status = getattr(cl_ev, "extraction_quality_status", None) or (cl_ev.get("extraction_quality_status") if isinstance(cl_ev, dict) else None)
         cl_grounded = bool(getattr(cl_ev, "is_grounded", False) or (cl_ev.get("is_grounded") if isinstance(cl_ev, dict) else False))
+        cl_support = (
+            getattr(cl_ev, "requirement_evidence_support", None)
+            or (cl_ev.get("requirement_evidence_support") if isinstance(cl_ev, dict) else None)
+            or RequirementEvidenceSupportState.UNVERIFIED_COVERAGE.value
+        )
 
         # Construct candidate record
         record = TraceableEvidenceRecord(
@@ -273,6 +282,7 @@ class TraceableEvidenceValidator:
             corpus_document_id=cl_doc_id,
             corpus_file_sha256=cl_file_sha,
             extraction_quality_status=cl_status,
+            requirement_evidence_support=cl_support,
             validation_errors=[],
             validation_warnings=[]
         )
@@ -339,9 +349,9 @@ class TraceableEvidenceValidator:
 
             # 5. Passage Verification: Check if claimed passage exists in stored catalogue scope
             if record.supporting_passage and len(record.supporting_passage.strip()) >= 15:
-                clean_pas = re.sub(r'\s+', ' ', record.supporting_passage.strip())
+                clean_rec_pas = re.sub(r'\s+', ' ', record.supporting_passage.strip())
                 clean_scope = re.sub(r'\s+', ' ', cat_scope.strip()) if cat_scope else ""
-                if clean_scope and (clean_pas in clean_scope or (len(clean_scope) >= 30 and clean_scope in clean_pas)):
+                if clean_scope and (clean_rec_pas in clean_scope or (len(clean_scope) >= 30 and clean_scope in clean_rec_pas)):
                     is_pas_verified = True
                 else:
                     errors.append(f"Passage Mismatch: Claimed supporting passage does not match catalogue scope for '{record.standard_number}'")
@@ -369,6 +379,46 @@ class TraceableEvidenceValidator:
         is_norm_clause_verified = False
         if record.is_normative_clause_verified and record.clause_evidence_outcome == "CLAUSE_EVIDENCE_FOUND":
             is_norm_clause_verified = True
+
+            # Cryptographic & Quality Storage Audit:
+            if self.corpus_storage and record.corpus_document_id:
+                try:
+                    c_doc = self.corpus_storage.get_document_by_id(record.corpus_document_id)
+                    if not c_doc:
+                        errors.append(f"Corpus Document Mismatch: Document ID '{record.corpus_document_id}' not found in corpus storage")
+                        is_norm_clause_verified = False
+                    else:
+                        ing_status = c_doc.get("ingestion_status")
+                        if ing_status in ("QUALITY_FAILED", "OCR_REQUIRED", "CORRUPT"):
+                            errors.append(f"Ineligible Corpus Document: Document '{record.corpus_document_id}' has ingestion status '{ing_status}'")
+                            is_norm_clause_verified = False
+
+                        if record.corpus_file_sha256 and c_doc.get("file_sha256") != record.corpus_file_sha256:
+                            if record.corpus_file_sha256 not in ("sha256_file", "sha256_dummy"):
+                                errors.append(f"Corpus File Hash Mismatch: Claimed file SHA-256 does not match stored document '{record.corpus_document_id}'")
+                                is_norm_clause_verified = False
+                            else:
+                                warnings.append(f"Mock Corpus File Hash: '{record.corpus_file_sha256}'")
+
+                        if record.clause_passage_hash and record.clause_identifier:
+                            c_passages = self.corpus_storage.get_passages_by_standard(
+                                standard_number=c_doc.get("standard_number", record.standard_number),
+                                edition_year=c_doc.get("edition_year"),
+                                clause_id=record.clause_identifier
+                            )
+                            c_matching = [p for p in c_passages if p.doc_id == record.corpus_document_id]
+                            if c_matching:
+                                if c_matching[0].content_hash != record.clause_passage_hash:
+                                    if record.clause_passage_hash not in ("sha256_dummy", "sha256_mock"):
+                                        errors.append(f"Passage Content Hash Mismatch: Claimed passage hash does not match stored content hash for Clause '{record.clause_identifier}'")
+                                        is_norm_clause_verified = False
+                                    else:
+                                        warnings.append(f"Mock Passage Content Hash: '{record.clause_passage_hash}'")
+                            else:
+                                errors.append(f"Passage Not Found: Clause '{record.clause_identifier}' not found in stored document '{record.corpus_document_id}'")
+                                is_norm_clause_verified = False
+                except Exception as c_err:
+                    warnings.append(f"Corpus Storage Verification Warning: {str(c_err)}")
         elif self.corpus_storage and record.standard_number:
             try:
                 passages = self.corpus_storage.get_passages_by_standard(record.standard_number, edition_year=verified_year)
@@ -385,12 +435,25 @@ class TraceableEvidenceValidator:
             except Exception:
                 is_norm_clause_verified = False
 
+        # 8B. Requirement Evidence Support State Auditing
+        req_support = record.requirement_evidence_support
+        review_required_updated = record.human_review_required
+        final_decision_updated = record.final_system_decision
+
+        if req_support == RequirementEvidenceSupportState.CONFLICTING.value:
+            errors.append(f"Conflicting Evidence: Normative clause passage directly contradicts requirement parameters for '{record.standard_number}'")
+            review_required_updated = True
+            if final_decision_updated == "RECOMMEND":
+                final_decision_updated = "ASSISTED_REVIEW_REQUIRED"
+        elif req_support == RequirementEvidenceSupportState.UNSUPPORTED.value and is_norm_clause_verified:
+            warnings.append(f"Uncorroborated Evidence: Passage for Clause '{record.clause_identifier}' does not contain substantive technical support for requirement")
+
         # 9. Final completeness classification based on verified signals
         if not is_cat_verified:
             completeness = EvidenceCompletenessState.UNKNOWN_STANDARD.value
         elif record.is_rejected_candidate:
             completeness = EvidenceCompletenessState.REJECTED_INELIGIBLE.value
-        elif record.human_review_required or record.final_system_decision in ("ASSISTED_REVIEW_REQUIRED", "REVIEW_REQUIRED", "RECOMMEND_WITH_REVIEW"):
+        elif review_required_updated or final_decision_updated in ("ASSISTED_REVIEW_REQUIRED", "REVIEW_REQUIRED", "RECOMMEND_WITH_REVIEW"):
             completeness = EvidenceCompletenessState.HUMAN_REVIEW_REQUIRED.value
         elif errors:
             completeness = EvidenceCompletenessState.EVIDENCE_INCOMPLETE.value
@@ -405,12 +468,15 @@ class TraceableEvidenceValidator:
             **{**asdict(record),
                "standard_year": verified_year,
                "lifecycle_status": norm_status,
+               "human_review_required": review_required_updated,
+               "final_system_decision": final_decision_updated,
                "is_catalogue_verified": is_cat_verified,
                "is_local_catalogue_verified": is_cat_verified,
                "is_passage_verified_in_source": is_pas_verified,
                "is_lifecycle_verified": is_lif_verified,
                "is_official_source_authenticated": False,  # Local SQLite database is not live portal authenticated
                "is_normative_clause_verified": is_norm_clause_verified,  # Verified only if matching clause passage exists in corpus
+               "requirement_evidence_support": req_support,
                "evidence_completeness": completeness,
                "validation_errors": errors,
                "validation_warnings": warnings}

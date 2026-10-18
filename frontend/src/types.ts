@@ -158,6 +158,7 @@ export interface ClauseEvidenceData {
   extraction_quality_status?: string | null;
   has_table?: boolean;
   is_grounded?: boolean;
+  requirement_evidence_support?: 'FULLY_SUPPORTED' | 'PARTIALLY_SUPPORTED' | 'UNSUPPORTED' | 'CONFLICTING' | 'UNVERIFIED_COVERAGE' | string;
   message?: string;
 }
 
@@ -204,6 +205,8 @@ export interface TraceRecord {
   corpus_document_id?: string | null;
   corpus_file_sha256?: string | null;
   extraction_quality_status?: string | null;
+  // Phase 20: Requirement Evidence Support State
+  requirement_evidence_support?: 'FULLY_SUPPORTED' | 'PARTIALLY_SUPPORTED' | 'UNSUPPORTED' | 'CONFLICTING' | 'UNVERIFIED_COVERAGE' | string;
   validation_errors?: string[];
   validation_warnings?: string[];
 }

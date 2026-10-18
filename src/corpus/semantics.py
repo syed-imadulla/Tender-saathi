@@ -134,3 +134,33 @@ OUTCOME_DESCRIPTIONS: Dict[ClauseEvidenceOutcome, str] = {
     ClauseEvidenceOutcome.CORPUS_DOCUMENT_NOT_ELIGIBLE: "No eligible full-text corpus document registered for this standard and edition.",
     ClauseEvidenceOutcome.CORPUS_LOOKUP_ERROR: "An operational or database error occurred during clause lookup.",
 }
+
+
+class RequirementEvidenceSupportState(str, Enum):
+    """
+    Evaluates whether normative clause passage(s) actually support the procurement requirement.
+    Distinguishes structural passage existence from substantive requirement coverage.
+    """
+    # 1. Authentic passage(s) support all technical conditions/components of the requirement
+    FULLY_SUPPORTED = "FULLY_SUPPORTED"
+
+    # 2. Passage(s) support one or more conditions, but compound requirement has missing components
+    PARTIALLY_SUPPORTED = "PARTIALLY_SUPPORTED"
+
+    # 3. Passage located by clause ID or search, but does not support the requirement's technical subject
+    UNSUPPORTED = "UNSUPPORTED"
+
+    # 4. Passage text specifies ratings, boundaries, or conditions that directly contradict the requirement
+    CONFLICTING = "CONFLICTING"
+
+    # 5. No eligible normative clause evidence in corpus; coverage relies on catalogue scope or unverified
+    UNVERIFIED_COVERAGE = "UNVERIFIED_COVERAGE"
+
+
+SUPPORT_STATE_DESCRIPTIONS: Dict[RequirementEvidenceSupportState, str] = {
+    RequirementEvidenceSupportState.FULLY_SUPPORTED: "Authentic normative passage supports all material parameters and components of the requirement.",
+    RequirementEvidenceSupportState.PARTIALLY_SUPPORTED: "Passage supports part of the requirement, but other compound components lack clause evidence.",
+    RequirementEvidenceSupportState.UNSUPPORTED: "Retrieved clause passage does not substantively support the requirement's technical subject.",
+    RequirementEvidenceSupportState.CONFLICTING: "Retrieved normative passage contradicts or excludes specified requirement parameters or ratings.",
+    RequirementEvidenceSupportState.UNVERIFIED_COVERAGE: "Normative clause evidence is unavailable in local corpus; requirement coverage is unverified at clause level.",
+}

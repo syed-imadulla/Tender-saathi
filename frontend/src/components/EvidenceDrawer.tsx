@@ -1041,6 +1041,14 @@ export default function EvidenceDrawer({
                     <div>Clause-Level Grounding: <strong style={{ color: req.trace_record.is_normative_clause_verified ? '#166534' : '#64748b' }}>{req.trace_record.is_normative_clause_verified ? '✓ Clause Grounded' : '○ Scope-Level Only'}</strong></div>
                     <div>Lifecycle Verified: <strong style={{ color: req.trace_record.is_lifecycle_verified ? '#166534' : '#b45309' }}>{req.trace_record.is_lifecycle_verified ? `✓ ${req.trace_record.lifecycle_status} (Local DB)` : '✗ Unknown'}</strong></div>
                     <div>Human Expert Review: <strong style={{ color: req.trace_record.is_human_verified ? '#166534' : '#64748b' }}>{req.trace_record.is_human_verified ? '✓ Expert Verified' : '○ Unadjudicated (Machine Predicted)'}</strong></div>
+                    <div>Requirement Support: <strong style={{ 
+                      color: req.trace_record.requirement_evidence_support === 'FULLY_SUPPORTED' ? '#166534' :
+                             req.trace_record.requirement_evidence_support === 'PARTIALLY_SUPPORTED' ? '#b45309' :
+                             req.trace_record.requirement_evidence_support === 'CONFLICTING' ? '#b91c1c' :
+                             req.trace_record.requirement_evidence_support === 'UNSUPPORTED' ? '#dc2626' : '#64748b'
+                    }}>
+                      {req.trace_record.requirement_evidence_support ? req.trace_record.requirement_evidence_support.replace(/_/g, ' ') : 'UNVERIFIED COVERAGE'}
+                    </strong></div>
                   </div>
 
                   {req.trace_record.supporting_passage && (
@@ -1074,6 +1082,18 @@ export default function EvidenceDrawer({
                       <div style={{ fontSize: '0.68rem', color: '#64748b', marginTop: '4px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px' }}>
                         <div>Document: <code>{req.clause_evidence.document_id || 'Local Full-Text Corpus'}</code> (Page {req.clause_evidence.page_number || 1})</div>
                         <div>Quality Status: <strong style={{ color: '#0f766e' }}>{req.clause_evidence.extraction_quality_status || 'EXTRACTED'}</strong></div>
+                        {req.clause_evidence.requirement_evidence_support && (
+                          <div style={{ gridColumn: 'span 2' }}>
+                            Requirement Support: <strong style={{ 
+                              color: req.clause_evidence.requirement_evidence_support === 'FULLY_SUPPORTED' ? '#166534' :
+                                     req.clause_evidence.requirement_evidence_support === 'PARTIALLY_SUPPORTED' ? '#b45309' :
+                                     req.clause_evidence.requirement_evidence_support === 'CONFLICTING' ? '#b91c1c' :
+                                     req.clause_evidence.requirement_evidence_support === 'UNSUPPORTED' ? '#dc2626' : '#64748b'
+                            }}>
+                              {req.clause_evidence.requirement_evidence_support.replace(/_/g, ' ')}
+                            </strong>
+                          </div>
+                        )}
                         {req.clause_evidence.passage_sha256 && (
                           <div style={{ gridColumn: 'span 2' }}>
                             Passage Hash: <code>{req.clause_evidence.passage_sha256.slice(0, 20)}...</code>

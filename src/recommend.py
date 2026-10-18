@@ -282,7 +282,8 @@ class StandardsRecommender:
                 c_clause_ev = self.clause_retriever.retrieve_clause_evidence(
                     standard_number=c_std.standard_number,
                     edition_year=c_year,
-                    query_text=comp_text
+                    query_text=comp_text,
+                    requirement_text=comp_text
                 )
                 component_bundles.append({
                     "component_id": comp_id,
@@ -1109,9 +1110,17 @@ class StandardsRecommender:
         top_clause_ev = self.clause_retriever.retrieve_clause_evidence(
             standard_number=top_rec.standard_number,
             edition_year=std_year,
-            query_text=working_text
+            query_text=working_text,
+            requirement_text=working_text,
+            is_compound=bool(component_recs and len(component_recs) > 1),
+            compound_components=component_recs
         )
         top_rec.clause_evidence = top_clause_ev.to_dict()
+
+        if top_clause_ev.requirement_evidence_support == "CONFLICTING":
+            human_review_required = True
+            top_rec.human_review_required = True
+            decision_reason = f"Conflicting Evidence: Normative clause passage contradicts requirement parameters. {decision_reason}"
 
         return RequirementRecommendationResult(
             requirement_id=req_id,

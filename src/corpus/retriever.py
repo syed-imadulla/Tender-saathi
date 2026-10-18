@@ -17,7 +17,7 @@ from typing import List, Dict, Any, Optional, Tuple
 from src.corpus.storage import CorpusStorage
 from src.corpus.chunker import ClausePassage
 from src.corpus.manifest import IngestionStatus
-from src.corpus.semantics import ClauseEvidenceOutcome
+from src.corpus.semantics import ClauseEvidenceOutcome, RequirementEvidenceSupportState
 
 
 @dataclass
@@ -38,6 +38,7 @@ class ClauseEvidenceResult:
     extraction_quality_status: Optional[str] = None # Ingestion status, e.g. "EXTRACTED"
     has_table: bool = False
     is_grounded: bool = False                # Strictly True only when structurally verified
+    requirement_evidence_support: str = RequirementEvidenceSupportState.UNVERIFIED_COVERAGE.value # Value of RequirementEvidenceSupportState
     message: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
@@ -91,21 +92,110 @@ class ClauseRetriever:
 
         return None
 
+    @staticmethod
+    def evaluate_requirement_support(
+        requirement_text: str,
+        passage_text: Optional[str],
+        clause_identifier: Optional[str] = None,
+        is_compound: bool = False,
+        compound_components: Optional[List[Dict[str, Any]]] = None
+    ) -> str:
+        """
+        Deterministically evaluates whether the retrieved passage supports the requirement.
+        Returns a value of RequirementEvidenceSupportState:
+          - FULLY_SUPPORTED
+          - PARTIALLY_SUPPORTED
+          - UNSUPPORTED
+          - CONFLICTING
+          - UNVERIFIED_COVERAGE
+        """
+        if not passage_text or not passage_text.strip():
+            return RequirementEvidenceSupportState.UNVERIFIED_COVERAGE.value
+
+        req_clean = (requirement_text or "").lower()
+        pas_clean = passage_text.lower()
+
+        # 1. Contradiction / Conflict Detection:
+        # Operating environment conflicts (outdoor vs indoor)
+        if "outdoor" in req_clean and any(p in pas_clean for p in ["indoor only", "strictly for indoor", "indoor use only", "not suitable for outdoor"]):
+            return RequirementEvidenceSupportState.CONFLICTING.value
+        if "indoor" in req_clean and any(p in pas_clean for p in ["outdoor only", "strictly for outdoor", "outdoor use only"]):
+            return RequirementEvidenceSupportState.CONFLICTING.value
+
+        # Phase conflicts (single phase vs three phase)
+        if ("3-phase" in req_clean or "three phase" in req_clean or "3 phase" in req_clean) and any(p in pas_clean for p in ["strictly single phase", "single phase only"]):
+            return RequirementEvidenceSupportState.CONFLICTING.value
+        if ("single phase" in req_clean or "1-phase" in req_clean) and any(p in pas_clean for p in ["strictly three phase", "three phase only"]):
+            return RequirementEvidenceSupportState.CONFLICTING.value
+
+        # Capacity / Rating limit conflicts:
+        req_ratings = re.findall(r'(\d+(?:\.\d+)?)\s*(kva|mva|kv|kw|amp|a\b)', req_clean)
+        for val_str, unit in req_ratings:
+            req_val = float(val_str)
+            # Check if passage restricts max rating below req_val
+            max_limit_matches = re.findall(rf'(?:maximum|max|up to|not exceeding|shall not exceed)\s*(\d+(?:\.\d+)?)\s*{unit}', pas_clean)
+            for m_str in max_limit_matches:
+                m_val = float(m_str)
+                if req_val > m_val:
+                    return RequirementEvidenceSupportState.CONFLICTING.value
+
+            # Check if passage restricts min rating above req_val
+            min_limit_matches = re.findall(rf'(?:minimum|min|exceeding|above)\s*(\d+(?:\.\d+)?)\s*{unit}', pas_clean)
+            for m_str in min_limit_matches:
+                m_val = float(m_str)
+                if req_val < m_val:
+                    return RequirementEvidenceSupportState.CONFLICTING.value
+
+        # 2. Irrelevance Detection:
+        stop_words = {
+            "shall", "with", "from", "that", "this", "standard", "conforming", "clause", "section",
+            "table", "supply", "installation", "tender", "specification", "requirements", "item",
+            "procurement", "work", "works", "required", "provisional", "active", "under", "outdoor", "indoor"
+        }
+        req_words = {
+            w for w in re.findall(r'[a-z]{4,}', req_clean)
+            if w not in stop_words
+        }
+
+        if req_words:
+            overlap = {w for w in req_words if w in pas_clean}
+            if len(overlap) == 0:
+                return RequirementEvidenceSupportState.UNSUPPORTED.value
+
+        # 3. Compound Requirement Coverage:
+        if is_compound and compound_components and len(compound_components) > 1:
+            covered_components = 0
+            for c in compound_components:
+                if isinstance(c, dict):
+                    c_ev = c.get("clause_evidence") or {}
+                    if c_ev.get("outcome") == ClauseEvidenceOutcome.CLAUSE_EVIDENCE_FOUND.value and c_ev.get("is_grounded"):
+                        covered_components += 1
+                elif isinstance(c, str):
+                    # Check if the single passage text covers key words of this sub-component
+                    sub_words = {w for w in re.findall(r'[a-z]{4,}', c.lower()) if w not in stop_words}
+                    if sub_words and len({w for w in sub_words if w in pas_clean}) >= 1:
+                        covered_components += 1
+            if covered_components == 0:
+                return RequirementEvidenceSupportState.UNVERIFIED_COVERAGE.value
+            elif covered_components < len(compound_components):
+                return RequirementEvidenceSupportState.PARTIALLY_SUPPORTED.value
+            else:
+                return RequirementEvidenceSupportState.FULLY_SUPPORTED.value
+
+        return RequirementEvidenceSupportState.FULLY_SUPPORTED.value
+
     def retrieve_clause_evidence(
         self,
         standard_number: str,
         edition_year: Optional[int] = None,
         clause_identifier: Optional[str] = None,
         query_text: Optional[str] = None,
+        requirement_text: Optional[str] = None,
+        is_compound: bool = False,
+        compound_components: Optional[List[Dict[str, Any]]] = None
     ) -> ClauseEvidenceResult:
         """
-        Integrates clause retrieval with strict eligibility and boundary checks.
-        Distinguishes:
-          - CLAUSE_EVIDENCE_FOUND
-          - CLAUSE_EVIDENCE_NOT_FOUND
-          - CORPUS_NOT_AVAILABLE
-          - CORPUS_DOCUMENT_NOT_ELIGIBLE
-          - CORPUS_LOOKUP_ERROR
+        Integrates clause retrieval with strict eligibility, boundary, and requirement-support checks.
         """
         if not standard_number:
             return ClauseEvidenceResult(
@@ -219,6 +309,13 @@ class ClauseRetriever:
                     p = matching[0]
                     # Verify whether the clause is genuinely identified or unknown
                     is_grounded = (p.clause_identifier != "CLAUSE_UNKNOWN")
+                    support_state = self.evaluate_requirement_support(
+                        requirement_text=requirement_text or query_text or "",
+                        passage_text=p.passage_text,
+                        clause_identifier=p.clause_identifier,
+                        is_compound=is_compound,
+                        compound_components=compound_components
+                    )
                     return ClauseEvidenceResult(
                         outcome=ClauseEvidenceOutcome.CLAUSE_EVIDENCE_FOUND.value,
                         passage_text=p.passage_text,
@@ -235,6 +332,7 @@ class ClauseRetriever:
                         extraction_quality_status=doc.get("ingestion_status"),
                         has_table=p.has_table,
                         is_grounded=is_grounded,
+                        requirement_evidence_support=support_state,
                         message=f"Authentic passage for Clause {p.clause_identifier} grounded in document {doc_id}."
                         if is_grounded else "Passage from unknown clause section; grounding cannot be verified."
                     )
@@ -248,6 +346,7 @@ class ClauseRetriever:
                         file_sha256=doc_sha,
                         extraction_quality_status=doc.get("ingestion_status"),
                         is_grounded=False,
+                        requirement_evidence_support=RequirementEvidenceSupportState.UNVERIFIED_COVERAGE.value,
                         message=f"Clause '{target_clause}' not found in eligible document '{doc_id}'."
                     )
 
@@ -263,6 +362,13 @@ class ClauseRetriever:
                 if matching:
                     p = matching[0]
                     # Lexical search match: DO NOT infer clause applicability; grounding is strictly False
+                    support_state = self.evaluate_requirement_support(
+                        requirement_text=requirement_text or query_text or "",
+                        passage_text=p.passage_text,
+                        clause_identifier=p.clause_identifier,
+                        is_compound=is_compound,
+                        compound_components=compound_components
+                    )
                     return ClauseEvidenceResult(
                         outcome=ClauseEvidenceOutcome.CLAUSE_EVIDENCE_FOUND.value,
                         passage_text=p.passage_text,
@@ -279,6 +385,7 @@ class ClauseRetriever:
                         extraction_quality_status=doc.get("ingestion_status"),
                         has_table=p.has_table,
                         is_grounded=False,  # Unverified because clause citation was not explicitly requested
+                        requirement_evidence_support=support_state,
                         message="Relevant passage retrieved via lexical search; specific clause citation was not requested so grounding is unverified."
                     )
 
@@ -290,6 +397,7 @@ class ClauseRetriever:
                 file_sha256=doc_sha,
                 extraction_quality_status=doc.get("ingestion_status"),
                 is_grounded=False,
+                requirement_evidence_support=RequirementEvidenceSupportState.UNVERIFIED_COVERAGE.value,
                 message="No clause citation requested and no relevant passage located via search."
             )
 
@@ -300,6 +408,7 @@ class ClauseRetriever:
                 edition_year=edition_year,
                 document_id=doc_id if 'doc_id' in locals() else None,
                 is_grounded=False,
+                requirement_evidence_support=RequirementEvidenceSupportState.UNVERIFIED_COVERAGE.value,
                 message=f"Error executing clause search in corpus: {str(err)}"
             )
 
