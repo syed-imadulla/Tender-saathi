@@ -2,7 +2,15 @@
 // All requests go through /api (proxied to Flask on :5000 by Vite)
 // No API keys ever stored here.
 
-import type { AnalysisResult, HumanReviewDecision, TenderReviewResponse } from './types';
+import type {
+  AnalysisResult,
+  HumanReviewDecision,
+  TenderReviewResponse,
+  GraphHub,
+  StandardsSearchResponse,
+  StandardsNeighborsResponse,
+  StandardsGraphOverviewResponse,
+} from './types';
 
 const rawBase = ((import.meta as unknown as { env?: Record<string, string> }).env?.VITE_API_URL)?.trim() || '/api';
 const cleaned = rawBase.endsWith('/') ? rawBase.slice(0, -1) : rawBase;
@@ -115,5 +123,33 @@ export async function getReviewDecisions(
 ): Promise<TenderReviewResponse> {
   const res = await fetch(`${BASE}/tender/${tenderId}/review`);
   return handleResponse<TenderReviewResponse>(res);
+}
+
+export async function searchStandards(
+  query: string,
+  limit: number = 15
+): Promise<StandardsSearchResponse> {
+  const params = new URLSearchParams({ q: query, limit: String(limit) });
+  const res = await fetch(`${BASE}/standards/search?${params}`);
+  return handleResponse<StandardsSearchResponse>(res);
+}
+
+export async function getGraphHubs(): Promise<{ hubs: GraphHub[]; disclaimer: string }> {
+  const res = await fetch(`${BASE}/standards/graph/hubs`);
+  return handleResponse<{ hubs: GraphHub[]; disclaimer: string }>(res);
+}
+
+export async function getStandardNeighbors(
+  standardIdOrNumber: string,
+  depth: number = 1
+): Promise<StandardsNeighborsResponse> {
+  const encoded = encodeURIComponent(standardIdOrNumber);
+  const res = await fetch(`${BASE}/standards/${encoded}/neighbors?depth=${depth}`);
+  return handleResponse<StandardsNeighborsResponse>(res);
+}
+
+export async function getGraphOverview(): Promise<StandardsGraphOverviewResponse> {
+  const res = await fetch(`${BASE}/standards/graph/overview`);
+  return handleResponse<StandardsGraphOverviewResponse>(res);
 }
 

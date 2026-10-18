@@ -1,11 +1,14 @@
-// App.tsx — Root component managing the 3 primary application states
+// App.tsx — Root component managing primary application states & views
 import { useState, useCallback } from 'react';
 import type { AnalysisResult, AppState, InputMode } from './types';
 import Home from './pages/Home';
 import Analyzing, { OCR_STEPS } from './pages/Analyzing';
 import Results from './pages/Results';
+import StandardsGraph from './pages/StandardsGraph';
 
 export default function App() {
+  const [currentView, setCurrentView] = useState<'audit' | 'graph'>('audit');
+  const [graphStandard, setGraphStandard] = useState<string | undefined>(undefined);
   const [state, setState] = useState<AppState>('home');
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -43,12 +46,31 @@ export default function App() {
     setError(null);
   }, []);
 
+  const handleOpenGraph = useCallback((standardId?: string) => {
+    setGraphStandard(standardId);
+    setCurrentView('graph');
+  }, []);
+
+  const handleNavigateToAudit = useCallback(() => {
+    setCurrentView('audit');
+  }, []);
+
+  if (currentView === 'graph') {
+    return (
+      <StandardsGraph
+        onNavigateToAudit={handleNavigateToAudit}
+        initialStandardId={graphStandard || 'IS-15778-2007'}
+      />
+    );
+  }
+
   return (
     <>
       {state === 'home' && (
         <Home
           onStartAnalysis={(promise, mode) => handleStartAnalysisWithMode(promise, mode || activeMode)}
           errorMessage={error}
+          onOpenGraph={() => handleOpenGraph()}
         />
       )}
       {state === 'analyzing' && (
@@ -63,3 +85,4 @@ export default function App() {
     </>
   );
 }
+

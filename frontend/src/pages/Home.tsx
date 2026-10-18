@@ -13,6 +13,7 @@ import type { AnalysisResult, InputMode } from '../types';
 interface HomeProps {
   onStartAnalysis: (promise: Promise<AnalysisResult>, mode: InputMode) => void;
   errorMessage: string | null;
+  onOpenGraph?: () => void;
 }
 
 const SAMPLES: Array<{ key: 'cpvc' | 'valve' | 'superseded'; label: string }> = [
@@ -21,7 +22,7 @@ const SAMPLES: Array<{ key: 'cpvc' | 'valve' | 'superseded'; label: string }> = 
   { key: 'superseded', label: 'IS 10611 (Superseded)' },
 ];
 
-export default function Home({ onStartAnalysis, errorMessage }: HomeProps) {
+export default function Home({ onStartAnalysis, errorMessage, onOpenGraph }: HomeProps) {
   const [isHowItWorksOpen, setIsHowItWorksOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
 
@@ -61,7 +62,9 @@ export default function Home({ onStartAnalysis, errorMessage }: HomeProps) {
       <Header
         onOpenHowItWorks={() => setIsHowItWorksOpen(true)}
         onOpenAbout={() => setIsAboutOpen(true)}
+        onOpenGraph={onOpenGraph}
       />
+
 
       <main className="home-unified__main" role="main">
         <div className="home-unified__hero">

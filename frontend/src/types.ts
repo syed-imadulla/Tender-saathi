@@ -419,3 +419,92 @@ export interface TenderReviewResponse {
   progress: ReviewProgressSummary;
 }
 
+// Phase 23: Standards Knowledge Graph Types
+export interface GraphNode {
+  id: string;
+  standard_number: string;
+  year?: number | null;
+  title: string;
+  status: string;
+  verification_status: 'VERIFIED' | 'CURATED' | string;
+  technical_committee?: string | null;
+  scope?: string | null;
+  is_focal?: boolean;
+  // D3 force simulation properties
+  x?: number;
+  y?: number;
+  vx?: number;
+  vy?: number;
+  fx?: number | null;
+  fy?: number | null;
+}
+
+export interface GraphEdge {
+  id: string;
+  source: string | GraphNode;
+  target: string | GraphNode;
+  source_standard: string;
+  target_standard: string;
+  relationship_type: string;
+  direction: 'OUTGOING' | 'INCOMING';
+  evidence: string;
+  evidence_clause?: string;
+  provenance: 'VERIFIED' | 'CURATED' | string;
+  confidence: number;
+  source_url?: string | null;
+}
+
+export interface GraphHub {
+  standard_id: string;
+  standard_number: string;
+  year?: number | null;
+  full_title: string;
+  status: string;
+  verification_status: string;
+  domain: string;
+  icon: string;
+  relationships_count: number;
+}
+
+export interface StandardsSearchItem {
+  standard_id: string;
+  standard_number: string;
+  year?: number | null;
+  full_title: string;
+  status: string;
+  technical_committee?: string | null;
+  verification_status: string;
+}
+
+export interface StandardsSearchResponse {
+  query: string;
+  total: number;
+  standards: StandardsSearchItem[];
+}
+
+export interface StandardsNeighborsResponse {
+  focal_standard: GraphNode;
+  nodes: GraphNode[];
+  edges: GraphEdge[];
+  meta: {
+    total_nodes: number;
+    total_edges: number;
+    depth: number;
+    disclaimer: string;
+  };
+}
+
+export interface StandardsGraphOverviewResponse {
+  nodes: GraphNode[];
+  edges: GraphEdge[];
+  stats: {
+    total_standards_in_db: number;
+    total_explicit_relationships: number;
+    total_normative_references: number;
+    overview_nodes_count: number;
+    overview_edges_count: number;
+  };
+  disclaimer: string;
+}
+
+

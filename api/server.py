@@ -42,6 +42,9 @@ from src.critic import are_standards_equivalent
 from src.extract import extract_from_text, extract_from_pdf
 from src.audit import TenderAuditEngine, TenderAuditResult, ReviewStatus
 from src.report import ReportGenerator
+from src.graph import StandardsGraph, StandardRelationship
+from src.standards import StandardsDatabase, CANONICAL_RELATIONSHIP_TYPES
+
 
 # Ingestion layer (image upload / OCR)
 try:
@@ -104,6 +107,24 @@ def get_report_gen() -> ReportGenerator:
     if _report_gen is None:
         _report_gen = ReportGenerator()
     return _report_gen
+
+
+_standards_db: Optional[StandardsDatabase] = None
+_standards_graph: Optional[StandardsGraph] = None
+
+
+def get_standards_db() -> StandardsDatabase:
+    global _standards_db
+    if _standards_db is None:
+        _standards_db = StandardsDatabase()
+    return _standards_db
+
+
+def get_standards_graph() -> StandardsGraph:
+    global _standards_graph
+    if _standards_graph is None:
+        _standards_graph = StandardsGraph(db=get_standards_db())
+    return _standards_graph
 
 
 # ---------------------------------------------------------------------------
@@ -919,6 +940,362 @@ def analyze_image():
     except Exception as e:
         logger.error("analyze_image error: %s", traceback.format_exc())
         return jsonify({"error": "Image analysis failed. Please try again.", "detail": str(e)}), 500
+
+
+# ---------------------------------------------------------------------------
+# Standards Knowledge Graph Endpoints (Read-Only)
+# ---------------------------------------------------------------------------
+
+GRAPH_DISCLAIMER = (
+    "Graph relationships represent technical references and lifecycle links in the BIS catalogue; "
+    "they do not independently establish legal applicability or procurement compliance for any specific tender."
+)
+
+
+@app.route("/api/standards/search", methods=["GET"])
+def search_standards():
+    """
+    GET /api/standards/search?q=<query>&limit=<limit>
+
+    Search standards by standard number, ID, or title.
+    Read-only, bounded, safe.
+    """
+    q = (request.args.get("q") or "").strip()
+    if not q:
+        return jsonify({"query": "", "total": 0, "standards": []})
+
+    try:
+        limit = min(max(1, int(request.args.get("limit", 15))), 50)
+    except (ValueError, TypeError):
+        limit = 15
+
+    db = get_standards_db()
+    with db._get_connection() as conn:
+        cursor = conn.cursor()
+        query_pattern = f"%{q}%"
+        prefix_pattern = f"{q}%"
+        cursor.execute(
+            """
+            SELECT standard_id, standard_number, year, full_title, status,
+                   technical_committee, verification_status
+            FROM standards
+            WHERE standard_number LIKE ? OR standard_id LIKE ? OR full_title LIKE ?
+            ORDER BY 
+                CASE 
+                    WHEN standard_number LIKE ? THEN 1
+                    WHEN standard_id LIKE ? THEN 2
+                    WHEN standard_number LIKE ? THEN 3
+                    ELSE 4
+                END,
+                standard_number ASC
+            LIMIT ?
+            """,
+            (query_pattern, query_pattern, query_pattern, prefix_pattern, prefix_pattern, query_pattern, limit)
+        )
+        rows = [dict(r) for r in cursor.fetchall()]
+
+    return jsonify({
+        "query": q,
+        "total": len(rows),
+        "standards": rows
+    })
+
+
+@app.route("/api/standards/graph/hubs", methods=["GET"])
+def get_graph_hubs():
+    """
+    GET /api/standards/graph/hubs
+
+    Returns curated, prominent standards hubs across engineering domains
+    with relationship counts and quick metadata for exploratory entry points.
+    """
+    hub_definitions = [
+        {"standard_id": "IS-15778-2007", "standard_number": "IS 15778", "domain": "Plumbing & Piping", "icon": "droplet"},
+        {"standard_id": "IS-7098-(Part-1)-1988", "standard_number": "IS 7098 (Part 1)", "domain": "Electrical & Cables", "icon": "zap"},
+        {"standard_id": "IS-1180-Part-1-2014", "standard_number": "IS 1180 (Part 1)", "domain": "Power & Transformers", "icon": "cpu"},
+        {"standard_id": "IS-14846-2000", "standard_number": "IS 14846", "domain": "Water Works & Valves", "icon": "filter"},
+        {"standard_id": "IS-8034-2018", "standard_number": "IS 8034", "domain": "Pumps & Pumping Systems", "icon": "activity"},
+        {"standard_id": "IS-458-2021", "standard_number": "IS 458", "domain": "Civil & Concrete Pipes", "icon": "layers"},
+        {"standard_id": "IS-778-1984", "standard_number": "IS 778", "domain": "Alloy Valves & Fittings", "icon": "tool"},
+        {"standard_id": "IS-12615-2018", "standard_number": "IS 12615", "domain": "Motors & Energy Efficiency", "icon": "disc"},
+    ]
+
+    db = get_standards_db()
+    graph = get_standards_graph()
+    hubs = []
+
+    for hub in hub_definitions:
+        std_row = db.get_standard(hub["standard_id"])
+        if not std_row:
+            with db._get_connection() as conn:
+                c = conn.cursor()
+                c.execute("SELECT * FROM standards WHERE standard_number = ? LIMIT 1", (hub["standard_number"],))
+                r = c.fetchone()
+                if r:
+                    std_row = dict(r)
+
+        if std_row:
+            rels = graph.get_direct_relationships(hub["standard_number"], depth=1)
+            hubs.append({
+                "standard_id": std_row["standard_id"],
+                "standard_number": std_row["standard_number"],
+                "year": std_row.get("year"),
+                "full_title": std_row.get("full_title", ""),
+                "status": std_row.get("status", "Active"),
+                "verification_status": std_row.get("verification_status", "CURATED"),
+                "domain": hub["domain"],
+                "icon": hub["icon"],
+                "relationships_count": len(rels)
+            })
+
+    return jsonify({
+        "hubs": hubs,
+        "disclaimer": GRAPH_DISCLAIMER
+    })
+
+
+@app.route("/api/standards/<path:standard_id>/neighbors", methods=["GET"])
+def get_standard_neighbors(standard_id: str):
+    """
+    GET /api/standards/<standard_id>/neighbors?depth=1
+
+    Returns focal standard metadata, direct depth=1 connected nodes, and explicit edges.
+    Strictly enforces depth=1.
+    """
+    depth_param = request.args.get("depth", "1")
+    try:
+        depth = int(depth_param)
+    except (ValueError, TypeError):
+        return jsonify({"error": "Invalid depth parameter. Must be an integer."}), 400
+
+    if depth != 1:
+        return jsonify({
+            "error": "Only depth=1 is supported to prevent unbounded or speculative graph traversal."
+        }), 400
+
+    clean_id = (standard_id or "").strip()
+    if not clean_id:
+        return jsonify({"error": "standard_id parameter is required."}), 400
+
+    db = get_standards_db()
+    graph = get_standards_graph()
+
+    # Look up focal standard
+    focal = db.get_standard(clean_id)
+    if not focal:
+        with db._get_connection() as conn:
+            c = conn.cursor()
+            c.execute("SELECT * FROM standards WHERE standard_number = ? OR standard_id = ? OR standard_number LIKE ?", (clean_id, clean_id, f"%{clean_id}%"))
+            r = c.fetchone()
+            if r:
+                focal = dict(r)
+
+    focal_lookup_key = focal["standard_number"] if focal else clean_id
+    rels = graph.get_direct_relationships(focal_lookup_key, depth=1)
+    if not focal and not rels:
+        return jsonify({"error": f"Standard '{clean_id}' not found in standards catalogue or relationship index."}), 404
+
+    focal_number = focal["standard_number"] if focal else clean_id
+
+    nodes_dict: Dict[str, Dict[str, Any]] = {}
+    edges_list: List[Dict[str, Any]] = []
+
+    def get_or_create_node(std_num_or_id: str, is_focal: bool = False) -> Dict[str, Any]:
+        norm_key = re.sub(r'\s+', ' ', std_num_or_id.strip()).upper()
+        base_match = re.sub(r'\s*:\s*\d{4}.*$', '', norm_key).strip()
+
+        if norm_key in nodes_dict:
+            if is_focal:
+                nodes_dict[norm_key]["is_focal"] = True
+            return nodes_dict[norm_key]
+        if base_match in nodes_dict:
+            if is_focal:
+                nodes_dict[base_match]["is_focal"] = True
+            return nodes_dict[base_match]
+
+        row = db.get_standard(base_match) or db.get_standard(norm_key) or db.get_standard(std_num_or_id.strip())
+        if not row:
+            with db._get_connection() as conn:
+                c = conn.cursor()
+                c.execute(
+                    "SELECT standard_id, standard_number, year, full_title, status, verification_status, technical_committee, scope "
+                    "FROM standards WHERE standard_number LIKE ? OR standard_id LIKE ? LIMIT 1",
+                    (base_match, base_match)
+                )
+                r = c.fetchone()
+                if r:
+                    row = dict(r)
+
+        if row:
+            node_data = {
+                "id": row["standard_id"],
+                "standard_number": row["standard_number"],
+                "year": row.get("year"),
+                "title": row.get("full_title", ""),
+                "status": row.get("status", "Active"),
+                "verification_status": row.get("verification_status", "CURATED"),
+                "technical_committee": row.get("technical_committee"),
+                "scope": row.get("scope"),
+                "is_focal": is_focal
+            }
+        else:
+            ym = re.search(r'\b(19\d\d|20\d\d)\b', norm_key)
+            extracted_year = int(ym.group(1)) if ym else None
+            clean_display_num = re.sub(r'\s*:\s*\d{4}.*$', '', norm_key).strip()
+
+            ref_title = None
+            with db._get_connection() as conn:
+                c = conn.cursor()
+                c.execute(
+                    "SELECT referenced_title, referenced_year FROM standard_references "
+                    "WHERE referenced_standard_number LIKE ? LIMIT 1",
+                    (f"%{clean_display_num}%",)
+                )
+                r = c.fetchone()
+                if r:
+                    ref_title = r["referenced_title"]
+                    if not extracted_year and r["referenced_year"]:
+                        extracted_year = r["referenced_year"]
+
+            node_data = {
+                "id": norm_key.replace(" ", "-").replace(":", "-").replace("(", "").replace(")", ""),
+                "standard_number": clean_display_num,
+                "year": extracted_year,
+                "title": ref_title or f"BIS Standard {clean_display_num}",
+                "status": "Active",
+                "verification_status": "CURATED",
+                "technical_committee": None,
+                "scope": None,
+                "is_focal": is_focal
+            }
+
+        nodes_dict[norm_key] = node_data
+        return node_data
+
+    # Ensure focal node is present
+    focal_node = get_or_create_node(focal_number, is_focal=True)
+
+    for idx, rel in enumerate(rels):
+        src_node = get_or_create_node(rel.source_standard, is_focal=(rel.source_standard == focal_number))
+        tgt_node = get_or_create_node(rel.target_standard, is_focal=(rel.target_standard == focal_number))
+
+        edge_data = {
+            "id": f"edge-{idx}-{src_node['id']}-{tgt_node['id']}",
+            "source": src_node["id"],
+            "target": tgt_node["id"],
+            "source_standard": rel.source_standard,
+            "target_standard": rel.target_standard,
+            "relationship_type": str(rel.relationship_type),
+            "direction": rel.direction,
+            "evidence": rel.evidence,
+            "evidence_clause": rel.evidence_clause or "Referenced Document Clause",
+            "provenance": rel.provenance,
+            "confidence": rel.confidence,
+            "source_url": rel.source_url
+        }
+        edges_list.append(edge_data)
+
+    return jsonify({
+        "focal_standard": focal_node,
+        "nodes": list(nodes_dict.values()),
+        "edges": edges_list,
+        "meta": {
+            "total_nodes": len(nodes_dict),
+            "total_edges": len(edges_list),
+            "depth": 1,
+            "disclaimer": GRAPH_DISCLAIMER
+        }
+    })
+
+
+@app.route("/api/standards/graph/overview", methods=["GET"])
+def get_graph_overview():
+    """
+    GET /api/standards/graph/overview
+
+    Returns a bounded overview topology and relationship distribution stats.
+    Keeps node count bounded (30-40 nodes) to prevent unreadable hairballs.
+    """
+    db = get_standards_db()
+    graph = get_standards_graph()
+
+    with db._get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT count(*) FROM standards")
+        total_standards = cursor.fetchone()[0]
+
+        cursor.execute("SELECT count(*) FROM standard_relationships")
+        total_db_relationships = cursor.fetchone()[0]
+
+        cursor.execute("SELECT count(*) FROM standard_references")
+        total_db_references = cursor.fetchone()[0]
+
+    core_hubs = [
+        "IS 14846", "IS 15778", "IS 7098 (Part 1)", "IS 1180 (Part 1)",
+        "IS 458", "IS 8034", "IS 2491", "IS 12615"
+    ]
+
+    all_nodes: Dict[str, Dict[str, Any]] = {}
+    all_edges: List[Dict[str, Any]] = []
+    seen_edge_keys = set()
+    edge_idx = 0
+
+    for hub in core_hubs:
+        rels = graph.get_direct_relationships(hub, depth=1)
+        for rel in rels[:4]:
+            edge_key = (rel.source_standard, rel.target_standard, str(rel.relationship_type))
+            if edge_key in seen_edge_keys:
+                continue
+            seen_edge_keys.add(edge_key)
+
+            for std_str in (rel.source_standard, rel.target_standard):
+                clean_num = re.sub(r'\s*:\s*\d{4}.*$', '', std_str).strip()
+                node_id = clean_num.replace(" ", "-").replace("(", "").replace(")", "")
+                if node_id not in all_nodes:
+                    db_std = db.get_standard(clean_num)
+                    all_nodes[node_id] = {
+                        "id": node_id,
+                        "standard_number": clean_num,
+                        "year": db_std.get("year") if db_std else None,
+                        "title": db_std.get("full_title", f"BIS Standard {clean_num}") if db_std else f"BIS Standard {clean_num}",
+                        "status": db_std.get("status", "Active") if db_std else "Active",
+                        "verification_status": db_std.get("verification_status", "CURATED") if db_std else "CURATED",
+                        "is_focal": clean_num in core_hubs
+                    }
+
+            src_num = re.sub(r'\s*:\s*\d{4}.*$', '', rel.source_standard).strip()
+            tgt_num = re.sub(r'\s*:\s*\d{4}.*$', '', rel.target_standard).strip()
+            src_id = src_num.replace(" ", "-").replace("(", "").replace(")", "")
+            tgt_id = tgt_num.replace(" ", "-").replace("(", "").replace(")", "")
+
+            all_edges.append({
+                "id": f"overview-edge-{edge_idx}",
+                "source": src_id,
+                "target": tgt_id,
+                "source_standard": rel.source_standard,
+                "target_standard": rel.target_standard,
+                "relationship_type": str(rel.relationship_type),
+                "direction": rel.direction,
+                "evidence": rel.evidence,
+                "evidence_clause": rel.evidence_clause or "Referenced Document Clause",
+                "provenance": rel.provenance,
+                "confidence": rel.confidence,
+                "source_url": rel.source_url
+            })
+            edge_idx += 1
+
+    return jsonify({
+        "nodes": list(all_nodes.values()),
+        "edges": all_edges,
+        "stats": {
+            "total_standards_in_db": total_standards,
+            "total_explicit_relationships": total_db_relationships,
+            "total_normative_references": total_db_references,
+            "overview_nodes_count": len(all_nodes),
+            "overview_edges_count": len(all_edges)
+        },
+        "disclaimer": GRAPH_DISCLAIMER
+    })
 
 
 # ---------------------------------------------------------------------------
