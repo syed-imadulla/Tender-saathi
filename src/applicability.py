@@ -614,6 +614,34 @@ class ApplicabilityGate:
                     f"but standard covers {cand_prof.steel_grade_process.replace('_', ' ')}."
                 )
 
+        # D2. Structural Steel Framing vs Concrete Reinforcement Product Compatibility
+        # Structural steel framing (trusses, purlins, structural steelwork, gantry girders, rafters)
+        # requires structural steel standards (e.g. IS 800, IS 2062). It cannot be satisfied by
+        # concrete reinforcement rebar/wires (e.g. IS 1786, IS 432).
+        has_structural_framing_req = bool(re.search(
+            r'\b(?:structural\s+steel\s+(?:roof\s+)?truss(?:es)?|roof\s+truss(?:es)?|truss(?:es)?|purlin(?:s)?|structural\s+steelwork|gantry\s+girder(?:s)?|portal\s+frame(?:s)?|structural\s+steel\s+(?:fabrication|erection)|steel\s+purlin(?:s)?)\b',
+            req_text_low
+        ))
+        is_concrete_reinforcement_std = (
+            "1786" in std_num or
+            "432" in std_num or
+            bool(re.search(
+                r'\b(?:concrete\s+reinforcement|reinforcement\s+(?:in|for)\s+concrete|reinforcing\s+bars?|deformed\s+steel\s+bars?\s+(?:and\s+wires?\s+)?for\s+concrete)\b',
+                cand_corpus_low
+            ))
+        )
+        has_concrete_reinforcement_req = bool(re.search(
+            r'\b(?:rebar|reinforcement|reinforcing|rcc|reinforced\s+concrete|tmt\s+bars?|concrete\s+reinforcing)\b',
+            req_text_low
+        ))
+        if has_structural_framing_req and is_concrete_reinforcement_std and not has_concrete_reinforcement_req:
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: structural steel framing vs concrete reinforcement standard")
+            rejection_reasons.append(
+                "Product/application mismatch: Requirement specifies structural steel framing (roof trusses/purlins/structural steelwork), "
+                "which cannot be satisfied by concrete reinforcement bars/wires (e.g. IS 1786). Applicable standards are IS 800 / IS 2062."
+            )
+
         # E. Pump Installation Compatibility (Submersible Borewell vs Openwell vs Surface)
         if req_prof.pump_installation and cand_prof.pump_installation:
             is_sub_cand = cand_prof.pump_installation in ["submersible", "submersible_borewell", "openwell"]

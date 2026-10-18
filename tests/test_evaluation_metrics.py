@@ -481,7 +481,139 @@ class TestEvaluationMetrics(unittest.TestCase):
         self.assertEqual(adj["unverified_baseline_count"], 2)
         self.assertEqual(adj["unverified_baseline_top1_accuracy_percent"], 50.0)
 
+    def test_14_distractor_probe_vs_openset_negative_control(self):
+        """
+        14. Verify that distractor retrieval probes are distinguished from open-set negative controls.
+        - Distractor probe recommending an in-domain standard (no unrelated match): NOT a false recommendation.
+        - Distractor probe recommending an unrelated distractor standard: FALSE recommendation.
+        - Open-set negative control recommending any standard: FALSE recommendation.
+        """
+        cases = [
+            # Distractor probe 1: In-domain cable standard recommended -> unrelated standards rejected
+            {
+                "requirement_id": "NEG-002",
+                "expected_decision": "REJECT_INELIGIBLE",
+                "test_type": "DISTRACTOR_PROBE",
+                "system_decision": "RECOMMEND_WITH_REVIEW",
+                "predicted_top1": "IS 7098 (Part 1)",
+                "unrelated_standards": ["IS 2491", "IS 15000", "IS 778"],
+                "has_unrelated_rec": False
+            },
+            # Distractor probe 2: Unrelated food standard falsely recommended -> violation
+            {
+                "requirement_id": "NEG-DISTRACTOR-FAIL",
+                "expected_decision": "REJECT_INELIGIBLE",
+                "test_type": "DISTRACTOR_PROBE",
+                "system_decision": "RECOMMEND",
+                "predicted_top1": "IS 2491",
+                "unrelated_standards": ["IS 2491", "IS 15000", "IS 778"],
+                "has_unrelated_rec": True
+            },
+            # Open-set negative control 1: Safely abstained -> valid rejection
+            {
+                "requirement_id": "NEG-001",
+                "expected_decision": "REJECT_INELIGIBLE",
+                "test_type": "OPEN_SET_REJECTION",
+                "system_decision": "REVIEW_REQUIRED",
+                "predicted_top1": None,
+                "unrelated_standards": ["IS/ISO 10434"],
+                "has_unrelated_rec": False
+            },
+            # Open-set negative control 2: Falsely recommended out-of-domain standard -> violation
+            {
+                "requirement_id": "NEG-OPENSET-FAIL",
+                "expected_decision": "REJECT_INELIGIBLE",
+                "test_type": "OPEN_SET_REJECTION",
+                "system_decision": "RECOMMEND",
+                "predicted_top1": "IS 1786",
+                "unrelated_standards": ["IS 1786"],
+                "has_unrelated_rec": True
+            }
+        ]
+
+        metrics = compute_deconflated_metrics(cases)
+        neg = metrics["negative_control"]
+
+        self.assertEqual(neg["total_negative_cases"], 4)
+        # Exactly 2 false recommendations: NEG-DISTRACTOR-FAIL and NEG-OPENSET-FAIL
+        # NEG-002 must NOT be counted as a false recommendation!
+        self.assertEqual(neg["false_recommendation_count"], 2)
+        self.assertEqual(neg["false_recommendation_rate_percent"], 50.0)
+        self.assertEqual(neg["negative_rejection_rate_percent"], 50.0)
+
+    def test_15_empty_populations_markdown_report_formatting(self):
+        """
+        15. Verify that empty denominators format as 'N/A' rather than '0.0%' in the Markdown report.
+        """
+        from src.evaluate import _generate_comprehensive_markdown_report
+
+        # Dataset with zero answerable cases and zero negative controls
+        cases = [
+            {
+                "requirement_id": "U1",
+                "expected_decision": "ABSTAIN_UNDER_SPECIFIED",
+                "system_decision": "REVIEW_REQUIRED",
+                "predicted_top1": None,
+                "is_safe_abstention": True,
+                "procurement_sector": "PROVISIONAL:CIVIL"
+            }
+        ]
+        metrics = compute_deconflated_metrics(cases)
+        md = _generate_comprehensive_markdown_report(metrics)
+
+        # Top-1 Accuracy on 0 answerable cases must be N/A
+        self.assertIn("| **Top-1 Accuracy (Answerable)** | **N/A** | 0 / 0 |", md)
+        # Negative false rec rate on 0 negative cases must be N/A
+        self.assertIn("| **Negative False Rec Rate** | **N/A** | 0 / 0 |", md)
+
+    def test_16_recommend_with_review_and_autonomous_distinction(self):
+        """
+        16. Verify that RECOMMEND_WITH_REVIEW is distinguished from autonomous RECOMMEND
+        and withheld recommendations in both metric counts and markdown output.
+        """
+        from src.evaluate import _generate_comprehensive_markdown_report
+
+        cases = [
+            # Case 1: Autonomous recommendation
+            {
+                "requirement_id": "C1",
+                "expected_decision": "RECOMMEND",
+                "system_decision": "RECOMMEND",
+                "predicted_top1": "IS 15778",
+                "is_top1_hit": True
+            },
+            # Case 2: Assisted recommendation (review required)
+            {
+                "requirement_id": "C2",
+                "expected_decision": "RECOMMEND",
+                "system_decision": "RECOMMEND_WITH_REVIEW",
+                "predicted_top1": "IS 778",
+                "is_top1_hit": True
+            },
+            # Case 3: Withheld recommendation (abstention)
+            {
+                "requirement_id": "C3",
+                "expected_decision": "ABSTAIN_UNDER_SPECIFIED",
+                "system_decision": "REVIEW_REQUIRED",
+                "predicted_top1": None,
+                "is_safe_abstention": True
+            }
+        ]
+        metrics = compute_deconflated_metrics(cases)
+        sel = metrics["selective_classification"]
+
+        self.assertEqual(sel["total_eligible"], 3)
+        self.assertEqual(sel["covered_count"], 2)
+        self.assertEqual(sel["autonomous_covered_count"], 1)
+        self.assertEqual(sel["assisted_covered_count"], 1)
+
+        md = _generate_comprehensive_markdown_report(metrics)
+        self.assertIn("| **Autonomous Recommendations (`RECOMMEND`)** | **33.3%** | 1 / 3 |", md)
+        self.assertIn("| **Assisted Recommendations (`RECOMMEND_WITH_REVIEW`)** | **33.3%** | 1 / 3 |", md)
+        self.assertIn("| **Withheld Recommendations (Abstentions)** | **33.3%** | 1 / 3 |", md)
+
 
 if __name__ == "__main__":
     unittest.main()
+
 
