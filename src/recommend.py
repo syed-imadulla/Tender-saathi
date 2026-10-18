@@ -383,7 +383,11 @@ class StandardsRecommender:
             with self.db._get_connection() as conn:
                 cursor = conn.cursor()
                 # 1. Inject the explicit citation itself
-                cursor.execute("SELECT * FROM standards WHERE standard_number = ?", (exp,))
+                exp_base = re.sub(r'\s*:\s*\d{4}\b', '', exp).strip()
+                cursor.execute(
+                    "SELECT * FROM standards WHERE standard_number = ? OR standard_number = ? OR standard_id = ?",
+                    (exp, exp_base, exp)
+                )
                 row = cursor.fetchone()
                 if row:
                     r_dict = dict(row)

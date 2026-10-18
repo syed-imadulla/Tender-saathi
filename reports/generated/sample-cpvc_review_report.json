@@ -5,7 +5,7 @@
     "tender_id": "SAMPLE-CPVC",
     "tender_title": null,
     "organisation": null,
-    "source_file": "sample-cpvc.txt",
+    "source_file": "Sample: cpvc",
     "date": null,
     "requirements_analyzed": 1
   },
@@ -96,7 +96,7 @@
     "clarification_required_count": 0,
     "lifecycle_concern_count": 0,
     "potential_gap_count": 0,
-    "multi_standard_count": 1,
+    "multi_standard_count": 0,
     "human_review_count": 1,
     "coverage_distribution": {
       "COVERED": 1,
@@ -112,7 +112,7 @@
       "clarification_required_count": 0,
       "lifecycle_concern_count": 0,
       "potential_gap_count": 0,
-      "multi_standard_count": 1,
+      "multi_standard_count": 0,
       "human_review_count": 1,
       "coverage_distribution": {
         "COVERED": 1,
@@ -130,48 +130,12 @@
     "coverage_matrix": [
       {
         "requirement_id": "REQ-001",
-        "requirement_text": "Supply and installation of chlorinated polyvinyl chloride (CPVC) pipes and fittings conforming to IS 15778.",
+        "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
         "coverage_state": "COVERED",
         "primary_standards": [
-          "IS 15778",
-          "IS 783",
-          "IS 15778",
-          "IS 15778"
+          "IS 15778 : 2007"
         ],
-        "component_breakdown": [
-          {
-            "component_id": "REQ-001-C1",
-            "component_name": "chlorinated polyvinyl chloride",
-            "standard": "IS 15778",
-            "status": "COVERED",
-            "confidence": "High",
-            "evidence": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
-          },
-          {
-            "component_id": "REQ-001-C2",
-            "component_name": "pipes",
-            "standard": "IS 783",
-            "status": "COVERED",
-            "confidence": "Medium",
-            "evidence": "1.1 This standard covers recommended design practice for the laying of precast concrete pipes. It includes methods for calculating loads on pipes according to installation conditions and gives the corresponding load fact..."
-          },
-          {
-            "component_id": "REQ-001-C3",
-            "component_name": "CPVC pipes",
-            "standard": "IS 15778",
-            "status": "COVERED",
-            "confidence": "High",
-            "evidence": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
-          },
-          {
-            "component_id": "REQ-001-C4",
-            "component_name": "CPVC fittings",
-            "standard": "IS 15778",
-            "status": "COVERED",
-            "confidence": "High",
-            "evidence": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
-          }
-        ],
+        "component_breakdown": [],
         "gap_details": null,
         "lifecycle_concerns": [],
         "ambiguity_details": null,
@@ -237,21 +201,18 @@
             "severity": "INFO"
           },
           {
-            "finding_id": "MULTI-REQ-001",
+            "finding_id": "COV-REQ-001",
             "requirement_id": "REQ-001",
             "finding_type": "STANDARD_COVERED",
-            "title": "Multi-component requirement with complete standards coverage",
+            "title": "Applicable Standard Identified: IS 15778 : 2007",
             "standards": [
-              "IS 15778",
-              "IS 783",
-              "IS 15778",
-              "IS 15778"
+              "IS 15778 : 2007"
             ],
             "applicability_decision": "APPLICABLE",
             "evidence_strength": "STRONG",
             "supporting_facts": [
-              "Decomposed into 4 technical components.",
-              "Covered components: 4 of 4."
+              "Candidate standard 'IS 15778 : 2007' is verified applicable with STRONG evidence.",
+              "Available evidence supports applicable standards for the analyzed requirement/components, with no unresolved blocker."
             ],
             "lifecycle_status": "ACTIVE",
             "lifecycle_note": null,
@@ -265,10 +226,10 @@
               "verification_status": "CURATED",
               "retrieved_at": "2026-09-12T09:56:24.334042+00:00"
             },
-            "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
+            "uncertainty": "Available evidence supports standard applicability. Does NOT constitute legal compliance certification.",
             "human_review_required": false,
-            "review_action": "Multi-component coverage verified.",
-            "severity": "LOW"
+            "review_action": "Standard identified; proceed with standard technical review.",
+            "severity": "INFO"
           }
         ]
       }
@@ -333,21 +294,18 @@
         "severity": "INFO"
       },
       {
-        "finding_id": "MULTI-REQ-001",
+        "finding_id": "COV-REQ-001",
         "requirement_id": "REQ-001",
         "finding_type": "STANDARD_COVERED",
-        "title": "Multi-component requirement with complete standards coverage",
+        "title": "Applicable Standard Identified: IS 15778 : 2007",
         "standards": [
-          "IS 15778",
-          "IS 783",
-          "IS 15778",
-          "IS 15778"
+          "IS 15778 : 2007"
         ],
         "applicability_decision": "APPLICABLE",
         "evidence_strength": "STRONG",
         "supporting_facts": [
-          "Decomposed into 4 technical components.",
-          "Covered components: 4 of 4."
+          "Candidate standard 'IS 15778 : 2007' is verified applicable with STRONG evidence.",
+          "Available evidence supports applicable standards for the analyzed requirement/components, with no unresolved blocker."
         ],
         "lifecycle_status": "ACTIVE",
         "lifecycle_note": null,
@@ -361,161 +319,16 @@
           "verification_status": "CURATED",
           "retrieved_at": "2026-09-12T09:56:24.334042+00:00"
         },
-        "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
+        "uncertainty": "Available evidence supports standard applicability. Does NOT constitute legal compliance certification.",
         "human_review_required": false,
-        "review_action": "Multi-component coverage verified.",
-        "severity": "LOW"
+        "review_action": "Standard identified; proceed with standard technical review.",
+        "severity": "INFO"
       }
     ],
     "gap_findings": [],
     "lifecycle_findings": [],
     "ambiguity_findings": [],
-    "multi_standard_items": [
-      {
-        "requirement_id": "REQ-001",
-        "requirement_text": "Supply and installation of chlorinated polyvinyl chloride (CPVC) pipes and fittings conforming to IS 15778.",
-        "coverage_state": "COVERED",
-        "primary_standards": [
-          "IS 15778",
-          "IS 783",
-          "IS 15778",
-          "IS 15778"
-        ],
-        "component_breakdown": [
-          {
-            "component_id": "REQ-001-C1",
-            "component_name": "chlorinated polyvinyl chloride",
-            "standard": "IS 15778",
-            "status": "COVERED",
-            "confidence": "High",
-            "evidence": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
-          },
-          {
-            "component_id": "REQ-001-C2",
-            "component_name": "pipes",
-            "standard": "IS 783",
-            "status": "COVERED",
-            "confidence": "Medium",
-            "evidence": "1.1 This standard covers recommended design practice for the laying of precast concrete pipes. It includes methods for calculating loads on pipes according to installation conditions and gives the corresponding load fact..."
-          },
-          {
-            "component_id": "REQ-001-C3",
-            "component_name": "CPVC pipes",
-            "standard": "IS 15778",
-            "status": "COVERED",
-            "confidence": "High",
-            "evidence": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
-          },
-          {
-            "component_id": "REQ-001-C4",
-            "component_name": "CPVC fittings",
-            "standard": "IS 15778",
-            "status": "COVERED",
-            "confidence": "High",
-            "evidence": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
-          }
-        ],
-        "gap_details": null,
-        "lifecycle_concerns": [],
-        "ambiguity_details": null,
-        "lifecycle_warnings": [],
-        "external_regulations": [],
-        "findings": [
-          {
-            "finding_id": "LIFECYCLE-DEP-REQ-001-1",
-            "requirement_id": "REQ-001",
-            "finding_type": "LIFECYCLE_DEPENDENCY_SUPERSEDED",
-            "title": "Superseded Related Dependency: None",
-            "standards": [],
-            "applicability_decision": "REVIEW_REQUIRED",
-            "evidence_strength": "STRONG",
-            "supporting_facts": [
-              "Dependency None is superseded in BIS catalogue.",
-              "Active successor: No active successor recorded.",
-              "Reason: Superseded"
-            ],
-            "lifecycle_status": "WITHDRAWN",
-            "lifecycle_note": "Active successor: None",
-            "relationships": [],
-            "provenance": {
-              "source": "BIS_CATALOGUE",
-              "verified": true
-            },
-            "uncertainty": "Related standard is superseded; procurement specifications should update to active successor.",
-            "human_review_required": true,
-            "review_action": "Verify substitution of None with successor.",
-            "severity": "HIGH"
-          },
-          {
-            "finding_id": "STATUTORY-REQ-001-1",
-            "requirement_id": "REQ-001",
-            "finding_type": "EXTERNAL_STATUTORY_SIGNAL",
-            "title": "Statutory Advisory Signal: Central Public Works Department (CPWD Specifications 2019 / 2023 (Civil & Electrical Works))",
-            "standards": [
-              "IS 458",
-              "IS 783",
-              "IS 1239",
-              "IS 4985",
-              "IS 15778",
-              "IS 15905",
-              "IS 732"
-            ],
-            "applicability_decision": "ADVISORY_SIGNAL",
-            "evidence_strength": "STRONG",
-            "supporting_facts": [
-              "Authority: Central Public Works Department (CPWD)",
-              "Instrument: CPWD Specifications 2019 / 2023 (Civil & Electrical Works), Clause: Section 19 (Water Supply), Section 20 (Drainage), Section 31 (Electrical)",
-              "Advisory: CPWD Works Specifications govern execution, laying, jointing and testing of water supply pipelines, sewerage conduits and electrical installations for central works, mandating compliance with IS 783 (laying concrete pipes), IS 15778 (CPVC plumbing), and IS 1239 (mild steel piping)."
-            ],
-            "lifecycle_status": "ACTIVE",
-            "lifecycle_note": null,
-            "relationships": [],
-            "provenance": {
-              "source": "OFFICIAL_MANUAL",
-              "verified": true
-            },
-            "uncertainty": "External regulatory advisory signal. Does NOT constitute legal compliance certification.",
-            "human_review_required": false,
-            "review_action": "Review statutory compliance with CPWD Specifications 2019 / 2023 (Civil & Electrical Works).",
-            "severity": "INFO"
-          },
-          {
-            "finding_id": "MULTI-REQ-001",
-            "requirement_id": "REQ-001",
-            "finding_type": "STANDARD_COVERED",
-            "title": "Multi-component requirement with complete standards coverage",
-            "standards": [
-              "IS 15778",
-              "IS 783",
-              "IS 15778",
-              "IS 15778"
-            ],
-            "applicability_decision": "APPLICABLE",
-            "evidence_strength": "STRONG",
-            "supporting_facts": [
-              "Decomposed into 4 technical components.",
-              "Covered components: 4 of 4."
-            ],
-            "lifecycle_status": "ACTIVE",
-            "lifecycle_note": null,
-            "relationships": [],
-            "provenance": {
-              "source": "VALIDATED_RESEARCH_GOVERNMENT_GAZETTE_QCO",
-              "source_type": "STANDARDS_DB",
-              "source_url": "IS 15778:2007 Clause 1 Scope; Order S.O. 982(E)",
-              "raw_record_ref": "IS 15778 : 2007",
-              "ingestion_run_id": null,
-              "verification_status": "CURATED",
-              "retrieved_at": "2026-09-12T09:56:24.334042+00:00"
-            },
-            "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
-            "human_review_required": false,
-            "review_action": "Multi-component coverage verified.",
-            "severity": "LOW"
-          }
-        ]
-      }
-    ],
+    "multi_standard_items": [],
     "structured_audit_report": {
       "tender_id": "SAMPLE-CPVC",
       "summary": {
@@ -525,7 +338,7 @@
         "clarification_required_count": 0,
         "lifecycle_concern_count": 0,
         "potential_gap_count": 0,
-        "multi_standard_count": 1,
+        "multi_standard_count": 0,
         "human_review_count": 1,
         "coverage_distribution": {
           "COVERED": 1,
@@ -543,48 +356,12 @@
       "coverage_matrix": [
         {
           "requirement_id": "REQ-001",
-          "requirement_text": "Supply and installation of chlorinated polyvinyl chloride (CPVC) pipes and fittings conforming to IS 15778.",
+          "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
           "coverage_state": "COVERED",
           "primary_standards": [
-            "IS 15778",
-            "IS 783",
-            "IS 15778",
-            "IS 15778"
+            "IS 15778 : 2007"
           ],
-          "component_breakdown": [
-            {
-              "component_id": "REQ-001-C1",
-              "component_name": "chlorinated polyvinyl chloride",
-              "standard": "IS 15778",
-              "status": "COVERED",
-              "confidence": "High",
-              "evidence": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
-            },
-            {
-              "component_id": "REQ-001-C2",
-              "component_name": "pipes",
-              "standard": "IS 783",
-              "status": "COVERED",
-              "confidence": "Medium",
-              "evidence": "1.1 This standard covers recommended design practice for the laying of precast concrete pipes. It includes methods for calculating loads on pipes according to installation conditions and gives the corresponding load fact..."
-            },
-            {
-              "component_id": "REQ-001-C3",
-              "component_name": "CPVC pipes",
-              "standard": "IS 15778",
-              "status": "COVERED",
-              "confidence": "High",
-              "evidence": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
-            },
-            {
-              "component_id": "REQ-001-C4",
-              "component_name": "CPVC fittings",
-              "standard": "IS 15778",
-              "status": "COVERED",
-              "confidence": "High",
-              "evidence": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
-            }
-          ],
+          "component_breakdown": [],
           "gap_details": null,
           "lifecycle_concerns": [],
           "ambiguity_details": null,
@@ -650,21 +427,18 @@
               "severity": "INFO"
             },
             {
-              "finding_id": "MULTI-REQ-001",
+              "finding_id": "COV-REQ-001",
               "requirement_id": "REQ-001",
               "finding_type": "STANDARD_COVERED",
-              "title": "Multi-component requirement with complete standards coverage",
+              "title": "Applicable Standard Identified: IS 15778 : 2007",
               "standards": [
-                "IS 15778",
-                "IS 783",
-                "IS 15778",
-                "IS 15778"
+                "IS 15778 : 2007"
               ],
               "applicability_decision": "APPLICABLE",
               "evidence_strength": "STRONG",
               "supporting_facts": [
-                "Decomposed into 4 technical components.",
-                "Covered components: 4 of 4."
+                "Candidate standard 'IS 15778 : 2007' is verified applicable with STRONG evidence.",
+                "Available evidence supports applicable standards for the analyzed requirement/components, with no unresolved blocker."
               ],
               "lifecycle_status": "ACTIVE",
               "lifecycle_note": null,
@@ -678,10 +452,10 @@
                 "verification_status": "CURATED",
                 "retrieved_at": "2026-09-12T09:56:24.334042+00:00"
               },
-              "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
+              "uncertainty": "Available evidence supports standard applicability. Does NOT constitute legal compliance certification.",
               "human_review_required": false,
-              "review_action": "Multi-component coverage verified.",
-              "severity": "LOW"
+              "review_action": "Standard identified; proceed with standard technical review.",
+              "severity": "INFO"
             }
           ]
         }
@@ -689,48 +463,12 @@
       "covered_requirements": [
         {
           "requirement_id": "REQ-001",
-          "requirement_text": "Supply and installation of chlorinated polyvinyl chloride (CPVC) pipes and fittings conforming to IS 15778.",
+          "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
           "coverage_state": "COVERED",
           "primary_standards": [
-            "IS 15778",
-            "IS 783",
-            "IS 15778",
-            "IS 15778"
+            "IS 15778 : 2007"
           ],
-          "component_breakdown": [
-            {
-              "component_id": "REQ-001-C1",
-              "component_name": "chlorinated polyvinyl chloride",
-              "standard": "IS 15778",
-              "status": "COVERED",
-              "confidence": "High",
-              "evidence": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
-            },
-            {
-              "component_id": "REQ-001-C2",
-              "component_name": "pipes",
-              "standard": "IS 783",
-              "status": "COVERED",
-              "confidence": "Medium",
-              "evidence": "1.1 This standard covers recommended design practice for the laying of precast concrete pipes. It includes methods for calculating loads on pipes according to installation conditions and gives the corresponding load fact..."
-            },
-            {
-              "component_id": "REQ-001-C3",
-              "component_name": "CPVC pipes",
-              "standard": "IS 15778",
-              "status": "COVERED",
-              "confidence": "High",
-              "evidence": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
-            },
-            {
-              "component_id": "REQ-001-C4",
-              "component_name": "CPVC fittings",
-              "standard": "IS 15778",
-              "status": "COVERED",
-              "confidence": "High",
-              "evidence": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
-            }
-          ],
+          "component_breakdown": [],
           "gap_details": null,
           "lifecycle_concerns": [],
           "ambiguity_details": null,
@@ -796,21 +534,18 @@
               "severity": "INFO"
             },
             {
-              "finding_id": "MULTI-REQ-001",
+              "finding_id": "COV-REQ-001",
               "requirement_id": "REQ-001",
               "finding_type": "STANDARD_COVERED",
-              "title": "Multi-component requirement with complete standards coverage",
+              "title": "Applicable Standard Identified: IS 15778 : 2007",
               "standards": [
-                "IS 15778",
-                "IS 783",
-                "IS 15778",
-                "IS 15778"
+                "IS 15778 : 2007"
               ],
               "applicability_decision": "APPLICABLE",
               "evidence_strength": "STRONG",
               "supporting_facts": [
-                "Decomposed into 4 technical components.",
-                "Covered components: 4 of 4."
+                "Candidate standard 'IS 15778 : 2007' is verified applicable with STRONG evidence.",
+                "Available evidence supports applicable standards for the analyzed requirement/components, with no unresolved blocker."
               ],
               "lifecycle_status": "ACTIVE",
               "lifecycle_note": null,
@@ -824,10 +559,10 @@
                 "verification_status": "CURATED",
                 "retrieved_at": "2026-09-12T09:56:24.334042+00:00"
               },
-              "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
+              "uncertainty": "Available evidence supports standard applicability. Does NOT constitute legal compliance certification.",
               "human_review_required": false,
-              "review_action": "Multi-component coverage verified.",
-              "severity": "LOW"
+              "review_action": "Standard identified; proceed with standard technical review.",
+              "severity": "INFO"
             }
           ]
         }
@@ -835,152 +570,7 @@
       "potential_gaps": [],
       "lifecycle_concerns": [],
       "ambiguous_requirements": [],
-      "multi_standard_requirements": [
-        {
-          "requirement_id": "REQ-001",
-          "requirement_text": "Supply and installation of chlorinated polyvinyl chloride (CPVC) pipes and fittings conforming to IS 15778.",
-          "coverage_state": "COVERED",
-          "primary_standards": [
-            "IS 15778",
-            "IS 783",
-            "IS 15778",
-            "IS 15778"
-          ],
-          "component_breakdown": [
-            {
-              "component_id": "REQ-001-C1",
-              "component_name": "chlorinated polyvinyl chloride",
-              "standard": "IS 15778",
-              "status": "COVERED",
-              "confidence": "High",
-              "evidence": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
-            },
-            {
-              "component_id": "REQ-001-C2",
-              "component_name": "pipes",
-              "standard": "IS 783",
-              "status": "COVERED",
-              "confidence": "Medium",
-              "evidence": "1.1 This standard covers recommended design practice for the laying of precast concrete pipes. It includes methods for calculating loads on pipes according to installation conditions and gives the corresponding load fact..."
-            },
-            {
-              "component_id": "REQ-001-C3",
-              "component_name": "CPVC pipes",
-              "standard": "IS 15778",
-              "status": "COVERED",
-              "confidence": "High",
-              "evidence": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
-            },
-            {
-              "component_id": "REQ-001-C4",
-              "component_name": "CPVC fittings",
-              "standard": "IS 15778",
-              "status": "COVERED",
-              "confidence": "High",
-              "evidence": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure."
-            }
-          ],
-          "gap_details": null,
-          "lifecycle_concerns": [],
-          "ambiguity_details": null,
-          "lifecycle_warnings": [],
-          "external_regulations": [],
-          "findings": [
-            {
-              "finding_id": "LIFECYCLE-DEP-REQ-001-1",
-              "requirement_id": "REQ-001",
-              "finding_type": "LIFECYCLE_DEPENDENCY_SUPERSEDED",
-              "title": "Superseded Related Dependency: None",
-              "standards": [],
-              "applicability_decision": "REVIEW_REQUIRED",
-              "evidence_strength": "STRONG",
-              "supporting_facts": [
-                "Dependency None is superseded in BIS catalogue.",
-                "Active successor: No active successor recorded.",
-                "Reason: Superseded"
-              ],
-              "lifecycle_status": "WITHDRAWN",
-              "lifecycle_note": "Active successor: None",
-              "relationships": [],
-              "provenance": {
-                "source": "BIS_CATALOGUE",
-                "verified": true
-              },
-              "uncertainty": "Related standard is superseded; procurement specifications should update to active successor.",
-              "human_review_required": true,
-              "review_action": "Verify substitution of None with successor.",
-              "severity": "HIGH"
-            },
-            {
-              "finding_id": "STATUTORY-REQ-001-1",
-              "requirement_id": "REQ-001",
-              "finding_type": "EXTERNAL_STATUTORY_SIGNAL",
-              "title": "Statutory Advisory Signal: Central Public Works Department (CPWD Specifications 2019 / 2023 (Civil & Electrical Works))",
-              "standards": [
-                "IS 458",
-                "IS 783",
-                "IS 1239",
-                "IS 4985",
-                "IS 15778",
-                "IS 15905",
-                "IS 732"
-              ],
-              "applicability_decision": "ADVISORY_SIGNAL",
-              "evidence_strength": "STRONG",
-              "supporting_facts": [
-                "Authority: Central Public Works Department (CPWD)",
-                "Instrument: CPWD Specifications 2019 / 2023 (Civil & Electrical Works), Clause: Section 19 (Water Supply), Section 20 (Drainage), Section 31 (Electrical)",
-                "Advisory: CPWD Works Specifications govern execution, laying, jointing and testing of water supply pipelines, sewerage conduits and electrical installations for central works, mandating compliance with IS 783 (laying concrete pipes), IS 15778 (CPVC plumbing), and IS 1239 (mild steel piping)."
-              ],
-              "lifecycle_status": "ACTIVE",
-              "lifecycle_note": null,
-              "relationships": [],
-              "provenance": {
-                "source": "OFFICIAL_MANUAL",
-                "verified": true
-              },
-              "uncertainty": "External regulatory advisory signal. Does NOT constitute legal compliance certification.",
-              "human_review_required": false,
-              "review_action": "Review statutory compliance with CPWD Specifications 2019 / 2023 (Civil & Electrical Works).",
-              "severity": "INFO"
-            },
-            {
-              "finding_id": "MULTI-REQ-001",
-              "requirement_id": "REQ-001",
-              "finding_type": "STANDARD_COVERED",
-              "title": "Multi-component requirement with complete standards coverage",
-              "standards": [
-                "IS 15778",
-                "IS 783",
-                "IS 15778",
-                "IS 15778"
-              ],
-              "applicability_decision": "APPLICABLE",
-              "evidence_strength": "STRONG",
-              "supporting_facts": [
-                "Decomposed into 4 technical components.",
-                "Covered components: 4 of 4."
-              ],
-              "lifecycle_status": "ACTIVE",
-              "lifecycle_note": null,
-              "relationships": [],
-              "provenance": {
-                "source": "VALIDATED_RESEARCH_GOVERNMENT_GAZETTE_QCO",
-                "source_type": "STANDARDS_DB",
-                "source_url": "IS 15778:2007 Clause 1 Scope; Order S.O. 982(E)",
-                "raw_record_ref": "IS 15778 : 2007",
-                "ingestion_run_id": null,
-                "verification_status": "CURATED",
-                "retrieved_at": "2026-09-12T09:56:24.334042+00:00"
-              },
-              "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
-              "human_review_required": false,
-              "review_action": "Multi-component coverage verified.",
-              "severity": "LOW"
-            }
-          ]
-        }
-      ],
+      "multi_standard_requirements": [],
       "evidence_audit": {
         "evidence_distribution": {
           "STRONG": 1,
@@ -1018,11 +608,11 @@
   "requirements": [
     {
       "requirement_id": "REQ-001",
-      "requirement_text": "Supply and installation of chlorinated polyvinyl chloride (CPVC) pipes and fittings conforming to IS 15778.",
+      "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
       "category": "material",
       "components": [
         {
-          "text": "chlorinated polyvinyl chloride",
+          "text": "CPVC pipes",
           "component_type": "material",
           "domain": "piping",
           "extracted_attributes": {
@@ -1038,64 +628,6 @@
             "chlorinated polyvinyl chloride pipes",
             "cpvc pipes"
           ]
-        },
-        {
-          "text": "pipes",
-          "component_type": "material",
-          "domain": "piping",
-          "extracted_attributes": {
-            "category": "pipe_material",
-            "role": "PRIMARY_PRODUCT",
-            "search_concepts": []
-          },
-          "role": "PRIMARY_PRODUCT",
-          "search_concepts": []
-        },
-        {
-          "text": "CPVC pipes",
-          "component_type": "equipment",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "domain": "mechanical"
-          },
-          "role": null,
-          "search_concepts": []
-        },
-        {
-          "text": "CPVC fittings",
-          "component_type": "equipment",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "domain": "mechanical"
-          },
-          "role": null,
-          "search_concepts": []
-        },
-        {
-          "text": "water supply",
-          "component_type": "application",
-          "domain": "mechanical",
-          "extracted_attributes": {
-            "is_process": false
-          },
-          "role": null,
-          "search_concepts": []
-        },
-        {
-          "text": "supply",
-          "component_type": "action",
-          "domain": "general",
-          "extracted_attributes": {},
-          "role": null,
-          "search_concepts": []
-        },
-        {
-          "text": "installation",
-          "component_type": "action",
-          "domain": "general",
-          "extracted_attributes": {},
-          "role": null,
-          "search_concepts": []
         }
       ],
       "recommended_standard": "IS 15778 : 2007",
@@ -1109,15 +641,14 @@
       "evidence_text": "Tender explicitly requires compliance with IS 15778.",
       "evidence_source": "Tender Document",
       "why_this": [
-        "Standard title directly matches requirement component(s): 'chlorinated polyvinyl chloride, pipes'.",
+        "Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.",
         "Authoritative scope explicitly covers application: \"Tender explicitly requires compliance with IS 15778.\"",
         "Standard is currently active in the BIS repository with verified currency.",
         "Provenance established via Tender Document (VERIFIED).",
-        "Candidate addresses multiple decomposed technical aspects of the requirement.",
         "Official code of practice associated with IS 7634 (Part 3) : 2003."
       ],
       "why_not": [
-        "Alternative standard SP 57 (QAWSM) has lower composite relevance (0.609 vs 1.000).",
+        "Alternative standard SP 57 (QAWSM) has lower composite relevance (0.560 vs 1.000).",
         "Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification."
       ],
       "completeness_label": "POTENTIALLY_MISSING",
@@ -1362,917 +893,21 @@
       },
       "ambiguity_state": "CLEAR",
       "ambiguity_reason": "Primary applicable standard IS 15778 is clearly identifiable and sufficiently supported.",
-      "human_decision": null,
+      "human_decision": {
+        "requirement_id": "REQ-001",
+        "decision": "ACCEPT",
+        "reviewer_standard": null,
+        "reviewer_note": "Verified by procurement officer",
+        "reviewed_at": "2026-10-18T18:35:20.182758+00:00",
+        "system_standard": "IS 15778 : 2007",
+        "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
+      },
       "component_recommendations": [
         {
           "component_id": "REQ-001-C1",
-          "component_text": "chlorinated polyvinyl chloride",
-          "component_domain": "piping",
-          "component_role": "PRIMARY_PRODUCT",
-          "candidate_standard": "IS 15778",
-          "title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
-          "confidence": "High",
-          "relevance_score": 0.98,
-          "evidence": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.",
-          "applicability_decision": "APPLICABLE",
-          "dependencies": {
-            "primary_standard": "IS 15778",
-            "primary_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
-            "total_dependencies": 4,
-            "normative_references": [],
-            "test_methods": [
-              {
-                "standard_number": "IS 12235 : 2004",
-                "title": "Thermoplastics Pipes and Fittings - Methods of Test (First Revision)",
-                "relationship_type": "TEST_METHOD",
-                "dependency_status": "TEST_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.95,
-                "why_related": "IS 12235 : 2004 (Thermoplastics Pipes and Fittings - Methods of Test (First Revision)) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED].",
-                "functional_category": "testing",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "TEST_DEPENDENCY",
-                "evidence": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 12235 : 2004 (Thermoplastics Pipes and Fittings - Methods of Test (First Revision)) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED]."
-              }
-            ],
-            "installation_codes": [
-              {
-                "standard_number": "IS 7634 (Part 3) : 2003",
-                "title": "Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "OUTGOING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.9,
-                "why_related": "IS 7634 (Part 3) : 2003 (Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 7634 (Part 3) : 2003 (Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
-              }
-            ],
-            "installation_standards": [
-              {
-                "standard_number": "IS 7634 (Part 3) : 2003",
-                "title": "Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "OUTGOING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.9,
-                "why_related": "IS 7634 (Part 3) : 2003 (Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 7634 (Part 3) : 2003 (Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
-              }
-            ],
-            "codes_of_practice": [
-              {
-                "standard_number": "IS 7634 (Part 3) : 2003",
-                "title": "Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "OUTGOING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.9,
-                "why_related": "IS 7634 (Part 3) : 2003 (Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 7634 (Part 3) : 2003 (Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
-              }
-            ],
-            "safety_standards": [],
-            "terminology_standards": [],
-            "allied_standards": [
-              {
-                "standard_number": "IS 4985 : 2000",
-                "title": "Unplasticized pvc pipes for potable water supplies - Specification (Third Revision)",
-                "relationship_type": "ALLIED_STANDARD",
-                "dependency_status": "ALLIED_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Withdrawn",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.85,
-                "why_related": "IS 4985 : 2000 (Unplasticized pvc pipes for potable water supplies - Specification (Third Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED].",
-                "functional_category": "allied",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "ALLIED_DEPENDENCY",
-                "evidence": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 4985 : 2000 (Unplasticized pvc pipes for potable water supplies - Specification (Third Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED]."
-              },
-              {
-                "standard_number": "IS 4985 : 2021",
-                "title": "Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)",
-                "relationship_type": "ALLIED_STANDARD",
-                "dependency_status": "ALLIED_DEPENDENCY",
-                "direction": "INCOMING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Allied thermoplastic piping specification for potable water distribution networks.",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.85,
-                "why_related": "IS 4985 : 2021 (Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED].",
-                "functional_category": "allied",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "ALLIED_DEPENDENCY",
-                "evidence": "Allied thermoplastic piping specification for potable water distribution networks.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 4985 : 2021 (Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED]."
-              }
-            ],
-            "certification_related": [],
-            "qco_related": [],
-            "related_for_review": [],
-            "all_dependencies": [
-              {
-                "standard_number": "IS 12235 : 2004",
-                "title": "Thermoplastics Pipes and Fittings - Methods of Test (First Revision)",
-                "relationship_type": "TEST_METHOD",
-                "dependency_status": "TEST_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.95,
-                "why_related": "IS 12235 : 2004 (Thermoplastics Pipes and Fittings - Methods of Test (First Revision)) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED].",
-                "functional_category": "testing",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "TEST_DEPENDENCY",
-                "evidence": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 12235 : 2004 (Thermoplastics Pipes and Fittings - Methods of Test (First Revision)) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED]."
-              },
-              {
-                "standard_number": "IS 7634 (Part 3) : 2003",
-                "title": "Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "OUTGOING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.9,
-                "why_related": "IS 7634 (Part 3) : 2003 (Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 7634 (Part 3) : 2003 (Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
-              },
-              {
-                "standard_number": "IS 4985 : 2000",
-                "title": "Unplasticized pvc pipes for potable water supplies - Specification (Third Revision)",
-                "relationship_type": "ALLIED_STANDARD",
-                "dependency_status": "ALLIED_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Withdrawn",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.85,
-                "why_related": "IS 4985 : 2000 (Unplasticized pvc pipes for potable water supplies - Specification (Third Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED].",
-                "functional_category": "allied",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "ALLIED_DEPENDENCY",
-                "evidence": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 4985 : 2000 (Unplasticized pvc pipes for potable water supplies - Specification (Third Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED]."
-              },
-              {
-                "standard_number": "IS 4985 : 2021",
-                "title": "Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)",
-                "relationship_type": "ALLIED_STANDARD",
-                "dependency_status": "ALLIED_DEPENDENCY",
-                "direction": "INCOMING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Allied thermoplastic piping specification for potable water distribution networks.",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.85,
-                "why_related": "IS 4985 : 2021 (Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED].",
-                "functional_category": "allied",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "ALLIED_DEPENDENCY",
-                "evidence": "Allied thermoplastic piping specification for potable water distribution networks.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 4985 : 2021 (Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED]."
-              }
-            ],
-            "lifecycle_warnings": [
-              {
-                "dependency_standard": "IS 4985 : 2000",
-                "warning_type": "SUPERSEDED_DEPENDENCY",
-                "status": "Withdrawn",
-                "successor_standard": null,
-                "successor_title": null,
-                "advisory": "Normative dependency IS 4985 : 2000 has been superseded. Review current testing/design alignment."
-              }
-            ],
-            "amendment_metadata": null
-          },
-          "human_review_required": false,
-          "why_matched": "Component 'chlorinated polyvinyl chloride' matches standard IS 15778 (Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification).",
-          "clause_evidence": {
-            "outcome": "CORPUS_DOCUMENT_NOT_ELIGIBLE",
-            "passage_text": null,
-            "clause_identifier": null,
-            "page_number": null,
-            "page_end": null,
-            "document_id": null,
-            "standard_number": "IS 15778",
-            "edition_year": 2007,
-            "source_citation": null,
-            "source_url": null,
-            "file_sha256": null,
-            "passage_sha256": null,
-            "extraction_quality_status": null,
-            "has_table": false,
-            "is_grounded": false,
-            "requirement_evidence_support": "UNVERIFIED_COVERAGE",
-            "message": "No full-text corpus document registered for standard 'IS 15778' (Edition 2007)."
-          }
-        },
-        {
-          "component_id": "REQ-001-C2",
-          "component_text": "pipes",
-          "component_domain": "piping",
-          "component_role": "PRIMARY_PRODUCT",
-          "candidate_standard": "IS 783",
-          "title": "Code of Practice for Laying of Concrete Pipes",
-          "confidence": "Medium",
-          "relevance_score": 0.478,
-          "evidence": "1.1 This standard covers recommended design practice for the laying of precast concrete pipes. It includes methods for calculating loads on pipes according to installation conditions and gives the corresponding load fact...",
-          "applicability_decision": "APPLICABLE",
-          "dependencies": {
-            "primary_standard": "IS 783",
-            "primary_title": "Code of Practice for Laying of Concrete Pipes",
-            "total_dependencies": 9,
-            "normative_references": [
-              {
-                "standard_number": "IS 2 : 1960",
-                "title": "Rules for Rounding off Numerical Values",
-                "relationship_type": "NORMATIVE_REFERENCE",
-                "dependency_status": "NORMATIVE_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Withdrawn",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Cited under Clause 2 References in IS 783 : 1985.",
-                "source": "SQLITE_DB",
-                "confidence": 0.95,
-                "why_related": "IS 2 : 1960 (Rules for Rounding off Numerical Values) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED].",
-                "functional_category": "normative",
-                "is_applicable_to_requirement": true,
-                "applicability_decision": "APPLICABLE",
-                "dependency_state": "NORMATIVE_DEPENDENCY",
-                "evidence": "Cited under Clause 2 References in IS 783 : 1985.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 2 : 1960 (Rules for Rounding off Numerical Values) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED]."
-              },
-              {
-                "standard_number": "IS 458 : 1971",
-                "title": "Precast Concrete Pipes (with and without Reinforcement) - Specification",
-                "relationship_type": "NORMATIVE_REFERENCE",
-                "dependency_status": "NORMATIVE_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Superseded",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Cited under Clause 2 References in IS 783 : 1985.",
-                "source": "SQLITE_DB",
-                "confidence": 0.95,
-                "why_related": "IS 458 : 1971 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED].",
-                "functional_category": "normative",
-                "is_applicable_to_requirement": true,
-                "applicability_decision": "APPLICABLE",
-                "dependency_state": "NORMATIVE_DEPENDENCY",
-                "evidence": "Cited under Clause 2 References in IS 783 : 1985.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 458 : 1971 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED]."
-              },
-              {
-                "standard_number": "IS 782 : 1978",
-                "title": "Specification for caulking lead (Third Revision)",
-                "relationship_type": "NORMATIVE_REFERENCE",
-                "dependency_status": "NORMATIVE_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Withdrawn",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Cited under Clause 2 References in IS 783 : 1985.",
-                "source": "SQLITE_DB",
-                "confidence": 0.95,
-                "why_related": "IS 782 : 1978 (Specification for caulking lead (Third Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED].",
-                "functional_category": "normative",
-                "is_applicable_to_requirement": true,
-                "applicability_decision": "APPLICABLE",
-                "dependency_state": "NORMATIVE_DEPENDENCY",
-                "evidence": "Cited under Clause 2 References in IS 783 : 1985.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 782 : 1978 (Specification for caulking lead (Third Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED]."
-              },
-              {
-                "standard_number": "IS 784 : 1978",
-                "title": "Prestressed concrete pipes (Including Specials) - Specification (Third Revision)",
-                "relationship_type": "NORMATIVE_REFERENCE",
-                "dependency_status": "NORMATIVE_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Active",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Cited under Clause 2 References in IS 783 : 1985.",
-                "source": "SQLITE_DB",
-                "confidence": 0.95,
-                "why_related": "IS 784 : 1978 (Prestressed concrete pipes (Including Specials) - Specification (Third Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED].",
-                "functional_category": "normative",
-                "is_applicable_to_requirement": true,
-                "applicability_decision": "APPLICABLE",
-                "dependency_state": "NORMATIVE_DEPENDENCY",
-                "evidence": "Cited under Clause 2 References in IS 783 : 1985.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 784 : 1978 (Prestressed concrete pipes (Including Specials) - Specification (Third Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED]."
-              },
-              {
-                "standard_number": "IS 3597 : 1985",
-                "title": "Concrete pipes - Methods of test",
-                "relationship_type": "NORMATIVE_REFERENCE",
-                "dependency_status": "NORMATIVE_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Cited under Clause 2 References in IS 783 : 1985.",
-                "source": "SQLITE_DB",
-                "confidence": 0.95,
-                "why_related": "IS 3597 : 1985 (Concrete pipes - Methods of test) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED].",
-                "functional_category": "normative",
-                "is_applicable_to_requirement": true,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "NORMATIVE_DEPENDENCY",
-                "evidence": "Cited under Clause 2 References in IS 783 : 1985.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 3597 : 1985 (Concrete pipes - Methods of test) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED]."
-              }
-            ],
-            "test_methods": [
-              {
-                "standard_number": "IS 3597 : 1998",
-                "title": "Concrete pipes - Methods of test",
-                "relationship_type": "TEST_METHOD",
-                "dependency_status": "TEST_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Clause 2 References and Clause 13 Testing cite IS 3597 for field and water test methods for installed concrete pipelines.",
-                "source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "confidence": 1.0,
-                "why_related": "IS 3597 : 1998 (Concrete pipes - Methods of test) is identified as an evidence-backed official test method standard for quality and verification associated with IS 783. Evidence: Clause 2 References and Clause 13 Testing cite IS 3597 for field and water test methods for installed concrete pipelines. [Provenance: VERIFIED].",
-                "functional_category": "testing",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "TEST_DEPENDENCY",
-                "evidence": "Clause 2 References and Clause 13 Testing cite IS 3597 for field and water test methods for installed concrete pipelines.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 3597 : 1998 (Concrete pipes - Methods of test) is identified as an evidence-backed official test method standard for quality and verification associated with IS 783. Evidence: Clause 2 References and Clause 13 Testing cite IS 3597 for field and water test methods for installed concrete pipelines. [Provenance: VERIFIED]."
-              }
-            ],
-            "installation_codes": [
-              {
-                "standard_number": "IS 458",
-                "title": "Precast Concrete Pipes (with and without Reinforcement) - Specification",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Active",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes'",
-                "source": "SQLITE_DB",
-                "confidence": 1.0,
-                "why_related": "IS 458 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes' [Provenance: VERIFIED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes'",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 458 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes' [Provenance: VERIFIED]."
-              },
-              {
-                "standard_number": "IS 784",
-                "title": "Prestressed concrete pipes (Including Specials) - Specification (Third Revision)",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Active",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes'",
-                "source": "SQLITE_DB",
-                "confidence": 1.0,
-                "why_related": "IS 784 (Prestressed concrete pipes (Including Specials) - Specification (Third Revision)) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes' [Provenance: VERIFIED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes'",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 784 (Prestressed concrete pipes (Including Specials) - Specification (Third Revision)) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes' [Provenance: VERIFIED]."
-              },
-              {
-                "standard_number": "IS 458 : 2021",
-                "title": "Precast Concrete Pipes (with and without Reinforcement) - Specification",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "INCOMING",
-                "lifecycle_status": "Active",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Clause 1 Scope note recommends laying, bedding and jointing of precast concrete pipes in accordance with IS 783.",
-                "source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "confidence": 1.0,
-                "why_related": "IS 458 : 2021 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1 Scope note recommends laying, bedding and jointing of precast concrete pipes in accordance with IS 783. [Provenance: VERIFIED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Clause 1 Scope note recommends laying, bedding and jointing of precast concrete pipes in accordance with IS 783.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 458 : 2021 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1 Scope note recommends laying, bedding and jointing of precast concrete pipes in accordance with IS 783. [Provenance: VERIFIED]."
-              }
-            ],
-            "installation_standards": [
-              {
-                "standard_number": "IS 458",
-                "title": "Precast Concrete Pipes (with and without Reinforcement) - Specification",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Active",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes'",
-                "source": "SQLITE_DB",
-                "confidence": 1.0,
-                "why_related": "IS 458 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes' [Provenance: VERIFIED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes'",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 458 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes' [Provenance: VERIFIED]."
-              },
-              {
-                "standard_number": "IS 784",
-                "title": "Prestressed concrete pipes (Including Specials) - Specification (Third Revision)",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Active",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes'",
-                "source": "SQLITE_DB",
-                "confidence": 1.0,
-                "why_related": "IS 784 (Prestressed concrete pipes (Including Specials) - Specification (Third Revision)) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes' [Provenance: VERIFIED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes'",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 784 (Prestressed concrete pipes (Including Specials) - Specification (Third Revision)) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes' [Provenance: VERIFIED]."
-              },
-              {
-                "standard_number": "IS 458 : 2021",
-                "title": "Precast Concrete Pipes (with and without Reinforcement) - Specification",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "INCOMING",
-                "lifecycle_status": "Active",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Clause 1 Scope note recommends laying, bedding and jointing of precast concrete pipes in accordance with IS 783.",
-                "source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "confidence": 1.0,
-                "why_related": "IS 458 : 2021 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1 Scope note recommends laying, bedding and jointing of precast concrete pipes in accordance with IS 783. [Provenance: VERIFIED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Clause 1 Scope note recommends laying, bedding and jointing of precast concrete pipes in accordance with IS 783.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 458 : 2021 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1 Scope note recommends laying, bedding and jointing of precast concrete pipes in accordance with IS 783. [Provenance: VERIFIED]."
-              }
-            ],
-            "codes_of_practice": [
-              {
-                "standard_number": "IS 458",
-                "title": "Precast Concrete Pipes (with and without Reinforcement) - Specification",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Active",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes'",
-                "source": "SQLITE_DB",
-                "confidence": 1.0,
-                "why_related": "IS 458 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes' [Provenance: VERIFIED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes'",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 458 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes' [Provenance: VERIFIED]."
-              },
-              {
-                "standard_number": "IS 784",
-                "title": "Prestressed concrete pipes (Including Specials) - Specification (Third Revision)",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Active",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes'",
-                "source": "SQLITE_DB",
-                "confidence": 1.0,
-                "why_related": "IS 784 (Prestressed concrete pipes (Including Specials) - Specification (Third Revision)) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes' [Provenance: VERIFIED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes'",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 784 (Prestressed concrete pipes (Including Specials) - Specification (Third Revision)) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes' [Provenance: VERIFIED]."
-              },
-              {
-                "standard_number": "IS 458 : 2021",
-                "title": "Precast Concrete Pipes (with and without Reinforcement) - Specification",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "INCOMING",
-                "lifecycle_status": "Active",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Clause 1 Scope note recommends laying, bedding and jointing of precast concrete pipes in accordance with IS 783.",
-                "source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "confidence": 1.0,
-                "why_related": "IS 458 : 2021 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1 Scope note recommends laying, bedding and jointing of precast concrete pipes in accordance with IS 783. [Provenance: VERIFIED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Clause 1 Scope note recommends laying, bedding and jointing of precast concrete pipes in accordance with IS 783.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 458 : 2021 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1 Scope note recommends laying, bedding and jointing of precast concrete pipes in accordance with IS 783. [Provenance: VERIFIED]."
-              }
-            ],
-            "safety_standards": [],
-            "terminology_standards": [],
-            "allied_standards": [],
-            "certification_related": [],
-            "qco_related": [],
-            "related_for_review": [],
-            "all_dependencies": [
-              {
-                "standard_number": "IS 458",
-                "title": "Precast Concrete Pipes (with and without Reinforcement) - Specification",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Active",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes'",
-                "source": "SQLITE_DB",
-                "confidence": 1.0,
-                "why_related": "IS 458 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes' [Provenance: VERIFIED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes'",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 458 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes' [Provenance: VERIFIED]."
-              },
-              {
-                "standard_number": "IS 784",
-                "title": "Prestressed concrete pipes (Including Specials) - Specification (Third Revision)",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Active",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes'",
-                "source": "SQLITE_DB",
-                "confidence": 1.0,
-                "why_related": "IS 784 (Prestressed concrete pipes (Including Specials) - Specification (Third Revision)) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes' [Provenance: VERIFIED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes'",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 784 (Prestressed concrete pipes (Including Specials) - Specification (Third Revision)) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1.1.1 explicitly states: 'This standard is intended primarily for use in association with IS : 458-1971 and IS : 784-1978 for pipes' [Provenance: VERIFIED]."
-              },
-              {
-                "standard_number": "IS 2 : 1960",
-                "title": "Rules for Rounding off Numerical Values",
-                "relationship_type": "NORMATIVE_REFERENCE",
-                "dependency_status": "NORMATIVE_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Withdrawn",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Cited under Clause 2 References in IS 783 : 1985.",
-                "source": "SQLITE_DB",
-                "confidence": 0.95,
-                "why_related": "IS 2 : 1960 (Rules for Rounding off Numerical Values) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED].",
-                "functional_category": "normative",
-                "is_applicable_to_requirement": true,
-                "applicability_decision": "APPLICABLE",
-                "dependency_state": "NORMATIVE_DEPENDENCY",
-                "evidence": "Cited under Clause 2 References in IS 783 : 1985.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 2 : 1960 (Rules for Rounding off Numerical Values) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED]."
-              },
-              {
-                "standard_number": "IS 458 : 1971",
-                "title": "Precast Concrete Pipes (with and without Reinforcement) - Specification",
-                "relationship_type": "NORMATIVE_REFERENCE",
-                "dependency_status": "NORMATIVE_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Superseded",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Cited under Clause 2 References in IS 783 : 1985.",
-                "source": "SQLITE_DB",
-                "confidence": 0.95,
-                "why_related": "IS 458 : 1971 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED].",
-                "functional_category": "normative",
-                "is_applicable_to_requirement": true,
-                "applicability_decision": "APPLICABLE",
-                "dependency_state": "NORMATIVE_DEPENDENCY",
-                "evidence": "Cited under Clause 2 References in IS 783 : 1985.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 458 : 1971 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED]."
-              },
-              {
-                "standard_number": "IS 782 : 1978",
-                "title": "Specification for caulking lead (Third Revision)",
-                "relationship_type": "NORMATIVE_REFERENCE",
-                "dependency_status": "NORMATIVE_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Withdrawn",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Cited under Clause 2 References in IS 783 : 1985.",
-                "source": "SQLITE_DB",
-                "confidence": 0.95,
-                "why_related": "IS 782 : 1978 (Specification for caulking lead (Third Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED].",
-                "functional_category": "normative",
-                "is_applicable_to_requirement": true,
-                "applicability_decision": "APPLICABLE",
-                "dependency_state": "NORMATIVE_DEPENDENCY",
-                "evidence": "Cited under Clause 2 References in IS 783 : 1985.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 782 : 1978 (Specification for caulking lead (Third Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED]."
-              },
-              {
-                "standard_number": "IS 784 : 1978",
-                "title": "Prestressed concrete pipes (Including Specials) - Specification (Third Revision)",
-                "relationship_type": "NORMATIVE_REFERENCE",
-                "dependency_status": "NORMATIVE_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Active",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Cited under Clause 2 References in IS 783 : 1985.",
-                "source": "SQLITE_DB",
-                "confidence": 0.95,
-                "why_related": "IS 784 : 1978 (Prestressed concrete pipes (Including Specials) - Specification (Third Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED].",
-                "functional_category": "normative",
-                "is_applicable_to_requirement": true,
-                "applicability_decision": "APPLICABLE",
-                "dependency_state": "NORMATIVE_DEPENDENCY",
-                "evidence": "Cited under Clause 2 References in IS 783 : 1985.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 784 : 1978 (Prestressed concrete pipes (Including Specials) - Specification (Third Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED]."
-              },
-              {
-                "standard_number": "IS 3597 : 1985",
-                "title": "Concrete pipes - Methods of test",
-                "relationship_type": "NORMATIVE_REFERENCE",
-                "dependency_status": "NORMATIVE_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Cited under Clause 2 References in IS 783 : 1985.",
-                "source": "SQLITE_DB",
-                "confidence": 0.95,
-                "why_related": "IS 3597 : 1985 (Concrete pipes - Methods of test) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED].",
-                "functional_category": "normative",
-                "is_applicable_to_requirement": true,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "NORMATIVE_DEPENDENCY",
-                "evidence": "Cited under Clause 2 References in IS 783 : 1985.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 3597 : 1985 (Concrete pipes - Methods of test) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 783. Evidence: Cited under Clause 2 References in IS 783 : 1985. [Provenance: VERIFIED]."
-              },
-              {
-                "standard_number": "IS 458 : 2021",
-                "title": "Precast Concrete Pipes (with and without Reinforcement) - Specification",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "INCOMING",
-                "lifecycle_status": "Active",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Clause 1 Scope note recommends laying, bedding and jointing of precast concrete pipes in accordance with IS 783.",
-                "source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "confidence": 1.0,
-                "why_related": "IS 458 : 2021 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1 Scope note recommends laying, bedding and jointing of precast concrete pipes in accordance with IS 783. [Provenance: VERIFIED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Clause 1 Scope note recommends laying, bedding and jointing of precast concrete pipes in accordance with IS 783.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 458 : 2021 (Precast Concrete Pipes (with and without Reinforcement) - Specification) is identified as an evidence-backed related standard associated with IS 783. Evidence: Clause 1 Scope note recommends laying, bedding and jointing of precast concrete pipes in accordance with IS 783. [Provenance: VERIFIED]."
-              },
-              {
-                "standard_number": "IS 3597 : 1998",
-                "title": "Concrete pipes - Methods of test",
-                "relationship_type": "TEST_METHOD",
-                "dependency_status": "TEST_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "VERIFIED",
-                "evidence_strength": "STRONG",
-                "evidence_text": "Clause 2 References and Clause 13 Testing cite IS 3597 for field and water test methods for installed concrete pipelines.",
-                "source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "confidence": 1.0,
-                "why_related": "IS 3597 : 1998 (Concrete pipes - Methods of test) is identified as an evidence-backed official test method standard for quality and verification associated with IS 783. Evidence: Clause 2 References and Clause 13 Testing cite IS 3597 for field and water test methods for installed concrete pipelines. [Provenance: VERIFIED].",
-                "functional_category": "testing",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "TEST_DEPENDENCY",
-                "evidence": "Clause 2 References and Clause 13 Testing cite IS 3597 for field and water test methods for installed concrete pipelines.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 3597 : 1998 (Concrete pipes - Methods of test) is identified as an evidence-backed official test method standard for quality and verification associated with IS 783. Evidence: Clause 2 References and Clause 13 Testing cite IS 3597 for field and water test methods for installed concrete pipelines. [Provenance: VERIFIED]."
-              }
-            ],
-            "lifecycle_warnings": [
-              {
-                "dependency_standard": "IS 2 : 1960",
-                "warning_type": "SUPERSEDED_DEPENDENCY",
-                "status": "Withdrawn",
-                "successor_standard": null,
-                "successor_title": null,
-                "advisory": "Normative dependency IS 2 : 1960 has been superseded. Review current testing/design alignment."
-              },
-              {
-                "dependency_standard": "IS 458 : 1971",
-                "warning_type": "SUPERSEDED_DEPENDENCY",
-                "status": "Superseded",
-                "successor_standard": "IS 458 : 2021",
-                "successor_title": "Precast Concrete Pipes (with and without Reinforcement) - Specification",
-                "advisory": "Normative dependency IS 458 : 1971 has been superseded by IS 458 : 2021. Review current testing/design alignment."
-              },
-              {
-                "dependency_standard": "IS 782 : 1978",
-                "warning_type": "SUPERSEDED_DEPENDENCY",
-                "status": "Withdrawn",
-                "successor_standard": null,
-                "successor_title": null,
-                "advisory": "Normative dependency IS 782 : 1978 has been superseded. Review current testing/design alignment."
-              }
-            ],
-            "amendment_metadata": {
-              "standard_number": "IS 783",
-              "amendments_count": 3,
-              "reaffirmed_year": 2022,
-              "status": "Active",
-              "currency_summary": "Current edition incorporates 3 published amendment(s) (Reaffirmed 2022)"
-            }
-          },
-          "human_review_required": false,
-          "why_matched": "Component 'pipes' matches standard IS 783 (Code of Practice for Laying of Concrete Pipes).",
-          "clause_evidence": {
-            "outcome": "CORPUS_DOCUMENT_NOT_ELIGIBLE",
-            "passage_text": null,
-            "clause_identifier": null,
-            "page_number": null,
-            "page_end": null,
-            "document_id": null,
-            "standard_number": "IS 783",
-            "edition_year": 1985,
-            "source_citation": null,
-            "source_url": null,
-            "file_sha256": null,
-            "passage_sha256": null,
-            "extraction_quality_status": null,
-            "has_table": false,
-            "is_grounded": false,
-            "requirement_evidence_support": "UNVERIFIED_COVERAGE",
-            "message": "No full-text corpus document registered for standard 'IS 783' (Edition 1985)."
-          }
-        },
-        {
-          "component_id": "REQ-001-C3",
           "component_text": "CPVC pipes",
-          "component_domain": "mechanical",
-          "component_role": "equipment",
+          "component_domain": "piping",
+          "component_role": "PRIMARY_PRODUCT",
           "candidate_standard": "IS 15778",
           "title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
           "confidence": "High",
@@ -2554,293 +1189,6 @@
             "requirement_evidence_support": "UNVERIFIED_COVERAGE",
             "message": "No full-text corpus document registered for standard 'IS 15778' (Edition 2007)."
           }
-        },
-        {
-          "component_id": "REQ-001-C4",
-          "component_text": "CPVC fittings",
-          "component_domain": "mechanical",
-          "component_role": "equipment",
-          "candidate_standard": "IS 15778",
-          "title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
-          "confidence": "High",
-          "relevance_score": 0.802,
-          "evidence": "Exact Match: IS 15778 covers chlorinated polyvinyl chloride (CPVC) pipes for potable water supplies under pressure.",
-          "applicability_decision": "APPLICABLE",
-          "dependencies": {
-            "primary_standard": "IS 15778",
-            "primary_title": "Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification",
-            "total_dependencies": 4,
-            "normative_references": [],
-            "test_methods": [
-              {
-                "standard_number": "IS 12235 : 2004",
-                "title": "Thermoplastics Pipes and Fittings - Methods of Test (First Revision)",
-                "relationship_type": "TEST_METHOD",
-                "dependency_status": "TEST_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.95,
-                "why_related": "IS 12235 : 2004 (Thermoplastics Pipes and Fittings - Methods of Test (First Revision)) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED].",
-                "functional_category": "testing",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "TEST_DEPENDENCY",
-                "evidence": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 12235 : 2004 (Thermoplastics Pipes and Fittings - Methods of Test (First Revision)) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED]."
-              }
-            ],
-            "installation_codes": [
-              {
-                "standard_number": "IS 7634 (Part 3) : 2003",
-                "title": "Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "OUTGOING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.9,
-                "why_related": "IS 7634 (Part 3) : 2003 (Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 7634 (Part 3) : 2003 (Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
-              }
-            ],
-            "installation_standards": [
-              {
-                "standard_number": "IS 7634 (Part 3) : 2003",
-                "title": "Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "OUTGOING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.9,
-                "why_related": "IS 7634 (Part 3) : 2003 (Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 7634 (Part 3) : 2003 (Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
-              }
-            ],
-            "codes_of_practice": [
-              {
-                "standard_number": "IS 7634 (Part 3) : 2003",
-                "title": "Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "OUTGOING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.9,
-                "why_related": "IS 7634 (Part 3) : 2003 (Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 7634 (Part 3) : 2003 (Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
-              }
-            ],
-            "safety_standards": [],
-            "terminology_standards": [],
-            "allied_standards": [
-              {
-                "standard_number": "IS 4985 : 2000",
-                "title": "Unplasticized pvc pipes for potable water supplies - Specification (Third Revision)",
-                "relationship_type": "ALLIED_STANDARD",
-                "dependency_status": "ALLIED_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Withdrawn",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.85,
-                "why_related": "IS 4985 : 2000 (Unplasticized pvc pipes for potable water supplies - Specification (Third Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED].",
-                "functional_category": "allied",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "ALLIED_DEPENDENCY",
-                "evidence": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 4985 : 2000 (Unplasticized pvc pipes for potable water supplies - Specification (Third Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED]."
-              },
-              {
-                "standard_number": "IS 4985 : 2021",
-                "title": "Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)",
-                "relationship_type": "ALLIED_STANDARD",
-                "dependency_status": "ALLIED_DEPENDENCY",
-                "direction": "INCOMING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Allied thermoplastic piping specification for potable water distribution networks.",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.85,
-                "why_related": "IS 4985 : 2021 (Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED].",
-                "functional_category": "allied",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "ALLIED_DEPENDENCY",
-                "evidence": "Allied thermoplastic piping specification for potable water distribution networks.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 4985 : 2021 (Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED]."
-              }
-            ],
-            "certification_related": [],
-            "qco_related": [],
-            "related_for_review": [],
-            "all_dependencies": [
-              {
-                "standard_number": "IS 12235 : 2004",
-                "title": "Thermoplastics Pipes and Fittings - Methods of Test (First Revision)",
-                "relationship_type": "TEST_METHOD",
-                "dependency_status": "TEST_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.95,
-                "why_related": "IS 12235 : 2004 (Thermoplastics Pipes and Fittings - Methods of Test (First Revision)) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED].",
-                "functional_category": "testing",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "TEST_DEPENDENCY",
-                "evidence": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 12235 : 2004 (Thermoplastics Pipes and Fittings - Methods of Test (First Revision)) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED]."
-              },
-              {
-                "standard_number": "IS 7634 (Part 3) : 2003",
-                "title": "Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)",
-                "relationship_type": "INSTALLATION_CODE",
-                "dependency_status": "INSTALLATION_CODE",
-                "direction": "OUTGOING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.9,
-                "why_related": "IS 7634 (Part 3) : 2003 (Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].",
-                "functional_category": "installation",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "INSTALLATION_CODE",
-                "evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 7634 (Part 3) : 2003 (Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)) is identified as an evidence-backed related standard associated with IS 15778. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED]."
-              },
-              {
-                "standard_number": "IS 4985 : 2000",
-                "title": "Unplasticized pvc pipes for potable water supplies - Specification (Third Revision)",
-                "relationship_type": "ALLIED_STANDARD",
-                "dependency_status": "ALLIED_DEPENDENCY",
-                "direction": "OUTGOING",
-                "lifecycle_status": "Withdrawn",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.85,
-                "why_related": "IS 4985 : 2000 (Unplasticized pvc pipes for potable water supplies - Specification (Third Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED].",
-                "functional_category": "allied",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "ALLIED_DEPENDENCY",
-                "evidence": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 4985 : 2000 (Unplasticized pvc pipes for potable water supplies - Specification (Third Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED]."
-              },
-              {
-                "standard_number": "IS 4985 : 2021",
-                "title": "Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)",
-                "relationship_type": "ALLIED_STANDARD",
-                "dependency_status": "ALLIED_DEPENDENCY",
-                "direction": "INCOMING",
-                "lifecycle_status": "UNKNOWN / NOT_AVAILABLE_IN_CATALOGUE",
-                "provenance": "CURATED",
-                "evidence_strength": "MODERATE",
-                "evidence_text": "Allied thermoplastic piping specification for potable water distribution networks.",
-                "source": "CURATED_STANDARDS_DOC",
-                "confidence": 0.85,
-                "why_related": "IS 4985 : 2021 (Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED].",
-                "functional_category": "allied",
-                "is_applicable_to_requirement": false,
-                "applicability_decision": "REVIEW_REQUIRED",
-                "dependency_state": "ALLIED_DEPENDENCY",
-                "evidence": "Allied thermoplastic piping specification for potable water distribution networks.",
-                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
-                "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 4985 : 2021 (Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED]."
-              }
-            ],
-            "lifecycle_warnings": [
-              {
-                "dependency_standard": "IS 4985 : 2000",
-                "warning_type": "SUPERSEDED_DEPENDENCY",
-                "status": "Withdrawn",
-                "successor_standard": null,
-                "successor_title": null,
-                "advisory": "Normative dependency IS 4985 : 2000 has been superseded. Review current testing/design alignment."
-              }
-            ],
-            "amendment_metadata": null
-          },
-          "human_review_required": false,
-          "why_matched": "Component 'CPVC fittings' matches standard IS 15778 (Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification).",
-          "clause_evidence": {
-            "outcome": "CORPUS_DOCUMENT_NOT_ELIGIBLE",
-            "passage_text": null,
-            "clause_identifier": null,
-            "page_number": null,
-            "page_end": null,
-            "document_id": null,
-            "standard_number": "IS 15778",
-            "edition_year": 2007,
-            "source_citation": null,
-            "source_url": null,
-            "file_sha256": null,
-            "passage_sha256": null,
-            "extraction_quality_status": null,
-            "has_table": false,
-            "is_grounded": false,
-            "requirement_evidence_support": "UNVERIFIED_COVERAGE",
-            "message": "No full-text corpus document registered for standard 'IS 15778' (Edition 2007)."
-          }
         }
       ],
       "external_regulations": [
@@ -2894,6 +1242,16 @@
     },
     "note": "AI/retrieval results are not treated as authoritative evidence by themselves. Factual standards claims are constrained by the available evidence and provenance."
   },
-  "human_decisions": [],
+  "human_decisions": [
+    {
+      "requirement_id": "REQ-001",
+      "decision": "ACCEPT",
+      "reviewer_standard": null,
+      "reviewer_note": "Verified by procurement officer",
+      "reviewed_at": "2026-10-18T18:35:20.182758+00:00",
+      "system_standard": "IS 15778 : 2007",
+      "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
+    }
+  ],
   "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
 }

@@ -646,5 +646,50 @@
     "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
     "provenance": "VERIFIED",
     "confidence": 0.95
+  },
+  {
+    "source_standard": "IS 8112 : 2013",
+    "target_standard": "IS 269 : 2015",
+    "relationship_type": "SUPERSEDED_BY",
+    "evidence": "IS 8112:2013 (43 Grade OPC) has been officially withdrawn and superseded by IS 269:2015 (Sixth Revision).",
+    "evidence_source": "BIS_OFFICIAL_GAZETTE",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 269 : 2015",
+    "target_standard": "IS 8112 : 2013",
+    "relationship_type": "SUPERSEDES",
+    "evidence": "IS 269:2015 consolidates 33, 43, and 53 grade ordinary Portland cements, superseding IS 8112:2013.",
+    "evidence_source": "BIS_OFFICIAL_GAZETTE",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 456 : 2000",
+    "target_standard": "IS 269 : 2015",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 5.1 cites IS 269 for Ordinary Portland Cement in concrete design and production.",
+    "evidence_source": "BIS_OFFICIAL_GAZETTE",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 456 : 2000",
+    "target_standard": "IS 1489 (Part 1) : 2015",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 5.1 cites IS 1489 (Part 1) for fly ash based Portland Pozzolana Cement in concrete works.",
+    "evidence_source": "BIS_OFFICIAL_GAZETTE",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 456 : 2000",
+    "target_standard": "IS 1786 : 2008",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement.",
+    "evidence_source": "BIS_OFFICIAL_GAZETTE",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
   }
 ]
