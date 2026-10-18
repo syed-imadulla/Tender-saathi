@@ -34,8 +34,14 @@ Ground truth is the benchmark standard of accuracy against which our proposed AI
 | **`evidence_snippet`** | String | Factual excerpt showing why the standard applies to this product/material. |
 | `reasoning` | String | Plain-language technical justification explaining why this standard governs the requirement. |
 | `confidence` | String | `High` (direct authoritative evidence / QCO), `Medium` (strong evidence), or `Low` (needs BOQ verification). |
-| **`human_verified`** | Boolean | Remains `FALSE` until the human reviewer inspects the evidence and confirms the row. |
+| **`human_verified`** | Boolean | Remains `FALSE` until the human reviewer inspects the evidence and confirms the row. Anti-falsification enforced. |
 | `reviewer_notes` | String | QCO references, supersession notes, or scope boundaries. |
+| **`source_document`** | String | Exact path to raw tender PDF (e.g. `tenders/raw/eProcurement System Government of India2.pdf`). Verified against disk hash and text content. |
+| **`procurement_sector`** | String | Standard procurement sector tag. Prefixed with `PROVISIONAL:` (e.g. `PROVISIONAL:CIVIL_WORKS`) when inferred from NIT metadata rather than expert taxonomy. |
+| **`expected_decision`** | String | Canonical expected outcome: `RECOMMEND`, `ABSTAIN_UNDER_SPECIFIED`, `ABSTAIN_AMBIGUOUS`, `ABSTAIN_CONFLICTING`, or `REJECT_INELIGIBLE`. |
+| **`adjudication_status`** | String | Review status lifecycle: `UNVERIFIED_BASELINE`, `MACHINE_PREDICTED`, or `EXPERT_VERIFIED`. |
+| **`reviewer_role`** | String | Professional designation of qualified domain reviewer. Empty for unadjudicated rows. |
+| **`reviewed_at`** | String | ISO 8601 adjudication timestamp. Empty for unadjudicated rows. |
 
 ---
 

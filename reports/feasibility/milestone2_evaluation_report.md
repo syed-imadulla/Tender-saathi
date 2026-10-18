@@ -22,8 +22,8 @@ The end-to-end prototype was benchmarked against all **20 human-verifiable procu
 | **Mean Reciprocal Rank (MRR)** | **0.900** | IR Standard Target (>0.70) | **Excellent** |
 | **Supersedence Detection Rate** | **100.0%** | Generic LLMs (~10-20%) | **Authoritative** |
 | **Ambiguity Detection Recall** | **100.0%** | Human Engineer Gating | **Zero Guessing** |
-| **Ambiguity Precision** | **14.3%** | Balanced Flagging | **Robust** |
-| **Query Latency (Avg)** | **177.3 ms** | Real-time Search (<200ms) | **Optimal** |
+| **Ambiguity Precision** | **12.5%** | Balanced Flagging | **Robust** |
+| **Query Latency (Avg)** | **87.1 ms** | Real-time Search (<200ms) | **Optimal** |
 
 ---
 
@@ -33,11 +33,11 @@ Comparison of individual retrieval mechanisms against the hybrid ensemble and ne
 
 | Retrieval Architecture | Top-1 Accuracy | Top-3 Recall | MRR | Avg Latency | T013-R002 (VFD Panel) | T014-R002 (Process Pump) |
 |---|---|---|---|---|---|---|
-| **A. Deterministic / Heuristic Alone** | 85.0% | 90.0% | 0.875 | 153.6 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **B. Okapi BM25 Alone** | 90.0% | 95.0% | 0.917 | 160.2 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **C. Semantic Alone (`all-MiniLM-L6-v2`)** | 90.0% | 90.0% | 0.900 | 170.6 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **D. Hybrid Retrieval Ensemble** | **90.0%** | **90.0%** | **0.900** | **177.3 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **E. Hybrid + Cross-Encoder Reranker** | **90.0%** | **90.0%** | **0.900** | **378.5 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **A. Deterministic / Heuristic Alone** | 85.0% | 90.0% | 0.875 | 64.8 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **B. Okapi BM25 Alone** | 90.0% | 95.0% | 0.917 | 63.6 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **C. Semantic Alone (`all-MiniLM-L6-v2`)** | 90.0% | 90.0% | 0.900 | 85.0 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **D. Hybrid Retrieval Ensemble** | **90.0%** | **90.0%** | **0.900** | **87.1 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **E. Hybrid + Cross-Encoder Reranker** | **90.0%** | **90.0%** | **0.900** | **326.9 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
 
 
 ---
@@ -46,7 +46,7 @@ Comparison of individual retrieval mechanisms against the hybrid ensemble and ne
 
 | Req ID | Category | Requirement Snippet | Ground Truth Standard(s) | Top-1 Predicted Standard | Outcome | Review Flag |
 |---|---|---|---|---|---|---|
-| **`T001-R002`** | `material` | replacement of damaged pipelines by Hubl... | IS 15905 : 2011; IS 1239 (Part 1) :... | **IS 15905 : 2011** | `TOP1_HIT` | ✅ Direct Rec |
+| **`T001-R002`** | `material` | replacement of damaged pipelines by Hubl... | IS 15905 : 2011; IS 1239 (Part 1) :... | **IS 15905 : 2011** | `TOP1_HIT` | ⚠️ Flagged |
 | **`T001-R003`** | `material` | wall tiles | IS 15622 : 2017 | **IS 15622 : 2017** | `TOP1_HIT` | ✅ Direct Rec |
 | **`T001-R004`** | `product_equipment` | upgradation of all sanitary fittings at ... | IS 2556 (Part 1 to 17); IS 781 : 19... | **IS 781 : 1984** | `TOP1_HIT` | ✅ Direct Rec |
 | **`T002-R002`** | `material` | Valve Replacement | nan | **None** | `TOP1_HIT` | ⚠️ Flagged |

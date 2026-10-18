@@ -178,7 +178,8 @@ class TestAdversarialSuite(unittest.TestCase):
         gt_path = "dataset/ground_truth/ground_truth.csv"
         with open(gt_path, "rb") as f:
             gt_hash = hashlib.sha256(f.read()).hexdigest()
-        expected_hash = "cfcbca27a729bd0619886be9128cfba272b912bd21115604b45af7eb59fa404b"
+        # Updated in Phase 12 (Plan 12-01) for the 24-column extended schema
+        expected_hash = "8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc"
         self.assertEqual(gt_hash, expected_hash, "Ground truth CSV has been modified!")
 
     # 11. Characterize Discovered Baseline Vulnerabilities
