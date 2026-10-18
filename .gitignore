@@ -61,3 +61,6 @@ data/catalogue/manifests/manifest_snapshot_*
 .vercel
 .env*
 !.env.example
+
+# Graphify local graph output
+graphify-out/

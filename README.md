@@ -260,6 +260,7 @@ In accordance with transparent engineering principles, all operational limits ar
 | | [Adversarial Suite](docs/evaluation/adversarial_suite.md) | 70 probes, 14 categories, 8 metrics, ADV-MUL-005 analysis |
 | | [System Limitations](docs/evaluation/limitations.md) | Operational boundaries, OCR limits, conservative bias |
 | **API** | [REST API Reference](docs/api/rest_api.md) | 12 active endpoints, schemas, request/response formats |
+| **Development** | [Graphify Codebase Knowledge Graph](docs/development/GRAPHIFY_SETUP.md) | Architectural knowledge graph setup, AST indexing, and code traversal |
 | **Archive** | [Historical Audits & Presentations](docs/archive/) | Milestone audit trails, frozen records, presentation decks |
 
 ---

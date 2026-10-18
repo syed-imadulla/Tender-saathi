@@ -1,0 +1,42 @@
+# Graphify Exclusions for Tender Saathi
+
+# Sensitive environment and credentials
+.env
+.env.*
+*.secret
+*.key
+*.pem
+
+# Machine-generated audit test artifacts & temporary files
+reports/generated/
+reports/e2e/
+scratch/
+scratch.py
+*.log
+flask_api.log
+
+# Large datasets, raw catalogue data, binary embeddings & databases
+data/
+dataset/
+*.db
+*.sqlite
+*.npy
+*.xlsx
+
+# Sensitive / raw tender documents & uploads
+tenders/
+
+# Build artifacts & dependencies
+.venv/
+node_modules/
+dist/
+build/
+frontend/node_modules/
+frontend/dist/
+frontend/public/
+.vercel/
+
+# Test caches & coverage
+.pytest_cache/
+.coverage
+htmlcov/
