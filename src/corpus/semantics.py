@@ -1,0 +1,106 @@
+"""
+src/corpus/semantics.py — Verification States & Semantic Definitions
+
+Defines the 7 distinct evidence verification states for full-text standards
+ingestion and retrieval in Tender Saathi. Enforces strict semantic boundaries
+so that parser runs, hash matches, and retrieval do not imply expert approval
+or statutory authentication.
+"""
+
+from __future__ import annotations
+
+from enum import Enum
+from typing import Dict, Any, Optional, Set
+
+
+class VerificationState(str, Enum):
+    """
+    Seven distinct evidence verification states.
+    States are ordered and strictly scoped to prevent false claims.
+    """
+    # 1. Document source recorded in manifest with provenance metadata
+    DOCUMENT_SOURCE_RECORDED = "DOCUMENT_SOURCE_RECORDED"
+
+    # 2. Raw text extracted from PDF file via deterministic parser
+    PDF_TEXT_EXTRACTED = "PDF_TEXT_EXTRACTED"
+
+    # 3. Extraction quality verified (character density, encoding, OCR checks passed)
+    EXTRACTION_QUALITY_CHECKED = "EXTRACTION_QUALITY_CHECKED"
+
+    # 4. Extracted passage text hash matches stored document representation
+    PASSAGE_MATCHES_STORED_DOCUMENT = "PASSAGE_MATCHES_STORED_DOCUMENT"
+
+    # 5. Clause identifier structurally verified against document layout/heading schema
+    CLAUSE_IDENTIFIER_VERIFIED = "CLAUSE_IDENTIFIER_VERIFIED"
+
+    # 6. Engineering applicability reviewed by automated validation / domain rules
+    ENGINEERING_APPLICABILITY_REVIEWED = "ENGINEERING_APPLICABILITY_REVIEWED"
+
+    # 7. Qualified human expert adjudicated and signed off with immutable record
+    HUMAN_EXPERT_ADJUDICATED = "HUMAN_EXPERT_ADJUDICATED"
+
+
+STATE_DESCRIPTIONS: Dict[VerificationState, Dict[str, str]] = {
+    VerificationState.DOCUMENT_SOURCE_RECORDED: {
+        "meaning": "Document acquisition provenance, source citation or URL, and raw file SHA-256 are recorded in the manifest.",
+        "does_not_mean": "Does NOT mean the document has been parsed, validated, or verified as authentic by statutory authorities."
+    },
+    VerificationState.PDF_TEXT_EXTRACTED: {
+        "meaning": "Raw text stream extracted from PDF without crash or structural file failure.",
+        "does_not_mean": "Does NOT mean extraction quality was checked, characters are free from OCR errors, or clauses are recognized."
+    },
+    VerificationState.EXTRACTION_QUALITY_CHECKED: {
+        "meaning": "Text density, empty page ratio, replacement character rates, and scanned page checks have been evaluated and passed.",
+        "does_not_mean": "Does NOT mean clause boundaries are correct, the standard is currently legally enforced, or text is expert-adjudicated."
+    },
+    VerificationState.PASSAGE_MATCHES_STORED_DOCUMENT: {
+        "meaning": "The passage content SHA-256 matches the stored database passage representation derived from the original file.",
+        "does_not_mean": "Does NOT imply official BIS statutory authentication or that the standard applies to any specific tender."
+    },
+    VerificationState.CLAUSE_IDENTIFIER_VERIFIED: {
+        "meaning": "The clause number/heading was structurally identified in the text rather than hallucinated or guessed.",
+        "does_not_mean": "Does NOT mean the clause applies to a specific tender requirement or that human engineers have reviewed it."
+    },
+    VerificationState.ENGINEERING_APPLICABILITY_REVIEWED: {
+        "meaning": "Automated domain logic or specification criteria reviewed the requirement-to-clause applicability.",
+        "does_not_mean": "Does NOT mean a human expert has approved or signed off on the recommendation."
+    },
+    VerificationState.HUMAN_EXPERT_ADJUDICATED: {
+        "meaning": "A qualified professional engineer or standards officer has reviewed and signed off with an immutable adjudication record.",
+        "does_not_mean": "Must NEVER be set automatically or inferred by machine parsing."
+    }
+}
+
+
+# Valid progressive transitions
+VALID_TRANSITIONS: Dict[VerificationState, Set[VerificationState]] = {
+    VerificationState.DOCUMENT_SOURCE_RECORDED: {
+        VerificationState.PDF_TEXT_EXTRACTED
+    },
+    VerificationState.PDF_TEXT_EXTRACTED: {
+        VerificationState.EXTRACTION_QUALITY_CHECKED
+    },
+    VerificationState.EXTRACTION_QUALITY_CHECKED: {
+        VerificationState.PASSAGE_MATCHES_STORED_DOCUMENT
+    },
+    VerificationState.PASSAGE_MATCHES_STORED_DOCUMENT: {
+        VerificationState.CLAUSE_IDENTIFIER_VERIFIED
+    },
+    VerificationState.CLAUSE_IDENTIFIER_VERIFIED: {
+        VerificationState.ENGINEERING_APPLICABILITY_REVIEWED
+    },
+    VerificationState.ENGINEERING_APPLICABILITY_REVIEWED: {
+        VerificationState.HUMAN_EXPERT_ADJUDICATED
+    },
+    VerificationState.HUMAN_EXPERT_ADJUDICATED: set()
+}
+
+
+def can_transition(current: VerificationState, target: VerificationState) -> bool:
+    """Checks whether transitioning from current to target state is permissible."""
+    return target in VALID_TRANSITIONS.get(current, set())
+
+
+def get_state_semantics(state: VerificationState) -> Dict[str, str]:
+    """Returns detailed semantic description of what the state guarantees and excludes."""
+    return STATE_DESCRIPTIONS.get(state, {"meaning": "Unknown", "does_not_mean": "Unknown"})

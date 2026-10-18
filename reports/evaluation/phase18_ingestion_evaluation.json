@@ -1,0 +1,37 @@
+{
+  "evaluation_phase": "Phase 18 \u2014 Controlled Normative Standards Corpus Ingestion",
+  "date": "2026-10-18",
+  "document_metrics": {
+    "documents_attempted": 6,
+    "documents_registered": "5 / 6 (83.3%)",
+    "documents_extracted_successfully": "3 / 5 (60.0%)",
+    "documents_requiring_ocr": "1 / 5 (20.0%)",
+    "documents_failed_or_corrupt": "1 / 5 (20.0%)",
+    "duplicate_documents_rejected": "1 / 1 (100.0%)"
+  },
+  "page_and_table_metrics": {
+    "pages_extracted_total": 7,
+    "pages_flagged_with_tables_or_warnings": "4 / 7 (57.1%)",
+    "table_extraction_warnings_issued": 2
+  },
+  "passage_and_clause_metrics": {
+    "passages_created_total": 15,
+    "passages_with_detected_clause": "12 / 15 (80.0%)",
+    "passages_with_unresolved_clause": "3 / 15 (20.0%)",
+    "passages_with_unresolved_provenance": "0 / 15 (0.0%)",
+    "clause_inferred_semantically": "0 (Strictly prohibited by design)"
+  },
+  "clause_grounding_validation": {
+    "clause_4_2_grounded": true,
+    "clause_4_2_content_hash": "5b1c45761df63bce2535f188bc60ba42f260584cc3f4b9e8a7a83f7277db99ee",
+    "clause_4_2_page": 2,
+    "non_existent_clause_grounded": false,
+    "non_existent_clause_reason": "Clause '99.9' not found in ingested corpus for standard 'IS 1180 (Part 1)'"
+  },
+  "verification_semantics_audit": {
+    "machine_recommendation_accuracy": "N/A (Extraction coverage is not recommendation accuracy)",
+    "statutory_portal_authentication_granted": false,
+    "human_expert_adjudication_granted": false,
+    "cross_edition_isolation_enforced": true
+  }
+}

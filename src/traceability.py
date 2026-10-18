@@ -108,8 +108,9 @@ class TraceableEvidenceValidator:
     and checks for illegal machine-to-human upgrades, fabricated citations, or invalid lifecycle states.
     """
 
-    def __init__(self, db: Optional[StandardsDatabase] = None):
+    def __init__(self, db: Optional[StandardsDatabase] = None, corpus_storage: Optional[Any] = None):
         self.db = db or StandardsDatabase()
+        self.corpus_storage = corpus_storage
 
     def build_trace_record(
         self,
@@ -333,7 +334,25 @@ class TraceableEvidenceValidator:
         if record.human_review_required and record.final_system_decision == "RECOMMEND":
             errors.append("Safety Gate Violation: Recommendation requiring human review cannot be presented as fully autonomous RECOMMEND")
 
-        # 8. Final completeness classification based on verified signals
+        # 8. Normative clause verification against corpus storage (if available)
+        is_norm_clause_verified = False
+        if self.corpus_storage and record.standard_number:
+            try:
+                passages = self.corpus_storage.get_passages_by_standard(record.standard_number, edition_year=verified_year)
+                if passages and record.supporting_passage:
+                    clean_rec_pas = re.sub(r'\s+', ' ', record.supporting_passage.strip())
+                    for p in passages:
+                        if p.clause_identifier != "CLAUSE_UNKNOWN":
+                            clean_p_pas = re.sub(r'\s+', ' ', p.passage_text.strip())
+                            if (p.content_hash == record.content_hash or
+                                (len(clean_rec_pas) >= 15 and clean_rec_pas in clean_p_pas) or
+                                (len(clean_p_pas) >= 15 and clean_p_pas in clean_rec_pas)):
+                                is_norm_clause_verified = True
+                                break
+            except Exception:
+                is_norm_clause_verified = False
+
+        # 9. Final completeness classification based on verified signals
         if not is_cat_verified:
             completeness = EvidenceCompletenessState.UNKNOWN_STANDARD.value
         elif record.is_rejected_candidate:
@@ -358,7 +377,7 @@ class TraceableEvidenceValidator:
                "is_passage_verified_in_source": is_pas_verified,
                "is_lifecycle_verified": is_lif_verified,
                "is_official_source_authenticated": False,  # Local SQLite database is not live portal authenticated
-               "is_normative_clause_verified": False,       # Full clause-level text not ingested in catalogue database
+               "is_normative_clause_verified": is_norm_clause_verified,  # Verified only if matching clause passage exists in corpus
                "evidence_completeness": completeness,
                "validation_errors": errors,
                "validation_warnings": warnings}

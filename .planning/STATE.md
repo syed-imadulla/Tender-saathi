@@ -41,22 +41,31 @@
    - Full offline suite passing: 589/589 tests in 57s. Frontend build passing in 1.03s.
    - Preserved active ground-truth SHA-256 (`8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`).
    - Verdict: **GO** for normative full-text standard ingestion.
+10. **Phase 18 Controlled Normative Standards Corpus Ingestion**: Completed in `docs/evaluation/PHASE18_CORPUS_INGESTION_AUDIT.md`.
+   - Designed and implemented full-text standards ingestion pipeline in `src/corpus/` (`manifest.py`, `extractor.py`, `chunker.py`, `storage.py`, `retriever.py`, `semantics.py`).
+   - Established versioned JSON manifest (`CorpusManifest`) and SQLite full-text storage (`CorpusStorage`) in `data/standards/corpus.db`.
+   - Built deterministic layout-preserving extractor with PyMuPDF/pypdf fallback, empty/scanned document detection (`OCR_REQUIRED`), replacement character checks (`QUALITY_FAILED`), and table warnings.
+   - Built clause-aware chunker with strict page/edition isolation, structural clause parsing, and explicit `CLAUSE_UNKNOWN` fallback without semantic guessing.
+   - Codified 7 distinct verification states in `src/corpus/semantics.py` with strict transition boundaries.
+   - Connected clause verification into `TraceableEvidenceValidator` in `src/traceability.py` with zero backward regressions.
+   - Added comprehensive offline test suite in `tests/test_corpus_ingestion.py` covering all 15 acceptance criteria (15/15 passed).
+   - Added CLI runner `scripts/ingest_pilot_corpus.py` and evaluation harness `scripts/evaluate_phase18_ingestion.py`.
+   - Full test suite passing: 604/604 tests in 60s. Frontend build passing in 1.09s.
+   - Preserved active ground-truth SHA-256 (`8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`).
 
 ---
 
-## Active Phase Overview: Phase 17
+## Active Phase Overview: Phase 18
 
 | Plan ID | Title | Scope & Target Files | Deliverable | Status |
 |---|---|---|---|---|
-| **17-AUDIT** | Evidence Integrity & Verification Semantics Audit | `src/traceability.py`, `src/recommend.py`, `frontend/src/components/EvidenceDrawer.tsx`, `frontend/src/types.ts`, `tests/test_evidence_integrity_audit.py`, `docs/evaluation/PHASE17_EVIDENCE_INTEGRITY_AUDIT.md` | Verification claim semantics, defect remediation, adversarial regression tests, reconciled benchmark metrics, audit report. | **Complete** |
+| **18-INGEST** | Controlled Normative Standards Corpus Ingestion | `src/corpus/`, `src/traceability.py`, `scripts/ingest_pilot_corpus.py`, `scripts/evaluate_phase18_ingestion.py`, `tests/test_corpus_ingestion.py`, `docs/evaluation/PHASE18_CORPUS_INGESTION_AUDIT.md` | Versioned manifest, deterministic extractor, clause-aware chunker, SQLite full-text storage, 7-state verification semantics, clause retriever, 15 tests, evaluation report. | **Complete** |
 
 ---
 
 ## Next Steps (Human Boundary)
 
 1. Qualified external domain engineers (CPWD, BIS, MES) review the 41 packets in `reports/adjudication_packets/packets/`.
-2. Secure two-party consensus on at least 5 real under-specified requirements to satisfy the abstention threshold calibration gate.
-3. Ingest signed packets via `python3 scripts/ingest_adjudication.py --promote`.
-4. Ingest full-text normative standards text into `data/standards/corpus/` to unlock clause-level grounding verification.
+2. Connect the clause retrieval subsystem into the production recommendation feedback loop (`src/recommend.py`) exclusively for standards with active full-text corpus records (Phase 19).
 
 
