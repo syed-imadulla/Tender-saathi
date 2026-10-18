@@ -391,10 +391,33 @@ class StandardsRecommender:
                     exact_res.deterministic_score = 1.0
                     exact_res.final_score = 1.0
                     explicit_search_results.append(exact_res)
+                elif val_res.is_catalogue_only and val_res.catalogue_record:
+                    # Construct validated national catalogue candidate
+                    cat_rec = val_res.catalogue_record
+                    exact_res = SearchResult(
+                        standard_id=cat_rec["canonical_id"],
+                        standard_number=cat_rec.get("standard_number") or cat_rec["canonical_id"],
+                        year=cat_rec.get("year"),
+                        full_title=cat_rec.get("title") or "Indian Standard",
+                        status=val_res.status,
+                        version_role="CURRENT_ACTIVE" if val_res.is_active else ("WITHDRAWN" if "withdrawn" in val_res.status.lower() else "REPLACED_OR_SUPERSEDED"),
+                        relevance_score=1.0,
+                        relevance_reason=f"Explicitly cited in tender: {exp} (Validated in National BIS Catalogue)",
+                        scope_summary="[National BIS Catalogue entry: scope text unindexed in local semantic corpus]",
+                        referenced_standards=[],
+                        explicit_relationships=[],
+                        verification_status="CATALOGUE_VERIFIED",
+                        source_provenance=cat_rec.get("source") or "National BIS Catalogue",
+                        deterministic_score=1.0,
+                        final_score=1.0
+                    )
+                    setattr(exact_res, "_is_catalogue_only", True)
+                    setattr(exact_res, "_catalogue_record", cat_rec)
+                    explicit_search_results.append(exact_res)
 
                 # 2. Inject the authoritative successor if superseded or outdated edition
                 if not val_res.is_active:
-                    if val_res.warning_message:
+                    if val_res.warning_message and val_res.warning_message not in superseded_explicit_warnings:
                         superseded_explicit_warnings.append(val_res.warning_message)
                     if val_res.successor_standard:
                         successor_number = val_res.successor_standard.split(" : ")[0].strip()
@@ -411,6 +434,10 @@ class StandardsRecommender:
                             succ_res.final_score = 1.0
                             setattr(succ_res, "_explicit_successor_warning", f"Tender cited superseded standard '{exp}'. Recommended current active replacement.")
                             explicit_search_results.append(succ_res)
+
+                for aw in getattr(val_res, "ambiguity_warnings", []):
+                    if aw not in superseded_explicit_warnings:
+                        superseded_explicit_warnings.append(aw)
 
         # Step 2: Multi-modal Search over BIS Standards with Decomposed Components
         # Primary search using full requirement text and decomposed components
@@ -623,17 +650,26 @@ class StandardsRecommender:
                     r_code = app_res.reason_code.value if hasattr(app_res.reason_code, 'value') else str(app_res.reason_code)
                     r_msg = app_res.human_reason or ("; ".join(app_res.rejection_reasons) if app_res.rejection_reasons else "Insufficient domain applicability")
                     why_not_reasons.append(f"[{r_code}] Standard {cand.standard_number} ({cand.full_title}) rejected: {r_msg}")
-                if not why_not_reasons:
-                    why_not_reasons = ["No reliable candidate standards retrieved from catalogue."]
-                user_facing_explanation = (
-                    "No reliable Indian Standard match found. "
-                    "We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue. "
-                    "Human review required."
-                )
-                title = "No Reliable Indian Standard Match Found"
-                critic_decision = "NO_RELIABLE_MATCH"
-                critic_reasons = ["All candidates rejected by Applicability Gate." if rejected_candidates else "Zero candidates retrieved from catalogue."]
-                why_it_matches = "No reliable Indian Standard match found in the available catalogue."
+                if nonexistent_citation_warnings:
+                    for ncw in reversed(nonexistent_citation_warnings):
+                        why_not_reasons.insert(0, ncw)
+                    user_facing_explanation = f"{nonexistent_citation_warnings[0]} Human review required."
+                    title = "Nonexistent Standard Citation Detected"
+                    critic_decision = "NO_RELIABLE_MATCH"
+                    critic_reasons = list(nonexistent_citation_warnings)
+                    why_it_matches = "Cited standard does not exist in the official BIS standards catalogue."
+                else:
+                    if not why_not_reasons:
+                        why_not_reasons = ["No reliable candidate standards retrieved from catalogue."]
+                    user_facing_explanation = (
+                        "No reliable Indian Standard match found. "
+                        "We could not establish a sufficiently supported Indian Standard for this requirement from the available catalogue. "
+                        "Human review required."
+                    )
+                    title = "No Reliable Indian Standard Match Found"
+                    critic_decision = "NO_RELIABLE_MATCH"
+                    critic_reasons = ["All candidates rejected by Applicability Gate." if rejected_candidates else "Zero candidates retrieved from catalogue."]
+                    why_it_matches = "No reliable Indian Standard match found in the available catalogue."
             elif ambiguity_report.ambiguity_state == AmbiguityState.INCOMPLETE:
                 why_not_reasons = [
                     f"Specification omits critical discriminating parameters: {', '.join(ambiguity_report.missing_information)}."
@@ -1121,6 +1157,27 @@ class StandardsRecommender:
             human_review_required = True
             top_rec.human_review_required = True
             decision_reason = f"Conflicting Evidence: Normative clause passage contradicts requirement parameters. {decision_reason}"
+
+        # Phase 24: Handle catalogue-only candidates
+        is_top_cat_only = getattr(top_sr, "_is_catalogue_only", False) or getattr(top_rec, "_is_catalogue_only", False)
+        if is_top_cat_only:
+            human_review_required = True
+            top_rec.human_review_required = True
+            top_rec.provenance = "NATIONAL_CATALOGUE_UNINDEXED"
+            top_rec.evidence = (
+                f"Standard {top_rec.standard_number} is validated in the National BIS Catalogue ({top_rec.title}), "
+                f"but its technical clause text is not yet indexed in the local semantic corpus. "
+                f"Applicability decision is PENDING_TECHNICAL_EVALUATION; manual engineering review required."
+            )
+            top_rec.applicability = {
+                "decision": "PENDING_TECHNICAL_EVALUATION",
+                "applicable": True,
+                "rejection_reasons": [],
+                "reason_code": "PENDING_TECHNICAL_EVALUATION",
+                "human_reason": "Technical clauses unindexed in local corpus; pending manual engineering verification.",
+            }
+            conf = "Medium" if top_rec.status == "Active" else "Low"
+            decision_reason = f"Validated National Catalogue Citation (Scope Unindexed): {top_rec.evidence}"
 
         return RequirementRecommendationResult(
             requirement_id=req_id,

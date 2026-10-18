@@ -163,6 +163,17 @@ class EvidenceAwareCritic:
         """
         std = self.db.get_standard(candidate.standard_id)
         if not std:
+            if getattr(candidate, "_is_catalogue_only", False):
+                return CandidateEvidence(
+                    evidence_text=f"National BIS Catalogue entry ({candidate.full_title}); technical clause scope unindexed in local corpus.",
+                    evidence_source="BIS Know Your Standards",
+                    source_url=getattr(candidate, "source_url", None) or "https://www.services.bis.gov.in/",
+                    provenance="CATALOGUE_VERIFIED",
+                    evidence_type="catalogue_metadata",
+                    evidence_strength="MEDIUM",
+                    grounded=True,
+                    standard_number=candidate.standard_number
+                )
             return CandidateEvidence(
                 evidence_text="Insufficient evidence from the retrieved standards data.",
                 evidence_source="UNKNOWN",

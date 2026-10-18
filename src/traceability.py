@@ -148,6 +148,10 @@ class TraceableEvidenceValidator:
         struct_ev = getattr(recommendation, "structured_evidence", None) or {}
         critic_res = getattr(recommendation, "critic_result", None) or {}
         app_dict = applicability or getattr(recommendation, "applicability", None) or {}
+        if isinstance(app_dict, str):
+            app_dict = {"decision": app_dict, "rejection_reasons": []}
+        elif not isinstance(app_dict, dict):
+            app_dict = {}
         ambiguity_state = getattr(recommendation, "ambiguity_state", "CLEAR") or "CLEAR"
         competing = [c.get("standard_number") for c in (getattr(recommendation, "competing_interpretations", []) or []) if isinstance(c, dict)]
         
@@ -326,7 +330,7 @@ class TraceableEvidenceValidator:
             elif "://" in raw_url and not (raw_url.startswith("http://") or raw_url.startswith("https://")):
                 errors.append(f"Invalid Source URL Scheme: URL '{record.source_url}' must start with http:// or https://")
 
-        # 4. Real catalogue entry lookup (try exact edition ID first, then full number, then normalized)
+        # 4. Real catalogue entry lookup (check curated standards.db first, then national BIS catalogue)
         std_slug = re.sub(r'[\s/:]+', '-', record.standard_number).strip('-')
         norm_std = re.sub(r'\s*:\s*\d{4}\b', '', record.standard_number).strip()
         norm_slug = re.sub(r'[\s/:]+', '-', norm_std).strip('-')
@@ -337,9 +341,25 @@ class TraceableEvidenceValidator:
             or self.db.get_standard(norm_std)
         )
         
+        from src.catalogue.access import get_national_catalogue
+        national_cat = get_national_catalogue()
+        cat_match = None
+
         if not std_row:
-            errors.append(f"Catalogue Verification Failed: Standard '{record.standard_number}' does not exist in active catalogue database")
-            completeness = EvidenceCompletenessState.UNKNOWN_STANDARD.value
+            cat_match = national_cat.lookup_by_identifier(record.standard_number)
+            if not cat_match:
+                errors.append(f"Catalogue Verification Failed: Standard '{record.standard_number}' does not exist in active catalogue database")
+                completeness = EvidenceCompletenessState.UNKNOWN_STANDARD.value
+            else:
+                is_cat_verified = True
+                norm_status = (cat_match.status or "UNKNOWN").upper()
+                verified_year = cat_match.year
+                completeness = EvidenceCompletenessState.CATALOGUE_METADATA_ONLY.value
+                warnings.append("Scope passage unindexed in local corpus; standard verified against national BIS catalogue metadata.")
+                if norm_status in ("ACTIVE", "WITHDRAWN", "SUPERSEDED"):
+                    is_lif_verified = True
+                else:
+                    warnings.append(f"Unverified Lifecycle: Standard '{record.standard_number}' has unknown lifecycle status in national catalogue")
         else:
             is_cat_verified = True
             cat_scope = std_row.get("scope") or ""

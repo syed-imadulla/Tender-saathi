@@ -10,7 +10,7 @@
 ## 1. Tender Information
 
 - **Tender ID:** `SAMPLE-CPVC`
-- **Source File:** `Sample: cpvc`
+- **Source File:** `sample-cpvc.txt`
 - **Requirements Analysed:** 1
 
 ## 2. Publication Readiness
@@ -58,9 +58,9 @@
 ### 5.1 Requirement `REQ-001` [MATERIAL]
 
 **Original Requirement Text:**
-> "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778."
+> "Supply and installation of chlorinated polyvinyl chloride (CPVC) pipes and fittings conforming to IS 15778."
 
-- **Decomposed Technical Components:** `general: CPVC pipes`
+- **Decomposed Technical Components:** `general: chlorinated polyvinyl chloride`, `general: pipes`, `general: CPVC pipes`, `general: CPVC fittings`, `general: water supply`, `general: supply`, `general: installation`
 - **Recommended Standard:** **IS 15778 : 2007** — *Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*
 - **Candidate Standard:** `IS 15778 : 2007` | **Evidence Standard:** `IS 15778 : 2007` (Candidate == Evidence Grounding Established)
 - **Why It Matches:** Tender explicitly requires compliance with IS 15778.
@@ -69,36 +69,39 @@
 - **Evidence Strength:** `STRONG` | **Provenance:** `CURATED`
 - **Verbatim Evidence (Tender Document):** "Tender explicitly requires compliance with IS 15778."
 - **Why This Standard?:**
-  - Official title aligns with specification: 'Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification'.
+  - Standard title directly matches requirement component(s): 'chlorinated polyvinyl chloride, pipes'.
   - Authoritative scope explicitly covers application: "Tender explicitly requires compliance with IS 15778."
   - Standard is currently active in the BIS repository with verified currency.
   - Provenance established via Tender Document (VERIFIED).
+  - Candidate addresses multiple decomposed technical aspects of the requirement.
   - Official code of practice associated with IS 7634 (Part 3) : 2003.
 - **Why Not Alternatives?:**
-  - Alternative standard SP 57 (QAWSM) has lower composite relevance (0.566 vs 1.000).
+  - Alternative standard SP 57 (QAWSM) has lower composite relevance (0.609 vs 1.000).
   - Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification.
 - **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
 - **Related Standards Identified for Review (Graph Depth = 1):**
-  - [→ TEST_METHOD] `IS 12235 : 2004` — *Title not in local index* (Unknown) — *Note:* Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance.
-  - [→ INSTALLATION_CODE] `IS 7634 (Part 3) : 2003` — *Title not in local index* (Unknown) — *Note:* Laying / civil installation code of practice associated with IS 7634 (Part 3) : 2003. Review for installation compliance.
-  - [→ ALLIED_STANDARD] `IS 4985 : 2000` — *Title not in local index* (Unknown) — *Note:* Allied product or component standard. Review for equipment interface compatibility.
-  - [← ALLIED_STANDARD] `IS 4985 : 2021` — *Title not in local index* (Unknown) — *Note:* Allied product or component standard. Review for equipment interface compatibility.
+  - [→ TEST_METHOD] `IS 12235 : 2004` — *Thermoplastics Pipes and Fittings - Methods of Test (First Revision)* (Unknown) — *Note:* Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance.
+  - [→ INSTALLATION_CODE] `IS 7634 (Part 3) : 2003` — *Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)* (Unknown) — *Note:* Laying / civil installation code of practice associated with IS 7634 (Part 3) : 2003. Review for installation compliance.
+  - [→ ALLIED_STANDARD] `IS 4985 : 2000` — *Unplasticized pvc pipes for potable water supplies - Specification (Third Revision)* (Withdrawn) — *Note:* Allied product or component standard. Review for equipment interface compatibility.
+  - [← ALLIED_STANDARD] `IS 4985 : 2021` — *Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)* (Unknown) — *Note:* Allied product or component standard. Review for equipment interface compatibility.
 - **Standards Dependencies Mapped (5):**
-  - [TEST METHOD] `IS 12235 : 2004` — *Title not in local index* (IS 12235 : 2004 (Title not in local index) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778 : 2007. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED].)
-  - [INSTALLATION CODE] `IS 7634 (Part 3) : 2003` — *Title not in local index* (IS 7634 (Part 3) : 2003 (Title not in local index) is identified as an evidence-backed related standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].)
-  - [ALLIED STANDARD] `IS 4985 : 2000` — *Title not in local index* (IS 4985 : 2000 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED].)
-  - [ALLIED STANDARD] `IS 4985 : 2021` — *Title not in local index* (IS 4985 : 2021 (Title not in local index) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED].)
+  - [TEST METHOD] `IS 12235 : 2004` — *Thermoplastics Pipes and Fittings - Methods of Test (First Revision)* (IS 12235 : 2004 (Thermoplastics Pipes and Fittings - Methods of Test (First Revision)) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778 : 2007. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED].)
+  - [INSTALLATION CODE] `IS 7634 (Part 3) : 2003` — *Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)* (IS 7634 (Part 3) : 2003 (Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)) is identified as an evidence-backed related standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].)
+  - [ALLIED STANDARD] `IS 4985 : 2000` — *Unplasticized pvc pipes for potable water supplies - Specification (Third Revision)* (IS 4985 : 2000 (Unplasticized pvc pipes for potable water supplies - Specification (Third Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC). [Provenance: CURATED].)
+  - [ALLIED STANDARD] `IS 4985 : 2021` — *Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)* (IS 4985 : 2021 (Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778 : 2007. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED].)
   - [INSTALLATION STANDARD] `SP 57 (QAWSM) : 1993` — *Handbook on Pipes and Fittings for Drinking Water Supply* ()
 - **Regulatory & Statutory Intelligence:** Product Certification: `APPLICABLE` | QCO: `CURRENT` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
-- **Multi-Component Requirement Bundles (1):**
-  - **CPVC pipes** [PRIMARY_PRODUCT] → `IS 15778` (*Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*) [APPLICABLE]
+- **Multi-Component Requirement Bundles (4):**
+  - **chlorinated polyvinyl chloride** [PRIMARY_PRODUCT] → `IS 15778` (*Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*) [APPLICABLE]
+  - **pipes** [PRIMARY_PRODUCT] → `IS 783` (*Code of Practice for Laying of Concrete Pipes*) [APPLICABLE]
+  - **CPVC pipes** [equipment] → `IS 15778` (*Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*) [APPLICABLE]
+  - **CPVC fittings** [equipment] → `IS 15778` (*Chlorinated Polyvinyl Chloride (CPVC) Pipes for Potable Hot and Cold Water Supplies - Specification*) [APPLICABLE]
+- ⚠ **Lifecycle Warnings on Related Standards:**
+  - Standard `IS 4985 : 2000`: Normative dependency IS 4985 : 2000 has been superseded. Review current testing/design alignment.
 - **External Statutory Advisory Signals (Non-BIS Regulations):**
   > *Advisory Note: External statutory signals provide regulatory context and do NOT constitute legal compliance certification.*
   - **Central Public Works Department (CPWD)**: *CPWD Specifications 2019 / 2023 (Civil & Electrical Works)*, Clause Section 19 (Water Supply), Section 20 (Drainage), Section 31 (Electrical) — CPWD Works Specifications govern execution, laying, jointing and testing of water supply pipelines, sewerage conduits and electrical installations for central works, mandating compliance with IS 783 (laying concrete pipes), IS 15778 (CPVC plumbing), and IS 1239 (mild steel piping).
 - **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `High`
-- **Human Review Decision:** **ACCEPT**
-- **Reviewer Note:** "Verified by procurement officer"
-- **Decision Recorded:** `2026-10-18T15:41:10.265164+00:00`
 
 ---
 
@@ -119,6 +122,4 @@ TenderSaathi is a standards-review aid for procurement specifications. Final app
 
 ## 8. Human Review & Decision Trail
 
-| # | Requirement ID | Original System Finding | Human Decision | Reviewer Standard | Reviewer Note | Reviewed Timestamp |
-|---|---|---|---|---|---|---|
-| 1 | `REQ-001` | Authoritative active standard IS 15778 : 2007 verified against scope with High confidence. | **ACCEPT** | `—` | Verified by procurement officer | 2026-10-18T15:41:10.265164+00:00 |
+*No human review decisions have been recorded for this tender. All requirements remain in automated analysis state.*

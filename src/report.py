@@ -374,7 +374,14 @@ class TenderReviewReport:
             if req.lifecycle_warnings:
                 md.append(f"- ⚠ **Lifecycle Warnings on Related Standards:**")
                 for lw in req.lifecycle_warnings:
-                    md.append(f"  - Standard `{lw.get('standard_number')}`: {lw.get('reason')} (Active Successor: `{lw.get('active_successor')}`)")
+                    if isinstance(lw, dict):
+                        std_name = lw.get('standard_number') or lw.get('dependency_standard') or "Related Standard"
+                        reason_msg = lw.get('reason') or lw.get('advisory') or f"Status: {lw.get('status', 'Withdrawn/Superseded')}"
+                        succ = lw.get('active_successor') or lw.get('successor_standard')
+                        succ_str = f" (Active Successor: `{succ}`)" if succ else ""
+                        md.append(f"  - Standard `{std_name}`: {reason_msg}{succ_str}")
+                    elif isinstance(lw, str):
+                        md.append(f"  - {lw}")
 
             # External Statutory Advisory Signals (Phase 9)
             if req.external_regulations:

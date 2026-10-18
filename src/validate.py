@@ -1,17 +1,20 @@
 """
 Module: src/validate.py
-Purpose: Validate standard status (Active, Superseded, Withdrawn) and resolve explicit supersedence relationships.
+Purpose: Validate standard status (Active, Superseded, Withdrawn) across the national BIS catalogue and resolve explicit supersedence relationships.
 
 Adheres to strict evidence constraints:
 - Only reports a successor when explicitly supported by source evidence in the database.
 - Does not invent successor standards.
+- Grounded in data/catalogue/bis_catalogue.db for national registry validation.
+- Distinguishes FOUND_ACTIVE, FOUND_WITHDRAWN_OR_SUPERSEDED, FOUND_STATUS_UNKNOWN, and NOT_FOUND.
 """
 
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, field, asdict
 from typing import Optional, Dict, Any, List
 import re
 import sqlite3
 from src.standards import StandardsDatabase
+from src.catalogue.access import get_national_catalogue, CatalogueStandardMatch
 
 
 @dataclass
@@ -26,6 +29,11 @@ class StandardValidationResult:
     relationship_type: Optional[str] = None
     warning_message: Optional[str] = None
     standard_metadata: Optional[Dict[str, Any]] = None
+    # Phase 24 National Catalogue Integration fields:
+    recognition_state: str = "NOT_FOUND"    # FOUND_ACTIVE, FOUND_WITHDRAWN_OR_SUPERSEDED, FOUND_STATUS_UNKNOWN, NOT_FOUND
+    is_catalogue_only: bool = False
+    ambiguity_warnings: List[str] = field(default_factory=list)
+    catalogue_record: Optional[Dict[str, Any]] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -36,18 +44,17 @@ def validate_standard_status(
     db: Optional[StandardsDatabase] = None
 ) -> StandardValidationResult:
     """
-    Validates the status of a standard identifier (e.g. 'IS 10611', 'IS 778', 'IS 15000:2024').
-    Checks:
-    - Active
-    - Superseded
-    - Withdrawn
-    - Explicit SUPERSEDES / SUPERSEDED_BY relationships in standards.db
-
-    If an outdated or superseded standard is queried, retrieves the successor standard
-    and authoritative evidence when recorded in our database.
+    Validates the status of a standard identifier (e.g. 'IS 10611', 'IS 778', 'IS 8112', 'IS 15000:2024').
+    
+    Resolution Order:
+    1. Check explicit SUPERSEDES relationships in curated standards.db.
+    2. Check direct record in curated standards.db (preserves rich scope clauses).
+    3. Query national BIS catalogue (data/catalogue/bis_catalogue.db, 35k+ records).
+    4. If absent from both: mark NOT_FOUND / is_known=False.
     """
     database = db or StandardsDatabase()
     std_clean = standard_identifier.strip()
+    national_cat = get_national_catalogue()
 
     # Extract digits / key identifier (e.g. "10611" from "IS 10611")
     digits_match = re.search(r'\b(?:IS\s*(?:/|\s*)?(?:ISO|IEC)?\s*)?(\d{3,5})\b', std_clean, re.IGNORECASE)
@@ -56,7 +63,7 @@ def validate_standard_status(
     with database._get_connection() as conn:
         cursor = conn.cursor()
 
-        # 1. Check if another standard in DB explicitly SUPERSEDES this standard
+        # 1. Check if another standard in curated DB explicitly SUPERSEDES this standard
         cursor.execute("""
         SELECT s.standard_id, s.standard_number, s.year, s.full_title, s.status,
                r.relationship_type, r.evidence, r.target_standard
@@ -84,10 +91,12 @@ def validate_standard_status(
                     f"CRITICAL: {std_clean} is SUPERSEDED by {successor_repr} "
                     f"('{row['full_title']}'). Evidence: {row['evidence']}"
                 ),
-                standard_metadata=None
+                standard_metadata=None,
+                recognition_state="FOUND_WITHDRAWN_OR_SUPERSEDED",
+                is_catalogue_only=False
             )
 
-        # 2. Check direct standard record in standards table
+        # 2. Check direct standard record in curated standards table
         cursor.execute("""
         SELECT * FROM standards
         WHERE standard_id = ? 
@@ -147,6 +156,16 @@ def validate_standard_status(
                     )
 
             rel_type = "OLDER_VERSION" if is_older_edition else ("SUPERSEDED_BY" if successor_std else None)
+            recog_state = "FOUND_ACTIVE" if is_active else "FOUND_WITHDRAWN_OR_SUPERSEDED"
+
+            # Optional cross-check against national catalogue for enriched provenance
+            cat_match = national_cat.lookup_by_identifier(std_clean)
+            ambiguity_warnings = []
+            cat_rec = None
+            if cat_match:
+                cat_rec = cat_match.to_dict()
+                if (not is_active) and cat_match.ambiguity_message:
+                    ambiguity_warnings.append(cat_match.ambiguity_message)
 
             return StandardValidationResult(
                 standard_identifier=std_clean,
@@ -158,19 +177,86 @@ def validate_standard_status(
                 evidence=evidence_str or (f"Catalogue active edition is {db_year}" if is_older_edition and db_year else None),
                 relationship_type=rel_type,
                 warning_message=warning_msg,
-                standard_metadata=std_data
+                standard_metadata=std_data,
+                recognition_state=recog_state,
+                is_catalogue_only=False,
+                ambiguity_warnings=ambiguity_warnings,
+                catalogue_record=cat_rec
             )
 
-        # 3. Not found in local database
+    # 3. Not found in curated database — Query National BIS Catalogue (35k+ records)
+    cat_match = national_cat.lookup_by_identifier(std_clean)
+    if cat_match:
+        ambiguity_warnings = []
+        if cat_match.ambiguity_message:
+            ambiguity_warnings.append(cat_match.ambiguity_message)
+
+        cat_status_upper = (cat_match.status or "").strip().upper()
+
+        if cat_status_upper == "ACTIVE":
+            recog_state = "FOUND_ACTIVE"
+            is_active = True
+            disp_status = "Active"
+            warning_msg = cat_match.ambiguity_message
+        elif cat_status_upper in ["WITHDRAWN", "SUPERSEDED"]:
+            recog_state = "FOUND_WITHDRAWN_OR_SUPERSEDED"
+            is_active = False
+            disp_status = "Withdrawn" if cat_status_upper == "WITHDRAWN" else "Superseded"
+            base_warn = f"Standard {cat_match.standard_number} has status '{cat_match.status}' in the national BIS catalogue."
+            warning_msg = f"{base_warn} {cat_match.ambiguity_message}" if cat_match.ambiguity_message else base_warn
+        else:
+            recog_state = "FOUND_STATUS_UNKNOWN"
+            is_active = False
+            disp_status = "Unknown"
+            base_warn = f"Standard {cat_match.standard_number} is registered in the national catalogue, but its active lifecycle status is unclassified/unknown."
+            warning_msg = f"{base_warn} {cat_match.ambiguity_message}" if cat_match.ambiguity_message else base_warn
+
+        cat_dict = cat_match.to_dict()
+        metadata_dict = {
+            "standard_id": cat_match.canonical_id,
+            "standard_number": cat_match.standard_number,
+            "year": cat_match.year,
+            "full_title": cat_match.title,
+            "status": disp_status,
+            "technical_committee": cat_match.technical_committee,
+            "department": cat_match.department,
+            "source_url": cat_match.source_url,
+            "source": cat_match.source,
+            "is_catalogue_only": True,
+            "is_active": cat_match.is_active,
+            "iso_equivalence": cat_match.iso_equivalence,
+        }
+
         return StandardValidationResult(
             standard_identifier=std_clean,
-            is_known=False,
-            status="Unknown",
-            is_active=False,
+            is_known=True,
+            status=disp_status,
+            is_active=is_active,
             successor_standard=None,
             successor_title=None,
-            evidence=None,
+            evidence=f"Authoritative national BIS catalogue entry ({cat_match.technical_committee or 'BIS'}); scope text unindexed in local corpus.",
             relationship_type=None,
-            warning_message=f"Standard {std_clean} was not found in the local standards database; requires verification.",
-            standard_metadata=None
+            warning_message=warning_msg,
+            standard_metadata=metadata_dict,
+            recognition_state=recog_state,
+            is_catalogue_only=True,
+            ambiguity_warnings=ambiguity_warnings,
+            catalogue_record=cat_dict
         )
+
+    # 4. Absent from both curated standards.db and national bis_catalogue.db
+    return StandardValidationResult(
+        standard_identifier=std_clean,
+        is_known=False,
+        status="Unknown",
+        is_active=False,
+        successor_standard=None,
+        successor_title=None,
+        evidence=None,
+        relationship_type=None,
+        warning_message=f"Standard '{std_clean}' was not found in either the national BIS catalogue or the curated standards database; requires verification.",
+        standard_metadata=None,
+        recognition_state="NOT_FOUND",
+        is_catalogue_only=False,
+        ambiguity_warnings=[]
+    )
