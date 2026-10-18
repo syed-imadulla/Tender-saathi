@@ -470,43 +470,499 @@ def evaluate_negative_benchmark(recommender: StandardsRecommender) -> Dict[str, 
     }
 
 
+
+# ---------------------------------------------------------------------------
+# Phase 12 (Plan 12-02): Multi-Metric Reproducible Evaluation Harness
+# ---------------------------------------------------------------------------
+
+import datetime
+import hashlib
+import json
+
+
+def compute_dataset_sha256(filepath: str) -> str:
+    """Compute SHA-256 hash of dataset file."""
+    if not os.path.isfile(filepath):
+        return ""
+    h = hashlib.sha256()
+    with open(filepath, "rb") as f:
+        while chunk := f.read(65536):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def compute_deconflated_metrics(
+    evaluated_cases: List[Dict[str, Any]],
+    dataset_meta: Optional[Dict[str, Any]] = None
+) -> Dict[str, Any]:
+    """
+    Pure-functional computation of decoupled evaluation metrics.
+    
+    Distinguishes:
+    1. Retrieval Quality on Answerable Cases (Top-1, Top-3, MRR)
+    2. Selective Classification (Coverage & Selective Risk)
+    3. Abstention Quality (Under-specification recall)
+    4. Negative-Control Safety (False recommendation rate)
+    5. Evidence Grounding & Consistency (Catalogue lifecycle currency, proxy overlap)
+    6. Sector-Stratified Performance
+    
+    Guarantees:
+    - Zero model calls, 100% deterministic, permutation-invariant.
+    - An abstention is NEVER counted as a retrieval hit.
+    """
+    meta = dataset_meta or {}
+    total_cases = len(evaluated_cases)
+    
+    # 1. Partition cases by canonical expected_decision
+    answerable_cases = [c for c in evaluated_cases if c.get("expected_decision") == "RECOMMEND"]
+    under_specified_cases = [c for c in evaluated_cases if c.get("expected_decision") == "ABSTAIN_UNDER_SPECIFIED"]
+    negative_cases = [c for c in evaluated_cases if c.get("expected_decision") in ("REJECT_INELIGIBLE", "NEGATIVE_CONTROL")]
+    other_cases = [c for c in evaluated_cases if c not in answerable_cases and c not in under_specified_cases and c not in negative_cases]
+    
+    # 2. Retrieval Quality on Answerable Cases
+    ans_count = len(answerable_cases)
+    ans_top1_hits = 0
+    ans_top3_hits = 0
+    mrr_sum = 0.0
+    
+    for c in answerable_cases:
+        if c.get("is_top1_hit", False):
+            ans_top1_hits += 1
+        if c.get("is_top3_hit", False):
+            ans_top3_hits += 1
+        mrr_sum += float(c.get("reciprocal_rank", 0.0))
+        
+    top1_accuracy = (ans_top1_hits / ans_count * 100.0) if ans_count > 0 else 0.0
+    top3_accuracy = (ans_top3_hits / ans_count * 100.0) if ans_count > 0 else 0.0
+    mrr = (mrr_sum / ans_count) if ans_count > 0 else 0.0
+    
+    # 3. Selective Classification: Coverage & Selective Risk
+    # Eligible cases are all standard evaluation benchmark cases
+    eligible_count = total_cases
+    covered_cases = [
+        c for c in evaluated_cases
+        if c.get("system_decision") in ("RECOMMEND", "RECOMMEND_WITH_REVIEW")
+        and c.get("predicted_top1") not in (None, "", "INSUFFICIENT_INFORMATION", "UNKNOWN")
+    ]
+    covered_count = len(covered_cases)
+    coverage_percent = (covered_count / eligible_count * 100.0) if eligible_count > 0 else 0.0
+    
+    # Incorrect recommendations among covered queries
+    # A recommendation is incorrect if Top-1 predicted standard does not match gold
+    # (or if the query was an under-specified or negative case that should NOT have received a recommendation)
+    incorrect_covered = [c for c in covered_cases if not c.get("is_top1_hit", False)]
+    incorrect_covered_count = len(incorrect_covered)
+    selective_risk_percent = (incorrect_covered_count / covered_count * 100.0) if covered_count > 0 else 0.0
+    
+    # 4. Abstention & Rejection Quality
+    under_count = len(under_specified_cases)
+    under_safe_abstained = [c for c in under_specified_cases if c.get("is_safe_abstention", False)]
+    under_safe_count = len(under_safe_abstained)
+    under_abstention_recall = (under_safe_count / under_count * 100.0) if under_count > 0 else 0.0
+    
+    neg_count = len(negative_cases)
+    neg_false_recs = [
+        c for c in negative_cases
+        if c.get("system_decision") in ("RECOMMEND", "RECOMMEND_WITH_REVIEW")
+        and c.get("predicted_top1") not in (None, "", "INSUFFICIENT_INFORMATION", "UNKNOWN")
+    ]
+    neg_false_rec_count = len(neg_false_recs)
+    neg_false_rec_rate = (neg_false_rec_count / neg_count * 100.0) if neg_count > 0 else 0.0
+    neg_rejection_rate = ((neg_count - neg_false_rec_count) / neg_count * 100.0) if neg_count > 0 else 0.0
+    
+    # 5. Evidence Grounding & Consistency
+    # Provenance consistency: Top-1 hits where standard status matches active/gold catalogue status
+    top1_hit_cases = [c for c in answerable_cases if c.get("is_top1_hit", False)]
+    status_consistent_count = sum(1 for c in top1_hit_cases if c.get("status_consistent", True))
+    catalogue_status_consistency_rate = (
+        (status_consistent_count / len(top1_hit_cases) * 100.0)
+        if top1_hit_cases else 0.0
+    )
+    
+    proxy_overlap_scores = [float(c.get("evidence_proxy_score", 0.0)) for c in top1_hit_cases]
+    avg_proxy_overlap = (sum(proxy_overlap_scores) / len(proxy_overlap_scores)) if proxy_overlap_scores else 0.0
+    
+    # 6. Sector Stratification
+    sectors: Dict[str, Dict[str, Any]] = {}
+    for c in evaluated_cases:
+        sec = c.get("procurement_sector", "UNKNOWN") or "UNKNOWN"
+        if sec not in sectors:
+            sectors[sec] = {
+                "total_count": 0,
+                "answerable_count": 0,
+                "top1_hits": 0,
+                "top3_hits": 0,
+                "mrr_sum": 0.0,
+            }
+        sectors[sec]["total_count"] += 1
+        if c.get("expected_decision") == "RECOMMEND":
+            sectors[sec]["answerable_count"] += 1
+            if c.get("is_top1_hit", False):
+                sectors[sec]["top1_hits"] += 1
+            if c.get("is_top3_hit", False):
+                sectors[sec]["top3_hits"] += 1
+            sectors[sec]["mrr_sum"] += float(c.get("reciprocal_rank", 0.0))
+            
+    sector_breakdown: Dict[str, Dict[str, Any]] = {}
+    for sec, data in sorted(sectors.items()):
+        ans_n = data["answerable_count"]
+        sector_breakdown[sec] = {
+            "sample_size": data["total_count"],
+            "answerable_count": ans_n,
+            "top1_accuracy": (data["top1_hits"] / ans_n * 100.0) if ans_n > 0 else 0.0,
+            "top3_accuracy": (data["top3_hits"] / ans_n * 100.0) if ans_n > 0 else 0.0,
+            "mrr": (data["mrr_sum"] / ans_n) if ans_n > 0 else 0.0,
+        }
+        
+    return {
+        "metadata": {
+            "dataset_path": meta.get("dataset_path", ""),
+            "dataset_sha256": meta.get("dataset_sha256", ""),
+            "evaluated_at_utc": meta.get("evaluated_at_utc", datetime.datetime.now(datetime.timezone.utc).isoformat()),
+            "evaluation_engine_version": "TenderSaathi-M12-MultiMetric",
+            "total_evaluated_cases": total_cases,
+            "unverified_baseline_disclosure": "Benchmark ground_truth.csv rows are UNVERIFIED_BASELINE and require formal domain expert panel adjudication (Phase 13)."
+        },
+        "retrieval_answerable": {
+            "total_answerable": ans_count,
+            "top1_hits": ans_top1_hits,
+            "top1_accuracy_percent": round(top1_accuracy, 2),
+            "top3_hits": ans_top3_hits,
+            "top3_accuracy_percent": round(top3_accuracy, 2),
+            "mrr": round(mrr, 3),
+            "interpretation": "Evaluated strictly on cases with gold applicable standard targets. Correct abstentions are excluded and never counted as retrieval hits."
+        },
+        "selective_classification": {
+            "total_eligible": eligible_count,
+            "covered_count": covered_count,
+            "coverage_percent": round(coverage_percent, 2),
+            "incorrect_covered_count": incorrect_covered_count,
+            "selective_risk_percent": round(selective_risk_percent, 2),
+            "interpretation": "Coverage is the fraction of queries given definitive recommendations. Selective Risk is the error rate among covered queries."
+        },
+        "abstention_quality": {
+            "under_specified_count": under_count,
+            "safe_abstained_count": under_safe_count,
+            "under_specified_abstention_recall_percent": round(under_abstention_recall, 2),
+            "interpretation": "Measures whether the system safely withholds definitive recommendations and flags review when specifications are incomplete."
+        },
+        "negative_control": {
+            "total_negative_cases": neg_count,
+            "false_recommendation_count": neg_false_rec_count,
+            "false_recommendation_rate_percent": round(neg_false_rec_rate, 2),
+            "negative_rejection_rate_percent": round(neg_rejection_rate, 2),
+            "interpretation": "Measures hallucination rate on domain-unrelated or invalid negative queries. Target false recommendation rate is 0.0%."
+        },
+        "evidence_grounding": {
+            "top1_evaluated_count": len(top1_hit_cases),
+            "catalogue_status_consistency_rate_percent": round(catalogue_status_consistency_rate, 2),
+            "clause_grounding_status": "NOT_EVALUABLE_NO_FULL_TEXT_CORPUS",
+            "limitations_disclosure": (
+                "Tender Saathi's catalogue database stores standard numbers, titles, scopes, and committee metadata, "
+                "but does not index full digital clause-by-clause standard texts for all 19,000+ BIS standards. "
+                "Full clause-level grounding precision cannot be claimed as an absolute metric without a certified clause text corpus."
+            ),
+            "proxy_evidence_reference_overlap_percent": round(avg_proxy_overlap, 2)
+        },
+        "sector_stratification": sector_breakdown,
+        "per_case_results": evaluated_cases
+    }
+
+
+class ComprehensiveEvaluationHarness:
+    """Multi-metric reproducible evaluation harness for Tender Saathi."""
+
+    def __init__(
+        self,
+        recommender: Optional[StandardsRecommender] = None,
+        retrieval_mode: str = "hybrid"
+    ):
+        self.recommender = recommender or StandardsRecommender(retrieval_mode=retrieval_mode)
+
+    def evaluate_case(self, row: Dict[str, Any]) -> Dict[str, Any]:
+        """Runs the recommendation engine on a single evaluation case and scores it."""
+        import time
+
+        req_id = row.get("requirement_id", "REQ-UNKNOWN")
+        req_text = row.get("requirement_text", "")
+        category = row.get("category", "material")
+        gt_standard_raw = str(row.get("applicable_standard", "") or "")
+        gt_standards = extract_standard_tokens(gt_standard_raw)
+        expected_decision = row.get("expected_decision", "RECOMMEND")
+        sector = row.get("procurement_sector", "UNKNOWN")
+        adjudication_status = row.get("adjudication_status", "UNVERIFIED_BASELINE")
+        human_verified = str(row.get("human_verified", "FALSE")).upper() == "TRUE"
+        gold_status = row.get("standard_status", "Active")
+        evidence_ref = str(row.get("evidence_reference", "") or "")
+
+        # Run extraction & recommendation
+        req_obj = extract_from_text(req_text, requirement_id=req_id)
+        t_start = time.perf_counter()
+        rec_res = self.recommender.recommend_for_requirement(req_obj)
+        elapsed_ms = (time.perf_counter() - t_start) * 1000.0
+
+        pred_top1 = rec_res.candidate_standard
+        pred_top1_tokens = extract_standard_tokens(pred_top1)
+        pred_top3_tokens = [s for sub in [extract_standard_tokens(r.standard_number) for r in rec_res.recommendations[:3]] for s in sub]
+
+        decision = (rec_res.critic_result or {}).get("decision") or ("RECOMMEND" if pred_top1 and not rec_res.human_review_required else ("REVIEW_REQUIRED" if rec_res.human_review_required else "INSUFFICIENT_EVIDENCE"))
+
+        # Check hits
+        is_top1_hit = False
+        is_top3_hit = False
+        rr = 0.0
+
+        if expected_decision == "RECOMMEND" and gt_standards:
+            # Check Top-1
+            for p in pred_top1_tokens:
+                if any(p in g or g in p for g in gt_standards):
+                    is_top1_hit = True
+                    break
+
+            # Check Top-3 and reciprocal rank
+            for rank, r in enumerate(rec_res.recommendations[:5], start=1):
+                p_toks = extract_standard_tokens(r.standard_number)
+                if any(any(p in g or g in p for g in gt_standards) for p in p_toks):
+                    if rank <= 3:
+                        is_top3_hit = True
+                    if rr == 0.0:
+                        rr = 1.0 / rank
+                    break
+
+        # Check safe abstention
+        is_safe_abstention = (
+            pred_top1 in (None, "", "INSUFFICIENT_INFORMATION", "UNKNOWN")
+            or rec_res.human_review_required
+            or decision in ("REVIEW_REQUIRED", "INSUFFICIENT_EVIDENCE", "NO_RELIABLE_MATCH")
+        )
+
+        # Status consistency check
+        status_consistent = True
+        if is_top1_hit and rec_res.status:
+            status_consistent = (rec_res.status.strip().lower() == str(gold_status).strip().lower())
+
+        # Lexical proxy overlap with evidence_reference
+        proxy_score = 0.0
+        if is_top1_hit and evidence_ref:
+            ref_words = set(re.findall(r'\w+', evidence_ref.lower()))
+            rec_evidence_str = f"{rec_res.evidence or ''} {rec_res.reason or ''}".lower()
+            rec_words = set(re.findall(r'\w+', rec_evidence_str))
+            if ref_words:
+                overlap = len(ref_words.intersection(rec_words))
+                proxy_score = min(100.0, (overlap / len(ref_words)) * 100.0)
+
+        return {
+            "requirement_id": req_id,
+            "tender_id": row.get("tender_id", ""),
+            "procurement_sector": sector,
+            "expected_decision": expected_decision,
+            "adjudication_status": adjudication_status,
+            "human_verified": human_verified,
+            "ground_truth_standards": gt_standard_raw,
+            "predicted_top1": pred_top1,
+            "predicted_title": rec_res.title,
+            "system_decision": decision,
+            "human_review_required": rec_res.human_review_required,
+            "is_top1_hit": is_top1_hit,
+            "is_top3_hit": is_top3_hit,
+            "reciprocal_rank": rr,
+            "is_safe_abstention": is_safe_abstention,
+            "status_consistent": status_consistent,
+            "evidence_proxy_score": round(proxy_score, 1),
+            "latency_ms": round(elapsed_ms, 2),
+            "reason": rec_res.reason
+        }
+
+    def evaluate_dataset(
+        self,
+        df_or_cases: Any,
+        dataset_meta: Optional[Dict[str, Any]] = None,
+        include_negative_controls: bool = False
+    ) -> Dict[str, Any]:
+        """Evaluates a complete dataset (DataFrame or list of row dicts) and returns de-conflated metrics."""
+        if hasattr(df_or_cases, "to_dict"):
+            raw_cases = df_or_cases.to_dict(orient="records")
+        else:
+            raw_cases = list(df_or_cases)
+
+        evaluated_cases: List[Dict[str, Any]] = []
+        for row in raw_cases:
+            evaluated_cases.append(self.evaluate_case(row))
+
+        # Optionally add negative benchmark cases
+        if include_negative_controls:
+            for neg in NEGATIVE_BENCHMARK_CASES:
+                neg_row = {
+                    "requirement_id": neg["id"],
+                    "tender_id": "SYNTHETIC_NEG",
+                    "requirement_text": neg["requirement_text"],
+                    "category": "negative_control",
+                    "applicable_standard": "",
+                    "standard_status": "N/A",
+                    "expected_decision": "REJECT_INELIGIBLE",
+                    "procurement_sector": "PROVISIONAL:NEGATIVE_CONTROL",
+                    "adjudication_status": "SYNTHETIC_BENCHMARK",
+                    "human_verified": "TRUE"
+                }
+                c_res = self.evaluate_case(neg_row)
+                evaluated_cases.append(c_res)
+
+        return compute_deconflated_metrics(evaluated_cases, dataset_meta)
+
+
+def evaluate_comprehensive_benchmark(
+    ground_truth_path: str = "dataset/ground_truth/ground_truth.csv",
+    output_json_path: str = "reports/evaluation/evaluation_benchmark_m12.json",
+    output_report_path: str = "reports/evaluation/evaluation_benchmark_m12.md",
+    include_negative_controls: bool = True,
+    recommender: Optional[StandardsRecommender] = None
+) -> Dict[str, Any]:
+    """
+    Executes the comprehensive, de-conflated benchmark evaluation on ground_truth.csv.
+    Emits structured JSON and a human-readable Markdown report.
+    """
+    if not os.path.isfile(ground_truth_path):
+        raise FileNotFoundError(f"Ground truth file not found: {ground_truth_path}")
+
+    ds_sha = compute_dataset_sha256(ground_truth_path)
+    df_gt = pd.read_csv(ground_truth_path)
+
+    meta = {
+        "dataset_path": ground_truth_path,
+        "dataset_sha256": ds_sha,
+        "evaluated_at_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        "total_rows_in_file": len(df_gt)
+    }
+
+    harness = ComprehensiveEvaluationHarness(recommender=recommender)
+    metrics = harness.evaluate_dataset(
+        df_gt,
+        dataset_meta=meta,
+        include_negative_controls=include_negative_controls
+    )
+
+    # 1. Write structured JSON
+    os.makedirs(os.path.dirname(output_json_path), exist_ok=True)
+    with open(output_json_path, "w", encoding="utf-8") as f:
+        json.dump(metrics, f, indent=2)
+
+    # 2. Write Markdown report
+    os.makedirs(os.path.dirname(output_report_path), exist_ok=True)
+    md_content = _generate_comprehensive_markdown_report(metrics)
+    with open(output_report_path, "w", encoding="utf-8") as f:
+        f.write(md_content)
+
+    metrics["report_path"] = output_report_path
+    metrics["json_path"] = output_json_path
+    return metrics
+
+
+def _generate_comprehensive_markdown_report(metrics: Dict[str, Any]) -> str:
+    """Formats comprehensive evaluation metrics into a transparent Markdown document."""
+    m_ret = metrics["retrieval_answerable"]
+    m_sel = metrics["selective_classification"]
+    m_abs = metrics["abstention_quality"]
+    m_neg = metrics["negative_control"]
+    m_ev = metrics["evidence_grounding"]
+    meta = metrics["metadata"]
+
+    lines = [
+        "# Tender Saathi — Phase 12 Comprehensive Evaluation Report",
+        "",
+        "> [!IMPORTANT]",
+        f"> **Ground Truth Status Disclosure**: {meta['unverified_baseline_disclosure']}",
+        "",
+        f"- **Evaluation Timestamp**: `{meta['evaluated_at_utc']}`",
+        f"- **Dataset Path**: `{meta['dataset_path']}`",
+        f"- **Dataset SHA-256**: `{meta['dataset_sha256']}`",
+        f"- **Evaluation Harness**: `{meta['evaluation_engine_version']}`",
+        "",
+        "---",
+        "",
+        "## 1. Executive Summary: Decoupled Benchmark Metrics",
+        "",
+        "| Metric Dimension | Measured Value | Denominator | Interpretation |",
+        "| :--- | :--- | :--- | :--- |",
+        f"| **Top-1 Accuracy (Answerable)** | **{m_ret['top1_accuracy_percent']:.1f}%** | {m_ret['top1_hits']} / {m_ret['total_answerable']} | Evaluated strictly on answerable queries. Abstentions are excluded. |",
+        f"| **Top-3 Accuracy (Answerable)** | **{m_ret['top3_accuracy_percent']:.1f}%** | {m_ret['top3_hits']} / {m_ret['total_answerable']} | Gold standard present in Top-3 primary recommendations. |",
+        f"| **Mean Reciprocal Rank (MRR)** | **{m_ret['mrr']:.3f}** | {m_ret['total_answerable']} queries | Harmonic mean of retrieval ranks on answerable queries. |",
+        f"| **Recommendation Coverage** | **{m_sel['coverage_percent']:.1f}%** | {m_sel['covered_count']} / {m_sel['total_eligible']} | Queries where definitive recommendation was issued. |",
+        f"| **Selective Risk (Error Rate)** | **{m_sel['selective_risk_percent']:.1f}%** | {m_sel['incorrect_covered_count']} / {m_sel['covered_count']} | Error rate among queries with definitive recommendations. |",
+        f"| **Under-Spec Abstention Recall** | **{m_abs['under_specified_abstention_recall_percent']:.1f}%** | {m_abs['safe_abstained_count']} / {m_abs['under_specified_count']} | Vague requirements where system safely abstained/flagged review. |",
+        f"| **Negative False Rec Rate** | **{m_neg['false_recommendation_rate_percent']:.1f}%** | {m_neg['false_recommendation_count']} / {m_neg['total_negative_cases']} | Ineligible/unrelated queries falsely recommended (Safety Target: 0.0%). |",
+        "",
+        "---",
+        "",
+        "## 2. Evidence Grounding & Limitations Disclosure",
+        "",
+        f"- **Catalogue Currency Consistency**: **{m_ev['catalogue_status_consistency_rate_percent']:.1f}%** ({m_ev['top1_evaluated_count']} Top-1 hits audited against active BIS status).",
+        f"- **Clause-Level Grounding Status**: `{m_ev['clause_grounding_status']}`",
+        f"- **Limitation Note**: {m_ev['limitations_disclosure']}",
+        f"- **Proxy Reference Overlap**: `{m_ev['proxy_evidence_reference_overlap_percent']:.1f}%` (lexical overlap against ground-truth evidence snippets).",
+        "",
+        "---",
+        "",
+        "## 3. Sector-Stratified Performance Breakdown",
+        "",
+        "| Sector Tag | Sample Size | Answerable | Top-1 Accuracy | Top-3 Accuracy | MRR |",
+        "| :--- | :--- | :--- | :--- | :--- | :--- |",
+    ]
+
+    for sec, sdata in metrics["sector_stratification"].items():
+        lines.append(
+            f"| `{sec}` | {sdata['sample_size']} | {sdata['answerable_count']} | "
+            f"{sdata['top1_accuracy']:.1f}% | {sdata['top3_accuracy']:.1f}% | {sdata['mrr']:.3f} |"
+        )
+
+    lines.extend([
+        "",
+        "---",
+        "",
+        "## 4. Case-by-Case Outcome Manifest",
+        "",
+        "| Req ID | Sector | Expected | System Decision | Top-1 Predicted | Hit? | Abstain? |",
+        "| :--- | :--- | :--- | :--- | :--- | :--- | :--- |",
+    ])
+
+    for c in metrics["per_case_results"]:
+        top1_disp = c['predicted_top1'] or "None (Abstained)"
+        hit_str = "✅ YES" if c['is_top1_hit'] else "❌ NO"
+        abs_str = "🛡️ SAFE" if c['is_safe_abstention'] else "-"
+        lines.append(
+            f"| `{c['requirement_id']}` | `{c['procurement_sector']}` | `{c['expected_decision']}` | "
+            f"`{c['system_decision']}` | **{top1_disp}** | {hit_str} | {abs_str} |"
+        )
+
+    lines.append("")
+    return "\n".join(lines)
+
+
 def main():
-    print("Running SIH26108 Milestone 2 Evaluation Harness...")
-    metrics = evaluate_benchmark(run_ablation=True)
-    ab = metrics["ablation_results"]
+    print("Running Tender Saathi Comprehensive Multi-Metric Evaluation Harness (Phase 12)...")
+    comp_metrics = evaluate_comprehensive_benchmark()
+    ret = comp_metrics["retrieval_answerable"]
+    sel = comp_metrics["selective_classification"]
+    abs_q = comp_metrics["abstention_quality"]
+    neg_q = comp_metrics["negative_control"]
+    ev_q = comp_metrics["evidence_grounding"]
 
-    print("\n" + "=" * 78)
-    print("           SIH26108 RETRIEVAL ABLATION BENCHMARK RESULTS           ")
-    print("=" * 78)
-    print(f"{'Mode':<18} | {'Top-1 Acc':<10} | {'Top-3 Rec':<10} | {'MRR':<8} | {'Avg Latency':<12}")
-    print("-" * 78)
-    for mode in ["deterministic", "bm25", "semantic", "hybrid", "hybrid+rerank"]:
-        m = ab.get(mode, {})
-        print(f"{mode:<18} | {m.get('top1_accuracy', 0):>8.1f}%  | {m.get('top3_recall', 0):>8.1f}%  | {m.get('mrr', 0):>6.3f} | {m.get('avg_latency_ms', 0):>8.1f} ms")
-    print("=" * 78)
-    print(f"Supersedence Detection    : {metrics['supersedence_rate']:.1f}%")
-    print(f"Ambiguity Detection Recall: {metrics['ambiguity_recall']:.1f}%")
-    print(f"Ambiguity Precision       : {metrics['ambiguity_precision']:.1f}%")
-    print("=" * 78)
-    print(f"Detailed Markdown Report  : {metrics['report_path']}")
-    print(f"Evaluation CSV            : {metrics['csv_path']}")
-    print("=" * 78)
+    print("\n" + "=" * 80)
+    print("           TENDER SAATHI DECOUPLED BENCHMARK METRICS (PHASE 12)           ")
+    print("=" * 80)
+    print(f"Dataset SHA-256           : {comp_metrics['metadata']['dataset_sha256']}")
+    print(f"Top-1 Accuracy (Answerable): {ret['top1_accuracy_percent']:.1f}% ({ret['top1_hits']}/{ret['total_answerable']})")
+    print(f"Top-3 Accuracy (Answerable): {ret['top3_accuracy_percent']:.1f}% ({ret['top3_hits']}/{ret['total_answerable']})")
+    print(f"Mean Reciprocal Rank (MRR): {ret['mrr']:.3f}")
+    print(f"Recommendation Coverage   : {sel['coverage_percent']:.1f}% ({sel['covered_count']}/{sel['total_eligible']})")
+    print(f"Selective Risk (Error Rate): {sel['selective_risk_percent']:.1f}% ({sel['incorrect_covered_count']}/{sel['covered_count']})")
+    print(f"Under-Spec Abstain Recall : {abs_q['under_specified_abstention_recall_percent']:.1f}% ({abs_q['safe_abstained_count']}/{abs_q['under_specified_count']})")
+    print(f"Negative False Rec Rate   : {neg_q['false_recommendation_rate_percent']:.1f}% ({neg_q['false_recommendation_count']}/{neg_q['total_negative_cases']})")
+    print(f"Evidence Grounding Status : {ev_q['clause_grounding_status']}")
+    print("=" * 80)
+    print(f"Structured JSON Artifact  : {comp_metrics['json_path']}")
+    print(f"Markdown Evaluation Report: {comp_metrics['report_path']}")
+    print("=" * 80 + "\n")
 
-    print("\n" + "=" * 78)
-    print("             SIH26108 NEGATIVE / UNRELATED BENCHMARK RESULTS             ")
-    print("=" * 78)
-    rec_neg = StandardsRecommender(retrieval_mode="hybrid+rerank")
-    neg_metrics = evaluate_negative_benchmark(rec_neg)
-    print(f"Total Negative Cases      : {neg_metrics['total_cases']}")
-    print(f"False Positive Count      : {neg_metrics['false_positive_count']}")
-    print(f"False Positive Rate       : {neg_metrics['false_positive_rate']:.1f}%")
-    print(f"Negative Rejection Rate   : {neg_metrics['negative_rejection_rate']:.1f}%")
-    print(f"Abstention Accuracy       : {neg_metrics['abstention_accuracy']:.1f}%")
-    print("-" * 78)
-    for cr in neg_metrics["case_results"]:
-        status_label = "REJECTED (SAFE)" if not cr["false_positive"] else "FALSE POSITIVE"
-        print(f"[{cr['id']}] {cr['description'][:40]:<40} -> {cr['recommended_standard'] or 'None (Abstained)'} [{status_label}]")
-    print("=" * 78 + "\n")
 
 
 if __name__ == "__main__":

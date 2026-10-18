@@ -235,6 +235,92 @@ class TestGroundTruthIntegrity(unittest.TestCase):
         self.assertEqual(df["requirement_id"].isna().sum(), 0)
         self.assertEqual(df["requirement_text"].isna().sum(), 0)
 
+    # ---------------------------------------------------------------------------
+    # Plan 12-03: CI Governance Gate & Machine Staging Segregation
+    # ---------------------------------------------------------------------------
+
+    @staticmethod
+    def _validate_adjudication_rules(row: dict) -> None:
+        """Helper that verifies adherence to strict anti-falsification governance rules."""
+        hv = str(row.get("human_verified", "FALSE")).strip().upper() == "TRUE"
+        status = str(row.get("adjudication_status", "")).strip()
+        role = str(row.get("reviewer_role", "")).strip()
+        date_str = str(row.get("reviewed_at", "")).strip()
+        ref = str(row.get("evidence_reference", "")).strip()
+        snippet = str(row.get("evidence_snippet", "")).strip()
+
+        if hv:
+            if status != "EXPERT_VERIFIED":
+                raise AssertionError(f"Row {row.get('requirement_id')} has human_verified=TRUE but status is '{status}' != 'EXPERT_VERIFIED'")
+            if not role:
+                raise AssertionError(f"Row {row.get('requirement_id')} has human_verified=TRUE but reviewer_role is empty!")
+            if not date_str:
+                raise AssertionError(f"Row {row.get('requirement_id')} has human_verified=TRUE but reviewed_at timestamp is empty!")
+            if not ref or not snippet:
+                raise AssertionError(f"Row {row.get('requirement_id')} has human_verified=TRUE but lacks evidence reference/snippet!")
+
+    def test_09_anti_falsification_ci_governance_gate(self):
+        """
+        9. CI GOVERNANCE GATE (GATE-01):
+        Asserts that every row in the active ground truth corpus satisfies all four
+        adjudication integrity rules. No row may claim human verification without genuine audit backing.
+        """
+        for row in self.dict_rows:
+            self._validate_adjudication_rules(row)
+
+    def test_10_governance_gate_fails_on_fabricated_claim(self):
+        """
+        10. Verify that the CI governance gate actively catches and rejects fabricated claims.
+        Simulates 4 invalid rows and asserts that each is caught and rejected.
+        """
+        # Mock 1: human_verified TRUE but UNVERIFIED_BASELINE
+        mock1 = {"requirement_id": "MOCK-1", "human_verified": "TRUE", "adjudication_status": "UNVERIFIED_BASELINE", "reviewer_role": "CPWD_ENGINEER", "reviewed_at": "2026-10-18", "evidence_reference": "Ref", "evidence_snippet": "Snip"}
+        with self.assertRaises(AssertionError) as ctx:
+            self._validate_adjudication_rules(mock1)
+        self.assertIn("status is 'UNVERIFIED_BASELINE'", str(ctx.exception))
+
+        # Mock 2: human_verified TRUE but missing reviewer_role
+        mock2 = {"requirement_id": "MOCK-2", "human_verified": "TRUE", "adjudication_status": "EXPERT_VERIFIED", "reviewer_role": "", "reviewed_at": "2026-10-18", "evidence_reference": "Ref", "evidence_snippet": "Snip"}
+        with self.assertRaises(AssertionError) as ctx:
+            self._validate_adjudication_rules(mock2)
+        self.assertIn("reviewer_role is empty", str(ctx.exception))
+
+        # Mock 3: human_verified TRUE but missing reviewed_at date
+        mock3 = {"requirement_id": "MOCK-3", "human_verified": "TRUE", "adjudication_status": "EXPERT_VERIFIED", "reviewer_role": "CPWD_ENGINEER", "reviewed_at": "", "evidence_reference": "Ref", "evidence_snippet": "Snip"}
+        with self.assertRaises(AssertionError) as ctx:
+            self._validate_adjudication_rules(mock3)
+        self.assertIn("reviewed_at timestamp is empty", str(ctx.exception))
+
+        # Mock 4: human_verified TRUE but missing evidence reference
+        mock4 = {"requirement_id": "MOCK-4", "human_verified": "TRUE", "adjudication_status": "EXPERT_VERIFIED", "reviewer_role": "CPWD_ENGINEER", "reviewed_at": "2026-10-18", "evidence_reference": "", "evidence_snippet": "Snip"}
+        with self.assertRaises(AssertionError) as ctx:
+            self._validate_adjudication_rules(mock4)
+        self.assertIn("lacks evidence reference", str(ctx.exception))
+
+    def test_11_candidate_staging_isolation_invariants(self):
+        """
+        11. STAGING SEGREGATION (EXP-01):
+        Verify that candidates_staging.csv strictly isolates machine proposals from expert labels:
+        - 100% of rows have adjudication_status == 'MACHINE_PREDICTED'
+        - 100% of rows have human_verified == 'FALSE'
+        - 100% of rows have empty reviewer_role and reviewed_at
+        """
+        staging_path = os.path.join(REPO_ROOT, "dataset", "ground_truth", "candidates_staging.csv")
+        if not os.path.isfile(staging_path):
+            self.skipTest(f"Staging file not yet generated at {staging_path}")
+
+        with open(staging_path, "r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            staged_rows = list(reader)
+
+        self.assertGreaterEqual(len(staged_rows), 20, "Staging file should contain at least 20 candidate cases.")
+        for row in staged_rows:
+            rid = row.get("requirement_id", "UNKNOWN")
+            self.assertEqual(row.get("adjudication_status"), "MACHINE_PREDICTED", f"Staged row {rid} has incorrect status!")
+            self.assertEqual(row.get("human_verified"), "FALSE", f"Staged row {rid} must have human_verified=FALSE!")
+            self.assertEqual(row.get("reviewer_role", ""), "", f"Staged row {rid} must have empty reviewer_role!")
+            self.assertEqual(row.get("reviewed_at", ""), "", f"Staged row {rid} must have empty reviewed_at!")
+
 
 if __name__ == "__main__":
     unittest.main()

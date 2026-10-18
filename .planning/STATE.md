@@ -21,19 +21,24 @@
 | Plan ID | Title | Scope & Target Files | Deliverable | Status |
 |---|---|---|---|---|
 | **12-01** | Ground-Truth Schema & Provenance Audit | `dataset/ground_truth/ground_truth.csv`, `scripts/audit_ground_truth_provenance.py`, `tests/test_ground_truth_integrity.py` | Extended 24-column CSV schema, 20/20 defensible provenance verified, 0 unbacked human approvals, 8/8 integrity tests passing. | **Complete** |
-| **12-02** | Multi-Metric Reproducible Evaluation Harness | `src/evaluate.py`, `tests/test_evaluation_metrics.py` | De-conflated metrics: Precision@Coverage, Safe Abstention Rate, Evidence Grounding Score, Sector-Stratified Recall. | Ready |
-| **12-03** | Ground-Truth Expansion & Review Gating | `scripts/expand_ground_truth.py`, `tests/test_ground_truth_integrity.py` | Script to propose candidate cases from `tenders/raw/` labeled `MACHINE_PREDICTED`, and an integrity gate preventing synthetic `human_verified: TRUE` flags. | Planned |
+| **12-02** | Multi-Metric Reproducible Evaluation Harness | `src/evaluate.py`, `scripts/evaluate_milestone12.py`, `tests/test_evaluation_metrics.py` | Decoupled metrics: Top-1 89.5% (17/19), Coverage 60.0%, Selective Risk 13.3%, Under-Spec Abstain 100.0%, Evidence disclosure, 8/8 synthetic tests passing. | **Complete** |
+| **12-03** | Ground-Truth Expansion & Review Gating | `scripts/expand_ground_truth.py`, `tests/test_ground_truth_integrity.py`, `docs/data/GROUND_TRUTH_GOVERNANCE.md` | Staging pipeline for candidate extraction (`candidates_staging.csv`), CI governance gate (`GATE-01`), 11/11 integrity tests passing. | **Complete** |
 
 ---
 
-## Plan 12-01 Execution Summary
+## Phase 12 Milestone Completion Summary
 
-- **Ground Truth Extension**: Appended 6 columns (`source_document`, `procurement_sector`, `expected_decision`, `adjudication_status`, `reviewer_role`, `reviewed_at`) preserving 18 core columns and all 20 rows.
-- **Defensibility Verification**: 20/20 rows bound to physical PDF documents in `tenders/raw/` with verbatim text matches.
-- **Anti-Falsification**: 0 fabricated expert claims. All 20 baseline rows have `human_verified: FALSE`, `adjudication_status: UNVERIFIED_BASELINE`, and empty reviewer fields.
-- **Test Suite Health**: 524/524 backend tests passing in 58.74s (100% offline). Frontend build passing.
+- **Phase Status**: **100% Complete** (All 3 plans executed and verified).
+- **Plan 12-01 (Schema & Provenance)**: Appended 6 non-breaking columns (`source_document`, `procurement_sector`, `expected_decision`, `adjudication_status`, `reviewer_role`, `reviewed_at`) preserving 18 core columns and all 20 rows. 20/20 cases verified defensible against physical PDFs in `tenders/raw/`.
+- **Plan 12-02 (Evaluation De-conflation)**: Decoupled positive standard retrieval from selective abstention. Answerable Top-1 accuracy is 89.5% (17/19), Coverage is 60.0%, Selective Risk is 13.3%, and Under-Specification Abstention Recall is 100.0%. Evidence grounding limitations formally disclosed.
+- **Plan 12-03 (Expansion & Governance Gate)**: Built `scripts/expand_ground_truth.py` outputting staged candidates to `candidates_staging.csv` with strict `MACHINE_PREDICTED` tagging. Installed automated CI governance gate in `tests/test_ground_truth_integrity.py` (`test_09`, `test_10`, `test_11`) preventing any unverified human verification claims.
+- **Test Suite Health**: 535/535 backend tests passing in 58.10s (100% offline). Frontend build passes in 1.02s.
 
 ---
 
 ## Next Steps
-Run `/gsd-execute-phase 12 12-02` (or execute Plan 12-02: Multi-Metric Reproducible Evaluation Harness).
+
+Phase 12 is complete. Proceed to **Phase 13: Expert Ground-Truth Adjudication & Calibration** or review milestone summary via:
+```bash
+/gsd-complete-milestone
+```
