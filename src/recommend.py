@@ -285,6 +285,10 @@ class StandardsRecommender:
                     query_text=comp_text,
                     requirement_text=comp_text
                 )
+                is_cat = getattr(c_std, "_is_catalogue_only", False) or getattr(c_app, "decision", "") == "PENDING_TECHNICAL_EVALUATION"
+                c_human_review = True if is_cat else False
+                c_app_decision = "PENDING_TECHNICAL_EVALUATION" if is_cat else "APPLICABLE"
+                c_confidence = "Low" if is_cat else ("High" if c_std.relevance_score >= 0.75 else "Medium")
                 component_bundles.append({
                     "component_id": comp_id,
                     "component_text": comp_text,
@@ -292,14 +296,14 @@ class StandardsRecommender:
                     "component_role": comp_role,
                     "candidate_standard": c_std.standard_number,
                     "title": c_std.full_title,
-                    "confidence": "High" if c_std.relevance_score >= 0.75 else "Medium",
+                    "confidence": c_confidence,
                     "relevance_score": round(c_std.relevance_score, 3),
                     "evidence": c_std.scope_summary or c_std.relevance_reason or f"Standard applies to technical component '{comp_text}'.",
-                    "applicability_decision": "APPLICABLE",
+                    "applicability_decision": c_app_decision,
                     "dependencies": sub_dep.to_dict(),
-                    "human_review_required": False,
+                    "human_review_required": c_human_review,
                     "why_matched": f"Component '{comp_text}' matches standard {c_std.standard_number} ({c_std.full_title}).",
-                    "clause_evidence": c_clause_ev.to_dict()
+                    "clause_evidence": c_clause_ev.to_dict() if hasattr(c_clause_ev, "to_dict") else c_clause_ev
                 })
             else:
                 component_bundles.append({
@@ -510,6 +514,9 @@ class StandardsRecommender:
                     existing.relevance_reason = esr.relevance_reason + " | " + existing.relevance_reason
                     if hasattr(esr, "_explicit_successor_warning"):
                         setattr(existing, "_explicit_successor_warning", getattr(esr, "_explicit_successor_warning"))
+                    # Promote explicit citation match to head of search_results
+                    search_results.remove(existing)
+                    search_results.insert(0, existing)
 
         # Step 3: Check Ambiguity Heuristics
         ambiguity_flag = False
@@ -559,7 +566,8 @@ class StandardsRecommender:
             "cable", "cables", "pipe", "pipes", "piping", "valve", "valves",
             "pump", "pumps", "motor", "motors", "switchgear", "controlgear", "panel", "panels",
             "transformer", "transformers", "cement", "tile", "tiles", "tube", "tubes",
-            "wire", "wires", "conductor", "conductors", "flange", "flanges", "fitting", "fittings"
+            "wire", "wires", "conductor", "conductors", "flange", "flanges", "fitting", "fittings",
+            "engine", "engines", "generator", "generators"
         ]
         is_prod_req = (not is_pure_installation) and any(re.search(rf'\b{w}\b', t_low) for w in prod_nouns)
 
@@ -1087,7 +1095,7 @@ class StandardsRecommender:
             needs_review = c.get("human_review_required")
             app_dec = c.get("applicability_decision")
             cand_std = c.get("candidate_standard")
-            if needs_review is True or app_dec in ("REVIEW_REQUIRED", "REJECT", "INSUFFICIENT_EVIDENCE") or (cand_std is None and needs_review is not False):
+            if needs_review is True or app_dec in ("REVIEW_REQUIRED", "REJECT", "INSUFFICIENT_EVIDENCE", "PENDING_TECHNICAL_EVALUATION") or (cand_std is None and needs_review is not False):
                 review_required_comps.append(c)
 
         critic_dict = critic_outcome.primary_critique.to_dict() if critic_outcome and critic_outcome.primary_critique else {}
@@ -1158,14 +1166,16 @@ class StandardsRecommender:
             top_rec.human_review_required = True
             decision_reason = f"Conflicting Evidence: Normative clause passage contradicts requirement parameters. {decision_reason}"
 
-        # Phase 24: Handle catalogue-only candidates
+        # Phase 24 & 25: Handle catalogue-only candidates (both cited and NL-discovered)
         is_top_cat_only = getattr(top_sr, "_is_catalogue_only", False) or getattr(top_rec, "_is_catalogue_only", False)
         if is_top_cat_only:
+            is_explicit = any(e in top_rec.standard_number for e in explicit_stds)
             human_review_required = True
             top_rec.human_review_required = True
-            top_rec.provenance = "NATIONAL_CATALOGUE_UNINDEXED"
+            top_rec.provenance = "NATIONAL_CATALOGUE_CITATION" if is_explicit else "NATIONAL_CATALOGUE_DISCOVERY"
+            source_desc = "validated citation" if is_explicit else "discovered standard"
             top_rec.evidence = (
-                f"Standard {top_rec.standard_number} is validated in the National BIS Catalogue ({top_rec.title}), "
+                f"Standard {top_rec.standard_number} is an authentic {source_desc} from the National BIS Catalogue ({top_rec.title}), "
                 f"but its technical clause text is not yet indexed in the local semantic corpus. "
                 f"Applicability decision is PENDING_TECHNICAL_EVALUATION; manual engineering review required."
             )
@@ -1177,7 +1187,8 @@ class StandardsRecommender:
                 "human_reason": "Technical clauses unindexed in local corpus; pending manual engineering verification.",
             }
             conf = "Medium" if top_rec.status == "Active" else "Low"
-            decision_reason = f"Validated National Catalogue Citation (Scope Unindexed): {top_rec.evidence}"
+            prefix = "Validated National Catalogue Citation" if is_explicit else "Discovered National Catalogue Standard"
+            decision_reason = f"{prefix} (Scope Unindexed): {top_rec.evidence}"
 
         return RequirementRecommendationResult(
             requirement_id=req_id,

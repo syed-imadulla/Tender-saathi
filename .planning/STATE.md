@@ -1,8 +1,8 @@
 # Tender Saathi — Active Planning State
 
 **Active Milestone**: Milestone: National BIS Catalogue Integration  
-**Current Phase**: Phase 24 (`24-national-bis-catalogue-integration`)  
-**Phase Position**: National Catalogue Integration Complete, Read-only Access Layer Implemented, Citation Validation Hardened Across 35k Records, 17/17 Phase Tests Passing, 694/694 Full Suite Passing, Ground Truth Invariant Preserved — Phase Completed  
+**Current Phase**: Phase 25 (`25-national-bis-catalogue-metadata-retrieval`)  
+**Phase Position**: Phase 25 Complete (Tasks 1-6 Verified, 708/708 Tests Passing, 0 Regressions)  
 **Working Directory**: `/home/syed-imadulla/Desktop/Tender_Saathi`  
 **Git Head**: `main`
 
@@ -45,20 +45,31 @@
     - Verified frontend build clean in 1.15s.
     - Preserved ground truth invariant (`8bcc9bc5...`).
     - Gate Decision: `READY_FOR_PHASE_23`.
+15. **Phase 24 National BIS Catalogue Integration**: Completed in `docs/evaluation/FULL_BIS_COVERAGE_GAP_ANALYSIS.md` & `tests/test_national_catalogue_validation.py`.
+    - Integrated `data/catalogue/bis_catalogue.db` (35,208 records) for citation validation and standards lookup.
+    - 17/17 tests passing.
+16. **Phase 25 National BIS Catalogue Metadata Retrieval**: Completed in `.planning/phases/25-national-bis-catalogue-metadata-retrieval/25-UAT.md`.
+    - FTS5 full-text search index created over 10,828 active Indian Standards (`data/catalogue/catalogue_search_index.db`).
+    - Sub-10ms lexical discovery engine (`src/catalogue/search.py`) with query sanitization and BM25 rank score normalization.
+    - Cascading retrieval with deduplication favoring curated standards with rich clause text.
+    - Safe abstention on non-engineering / administrative tenders.
+    - Zero clause fabrication: catalogue-only standards flagged `PENDING_TECHNICAL_EVALUATION` with `human_review_required: True`.
+    - 14/14 Phase 25 tests passing (`tests/test_national_catalogue_retrieval.py`).
+    - Full suite passing (708/708 tests), frontend build passing (1.97s), ground-truth SHA-256 intact.
 
 ---
 
-## Active Phase Overview: Phase 22
+## Active Phase Overview: Phase 25
 
 | Plan ID | Title | Scope & Target Files | Deliverable | Status |
 |---|---|---|---|---|
-| **22-PREC** | Multi-Requirement Conflict Resolution & Standards Precedence | `src/precedence/conflict_engine.py`, `src/corpus/semantics.py`, `src/audit.py`, `src/report.py`, `api/server.py`, `tests/test_precedence_and_cross_conflicts.py` | Standalone deterministic cross-conflict engine, canonical semantics, tender audit integration, 15-case test matrix, post-implementation safety audit report. | **Complete** |
+| **25-CAT-RET** | National BIS Catalogue Metadata Retrieval | `scripts/build_catalogue_search_index.py`, `src/catalogue/search.py`, `src/retrieval.py`, `src/recommend.py`, `src/applicability.py`, `src/decompose.py`, `tests/test_national_catalogue_retrieval.py` | Offline FTS5 index generator, search engine, two-tier cascade, strict safeguards, 14-test matrix, UAT verification report. | **Complete** |
 
 ---
 
 ## Next Steps (Human Boundary)
 
-1. Proceed to Phase 23: Production Containerized Deployment (Final container packaging, environment secrets auditing, and health monitoring).
-2. Prepare staging deployment configurations and review readiness gates.
+1. Proceed to Phase 26 (Phase 3 of Gap Analysis): Targeted Normative Corpus Ingestion & Automated Clause Indexing for frequent high-volume procurement standards discovered in the national catalogue.
+2. Maintain read-only database integrity and zero clause fabrication policies.
 
 

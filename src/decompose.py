@@ -229,6 +229,18 @@ ENTITY_PATTERNS = [
         }
     ),
 
+    # --- STRUCTURAL STEEL FRAMING, TRUSSES & PURLINS ---
+    (
+        re.compile(r'\b(structural\s+steel\s+(?:roof\s+)?truss(?:es)?|roof\s+truss(?:es)?|steel\s+truss(?:es)?|truss(?:es)?|tubular\s+purlins?|steel\s+purlins?|purlins?|structural\s+steelwork|gantry\s+girders?|portal\s+frames?|structural\s+steel\s+sections?)\b', re.IGNORECASE),
+        "equipment",
+        "mechanical",
+        lambda m: {
+            "category": "structural_framing",
+            "role": ComponentRole.AUXILIARY_COMPONENT,
+            "search_concepts": ["structural steel roof trusses", "steel purlins"]
+        }
+    ),
+
     # --- PIPING MATERIALS & CHEMICAL POLYMER CONDUITS ---
     (
         re.compile(r'\b(post[-\s]*chlorinated\s+vinyl(?:\s+synthetic)?\s+polymers?|chlorinated\s+polyvinyl\s+chloride(?:\s+pipes?)?|cpvc\s+pipes?|fluid\s+conveyance\s+conduits?|aqueous\s+hydrous\s+fluid\s+conveyance\s+conduits?|conduits?|hubless\s+pipes?|cast\s+iron\s+pipes?|gi\s+pipes?|galvanized\s+iron\s+pipes?|plastic\s+(?:water\s+supply\s+)?pipes?|plastic\s+piping|upvc\s+pipes?|pvc\s+pipes?|hdpe\s+pipes?|precast\s+concrete\s+pipes?|rcc\s+pipes?|polyethylene\s+pipes?|mild\s+steel\s+pipes?|steel\s+tubes?|sewerage\s+pipelines?|sewerage\s+pipes?|pipelines?|pipes?)\b', re.IGNORECASE),

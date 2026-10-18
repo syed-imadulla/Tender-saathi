@@ -89,6 +89,19 @@ function getProvenanceDetails(provenance?: string): { label: string; description
         description: 'Expert-compiled engineering standard repository verified against domain specifications.',
         badgeClass: 'badge--low',
       };
+    case 'NATIONAL_CATALOGUE_DISCOVERY':
+      return {
+        label: 'National BIS Catalogue Discovery',
+        description: 'Discovered across 10,828 active standards in National BIS Catalogue; clause text unindexed in local corpus.',
+        badgeClass: 'badge--active',
+      };
+    case 'NATIONAL_CATALOGUE_CITATION':
+    case 'NATIONAL_CATALOGUE_UNINDEXED':
+      return {
+        label: 'National BIS Catalogue Verified',
+        description: 'Validated against official National BIS Catalogue; clause text unindexed in local corpus.',
+        badgeClass: 'badge--active',
+      };
     case 'INFERRED':
       return {
         label: 'Inferred / Derived',

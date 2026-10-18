@@ -187,7 +187,7 @@ def _normalize_result(
         ev = crit.get("evidence") or {}
         ev_strength = ev.get("evidence_strength") or (
             "STRONG" if r.provenance == "VERIFIED" else
-            "MODERATE" if r.provenance == "CURATED" else
+            "MODERATE" if r.provenance in ("CURATED", "NATIONAL_CATALOGUE_CITATION", "NATIONAL_CATALOGUE_DISCOVERY", "NATIONAL_CATALOGUE_UNINDEXED") else
             "WEAK" if r.provenance == "INFERRED" else "NONE"
         )
         spec_comp = getattr(r, "specification_completeness", None) or {}

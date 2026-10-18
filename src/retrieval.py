@@ -21,6 +21,9 @@ from src.bm25_search import BM25SearchEngine, BM25Hit
 from src.semantic_search import SemanticSearchEngine, SemanticHit
 from src.decompose import RequirementComponent, decompose_requirement
 from src.reranker import CrossEncoderReranker, get_reranker_instance
+from src.catalogue.search import NationalCatalogueSearchEngine
+from src.catalogue.normalizer import StandardIdentifierNormalizer
+
 
 
 @dataclass
@@ -58,7 +61,9 @@ class HybridRetrievalEngine:
         w_deterministic: float = 0.25,
         w_rerank: float = 0.25,
         default_mode: str = "hybrid",
-        reranker: Optional[CrossEncoderReranker] = None
+        reranker: Optional[CrossEncoderReranker] = None,
+        catalogue_search_engine: Optional[NationalCatalogueSearchEngine] = None,
+        cascade_threshold: float = 0.65
     ):
         self.db = db or StandardsDatabase()
         self.w_bm25 = w_bm25
@@ -67,6 +72,8 @@ class HybridRetrievalEngine:
         self.w_rerank = w_rerank
         self.default_mode = default_mode
         self.reranker = reranker or get_reranker_instance()
+        self.catalogue_search_engine = catalogue_search_engine or NationalCatalogueSearchEngine()
+        self.cascade_threshold = cascade_threshold
 
         # Initialize component engines
         self.det_engine = StandardsSearchEngine(self.db)
@@ -101,33 +108,33 @@ class HybridRetrievalEngine:
         # 1. Deterministic search results
         det_results = self.det_engine.search(query_clean, top_k=top_k * 2, components=components)
 
-        # Mode: purely deterministic
+        # Tier 1: Curated standards search
         if active_mode == "deterministic":
-            return det_results[:top_k]
+            curated_results = det_results[:top_k]
+        elif active_mode == "bm25":
+            bm25_hits = self.bm25_engine.search(query_clean, top_k=top_k * 2)
+            curated_results = self._convert_bm25_to_search_results(bm25_hits, top_k=top_k)
+        elif active_mode == "semantic":
+            sem_hits = self.semantic_engine.search(query_clean, top_k=top_k * 2)
+            curated_results = self._convert_semantic_to_search_results(sem_hits, top_k=top_k)
+        else:
+            bm25_hits = self.bm25_engine.search(query_clean, top_k=top_k * 2)
+            sem_hits = self.semantic_engine.search(query_clean, top_k=top_k * 2)
+            curated_results = self._fuse_hybrid_results(
+                query=query_clean,
+                components=components or [],
+                det_results=det_results,
+                bm25_hits=bm25_hits,
+                sem_hits=sem_hits,
+                top_k=top_k,
+                mode=active_mode
+            )
 
-        # 2. BM25 search results (primary query + components)
-        bm25_hits = self.bm25_engine.search(query_clean, top_k=top_k * 2)
-
-        # Mode: purely BM25
-        if active_mode == "bm25":
-            return self._convert_bm25_to_search_results(bm25_hits, top_k=top_k)
-
-        # 3. Semantic search results (primary query)
-        sem_hits = self.semantic_engine.search(query_clean, top_k=top_k * 2)
-
-        # Mode: purely semantic
-        if active_mode == "semantic":
-            return self._convert_semantic_to_search_results(sem_hits, top_k=top_k)
-
-        # 4. Hybrid / Hybrid+Rerank Mode: Candidate Union, Score Fusion, and optional Reranking
-        return self._fuse_hybrid_results(
+        # Tier 2: Two-Tier Cascading to National BIS Catalogue
+        return self._apply_catalogue_cascade(
             query=query_clean,
-            components=components or [],
-            det_results=det_results,
-            bm25_hits=bm25_hits,
-            sem_hits=sem_hits,
-            top_k=top_k,
-            mode=active_mode
+            curated_results=curated_results,
+            top_k=top_k
         )
 
     def _fuse_hybrid_results(
@@ -395,4 +402,96 @@ class HybridRetrievalEngine:
             res.final_score = s.similarity_score
             results.append(res)
         return results
+
+    def _apply_catalogue_cascade(
+        self,
+        query: str,
+        curated_results: List[SearchResult],
+        top_k: int
+    ) -> List[SearchResult]:
+        """
+        Tier 2: National BIS Catalogue Fallback & Augmentation.
+        Cascades to the 10,828 active standards in the National BIS Catalogue when
+        curated results are empty or have weak confidence (final_score < cascade_threshold),
+        and the query represents a valid engineering requirement.
+        """
+        if not self.catalogue_search_engine:
+            return curated_results[:top_k]
+
+        from src.applicability import is_non_engineering_or_abstention_query
+        if is_non_engineering_or_abstention_query(query):
+            return curated_results[:top_k]
+
+        top_curated_score = curated_results[0].final_score if curated_results else 0.0
+
+        # Check if curated results have substantive technical token overlap with the query
+        from src.applicability import GENERIC_STOPWORDS
+        query_tech_tokens = {
+            w for w in re.findall(r'\b[a-zA-Z]{3,}\b', query.lower())
+            if w not in GENERIC_STOPWORDS
+        }
+        has_curated_tech_match = False
+        if curated_results and query_tech_tokens:
+            top_rec = curated_results[0]
+            top_text = f"{top_rec.standard_number} {top_rec.full_title} {top_rec.scope_summary or ''}".lower()
+            top_words = set(re.findall(r'\b[a-zA-Z]{3,}\b', top_text))
+            has_curated_tech_match = bool(query_tech_tokens.intersection(top_words))
+
+        # Preserve exact/authoritative citation replacements and confident curated technical matches
+        has_authoritative = any(
+            any("authoritative" in r.lower() or "standard number match" in r.lower() for r in (cand.relevance_reason or "").split(";"))
+            for cand in curated_results
+        )
+        if (has_authoritative or (top_curated_score >= 0.25 and has_curated_tech_match)) and curated_results:
+            return curated_results[:top_k]
+
+        # Execute lexical FTS5 search on national catalogue
+        cat_results = self.catalogue_search_engine.search(query, top_k=top_k)
+        if not cat_results:
+            return curated_results[:top_k]
+
+        # Deduplicate catalogue candidates against curated database records
+        # If a catalogue standard is already in curated DB, upgrade/favor the curated record
+        curated_by_id: Dict[str, SearchResult] = {}
+        for r in curated_results:
+            norm_id = StandardIdentifierNormalizer.parse(r.standard_number).canonical_id
+            curated_by_id[norm_id] = r
+            curated_by_id[r.standard_id] = r
+
+        deduped_cat_results: List[SearchResult] = []
+        for cr in cat_results:
+            cr_norm = StandardIdentifierNormalizer.parse(cr.standard_number).canonical_id
+            if cr_norm in curated_by_id or cr.standard_id in curated_by_id:
+                # Already present in curated results; skip catalogue duplicate
+                continue
+            # Also check if it exists in curated DB (standards.db)
+            db_std = self.db.get_standard(cr_norm) or self.db.get_standard(cr.standard_number)
+            if db_std:
+                # Format using curated rich record instead of catalogue-only entry
+                promoted = self.det_engine._format_result(
+                    row_dict=db_std,
+                    score=cr.final_score,
+                    reason=f"Curated standard matched via catalogue discovery ({cr.relevance_reason})"
+                )
+                promoted.bm25_score = cr.bm25_score
+                promoted.final_score = cr.final_score
+                deduped_cat_results.append(promoted)
+            else:
+                deduped_cat_results.append(cr)
+
+        if not curated_results or not has_curated_tech_match:
+            combined = deduped_cat_results + [
+                cr for cr in curated_results
+                if StandardIdentifierNormalizer.parse(cr.standard_number).canonical_id not in {
+                    StandardIdentifierNormalizer.parse(d.standard_number).canonical_id for d in deduped_cat_results
+                }
+            ]
+            return combined[:top_k]
+        else:
+            combined = curated_results + [
+                d for d in deduped_cat_results
+                if StandardIdentifierNormalizer.parse(d.standard_number).canonical_id not in curated_by_id
+            ]
+            return combined[:top_k]
+
 
