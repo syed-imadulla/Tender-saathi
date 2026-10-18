@@ -122,29 +122,80 @@ class ClauseRetriever:
         if "indoor" in req_clean and any(p in pas_clean for p in ["outdoor only", "strictly for outdoor", "outdoor use only"]):
             return RequirementEvidenceSupportState.CONFLICTING.value
 
+        # Negation and Exclusion Conflicts (e.g. "without X" vs "mandatory X", "shall not contain X" vs "shall contain X")
+        req_negations = re.findall(r'\b(?:without|excluding|shall not have|shall not contain|prohibited)\s+([a-z0-9_-]+)', req_clean)
+        for neg_term in req_negations:
+            if re.search(rf'\b(?:shall have|shall include|mandatory|requires)\s+{re.escape(neg_term)}\b', pas_clean):
+                return RequirementEvidenceSupportState.CONFLICTING.value
+
+        pas_negations = re.findall(r'\b(?:without|excluding|shall not have|shall not contain|prohibited)\s+([a-z0-9_-]+)', pas_clean)
+        for neg_term in pas_negations:
+            if re.search(rf'\b(?:shall have|shall include|mandatory|requires|with)\s+{re.escape(neg_term)}\b', req_clean):
+                return RequirementEvidenceSupportState.CONFLICTING.value
+
         # Phase conflicts (single phase vs three phase)
         if ("3-phase" in req_clean or "three phase" in req_clean or "3 phase" in req_clean) and any(p in pas_clean for p in ["strictly single phase", "single phase only"]):
             return RequirementEvidenceSupportState.CONFLICTING.value
         if ("single phase" in req_clean or "1-phase" in req_clean) and any(p in pas_clean for p in ["strictly three phase", "three phase only"]):
             return RequirementEvidenceSupportState.CONFLICTING.value
 
-        # Capacity / Rating limit conflicts:
-        req_ratings = re.findall(r'(\d+(?:\.\d+)?)\s*(kva|mva|kv|kw|amp|a\b)', req_clean)
-        for val_str, unit in req_ratings:
-            req_val = float(val_str)
-            # Check if passage restricts max rating below req_val
-            max_limit_matches = re.findall(rf'(?:maximum|max|up to|not exceeding|shall not exceed)\s*(\d+(?:\.\d+)?)\s*{unit}', pas_clean)
-            for m_str in max_limit_matches:
-                m_val = float(m_str)
-                if req_val > m_val:
-                    return RequirementEvidenceSupportState.CONFLICTING.value
+        # Capacity / Rating limit conflicts with Normalized Unit Conversions:
+        # Normalization scale to base unit:
+        # Power/Losses: W -> 1.0, kW -> 1000.0, MW -> 1e6
+        # Voltage: V -> 1.0, kV -> 1000.0
+        # Apparent Power: VA -> 1.0, kVA -> 1000.0, MVA -> 1e6
+        # Current: A -> 1.0, mA -> 0.001
+        unit_scale = {
+            "w": ("power", 1.0), "kw": ("power", 1000.0), "mw": ("power", 1e6),
+            "v": ("voltage", 1.0), "kv": ("voltage", 1000.0),
+            "va": ("apparent_power", 1.0), "kva": ("apparent_power", 1000.0), "mva": ("apparent_power", 1e6),
+            "a": ("current", 1.0), "amp": ("current", 1.0), "amps": ("current", 1.0)
+        }
 
-            # Check if passage restricts min rating above req_val
-            min_limit_matches = re.findall(rf'(?:minimum|min|exceeding|above)\s*(\d+(?:\.\d+)?)\s*{unit}', pas_clean)
-            for m_str in min_limit_matches:
-                m_val = float(m_str)
-                if req_val < m_val:
-                    return RequirementEvidenceSupportState.CONFLICTING.value
+        # Check for inequality direction indicators in requirement
+        # E.g. "at least 100 kVA", "minimum 50 kV" vs "shall not exceed 475 W", "maximum 50 kW"
+        req_ratings = re.findall(r'(\b(?:at least|minimum|min|shall be at least)\s+)?(\d+(?:\.\d+)?)\s*(kva|mva|kv|kw|mw|amp|amps|a\b|w\b|v\b)', req_clean)
+        for direction, val_str, unit in req_ratings:
+            if unit not in unit_scale:
+                continue
+            dim, factor = unit_scale[unit]
+            req_base_val = float(val_str) * factor
+            is_min_req = bool(direction and direction.strip())
+
+            # Find all passage statements in the same physical dimension
+            for p_unit, (p_dim, p_factor) in unit_scale.items():
+                if p_dim != dim:
+                    continue
+
+                # 1. Passage restricts maximum ceiling (e.g., "max 500 W", "shall not exceed 500 W")
+                max_matches = re.findall(rf'(?:maximum|max|up to|not exceeding|shall not exceed|within)\s*(\d+(?:\.\d+)?)\s*{p_unit}\b', pas_clean)
+                for m_str in max_matches:
+                    pas_max_val = float(m_str) * p_factor
+                    # If requirement is a minimum specification ("at least X") and passage ceiling is lower -> Conflict!
+                    # E.g., Requirement demands at least 100 kW, but standard specifies max permissible 50 kW.
+                    if is_min_req and req_base_val > pas_max_val:
+                        return RequirementEvidenceSupportState.CONFLICTING.value
+                    # If requirement is a ceiling and exceeds standard's strict ceiling -> Conflict!
+                    elif not is_min_req and req_base_val > pas_max_val:
+                        return RequirementEvidenceSupportState.CONFLICTING.value
+
+                # 2. Passage restricts minimum floor (e.g., "minimum 10 kV", "above 10 kV")
+                min_matches = re.findall(rf'(?:minimum|min|exceeding|above|at least)\s*(\d+(?:\.\d+)?)\s*{p_unit}\b', pas_clean)
+                for m_str in min_matches:
+                    pas_min_val = float(m_str) * p_factor
+                    if req_base_val < pas_min_val:
+                        return RequirementEvidenceSupportState.CONFLICTING.value
+
+        # Tolerance and Range Check
+        # E.g., requirement demands "+/- 2%" but passage specifies "+/- 5%"
+        req_tols = re.findall(r'(?:±|\+/-|within)\s*(\d+(?:\.\d+)?)\s*(?:percent|%)', req_clean)
+        pas_tols = re.findall(r'(?:±|\+/-|within)\s*(\d+(?:\.\d+)?)\s*(?:percent|%)', pas_clean)
+        if req_tols and pas_tols:
+            req_tol = float(req_tols[0])
+            pas_tol = float(pas_tols[0])
+            # If tender demands tighter tolerance than standard allows (e.g. req 2% vs std 5%)
+            if req_tol < pas_tol and "tolerance" in req_clean:
+                return RequirementEvidenceSupportState.PARTIALLY_SUPPORTED.value
 
         # 2. Irrelevance Detection:
         stop_words = {
@@ -181,6 +232,21 @@ class ClauseRetriever:
                 return RequirementEvidenceSupportState.PARTIALLY_SUPPORTED.value
             else:
                 return RequirementEvidenceSupportState.FULLY_SUPPORTED.value
+
+        # 4. Conservative Technical Parameter Verification:
+        # If the requirement specifies numeric technical parameters (e.g. 11 kV, 475 W, 100 kVA),
+        # but the passage does NOT mention any parameter in that physical dimension,
+        # we cannot conservatively declare FULLY_SUPPORTED based on loose words alone!
+        if req_ratings:
+            req_dims = {unit_scale[u][0] for _, _, u in req_ratings if u in unit_scale}
+            pas_ratings = re.findall(r'(\d+(?:\.\d+)?)\s*(kva|mva|kv|kw|mw|amp|amps|a\b|w\b|v\b)', pas_clean)
+            pas_dims = {unit_scale[u][0] for _, u in pas_ratings if u in unit_scale}
+            
+            # If requirement specifies ratings that are completely absent from passage:
+            missing_dims = req_dims - pas_dims
+            if missing_dims:
+                # E.g. tender specifies exact losses in Watts, but passage only talks about insulation in kV
+                return RequirementEvidenceSupportState.PARTIALLY_SUPPORTED.value
 
         return RequirementEvidenceSupportState.FULLY_SUPPORTED.value
 
@@ -356,12 +422,12 @@ class ClauseRetriever:
                     query=query_text,
                     standard_number=doc.get("standard_number", standard_number),
                     edition_year=doc_year,
-                    top_k=1
+                    top_k=2
                 )
                 matching = [p for p in passages if p.doc_id == doc_id]
                 if matching:
                     p = matching[0]
-                    # Lexical search match: DO NOT infer clause applicability; grounding is strictly False
+                    # Evaluate primary passage
                     support_state = self.evaluate_requirement_support(
                         requirement_text=requirement_text or query_text or "",
                         passage_text=p.passage_text,
@@ -369,6 +435,18 @@ class ClauseRetriever:
                         is_compound=is_compound,
                         compound_components=compound_components
                     )
+                    # Check for conflicting evidence across multiple candidate passages
+                    if len(matching) > 1:
+                        p2 = matching[1]
+                        s2 = self.evaluate_requirement_support(
+                            requirement_text=requirement_text or query_text or "",
+                            passage_text=p2.passage_text,
+                            clause_identifier=p2.clause_identifier,
+                            is_compound=is_compound,
+                            compound_components=compound_components
+                        )
+                        if s2 == RequirementEvidenceSupportState.CONFLICTING.value:
+                            support_state = RequirementEvidenceSupportState.CONFLICTING.value
                     return ClauseEvidenceResult(
                         outcome=ClauseEvidenceOutcome.CLAUSE_EVIDENCE_FOUND.value,
                         passage_text=p.passage_text,

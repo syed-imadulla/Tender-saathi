@@ -49,16 +49,19 @@ flowchart LR
 
 ---
 
-### Active Phase: Phase 13 — Expert Ground-Truth Adjudication & Evaluation Calibration
-
-**Goal**: Establish a defensible, auditable adjudication workflow for Tender Saathi's benchmark, generate reviewer-ready case packets for 40 procurement cases, implement a two-party consensus and governance validation tool, and define the formal stopping boundary for qualified domain experts.
-
-- [ ] **13-01**: Reviewer Case Packet Generator & Adjudication Rubric Specification (Canonical rubric `ADJUDICATION_RUBRIC.md`, automated packet compiler, 40 structured case packets).
-- [ ] **13-02**: Adjudication Ingestion, Two-Party Consensus Tool & Governance Enforcer (`scripts/ingest_adjudication.py`, qualification gate enforcement, conflict escalation).
-- [ ] **13-03**: Expert Verification Boundary, Packet Delivery & Milestone Readiness (Unit testing, full suite regression, evaluation stratification, Expert Handoff Dossier).
+### Normative Standards Ingestion, Evidence Integration & Support Engine Verification
+- [x] **Phase 13**: Domain Expert Adjudication & Evaluation Calibration (`reports/adjudication_packets/packets/`, consensus tool).
+- [x] **Phase 14**: Calibration Readiness & Protocol Design (`docs/evaluation/PHASE14_CALIBRATION_READINESS.md`).
+- [x] **Phase 15**: Real-World Evaluation Corpus Readiness (`docs/evaluation/PHASE15_CORPUS_READINESS.md`).
+- [x] **Phase 16**: Evidence Traceability & Recommendation Verification (`docs/evaluation/PHASE16_EVIDENCE_TRACEABILITY_AUDIT.md`).
+- [x] **Phase 17**: Evidence Integrity & Verification Semantics Audit (`docs/evaluation/PHASE17_EVIDENCE_INTEGRITY_AUDIT.md`).
+- [x] **Phase 18**: Controlled Normative Standards Corpus Ingestion (`src/corpus/`, PDF extraction, edition isolation).
+- [x] **Phase 19**: Safe Clause-Level Evidence Integration (`src/corpus/retriever.py`, grounded passage retrieval).
+- [x] **Phase 20**: Evidence-to-Requirement Validation Audit (`RequirementEvidenceSupportState`, 12 adversarial tests).
+- [x] **Phase 21**: Evidence Support Engine Validation Audit (Conservative parameters, unit conversions, inequality directions, tolerance, negation, multi-passage conflict detection, 18-case adversarial matrix).
 
 ---
 
 ### Upcoming Phases
-- [ ] **Phase 14**: Calibrated Ambiguity & Threshold Calibration (ROC/precision-recall calibration of `AUDIT-05` separation margin and evaluation of `AUDIT-03` successor initial scoring).
-- [ ] **Phase 15**: Production Containerized Deployment (Final container packaging, environment secrets auditing, and health monitoring).
+- [ ] **Phase 22**: Multi-Requirement Systemic Conflict Resolution & Standards Precedence Engine (Precedence DAG, cross-requirement conflict resolution, specialized vs general code mediation).
+- [ ] **Phase 23**: Production Containerized Deployment (Final container packaging, environment secrets auditing, and health monitoring).

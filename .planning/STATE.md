@@ -1,10 +1,10 @@
 # Tender Saathi — Active Planning State
 
 **Active Milestone**: Milestone: Expert Ground-Truth Adjudication & Evaluation Calibration  
-**Current Phase**: Phase 20 (`20-evidence-to-requirement-validation`)  
-**Phase Position**: Evidence Validation Audit Complete, 12 Adversarial Tests Passing, Full Suite 629/629 Passing, Frontend Build Clean, Audit Complete — Phase Completed  
+**Current Phase**: Phase 21 (`21-evidence-support-engine-validation`)  
+**Phase Position**: Evidence Support Engine Validation Complete, 18 Adversarial Tests Passing, Full Suite 647/647 Passing, Frontend Build Clean, Audit Complete — Phase Completed  
 **Working Directory**: `/home/syed-imadulla/Desktop/Tender_Saathi`  
-**Git Head**: `ea95ba4` (`main`)
+**Git Head**: `117bb2c` (`main`)
 
 ---
 
@@ -22,23 +22,25 @@
 10. **Phase 18 Controlled Normative Standards Corpus Ingestion**: Completed in `docs/evaluation/PHASE18_CORPUS_INGESTION_AUDIT.md`.
 11. **Phase 19 Safe Clause-Level Evidence Integration**: Completed in `docs/evaluation/PHASE19_CLAUSE_INTEGRATION_AUDIT.md`.
 12. **Phase 20 Evidence-to-Requirement Validation Audit**: Completed in `docs/evaluation/PHASE20_EVIDENCE_VALIDATION_AUDIT.md`.
-    - Resolved critical semantic conflation between clause existence and requirement support.
-    - Introduced 5 explicit requirement evidence support states (`RequirementEvidenceSupportState`): `FULLY_SUPPORTED`, `PARTIALLY_SUPPORTED`, `UNSUPPORTED`, `CONFLICTING`, `UNVERIFIED_COVERAGE`.
-    - Implemented deterministic support evaluation in `src/corpus/retriever.py` covering operating envelope conflicts, rating parameters, keyword relevance, and compound component coverage.
-    - Hardened `TraceableEvidenceValidator` with cryptographic document & passage hash auditing against SQLite storage and quality-status verification.
-    - Enforced safety escalation in `src/recommend.py` to flag conflicting evidence as review-required and transition decisions to `ASSISTED_REVIEW_REQUIRED`.
-    - Added color-coded requirement support indicators to frontend `EvidenceDrawer.tsx`.
-    - Added 12 deterministic adversarial test cases in `tests/test_evidence_validation_audit.py` (12/12 passing).
-    - Full backend test suite passing: 629/629 tests in 61.66s. Frontend production build passing in 1.05s.
+13. **Phase 21 Evidence Support Engine Validation Audit**: Completed in `docs/evaluation/PHASE21_EVIDENCE_SUPPORT_VALIDATION.md`.
+    - Recovered interrupted session state and validated working tree invariants without data loss.
+    - Resolved keyword-only over-claiming via conservative technical parameter verification.
+    - Implemented normalized unit conversions for power (W/kW/MW), voltage (V/kV), apparent power (VA/kVA/MVA), and current (A/mA).
+    - Hardened inequality direction checking (minimum floor vs maximum ceiling constraints).
+    - Added tolerance/range checking and bidirectional negation/exclusion conflict detection.
+    - Implemented multi-candidate passage conflict escalation in `ClauseRetriever`.
+    - Hardened `TraceableEvidenceValidator` against missing or unspecified extraction quality metadata.
+    - Built 18-case deterministic adversarial matrix in `tests/test_evidence_support_validation.py` (18/18 passing).
+    - Full backend test suite passing: 647/647 tests in 63.15s. Frontend production build passing in 1.04s.
     - Active ground-truth SHA-256 (`8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`) bit-for-bit unchanged.
 
 ---
 
-## Active Phase Overview: Phase 20
+## Active Phase Overview: Phase 21
 
 | Plan ID | Title | Scope & Target Files | Deliverable | Status |
 |---|---|---|---|---|
-| **20-VALID** | Evidence-to-Requirement Validation Audit | `src/corpus/semantics.py`, `src/corpus/retriever.py`, `src/traceability.py`, `src/recommend.py`, `frontend/src/types.ts`, `frontend/src/components/EvidenceDrawer.tsx`, `tests/test_evidence_validation_audit.py`, `docs/evaluation/PHASE20_EVIDENCE_VALIDATION_AUDIT.md` | Requirement evidence support state engine, envelope & parameter conflict detection, compound requirement handling, cryptographic SQLite audit, 12 adversarial tests, frontend UI badge, audit report. | **Complete** |
+| **21-VALID** | Evidence Support Engine Validation Audit | `src/corpus/retriever.py`, `src/traceability.py`, `tests/test_evidence_support_validation.py`, `docs/evaluation/PHASE21_EVIDENCE_SUPPORT_VALIDATION.md` | Conservative parameter checks, normalized unit conversions, inequality directions, tolerance & negation awareness, multi-passage conflict detection, 18-case adversarial matrix, audit report. | **Complete** |
 
 ---
 
@@ -46,6 +48,6 @@
 
 1. Qualified external domain engineers (CPWD, BIS, MES) review the 41 packets in `reports/adjudication_packets/packets/`.
 2. Controlled local intake of authorized full normative standards PDFs into `data/standards/corpus.db` for target procurement domains.
-3. Proceed to Phase 21: Multi-Requirement Systemic Conflict Resolution & Standards Precedence Engine.
+3. Proceed to Phase 22: Multi-Requirement Systemic Conflict Resolution & Standards Precedence Engine.
 
 

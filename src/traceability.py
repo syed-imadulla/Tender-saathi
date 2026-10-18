@@ -389,8 +389,8 @@ class TraceableEvidenceValidator:
                         is_norm_clause_verified = False
                     else:
                         ing_status = c_doc.get("ingestion_status")
-                        if ing_status in ("QUALITY_FAILED", "OCR_REQUIRED", "CORRUPT"):
-                            errors.append(f"Ineligible Corpus Document: Document '{record.corpus_document_id}' has ingestion status '{ing_status}'")
+                        if not ing_status or ing_status in ("QUALITY_FAILED", "OCR_REQUIRED", "CORRUPT", "FAILED"):
+                            errors.append(f"Ineligible Corpus Document: Document '{record.corpus_document_id}' has ingestion status '{ing_status or 'UNSPECIFIED'}'")
                             is_norm_clause_verified = False
 
                         if record.corpus_file_sha256 and c_doc.get("file_sha256") != record.corpus_file_sha256:
