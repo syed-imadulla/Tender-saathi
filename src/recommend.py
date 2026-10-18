@@ -180,7 +180,9 @@ class StandardsRecommender:
         retrieval_mode: str = "hybrid",
         ai_enabled: Optional[bool] = None,
         ai_parser: Optional[Any] = None,
-        ambiguity_engine: Optional[Any] = None
+        ambiguity_engine: Optional[Any] = None,
+        applicability_gate: Optional[Any] = None,
+        critic: Optional[Any] = None
     ):
         self.db = db or StandardsDatabase()
         self.retrieval_mode = retrieval_mode
@@ -188,10 +190,10 @@ class StandardsRecommender:
         self.verifier = EvidenceVerifier(self.db)
         self.decomposer = CompoundRequirementDecomposer()
         self.completeness_analyzer = DomainCompletenessAnalyzer()
-        self.critic = EvidenceAwareCritic(self.db)
+        self.critic = critic or EvidenceAwareCritic(self.db)
         self.graph = StandardsGraph(self.db)
         self.audit_engine = TenderAuditEngine()
-        self.applicability_gate = ApplicabilityGate()
+        self.applicability_gate = applicability_gate or ApplicabilityGate()
         from src.dependencies import StandardsDependencyEngine
         from src.gap_detection import StandardsGapDetector
         self.dependency_engine = StandardsDependencyEngine(self.graph, self.applicability_gate)
