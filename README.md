@@ -1,200 +1,219 @@
+<div align="center">
+
 # Tender Saathi
 
-**Find the right Indian Standard for a tender, with supporting evidence.**
+### **Find the right Indian Standard for a tender, with supporting evidence.**
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-tendersaathi.vercel.app-success?style=for-the-badge&logo=vercel)](https://tendersaathi.vercel.app/)
-[![GitHub Repo](https://img.shields.io/badge/GitHub-Tender--saathi-blue?style=for-the-badge&logo=github)](https://github.com/syed-imadulla/Tender-saathi)
+An open-source, evidence-backed decision-support system for technical tender specification auditing against Bureau of Indian Standards (BIS) codes.
 
-[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![Backend Tests](https://img.shields.io/badge/Pytest-819%20Passed%20(100%25)-brightgreen.svg)]()
-[![Frontend Tests](https://img.shields.io/badge/Vitest-12%20Passed%20(100%25)-brightgreen.svg)]()
-[![BIS Catalogue](https://img.shields.io/badge/BIS%20Catalogue-35%2C208%20Records-blue.svg)]()
-[![SIH Problem](https://img.shields.io/badge/SIH-SIH26108-orange.svg)]()
+<p>
+  <a href="https://tendersaathi.vercel.app/"><strong>Try Live Demo</strong></a> •
+  <a href="https://github.com/syed-imadulla/Tender-saathi"><strong>GitHub Repository</strong></a> •
+  <a href="docs/demo/SIH_LIVE_DEMO.md"><strong>5-Minute Demo Script</strong></a> •
+  <a href="docs/demo/JUDGE_QA.md"><strong>Judge Q&A Guide</strong></a>
+</p>
 
-> **Smart India Hackathon (SIH) — Problem Statement ID: SIH26108**  
-> An open-source, evidence-backed decision-support system for technical tender specification auditing against Bureau of Indian Standards (BIS) codes.
+<p>
+  <a href="https://tendersaathi.vercel.app/"><img src="https://img.shields.io/badge/Live%20Demo-tendersaathi.vercel.app-success?style=for-the-badge&logo=vercel" alt="Live Demo" /></a>
+  <a href="https://github.com/syed-imadulla/Tender-saathi"><img src="https://img.shields.io/badge/GitHub-Tender--saathi-blue?style=for-the-badge&logo=github" alt="GitHub Repository" /></a>
+</p>
+
+<p>
+  <img src="https://img.shields.io/badge/SIH%20Problem-SIH26108-orange.svg" alt="SIH Problem SIH26108" />
+  <img src="https://img.shields.io/badge/Python-3.11-blue.svg" alt="Python 3.11" />
+  <img src="https://img.shields.io/badge/React-18%20%7C%20TypeScript-blue.svg" alt="React 18" />
+  <img src="https://img.shields.io/badge/Backend%20Pytest-819%20Passed-brightgreen.svg" alt="Pytest 819 Passed" />
+  <img src="https://img.shields.io/badge/Frontend%20Vitest-12%20Passed-brightgreen.svg" alt="Vitest 12 Passed" />
+  <img src="https://img.shields.io/badge/BIS%20Catalogue-35%2C208%20Records-blue.svg" alt="BIS Catalogue 35,208 Records" />
+</p>
+
+<p>
+  Tender Saathi extracts technical requirements from tender documents, matches them across 35,208 BIS standards using lexical and semantic search, verifies authentic statutory clauses, and routes uncertain cases to an interactive human review queue.
+</p>
+
+</div>
 
 ---
 
 ## Table of Contents
 
-1. [The Problem We Are Solving](#the-problem-we-are-solving)
-2. [Our Solution](#our-solution)
-3. [See It in Action](#see-it-in-action)
-4. [How It Works](#how-it-works)
-5. [How Recommendations Are Classified](#how-recommendations-are-classified)
-6. [BIS Data Coverage](#bis-data-coverage)
-7. [Features](#features)
-8. [Testing and Benchmarks](#testing-and-benchmarks)
-9. [Technology Stack](#technology-stack)
-10. [Quick Start](#quick-start)
-11. [API Overview](#api-overview)
-12. [Known Limits and Next Steps](#known-limits-and-next-steps)
-13. [Documentation and Project Details](#documentation-and-project-details)
+1. [The Problem in Public Procurement](#the-problem-in-public-procurement)
+2. [What Tender Saathi Does](#what-tender-saathi-does)
+3. [Why Not Just Use a Normal AI Chatbot?](#why-not-just-use-a-normal-ai-chatbot)
+4. [See It in Action (3 Demo Scenarios)](#see-it-in-action-3-demo-scenarios)
+5. [How It Works (System Architecture)](#how-it-works-system-architecture)
+6. [How Recommendations Are Classified](#how-recommendations-are-classified)
+7. [BIS Data Coverage & Database Boundaries](#bis-data-coverage-database-boundaries)
+8. [Key Capabilities](#key-capabilities)
+9. [Software Tests and Evaluation Disclosure](#software-tests-and-evaluation-disclosure)
+10. [Technology Stack](#technology-stack)
+11. [Quick Start: Docker & Local Setup](#quick-start-docker-local-setup)
+12. [API Reference Overview](#api-reference-overview)
+13. [Current Limitations and Next Steps](#current-limitations-and-next-steps)
+14. [Documentation Sitemap](#documentation-sitemap)
+15. [Disclaimer and Attribution](#disclaimer-and-attribution)
 
 ---
 
-## The Problem We Are Solving
+## The Problem in Public Procurement
 
-Public procurement officers in Indian government departments and public sector enterprises handle complex tender documents. A single public works, water supply, or electrical tender often contains dozens of distinct technical requirements.
+Government departments and public sector undertakings in India publish thousands of technical tenders every month on platforms like GeM, CPPP, and state procurement portals. A single infrastructure, water supply, or electrical tender often contains dozens of distinct technical requirements mixed with procurement boilerplate.
 
-When specifying items, procurement officers must reference the correct Indian Standards (BIS codes). To do this accurately, they must verify:
-- The exact engineering requirement (material, grade, pressure, diameter, and temperature conditions).
-- The correct standard code, part number, and current edition year.
-- The lifecycle status (whether the standard is active, superseded by a newer edition, or withdrawn).
-- Essential companion codes (normative references, mandatory laboratory test methods, and installation practices).
-- The supporting clause text proving that the standard genuinely applies to the specified item.
+When drafting or reviewing tender specifications, procurement officers must reference the correct Indian Standards (BIS codes). To do this accurately, they need to verify:
+- Whether the standard genuinely covers the specific material, diameter, pressure class, and temperature conditions.
+- Whether the standard is currently active, superseded by a newer edition, or withdrawn.
+- Which companion standards are mandatory (e.g., test methods, sampling procedures, and installation practices).
+- The exact clause text that supports the recommendation.
 
-Today, officers often rely on manual keyword searches across the BIS portal or generic web search engines. **Finding a possible standard is easy compared with proving that it fits the tender.**
+**Finding a possible standard number is easy. Proving that it fits the tender, is active, and is backed by real evidence is the hard part.**
 
-A search result alone does not prove applicability. If a tender cites a withdrawn standard, an incorrect pressure class, or an ungrounded clause, it creates serious risks during public bidding, factory inspection, laboratory quality testing, and statutory audit.
-
----
-
-## Our Solution
-
-Tender Saathi assists procurement officers by systematically analyzing tender documents against authoritative Bureau of Indian Standards records.
-
-### How It Works from the User's Perspective
-
-1. **Submit Input**: Upload a tender PDF, upload an image of a tender notice, or paste raw specification text.
-2. **Extract & Split**: The system extracts clean text and automatically separates commercial boilerplate (EMD, bank guarantee, turnover criteria) from genuine technical requirements.
-3. **Search the Catalogue**: It matches technical requirements across 35,208 BIS catalogue records using fast lexical search (SQLite FTS5 BM25) and dense semantic retrieval.
-4. **Verify Evidence & Lifecycle**: It cross-checks candidate standards against authentic indexed statutory gazette passages, active edition years, and known companion codes.
-5. **Classify Transparency**: Recommendations are clearly classified into evidence tiers (`CLAUSE_VERIFIED` vs `CATALOGUE_DISCOVERED` vs `SAFE_ABSTENTION`).
-6. **Flag Review Needs**: Missing engineering parameters, superseded standards, and uncertain matches are routed to an interactive human review queue.
-7. **Retain Review History & Export**: Officers can review, approve, edit, or dismiss recommendations with notes, then export clean Markdown, JSON, or CSV audit reports.
-
-### Why This Is Different from a Basic Chatbot
-
-Generic large language model chatbots frequently hallucinate plausible-sounding BIS standard numbers and invent non-existent clauses.
-
-Tender Saathi separates catalogue metadata discovery from clause-backed verification:
-- It **never fabricates standard numbers**: every recommendation must resolve to an authentic BIS catalogue record.
-- It **never invents clause text**: if a standard exists in the catalogue but its full normative text is not yet indexed in our verified corpus, the system flags it honestly as `CATALOGUE_DISCOVERED` and asks for human review.
-- It **safely abstains**: when a requirement is purely commercial or physically contradictory, it abstains instead of guessing.
+| Common Procurement Challenge | How Tender Saathi Handles It |
+| :--- | :--- |
+| **Citing Withdrawn or Superseded Standards**<br/>Officers may inadvertently cite older editions that have been replaced by newer BIS codes. | Tracks recorded lifecycle status across the catalogue and flags withdrawn or superseded standards with clear warnings. |
+| **Technical Specs Mixed with Commercial Boilerplate**<br/>Tender documents blend technical requirements with EMD, payment terms, and turnover criteria. | Automatically separates commercial terms from engineering specifications; safely excludes commercial terms from standards matching. |
+| **Missing or Incomplete Specifications**<br/>A tender clause might ask for "pipes" without mentioning diameter, pressure, or temperature. | Detects missing engineering parameters and flags the requirement for clarification instead of making an ungrounded guess. |
+| **Hallucinated or Unsupported Standards**<br/>Generic AI tools frequently invent plausible-sounding standard numbers and non-existent clauses. | Grounds every recommendation in an authoritative local BIS catalogue; separates catalogue metadata discovery from verified clause passages. |
 
 ---
 
-## See It in Action
+## What Tender Saathi Does
 
-Try the live deployment directly in your browser:  
+Tender Saathi provides an evidence-backed decision-support system designed for the procurement officer's workflow:
+
+1. **Ingest Tender**: Upload a tender PDF, upload an image of a tender notice, or paste raw text.
+2. **Extract & Partition**: The system extracts clean digital text and separates procurement terms (EMD, bank guarantees, delivery periods) from technical specifications.
+3. **Catalogue Search**: It queries 23,510 active BIS catalogue records using fast lexical search (SQLite FTS5 BM25) and dense semantic embeddings.
+4. **Evidence Grounding**: It checks whether candidate standards belong to our indexed statutory gazette corpus (`corpus.db`). If present, it retrieves verbatim clause passages.
+5. **Enforce Safety Gates**: It verifies operating conditions (pressure, temperature, medium) and checks whether the standard is active or superseded.
+6. **Classify Transparency**: It tags results with clear evidence tiers (`CLAUSE_VERIFIED`, `CATALOGUE_DISCOVERED`, or `SAFE_ABSTENTION`).
+7. **Officer Review & Report**: The officer can review, accept, edit, or dismiss recommendations with notes, then export clean Markdown, JSON, or CSV audit reports.
+
+---
+
+## Why Not Just Use a Normal AI Chatbot?
+
+Generic AI chatbots rely on training data memory, which frequently leads to outdated citations and invented clauses. Tender Saathi is built on deterministic software rules and local authoritative databases:
+
+| Feature / Dimension | Generic AI Chatbot | Tender Saathi |
+| :--- | :--- | :--- |
+| **Standards Data Source** | Parametric memory (unverifiable, often outdated) | Authoritative local SQLite database of **35,208 BIS records** |
+| **Supporting Evidence** | Generates plausible clause text from memory | Cites verbatim passages from verified statutory gazette documents |
+| **Lifecycle Validity** | Unaware of whether an edition is currently valid | Tracks active, superseded, and withdrawn statuses across records |
+| **Commercial Clauses** | Tries to force a technical standard on financial clauses | Recognizes EMD / guarantees and safely abstains (`candidate_standard=None`) |
+| **Incomplete Specifications** | Silently guesses missing pressure or material parameters | Flags missing parameters and routes the clause to human review |
+| **Audit Trail & Provenance** | Transient chat response with no verifiable receipts | Exportable Markdown, CSV, and JSON audit reports with reviewer notes |
+| **Offline Reliability** | Requires continuous cloud connectivity and paid API calls | Runs 100% offline using local SQLite indexes and local embeddings |
+
+---
+
+## See It in Action (3 Demo Scenarios)
+
+Try the live web application:  
 🔗 **[https://tendersaathi.vercel.app/](https://tendersaathi.vercel.app/)**
 
-### 3 Representative Demo Scenarios
+You can test these representative scenarios directly in the web UI:
 
-You can verify these directly in the live UI or using the test fixtures in this repository:
+### Scenario 1: Supported Technical Requirement (CPVC Pipe)
+- **Input Text**:
+  > *"Providing and fixing Chlorinated Polyvinyl Chloride (CPVC) pipes for potable hot and cold water supplies, SDR 11, working pressure 1.0 MPa at 82 deg C."*
+- **Expected System Action**: Identifies **IS 15778 : 2007** (Active).
+- **Evidence / Status**: Tagged as **`CLAUSE_VERIFIED`** (Green badge). Displays verbatim gazette clauses (Clause 4.1 material requirements, Clause 6.2 dimensions) and links companion solvent cement standard **IS 14182**.
+- **What It Demonstrates**: Full-text statutory clause grounding for supported civil engineering standards.
 
-#### 1. Supported Technical Requirement (CPVC Pipe)
-- **Input Text**: *"Chlorinated polyvinyl chloride pipes for potable hot and cold water supplies, SDR 11, working pressure 1.0 MPa at 82 deg C."*
-- **Observed Result**: Recommends **IS 15778 : 2007** (Active).
-- **Evidence Tier**: `CLAUSE_VERIFIED` (Green badge).
-- **Supporting Detail**: Displays authentic gazette clause evidence (Clause 4.1 material requirements, Clause 6.2 dimensions) and links companion solvent cement standard **IS 14182**.
+### Scenario 2: Mixed Tender (Technical Scope + Commercial Boilerplate)
+- **Input Text**:
+  > *"Item 1: PVC insulated unsheathed copper conductor cables for electrical wiring conforming to IS 694.\nItem 2: EMD amount of INR 1,50,000 shall be submitted online. Performance security of 10% valid for 12 months."*
+- **Expected System Action**: Partitions the document into separate requirements.
+- **Evidence / Status**:
+  - Item 1 maps to **IS 694 : 2010** (`CLAUSE_VERIFIED`).
+  - Item 2 is classified as procurement boilerplate and excluded from standards matching (`candidate_standard=None`, `SAFE_ABSTENTION`).
+- **What It Demonstrates**: Safe abstention on commercial clauses without hallucinating standards.
 
-#### 2. Mixed Tender (Technical Requirements + Commercial Terms)
-- **Input Text**: *"Item 1: PVC insulated unsheathed copper conductor cables for electrical wiring conforming to IS 694. Item 2: EMD amount of INR 1,50,000 shall be submitted online. Performance security of 10% valid for 12 months."*
-- **Observed Result**:
-  - Item 1 correctly maps to **IS 694 : 2010** (`CLAUSE_VERIFIED`).
-  - Item 2 (EMD and performance security) is recognized as procurement boilerplate and excluded from standards matching (`candidate_standard=None`, `SAFE_ABSTENTION`). Zero standards hallucinated.
+### Scenario 3: Catalogue-Only Discovery (Human Review Required)
+- **Input Text**:
+  > *"Self-contained open-circuit compressed air breathing apparatus for industrial rescue operations."*
+- **Expected System Action**: Matches catalogue metadata to **IS 10245 (Part 2) : 1996**.
+- **Evidence / Status**: Tagged as **`CATALOGUE_DISCOVERED`** (Amber badge). Shows an explicit notice that full gazette clause text is not yet indexed, and flags `human_review_required=True`.
+- **What It Demonstrates**: Transparent distinction between catalogue metadata search and authentic clause verification.
 
-#### 3. Catalogue-Only Discovery (Human Review Required)
-- **Input Text**: *"Self-contained open-circuit compressed air breathing apparatus for industrial rescue operations."*
-- **Observed Result**: Identifies candidate standard **IS 10245 (Part 2) : 1996**.
-- **Evidence Tier**: `CATALOGUE_DISCOVERED` (Amber badge).
-- **Notice Shown**: Discloses that the standard was matched from catalogue metadata, but its full gazette clause text is not yet indexed in the verified corpus. Directly flags `human_review_required=True` for officer sign-off.
-
-### Hackathon Presentation Guides
-- 📖 **[5-Minute Live Presentation Script](docs/demo/SIH_LIVE_DEMO.md)**: Timed click-by-click presenter instructions with backup fallback options.
-- 📖 **[Judge Technical Q&A Guide](docs/demo/JUDGE_QA.md)**: Detailed answers to 10 common technical questions asked by hackathon evaluators.
+### SIH Presentation Resources
+- 📖 **[5-Minute Live Presentation Script](docs/demo/SIH_LIVE_DEMO.md)**: Timed click-by-click instructions with contingency fallback protocols.
+- 📖 **[Judge Technical Q&A Guide](docs/demo/JUDGE_QA.md)**: Technical answers addressing architecture, safety gates, and scaling.
 
 ---
 
-## How It Works
+## How It Works (System Architecture)
 
 ```mermaid
 flowchart TD
-    A[Tender Input<br/>PDF / Text / Image] --> B[Text Extraction<br/>PyMuPDF / Tesseract OCR]
+    A[Tender Document<br/>PDF / Text / Image] --> B[Text Extraction<br/>PyMuPDF / Tesseract OCR]
     B --> C[Requirement Partitioning<br/>Technical vs Commercial]
     C --> D[BIS Catalogue Retrieval<br/>SQLite FTS5 BM25 + Embeddings]
-    D --> E[Evidence & Lifecycle Checks<br/>Gazette Passages & Status Traversal]
-    E --> F[Safety & Boundary Gates<br/>Operating Limits & Physical Checks]
+    D --> E[Evidence & Lifecycle Checks<br/>Statutory Passages & Supersedence]
+    E --> F[Decision Safety Gates<br/>Operating Limits & Contradictions]
     F --> G[Classification & Human Review<br/>Accept / Edit / Dismiss]
     G --> H[Audit Report Generation<br/>Markdown / CSV / JSON]
 ```
 
-### Main Pipeline Stages
+### Stage-by-Stage Breakdown
 
-1. **Text Extraction**: Uses PyMuPDF for digital-text PDFs, preserving tabular structures. Falls back to Tesseract OCR (with English and Hindi models) when image scans are detected.
-2. **Requirement Partitioning**: Strips procurement terms, payment conditions, and penalty clauses so retrieval focuses strictly on engineering specifications.
-3. **Catalogue Search**: Executes pure-Python BM25 and SQLite FTS5 queries against 23,510 active BIS catalogue records, supplemented by local MiniLM semantic embeddings.
-4. **Evidence Grounding**: Checks whether the standard belongs to the verified statutory gazette corpus (`corpus.db`). If present, it retrieves verbatim clause passages.
-5. **Boundary & Lifecycle Gates**: Verifies pressure, temperature, and medium constraints. Checks if the standard is superseded or withdrawn.
-6. **Human Review & Reporting**: Stores reviewer decisions and produces downloadable audit reports with complete provenance trails.
+1. **Text Extraction**: PyMuPDF extracts clean text from digital PDFs; Tesseract OCR handles scanned images and document photos.
+2. **Requirement Partitioning**: Strips procurement boilerplate so retrieval focuses strictly on engineering requirements.
+3. **Catalogue Retrieval**: Searches 23,510 active catalogue records using SQLite FTS5 BM25 keyword matching and dense embeddings.
+4. **Evidence Checks**: Cross-references candidate standards against the statutory gazette database (`corpus.db`) to find verbatim passages.
+5. **Decision Safety Gates**: Validates operating limits (pressure, temperature, medium) and checks whether the standard is active or superseded.
+6. **Classification & Human Review**: Tags the result with an evidence tier and records officer review decisions (`ACCEPT`, `EDIT`, `DISMISS`).
+7. **Audit Report Generation**: Exports complete audit documentation in Markdown, JSON, and injection-sanitized CSV formats.
 
 ---
 
 ## How Recommendations Are Classified
 
-Tender Saathi uses three clear classification tiers to communicate its level of evidence:
+Tender Saathi uses three clear result tiers to communicate its level of evidence:
 
-| Result Tier | Meaning | Recommended Next Step |
-| :--- | :--- | :--- |
-| **`CLAUSE_VERIFIED`** | Supporting clause text exists in our indexed statutory gazette corpus. | Review the excerpted clause passage and confirm that it fits the tender scope. |
-| **`CATALOGUE_DISCOVERED`** | A possible standard was identified through BIS catalogue metadata, but full-text clause evidence is not yet indexed in our verified corpus. | Human review is required. Inspect the official standard document before purchasing. |
-| **`SAFE_ABSTENTION`** / **Review Required** | Available evidence is insufficient, or the clause is purely commercial, ambiguous, or physically incompatible. | Clarify the engineering requirements or seek review from a subject expert. |
+| Decision Outcome | What It Means | Available Evidence | Next Step for Officer |
+| :--- | :--- | :--- | :--- |
+| **`CLAUSE_VERIFIED`** | Supporting clause text exists in our indexed statutory gazette corpus. | Verbatim clause passage, edition year, and companion standards. | Review the excerpted clause passage and confirm that it fits the tender scope. |
+| **`CATALOGUE_DISCOVERED`** | A possible standard was identified through BIS catalogue metadata, but full-text clause evidence is not indexed. | Catalogue metadata title, standard number, and recorded status. | Human review is required. Inspect the official standard document before purchasing. |
+| **`SAFE_ABSTENTION`** / **Review Required** | Evidence is insufficient, or the clause is purely commercial, ambiguous, or physically incompatible. | None (safe rejection) or parameter mismatch warning. | Clarify the engineering requirements or seek review from a subject expert. |
 
-> **Transparency Note**: These tiers describe the system's verified data coverage. They provide decision support and do not constitute statutory or legal certification.
+> **Statutory Disclaimer**: These labels describe the system's verified data coverage. They provide decision support and do not constitute legal or statutory certification.
 
 ---
 
-## BIS Data Coverage
+## BIS Data Coverage & Database Boundaries
 
-Current database counts verified during the Phase 38 production audit:
+We verify database counts directly against the SQLite database files:
 
 | Database File | Key Table | Records | Coverage Details |
 | :--- | :--- | :--- | :--- |
 | **`data/catalogue/bis_catalogue.db`** | `standards` | **35,208** | Full BIS catalogue snapshot: **10,828** Active, **13,024** Unknown status, **11,340** Withdrawn, and **16** Superseded. |
 | **`data/catalogue/catalogue_search_index.db`** | `catalogue_fts` | **23,510** | FTS5 BM25 search index containing all active and unwithdrawn catalogue records. |
 | **`data/standards/corpus.db`** | `corpus_passages` | **53 passages** | Authentic statutory gazette passages covering **13 foundational standards** (`CLAUSE_VERIFIED` baseline). |
-| **`data/standards/standards.db`** | `standards` | **99 standards** | Curated engineering standards with **197 verified relationship links** (companion codes, test methods, installation guides). |
+| **`data/standards/standards.db`** | `standards` | **99 standards** | Curated core standards with **197 verified relationship links** (companion codes, test methods, installation guides). |
 
-**Important Distinction**: Catalogue metadata coverage (35,208 records) is much broader than authentic clause-level evidence coverage (13 standards, 53 passages). The system never pretends that unindexed standards have verified clause passages.
-
----
-
-## Features
-
-### 1. Document Ingestion & Extraction
-- Native PDF extraction via PyMuPDF without OCR degradation for digital-text tenders.
-- Optical Character Recognition (OCR) fallback via Tesseract for scanned documents and images.
-- Rejection of corrupted or malformed files with clear HTTP 400 Client Error messages.
-
-### 2. Specification Analysis & Retrieval
-- Automatic separation of technical specifications from commercial boilerplate.
-- Fast keyword search across 23,510 active standards using SQLite FTS5 BM25.
-- Offline-capable dense semantic embeddings (Sentence-Transformers MiniLM).
-
-### 3. Engineering Safety & Conflict Gates
-- Operating condition checks for temperature, pressure, medium, and material compatibility.
-- Detection of physical contradictions (e.g. unplasticized PVC specified for high-temperature steam).
-- Supersedence tracking that prevents withdrawn standards from being silently marked active.
-
-### 4. Standards Relationship Graph
-- Directed graph tracking 8 relationship types: normative references, test methods, installation codes, safety codes, amendments, and superseding standards.
-- Strict depth-1 traversal prevents unrelated standards from being pulled in.
-
-### 5. Officer Review & Decision Audit Trail
-- Interactive review queue allowing procurement officers to **Accept**, **Edit**, or **Dismiss** recommendations.
-- Persistent reviewer notes and decision timestamps.
-- Formatted report exports in **Markdown**, **JSON**, and **CSV** (with protection against spreadsheet formula injection).
+**Clear Distinction**: Catalogue metadata coverage (35,208 records) is much broader than authentic clause-level evidence coverage (13 standards, 53 passages). The system never claims that unindexed catalogue records have verified clause text.
 
 ---
 
-## Testing and Benchmarks
+## Key Capabilities
 
-We separate automated software verification from recommendation accuracy benchmarks.
+- **Document Ingestion**: Extracts digital PDFs via PyMuPDF without OCR loss, with Tesseract OCR fallback for scanned images.
+- **Requirement Partitioning**: Automatically separates procurement boilerplate from technical engineering clauses.
+- **BIS Catalogue Search**: Instant BM25 lexical search across 23,510 active records via SQLite FTS5.
+- **Evidence Grounding**: Verbatim clause citations from registered statutory gazette documents.
+- **Standards Knowledge Graph**: Models 8 relationship types (normative references, test methods, installation codes, safety codes) capped at depth-1 to prevent drift.
+- **Physical Contradiction Gates**: Rejects physically impossible parameters (e.g. PVC pipes for superheated steam at 220°C).
+- **Officer Decision History**: Interactive review modal supporting **Accept**, **Edit**, and **Dismiss** actions with persistent notes.
+- **Sanitized Report Exports**: Downloadable audit reports in Markdown, JSON, and CSV (sanitized against spreadsheet formula injection).
 
-### Software Verification Suite
+---
+
+## Software Tests and Evaluation Disclosure
+
+We separate automated software engineering tests from recommendation accuracy evaluation.
+
+### Software Engineering Test Results
 
 Every test command below passes cleanly:
 
@@ -202,17 +221,17 @@ Every test command below passes cleanly:
 | :--- | :--- | :--- | :--- | :--- |
 | **Phase 38 Reality Check Suite** | `python3 -m pytest tests/test_phase38_production_reality.py` | 12 | **100% (12/12)** | Passed |
 | **Full Backend Test Suite** | `python3 -m pytest tests/` | 819 | **100% (819/819)** | Passed (204s) |
-| **Phase 37 Demo Packaging** | `python3 -m pytest tests/test_phase37_demo_packaging.py` | 8 | **100% (8/8)** | Passed |
-| **Frontend Unit & Component** | `cd frontend && npx vitest run` | 12 | **100% (12/12)** | Passed |
+| **Phase 37 Packaging Suite** | `python3 -m pytest tests/test_phase37_demo_packaging.py` | 8 | **100% (8/8)** | Passed |
+| **Frontend Component Suite** | `cd frontend && npx vitest run` | 12 | **100% (12/12)** | Passed |
 | **Frontend Production Build** | `cd frontend && npm run build` | — | **Success** | Built in 1.86s |
 | **Docker Compose Config** | `docker compose config` | — | **Valid** | Exit code 0 |
 | **Backend Container Health** | `curl -f http://localhost:5000/api/health` | — | **HTTP 200** | Status OK |
 
 ### Recommendation Benchmark Disclosure
 
-- Our current evaluation baseline ([`dataset/ground_truth/ground_truth.csv`](dataset/ground_truth/ground_truth.csv)) contains **20 representative tender cases** and **5 negative controls** (SHA-256: `8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`).
+- Our evaluation baseline ([`dataset/ground_truth/ground_truth.csv`](dataset/ground_truth/ground_truth.csv)) contains **20 representative tender cases** and **5 negative controls** (SHA-256: `8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`).
 - On this small initial set, the system achieves 90% Top-1 retrieval recall and 100% negative control rejection.
-- **Honest Disclose**: These ground-truth labels have been assembled internally and have **not yet been independently audited by accredited BIS sectional committees**. We do not present this small benchmark as a proven real-world accuracy figure across all procurement domains.
+- **Honest Disclose**: These ground-truth labels were assembled internally and have **not yet been independently audited by accredited BIS sectional committees**. We do not present this small benchmark as a proven real-world accuracy figure across all procurement domains.
 
 For detailed evaluation methodologies, see:
 - 📊 **[Benchmark Evaluation Report](docs/evaluation/benchmark.md)**
@@ -228,21 +247,21 @@ For detailed evaluation methodologies, see:
 | :--- | :--- | :--- |
 | **Frontend UI** | React 18, TypeScript, Vite, D3.js | Single-page application with interactive standards graph visualization |
 | **Backend API** | Python 3.11, Flask, Gunicorn | REST endpoints and analysis orchestration |
-| **Search Engine** | SQLite3, FTS5 BM25 | Instant pure-Python lexical retrieval across 23,510 active records |
-| **Semantic Retrieval**| PyTorch (CPU-only build), Sentence-Transformers | Dense vector similarity for domain-specific terminology |
+| **Search Engine** | SQLite3, FTS5 BM25 | Pure-Python lexical retrieval across 23,510 active records |
+| **Semantic Retrieval**| PyTorch (CPU build), Sentence-Transformers | Dense vector similarity for domain-specific terminology |
 | **Document Processing**| PyMuPDF (fitz), Tesseract OCR, Poppler | PDF text parsing, table isolation, and scanned image OCR |
 | **Testing** | Pytest, Vitest | Automated backend and frontend regression test suites |
 | **Deployment** | Docker, Docker Compose, Nginx (Alpine) | Multi-container packaging with reverse proxy and persistent volumes |
 
 ---
 
-## Quick Start
+## Quick Start: Docker & Local Setup
 
 You can run Tender Saathi using either Docker Compose or local Python/Node environments.
 
-### Method 1: Docker Compose (Recommended)
+### Method 1: Turnkey Docker Compose Setup (Recommended)
 
-Requires Docker and Docker Compose installed:
+Requires Docker and Docker Compose:
 
 ```bash
 # 1. Clone the repository
@@ -252,14 +271,14 @@ cd Tender-saathi
 # 2. Prepare environment variables
 cp .env.example .env
 
-# 3. Build and start containers in background
+# 3. Build and launch services in background
 docker compose up -d --build
 
-# 4. Check container status
+# 4. Check container health status
 docker compose ps
 ```
 
-- **Web Interface**: `http://localhost:3000` (Nginx proxies `/api/` calls to backend)
+- **Web Interface**: `http://localhost:3000` (Nginx reverse-proxies `/api/` calls to backend)
 - **Backend Health Check**: `http://localhost:5000/api/health`
 
 ### Method 2: Local Development Setup (Without Docker)
@@ -286,11 +305,17 @@ npm run dev
 ```
 - Open `http://localhost:5173` in your browser.
 
+### Common Troubleshooting Tips
+
+- **Port 5000 already in use**: Stop any existing process using `fuser -k 5000/tcp` or configure `PORT=5001` in `.env`.
+- **Missing OCR libraries**: If OCR on scanned PDFs fails locally, install Tesseract via `sudo apt-get install tesseract-ocr tesseract-ocr-hin poppler-utils`.
+- **Database permissions**: Ensure SQLite files in `data/` are readable by the application user.
+
 For complete setup instructions, see the **[Installation Guide](docs/getting-started/installation.md)**.
 
 ---
 
-## API Overview
+## API Reference Overview
 
 The Flask backend (`api/server.py`) provides the following main REST endpoints:
 
@@ -312,9 +337,9 @@ For complete request and response schemas, see the **[REST API Reference](docs/a
 
 ---
 
-## Known Limits and Next Steps
+## Current Limitations and Next Steps
 
-Tender Saathi is built on honest engineering principles. Here are our current operational boundaries:
+Tender Saathi is built on transparent engineering principles. Here are our current operational boundaries:
 
 1. **Clause Evidence Scope**: Verbatim statutory gazette clauses are currently indexed for **13 foundational standards** (53 passages). The remaining 23,497 active catalogue standards are matched via FTS5 BM25 metadata and flagged as `CATALOGUE_DISCOVERED`.
 2. **Catalogue Status Gaps**: In the open BIS catalogue snapshot, 13,024 records lack an explicit Active/Withdrawn tag and are classified as `UNKNOWN`. These require official gazette verification.
@@ -330,7 +355,7 @@ Tender Saathi is built on honest engineering principles. Here are our current op
 
 ---
 
-## Documentation and Project Details
+## Documentation Sitemap
 
 | Category | Document | Description |
 | :--- | :--- | :--- |
@@ -349,7 +374,7 @@ Tender Saathi is built on honest engineering principles. Here are our current op
 
 ---
 
-## Disclaimer & Attribution
+## Disclaimer and Attribution
 
 - **Hackathon Attribution**: Developed for the **Smart India Hackathon (SIH)** under **Problem Statement SIH26108**.
 - **Data Source**: Standards catalogue metadata is derived from public records published by the **Bureau of Indian Standards (BIS)**.
