@@ -373,6 +373,7 @@ def _normalize_result(
             "passage_id": getattr(r, "passage_id", None),
             "clause_number": getattr(r, "clause_number", None),
             "edition_year": getattr(r, "edition_year", None),
+            "explicit_standards_found": getattr(r, "explicit_standards_found", []) or [],
         }
 
         all_reqs.append(req_dict)

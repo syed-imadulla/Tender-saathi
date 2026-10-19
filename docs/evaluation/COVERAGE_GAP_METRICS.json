@@ -1,0 +1,134 @@
+{
+  "audit_timestamp": "2026-10-19T06:24:12.835504+00:00",
+  "repository": "Tender_Saathi",
+  "phase": 29,
+  "evaluation_scope": "End-to-End Validation & Full BIS Coverage Gap Audit",
+  "national_bis_catalogue": {
+    "database_file": "data/catalogue/bis_catalogue.db",
+    "table": "catalogue_standards",
+    "total_records": 35208,
+    "distinct_base_standards": 29735,
+    "distinct_full_standards": 35208,
+    "active_records": 10828,
+    "withdrawn_records": 11340,
+    "superseded_records": 16,
+    "unresolved_lifecycle_records": 13024,
+    "total_unresolved_lifecycle": 13040,
+    "records_missing_year": 2,
+    "quarantined_records": 391
+  },
+  "curated_standards_metadata": {
+    "database_file": "data/standards/standards.db",
+    "table": "standards",
+    "total_records": 93,
+    "active_records": 78,
+    "withdrawn_records": 15
+  },
+  "normative_evidence_corpus": {
+    "database_file": "data/standards/corpus.db",
+    "tables": [
+      "corpus_documents",
+      "corpus_passages"
+    ],
+    "total_documents": 4,
+    "total_passages": 15,
+    "unique_standards_with_passages": [
+      "IS 1489 (Part 1)",
+      "IS 456",
+      "IS 4984",
+      "IS 8112"
+    ],
+    "unique_standards_count": 4,
+    "passages_per_standard": {
+      "IS 1489 (Part 1)": 4,
+      "IS 456": 5,
+      "IS 4984": 5,
+      "IS 8112": 1
+    },
+    "corpus_standards_catalogue_status": {
+      "IS 456": {
+        "canonical_id": "IS-456-2000",
+        "standard_number": "IS 456 : 2000",
+        "year": 2000,
+        "catalogue_status": "UNKNOWN",
+        "matches_corpus_edition": true
+      },
+      "IS 4984": {
+        "canonical_id": "IS-4984-2016",
+        "standard_number": "IS 4984 : 2016",
+        "year": 2016,
+        "catalogue_status": "ACTIVE",
+        "matches_corpus_edition": true
+      },
+      "IS 1489 (Part 1)": {
+        "canonical_id": "IS-1489-Part-1-2015",
+        "standard_number": "IS 1489 (Part 1) : 2015",
+        "year": 2015,
+        "catalogue_status": "ACTIVE",
+        "matches_corpus_edition": true
+      },
+      "IS 8112": {
+        "canonical_id": "IS-8112-2013",
+        "standard_number": "IS 8112 : 2013",
+        "year": 2013,
+        "catalogue_status": "WITHDRAWN",
+        "matches_corpus_edition": true
+      }
+    },
+    "documents": [
+      {
+        "doc_id": "DOC-IS-456-2000",
+        "standard_number": "IS 456",
+        "edition_year": 2000,
+        "title": "Plain and Reinforced Concrete - Code of Practice (Fourth Revision)",
+        "passages_count": 5
+      },
+      {
+        "doc_id": "DOC-IS-4984-2016",
+        "standard_number": "IS 4984",
+        "edition_year": 2016,
+        "title": "Polyethylene Pipes for Water Supply - Specification (Fifth Revision)",
+        "passages_count": 5
+      },
+      {
+        "doc_id": "DOC-IS-1489-Part-1-2015",
+        "standard_number": "IS 1489 (Part 1)",
+        "edition_year": 2015,
+        "title": "Portland Pozzolana Cement - Specification: Part 1 Fly Ash Based (Fourth Revision)",
+        "passages_count": 4
+      },
+      {
+        "doc_id": "DOC-IS-8112-2013",
+        "standard_number": "IS 8112",
+        "edition_year": 2013,
+        "title": "Ordinary Portland Cement, 43 Grade - Specification (Second Revision)",
+        "passages_count": 1
+      }
+    ]
+  },
+  "coverage_ratios_and_gaps": {
+    "standards_in_corpus": [
+      "IS 1489 (Part 1)",
+      "IS 456",
+      "IS 4984",
+      "IS 8112"
+    ],
+    "curated_active_standards_with_passages": [
+      "IS 1489 (Part 1)",
+      "IS 456",
+      "IS 4984"
+    ],
+    "curated_active_with_passages_count": 3,
+    "active_catalogue_records_with_passages": [
+      "IS 4984",
+      "IS 1489 (Part 1)"
+    ],
+    "active_catalogue_records_with_passages_count": 2,
+    "catalogue_only_active_standards_requiring_evaluation": 10826,
+    "calculation_method_note": "In bis_catalogue.db, IS 456 : 2000 has status 'UNKNOWN' and IS 8112 : 2013 has status 'WITHDRAWN'. Only IS 4984 : 2016 and IS 1489 (Part 1) : 2015 hold status 'ACTIVE' in bis_catalogue.db. Therefore, active catalogue records lacking normative evidence = 10,828 - 2 = 10,826.",
+    "curated_to_active_catalogue_ratio": 0.008589,
+    "curated_to_total_catalogue_ratio": 0.002641,
+    "clause_verified_to_active_catalogue_ratio": 0.000185,
+    "clause_verified_to_total_catalogue_ratio": 5.7e-05
+  }
+}

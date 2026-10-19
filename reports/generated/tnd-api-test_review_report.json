@@ -1743,9 +1743,9 @@
             "passage_sha256": "d966051325cf41c68c31088bae496a2cba78a8e1f45475c924a9988574945aa7",
             "extraction_quality_status": "EXTRACTED",
             "has_table": false,
-            "is_grounded": false,
+            "is_grounded": true,
             "requirement_evidence_support": "FULLY_SUPPORTED",
-            "message": "Relevant passage retrieved via lexical search; specific clause citation was not requested so grounding is unverified."
+            "message": "Authentic passage for Clause 8.2 grounded in document DOC-IS-456-2000."
           }
         }
       ],

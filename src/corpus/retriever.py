@@ -219,7 +219,9 @@ class ClauseRetriever:
             for c in compound_components:
                 if isinstance(c, dict):
                     c_ev = c.get("clause_evidence") or {}
-                    if c_ev.get("outcome") == ClauseEvidenceOutcome.CLAUSE_EVIDENCE_FOUND.value and c_ev.get("is_grounded"):
+                    if c_ev.get("outcome") == ClauseEvidenceOutcome.CLAUSE_EVIDENCE_FOUND.value and (
+                        c_ev.get("is_grounded") or c_ev.get("requirement_evidence_support") == RequirementEvidenceSupportState.FULLY_SUPPORTED.value
+                    ):
                         covered_components += 1
                 elif isinstance(c, str):
                     # Check if the single passage text covers key words of this sub-component
@@ -447,6 +449,15 @@ class ClauseRetriever:
                         )
                         if s2 == RequirementEvidenceSupportState.CONFLICTING.value:
                             support_state = RequirementEvidenceSupportState.CONFLICTING.value
+                    is_grounded = (
+                        p.clause_identifier != "CLAUSE_UNKNOWN"
+                        and support_state == RequirementEvidenceSupportState.FULLY_SUPPORTED.value
+                    )
+                    msg = (
+                        f"Authentic passage for Clause {p.clause_identifier} grounded in document {doc_id}."
+                        if is_grounded
+                        else f"Relevant passage retrieved via search; parameter support unverified (state: {support_state})."
+                    )
                     return ClauseEvidenceResult(
                         outcome=ClauseEvidenceOutcome.CLAUSE_EVIDENCE_FOUND.value,
                         passage_text=p.passage_text,
@@ -462,9 +473,9 @@ class ClauseRetriever:
                         passage_sha256=p.content_hash,
                         extraction_quality_status=doc.get("ingestion_status"),
                         has_table=p.has_table,
-                        is_grounded=False,  # Unverified because clause citation was not explicitly requested
+                        is_grounded=is_grounded,
                         requirement_evidence_support=support_state,
-                        message="Relevant passage retrieved via lexical search; specific clause citation was not requested so grounding is unverified."
+                        message=msg
                     )
 
             return ClauseEvidenceResult(

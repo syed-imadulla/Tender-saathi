@@ -1,8 +1,8 @@
 # Tender Saathi — Active Planning State
 
 **Active Milestone**: Milestone: National BIS Catalogue Integration & Multi-Package Tender Auditing  
-**Current Phase**: Phase 28 (`28-interactive-multi-package-audit`)  
-**Phase Position**: Phase 28 Complete (Tasks 1-5 Verified, Vitest 8/8 Tests Passing, 725/725 Pytest Tests Passing, 0 Regressions)  
+**Current Phase**: Phase 29 (`29-end-to-end-validation`)  
+**Phase Position**: Phase 29 Complete (Tasks 1-5 Verified, Vitest 9/9 Tests Passing, Full Backend Pytest Suite Passing, Deterministic E2E Suite 8/8 Passing, Ground Truth Baseline Preserved, Coverage-Gap Audit Published)  
 **Working Directory**: `/home/syed-imadulla/Desktop/Tender_Saathi`  
 **Git Head**: `main`
 
@@ -27,38 +27,30 @@
 15. **Phase 24 National BIS Catalogue Integration**: Completed in `docs/evaluation/FULL_BIS_COVERAGE_GAP_ANALYSIS.md` & `tests/test_national_catalogue_validation.py`.
 16. **Phase 25 National BIS Catalogue Metadata Retrieval**: Completed in `.planning/phases/25-national-bis-catalogue-metadata-retrieval/25-UAT.md`.
 17. **Phase 26 Targeted Normative Evidence Ingestion**: Completed in `.planning/phases/26-targeted-normative-evidence-ingestion/26-UAT.md`.
-    - Ingested 4 documents and 15 normative clause passages into `data/standards/corpus.db` with lawful fair-use citations.
-    - Expanded `standards.db` from 90 to 93 standards with rich clause evidence.
-    - 9/9 Phase 26 tests passing (`tests/test_targeted_normative_ingestion.py`).
 18. **Phase 27 Multi-Package Tender Auditing & Heterogeneous Scope Verification**: Completed in `.planning/phases/27-multi-package-tender-auditing/27-UAT.md`.
-    - Implemented package extraction and domain classification (`CIVIL_AND_STRUCTURAL`, `PIPES_AND_FITTINGS`, `VALVES_AND_FLOW`, `ELECTRICAL_AND_POWER`, `PUMPS_AND_ROTATING`, `MECHANICAL_AND_MACHINERY`, `GENERAL_AND_ADMINISTRATIVE`) in `src/extract.py`.
-    - Added strict verification tier segregation (`CLAUSE_VERIFIED`, `CATALOGUE_DISCOVERED`, `SAFE_ABSTENTION`) and exact passage metadata (`passage_id`, `clause_number`, `edition_year`) in `src/recommend.py`.
-    - Implemented complementary engineering suites and tender-wide uncovered dependencies analysis in `src/audit.py`.
-    - Implemented officer-ready Markdown & JSON audit reporting in `src/report.py` and structured multi-package intake endpoint `/api/analyze/tender` in `api/server.py`.
-    - Deterministic tests: 8/8 passing (`tests/test_multi_package_tender_auditing.py`).
 19. **Phase 28 Interactive Multi-Package Audit UI & Verification Tier Drilldown**: Completed in `.planning/phases/28-interactive-multi-package-audit/28-UAT.md`.
-    - Built accessible, responsive package-level navigation with segmented controls and package summary banners on the Results page.
-    - Implemented explicit verification tier badges (`CLAUSE_VERIFIED`, `CATALOGUE_DISCOVERED`, `SAFE_ABSTENTION`, and safe unverified fallback) with accessible explanatory tooltips and distinct color coding across `RecommendationCard`, `AttentionCard`, and `UpdateCard`.
-    - Enhanced `EvidenceDrawer` with top verification tier and package provenance banner, and strict separation between normative clause evidence and catalogue scope summaries.
-    - Added dedicated tender-wide finding sections: Executive Verification Tier Summary, Complementary Engineering Suites, Uncovered Tender Dependencies, and Safely Abstained Administrative Conditions.
-    - Frontend unit tests: 8/8 passing (`npx vitest run src/pages/Results.test.ts`).
-    - Full backend pytest suite: 725/725 passing with 0 regressions. Clean frontend production build (1.71s).
-    - Frozen ground-truth dataset SHA-256 (`8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`) preserved bit-for-bit.
+20. **Phase 29 End-to-End Validation, IS 456 Investigation & Coverage-Gap Audit**: Completed in `.planning/phases/29-end-to-end-validation/29-UAT.md`.
+    - Investigated and resolved the IS 456 integration discrepancy: Fixed grounding logic in `src/corpus/retriever.py` so Case B lexical search recognizes authentic normative clause evidence when `support_state == FULLY_SUPPORTED`. IS 456 now achieves `CLAUSE_VERIFIED` with passage `d966051325cf41c6` (Clause 8.2 / Table 5).
+    - Verified IS 8329 safe abstention: Discovered that IS 8329 has `UNKNOWN` lifecycle status in `bis_catalogue.db` and zero passages in `corpus.db`; Critic rejection and `SAFE_ABSTENTION` tier are confirmed as correct safety behavior.
+    - Implemented deterministic E2E test matrix in `tests/test_e2e_pipeline_validation.py` covering E2E-01 through E2E-08 (100% pass rate).
+    - Produced reproducible coverage gap artifacts: `docs/evaluation/COVERAGE_GAP_METRICS.json` and `docs/evaluation/FULL_BIS_COVERAGE_GAP_REPORT_PHASE29.md` quantifying 35,208 national BIS records, 10,828 active records, 13,024 unknown lifecycle records, 93 curated standards, and reconciled cross-database coverage (10,828 active catalogue records - 2 active with corpus passages = 10,826 catalogue candidates awaiting normative evidence).
+    - Maintained bit-for-bit frozen ground truth checksum: `8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`.
+    - Executed full backend pytest suite (733/733 passing), frontend vitest (9/9), and frontend production build with zero regressions.
 
 ---
 
-## Active Phase Overview: Phase 28
+## Active Phase Overview: Phase 29
 
 | Plan ID | Title | Scope & Target Files | Deliverable | Status |
 |---|---|---|---|---|
-| **28-UI-DRILLDOWN** | Interactive Multi-Package Audit UI & Verification Tier Drilldown | `frontend/src/types.ts`, `frontend/src/components/RequirementCard.tsx`, `frontend/src/components/RequirementCard.css`, `frontend/src/components/EvidenceDrawer.tsx`, `frontend/src/components/EvidenceDrawer.css`, `frontend/src/pages/Results.tsx`, `frontend/src/pages/Results.css`, `frontend/src/pages/Results.test.ts` | Multi-package tabs, package summary banner, verification tier badges, clause evidence drilldown, complementary standards card, uncovered dependencies card, safe abstention section, 8-test vitest suite, UAT report. | **Complete** |
+| **29-E2E-VALIDATION** | End-to-End Validation, IS 456 Investigation & Coverage-Gap Audit | `src/corpus/retriever.py`, `api/server.py`, `tests/test_e2e_pipeline_validation.py`, `scripts/generate_coverage_gap_report.py`, `docs/evaluation/COVERAGE_GAP_METRICS.json`, `docs/evaluation/FULL_BIS_COVERAGE_GAP_REPORT_PHASE29.md`, `.planning/phases/29-end-to-end-validation/29-UAT.md` | Root cause resolution for IS 456, deterministic 8-case test matrix, empirical coverage audit across 35,208 BIS records, full verification commands execution, and UAT sign-off. | **Complete** |
 
 ---
 
 ## Next Steps (Human Boundary)
 
-1. Review the Phase 28 visual drilldown and package navigation in the running application (`npm --prefix frontend run dev` / `python3 -m api.server`).
-2. Plan next milestone objectives (e.g. additional corpus ingestion or advanced multi-package export templates).
-3. Maintain zero clause fabrication safeguards and read-only national catalogue database access.
+1. Review Phase 29 deliverables: `.planning/phases/29-end-to-end-validation/29-UAT.md`, `docs/evaluation/FULL_BIS_COVERAGE_GAP_REPORT_PHASE29.md`, and `docs/evaluation/COVERAGE_GAP_METRICS.json`.
+2. Plan Phase 30: Priority-Driven Normative Evidence Ingestion & Quality-Grounded Verification, prioritizing high-frequency tender procurement domains, cryptographic BIS publication provenance, and operative clause precision rather than arbitrary document quotas.
+3. Maintain zero clause fabrication invariants and read-only access to `bis_catalogue.db` and frozen ground-truth datasets.
 
 

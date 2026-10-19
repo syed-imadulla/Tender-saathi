@@ -23,7 +23,7 @@ The end-to-end prototype was benchmarked against all **20 human-verifiable procu
 | **Supersedence Detection Rate** | **100.0%** | Generic LLMs (~10-20%) | **Authoritative** |
 | **Ambiguity Detection Recall** | **100.0%** | Human Engineer Gating | **Zero Guessing** |
 | **Ambiguity Precision** | **11.1%** | Balanced Flagging | **Robust** |
-| **Query Latency (Avg)** | **173.5 ms** | Real-time Search (<200ms) | **Optimal** |
+| **Query Latency (Avg)** | **191.6 ms** | Real-time Search (<200ms) | **Optimal** |
 
 ---
 
@@ -33,11 +33,11 @@ Comparison of individual retrieval mechanisms against the hybrid ensemble and ne
 
 | Retrieval Architecture | Top-1 Accuracy | Top-3 Recall | MRR | Avg Latency | T013-R002 (VFD Panel) | T014-R002 (Process Pump) |
 |---|---|---|---|---|---|---|
-| **A. Deterministic / Heuristic Alone** | 80.0% | 85.0% | 0.825 | 157.0 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **B. Okapi BM25 Alone** | 85.0% | 90.0% | 0.867 | 438.3 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **C. Semantic Alone (`all-MiniLM-L6-v2`)** | 85.0% | 85.0% | 0.850 | 188.4 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **D. Hybrid Retrieval Ensemble** | **85.0%** | **85.0%** | **0.850** | **173.5 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
-| **E. Hybrid + Cross-Encoder Reranker** | **85.0%** | **85.0%** | **0.850** | **387.7 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **A. Deterministic / Heuristic Alone** | 80.0% | 85.0% | 0.825 | 183.4 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **B. Okapi BM25 Alone** | 85.0% | 90.0% | 0.867 | 164.7 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **C. Semantic Alone (`all-MiniLM-L6-v2`)** | 85.0% | 85.0% | 0.850 | 197.4 ms | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **D. Hybrid Retrieval Ensemble** | **85.0%** | **85.0%** | **0.850** | **191.6 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
+| **E. Hybrid + Cross-Encoder Reranker** | **85.0%** | **85.0%** | **0.850** | **463.4 ms** | `IS/IEC 61800-2 : 2015` (TOP1_HIT) | `IS/IEC 60034-1 : 2017` (TOP1_HIT) |
 
 
 ---
