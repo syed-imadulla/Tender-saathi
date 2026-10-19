@@ -15,6 +15,7 @@ import re
 import sqlite3
 from src.standards import StandardsDatabase
 from src.catalogue.access import get_national_catalogue, CatalogueStandardMatch
+from src.catalogue.normalizer import StandardIdentifierNormalizer
 
 
 @dataclass
@@ -97,14 +98,34 @@ def validate_standard_status(
             )
 
         # 2. Check direct standard record in curated standards table
+        parsed_std = StandardIdentifierNormalizer.parse(std_clean)
+        norm_number = parsed_std.base_standard_number if parsed_std.is_valid else std_clean
+        norm_id = parsed_std.canonical_id if parsed_std.is_valid else std_clean
+
         cursor.execute("""
         SELECT * FROM standards
         WHERE standard_id = ? 
+           OR standard_id LIKE ?
            OR standard_number = ? 
+           OR standard_number = ?
            OR original_standard_identifier = ?
-           OR standard_number LIKE ?
-        """, (std_clean, std_clean, std_clean, f"%{std_num_digits}%"))
+        """, (std_clean, f"{norm_id}%", std_clean, norm_number, std_clean))
         direct_match = cursor.fetchone()
+
+        if not direct_match:
+            if parsed_std.part:
+                cursor.execute("""
+                SELECT * FROM standards 
+                WHERE (standard_number LIKE ? OR standard_id LIKE ?)
+                  AND (standard_number LIKE ? OR standard_number LIKE ?)
+                """, (f"%{std_num_digits}%", f"%{std_num_digits}%", f"%Part {parsed_std.part}%", f"%Part-{parsed_std.part}%"))
+                direct_match = cursor.fetchone()
+            else:
+                cursor.execute("""
+                SELECT * FROM standards 
+                WHERE standard_number LIKE ? OR standard_id LIKE ?
+                """, (f"%{std_num_digits}%", f"%{std_num_digits}%"))
+                direct_match = cursor.fetchone()
 
         if direct_match:
             std_data = dict(direct_match)

@@ -29,8 +29,8 @@ def run_audit():
     metrics = {
         "audit_timestamp": datetime.now(timezone.utc).isoformat(),
         "repository": "Tender_Saathi",
-        "phase": 30,
-        "evaluation_scope": "Prioritized Normative Corpus Expansion & Evidence Integrity",
+        "phase": 31,
+        "evaluation_scope": "Evidence Integrity, Compound Requirement Adjudication & Coverage Reconciliation",
     }
 
     # 1. National Catalogue Audit

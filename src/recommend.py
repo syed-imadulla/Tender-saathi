@@ -21,6 +21,7 @@ from src.standards import StandardsDatabase, classify_standard_role
 from src.search import SearchResult
 from src.retrieval import HybridRetrievalEngine
 from src.validate import validate_standard_status, StandardValidationResult
+from src.catalogue.normalizer import StandardIdentifierNormalizer
 from src.evidence import EvidenceVerifier
 from src.extract import Requirement, extract_from_text, extract_from_pdf, detect_technical_domain
 from src.decompose import CompoundRequirementDecomposer, RequirementComponent
@@ -392,9 +393,12 @@ class StandardsRecommender:
                 cursor = conn.cursor()
                 # 1. Inject the explicit citation itself
                 exp_base = re.sub(r'\s*:\s*\d{4}\b', '', exp).strip()
+                parsed_exp = StandardIdentifierNormalizer.parse(exp)
+                norm_exp_base = parsed_exp.base_standard_number if parsed_exp.is_valid else exp_base
+                norm_exp_id = parsed_exp.canonical_id if parsed_exp.is_valid else exp
                 cursor.execute(
-                    "SELECT * FROM standards WHERE standard_number = ? OR standard_number = ? OR standard_id = ?",
-                    (exp, exp_base, exp)
+                    "SELECT * FROM standards WHERE standard_number = ? OR standard_number = ? OR standard_number = ? OR standard_id = ? OR standard_id LIKE ?",
+                    (exp, exp_base, norm_exp_base, exp, f"{norm_exp_id}%")
                 )
                 row = cursor.fetchone()
                 if row:
@@ -1221,6 +1225,8 @@ class StandardsRecommender:
             and getattr(top_clause_ev, "is_grounded", False) 
             and getattr(top_clause_ev, "passage_text", None)
             and not has_lifecycle_or_successor_conflict
+            and not human_review_required
+            and getattr(top_clause_ev, "requirement_evidence_support", "") == "FULLY_SUPPORTED"
         ):
             verification_tier = "CLAUSE_VERIFIED"
             p_sha = getattr(top_clause_ev, "passage_sha256", None)

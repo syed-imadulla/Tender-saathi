@@ -232,8 +232,6 @@ class ClauseRetriever:
                 return RequirementEvidenceSupportState.UNVERIFIED_COVERAGE.value
             elif covered_components < len(compound_components):
                 return RequirementEvidenceSupportState.PARTIALLY_SUPPORTED.value
-            else:
-                return RequirementEvidenceSupportState.FULLY_SUPPORTED.value
 
         # 4. Conservative Technical Parameter Verification:
         # If the requirement specifies numeric technical parameters (e.g. 11 kV, 475 W, 100 kVA),
@@ -248,6 +246,60 @@ class ClauseRetriever:
             missing_dims = req_dims - pas_dims
             if missing_dims:
                 # E.g. tender specifies exact losses in Watts, but passage only talks about insulation in kV
+                return RequirementEvidenceSupportState.PARTIALLY_SUPPORTED.value
+
+        # 5. Steel Strength Grade Verification (e.g. Fe 415, Fe 500, Fe 500D vs unsupported Fe 750)
+        req_fe_grades = re.findall(r'\bfe\s*[-_]?\s*(\d{3,4})([a-z]*)\b', req_clean)
+        if req_fe_grades:
+            pas_fe_grades = re.findall(r'\bfe\s*[-_]?\s*(\d{3,4})([a-z]*)\b', pas_clean)
+            if pas_fe_grades:
+                pas_fe_nums = {g[0] for g in pas_fe_grades}
+                for fe_num, fe_suffix in req_fe_grades:
+                    if fe_num not in pas_fe_nums:
+                        return RequirementEvidenceSupportState.UNSUPPORTED.value
+            else:
+                # Requirement specified an exact steel grade, but this passage only covers generic scope without grades
+                return RequirementEvidenceSupportState.PARTIALLY_SUPPORTED.value
+
+        # 6. Concrete Grade Verification (e.g. M25, M30 vs unsupported M100)
+        req_m_grades = re.findall(r'\bm\s*(\d{2,3})\b', req_clean)
+        if req_m_grades:
+            pas_m_grades = re.findall(r'\bm\s*(\d{2,3})\b', pas_clean)
+            if pas_m_grades:
+                pas_m_nums = set(pas_m_grades)
+                for m_num in req_m_grades:
+                    if m_num not in pas_m_nums:
+                        return RequirementEvidenceSupportState.UNSUPPORTED.value
+            else:
+                return RequirementEvidenceSupportState.PARTIALLY_SUPPORTED.value
+
+        # 7. Dimensional Parameter Bounds Verification (e.g. pipe outside diameter / nominal size)
+        req_sizes = re.findall(r'\b(?:dn\s*(\d+)|(?:dia(?:meter)?\s*(?:of\s*)?)?(\d+)\s*mm\b)', req_clean)
+        valid_req_sizes = []
+        for dn_val, mm_val in req_sizes:
+            v_str = dn_val or mm_val
+            if v_str:
+                val = float(v_str)
+                if 10 <= val <= 20000 and val not in [1995, 2000, 2004, 2008, 2011, 2013, 2015, 2016, 2020, 2021, 2022, 2023, 2024, 2025]:
+                    valid_req_sizes.append(val)
+
+        if valid_req_sizes:
+            range_match = re.search(r'\b(?:dn\s*)?(\d+)\s*(?:mm\s*)?to\s*(?:dn\s*)?(\d+)\s*mm\b', pas_clean)
+            pas_sizes = re.findall(r'\b(?:dn\s*(\d+)|\b(\d+)\s*mm\b)', pas_clean)
+            pas_valid_sizes = [float(d or m) for d, m in pas_sizes if (d or m)]
+            
+            if range_match:
+                min_size = float(range_match.group(1))
+                max_size = float(range_match.group(2))
+                for val in valid_req_sizes:
+                    if val > max_size or val < min_size:
+                        return RequirementEvidenceSupportState.UNSUPPORTED.value
+            elif pas_valid_sizes:
+                for val in valid_req_sizes:
+                    if val not in pas_valid_sizes:
+                        return RequirementEvidenceSupportState.UNSUPPORTED.value
+            else:
+                # Requirement specified an exact diameter/size, but this passage only covers generic scope without dimensions
                 return RequirementEvidenceSupportState.PARTIALLY_SUPPORTED.value
 
         return RequirementEvidenceSupportState.FULLY_SUPPORTED.value
@@ -375,8 +427,6 @@ class ClauseRetriever:
                 matching = [p for p in passages if p.doc_id == doc_id]
                 if matching:
                     p = matching[0]
-                    # Verify whether the clause is genuinely identified or unknown
-                    is_grounded = (p.clause_identifier != "CLAUSE_UNKNOWN")
                     support_state = self.evaluate_requirement_support(
                         requirement_text=requirement_text or query_text or "",
                         passage_text=p.passage_text,
@@ -384,6 +434,7 @@ class ClauseRetriever:
                         is_compound=is_compound,
                         compound_components=compound_components
                     )
+                    is_grounded = p.clause_identifier != "CLAUSE_UNKNOWN"
                     return ClauseEvidenceResult(
                         outcome=ClauseEvidenceOutcome.CLAUSE_EVIDENCE_FOUND.value,
                         passage_text=p.passage_text,
@@ -424,39 +475,39 @@ class ClauseRetriever:
                     query=query_text,
                     standard_number=doc.get("standard_number", standard_number),
                     edition_year=doc_year,
-                    top_k=2
+                    top_k=4
                 )
                 matching = [p for p in passages if p.doc_id == doc_id]
                 if matching:
-                    p = matching[0]
-                    # Evaluate primary passage
-                    support_state = self.evaluate_requirement_support(
-                        requirement_text=requirement_text or query_text or "",
-                        passage_text=p.passage_text,
-                        clause_identifier=p.clause_identifier,
-                        is_compound=is_compound,
-                        compound_components=compound_components
-                    )
-                    # Check for conflicting evidence across multiple candidate passages
-                    if len(matching) > 1:
-                        p2 = matching[1]
-                        s2 = self.evaluate_requirement_support(
+                    eval_results = []
+                    for cand_p in matching:
+                        s_state = self.evaluate_requirement_support(
                             requirement_text=requirement_text or query_text or "",
-                            passage_text=p2.passage_text,
-                            clause_identifier=p2.clause_identifier,
+                            passage_text=cand_p.passage_text,
+                            clause_identifier=cand_p.clause_identifier,
                             is_compound=is_compound,
                             compound_components=compound_components
                         )
-                        if s2 == RequirementEvidenceSupportState.CONFLICTING.value:
-                            support_state = RequirementEvidenceSupportState.CONFLICTING.value
-                    is_grounded = (
-                        p.clause_identifier != "CLAUSE_UNKNOWN"
-                        and support_state == RequirementEvidenceSupportState.FULLY_SUPPORTED.value
-                    )
+                        eval_results.append((cand_p, s_state))
+
+                    if any(s == RequirementEvidenceSupportState.CONFLICTING.value for _, s in eval_results):
+                        support_state = RequirementEvidenceSupportState.CONFLICTING.value
+                        p = next((cp for cp, s in eval_results if s == RequirementEvidenceSupportState.CONFLICTING.value), matching[0])
+                    else:
+                        order = {
+                            RequirementEvidenceSupportState.FULLY_SUPPORTED.value: 0,
+                            RequirementEvidenceSupportState.PARTIALLY_SUPPORTED.value: 1,
+                            RequirementEvidenceSupportState.UNSUPPORTED.value: 2,
+                            RequirementEvidenceSupportState.UNVERIFIED_COVERAGE.value: 3
+                        }
+                        eval_results.sort(key=lambda x: order.get(x[1], 4))
+                        p, support_state = eval_results[0]
+
+                    is_grounded = p.clause_identifier != "CLAUSE_UNKNOWN"
                     msg = (
                         f"Authentic passage for Clause {p.clause_identifier} grounded in document {doc_id}."
                         if is_grounded
-                        else f"Relevant passage retrieved via search; parameter support unverified (state: {support_state})."
+                        else "Passage from unknown clause section; grounding cannot be verified."
                     )
                     return ClauseEvidenceResult(
                         outcome=ClauseEvidenceOutcome.CLAUSE_EVIDENCE_FOUND.value,
