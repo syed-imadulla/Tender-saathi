@@ -700,8 +700,12 @@ def analyze_pdf():
         result["tender"]["source"] = source_name
         return jsonify(result)
     except Exception as e:
+        err_msg = str(e)
+        err_type = type(e).__name__
         logger.error("analyze_pdf error: %s", traceback.format_exc())
-        return jsonify({"error": "PDF analysis failed. Please try again.", "detail": str(e)}), 500
+        if "FileDataError" in err_type or "Failed to open file" in err_msg or "cannot open" in err_msg.lower() or "no objects found" in err_msg.lower():
+            return jsonify({"error": "Invalid or corrupted PDF file. Please upload a valid digital-text or scanned PDF.", "detail": err_msg}), 400
+        return jsonify({"error": "PDF analysis failed. Please try again.", "detail": err_msg}), 500
     finally:
         if tmp_path and os.path.exists(tmp_path):
             os.unlink(tmp_path)
@@ -783,6 +787,12 @@ def report_csv(tender_id: str):
     normalized = cache.get("normalized") or {}
     requirements = normalized.get("requirements") or []
 
+    def _sanitize_csv_cell(val):
+        s = str(val) if val is not None else ""
+        if s and s[0] in ("=", "+", "-", "@", "\t", "\r"):
+            return f"'{s}"
+        return s
+
     output = io.StringIO()
     writer = csv.writer(output)
     writer.writerow([
@@ -794,20 +804,20 @@ def report_csv(tender_id: str):
     for req in requirements:
         traversed = ", ".join(t.get("target_standard", "") for t in req.get("traversed_cross_references", []))
         writer.writerow([
-            req.get("id", ""),
-            req.get("package_id", "PKG-01"),
-            req.get("category", ""),
-            req.get("text", ""),
-            req.get("candidate_standard") or "None (Safe Abstention)",
-            req.get("title", ""),
-            req.get("lifecycle_status", "Unknown"),
-            req.get("verification_tier", "SAFE_ABSTENTION"),
-            req.get("confidence", "Low"),
-            req.get("decision", "REVIEW_REQUIRED"),
-            req.get("human_review_required", False),
-            req.get("source", ""),
-            req.get("clause_number") or "",
-            traversed
+            _sanitize_csv_cell(req.get("id", "")),
+            _sanitize_csv_cell(req.get("package_id", "PKG-01")),
+            _sanitize_csv_cell(req.get("category", "")),
+            _sanitize_csv_cell(req.get("text", "")),
+            _sanitize_csv_cell(req.get("candidate_standard") or "None (Safe Abstention)"),
+            _sanitize_csv_cell(req.get("title", "")),
+            _sanitize_csv_cell(req.get("lifecycle_status", "Unknown")),
+            _sanitize_csv_cell(req.get("verification_tier", "SAFE_ABSTENTION")),
+            _sanitize_csv_cell(req.get("confidence", "Low")),
+            _sanitize_csv_cell(req.get("decision", "REVIEW_REQUIRED")),
+            _sanitize_csv_cell(req.get("human_review_required", False)),
+            _sanitize_csv_cell(req.get("source", "")),
+            _sanitize_csv_cell(req.get("clause_number") or ""),
+            _sanitize_csv_cell(traversed)
         ])
     output.seek(0)
     return Response(

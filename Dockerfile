@@ -19,9 +19,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
-# Install Python dependencies (including gunicorn for production WSGI serving)
+# Install Python dependencies (optimizing PyTorch for CPU-only container execution to prevent downloading 1.2GB of CUDA wheels)
 COPY requirements.txt /app/
-RUN pip install --no-cache-dir -r requirements.txt gunicorn
+RUN pip install --no-cache-dir --default-timeout=120 torch --extra-index-url https://download.pytorch.org/whl/cpu && \
+    pip install --no-cache-dir --default-timeout=120 -r requirements.txt gunicorn
 
 # Copy verified backend code and authoritative standards datasets
 COPY src/ /app/src/

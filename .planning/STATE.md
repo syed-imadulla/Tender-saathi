@@ -1,8 +1,8 @@
 # Tender Saathi — Active Planning State
 
 **Active Milestone**: Milestone: National BIS Catalogue Integration & Multi-Package Tender Auditing  
-**Current Phase**: Phase 37 (`37-sih-demo-packaging`)  
-**Phase Position**: Phase 37 Complete (Tasks 1-5 Verified: Multi-Container Docker Compose & Nginx Configuration, 5-Minute SIH Live Demo Script in docs/demo/SIH_LIVE_DEMO.md, Judge Q&A & Technical Differentiation Guide in docs/demo/JUDGE_QA.md, Phase 37 Packaging Suite 8/8 Passed, Full Backend Pytest 799/799 Passed, Frontend Vitest 12/12 Passed, Clean Vite Production Build, Comprehensive Deployment Audit Report in docs/evaluation/PHASE37_DEMO_DEPLOYMENT_AUDIT.md, UAT Sign-Off in .planning/phases/37-sih-demo-packaging/37-UAT.md, and Ground Truth Baseline SHA-256 Preserved)  
+**Current Phase**: Phase 38 (`38-production-reality-check`)  
+**Phase Position**: Phase 38 Complete (Tasks 1-5 Verified: CPU-Optimized Backend Dockerfile & Multi-Container Build, 12 Canonical User Scenarios Automated in tests/test_phase38_production_reality.py, CSV Formula Injection Defense, Corrupted PDF HTTP 400 Handling, Direct Database Counts Audited, Backend Test Suite Passed, Frontend Vitest 12/12 Passed, Clean Vite Production Build, Comprehensive Reality Check Report in docs/evaluation/PHASE38_PRODUCTION_REALITY_CHECK.md, UAT Sign-Off in .planning/phases/38-production-reality-check/38-UAT.md, and Ground Truth Baseline SHA-256 Preserved)  
 **Working Directory**: `/home/syed-imadulla/Desktop/Tender_Saathi`  
 **Git Head**: `main`
 
@@ -10,35 +10,45 @@
 
 ## Current Situation
 
-1. **Phases 1-36**: Complete and verified across historical milestones.
-2. **Phase 37 SIH Demo Packaging, Deployment Readiness & Judge Presentation**:
-    - **Deployment Packaging**: Configured multi-container Docker deployment (`docker-compose.yml`, `frontend/Dockerfile`, `frontend/nginx.conf`, root `Dockerfile`). The frontend container serves the optimized React SPA on port 3000 and reverse-proxies `/api/` to `backend:5000` with 180s timeout and 30 MB body limits. Tested and verified `frontend/Dockerfile` image generation (`tendersaathi-frontend:smoke`). Documented native local setup fallback.
-    - **Live Demo Package (`docs/demo/SIH_LIVE_DEMO.md`)**: Structured a crisp 5-minute presenter walkthrough:
-      1. Stage 1: Clause-grounded civil engineering specification (CPVC pipe IS 15778 : 2007) with verbatim gazette clauses, Scheme-I certification, and active DPIIT QCO (`S.O. 1205(E)`).
-      2. Stage 2: Mixed tender decomposition with electrical wiring (IS 694 : 2010) and safe abstention on commercial bank guarantee / delay penalties (0 fabricated standards).
-      3. Stage 3: Catalogue discovery (breathing apparatus IS 10245) showing honest metadata-only labeling and interactive human review queue (`ACCEPT`/`EDIT`/`DISMISS`).
-      4. Complete offline and fallback contingency protocols.
-    - **Judge Q&A & Differentiation (`docs/demo/JUDGE_QA.md`)**: Formulated evidence-backed responses to the 10 canonical hackathon evaluation questions (differentiation from keyword search, multi-package partitioning, clause-level evidence grounding, lifecycle supersedence mapping, physical conflict detection, offline reliability, officer-in-the-loop workflows, and scaling roadmap).
-    - **Automated Verification**:
-      - `tests/test_phase37_demo_packaging.py`: All 8 tests passed (Docker Compose config, Nginx config, .env.example hygiene, 3-stage demo payloads, review persistence, and report export consistency).
-      - Full Backend Pytest Suite: **799 passed / 799 total (100%)**.
-      - Frontend Vitest Suite: **12 passed / 12 total (100%)**.
-      - Frontend Build: Clean Vite bundle generation in 1.98s.
-    - **Ground Truth Invariance**: Confirmed bit-for-bit SHA-256 invariance for `dataset/ground_truth/ground_truth.csv` (`8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`).
-    - **Verdict**: 🟢 **GO FOR SIH DEMONSTRATION**.
+1. **Phases 1-37**: Complete and verified across historical milestones.
+2. **Phase 38 Tender Saathi Production Reality Check & End-to-End Demo Validation**:
+    - **Docker CPU Optimization**: Updated `Dockerfile` to install CPU-only PyTorch (`--extra-index-url https://download.pytorch.org/whl/cpu`) with `--default-timeout=120`, avoiding >1.2GB of unused CUDA wheels and cutting build times dramatically. Both `tendersaathi-backend:smoke` and `tendersaathi-frontend:smoke` build cleanly and pass health checks (`/api/health` returning HTTP 200).
+    - **12 Canonical User Scenarios Tested**: Implemented and passed all 12 scenarios in `tests/test_phase38_production_reality.py`:
+      1. CPVC pipe grounded recommendation (`IS 15778 : 2007`, `CLAUSE_VERIFIED`).
+      2. Mixed multi-package tender (cables `IS 694` + commercial EMD safe abstention).
+      3. Catalogue-discovered item (`IS 10245` breathing apparatus with transparent `CATALOGUE_DISCOVERED` tier and `human_review_required=True`).
+      4. Withdrawn/superseded lifecycle status exposure.
+      5. Underspecified requirements ambiguity handling.
+      6. Physically incompatible parameters (PVC pipe at 220°C) rejection.
+      7. Native digital PDF upload and requirement parsing (`sample_tender.pdf`).
+      8. Scanned / corrupted PDF graceful HTTP 400 Client Error handling.
+      9. Human review decision persistence in report cache and Section 8 Markdown trails.
+      10. Multi-format report export consistency and CSV formula injection sanitization.
+      11. Standards graph traversal (`IS 1255`) depth-1 non-elevation.
+      12. Boundary, malformed JSON, and oversized upload error handling.
+    - **Security & Integrity Hardening**:
+      - Defect Fix 1: Corrupted/invalid PDF uploads now return HTTP 400 Bad Request instead of unhandled HTTP 500 error.
+      - Defect Fix 2: Sanitized CSV report cells against formula injection attacks (`=`, `+`, `-`, `@`).
+    - **Direct Database Counts Audited**:
+      - `data/catalogue/bis_catalogue.db`: 35,208 total catalogue records (10,828 Active, 13,024 Unknown, 11,340 Withdrawn, 16 Superseded).
+      - `data/catalogue/catalogue_search_index.db`: 23,510 active FTS5 BM25 records.
+      - `data/standards/corpus.db`: 13 registered standards with 53 authentic normative passages.
+      - `data/standards/standards.db`: 99 curated core standards, 60 references, 197 relationships.
+    - **Benchmark Ground Truth Invariance**: Confirmed bit-for-bit SHA-256 invariance for `dataset/ground_truth/ground_truth.csv` (`8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`).
+    - **Verdict**: 🟢 **GO FOR PRODUCTION & LIVE SIH JURY EVALUATION**.
 
 ---
 
-## Active Phase Overview: Phase 37
+## Active Phase Overview: Phase 38
 
 | Plan ID | Title | Scope & Target Files | Deliverable | Status |
 |---|---|---|---|---|
-| **37-SIH-DEMO-PACKAGING** | SIH Demo Packaging, Deployment Readiness & Judge Presentation | `docker-compose.yml`, `frontend/Dockerfile`, `frontend/nginx.conf`, `Dockerfile`, `.env.example`, `README.md`, `tests/test_phase37_demo_packaging.py`, `docs/demo/SIH_LIVE_DEMO.md`, `docs/demo/JUDGE_QA.md`, `docs/evaluation/PHASE37_DEMO_DEPLOYMENT_AUDIT.md`, `.planning/phases/37-sih-demo-packaging/37-UAT.md` | Multi-container Docker Compose configuration, live demo presenter script, judge technical FAQ guide, deployment test suite, and final demonstration sign-off. | **Complete** |
+| **38-PRODUCTION-REALITY-CHECK** | Tender Saathi Production Reality Check & End-to-End Demo Validation | `Dockerfile`, `api/server.py`, `tests/test_phase38_production_reality.py`, `docs/evaluation/PHASE38_PRODUCTION_REALITY_CHECK.md`, `.planning/phases/38-production-reality-check/38-UAT.md` | CPU-optimized backend container, 12-scenario integration test suite, CSV formula injection defense, PDF error hardening, direct database count audit, and production verification sign-off. | **Complete** |
 
 ---
 
 ## Next Steps (Human Boundary)
 
-1. Review Phase 37 presentation deliverables: `docs/demo/SIH_LIVE_DEMO.md` and `docs/demo/JUDGE_QA.md`.
-2. Rehearse the 5-minute live demonstration flow using the click-by-click presenter script.
-3. Launch via `docker compose up --build` or local dev (`python3 api/server.py` + `npm run dev`) for the hackathon jury.
+1. Review Phase 38 evaluation audit: `docs/evaluation/PHASE38_PRODUCTION_REALITY_CHECK.md`.
+2. Launch live application via Docker Compose (`docker compose up -d`) or local dev (`python3 api/server.py` + `npm run dev`).
+3. Rehearse the 5-minute presentation script (`docs/demo/SIH_LIVE_DEMO.md`) and consult `docs/demo/JUDGE_QA.md` for jury defense.
