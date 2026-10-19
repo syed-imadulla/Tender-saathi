@@ -22,7 +22,7 @@ from src.search import SearchResult
 from src.retrieval import HybridRetrievalEngine
 from src.validate import validate_standard_status, StandardValidationResult
 from src.evidence import EvidenceVerifier
-from src.extract import Requirement, extract_from_text, extract_from_pdf
+from src.extract import Requirement, extract_from_text, extract_from_pdf, detect_technical_domain
 from src.decompose import CompoundRequirementDecomposer, RequirementComponent
 from src.completeness import DomainCompletenessAnalyzer, SpecificationCompletenessReport
 from src.critic import EvidenceAwareCritic, CandidateCritique, DecisionOutcome, are_standards_equivalent
@@ -140,6 +140,14 @@ class RequirementRecommendationResult:
     trace_record: Optional[Dict[str, Any]] = None
     component_trace_records: List[Dict[str, Any]] = field(default_factory=list)
     clause_evidence: Optional[Dict[str, Any]] = None
+    # Phase 27: Multi-Package & Traceability Tier fields:
+    package_id: Optional[str] = "PKG-01"
+    package_name: Optional[str] = "Main Scope"
+    domain: Optional[str] = None
+    verification_tier: Optional[str] = None  # CLAUSE_VERIFIED, CATALOGUE_DISCOVERED, SAFE_ABSTENTION
+    passage_id: Optional[str] = None
+    clause_number: Optional[str] = None
+    edition_year: Optional[str] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -828,7 +836,14 @@ class StandardsRecommender:
                     ).to_dict()
                     for idx, c in enumerate(component_recs) if isinstance(c, dict)
                 ],
-                clause_evidence=None
+                clause_evidence=None,
+                package_id=getattr(req, "package_id", "PKG-01"),
+                package_name=getattr(req, "package_name", "Main Scope"),
+                domain=getattr(req, "domain", None) or detect_technical_domain(working_text),
+                verification_tier="SAFE_ABSTENTION",
+                passage_id=None,
+                clause_number=None,
+                edition_year=None
             )
 
         # Step 5: Validate and Ground Candidates
@@ -1194,6 +1209,32 @@ class StandardsRecommender:
             prefix = "Validated National Catalogue Citation" if is_explicit else "Discovered National Catalogue Standard"
             decision_reason = f"{prefix} (Scope Unindexed): {top_rec.evidence}"
 
+        # Phase 27: Verification tier and exact passage metadata
+        if top_clause_ev and getattr(top_clause_ev, "is_grounded", False) and getattr(top_clause_ev, "passage_text", None):
+            verification_tier = "CLAUSE_VERIFIED"
+            p_sha = getattr(top_clause_ev, "passage_sha256", None)
+            doc_id = getattr(top_clause_ev, "document_id", None)
+            cl_id = getattr(top_clause_ev, "clause_identifier", None)
+            passage_id = p_sha[:16] if p_sha else (f"{doc_id}_cl{cl_id}" if doc_id else "PS-VERIFIED")
+            clause_number = cl_id
+        elif (
+            (is_top_cat_only or (top_rec.standard_number and top_rec.standard_number not in ["NONE", "INSUFFICIENT_INFORMATION", "UNKNOWN"]))
+            and critic_dict.get("decision") not in ["INSUFFICIENT_EVIDENCE", "NO_RELIABLE_MATCH"]
+            and top_rec.relevance_score >= 0.25
+            and getattr(req, "domain", "") != "GENERAL_AND_ADMINISTRATIVE"
+        ):
+            verification_tier = "CATALOGUE_DISCOVERED"
+            passage_id = None
+            clause_number = None
+        else:
+            verification_tier = "SAFE_ABSTENTION"
+            passage_id = None
+            clause_number = None
+
+        ed_year_str = str(std_year) if std_year else (
+            str(top_clause_ev.edition_year) if (top_clause_ev and getattr(top_clause_ev, "edition_year", None)) else None
+        )
+
         return RequirementRecommendationResult(
             requirement_id=req_id,
             requirement_text=text,
@@ -1290,7 +1331,14 @@ class StandardsRecommender:
                 ).to_dict()
                 for idx, c in enumerate(component_recs) if isinstance(c, dict)
             ],
-            clause_evidence=top_clause_ev.to_dict()
+            clause_evidence=top_clause_ev.to_dict(),
+            package_id=getattr(req, "package_id", "PKG-01"),
+            package_name=getattr(req, "package_name", "Main Scope"),
+            domain=getattr(req, "domain", None) or detect_technical_domain(working_text),
+            verification_tier=verification_tier,
+            passage_id=passage_id,
+            clause_number=clause_number,
+            edition_year=ed_year_str
         )
 
 

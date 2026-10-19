@@ -120,6 +120,74 @@
   border: 1px solid #ddd6fe;
 }
 
+/* ─── Verification Tier Badges (Phase 28) ─── */
+.rec-badge--tier-verified {
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #6ee7b7;
+  font-weight: 700;
+}
+
+.rec-badge--tier-catalogue {
+  background: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #93c5fd;
+  font-weight: 700;
+}
+
+.rec-badge--tier-abstain {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #cbd5e1;
+  font-weight: 700;
+}
+
+.rec-badge--tier-unknown {
+  background: #f8fafc;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+  font-weight: 600;
+}
+
+.tier-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+  flex-shrink: 0;
+}
+
+.tier-dot--verified {
+  background: #10b981;
+}
+
+.tier-dot--catalogue {
+  background: #3b82f6;
+}
+
+.tier-dot--abstain {
+  background: #64748b;
+}
+
+.rec-badge--package {
+  background: #f1f5f9;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.rec-badge--domain {
+  background: #f0fdfa;
+  color: #0f766e;
+  border: 1px solid #99f6e4;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
 .rec-card__title {
   font-size: 0.98rem;
   font-weight: 600;

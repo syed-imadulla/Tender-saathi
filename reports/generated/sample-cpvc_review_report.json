@@ -125,11 +125,35 @@
         "LIFECYCLE_DEPENDENCY_SUPERSEDED": 1,
         "EXTERNAL_STATUTORY_SIGNAL": 1,
         "STANDARD_COVERED": 1
-      }
+      },
+      "clause_verified_count": 0,
+      "catalogue_discovered_count": 1,
+      "package_summaries": [
+        {
+          "package_id": "PKG-01",
+          "package_name": "Main Scope",
+          "requirement_count": 1,
+          "clause_verified_count": 0,
+          "catalogue_discovered_count": 1,
+          "safe_abstention_count": 0,
+          "human_review_count": 0,
+          "domains": [
+            "PIPES_AND_FITTINGS"
+          ],
+          "standards": [
+            "IS 15778 : 2007"
+          ]
+        }
+      ],
+      "domain_distribution": {
+        "PIPES_AND_FITTINGS": 1
+      },
+      "complementary_standards": [],
+      "uncovered_tender_dependencies": []
     },
     "coverage_matrix": [
       {
-        "requirement_id": "REQ-001",
+        "requirement_id": "SAMPLE-CPVC-R001",
         "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
         "coverage_state": "COVERED",
         "primary_standards": [
@@ -143,8 +167,8 @@
         "external_regulations": [],
         "findings": [
           {
-            "finding_id": "LIFECYCLE-DEP-REQ-001-1",
-            "requirement_id": "REQ-001",
+            "finding_id": "LIFECYCLE-DEP-SAMPLE-CPVC-R001-1",
+            "requirement_id": "SAMPLE-CPVC-R001",
             "finding_type": "LIFECYCLE_DEPENDENCY_SUPERSEDED",
             "title": "Superseded Related Dependency: None",
             "standards": [],
@@ -168,8 +192,8 @@
             "severity": "HIGH"
           },
           {
-            "finding_id": "STATUTORY-REQ-001-1",
-            "requirement_id": "REQ-001",
+            "finding_id": "STATUTORY-SAMPLE-CPVC-R001-1",
+            "requirement_id": "SAMPLE-CPVC-R001",
             "finding_type": "EXTERNAL_STATUTORY_SIGNAL",
             "title": "Statutory Advisory Signal: Central Public Works Department (CPWD Specifications 2019 / 2023 (Civil & Electrical Works))",
             "standards": [
@@ -201,8 +225,8 @@
             "severity": "INFO"
           },
           {
-            "finding_id": "COV-REQ-001",
-            "requirement_id": "REQ-001",
+            "finding_id": "COV-SAMPLE-CPVC-R001",
+            "requirement_id": "SAMPLE-CPVC-R001",
             "finding_type": "STANDARD_COVERED",
             "title": "Applicable Standard Identified: IS 15778 : 2007",
             "standards": [
@@ -236,8 +260,8 @@
     ],
     "audit_findings": [
       {
-        "finding_id": "LIFECYCLE-DEP-REQ-001-1",
-        "requirement_id": "REQ-001",
+        "finding_id": "LIFECYCLE-DEP-SAMPLE-CPVC-R001-1",
+        "requirement_id": "SAMPLE-CPVC-R001",
         "finding_type": "LIFECYCLE_DEPENDENCY_SUPERSEDED",
         "title": "Superseded Related Dependency: None",
         "standards": [],
@@ -261,8 +285,8 @@
         "severity": "HIGH"
       },
       {
-        "finding_id": "STATUTORY-REQ-001-1",
-        "requirement_id": "REQ-001",
+        "finding_id": "STATUTORY-SAMPLE-CPVC-R001-1",
+        "requirement_id": "SAMPLE-CPVC-R001",
         "finding_type": "EXTERNAL_STATUTORY_SIGNAL",
         "title": "Statutory Advisory Signal: Central Public Works Department (CPWD Specifications 2019 / 2023 (Civil & Electrical Works))",
         "standards": [
@@ -294,8 +318,8 @@
         "severity": "INFO"
       },
       {
-        "finding_id": "COV-REQ-001",
-        "requirement_id": "REQ-001",
+        "finding_id": "COV-SAMPLE-CPVC-R001",
+        "requirement_id": "SAMPLE-CPVC-R001",
         "finding_type": "STANDARD_COVERED",
         "title": "Applicable Standard Identified: IS 15778 : 2007",
         "standards": [
@@ -351,11 +375,35 @@
           "LIFECYCLE_DEPENDENCY_SUPERSEDED": 1,
           "EXTERNAL_STATUTORY_SIGNAL": 1,
           "STANDARD_COVERED": 1
-        }
+        },
+        "clause_verified_count": 0,
+        "catalogue_discovered_count": 1,
+        "package_summaries": [
+          {
+            "package_id": "PKG-01",
+            "package_name": "Main Scope",
+            "requirement_count": 1,
+            "clause_verified_count": 0,
+            "catalogue_discovered_count": 1,
+            "safe_abstention_count": 0,
+            "human_review_count": 0,
+            "domains": [
+              "PIPES_AND_FITTINGS"
+            ],
+            "standards": [
+              "IS 15778 : 2007"
+            ]
+          }
+        ],
+        "domain_distribution": {
+          "PIPES_AND_FITTINGS": 1
+        },
+        "complementary_standards": [],
+        "uncovered_tender_dependencies": []
       },
       "coverage_matrix": [
         {
-          "requirement_id": "REQ-001",
+          "requirement_id": "SAMPLE-CPVC-R001",
           "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
           "coverage_state": "COVERED",
           "primary_standards": [
@@ -369,8 +417,8 @@
           "external_regulations": [],
           "findings": [
             {
-              "finding_id": "LIFECYCLE-DEP-REQ-001-1",
-              "requirement_id": "REQ-001",
+              "finding_id": "LIFECYCLE-DEP-SAMPLE-CPVC-R001-1",
+              "requirement_id": "SAMPLE-CPVC-R001",
               "finding_type": "LIFECYCLE_DEPENDENCY_SUPERSEDED",
               "title": "Superseded Related Dependency: None",
               "standards": [],
@@ -394,8 +442,8 @@
               "severity": "HIGH"
             },
             {
-              "finding_id": "STATUTORY-REQ-001-1",
-              "requirement_id": "REQ-001",
+              "finding_id": "STATUTORY-SAMPLE-CPVC-R001-1",
+              "requirement_id": "SAMPLE-CPVC-R001",
               "finding_type": "EXTERNAL_STATUTORY_SIGNAL",
               "title": "Statutory Advisory Signal: Central Public Works Department (CPWD Specifications 2019 / 2023 (Civil & Electrical Works))",
               "standards": [
@@ -427,8 +475,8 @@
               "severity": "INFO"
             },
             {
-              "finding_id": "COV-REQ-001",
-              "requirement_id": "REQ-001",
+              "finding_id": "COV-SAMPLE-CPVC-R001",
+              "requirement_id": "SAMPLE-CPVC-R001",
               "finding_type": "STANDARD_COVERED",
               "title": "Applicable Standard Identified: IS 15778 : 2007",
               "standards": [
@@ -462,7 +510,7 @@
       ],
       "covered_requirements": [
         {
-          "requirement_id": "REQ-001",
+          "requirement_id": "SAMPLE-CPVC-R001",
           "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
           "coverage_state": "COVERED",
           "primary_standards": [
@@ -476,8 +524,8 @@
           "external_regulations": [],
           "findings": [
             {
-              "finding_id": "LIFECYCLE-DEP-REQ-001-1",
-              "requirement_id": "REQ-001",
+              "finding_id": "LIFECYCLE-DEP-SAMPLE-CPVC-R001-1",
+              "requirement_id": "SAMPLE-CPVC-R001",
               "finding_type": "LIFECYCLE_DEPENDENCY_SUPERSEDED",
               "title": "Superseded Related Dependency: None",
               "standards": [],
@@ -501,8 +549,8 @@
               "severity": "HIGH"
             },
             {
-              "finding_id": "STATUTORY-REQ-001-1",
-              "requirement_id": "REQ-001",
+              "finding_id": "STATUTORY-SAMPLE-CPVC-R001-1",
+              "requirement_id": "SAMPLE-CPVC-R001",
               "finding_type": "EXTERNAL_STATUTORY_SIGNAL",
               "title": "Statutory Advisory Signal: Central Public Works Department (CPWD Specifications 2019 / 2023 (Civil & Electrical Works))",
               "standards": [
@@ -534,8 +582,8 @@
               "severity": "INFO"
             },
             {
-              "finding_id": "COV-REQ-001",
-              "requirement_id": "REQ-001",
+              "finding_id": "COV-SAMPLE-CPVC-R001",
+              "requirement_id": "SAMPLE-CPVC-R001",
               "finding_type": "STANDARD_COVERED",
               "title": "Applicable Standard Identified: IS 15778 : 2007",
               "standards": [
@@ -598,16 +646,62 @@
         "Withdrawn standards require technical review. Automatic substitution is strictly prohibited unless an authoritative replacement relationship is verified in the BIS catalogue.",
         "Safe abstentions and ambiguous specifications route to the human review queue with targeted clarification questions rather than speculative standard assignments."
       ],
-      "cross_requirement_conflicts": []
+      "cross_requirement_conflicts": [],
+      "package_summaries": [
+        {
+          "package_id": "PKG-01",
+          "package_name": "Main Scope",
+          "requirement_count": 1,
+          "clause_verified_count": 0,
+          "catalogue_discovered_count": 1,
+          "safe_abstention_count": 0,
+          "human_review_count": 0,
+          "domains": [
+            "PIPES_AND_FITTINGS"
+          ],
+          "standards": [
+            "IS 15778 : 2007"
+          ]
+        }
+      ],
+      "domain_distribution": {
+        "PIPES_AND_FITTINGS": 1
+      },
+      "complementary_standards": [],
+      "uncovered_tender_dependencies": []
     },
     "cross_requirement_conflicts": [],
     "has_cross_requirement_contradictions": false,
     "has_unresolved_precedence": false,
-    "has_edition_divergence": false
+    "has_edition_divergence": false,
+    "clause_verified_count": 0,
+    "catalogue_discovered_count": 1,
+    "package_summaries": [
+      {
+        "package_id": "PKG-01",
+        "package_name": "Main Scope",
+        "requirement_count": 1,
+        "clause_verified_count": 0,
+        "catalogue_discovered_count": 1,
+        "safe_abstention_count": 0,
+        "human_review_count": 0,
+        "domains": [
+          "PIPES_AND_FITTINGS"
+        ],
+        "standards": [
+          "IS 15778 : 2007"
+        ]
+      }
+    ],
+    "domain_distribution": {
+      "PIPES_AND_FITTINGS": 1
+    },
+    "complementary_standards": [],
+    "uncovered_tender_dependencies": []
   },
   "requirements": [
     {
-      "requirement_id": "REQ-001",
+      "requirement_id": "SAMPLE-CPVC-R001",
       "requirement_text": "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778.",
       "category": "material",
       "components": [
@@ -894,17 +988,17 @@
       "ambiguity_state": "CLEAR",
       "ambiguity_reason": "Primary applicable standard IS 15778 is clearly identifiable and sufficiently supported.",
       "human_decision": {
-        "requirement_id": "REQ-001",
+        "requirement_id": "SAMPLE-CPVC-R001",
         "decision": "ACCEPT",
         "reviewer_standard": null,
         "reviewer_note": "Verified by procurement officer",
-        "reviewed_at": "2026-10-18T18:48:42.640942+00:00",
+        "reviewed_at": "2026-10-19T05:21:20.286818+00:00",
         "system_standard": "IS 15778 : 2007",
         "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
       },
       "component_recommendations": [
         {
-          "component_id": "REQ-001-C1",
+          "component_id": "SAMPLE-CPVC-R001-C1",
           "component_text": "CPVC pipes",
           "component_domain": "piping",
           "component_role": "PRIMARY_PRODUCT",
@@ -1223,7 +1317,14 @@
           "advisory": "Normative dependency IS 4985 : 2000 has been superseded. Review current testing/design alignment."
         }
       ],
-      "amendment_metadata": null
+      "amendment_metadata": null,
+      "package_id": "PKG-01",
+      "package_name": "Main Scope",
+      "domain": "PIPES_AND_FITTINGS",
+      "verification_tier": "CATALOGUE_DISCOVERED",
+      "passage_id": null,
+      "clause_number": null,
+      "edition_year": "2007"
     }
   ],
   "review_queue": [],
@@ -1244,14 +1345,36 @@
   },
   "human_decisions": [
     {
-      "requirement_id": "REQ-001",
+      "requirement_id": "SAMPLE-CPVC-R001",
       "decision": "ACCEPT",
       "reviewer_standard": null,
       "reviewer_note": "Verified by procurement officer",
-      "reviewed_at": "2026-10-18T18:48:42.640942+00:00",
+      "reviewed_at": "2026-10-19T05:21:20.286818+00:00",
       "system_standard": "IS 15778 : 2007",
       "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
     }
   ],
-  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority."
+  "footer_disclaimer": "TenderSaathi is a standards-review aid for procurement specifications. Final applicability, specification, procurement, regulatory and legal decisions remain with the responsible human authority.",
+  "package_summaries": [
+    {
+      "package_id": "PKG-01",
+      "package_name": "Main Scope",
+      "requirement_count": 1,
+      "clause_verified_count": 0,
+      "catalogue_discovered_count": 1,
+      "safe_abstention_count": 0,
+      "human_review_count": 0,
+      "domains": [
+        "PIPES_AND_FITTINGS"
+      ],
+      "standards": [
+        "IS 15778 : 2007"
+      ]
+    }
+  ],
+  "domain_distribution": {
+    "PIPES_AND_FITTINGS": 1
+  },
+  "complementary_standards": [],
+  "uncovered_tender_dependencies": []
 }

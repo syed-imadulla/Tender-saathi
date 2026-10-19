@@ -1,5 +1,78 @@
 import './RequirementCard.css';
-import type { Requirement, RelatedStandard, HumanReviewDecision } from '../types';
+import type { Requirement, RelatedStandard, HumanReviewDecision, VerificationTier } from '../types';
+
+export function VerificationTierBadge({ tier }: { tier?: VerificationTier | string }) {
+  if (!tier) return null;
+
+  if (tier === 'CLAUSE_VERIFIED') {
+    return (
+      <span
+        className="rec-badge rec-badge--tier-verified"
+        title="Clause-verified: Supporting local normative evidence is available for the identified standard and edition."
+        aria-label="Clause-verified: Supporting local normative evidence is available for the identified standard and edition."
+      >
+        <span className="tier-dot tier-dot--verified" aria-hidden="true" />
+        Clause-Verified
+      </span>
+    );
+  }
+
+  if (tier === 'CATALOGUE_DISCOVERED') {
+    return (
+      <span
+        className="rec-badge rec-badge--tier-catalogue"
+        title="Catalogue-discovered: A candidate was discovered in catalogue metadata, but technical evaluation remains pending. Not verified by local normative evidence."
+        aria-label="Catalogue-discovered: A candidate was discovered in catalogue metadata, but technical evaluation remains pending."
+      >
+        <span className="tier-dot tier-dot--catalogue" aria-hidden="true" />
+        Catalogue-Discovered
+      </span>
+    );
+  }
+
+  if (tier === 'SAFE_ABSTENTION') {
+    return (
+      <span
+        className="rec-badge rec-badge--tier-abstain"
+        title="Safe abstention: Deliberately withheld because the requirement is non-engineering, administrative, commercial, or unsupported."
+        aria-label="Safe abstention: Deliberately withheld because requirement is non-engineering or unsupported."
+      >
+        <span className="tier-dot tier-dot--abstain" aria-hidden="true" />
+        Safe Abstention
+      </span>
+    );
+  }
+
+  return (
+    <span
+      className="rec-badge rec-badge--tier-unknown"
+      title="Verification tier not evaluated."
+      aria-label="Verification tier not evaluated"
+    >
+      Unverified Tier
+    </span>
+  );
+}
+
+export function PackageDomainBadge({ packageId, packageName, domain }: { packageId?: string; packageName?: string; domain?: string }) {
+  if (!packageId && !domain) return null;
+  const label = packageName || packageId;
+
+  return (
+    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+      {label && (
+        <span className="rec-badge rec-badge--package" title={`Tender Package: ${label}`}>
+          📦 {label}
+        </span>
+      )}
+      {domain && (
+        <span className="rec-badge rec-badge--domain" title={`Technical Domain: ${domain}`}>
+          🏷️ {domain}
+        </span>
+      )}
+    </div>
+  );
+}
 
 export function HumanDecisionBadge({ decision }: { decision?: HumanReviewDecision }) {
   if (!decision || decision.decision === 'PENDING') return null;
@@ -148,6 +221,8 @@ export function RecommendationCard({ req, isPrimary = false, onOpenEvidence, cur
 
           <div className="rec-card__standard-wrap">
             <h3 className="rec-card__standard-num">{req.candidate_standard}</h3>
+            <VerificationTierBadge tier={req.verification_tier} />
+            <PackageDomainBadge packageId={req.package_id} packageName={req.package_name} domain={req.domain} />
             {isPrimary && <span className="rec-badge rec-badge--primary">Primary recommendation</span>}
             {isExplicitlyCited && <span className="rec-badge rec-badge--cited">Explicitly cited in tender</span>}
             <HumanDecisionBadge decision={currentDecision} />
@@ -235,7 +310,9 @@ export interface AttentionCardProps {
 }
 
 export function AttentionCard({ req, onOpenEvidence, currentDecision }: AttentionCardProps) {
+  const isSafeAbstention = req.verification_tier === 'SAFE_ABSTENTION';
   const ambiguityState = req.ambiguity_state || (
+    isSafeAbstention ? 'SAFE_ABSTENTION' :
     req.decision === 'NO_RELIABLE_MATCH' ? 'NO_RELIABLE_MATCH' :
     req.missing_parameters && req.missing_parameters.length > 0 ? 'INCOMPLETE' :
     'REVIEW_REQUIRED'
@@ -253,7 +330,11 @@ export function AttentionCard({ req, onOpenEvidence, currentDecision }: Attentio
   let badgeLabel = 'REVIEW REQUIRED';
   let badgeClass = 'badge--warning';
 
-  if (isConflicting) {
+  if (isSafeAbstention) {
+    stateTitle = req.why_flagged || req.ambiguity_reason || 'Administrative or Commercial Scope — Safe Abstention';
+    badgeLabel = 'SAFE ABSTENTION';
+    badgeClass = 'rec-badge--tier-abstain';
+  } else if (isConflicting) {
     stateTitle = 'Conflicting Specifications Detected';
     badgeLabel = 'CONFLICTING';
     badgeClass = 'badge--superseded';
@@ -286,7 +367,12 @@ export function AttentionCard({ req, onOpenEvidence, currentDecision }: Attentio
       <div className="attention-card__header">
         <div className="attention-card__left">
           <span className="attention-card__icon" aria-hidden="true">
-            {isConflicting ? (
+            {isSafeAbstention ? (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#64748b" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07" />
+              </svg>
+            ) : isConflicting ? (
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
               </svg>
@@ -318,6 +404,8 @@ export function AttentionCard({ req, onOpenEvidence, currentDecision }: Attentio
               <span className={`rec-badge ${badgeClass}`} style={{ fontSize: '0.72rem', padding: '2px 8px' }}>
                 {badgeLabel}
               </span>
+              <VerificationTierBadge tier={req.verification_tier} />
+              <PackageDomainBadge packageId={req.package_id} packageName={req.package_name} domain={req.domain} />
             </div>
             <p className="attention-card__clause">
               "{req.text.length > 130 ? `${req.text.slice(0, 127)}...` : req.text}"
@@ -449,10 +537,14 @@ export function UpdateCard({ req, onOpenEvidence, currentDecision }: UpdateCardP
             </svg>
           </span>
           <div>
-            <h4 className="update-card__title">
-              Tender cites <strong>{citedStandard}</strong>
-            </h4>
-            <p className="update-card__status">This standard appears superseded.</p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px', flexWrap: 'wrap' }}>
+              <h4 className="update-card__title" style={{ margin: 0 }}>
+                Tender cites <strong>{citedStandard}</strong>
+              </h4>
+              <VerificationTierBadge tier={req.verification_tier} />
+              <PackageDomainBadge packageId={req.package_id} packageName={req.package_name} domain={req.domain} />
+            </div>
+            <p className="update-card__status" style={{ margin: 0 }}>This standard appears superseded.</p>
           </div>
         </div>
 

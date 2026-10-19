@@ -97,3 +97,125 @@ describe('Results page recommendation filtering (AUDIT-02)', () => {
     expect(attention).toHaveLength(2);
   });
 });
+
+describe('Phase 28 — Multi-Package Audit & Verification Tiers Filtering', () => {
+  const pkg1Req: Requirement = {
+    id: 'REQ-010',
+    package_id: 'PKG-01',
+    package_name: 'Civil Works',
+    domain: 'Civil',
+    text: 'Excavation and foundation concrete work M25',
+    candidate_standard: 'IS 456',
+    title: 'Plain and Reinforced Concrete',
+    verification_tier: 'CLAUSE_VERIFIED',
+    passage_id: 'IS_456_2000_SEC_5_CLAUSE_5_1',
+    clause_number: '5.1',
+    edition_year: '2000',
+    decision: 'RECOMMEND',
+    evidence: 'Normative clause 5.1 specifies concrete grades up to M80.',
+    evidence_strength: 'STRONG',
+    provenance: 'VERIFIED',
+    lifecycle_status: 'ACTIVE',
+    scores: { final: 0.98 },
+  };
+
+  const pkg2Req: Requirement = {
+    id: 'REQ-020',
+    package_id: 'PKG-02',
+    package_name: 'Transmission Mains',
+    domain: 'Piping',
+    text: 'Ductile iron K9 pipes for pressure transmission',
+    candidate_standard: 'IS 8329',
+    title: 'Centrifugally Cast Ductile Iron Pressure Pipes',
+    verification_tier: 'CATALOGUE_DISCOVERED',
+    decision: 'RECOMMEND',
+    evidence: 'Catalogue entry: Covers centrifugally cast ductile iron pressure pipes.',
+    evidence_strength: 'MODERATE',
+    provenance: 'NATIONAL_CATALOGUE_DISCOVERY',
+    lifecycle_status: 'ACTIVE',
+    scores: { final: 0.88 },
+  };
+
+  const pkgGenReq: Requirement = {
+    id: 'REQ-030',
+    package_id: 'PKG-GEN',
+    package_name: 'General / Commercial Conditions',
+    domain: 'Commercial',
+    text: 'Bidder must submit EMD of Rs 5,00,000 as bank guarantee',
+    candidate_standard: null,
+    title: null,
+    verification_tier: 'SAFE_ABSTENTION',
+    decision: 'NO_RELIABLE_MATCH',
+    why_flagged: 'Administrative and commercial requirement; standard recommendation safely withheld.',
+    evidence: 'NONE',
+    evidence_strength: 'NONE',
+    provenance: 'CURATED',
+    scores: { final: 0.0 },
+  };
+
+  const allReqs: Requirement[] = [pkg1Req, pkg2Req, pkgGenReq];
+
+  it('filters requirements by package_id without mutating the full list', () => {
+    const filterByPkg = (reqs: Requirement[], pkgId: string) => {
+      if (pkgId === 'ALL') return reqs;
+      return reqs.filter((r) => r.package_id === pkgId);
+    };
+
+    const pkg1List = filterByPkg(allReqs, 'PKG-01');
+    expect(pkg1List).toHaveLength(1);
+    expect(pkg1List[0].id).toBe('REQ-010');
+    expect(pkg1List[0].domain).toBe('Civil');
+
+    const pkg2List = filterByPkg(allReqs, 'PKG-02');
+    expect(pkg2List).toHaveLength(1);
+    expect(pkg2List[0].id).toBe('REQ-020');
+    expect(pkg2List[0].domain).toBe('Piping');
+
+    const pkgGenList = filterByPkg(allReqs, 'PKG-GEN');
+    expect(pkgGenList).toHaveLength(1);
+    expect(pkgGenList[0].verification_tier).toBe('SAFE_ABSTENTION');
+
+    // All packages remains 3
+    const allList = filterByPkg(allReqs, 'ALL');
+    expect(allList).toHaveLength(3);
+  });
+
+  it('correctly maps verification tiers across package requirements', () => {
+    const clauseVerified = allReqs.filter((r) => r.verification_tier === 'CLAUSE_VERIFIED');
+    const catalogueDiscovered = allReqs.filter((r) => r.verification_tier === 'CATALOGUE_DISCOVERED');
+    const safeAbstention = allReqs.filter((r) => r.verification_tier === 'SAFE_ABSTENTION');
+
+    expect(clauseVerified).toHaveLength(1);
+    expect(clauseVerified[0].candidate_standard).toBe('IS 456');
+    expect(clauseVerified[0].clause_number).toBe('5.1');
+
+    expect(catalogueDiscovered).toHaveLength(1);
+    expect(catalogueDiscovered[0].candidate_standard).toBe('IS 8329');
+    expect(catalogueDiscovered[0].passage_id).toBeUndefined(); // Must NOT manufacture passage ID
+
+    expect(safeAbstention).toHaveLength(1);
+    expect(safeAbstention[0].candidate_standard).toBeNull();
+    expect(safeAbstention[0].why_flagged).toContain('safely withheld');
+  });
+
+  it('handles safe abstentions in attention requirements without treating them as system errors', () => {
+    const attention = filterAttentionRequirements([pkgGenReq]);
+    expect(attention).toHaveLength(1);
+    expect(attention[0].id).toBe('REQ-030');
+    expect(attention[0].verification_tier).toBe('SAFE_ABSTENTION');
+
+    const recommendations = filterRecommendedRequirements([pkgGenReq]);
+    expect(recommendations).toHaveLength(0); // Must never recommend a standard for administrative clause
+  });
+
+  it('preserves catalogue-discovered candidate without implying clause-level verification', () => {
+    // Catalogue discovered item is recommended based on catalogue metadata
+    const recs = filterRecommendedRequirements([pkg2Req]);
+    expect(recs).toHaveLength(1);
+    expect(recs[0].verification_tier).toBe('CATALOGUE_DISCOVERED');
+    expect(recs[0].provenance).toBe('NATIONAL_CATALOGUE_DISCOVERY');
+    // It must NOT have a clause number or normative passage
+    expect(recs[0].clause_number).toBeUndefined();
+  });
+});
+

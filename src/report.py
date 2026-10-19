@@ -101,6 +101,13 @@ class RequirementReviewSection:
     external_regulations: List[Dict[str, Any]] = field(default_factory=list)
     lifecycle_warnings: List[Dict[str, Any]] = field(default_factory=list)
     amendment_metadata: Optional[Dict[str, Any]] = None
+    package_id: Optional[str] = "PKG-01"
+    package_name: Optional[str] = "Main Scope"
+    domain: Optional[str] = None
+    verification_tier: str = "SAFE_ABSTENTION"
+    passage_id: Optional[str] = None
+    clause_number: Optional[str] = None
+    edition_year: Optional[str] = None
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -141,6 +148,10 @@ class TenderReviewReport:
         "Final applicability, specification, procurement, regulatory and legal decisions "
         "remain with the responsible human authority."
     )
+    package_summaries: List[Dict[str, Any]] = field(default_factory=list)
+    domain_distribution: Dict[str, int] = field(default_factory=dict)
+    complementary_standards: List[Dict[str, Any]] = field(default_factory=list)
+    uncovered_tender_dependencies: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         d = {
@@ -155,7 +166,11 @@ class TenderReviewReport:
             "review_queue": [q.to_dict() for q in self.review_queue],
             "evidence_summary": self.evidence_summary.to_dict() if self.evidence_summary else None,
             "human_decisions": self.human_decisions,
-            "footer_disclaimer": self.footer_disclaimer
+            "footer_disclaimer": self.footer_disclaimer,
+            "package_summaries": self.package_summaries,
+            "domain_distribution": self.domain_distribution,
+            "complementary_standards": self.complementary_standards,
+            "uncovered_tender_dependencies": self.uncovered_tender_dependencies
         }
         return d
 
@@ -206,6 +221,9 @@ class TenderReviewReport:
         md.append("|---|---|---|")
         md.append(f"| **Requirements Analysed** | {es.get('requirements_analyzed', 0)} | Total clauses extracted |")
         md.append(f"| **Direct Recommendations** | {es.get('recommendations_count', 0)} | Active standards grounded in evidence |")
+        md.append(f"| **Clause-Verified Standards** | {es.get('clause_verified_count', 0)} | Grounded in authentic indexed corpus text |")
+        md.append(f"| **Catalogue-Discovered Standards** | {es.get('catalogue_discovered_count', 0)} | Pending technical clause indexing in corpus |")
+        md.append(f"| **Safe Abstentions** | {es.get('safe_abstention_count', 0)} | Administrative or non-standard requirements |")
         md.append(f"| **Review Required** | {es.get('review_required_count', 0)} | Flagged for engineering attention |")
         md.append(f"| **Insufficient Evidence** | {es.get('insufficient_evidence_count', 0)} | No reliable standard matched |")
         md.append(f"| **Active Standards** | {es.get('active_count', 0)} | Verified current in BIS catalogue |")
@@ -214,6 +232,56 @@ class TenderReviewReport:
         md.append(f"| **Unknown Lifecycle** | {es.get('unknown_lifecycle_count', 0)} | Unindexed in local catalogue |")
         md.append(f"| **Related Standards to Review** | {es.get('related_standards_count', 0)} | Discovered via relationship graph (depth=1) |")
         md.append("")
+
+        # Phase 27: Package & Technical Scope Breakdown
+        pkg_sums = self.package_summaries or es.get("package_summaries", [])
+        if pkg_sums:
+            md.append("### Package & Technical Scope Breakdown\n")
+            md.append("| Package ID | Package Name | Scope Domains | Requirements | Clause-Verified | Catalogue-Discovered | Review Required |")
+            md.append("|---|---|---|---|---|---|---|")
+            for pkg in pkg_sums:
+                pid = pkg.get("package_id", "PKG-01")
+                pname = pkg.get("package_name", "Main Scope")
+                doms = ", ".join(pkg.get("domains", [])) or "GENERAL"
+                req_cnt = pkg.get("requirement_count", 0)
+                cv_cnt = pkg.get("clause_verified_count", 0)
+                cat_cnt = pkg.get("catalogue_discovered_count", 0)
+                rev_cnt = pkg.get("human_review_count", 0)
+                md.append(f"| `{pid}` | **{pname}** | {doms} | {req_cnt} | `{cv_cnt}` | `{cat_cnt}` | `{rev_cnt}` |")
+            md.append("")
+
+        # Phase 27: Cross-Package Complementary Engineering Suites
+        comp_suites = self.complementary_standards or es.get("complementary_standards", [])
+        if comp_suites:
+            md.append("### Cross-Package Complementary Engineering Suites\n")
+            md.append("| Suite Name | Domain | Primary Standard | Allied Standards | Packages Involved | Status |")
+            md.append("|---|---|---|---|---|---|")
+            for cs in comp_suites:
+                sname = cs.get("suite_name", "")
+                dom = cs.get("domain", "")
+                prim = cs.get("primary_standard", "")
+                allied = ", ".join(cs.get("allied_standards", []))
+                pkgs = ", ".join(cs.get("packages_involved", []))
+                st = cs.get("status", "")
+                md.append(f"| **{sname}** | `{dom}` | `{prim}` | {allied} | `{pkgs}` | **{st}** |")
+            md.append("")
+
+        # Phase 27: Uncovered Tender-Level Dependencies
+        uncov_deps = self.uncovered_tender_dependencies or es.get("uncovered_tender_dependencies", [])
+        if uncov_deps:
+            md.append("### Uncovered Tender-Level Dependencies\n")
+            md.append("> [!WARNING]")
+            md.append("> The tender specifies primary standards without citing essential companion codes (testing or installation) anywhere across packages.\n")
+            md.append("| Primary Standard | Omitted Companion Code | Dependency Title | Domain | Severity |")
+            md.append("|---|---|---|---|---|")
+            for ud in uncov_deps:
+                prim = ud.get("primary_standard", "")
+                mis = ud.get("missing_dependency", "")
+                tit = ud.get("dependency_title", "")
+                dom = ud.get("domain", "")
+                sev = ud.get("severity", "MEDIUM")
+                md.append(f"| `{prim}` | `{mis}` | {tit} | `{dom}` | **{sev}** |")
+            md.append("")
 
         # Risk & Evidence Distribution Tables
         ev_dist = es.get("evidence_distribution", {})
@@ -270,6 +338,15 @@ class TenderReviewReport:
         md.append("## 5. Requirement-by-Requirement Review\n")
         for idx, req in enumerate(self.requirements, 1):
             md.append(f"### 5.{idx} Requirement `{req.requirement_id}` [{req.category.upper()}]\n")
+            md.append(f"- **Package Scope:** `[{req.package_id}] {req.package_name}` | **Domain:** `{req.domain or 'GENERAL'}` | **Verification Tier:** `{req.verification_tier}`")
+            if req.verification_tier == "CLAUSE_VERIFIED":
+                cl_info = f"Clause {req.clause_number}" if req.clause_number else "Indexed Clause"
+                ed_info = f" (Edition: {req.edition_year})" if req.edition_year else ""
+                md.append(f"- **Exact Normative Grounding:** {cl_info}{ed_info} | **Passage ID:** `{req.passage_id}`")
+            elif req.verification_tier == "CATALOGUE_DISCOVERED":
+                md.append("- **Verification Tier Status:** `CATALOGUE_DISCOVERED` (Pending technical clause indexing in local semantic corpus; manual engineering review required).")
+            elif req.verification_tier == "SAFE_ABSTENTION":
+                md.append("- **Verification Tier Status:** `SAFE_ABSTENTION` (Administrative, non-standard, or out-of-scope requirement safely abstained).")
             md.append(f"**Original Requirement Text:**\n> \"{req.requirement_text}\"\n")
 
             # Components
@@ -657,6 +734,13 @@ class ReportGenerator:
                 external_regulations=getattr(r, "external_regulations", []) or [],
                 lifecycle_warnings=getattr(r, "lifecycle_warnings", []) or [],
                 amendment_metadata=getattr(r, "amendment_metadata", None),
+                package_id=getattr(r, "package_id", "PKG-01"),
+                package_name=getattr(r, "package_name", "Main Scope"),
+                domain=getattr(r, "domain", None),
+                verification_tier=getattr(r, "verification_tier", "SAFE_ABSTENTION"),
+                passage_id=getattr(r, "passage_id", None),
+                clause_number=getattr(r, "clause_number", None),
+                edition_year=getattr(r, "edition_year", None),
             ))
 
         # 4. Evidence Summary
@@ -673,7 +757,11 @@ class ReportGenerator:
             requirements=req_sections,
             review_queue=audit_result.review_queue,
             evidence_summary=evidence_summary,
-            human_decisions=normalized_human_decisions
+            human_decisions=normalized_human_decisions,
+            package_summaries=getattr(audit_result, "package_summaries", []),
+            domain_distribution=getattr(audit_result, "domain_distribution", {}),
+            complementary_standards=getattr(audit_result, "complementary_standards", []),
+            uncovered_tender_dependencies=getattr(audit_result, "uncovered_tender_dependencies", [])
         )
 
     def generate_and_save(

@@ -16,6 +16,9 @@ import type {
   RelatedStandard,
   HumanReviewDecision,
   ReviewProgressSummary,
+  PackageSummary,
+  ComplementaryStandardSuite,
+  UncoveredTenderDependency,
 } from '../types';
 
 interface ResultsProps {
@@ -82,36 +85,97 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
   const [humanDecisions, setHumanDecisions] = useState<Record<string, HumanReviewDecision>>({});
   const [serverProgress, setServerProgress] = useState<ReviewProgressSummary | null>(null);
   const [reviewFilterTab, setReviewFilterTab] = useState<'all' | 'pending' | 'reviewed'>('all');
+  const [selectedPackage, setSelectedPackage] = useState<string>('ALL');
 
   const { tender } = result;
   const allReqs = result.requirements || [];
 
-  // 1. Recommended Standards: Only valid, grounded standards with clear decisions
-  // - Pure recommendations: valid candidate standard with RECOMMEND decision and no human review required
-  // - REVIEW_REQUIRED / human_review_required -> excluded from pure recommendations and rendered in Needs Attention
-  // - INSUFFICIENT_EVIDENCE / INSUFFICIENT_INFORMATION / NONE -> excluded from recommendations
-  const recommendedList = useMemo(() => filterRecommendedRequirements(allReqs), [allReqs]);
+  // Package summaries derivation (Phase 28)
+  const packageSummaries = useMemo<PackageSummary[]>(() => {
+    if (result.summary?.package_summaries && result.summary.package_summaries.length > 0) {
+      return result.summary.package_summaries;
+    }
+    const map = new Map<string, PackageSummary>();
+    allReqs.forEach((r) => {
+      const pkgId = r.package_id || 'PKG-GENERAL';
+      if (!map.has(pkgId)) {
+        map.set(pkgId, {
+          package_id: pkgId,
+          package_name: r.package_name || (pkgId === 'PKG-GEN' || pkgId === 'PKG-GENERAL' ? 'General / Commercial Conditions' : pkgId),
+          domains: r.domain ? [r.domain] : ['General'],
+          standards: [],
+          requirement_count: 0,
+          clause_verified_count: 0,
+          catalogue_discovered_count: 0,
+          safe_abstention_count: 0,
+          human_review_count: 0,
+          is_general_conditions: pkgId === 'PKG-GEN' || pkgId === 'PKG-GENERAL',
+        });
+      }
+      const entry = map.get(pkgId)!;
+      entry.requirement_count++;
+      if (r.candidate_standard && !entry.standards.includes(r.candidate_standard)) {
+        entry.standards.push(r.candidate_standard);
+      }
+      if (r.verification_tier === 'CLAUSE_VERIFIED') entry.clause_verified_count++;
+      else if (r.verification_tier === 'CATALOGUE_DISCOVERED') entry.catalogue_discovered_count++;
+      else if (r.verification_tier === 'SAFE_ABSTENTION') entry.safe_abstention_count++;
+      if (r.human_review_required || r.decision === 'REVIEW_REQUIRED') entry.human_review_count++;
+    });
+    return Array.from(map.values());
+  }, [result.summary?.package_summaries, allReqs]);
 
-  // 2. Needs Attention: Actual missing parameters, ambiguity, human review required, or safe abstentions
-  const attentionList = useMemo(() => filterAttentionRequirements(allReqs), [allReqs]);
+  const activePackageSummary = useMemo(() => {
+    if (selectedPackage === 'ALL') return null;
+    return packageSummaries.find((p) => p.package_id === selectedPackage) || null;
+  }, [packageSummaries, selectedPackage]);
+
+  // Requirement filtering by selected package without altering tender-wide findings
+  const displayedReqs = useMemo(() => {
+    if (selectedPackage === 'ALL') return allReqs;
+    return allReqs.filter((req) => (req.package_id || 'PKG-GENERAL') === selectedPackage);
+  }, [allReqs, selectedPackage]);
+
+  // Verification Tier summary counts across entire tender
+  const tierCounts = useMemo(() => {
+    const cv = result.summary?.clause_verified_count ?? allReqs.filter((r) => r.verification_tier === 'CLAUSE_VERIFIED').length;
+    const cd = result.summary?.catalogue_discovered_count ?? allReqs.filter((r) => r.verification_tier === 'CATALOGUE_DISCOVERED').length;
+    const sa = result.summary?.safe_abstention_count ?? allReqs.filter((r) => r.verification_tier === 'SAFE_ABSTENTION').length;
+    return {
+      clause_verified: cv,
+      catalogue_discovered: cd,
+      safe_abstention: sa,
+      total: cv + cd + sa,
+    };
+  }, [result.summary, allReqs]);
+
+  // 1. Recommended Standards: Only valid, grounded standards with clear decisions
+  // Filtered by selected package
+  const recommendedList = useMemo(() => filterRecommendedRequirements(displayedReqs), [displayedReqs]);
+
+  // 2. Needs Attention: Missing parameters, ambiguity, review required, or safe abstentions
+  // Filtered by selected package
+  const attentionList = useMemo(() => filterAttentionRequirements(displayedReqs), [displayedReqs]);
 
   // 3. Standards That Need an Update: Superseded citations
+  // Filtered by selected package
   const updateList = useMemo(() => {
-    return allReqs.filter((req) => {
+    return displayedReqs.filter((req) => {
       return Boolean(
         req.superseded_citation ||
         (req.lifecycle_status && req.lifecycle_status.toLowerCase() === 'superseded') ||
         (req.successor_standard && req.successor_standard !== req.candidate_standard)
       );
     });
-  }, [allReqs]);
+  }, [displayedReqs]);
 
   // 4. Related Standards (Graph): Kept strictly separate ("Related ≠ Applicable")
+  // Filtered by selected package
   const relatedStandardsList = useMemo(() => {
     const list: Array<{ standard: RelatedStandard; parentStandard: string; parentReq: Requirement }> = [];
     const seen = new Set<string>();
 
-    for (const req of allReqs) {
+    for (const req of displayedReqs) {
       if (!req.candidate_standard || req.candidate_standard === 'NONE' || req.candidate_standard === 'INSUFFICIENT_INFORMATION') {
         continue;
       }
@@ -129,7 +193,7 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
       }
     }
     return list;
-  }, [allReqs]);
+  }, [displayedReqs]);
 
   // Format file size
   const formattedSize = useMemo(() => {
@@ -522,6 +586,60 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
           </div>
         </section>
 
+        {/* Verification Tiers Executive Summary (Phase 28) */}
+        <div className="verification-tiers-bar" aria-label="Verification Tiers Summary">
+          <div className="verification-tiers-header">
+            <div>
+              <span style={{ fontSize: '0.82rem', fontWeight: 800, color: '#1e293b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                Verification Tier Distribution (Tender-Wide)
+              </span>
+              <span style={{ fontSize: '0.76rem', color: '#64748b', display: 'block', marginTop: '2px' }}>
+                Audit evidence grounding classification across all evaluated requirements
+              </span>
+            </div>
+            <span style={{ fontSize: '0.78rem', color: '#475569', fontWeight: 600 }}>
+              {allReqs.length} Total Requirement{allReqs.length === 1 ? '' : 's'}
+            </span>
+          </div>
+          <div className="verification-tiers-grid">
+            <div className="verification-tier-card verification-tier-card--verified">
+              <div className="verification-tier-card__count verification-tier-card__count--verified">
+                {tierCounts.clause_verified}
+              </div>
+              <div className="verification-tier-card__label verification-tier-card__label--verified">
+                ✓ Clause-Verified
+              </div>
+              <p className="verification-tier-card__desc">
+                Supporting local normative evidence is available for the identified standard and edition.
+              </p>
+            </div>
+
+            <div className="verification-tier-card verification-tier-card--catalogue">
+              <div className="verification-tier-card__count verification-tier-card__count--catalogue">
+                {tierCounts.catalogue_discovered}
+              </div>
+              <div className="verification-tier-card__label verification-tier-card__label--catalogue">
+                🔍 Catalogue-Discovered
+              </div>
+              <p className="verification-tier-card__desc">
+                Discovered in national catalogue metadata; technical evaluation remains pending.
+              </p>
+            </div>
+
+            <div className="verification-tier-card verification-tier-card--abstain">
+              <div className="verification-tier-card__count verification-tier-card__count--abstain">
+                {tierCounts.safe_abstention}
+              </div>
+              <div className="verification-tier-card__label verification-tier-card__label--abstain">
+                🛡️ Safe Abstentions
+              </div>
+              <p className="verification-tier-card__desc">
+                Deliberately withheld because requirements are administrative, commercial, or non-engineering.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* Ambiguity & Verification States Summary Bar */}
         <div className="ambiguity-summary-bar" style={{
           background: '#ffffff',
@@ -566,6 +684,75 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
             </div>
           </div>
         </div>
+
+        {/* Multi-Package Navigation (Phase 28) */}
+        {packageSummaries.length > 0 && (
+          <section className="package-nav-section" aria-label="Tender packages filter">
+            <div className="package-nav-header">
+              <div>
+                <span className="package-nav-title">Package-Level Navigation</span>
+                <span className="package-nav-subtitle" style={{ marginLeft: '8px' }}>
+                  Filter requirements by procurement package
+                </span>
+              </div>
+              <span style={{ fontSize: '0.76rem', color: '#64748b' }}>
+                {packageSummaries.length} package{packageSummaries.length === 1 ? '' : 's'} detected
+              </span>
+            </div>
+
+            <div className="package-tab-bar" role="tablist">
+              <button
+                type="button"
+                role="tab"
+                aria-selected={selectedPackage === 'ALL'}
+                className={`package-tab ${selectedPackage === 'ALL' ? 'package-tab--active' : ''}`}
+                onClick={() => setSelectedPackage('ALL')}
+              >
+                <span>🌐 All Packages</span>
+                <span className="package-tab-count">{allReqs.length}</span>
+              </button>
+
+              {packageSummaries.map((pkg) => (
+                <button
+                  key={pkg.package_id}
+                  type="button"
+                  role="tab"
+                  aria-selected={selectedPackage === pkg.package_id}
+                  className={`package-tab ${selectedPackage === pkg.package_id ? 'package-tab--active' : ''}`}
+                  onClick={() => setSelectedPackage(pkg.package_id)}
+                >
+                  <span>{pkg.is_general_conditions ? '📋' : '📦'} {pkg.package_name || pkg.package_id}</span>
+                  <span className="package-tab-count">{pkg.requirement_count}</span>
+                </button>
+              ))}
+            </div>
+
+            {/* Selected Package Details Banner */}
+            {activePackageSummary && (
+              <div className="package-summary-banner">
+                <div>
+                  <h4 className="package-summary-title">
+                    {activePackageSummary.is_general_conditions ? '📋 General & Commercial Conditions' : `📦 Package: ${activePackageSummary.package_name}`}
+                  </h4>
+                  <p className="package-summary-meta">
+                    Domain: <strong>{activePackageSummary.domains.join(', ')}</strong> · Requirements: <strong>{activePackageSummary.requirement_count}</strong> · Active Standards: <strong>{activePackageSummary.standards.length}</strong>
+                  </p>
+                </div>
+                <div className="package-tier-distribution">
+                  <span className="package-tier-chip package-tier-chip--verified" title="Clause-verified in this package">
+                    ✓ Verified: {activePackageSummary.clause_verified_count}
+                  </span>
+                  <span className="package-tier-chip package-tier-chip--catalogue" title="Catalogue-discovered in this package">
+                    🔍 Catalogue: {activePackageSummary.catalogue_discovered_count}
+                  </span>
+                  <span className="package-tier-chip package-tier-chip--abstain" title="Safely abstained in this package">
+                    🛡️ Abstained: {activePackageSummary.safe_abstention_count}
+                  </span>
+                </div>
+              </div>
+            )}
+          </section>
+        )}
 
         {/* 3. PRIMARY SECTION: INDIAN STANDARDS TO CONSIDER */}
         <section className="results-section results-section--primary" aria-label="Indian Standards to consider">
@@ -763,6 +950,113 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
                 />
               ))}
             </div>
+          </section>
+        )}
+
+        {/* 6b. TENDER-WIDE FINDINGS: COMPLEMENTARY ENGINEERING SUITES (Phase 28) */}
+        {result.summary?.complementary_standards && result.summary.complementary_standards.length > 0 && (
+          <section className="tender-wide-card" aria-label="Complementary engineering standards suites">
+            <div className="tender-wide-card__head">
+              <div>
+                <h3 className="tender-wide-card__title">COMPLEMENTARY ENGINEERING SUITES</h3>
+                <p className="tender-wide-card__desc">
+                  Engineering suites identified across multi-package requirements. These represent potential cross-discipline dependencies requiring technical review, not automatically mandatory additions.
+                </p>
+              </div>
+              <span className="section-badge section-badge--neutral">
+                {result.summary.complementary_standards.length} suite{result.summary.complementary_standards.length === 1 ? '' : 's'}
+              </span>
+            </div>
+
+            <div className="complementary-suites-list">
+              {result.summary.complementary_standards.map((suite, idx) => (
+                <div key={idx} className="complementary-suite-item">
+                  <div className="suite-title-row">
+                    <span className="suite-name">{suite.suite_name}</span>
+                    <span style={{ fontSize: '0.74rem', color: '#475569' }}>
+                      Primary Trigger: <strong>{suite.primary_standard}</strong>
+                    </span>
+                  </div>
+                  {suite.packages_involved && suite.packages_involved.length > 0 && (
+                    <div style={{ fontSize: '0.76rem', color: '#475569', marginBottom: '6px' }}>
+                      Applicable in Packages: {suite.packages_involved.join(', ')}
+                    </div>
+                  )}
+                  {suite.allied_standards && suite.allied_standards.length > 0 && (
+                    <div className="suite-allied-wrap">
+                      {suite.allied_standards.map((allied, aIdx) => (
+                        <span key={aIdx} className="suite-allied-badge" title={allied}>
+                          <strong>{allied}</strong>
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <div style={{ fontSize: '0.74rem', color: '#64748b', fontStyle: 'italic', marginTop: '6px' }}>
+                    Note: Cross-discipline advisory; inspect tender specifications to confirm whether these suites are required for site execution.
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* 6c. TENDER-WIDE FINDINGS: UNCOVERED TENDER DEPENDENCIES (Phase 28) */}
+        {result.summary?.uncovered_tender_dependencies && result.summary.uncovered_tender_dependencies.length > 0 && (
+          <section className="tender-wide-card" aria-label="Uncovered tender dependencies">
+            <div className="tender-wide-card__head">
+              <div>
+                <h3 className="tender-wide-card__title">UNCOVERED TENDER DEPENDENCIES</h3>
+                <p className="tender-wide-card__desc">
+                  Identified tender-wide dependencies between primary specifications and allied codes of practice. Review for missing specification coverage.
+                </p>
+              </div>
+              <span className="section-badge section-badge--warning">
+                {result.summary.uncovered_tender_dependencies.length} dependenc{result.summary.uncovered_tender_dependencies.length === 1 ? 'y' : 'ies'}
+              </span>
+            </div>
+
+            <div className="uncovered-deps-list">
+              {result.summary.uncovered_tender_dependencies.map((dep, idx) => (
+                <div key={idx} className="uncovered-dep-item">
+                  <div className="uncovered-dep-title">
+                    ⚠️ {dep.primary_standard} requires review of {dep.missing_dependency || 'Allied Standard'}
+                  </div>
+                  <p className="uncovered-dep-desc">
+                    <strong>Missing Reference:</strong> {dep.missing_dependency}
+                    {dep.dependency_title ? ` (${dep.dependency_title})` : ''}
+                    {dep.domain ? ` · Domain: ${dep.domain}` : ''}
+                  </p>
+                  {dep.message && (
+                    <p style={{ margin: '3px 0 0 0', fontSize: '0.78rem', color: '#78350f' }}>
+                      {dep.message}
+                    </p>
+                  )}
+                  <p style={{ margin: '4px 0 0 0', fontSize: '0.74rem', color: '#92400e', fontStyle: 'italic' }}>
+                    Advisory note: Never legally or normatively mandatory unless verified by returned tender specifications or explicit contract condition.
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* 6d. TENDER-WIDE FINDINGS: SAFELY ABSTAINED CONDITIONS (Phase 28) */}
+        {tierCounts.safe_abstention > 0 && (
+          <section className="tender-wide-card" aria-label="Safely abstained administrative conditions">
+            <div className="tender-wide-card__head">
+              <div>
+                <h3 className="tender-wide-card__title">ADMINISTRATIVE & COMMERCIAL CONDITIONS (SAFE ABSTENTIONS)</h3>
+                <p className="tender-wide-card__desc">
+                  The system safely withheld standard recommendations for non-engineering clauses ({tierCounts.safe_abstention} condition{tierCounts.safe_abstention === 1 ? '' : 's'}).
+                </p>
+              </div>
+              <span className="rec-badge rec-badge--tier-abstain">
+                {tierCounts.safe_abstention} Safely Abstained
+              </span>
+            </div>
+            <p style={{ fontSize: '0.82rem', color: '#475569', lineHeight: '1.45', margin: 0 }}>
+              Administrative provisions (such as Earnest Money Deposits, bidder turnover criteria, delivery schedules, liquidated damages, or warranty clauses) are commercial requirements outside the scope of Indian Standards product specifications. The absence of a recommendation is an intentional safety gate to prevent false attribution.
+            </p>
           </section>
         )}
 

@@ -39,7 +39,7 @@ from flask_cors import CORS
 
 from src.recommend import StandardsRecommender, RequirementRecommendationResult, TenderRecommendationReport
 from src.critic import are_standards_equivalent
-from src.extract import extract_from_text, extract_from_pdf
+from src.extract import Requirement, extract_from_text, extract_from_pdf, extract_packages_and_requirements
 from src.audit import TenderAuditEngine, TenderAuditResult, ReviewStatus
 from src.report import ReportGenerator
 from src.graph import StandardsGraph, StandardRelationship
@@ -365,6 +365,14 @@ def _normalize_result(
             "component_trace_records": getattr(r, "component_trace_records", []) or [],
             # Phase 19: Normative Clause Evidence
             "clause_evidence": getattr(r, "clause_evidence", None),
+            # Phase 27: Multi-Package & Traceability Tier fields
+            "package_id": getattr(r, "package_id", "PKG-01"),
+            "package_name": getattr(r, "package_name", "Main Scope"),
+            "domain": getattr(r, "domain", None),
+            "verification_tier": getattr(r, "verification_tier", "SAFE_ABSTENTION"),
+            "passage_id": getattr(r, "passage_id", None),
+            "clause_number": getattr(r, "clause_number", None),
+            "edition_year": getattr(r, "edition_year", None),
         }
 
         all_reqs.append(req_dict)
@@ -446,6 +454,13 @@ def _normalize_result(
         "has_cross_requirement_contradictions": getattr(audit, "has_cross_requirement_contradictions", False),
         "has_unresolved_precedence": getattr(audit, "has_unresolved_precedence", False),
         "has_edition_divergence": getattr(audit, "has_edition_divergence", False),
+        # Phase 27: Multi-Package & Traceability Tier additions
+        "clause_verified_count": getattr(audit, "clause_verified_count", 0),
+        "catalogue_discovered_count": getattr(audit, "catalogue_discovered_count", 0),
+        "package_summaries": getattr(audit, "package_summaries", []),
+        "domain_distribution": getattr(audit, "domain_distribution", {}),
+        "complementary_standards": getattr(audit, "complementary_standards", []),
+        "uncovered_tender_dependencies": getattr(audit, "uncovered_tender_dependencies", []),
     }
 
 
@@ -510,9 +525,13 @@ def _run_analysis(
         results = report.results
     elif texts:
         results = []
-        for i, t in enumerate(texts, start=1):
-            r = recommender.recommend_for_text(t, req_id=f"REQ-{i:03d}")
-            results.append(r)
+        if len(texts) == 1:
+            reqs = extract_packages_and_requirements(texts[0], tender_id=tid)
+            results = [recommender.recommend_for_requirement(rq) for rq in reqs]
+        else:
+            for i, t in enumerate(texts, start=1):
+                r = recommender.recommend_for_text(t, req_id=f"REQ-{i:03d}")
+                results.append(r)
     else:
         raise ValueError("Either texts or pdf_path must be provided.")
 
@@ -554,6 +573,66 @@ def health():
         "service": "TenderSaathi API",
         "timestamp": datetime.now(timezone.utc).isoformat(),
     })
+
+
+@app.route("/api/analyze/tender", methods=["POST"])
+def analyze_tender():
+    body = request.get_json(silent=True) or {}
+    tender_id = body.get("tender_id") or f"TS-{uuid.uuid4().hex[:8].upper()}"
+    packages = body.get("packages") or []
+
+    recommender = get_recommender()
+    audit_eng = get_audit_engine()
+    report_gen = get_report_gen()
+
+    requirements: List[Requirement] = []
+    if packages:
+        for p_idx, pkg in enumerate(packages, 1):
+            pid = pkg.get("package_id") or f"PKG-{p_idx:02d}"
+            pname = pkg.get("package_name") or pkg.get("name") or f"Package {p_idx}"
+            raw_reqs = pkg.get("requirements", [])
+            for r_idx, r_item in enumerate(raw_reqs, 1):
+                r_text = r_item if isinstance(r_item, str) else r_item.get("text", "")
+                r_id = (r_item.get("id") if isinstance(r_item, dict) else None) or f"{pid}-REQ-{r_idx:02d}"
+                r_dom = (r_item.get("domain") if isinstance(r_item, dict) else None)
+                if r_text.strip():
+                    req = extract_from_text(r_text.strip(), requirement_id=r_id)
+                    req.package_id = pid
+                    req.package_name = pname
+                    if r_dom:
+                        req.domain = r_dom
+                    requirements.append(req)
+
+    if not requirements and body.get("text"):
+        requirements = extract_packages_and_requirements(body.get("text"), tender_id=tender_id)
+
+    if not requirements:
+        return jsonify({"error": "No packages or requirements provided."}), 400
+
+    results = [recommender.recommend_for_requirement(rq) for rq in requirements]
+    audit = audit_eng.audit_tender(results, tender_id=tender_id)
+    normalized = _normalize_result(results, audit, tender_id, source_name="multi-package tender", file_size=0)
+
+    tender_meta = {
+        "tender_id": tender_id,
+        "source_file": "multi-package tender payload",
+    }
+    md_path, json_path = report_gen.generate_and_save(
+        audit_result=audit,
+        requirement_results=results,
+        output_dir=REPORT_DIR,
+        tender_metadata=tender_meta,
+    )
+    _report_cache[tender_id] = {
+        "md_path": md_path,
+        "json_path": json_path,
+        "normalized": normalized,
+        "audit": audit,
+        "results": results,
+        "tender_meta": tender_meta,
+        "human_decisions": {},
+    }
+    return jsonify(normalized)
 
 
 @app.route("/api/analyze/text", methods=["POST"])

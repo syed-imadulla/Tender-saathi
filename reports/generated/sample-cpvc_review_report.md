@@ -26,6 +26,9 @@
 |---|---|---|
 | **Requirements Analysed** | 1 | Total clauses extracted |
 | **Direct Recommendations** | 1 | Active standards grounded in evidence |
+| **Clause-Verified Standards** | 0 | Grounded in authentic indexed corpus text |
+| **Catalogue-Discovered Standards** | 1 | Pending technical clause indexing in corpus |
+| **Safe Abstentions** | 0 | Administrative or non-standard requirements |
 | **Review Required** | 0 | Flagged for engineering attention |
 | **Insufficient Evidence** | 0 | No reliable standard matched |
 | **Active Standards** | 1 | Verified current in BIS catalogue |
@@ -33,6 +36,12 @@
 | **Withdrawn Standards** | 0 | Cancelled standards |
 | **Unknown Lifecycle** | 0 | Unindexed in local catalogue |
 | **Related Standards to Review** | 4 | Discovered via relationship graph (depth=1) |
+
+### Package & Technical Scope Breakdown
+
+| Package ID | Package Name | Scope Domains | Requirements | Clause-Verified | Catalogue-Discovered | Review Required |
+|---|---|---|---|---|---|---|
+| `PKG-01` | **Main Scope** | PIPES_AND_FITTINGS | 1 | `0` | `1` | `0` |
 
 ### Governance Distributions
 
@@ -55,8 +64,10 @@
 
 ## 5. Requirement-by-Requirement Review
 
-### 5.1 Requirement `REQ-001` [MATERIAL]
+### 5.1 Requirement `SAMPLE-CPVC-R001` [MATERIAL]
 
+- **Package Scope:** `[PKG-01] Main Scope` | **Domain:** `PIPES_AND_FITTINGS` | **Verification Tier:** `CATALOGUE_DISCOVERED`
+- **Verification Tier Status:** `CATALOGUE_DISCOVERED` (Pending technical clause indexing in local semantic corpus; manual engineering review required).
 **Original Requirement Text:**
 > "Supply and installation of CPVC pipes and fittings for domestic hot and cold water distribution system, conforming to IS 15778."
 
@@ -100,7 +111,7 @@
 - **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `High`
 - **Human Review Decision:** **ACCEPT**
 - **Reviewer Note:** "Verified by procurement officer"
-- **Decision Recorded:** `2026-10-18T18:48:42.640942+00:00`
+- **Decision Recorded:** `2026-10-19T05:21:20.286818+00:00`
 
 ---
 
@@ -123,4 +134,4 @@ TenderSaathi is a standards-review aid for procurement specifications. Final app
 
 | # | Requirement ID | Original System Finding | Human Decision | Reviewer Standard | Reviewer Note | Reviewed Timestamp |
 |---|---|---|---|---|---|---|
-| 1 | `REQ-001` | Authoritative active standard IS 15778 : 2007 verified against scope with High confidence. | **ACCEPT** | `—` | Verified by procurement officer | 2026-10-18T18:48:42.640942+00:00 |
+| 1 | `SAMPLE-CPVC-R001` | Authoritative active standard IS 15778 : 2007 verified against scope with High confidence. | **ACCEPT** | `—` | Verified by procurement officer | 2026-10-19T05:21:20.286818+00:00 |

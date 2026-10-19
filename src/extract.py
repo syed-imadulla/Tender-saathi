@@ -36,6 +36,10 @@ class Requirement:
     raw_context: Optional[str] = None
     components: List[RequirementComponent] = field(default_factory=list)
     decomposition_confidence: float = 1.0
+    # Phase 27: Multi-Package & Technical Domain fields:
+    package_id: Optional[str] = "PKG-01"
+    package_name: Optional[str] = "Main Scope"
+    domain: Optional[str] = None
 
     def to_dict(self) -> Dict[str, Any]:
         d = asdict(self)
@@ -244,19 +248,71 @@ def _get_field_text(lines: List[str], start_tag: str, end_tags: List[str]) -> st
 
 
 # ---------------------------------------------------------------------------
+# Technical Domain Detection
+# ---------------------------------------------------------------------------
+
+def detect_technical_domain(text: str) -> str:
+    """
+    Classifies requirement into one of the canonical engineering domains:
+    - CIVIL_AND_STRUCTURAL
+    - PIPES_AND_FITTINGS
+    - VALVES_AND_FLOW
+    - ELECTRICAL_AND_POWER
+    - PUMPS_AND_ROTATING
+    - CRANES_AND_RAIL
+    - GENERAL_AND_ADMINISTRATIVE
+    """
+    tl = text.lower()
+
+    # Administrative check first
+    admin_patterns = [
+        r'\b(?:canteen|catering|food\s+outlet|cafeteria|security\s+guard|cleaning\s+services|housekeeping|manpower\s+supply|facility\s+management|audit|audits|taxation|chartered\s+accountan|gst\s+compliance|earnest\s+money|emd\b|pan\s+card|bank\s+guarantee|balance\s+sheets?|financial\s+bid|turnover\s+certificate|experience\s+certificate|annual\s+maintenance|amc\s+services?)\b'
+    ]
+    if any(re.search(p, tl) for p in admin_patterns):
+        return "GENERAL_AND_ADMINISTRATIVE"
+
+    domain_scores = {
+        "CIVIL_AND_STRUCTURAL": len(re.findall(r'\b(?:structural\s+steel|truss(?:es)?|purlin(?:s)?|girder|rebar|cement|concrete|rcc|tmt|tile|tiles|brick|mortar|masonry|shuttering|pavement|asphalt)\b', tl)),
+        "VALVES_AND_FLOW": len(re.findall(r'\b(?:valve|valves|gate\s+valve|sluice\s+valve|globe\s+valve|check\s+valve|ball\s+valve|butterfly\s+valve|plug\s+valve|flow\s+control|flanged\s+valve)\b', tl)),
+        "PIPES_AND_FITTINGS": len(re.findall(r'\b(?:pipe|pipes|piping|fitting|fittings|tube|tubes|cpvc|upvc|hdpe|ductile\s+iron|cast\s+iron\s+pipe|gi\s+pipe|plumbing|water\s+supply|potable\s+water|sewerage\s+pipe)\b', tl)),
+        "ELECTRICAL_AND_POWER": len(re.findall(r'\b(?:cable|cables|conductor|conductors|wire|wires|transformer|switchgear|vfd|motor|electrical|substation|circuit\s+breaker|panel|voltage|1\.1\s*kv|11\s*kv|33\s*kv|earthing)\b', tl)),
+        "PUMPS_AND_ROTATING": len(re.findall(r'\b(?:pump|pumps|pumping|submersible|centrifugal|impeller|sump\s+pump|dewatering)\b', tl)),
+        "MECHANICAL_AND_MACHINERY": len(re.findall(r'\b(?:engine|engines|diesel|propulsion|compressor|compressors|turbine|turbines|generator|boiler|gear|gears|machinery|bearing|bearings|shaft)\b', tl)),
+        "CRANES_AND_RAIL": len(re.findall(r'\b(?:crane|cranes|rail|rails|track|tracks|rmqc|gantry|hoist)\b', tl)),
+    }
+
+    # Priority tie-breaker: specific equipment/product overrides broad infrastructure
+    # e.g. "valves for water utility network" -> VALVES_AND_FLOW > PIPES_AND_FITTINGS
+    if domain_scores["VALVES_AND_FLOW"] > 0:
+        return "VALVES_AND_FLOW"
+    if domain_scores["PUMPS_AND_ROTATING"] > 0 and domain_scores["PUMPS_AND_ROTATING"] >= domain_scores["ELECTRICAL_AND_POWER"]:
+        return "PUMPS_AND_ROTATING"
+
+    best_domain, best_score = max(domain_scores.items(), key=lambda x: x[1])
+    if best_score > 0:
+        return best_domain
+
+    return "GENERAL_AND_ADMINISTRATIVE"
+
+
+# ---------------------------------------------------------------------------
 # Public Extraction API
 # ---------------------------------------------------------------------------
 
 def extract_from_text(
     text: str,
     requirement_id: str = "REQ-001",
-    tender_id: Optional[str] = None
+    tender_id: Optional[str] = None,
+    package_id: Optional[str] = None,
+    package_name: Optional[str] = None,
+    domain: Optional[str] = None
 ) -> Requirement:
     """
     Extracts a Requirement object from a plain text requirement string.
     """
     sanitized = sanitize_untrusted_text(text)
     cat = classify_category(sanitized)
+    dom = domain or detect_technical_domain(sanitized)
     explicit_stds = detect_explicit_standards(text)
     decomp = decompose_requirement(sanitized)
     return Requirement(
@@ -269,8 +325,126 @@ def extract_from_text(
         explicit_standards=explicit_stds,
         raw_context=text,
         components=decomp.components,
-        decomposition_confidence=decomp.decomposition_confidence
+        decomposition_confidence=decomp.decomposition_confidence,
+        package_id=package_id or "PKG-01",
+        package_name=package_name or "Main Scope",
+        domain=dom
     )
+
+
+def extract_packages_and_requirements(
+    text: str,
+    tender_id: Optional[str] = None
+) -> List[Requirement]:
+    """
+    Parses complex multi-package or multi-item tender text into structured Requirement objects.
+    Identifies package/lot markers and individual requirement statements.
+    """
+    t_id = tender_id or "TENDER"
+    raw_text = text or ""
+
+    # 1. Check for explicit package/lot/schedule markers
+    # e.g. "Package 1: Civil Works", "Package A - Civil & Structural", "Lot 2: Water Supply", "General Terms and Conditions"
+    pkg_pattern = re.compile(
+        r'(?i)(?:^|\n)\s*(?:'
+        r'(?:package|lot|part|schedule|section)\s*([0-9a-zA-Z\-_]+)\s*[:\-]\s*([^\n]+)'
+        r'|'
+        r'(general\s+(?:terms|conditions|requirements|administrative)[^\n]*)'
+        r')'
+    )
+    pkg_matches = list(pkg_pattern.finditer(raw_text))
+
+    requirements: List[Requirement] = []
+
+    if pkg_matches:
+        for idx, pm in enumerate(pkg_matches):
+            if pm.group(1):
+                raw_code = pm.group(1).strip()
+                pkg_code = f"{int(raw_code):02d}" if raw_code.isdigit() else raw_code.upper()
+                pkg_title = pm.group(2).strip()
+                pkg_id = f"PKG-{pkg_code}"
+            else:
+                pkg_code = "GEN"
+                pkg_title = pm.group(3).strip()
+                pkg_id = "PKG-GEN"
+
+            start_pos = pm.end()
+            end_pos = pkg_matches[idx + 1].start() if idx + 1 < len(pkg_matches) else len(raw_text)
+            pkg_body = raw_text[start_pos:end_pos].strip()
+
+            items = _split_into_requirement_items(pkg_body)
+            if not items:
+                items = [pkg_title]
+
+            for r_idx, item_text in enumerate(items, 1):
+                req_id = f"{t_id}-{pkg_code}-R{r_idx:02d}"
+                req = extract_from_text(
+                    item_text,
+                    requirement_id=req_id,
+                    tender_id=t_id,
+                    package_id=pkg_id,
+                    package_name=pkg_title
+                )
+                requirements.append(req)
+        return requirements
+
+    # 2. Check for numbered or bulleted items without package headers
+    items = _split_into_requirement_items(raw_text)
+    if len(items) > 1:
+        for r_idx, item_text in enumerate(items, 1):
+            req_id = f"{t_id}-R{r_idx:03d}"
+            req = extract_from_text(
+                item_text,
+                requirement_id=req_id,
+                tender_id=t_id,
+                package_id="PKG-01",
+                package_name="Main Scope"
+            )
+            requirements.append(req)
+        return requirements
+
+    # 3. Fallback: single requirement
+    return [extract_from_text(text, requirement_id=f"{t_id}-R001", tender_id=t_id)]
+
+
+def _split_into_requirement_items(body: str) -> List[str]:
+    """Splits a text block into individual requirement statements using numbered/bulleted markers or paragraphs."""
+    lines = body.splitlines()
+    items = []
+    curr = []
+    item_marker = re.compile(r'^\s*(?:\d+[\.\)]|\([a-zA-Z0-9]+\)|[\-\*\•])\s*(.*)')
+
+    for line in lines:
+        l_str = line.strip()
+        if not l_str:
+            if curr:
+                joined = " ".join(curr).strip()
+                if len(joined) > 15:
+                    items.append(joined)
+                curr = []
+            continue
+        m = item_marker.match(l_str)
+        if m:
+            if curr:
+                joined = " ".join(curr).strip()
+                if len(joined) > 15:
+                    items.append(joined)
+                curr = []
+            curr.append(m.group(1).strip())
+        else:
+            curr.append(l_str)
+
+    if curr:
+        joined = " ".join(curr).strip()
+        if len(joined) > 15:
+            items.append(joined)
+
+    if not items:
+        paragraphs = [p.strip() for p in body.split("\n\n") if len(p.strip()) > 15]
+        if len(paragraphs) > 1:
+            return paragraphs
+
+    return items if items else ([body.strip()] if len(body.strip()) > 15 else [])
 
 
 def extract_from_pdf(pdf_path: str, tender_id: Optional[str] = None) -> List[Requirement]:
@@ -310,6 +484,7 @@ def extract_from_pdf(pdf_path: str, tender_id: Optional[str] = None) -> List[Req
                 sanitized_block = sanitize_untrusted_text(clean_block)
                 req_query = sanitized_block if sanitized_block else clean_block
                 cat = classify_category(req_query)
+                dom = detect_technical_domain(req_query)
                 explicit_stds = detect_explicit_standards(clean_block)
                 decomp = decompose_requirement(req_query)
                 requirements.append(Requirement(
@@ -322,7 +497,10 @@ def extract_from_pdf(pdf_path: str, tender_id: Optional[str] = None) -> List[Req
                     explicit_standards=explicit_stds,
                     raw_context=clean_block,
                     components=decomp.components,
-                    decomposition_confidence=decomp.decomposition_confidence
+                    decomposition_confidence=decomp.decomposition_confidence,
+                    package_id="PKG-01",
+                    package_name="Tender Scope",
+                    domain=dom
                 ))
                 req_counter += 1
 
@@ -354,6 +532,7 @@ def extract_from_pdf(pdf_path: str, tender_id: Optional[str] = None) -> List[Req
                 sanitized_l = sanitize_untrusted_text(clean_l)
                 req_query_l = sanitized_l if sanitized_l else clean_l
                 cat = classify_category(req_query_l)
+                dom_l = detect_technical_domain(req_query_l)
                 explicit_stds = detect_explicit_standards(clean_l)
                 decomp = decompose_requirement(req_query_l)
 
@@ -367,7 +546,10 @@ def extract_from_pdf(pdf_path: str, tender_id: Optional[str] = None) -> List[Req
                     explicit_standards=explicit_stds,
                     raw_context=clean_l,
                     components=decomp.components,
-                    decomposition_confidence=decomp.decomposition_confidence
+                    decomposition_confidence=decomp.decomposition_confidence,
+                    package_id="PKG-01",
+                    package_name="Technical Specifications",
+                    domain=dom_l
                 ))
                 req_counter += 1
 

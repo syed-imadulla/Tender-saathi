@@ -140,6 +140,50 @@ export interface Requirement {
   component_trace_records?: TraceRecord[];
   // Phase 19: Normative Clause Evidence
   clause_evidence?: ClauseEvidenceData | null;
+  // Phase 27 & 28: Multi-Package & Verification Tier
+  package_id?: string;
+  package_name?: string;
+  domain?: string;
+  verification_tier?: VerificationTier | string;
+  passage_id?: string | null;
+  clause_number?: string | null;
+  edition_year?: string | null;
+}
+
+export type VerificationTier = 'CLAUSE_VERIFIED' | 'CATALOGUE_DISCOVERED' | 'SAFE_ABSTENTION';
+
+export interface PackageSummary {
+  package_id: string;
+  package_name: string;
+  requirement_count: number;
+  clause_verified_count: number;
+  catalogue_discovered_count: number;
+  safe_abstention_count: number;
+  human_review_count: number;
+  domains: string[];
+  standards: string[];
+  is_general_conditions?: boolean;
+}
+
+export interface ComplementaryStandardSuite {
+  suite_id: string;
+  suite_name: string;
+  domain: string;
+  primary_standard: string;
+  allied_standards: string[];
+  packages_involved: string[];
+  status: string;
+  description: string;
+}
+
+export interface UncoveredTenderDependency {
+  primary_standard: string;
+  missing_dependency: string;
+  dependency_title: string;
+  domain: string;
+  severity: 'CRITICAL' | 'HIGH' | 'MEDIUM' | 'LOW' | string;
+  finding_type: string;
+  message: string;
 }
 
 export interface ClauseEvidenceData {
@@ -326,6 +370,14 @@ export interface AnalysisSummary {
     no_reliable_match: number;
     review_required: number;
   };
+  // Phase 27 & 28: Multi-Package & Verification Tier Intelligence
+  clause_verified_count?: number;
+  catalogue_discovered_count?: number;
+  safe_abstention_count?: number;
+  package_summaries?: PackageSummary[];
+  domain_distribution?: Record<string, number>;
+  complementary_standards?: ComplementaryStandardSuite[];
+  uncovered_tender_dependencies?: UncoveredTenderDependency[];
 }
 
 

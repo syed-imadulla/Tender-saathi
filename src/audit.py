@@ -149,6 +149,12 @@ class TenderAuditSummary:
     human_review_count: int
     coverage_distribution: Dict[str, int]
     finding_distribution: Dict[str, int]
+    clause_verified_count: int = 0
+    catalogue_discovered_count: int = 0
+    package_summaries: List[Dict[str, Any]] = field(default_factory=list)
+    domain_distribution: Dict[str, int] = field(default_factory=dict)
+    complementary_standards: List[Dict[str, Any]] = field(default_factory=list)
+    uncovered_tender_dependencies: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -190,6 +196,10 @@ class StructuredTenderAuditReport:
     human_review_queue: List[ReviewQueueItem] = field(default_factory=list)
     disclaimers_and_notes: List[str] = field(default_factory=list)
     cross_requirement_conflicts: List[Dict[str, Any]] = field(default_factory=list)
+    package_summaries: List[Dict[str, Any]] = field(default_factory=list)
+    domain_distribution: Dict[str, int] = field(default_factory=dict)
+    complementary_standards: List[Dict[str, Any]] = field(default_factory=list)
+    uncovered_tender_dependencies: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -205,6 +215,10 @@ class StructuredTenderAuditReport:
             "human_review_queue": [q.to_dict() for q in self.human_review_queue],
             "disclaimers_and_notes": self.disclaimers_and_notes,
             "cross_requirement_conflicts": self.cross_requirement_conflicts,
+            "package_summaries": self.package_summaries,
+            "domain_distribution": self.domain_distribution,
+            "complementary_standards": self.complementary_standards,
+            "uncovered_tender_dependencies": self.uncovered_tender_dependencies,
         }
 
 
@@ -276,6 +290,12 @@ class TenderAuditResult:
     has_cross_requirement_contradictions: bool = False
     has_unresolved_precedence: bool = False
     has_edition_divergence: bool = False
+    clause_verified_count: int = 0
+    catalogue_discovered_count: int = 0
+    package_summaries: List[Dict[str, Any]] = field(default_factory=list)
+    domain_distribution: Dict[str, int] = field(default_factory=dict)
+    complementary_standards: List[Dict[str, Any]] = field(default_factory=list)
+    uncovered_tender_dependencies: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         d = asdict(self)
@@ -524,6 +544,7 @@ class TenderAuditEngine:
                 multi_standard_count += 1
 
             is_safe_abstention = (
+                (getattr(r, "verification_tier", "") == "SAFE_ABSTENTION" and not r.candidate_standard) or
                 getattr(r, "ambiguity_state", "") == "SAFE_ABSTENTION_GENUINE_AMBIGUITY" or
                 (is_insufficient and r.human_review_required and getattr(r, "ambiguity_state", "CLEAR") != "CLEAR")
             )
@@ -699,6 +720,60 @@ class TenderAuditEngine:
             "related_for_review_count": rel_review_count
         }
 
+        # Phase 27: Multi-package aggregation and verification tier breakdown
+        pkg_map: Dict[str, Dict[str, Any]] = {}
+        domain_dist: Dict[str, int] = {}
+        clause_verified_count = 0
+        catalogue_discovered_count = 0
+
+        for r in results:
+            tier = getattr(r, "verification_tier", "SAFE_ABSTENTION")
+            if tier == "CLAUSE_VERIFIED":
+                clause_verified_count += 1
+            elif tier == "CATALOGUE_DISCOVERED":
+                catalogue_discovered_count += 1
+
+            dom = getattr(r, "domain", None) or "GENERAL_AND_ADMINISTRATIVE"
+            domain_dist[dom] = domain_dist.get(dom, 0) + 1
+
+            pid = getattr(r, "package_id", None) or "PKG-01"
+            pname = getattr(r, "package_name", None) or "Main Scope"
+            if pid not in pkg_map:
+                pkg_map[pid] = {
+                    "package_id": pid,
+                    "package_name": pname,
+                    "requirement_count": 0,
+                    "clause_verified_count": 0,
+                    "catalogue_discovered_count": 0,
+                    "safe_abstention_count": 0,
+                    "human_review_count": 0,
+                    "domains": set(),
+                    "standards": set()
+                }
+            pkg_map[pid]["requirement_count"] += 1
+            if tier == "CLAUSE_VERIFIED":
+                pkg_map[pid]["clause_verified_count"] += 1
+            elif tier == "CATALOGUE_DISCOVERED":
+                pkg_map[pid]["catalogue_discovered_count"] += 1
+            else:
+                pkg_map[pid]["safe_abstention_count"] += 1
+            if getattr(r, "human_review_required", False):
+                pkg_map[pid]["human_review_count"] += 1
+            pkg_map[pid]["domains"].add(dom)
+            if getattr(r, "candidate_standard", None):
+                pkg_map[pid]["standards"].add(r.candidate_standard)
+
+        package_summaries = []
+        for pid in sorted(pkg_map.keys()):
+            pdata = pkg_map[pid]
+            pdata["domains"] = sorted(list(pdata["domains"]))
+            pdata["standards"] = sorted(list(pdata["standards"]))
+            package_summaries.append(pdata)
+
+        # Phase 27: Cross-package complementary standards suites and tender-wide dependencies
+        complementary_suites = self._evaluate_complementary_suites(results)
+        uncovered_deps = self._evaluate_tender_dependencies(results)
+
         # Build Phase 4 Tender Audit Summary
         audit_summary = TenderAuditSummary(
             requirements_analyzed=requirements_analyzed,
@@ -710,7 +785,13 @@ class TenderAuditEngine:
             multi_standard_count=multi_standard_count,
             human_review_count=human_review_count,
             coverage_distribution=coverage_dist,
-            finding_distribution=finding_dist
+            finding_distribution=finding_dist,
+            clause_verified_count=clause_verified_count,
+            catalogue_discovered_count=catalogue_discovered_count,
+            package_summaries=package_summaries,
+            domain_distribution=domain_dist,
+            complementary_standards=complementary_suites,
+            uncovered_tender_dependencies=uncovered_deps
         )
 
         # Build Phase 4 Structured Tender Audit Report
@@ -750,7 +831,11 @@ class TenderAuditEngine:
             evidence_audit=evidence_audit,
             human_review_queue=review_queue,
             disclaimers_and_notes=AUDIT_DISCLAIMERS,
-            cross_requirement_conflicts=[f.to_dict() for f in cross_res.findings]
+            cross_requirement_conflicts=[f.to_dict() for f in cross_res.findings],
+            package_summaries=package_summaries,
+            domain_distribution=domain_dist,
+            complementary_standards=complementary_suites,
+            uncovered_tender_dependencies=uncovered_deps
         )
 
         return TenderAuditResult(
@@ -811,7 +896,13 @@ class TenderAuditEngine:
             cross_requirement_conflicts=[f.to_dict() for f in cross_res.findings],
             has_cross_requirement_contradictions=cross_res.has_confirmed_contradictions,
             has_unresolved_precedence=cross_res.has_unresolved_precedence,
-            has_edition_divergence=cross_res.has_edition_divergence
+            has_edition_divergence=cross_res.has_edition_divergence,
+            clause_verified_count=clause_verified_count,
+            catalogue_discovered_count=catalogue_discovered_count,
+            package_summaries=package_summaries,
+            domain_distribution=domain_dist,
+            complementary_standards=complementary_suites,
+            uncovered_tender_dependencies=uncovered_deps
         )
 
     def audit_report(self, report: TenderRecommendationReport) -> TenderAuditResult:
@@ -837,8 +928,113 @@ class TenderAuditEngine:
             multi_standard_requirements=[RequirementCoverageItem(**item) for item in res.multi_standard_items],
             evidence_audit=res.structured_audit_report.get("evidence_audit", {}) if res.structured_audit_report else {},
             human_review_queue=res.review_queue,
-            disclaimers_and_notes=AUDIT_DISCLAIMERS
+            disclaimers_and_notes=AUDIT_DISCLAIMERS,
+            cross_requirement_conflicts=res.cross_requirement_conflicts,
+            package_summaries=res.package_summaries,
+            domain_distribution=res.domain_distribution,
+            complementary_standards=res.complementary_standards,
+            uncovered_tender_dependencies=res.uncovered_tender_dependencies
         )
+
+    def _evaluate_complementary_suites(self, results: List[RequirementRecommendationResult]) -> List[Dict[str, Any]]:
+        """Identifies cohesive cross-requirement engineering suites across packages."""
+        suites = []
+        std_to_reqs: Dict[str, List[RequirementRecommendationResult]] = {}
+        for r in results:
+            stds = set()
+            if getattr(r, "candidate_standard", None):
+                stds.add(re.sub(r'\s*:.*$', '', r.candidate_standard).strip())
+            for exp in getattr(r, "explicit_standards_found", []) or []:
+                stds.add(re.sub(r'\s*:.*$', '', exp).strip())
+            for s in stds:
+                if s:
+                    std_to_reqs.setdefault(s, []).append(r)
+
+        # 1. Civil Structural Concrete Suite
+        if "IS 456" in std_to_reqs:
+            allied = [s for s in ["IS 1786", "IS 269", "IS 1489", "IS 383"] if s in std_to_reqs]
+            if allied:
+                pkgs = sorted(list({getattr(r, "package_id", "PKG-01") for s in ["IS 456"] + allied for r in std_to_reqs[s]}))
+                suites.append({
+                    "suite_id": "SUITE-CIVIL-CONCRETE",
+                    "suite_name": "Civil Concrete, Rebar & Binder Suite",
+                    "domain": "CIVIL_AND_STRUCTURAL",
+                    "primary_standard": "IS 456",
+                    "allied_standards": allied,
+                    "packages_involved": pkgs,
+                    "status": "COMPLEMENTARY_VERIFIED",
+                    "description": "Reinforced concrete design (IS 456) is coherently paired with rebar/binder standards."
+                })
+
+        # 2. Water Supply & Pipe Conveyance Suite
+        pipe_stds = [s for s in ["IS 4984", "IS 1536", "IS 8329", "IS 458"] if s in std_to_reqs]
+        valve_joint_stds = [s for s in ["IS 14846", "IS 778", "IS 7634", "IS 12288"] if s in std_to_reqs]
+        if pipe_stds and valve_joint_stds:
+            pkgs = sorted(list({getattr(r, "package_id", "PKG-01") for s in pipe_stds + valve_joint_stds for r in std_to_reqs[s]}))
+            suites.append({
+                "suite_id": "SUITE-WATER-PIPING",
+                "suite_name": "Pressure Piping, Flow Control & Laying Suite",
+                "domain": "PIPES_AND_FITTINGS",
+                "primary_standard": pipe_stds[0],
+                "allied_standards": valve_joint_stds + pipe_stds[1:],
+                "packages_involved": pkgs,
+                "status": "COMPLEMENTARY_VERIFIED",
+                "description": "Conveyance piping is paired with isolation valves and laying/jointing standards."
+            })
+
+        # 3. Electrical Power & Distribution Suite
+        cable_stds = [s for s in ["IS 7098", "IS 1554", "IS 1180"] if s in std_to_reqs]
+        power_allied = [s for s in ["IS 1255", "IS 8130", "IS 3043", "IS 2026"] if s in std_to_reqs]
+        if cable_stds and power_allied:
+            pkgs = sorted(list({getattr(r, "package_id", "PKG-01") for s in cable_stds + power_allied for r in std_to_reqs[s]}))
+            suites.append({
+                "suite_id": "SUITE-ELECTRICAL-POWER",
+                "suite_name": "Power Distribution, Cabling & Earthing Suite",
+                "domain": "ELECTRICAL_AND_POWER",
+                "primary_standard": cable_stds[0],
+                "allied_standards": power_allied + cable_stds[1:],
+                "packages_involved": pkgs,
+                "status": "COMPLEMENTARY_VERIFIED",
+                "description": "Power conductors/cables/transformers are coupled with installation, conductor or earthing codes."
+            })
+
+        return suites
+
+    def _evaluate_tender_dependencies(self, results: List[RequirementRecommendationResult]) -> List[Dict[str, Any]]:
+        """Identifies tender-wide omitted companion codes or mandatory testing standards."""
+        uncovered = []
+        all_stds = set()
+        for r in results:
+            if getattr(r, "candidate_standard", None):
+                clean_cand = re.sub(r'\s*:.*$', '', r.candidate_standard).strip()
+                if clean_cand:
+                    all_stds.add(clean_cand)
+            for exp in getattr(r, "explicit_standards_found", []) or []:
+                clean_exp = re.sub(r'\s*:.*$', '', exp).strip()
+                if clean_exp:
+                    all_stds.add(clean_exp)
+
+        essential_pairs = [
+            ("IS 456", "IS 1786", "Steel Rebar Specification for Reinforced Concrete", "CIVIL_AND_STRUCTURAL"),
+            ("IS 4984", "IS 7634", "Code of Practice for Laying & Jointing of Polyethylene Pipes", "PIPES_AND_FITTINGS"),
+            ("IS 7098", "IS 1255", "Code of Practice for Installation & Maintenance of Power Cables", "ELECTRICAL_AND_POWER"),
+            ("IS 1554", "IS 1255", "Code of Practice for Installation & Maintenance of Power Cables", "ELECTRICAL_AND_POWER"),
+            ("IS 8329", "IS 12288", "Code of Practice for Use and Laying of Ductile Iron Pipes", "PIPES_AND_FITTINGS")
+        ]
+
+        for primary, dep, dep_title, domain in essential_pairs:
+            if primary in all_stds and dep not in all_stds:
+                uncovered.append({
+                    "primary_standard": primary,
+                    "missing_dependency": dep,
+                    "dependency_title": dep_title,
+                    "domain": domain,
+                    "severity": "MEDIUM",
+                    "finding_type": "UNCOVERED_TENDER_DEPENDENCY",
+                    "message": f"Tender specifies {primary} but omits companion standard {dep} ({dep_title}) across all packages."
+                })
+
+        return uncovered
 
     # -----------------------------------------------------------------------
     # Phase 4 Intelligence Evaluation Helpers

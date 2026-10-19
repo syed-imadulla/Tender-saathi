@@ -1,12 +1,10 @@
 # Tender Saathi — Active Planning State
 
-**Active Milestone**: Milestone: National BIS Catalogue Integration & Targeted Normative Evidence Ingestion  
-**Current Phase**: Phase 26 (`26-targeted-normative-evidence-ingestion`)  
-**Phase Position**: Phase 26 Complete (Tasks 1-5 Verified, 717/717 Tests Passing, 0 Regressions)  
+**Active Milestone**: Milestone: National BIS Catalogue Integration & Multi-Package Tender Auditing  
+**Current Phase**: Phase 28 (`28-interactive-multi-package-audit`)  
+**Phase Position**: Phase 28 Complete (Tasks 1-5 Verified, Vitest 8/8 Tests Passing, 725/725 Pytest Tests Passing, 0 Regressions)  
 **Working Directory**: `/home/syed-imadulla/Desktop/Tender_Saathi`  
 **Git Head**: `main`
-
-
 
 ---
 
@@ -25,58 +23,42 @@
 11. **Phase 19 Safe Clause-Level Evidence Integration**: Completed in `docs/evaluation/PHASE19_CLAUSE_INTEGRATION_AUDIT.md`.
 12. **Phase 20 Evidence-to-Requirement Validation Audit**: Completed in `docs/evaluation/PHASE20_EVIDENCE_VALIDATION_AUDIT.md`.
 13. **Phase 21 Evidence Support Engine Validation Audit**: Completed in `docs/evaluation/PHASE21_EVIDENCE_SUPPORT_VALIDATION.md`.
-    - Recovered interrupted session state and validated working tree invariants without data loss.
-    - Resolved keyword-only over-claiming via conservative technical parameter verification.
-    - Implemented normalized unit conversions for power (W/kW/MW), voltage (V/kV), apparent power (VA/kVA/MVA), and current (A/mA).
-    - Hardened inequality direction checking (minimum floor vs maximum ceiling constraints).
-    - Added tolerance/range checking and bidirectional negation/exclusion conflict detection.
-    - Implemented multi-candidate passage conflict escalation in `ClauseRetriever`.
-    - Hardened `TraceableEvidenceValidator` against missing or unspecified extraction quality metadata.
-    - Built 18-case deterministic adversarial matrix in `tests/test_evidence_support_validation.py` (18/18 passing).
-    - Full backend test suite passing: 647/647 tests in 63.15s. Frontend production build passing in 1.04s.
-    - Active ground-truth SHA-256 (`8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`) bit-for-bit unchanged.
 14. **Phase 22 Multi-Requirement Conflict Resolution & Standards Precedence**: Completed in `docs/evaluation/PHASE22_POST_IMPLEMENTATION_SAFETY_AUDIT.md`.
-    - Implemented `CrossRequirementConflictEngine` in `src/precedence/conflict_engine.py`.
-    - Added canonical outcome enum `CrossRequirementConflictState` in `src/corpus/semantics.py`.
-    - Integrated conflict analysis into `TenderAuditEngine.audit_tender()` in `src/audit.py`.
-    - Conducted 10-point semantic and safety boundary audit, remediating ambiguous equipment identity, inequality rating comparisons, and co-applicability domain constraints.
-    - Built 15 deterministic adversarial regression tests in `tests/test_precedence_and_cross_conflicts.py` (15/15 passing).
-    - Verified 662/662 tests passing in full test suite (647 baseline + 15 Phase 22).
-    - Verified frontend build clean in 1.15s.
-    - Preserved ground truth invariant (`8bcc9bc5...`).
-    - Gate Decision: `READY_FOR_PHASE_23`.
 15. **Phase 24 National BIS Catalogue Integration**: Completed in `docs/evaluation/FULL_BIS_COVERAGE_GAP_ANALYSIS.md` & `tests/test_national_catalogue_validation.py`.
-    - Integrated `data/catalogue/bis_catalogue.db` (35,208 records) for citation validation and standards lookup.
-    - 17/17 tests passing.
 16. **Phase 25 National BIS Catalogue Metadata Retrieval**: Completed in `.planning/phases/25-national-bis-catalogue-metadata-retrieval/25-UAT.md`.
-    - FTS5 full-text search index created over 10,828 active Indian Standards (`data/catalogue/catalogue_search_index.db`).
-    - Sub-10ms lexical discovery engine (`src/catalogue/search.py`) with query sanitization and BM25 rank score normalization.
-    - Cascading retrieval with deduplication favoring curated standards with rich clause text.
-    - Safe abstention on non-engineering / administrative tenders.
-    - Zero clause fabrication: catalogue-only standards flagged `PENDING_TECHNICAL_EVALUATION` with `human_review_required: True`.
-    - 14/14 Phase 25 tests passing (`tests/test_national_catalogue_retrieval.py`).
-    - Full suite passing (708/708 tests), frontend build passing (1.97s), ground-truth SHA-256 intact.
 17. **Phase 26 Targeted Normative Evidence Ingestion**: Completed in `.planning/phases/26-targeted-normative-evidence-ingestion/26-UAT.md`.
-    - High-value standards batch ingested: `IS 456 : 2000`, `IS 4984 : 2016`, `IS 1489 (Part 1) : 2015`, and supersedence links for `IS 8112 : 2013` -> `IS 269 : 2015`.
     - Ingested 4 documents and 15 normative clause passages into `data/standards/corpus.db` with lawful fair-use citations.
     - Expanded `standards.db` from 90 to 93 standards with rich clause evidence.
-    - Rebuffed cross-domain leakage (pipe vs valve and structural framing vs concrete).
     - 9/9 Phase 26 tests passing (`tests/test_targeted_normative_ingestion.py`).
-    - Full suite passing (717/717 tests in 144s), clean frontend production build (1.85s), ground-truth SHA-256 unchanged (`8bcc9bc5...`).
+18. **Phase 27 Multi-Package Tender Auditing & Heterogeneous Scope Verification**: Completed in `.planning/phases/27-multi-package-tender-auditing/27-UAT.md`.
+    - Implemented package extraction and domain classification (`CIVIL_AND_STRUCTURAL`, `PIPES_AND_FITTINGS`, `VALVES_AND_FLOW`, `ELECTRICAL_AND_POWER`, `PUMPS_AND_ROTATING`, `MECHANICAL_AND_MACHINERY`, `GENERAL_AND_ADMINISTRATIVE`) in `src/extract.py`.
+    - Added strict verification tier segregation (`CLAUSE_VERIFIED`, `CATALOGUE_DISCOVERED`, `SAFE_ABSTENTION`) and exact passage metadata (`passage_id`, `clause_number`, `edition_year`) in `src/recommend.py`.
+    - Implemented complementary engineering suites and tender-wide uncovered dependencies analysis in `src/audit.py`.
+    - Implemented officer-ready Markdown & JSON audit reporting in `src/report.py` and structured multi-package intake endpoint `/api/analyze/tender` in `api/server.py`.
+    - Deterministic tests: 8/8 passing (`tests/test_multi_package_tender_auditing.py`).
+19. **Phase 28 Interactive Multi-Package Audit UI & Verification Tier Drilldown**: Completed in `.planning/phases/28-interactive-multi-package-audit/28-UAT.md`.
+    - Built accessible, responsive package-level navigation with segmented controls and package summary banners on the Results page.
+    - Implemented explicit verification tier badges (`CLAUSE_VERIFIED`, `CATALOGUE_DISCOVERED`, `SAFE_ABSTENTION`, and safe unverified fallback) with accessible explanatory tooltips and distinct color coding across `RecommendationCard`, `AttentionCard`, and `UpdateCard`.
+    - Enhanced `EvidenceDrawer` with top verification tier and package provenance banner, and strict separation between normative clause evidence and catalogue scope summaries.
+    - Added dedicated tender-wide finding sections: Executive Verification Tier Summary, Complementary Engineering Suites, Uncovered Tender Dependencies, and Safely Abstained Administrative Conditions.
+    - Frontend unit tests: 8/8 passing (`npx vitest run src/pages/Results.test.ts`).
+    - Full backend pytest suite: 725/725 passing with 0 regressions. Clean frontend production build (1.71s).
+    - Frozen ground-truth dataset SHA-256 (`8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`) preserved bit-for-bit.
 
 ---
 
-## Active Phase Overview: Phase 26
+## Active Phase Overview: Phase 28
 
 | Plan ID | Title | Scope & Target Files | Deliverable | Status |
 |---|---|---|---|---|
-| **26-NORM-INGEST** | Targeted Normative Evidence Ingestion | `scripts/ingest_normative_standards.py`, `src/recommend.py`, `src/applicability.py`, `data/standards/corpus.db`, `data/standards/standards.db`, `data/standards/relationships.json`, `tests/test_targeted_normative_ingestion.py` | Lawful normative excerpts ingestion CLI, database synchronization, domain conflict gates, 9-test matrix, UAT verification report. | **Complete** |
+| **28-UI-DRILLDOWN** | Interactive Multi-Package Audit UI & Verification Tier Drilldown | `frontend/src/types.ts`, `frontend/src/components/RequirementCard.tsx`, `frontend/src/components/RequirementCard.css`, `frontend/src/components/EvidenceDrawer.tsx`, `frontend/src/components/EvidenceDrawer.css`, `frontend/src/pages/Results.tsx`, `frontend/src/pages/Results.css`, `frontend/src/pages/Results.test.ts` | Multi-package tabs, package summary banner, verification tier badges, clause evidence drilldown, complementary standards card, uncovered dependencies card, safe abstention section, 8-test vitest suite, UAT report. | **Complete** |
 
 ---
 
 ## Next Steps (Human Boundary)
 
-1. Proceed to Phase 27: Automated Adjudication Packet Batch Ingestion and Dynamic Multi-Standard Tender Audit Reporting.
-2. Maintain read-only national catalogue database integrity and zero clause fabrication policies.
+1. Review the Phase 28 visual drilldown and package navigation in the running application (`npm --prefix frontend run dev` / `python3 -m api.server`).
+2. Plan next milestone objectives (e.g. additional corpus ingestion or advanced multi-package export templates).
+3. Maintain zero clause fabrication safeguards and read-only national catalogue database access.
 
 

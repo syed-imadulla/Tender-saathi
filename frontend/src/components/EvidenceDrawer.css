@@ -481,6 +481,50 @@
   font-style: italic;
 }
 
+/* ─── Verification Tier & Package Banner (Phase 28) ─── */
+.drawer-tier-banner {
+  padding: 12px 24px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.drawer-tier-banner--verified {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.drawer-tier-banner--catalogue {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.drawer-tier-banner--abstain {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.drawer-tier-banner--unknown {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.drawer-tier-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.drawer-tier-desc {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: #334155;
+  margin: 0;
+}
+
 /* ─── Mobile: bottom sheet ──────────────────────────────────────────────── */
 @media (max-width: 640px) {
   .drawer {

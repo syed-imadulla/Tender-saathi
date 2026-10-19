@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './EvidenceDrawer.css';
 import type { Requirement, HumanReviewDecision, HumanDecisionType } from '../types';
-import { areStandardsEquivalent } from './RequirementCard';
+import { areStandardsEquivalent, VerificationTierBadge, PackageDomainBadge } from './RequirementCard';
 
 interface EvidenceDrawerProps {
   req: Requirement;
@@ -244,6 +244,40 @@ export default function EvidenceDrawer({
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
           </button>
+        </div>
+
+        {/* Verification Tier & Package Banner (Phase 28) */}
+        <div className={`drawer-tier-banner ${
+          req.verification_tier === 'CLAUSE_VERIFIED' ? 'drawer-tier-banner--verified' :
+          req.verification_tier === 'CATALOGUE_DISCOVERED' ? 'drawer-tier-banner--catalogue' :
+          req.verification_tier === 'SAFE_ABSTENTION' ? 'drawer-tier-banner--abstain' :
+          'drawer-tier-banner--unknown'
+        }`}>
+          <div className="drawer-tier-row">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+              <VerificationTierBadge tier={req.verification_tier} />
+              <PackageDomainBadge packageId={req.package_id} packageName={req.package_name} domain={req.domain} />
+            </div>
+            {req.edition_year && (
+              <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#475569', background: '#ffffff', padding: '2px 8px', borderRadius: '4px', border: '1px solid #cbd5e1' }}>
+                Edition: {req.edition_year}
+              </span>
+            )}
+          </div>
+          <p className="drawer-tier-desc">
+            {req.verification_tier === 'CLAUSE_VERIFIED' && (
+              <>Supporting local normative evidence is available for the identified standard and edition. Clause reference: <strong>{req.clause_number || req.clause_evidence?.clause_identifier || 'Normative Corpus Passage'}</strong> (Passage: <code>{req.passage_id || req.clause_evidence?.document_id || 'Indexed'}</code>).</>
+            )}
+            {req.verification_tier === 'CATALOGUE_DISCOVERED' && (
+              <>Discovered in national BIS catalogue metadata. Full-text normative clause evidence has not been indexed in the local corpus for this standard; technical evaluation remains pending.</>
+            )}
+            {req.verification_tier === 'SAFE_ABSTENTION' && (
+              <>Deliberately withheld because this requirement pertains to administrative or commercial conditions, is non-engineering, or lacks sufficient technical specification.</>
+            )}
+            {!req.verification_tier && (
+              <>Verification tier not evaluated by pipeline.</>
+            )}
+          </p>
         </div>
 
         <div className="drawer__body">
@@ -572,10 +606,26 @@ export default function EvidenceDrawer({
           {req.evidence && (
             <section className="drawer-section">
               <span className="drawer-section__label">
-                {req.evidence_strength === 'STRONG' && (req.provenance === 'VERIFIED' || req.provenance === 'OFFICIAL_PRIMARY')
+                {req.verification_tier === 'CLAUSE_VERIFIED'
+                  ? '4. Verified Normative Clause Evidence'
+                  : req.verification_tier === 'CATALOGUE_DISCOVERED'
+                  ? '4. National Catalogue Scope Summary (Unindexed Clause)'
+                  : req.evidence_strength === 'STRONG' && (req.provenance === 'VERIFIED' || req.provenance === 'OFFICIAL_PRIMARY')
                   ? '4. Authoritative Evidence Quote'
                   : '4. Supporting Evidence Quote'}
               </span>
+              {req.verification_tier === 'CATALOGUE_DISCOVERED' && (
+                <div style={{ margin: '0 0 8px 0', padding: '6px 10px', background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '6px', fontSize: '0.76rem', color: '#1e40af' }}>
+                  ℹ <strong>Catalogue Metadata:</strong> The quote below is the official BIS catalogue scope description for {req.candidate_standard}. Full-text clause-level evidence is not indexed in the local repository and technical applicability has not been verified.
+                </div>
+              )}
+              {req.verification_tier === 'CLAUSE_VERIFIED' && (req.clause_number || req.passage_id) && (
+                <div style={{ margin: '0 0 8px 0', padding: '6px 10px', background: '#ecfdf5', border: '1px solid #a7f3d0', borderRadius: '6px', fontSize: '0.76rem', color: '#065f46', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                  {req.clause_number && <span>Clause Reference: <strong>{req.clause_number}</strong></span>}
+                  {req.passage_id && <span>Passage ID: <code>{req.passage_id}</code></span>}
+                  {req.edition_year && <span>Edition Year: <strong>{req.edition_year}</strong></span>}
+                </div>
+              )}
               <blockquote className="drawer-evidence-quote">
                 "{req.evidence_standard && !areStandardsEquivalent(req.candidate_standard, req.evidence_standard)
                   ? 'Match identified from the requirement context; supporting evidence needs review.'

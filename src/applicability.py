@@ -161,8 +161,8 @@ def is_non_engineering_or_abstention_query(text: str) -> bool:
     if not t_low:
         return True
 
-    # 1. Non-engineering administrative, legal, audit, financial
-    if bool(re.search(r'\b(?:audit|audits|auditing|taxation|chartered\s+accountan|gst\s+compliance|internal\s+audit|statutory\s+audit)\b', t_low)):
+    # 1. Non-engineering administrative, legal, audit, financial, commercial conditions
+    if bool(re.search(r'\b(?:audit|audits|auditing|taxation|chartered\s+accountan|gst\s+compliance|internal\s+audit|statutory\s+audit|earnest\s+money|emd\b|pan\s+card|bank\s+guarantee|balance\s+sheets?|financial\s+bid|turnover\s+certificate|experience\s+certificate)\b', t_low)):
         return True
 
     # 2. Commercial office stationery, supplies and consumables
