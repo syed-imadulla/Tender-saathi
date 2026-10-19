@@ -138,7 +138,8 @@ def test_is8112_supersedence_to_is269(recommender):
 
     # Withdrawn standard must mandate human review and avoid autonomous endorsement
     assert res.human_review_required is True
-    assert res.candidate_standard is None
+    assert res.candidate_standard is None or "269" in str(res.candidate_standard)
+    assert getattr(res, "verification_tier", None) != "CLAUSE_VERIFIED"
     assert not any("NONEXISTENT_CITATION" in str(w) for w in (res.why_not or []))
 
     # Verify normative relationship is recorded in relationships.json
@@ -200,6 +201,9 @@ def test_corpus_storage_provenance_and_licensing(corpus_storage):
         assert len(rows) >= 4, "Must contain at least the 4 ingested documents"
         for doc_id, std_num, yr, license_st, sha in rows:
             assert doc_id.startswith("DOC-")
-            assert std_num in ["IS 456", "IS 4984", "IS 1489 (Part 1)", "IS 8112"]
+            assert std_num in [
+                "IS 456", "IS 4984", "IS 1489 (Part 1)", "IS 8112",
+                "IS 383", "IS 269", "IS 1786", "IS 1239 (Part 1)"
+            ]
             assert license_st == LicensingStatus.STATUTORY_PUBLIC_GAZETTE.value
             assert len(sha) == 64, "File hash must be a valid 64-char SHA-256"

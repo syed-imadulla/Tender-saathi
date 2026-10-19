@@ -29,8 +29,8 @@ def run_audit():
     metrics = {
         "audit_timestamp": datetime.now(timezone.utc).isoformat(),
         "repository": "Tender_Saathi",
-        "phase": 29,
-        "evaluation_scope": "End-to-End Validation & Full BIS Coverage Gap Audit",
+        "phase": 30,
+        "evaluation_scope": "Prioritized Normative Corpus Expansion & Evidence Integrity",
     }
 
     # 1. National Catalogue Audit
@@ -180,9 +180,11 @@ def run_audit():
         "active_catalogue_records_with_passages_count": active_in_catalogue_with_passages_count,
         "catalogue_only_active_standards_requiring_evaluation": catalogue_only_active_requiring_evaluation,
         "calculation_method_note": (
-            "In bis_catalogue.db, IS 456 : 2000 has status 'UNKNOWN' and IS 8112 : 2013 has status 'WITHDRAWN'. "
-            "Only IS 4984 : 2016 and IS 1489 (Part 1) : 2015 hold status 'ACTIVE' in bis_catalogue.db. "
-            f"Therefore, active catalogue records lacking normative evidence = 10,828 - 2 = {catalogue_only_active_requiring_evaluation:,}."
+            "In bis_catalogue.db, IS 456 : 2000, IS 1786 : 2008, and IS 1239 (Part 1) : 2004 have status 'UNKNOWN', "
+            "and IS 8112 : 2013 has status 'WITHDRAWN'. "
+            "Four corpus standards hold verified status 'ACTIVE' in bis_catalogue.db: IS 4984 : 2016, IS 1489 (Part 1) : 2015, "
+            "IS 383 : 2016, and IS 269 : 2015. "
+            f"Therefore, active catalogue records lacking normative evidence = 10,828 - 4 = {catalogue_only_active_requiring_evaluation:,}."
         ),
         "curated_to_active_catalogue_ratio": round(curated_total / active_records, 6) if active_records else 0,
         "curated_to_total_catalogue_ratio": round(curated_total / total_catalogue_records, 6) if total_catalogue_records else 0,
@@ -196,12 +198,12 @@ def run_audit():
         json.dump(metrics, f, indent=2)
     print(f"Saved machine-readable metrics to: {json_path}")
 
-    # Generate Markdown Report
-    md_content = f"""# Tender Saathi — Phase 29 Reproducible Coverage-Gap Audit Report
+    # Generate Markdown Report for Phase 30
+    md_content = f"""# Tender Saathi — Phase 30 Prioritized Normative Corpus Expansion & Evidence Integrity Report
 
 **Audit Date:** {metrics['audit_timestamp']}  
 **Repository:** `{metrics['repository']}`  
-**Phase:** 29 (End-to-End Validation & Coverage-Gap Audit)  
+**Phase:** 30 (Prioritized Normative Corpus Expansion & Evidence Integrity)  
 **Evaluator:** Antigravity AI  
 
 ---
@@ -249,21 +251,20 @@ This report establishes the empirical, reproducible coverage statistics across t
 
 ## 3. Critical Verification of Coverage Calculations
 
-### Why `10,828 - 3 = 10,825` Was Incorrect
+### Set Reconciliation Across Databases
 A previous preliminary report stated catalogue-only candidates as $10,828 - 3 = 10,825$. That calculation was **invalid** because it conflated distinct lifecycle definitions across separate databases:
 
 1. **Status of Corpus Standards in `bis_catalogue.db` (`catalogue_standards`):**
-   - `IS 456 : 2000` (`IS-456-2000`): **`status = 'UNKNOWN'`** (one of the 13,024 unverified catalogue records).
-   - `IS 4984 : 2016` (`IS-4984-2016`): **`status = 'ACTIVE'`** (one of the 10,828 active catalogue records).
-   - `IS 1489 (Part 1) : 2015` (`IS-1489-Part-1-2015`): **`status = 'ACTIVE'`** (one of the 10,828 active catalogue records).
-   - `IS 8112 : 2013` (`IS-8112-2013`): **`status = 'WITHDRAWN'`** (one of the 11,340 withdrawn catalogue records).
+   - Four standards are verified **`ACTIVE`**: `IS 4984 : 2016`, `IS 1489 (Part 1) : 2015`, `IS 383 : 2016`, and `IS 269 : 2015`.
+   - Three standards hold **`UNKNOWN`** status in raw catalogue dump: `IS 456 : 2000`, `IS 1786 : 2008`, and `IS 1239 (Part 1) : 2004`.
+   - One standard is **`WITHDRAWN`**: `IS 8112 : 2013` (superseded by active `IS 269 : 2015`).
 2. **Correct Set Reconciliation:**
-   - The intersection between the active national catalogue records (`10,828`) and the ingested corpus standards is **exactly 2 standards** (`IS 4984` and `IS 1489 (Part 1)`).
+   - The intersection between active national catalogue records (`{active_records:,}`) and ingested corpus standards is **{active_in_catalogue_with_passages_count} standards** ({', '.join(active_in_catalogue_with_passages)}).
    - Therefore, the true number of active catalogue records lacking local normative evidence is:
-     $$10,828 - 2 = \\mathbf{{10,826}} \\text{{ records}}$$
+     $${active_records:,} - {active_in_catalogue_with_passages_count} = \\mathbf{{{catalogue_only_active_requiring_evaluation:,}}} \\text{{ records}}$$
 3. **Curated Metadata Comparison:**
-   - In `standards.db` (curated metadata), `IS 456`, `IS 4984`, and `IS 1489 (Part 1)` are all confirmed active (3 out of 78 active curated standards).
-   - Curated active standards lacking normative passages: $78 - 3 = \\mathbf{{75}} \\text{{ standards}}$.
+   - In `standards.db` (curated metadata), 7 out of {curated_active} active standards now have normative passages ({', '.join(curated_active_with_passages)}).
+   - Curated active standards lacking normative passages: ${curated_active} - {curated_active_with_passages_count} = \\mathbf{{{curated_active - curated_active_with_passages_count}}} \\text{{ standards}}$.
 
 ---
 
@@ -340,10 +341,10 @@ python3 scripts/generate_coverage_gap_report.py
 ```
 Outputs are written to:
 - `docs/evaluation/COVERAGE_GAP_METRICS.json`
-- `docs/evaluation/FULL_BIS_COVERAGE_GAP_REPORT_PHASE29.md`
+- `docs/evaluation/PHASE30_CORPUS_EXPANSION_REPORT.md`
 """
 
-    md_path = os.path.join(EVAL_DIR, "FULL_BIS_COVERAGE_GAP_REPORT_PHASE29.md")
+    md_path = os.path.join(EVAL_DIR, "PHASE30_CORPUS_EXPANSION_REPORT.md")
     with open(md_path, "w", encoding="utf-8") as f:
         f.write(md_content)
     print(f"Saved human-readable report to: {md_path}")

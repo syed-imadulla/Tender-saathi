@@ -37,7 +37,7 @@
 | **Superseded Standards** | 0 | Outdated standards identified |
 | **Withdrawn Standards** | 0 | Cancelled standards |
 | **Unknown Lifecycle** | 0 | Unindexed in local catalogue |
-| **Related Standards to Review** | 7 | Discovered via relationship graph (depth=1) |
+| **Related Standards to Review** | 8 | Discovered via relationship graph (depth=1) |
 
 ### Package & Technical Scope Breakdown
 
@@ -64,9 +64,9 @@
 
 ### Standards Ecosystem & Dependency Coverage
 
-- **Normative References:** `5`
+- **Normative References:** `6`
 - **Testing Method Dependencies:** `1`
-- **Installation / Laying Standards:** `3`
+- **Installation / Laying Standards:** `2`
 - **Allied Standards:** `0`
 - **Potential Standard Gaps:** `2`
 - **Verified Standard Gaps:** `0`
@@ -109,17 +109,18 @@
   - Cites normative reference IS 269 : 2015 (Ordinary Portland Cement - Specification (Sixth Revision)).
   - Cites normative reference IS 1489 (Part 1) : 2015 (Portland Pozzolana Cement - Specification: Part 1 Fly Ash Based (Fourth Revision)).
 - **Why Not Alternatives?:**
-  - Alternative standard IS 1786 has lower composite relevance (0.691 vs 1.000).
+  - Alternative standard SP 34 has lower composite relevance (0.672 vs 1.000).
 - **Specification Review Completeness:** `NOT_APPLICABLE`
 - **Related Standards Identified for Review (Graph Depth = 1):**
   - [→ NORMATIVE_REFERENCE] `IS 269 : 2015` — *Ordinary Portland Cement - Specification (Sixth Revision)* (Active) — *Note:* Normative reference cited within primary standard. Review for co-application.
   - [→ NORMATIVE_REFERENCE] `IS 1489 (Part 1) : 2015` — *Portland Pozzolana Cement - Specification: Part 1 Fly Ash Based (Fourth Revision)* (Active) — *Note:* Normative reference cited within primary standard. Review for co-application.
-  - [→ NORMATIVE_REFERENCE] `IS 1786 : 2008` — *High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification* (Active) — *Note:* Normative reference cited within primary standard. Review for co-application.
+  - [→ NORMATIVE_REFERENCE] `IS 1786 : 2008` — *High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification (Fourth Revision)* (Active) — *Note:* Normative reference cited within primary standard. Review for co-application.
+  - [→ NORMATIVE_REFERENCE] `IS 383 : 2016` — *Coarse and Fine Aggregate for Concrete - Specification (Third Revision)* (Active) — *Note:* Normative reference cited within primary standard. Review for co-application.
 - **Standards Dependencies Mapped (4):**
   - [NORMATIVE REFERENCE] `IS 269 : 2015` — *Ordinary Portland Cement - Specification (Sixth Revision)* (IS 269 : 2015 (Ordinary Portland Cement - Specification (Sixth Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456 : 2000. Evidence: Clause 5.1 cites IS 269 for Ordinary Portland Cement in concrete design and production. [Provenance: VERIFIED].)
   - [NORMATIVE REFERENCE] `IS 1489 (Part 1) : 2015` — *Portland Pozzolana Cement - Specification: Part 1 Fly Ash Based (Fourth Revision)* (IS 1489 (Part 1) : 2015 (Portland Pozzolana Cement - Specification: Part 1 Fly Ash Based (Fourth Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456 : 2000. Evidence: Clause 5.1 cites IS 1489 (Part 1) for fly ash based Portland Pozzolana Cement in concrete works. [Provenance: VERIFIED].)
-  - [NORMATIVE REFERENCE] `IS 1786 : 2008` — *High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification* (IS 1786 : 2008 (High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456 : 2000. Evidence: Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement. [Provenance: VERIFIED].)
-  - [INSTALLATION STANDARD] `IS 1661 : 1972` — *Code of Practice for Application of Cement and Cement-Lime Plaster Finishes* ()
+  - [NORMATIVE REFERENCE] `IS 1786 : 2008` — *High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification (Fourth Revision)* (IS 1786 : 2008 (High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification (Fourth Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456 : 2000. Evidence: Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement. [Provenance: VERIFIED].)
+  - [NORMATIVE REFERENCE] `IS 383 : 2016` — *Coarse and Fine Aggregate for Concrete - Specification (Third Revision)* (IS 383 : 2016 (Coarse and Fine Aggregate for Concrete - Specification (Third Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456 : 2000. Evidence: Clause 5.3 Aggregates cites IS 383 for coarse and fine aggregate specifications in concrete works. [Provenance: VERIFIED].)
 - **Regulatory & Statutory Intelligence:** Product Certification: `NOT_IDENTIFIED` | QCO: `NOT_IDENTIFIED` | CRS: `NOT_IDENTIFIED` | Hallmarking: `NOT_APPLICABLE`
 - **Multi-Component Requirement Bundles (2):**
   - **cement** [material] → `IS 1661` (*Code of Practice for Application of Cement and Cement-Lime Plaster Finishes*) [APPLICABLE]

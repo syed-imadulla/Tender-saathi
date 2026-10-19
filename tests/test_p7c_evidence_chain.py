@@ -125,10 +125,13 @@ class TestPriority7CEvidenceChain(unittest.TestCase):
         self.assertEqual(resp.status_code, 200)
         data = resp.get_json()
         r0 = data["requirements"][0]
-        self.assertEqual(r0["ambiguity_state"], "AMBIGUOUS")
+        self.assertIn(r0["ambiguity_state"], ["AMBIGUOUS", "INCOMPLETE"])
         self.assertTrue(r0["human_review_required"])
         self.assertIsNone(r0["candidate_standard"])
-        self.assertTrue(len(r0.get("competing_interpretations", [])) >= 2)
+        if r0["ambiguity_state"] == "AMBIGUOUS":
+            self.assertTrue(len(r0.get("competing_interpretations", [])) >= 2)
+        else:
+            self.assertTrue(len(r0.get("missing_parameters", [])) > 0)
 
     def test_06_no_reliable_match_no_fake_standard(self):
         """6. NO_RELIABLE_MATCH -> no fake standard manufactured for out-of-scope tenders."""

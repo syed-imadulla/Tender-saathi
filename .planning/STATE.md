@@ -1,8 +1,8 @@
 # Tender Saathi — Active Planning State
 
 **Active Milestone**: Milestone: National BIS Catalogue Integration & Multi-Package Tender Auditing  
-**Current Phase**: Phase 29 (`29-end-to-end-validation`)  
-**Phase Position**: Phase 29 Complete (Tasks 1-5 Verified, Vitest 9/9 Tests Passing, Full Backend Pytest Suite Passing, Deterministic E2E Suite 8/8 Passing, Ground Truth Baseline Preserved, Coverage-Gap Audit Published)  
+**Current Phase**: Phase 30 (`30-normative-corpus-expansion`)  
+**Phase Position**: Phase 30 Complete (Tasks 1-5 Verified, Vitest 9/9 Tests Passing, Full Backend Pytest Suite 747/747 Passing, Phase 30 Dedicated Test Suite 14/14 Passing, Ground Truth Baseline Preserved, Normative Corpus Expanded to 8 Documents & 31 Passages)  
 **Working Directory**: `/home/syed-imadulla/Desktop/Tender_Saathi`  
 **Git Head**: `main`
 
@@ -30,27 +30,28 @@
 18. **Phase 27 Multi-Package Tender Auditing & Heterogeneous Scope Verification**: Completed in `.planning/phases/27-multi-package-tender-auditing/27-UAT.md`.
 19. **Phase 28 Interactive Multi-Package Audit UI & Verification Tier Drilldown**: Completed in `.planning/phases/28-interactive-multi-package-audit/28-UAT.md`.
 20. **Phase 29 End-to-End Validation, IS 456 Investigation & Coverage-Gap Audit**: Completed in `.planning/phases/29-end-to-end-validation/29-UAT.md`.
-    - Investigated and resolved the IS 456 integration discrepancy: Fixed grounding logic in `src/corpus/retriever.py` so Case B lexical search recognizes authentic normative clause evidence when `support_state == FULLY_SUPPORTED`. IS 456 now achieves `CLAUSE_VERIFIED` with passage `d966051325cf41c6` (Clause 8.2 / Table 5).
-    - Verified IS 8329 safe abstention: Discovered that IS 8329 has `UNKNOWN` lifecycle status in `bis_catalogue.db` and zero passages in `corpus.db`; Critic rejection and `SAFE_ABSTENTION` tier are confirmed as correct safety behavior.
-    - Implemented deterministic E2E test matrix in `tests/test_e2e_pipeline_validation.py` covering E2E-01 through E2E-08 (100% pass rate).
-    - Produced reproducible coverage gap artifacts: `docs/evaluation/COVERAGE_GAP_METRICS.json` and `docs/evaluation/FULL_BIS_COVERAGE_GAP_REPORT_PHASE29.md` quantifying 35,208 national BIS records, 10,828 active records, 13,024 unknown lifecycle records, 93 curated standards, and reconciled cross-database coverage (10,828 active catalogue records - 2 active with corpus passages = 10,826 catalogue candidates awaiting normative evidence).
-    - Maintained bit-for-bit frozen ground truth checksum: `8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`.
-    - Executed full backend pytest suite (733/733 passing), frontend vitest (9/9), and frontend production build with zero regressions.
+21. **Phase 30 Prioritized Normative Corpus Expansion & Evidence Integrity**: Completed in `.planning/phases/30-normative-corpus-expansion/30-UAT.md`.
+    - Ingested 4 high-priority public procurement standards (`IS 383:2016`, `IS 269:2015`, `IS 1786:2008`, `IS 1239 (Part 1):2004`) with 16 authentic normative clause passages.
+    - Total corpus state expanded to 8 documents and 31 passages; curated standards repository expanded to 96 records (80 active, 16 withdrawn; 7 standards with operative clause text).
+    - Hardened verification gate in `src/recommend.py` to ensure superseded or withdrawn standards (e.g. `IS 8112`) cannot bypass verification even when an active successor (`IS 269`) is present in the corpus.
+    - Updated normative cross-references in `relationships.json` connecting `IS 456` to concrete aggregates (`IS 383`), cement (`IS 269`), and reinforcement steel (`IS 1786`).
+    - Implemented dedicated Phase 30 test suite (`tests/test_phase30_corpus_expansion.py`, 14/14 passed) validating deterministic IDs, duplicate rejection, gate enforcement, and real pipeline retrieval.
+    - Executed full test suites: 747/747 pytest passed, 9/9 vitest passed, frontend build clean, and preserved frozen ground truth checksum `8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`.
 
 ---
 
-## Active Phase Overview: Phase 29
+## Active Phase Overview: Phase 30
 
 | Plan ID | Title | Scope & Target Files | Deliverable | Status |
 |---|---|---|---|---|
-| **29-E2E-VALIDATION** | End-to-End Validation, IS 456 Investigation & Coverage-Gap Audit | `src/corpus/retriever.py`, `api/server.py`, `tests/test_e2e_pipeline_validation.py`, `scripts/generate_coverage_gap_report.py`, `docs/evaluation/COVERAGE_GAP_METRICS.json`, `docs/evaluation/FULL_BIS_COVERAGE_GAP_REPORT_PHASE29.md`, `.planning/phases/29-end-to-end-validation/29-UAT.md` | Root cause resolution for IS 456, deterministic 8-case test matrix, empirical coverage audit across 35,208 BIS records, full verification commands execution, and UAT sign-off. | **Complete** |
+| **30-CORPUS-EXPANSION** | Prioritized Normative Corpus Expansion & Evidence Integrity | `scripts/ingest_normative_standards.py`, `src/recommend.py`, `data/standards/corpus.db`, `data/standards/standards.db`, `data/standards/relationships.json`, `tests/test_phase30_corpus_expansion.py`, `docs/evaluation/PHASE30_CORPUS_EXPANSION_REPORT.md`, `.planning/phases/30-normative-corpus-expansion/30-UAT.md` | Ingestion of 4 priority standards (16 clauses), strict verification gate enforcement, cross-database coverage reconciliation, full test suite passes, and UAT sign-off. | **Complete** |
 
 ---
 
 ## Next Steps (Human Boundary)
 
-1. Review Phase 29 deliverables: `.planning/phases/29-end-to-end-validation/29-UAT.md`, `docs/evaluation/FULL_BIS_COVERAGE_GAP_REPORT_PHASE29.md`, and `docs/evaluation/COVERAGE_GAP_METRICS.json`.
-2. Plan Phase 30: Priority-Driven Normative Evidence Ingestion & Quality-Grounded Verification, prioritizing high-frequency tender procurement domains, cryptographic BIS publication provenance, and operative clause precision rather than arbitrary document quotas.
-3. Maintain zero clause fabrication invariants and read-only access to `bis_catalogue.db` and frozen ground-truth datasets.
+1. Review Phase 30 deliverables: `.planning/phases/30-normative-corpus-expansion/30-UAT.md`, `docs/evaluation/PHASE30_CORPUS_EXPANSION_REPORT.md`, and `docs/evaluation/COVERAGE_GAP_METRICS.json`.
+2. Plan Phase 31: Advanced Compound Requirement Adjudication & Multi-Standard Verification, extending verification support to multi-specification clauses (e.g., TMT steel grade Fe 500D per IS 1786 + special ductility requirements, composite piping manifolds).
+3. Continue strict zero-fabrication invariants and read-only preservation of frozen ground-truth data.
 
 

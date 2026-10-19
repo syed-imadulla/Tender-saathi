@@ -86,7 +86,7 @@
   - Provenance established via Tender Document (VERIFIED).
   - Official code of practice associated with IS 7634 (Part 3) : 2003.
 - **Why Not Alternatives?:**
-  - Alternative standard SP 57 (QAWSM) has lower composite relevance (0.560 vs 1.000).
+  - Alternative standard SP 57 (QAWSM) has lower composite relevance (0.553 vs 1.000).
   - Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification.
 - **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
 - **Related Standards Identified for Review (Graph Depth = 1):**
@@ -111,7 +111,7 @@
 - **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `High`
 - **Human Review Decision:** **ACCEPT**
 - **Reviewer Note:** "Verified by procurement officer"
-- **Decision Recorded:** `2026-10-19T06:08:42.728511+00:00`
+- **Decision Recorded:** `2026-10-19T07:02:57.206290+00:00`
 
 ---
 
@@ -134,4 +134,4 @@ TenderSaathi is a standards-review aid for procurement specifications. Final app
 
 | # | Requirement ID | Original System Finding | Human Decision | Reviewer Standard | Reviewer Note | Reviewed Timestamp |
 |---|---|---|---|---|---|---|
-| 1 | `SAMPLE-CPVC-R001` | Authoritative active standard IS 15778 : 2007 verified against scope with High confidence. | **ACCEPT** | `—` | Verified by procurement officer | 2026-10-19T06:08:42.728511+00:00 |
+| 1 | `SAMPLE-CPVC-R001` | Authoritative active standard IS 15778 : 2007 verified against scope with High confidence. | **ACCEPT** | `—` | Verified by procurement officer | 2026-10-19T07:02:57.206290+00:00 |

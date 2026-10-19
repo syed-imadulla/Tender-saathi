@@ -50,7 +50,7 @@
       "Withdrawn": 0,
       "Unknown": 0
     },
-    "related_standards_count": 7,
+    "related_standards_count": 8,
     "review_queue": [
       {
         "requirement_id": "E-01",
@@ -76,19 +76,19 @@
     ],
     "readiness_note": "Deterministic, evidence-backed standards review audit for procurement officers. Does NOT constitute legal compliance certification.",
     "dependency_count": 9,
-    "normative_reference_count": 5,
+    "normative_reference_count": 6,
     "allied_standard_count": 0,
     "test_standard_count": 1,
-    "installation_standard_count": 3,
+    "installation_standard_count": 2,
     "verified_missing_count": 0,
     "potentially_missing_count": 2,
-    "related_for_review_count": 5,
+    "related_for_review_count": 6,
     "standards_coverage": {
       "direct_standards_identified": 2,
       "total_dependencies": 9,
-      "normative_references": 5,
+      "normative_references": 6,
       "testing_dependencies": 1,
-      "installation_dependencies": 3,
+      "installation_dependencies": 2,
       "allied_standards": 0,
       "covered_in_tender": 0,
       "potential_gaps": 2,
@@ -98,7 +98,7 @@
     "gap_summary": {
       "verified_missing_count": 0,
       "potentially_missing_count": 2,
-      "related_for_review_count": 5
+      "related_for_review_count": 6
     },
     "certification_checks": 2,
     "qco_checks": 2,
@@ -265,7 +265,7 @@
               "raw_record_ref": "IS 456",
               "ingestion_run_id": null,
               "verification_status": "VERIFIED",
-              "retrieved_at": "2026-10-18T18:30:28.134133+00:00"
+              "retrieved_at": "2026-10-19T06:38:13.023782+00:00"
             },
             "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
             "human_review_required": false,
@@ -412,7 +412,7 @@
           "raw_record_ref": "IS 456",
           "ingestion_run_id": null,
           "verification_status": "VERIFIED",
-          "retrieved_at": "2026-10-18T18:30:28.134133+00:00"
+          "retrieved_at": "2026-10-19T06:38:13.023782+00:00"
         },
         "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
         "human_review_required": false,
@@ -601,7 +601,7 @@
               "raw_record_ref": "IS 456",
               "ingestion_run_id": null,
               "verification_status": "VERIFIED",
-              "retrieved_at": "2026-10-18T18:30:28.134133+00:00"
+              "retrieved_at": "2026-10-19T06:38:13.023782+00:00"
             },
             "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
             "human_review_required": false,
@@ -753,7 +753,7 @@
                 "raw_record_ref": "IS 456",
                 "ingestion_run_id": null,
                 "verification_status": "VERIFIED",
-                "retrieved_at": "2026-10-18T18:30:28.134133+00:00"
+                "retrieved_at": "2026-10-19T06:38:13.023782+00:00"
               },
               "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
               "human_review_required": false,
@@ -932,7 +932,7 @@
                 "raw_record_ref": "IS 456",
                 "ingestion_run_id": null,
                 "verification_status": "VERIFIED",
-                "retrieved_at": "2026-10-18T18:30:28.134133+00:00"
+                "retrieved_at": "2026-10-19T06:38:13.023782+00:00"
               },
               "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
               "human_review_required": false,
@@ -1035,7 +1035,7 @@
                 "raw_record_ref": "IS 456",
                 "ingestion_run_id": null,
                 "verification_status": "VERIFIED",
-                "retrieved_at": "2026-10-18T18:30:28.134133+00:00"
+                "retrieved_at": "2026-10-19T06:38:13.023782+00:00"
               },
               "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
               "human_review_required": false,
@@ -1305,7 +1305,7 @@
         "Cites normative reference IS 1489 (Part 1) : 2015 (Portland Pozzolana Cement - Specification: Part 1 Fly Ash Based (Fourth Revision))."
       ],
       "why_not": [
-        "Alternative standard IS 1786 has lower composite relevance (0.691 vs 1.000)."
+        "Alternative standard SP 34 has lower composite relevance (0.672 vs 1.000)."
       ],
       "completeness_label": "NOT_APPLICABLE",
       "potentially_missing_parameters": [],
@@ -1337,13 +1337,25 @@
         },
         {
           "standard_number": "IS 1786 : 2008",
-          "title": "High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification",
+          "title": "High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification (Fourth Revision)",
           "relationship_type": "NORMATIVE_REFERENCE",
           "direction": "OUTGOING",
           "lifecycle_status": "Active",
           "provenance": "VERIFIED",
           "evidence_strength": "MODERATE",
           "evidence_text": "Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement.",
+          "source_url": "https://standardsbis.bsbedge.com",
+          "review_note": "Normative reference cited within primary standard. Review for co-application."
+        },
+        {
+          "standard_number": "IS 383 : 2016",
+          "title": "Coarse and Fine Aggregate for Concrete - Specification (Third Revision)",
+          "relationship_type": "NORMATIVE_REFERENCE",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Active",
+          "provenance": "VERIFIED",
+          "evidence_strength": "MODERATE",
+          "evidence_text": "Clause 5.3 Aggregates cites IS 383 for coarse and fine aggregate specifications in concrete works.",
           "source_url": "https://standardsbis.bsbedge.com",
           "review_note": "Normative reference cited within primary standard. Review for co-application."
         }
@@ -1404,7 +1416,7 @@
         },
         {
           "standard_number": "IS 1786 : 2008",
-          "title": "High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification",
+          "title": "High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification (Fourth Revision)",
           "relationship_type": "NORMATIVE_REFERENCE",
           "dependency_status": "NORMATIVE_DEPENDENCY",
           "direction": "OUTGOING",
@@ -1414,7 +1426,7 @@
           "evidence_text": "Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement.",
           "source": "SQLITE_DB",
           "confidence": 1.0,
-          "why_related": "IS 1786 : 2008 (High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456 : 2000. Evidence: Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement. [Provenance: VERIFIED].",
+          "why_related": "IS 1786 : 2008 (High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification (Fourth Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456 : 2000. Evidence: Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement. [Provenance: VERIFIED].",
           "functional_category": "normative",
           "is_applicable_to_requirement": true,
           "applicability_decision": "APPLICABLE",
@@ -1422,18 +1434,29 @@
           "evidence": "Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement.",
           "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
           "applicability_assessment": "REVIEW_REQUIRED",
-          "explanation": "IS 1786 : 2008 (High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456 : 2000. Evidence: Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement. [Provenance: VERIFIED]."
+          "explanation": "IS 1786 : 2008 (High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification (Fourth Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456 : 2000. Evidence: Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement. [Provenance: VERIFIED]."
         },
         {
-          "standard_number": "IS 1661 : 1972",
-          "title": "Code of Practice for Application of Cement and Cement-Lime Plaster Finishes",
-          "relationship_type": "INSTALLATION_STANDARD",
-          "dependency_status": "INSTALLATION_DEPENDENCY",
-          "functional_category": "installation",
-          "evidence": "Exact Match: IS 1661 is the national standard governing execution, surface preparation, mortar mix proportions, and curing of cement plastering repairs.",
-          "is_satisfied": false,
-          "context_applicability": "APPLICABLE",
-          "provenance": "CURATED"
+          "standard_number": "IS 383 : 2016",
+          "title": "Coarse and Fine Aggregate for Concrete - Specification (Third Revision)",
+          "relationship_type": "NORMATIVE_REFERENCE",
+          "dependency_status": "NORMATIVE_DEPENDENCY",
+          "direction": "OUTGOING",
+          "lifecycle_status": "Active",
+          "provenance": "VERIFIED",
+          "evidence_strength": "STRONG",
+          "evidence_text": "Clause 5.3 Aggregates cites IS 383 for coarse and fine aggregate specifications in concrete works.",
+          "source": "SQLITE_DB",
+          "confidence": 1.0,
+          "why_related": "IS 383 : 2016 (Coarse and Fine Aggregate for Concrete - Specification (Third Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456 : 2000. Evidence: Clause 5.3 Aggregates cites IS 383 for coarse and fine aggregate specifications in concrete works. [Provenance: VERIFIED].",
+          "functional_category": "normative",
+          "is_applicable_to_requirement": true,
+          "applicability_decision": "APPLICABLE",
+          "dependency_state": "NORMATIVE_DEPENDENCY",
+          "evidence": "Clause 5.3 Aggregates cites IS 383 for coarse and fine aggregate specifications in concrete works.",
+          "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+          "applicability_assessment": "REVIEW_REQUIRED",
+          "explanation": "IS 383 : 2016 (Coarse and Fine Aggregate for Concrete - Specification (Third Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456 : 2000. Evidence: Clause 5.3 Aggregates cites IS 383 for coarse and fine aggregate specifications in concrete works. [Provenance: VERIFIED]."
         }
       ],
       "regulatory": {
@@ -1564,13 +1587,13 @@
           "candidate_standard": "IS 456",
           "title": "Plain and Reinforced Concrete - Code of Practice (Fourth Revision)",
           "confidence": "Medium",
-          "relevance_score": 0.585,
+          "relevance_score": 0.716,
           "evidence": "1.1 This standard deals with the general structural use of plain and reinforced concrete. Plain concrete structures are those in which no reinforcement is provided or not considered in design. Covers cementitious materia...",
           "applicability_decision": "APPLICABLE",
           "dependencies": {
             "primary_standard": "IS 456",
             "primary_title": "Plain and Reinforced Concrete - Code of Practice (Fourth Revision)",
-            "total_dependencies": 3,
+            "total_dependencies": 4,
             "normative_references": [
               {
                 "standard_number": "IS 269 : 2015",
@@ -1618,7 +1641,7 @@
               },
               {
                 "standard_number": "IS 1786 : 2008",
-                "title": "High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification",
+                "title": "High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification (Fourth Revision)",
                 "relationship_type": "NORMATIVE_REFERENCE",
                 "dependency_status": "NORMATIVE_DEPENDENCY",
                 "direction": "OUTGOING",
@@ -1628,7 +1651,7 @@
                 "evidence_text": "Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement.",
                 "source": "SQLITE_DB",
                 "confidence": 1.0,
-                "why_related": "IS 1786 : 2008 (High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456. Evidence: Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement. [Provenance: VERIFIED].",
+                "why_related": "IS 1786 : 2008 (High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification (Fourth Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456. Evidence: Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement. [Provenance: VERIFIED].",
                 "functional_category": "normative",
                 "is_applicable_to_requirement": true,
                 "applicability_decision": "APPLICABLE",
@@ -1636,7 +1659,29 @@
                 "evidence": "Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement.",
                 "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
                 "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 1786 : 2008 (High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456. Evidence: Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement. [Provenance: VERIFIED]."
+                "explanation": "IS 1786 : 2008 (High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification (Fourth Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456. Evidence: Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement. [Provenance: VERIFIED]."
+              },
+              {
+                "standard_number": "IS 383 : 2016",
+                "title": "Coarse and Fine Aggregate for Concrete - Specification (Third Revision)",
+                "relationship_type": "NORMATIVE_REFERENCE",
+                "dependency_status": "NORMATIVE_DEPENDENCY",
+                "direction": "OUTGOING",
+                "lifecycle_status": "Active",
+                "provenance": "VERIFIED",
+                "evidence_strength": "STRONG",
+                "evidence_text": "Clause 5.3 Aggregates cites IS 383 for coarse and fine aggregate specifications in concrete works.",
+                "source": "SQLITE_DB",
+                "confidence": 1.0,
+                "why_related": "IS 383 : 2016 (Coarse and Fine Aggregate for Concrete - Specification (Third Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456. Evidence: Clause 5.3 Aggregates cites IS 383 for coarse and fine aggregate specifications in concrete works. [Provenance: VERIFIED].",
+                "functional_category": "normative",
+                "is_applicable_to_requirement": true,
+                "applicability_decision": "APPLICABLE",
+                "dependency_state": "NORMATIVE_DEPENDENCY",
+                "evidence": "Clause 5.3 Aggregates cites IS 383 for coarse and fine aggregate specifications in concrete works.",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 383 : 2016 (Coarse and Fine Aggregate for Concrete - Specification (Third Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456. Evidence: Clause 5.3 Aggregates cites IS 383 for coarse and fine aggregate specifications in concrete works. [Provenance: VERIFIED]."
               }
             ],
             "test_methods": [],
@@ -1696,7 +1741,7 @@
               },
               {
                 "standard_number": "IS 1786 : 2008",
-                "title": "High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification",
+                "title": "High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification (Fourth Revision)",
                 "relationship_type": "NORMATIVE_REFERENCE",
                 "dependency_status": "NORMATIVE_DEPENDENCY",
                 "direction": "OUTGOING",
@@ -1706,7 +1751,7 @@
                 "evidence_text": "Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement.",
                 "source": "SQLITE_DB",
                 "confidence": 1.0,
-                "why_related": "IS 1786 : 2008 (High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456. Evidence: Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement. [Provenance: VERIFIED].",
+                "why_related": "IS 1786 : 2008 (High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification (Fourth Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456. Evidence: Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement. [Provenance: VERIFIED].",
                 "functional_category": "normative",
                 "is_applicable_to_requirement": true,
                 "applicability_decision": "APPLICABLE",
@@ -1714,7 +1759,29 @@
                 "evidence": "Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement.",
                 "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
                 "applicability_assessment": "REVIEW_REQUIRED",
-                "explanation": "IS 1786 : 2008 (High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456. Evidence: Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement. [Provenance: VERIFIED]."
+                "explanation": "IS 1786 : 2008 (High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification (Fourth Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456. Evidence: Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement. [Provenance: VERIFIED]."
+              },
+              {
+                "standard_number": "IS 383 : 2016",
+                "title": "Coarse and Fine Aggregate for Concrete - Specification (Third Revision)",
+                "relationship_type": "NORMATIVE_REFERENCE",
+                "dependency_status": "NORMATIVE_DEPENDENCY",
+                "direction": "OUTGOING",
+                "lifecycle_status": "Active",
+                "provenance": "VERIFIED",
+                "evidence_strength": "STRONG",
+                "evidence_text": "Clause 5.3 Aggregates cites IS 383 for coarse and fine aggregate specifications in concrete works.",
+                "source": "SQLITE_DB",
+                "confidence": 1.0,
+                "why_related": "IS 383 : 2016 (Coarse and Fine Aggregate for Concrete - Specification (Third Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456. Evidence: Clause 5.3 Aggregates cites IS 383 for coarse and fine aggregate specifications in concrete works. [Provenance: VERIFIED].",
+                "functional_category": "normative",
+                "is_applicable_to_requirement": true,
+                "applicability_decision": "APPLICABLE",
+                "dependency_state": "NORMATIVE_DEPENDENCY",
+                "evidence": "Clause 5.3 Aggregates cites IS 383 for coarse and fine aggregate specifications in concrete works.",
+                "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
+                "applicability_assessment": "REVIEW_REQUIRED",
+                "explanation": "IS 383 : 2016 (Coarse and Fine Aggregate for Concrete - Specification (Third Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 456. Evidence: Clause 5.3 Aggregates cites IS 383 for coarse and fine aggregate specifications in concrete works. [Provenance: VERIFIED]."
               }
             ],
             "lifecycle_warnings": [],

@@ -742,7 +742,7 @@
         "Official code of practice associated with IS 7634 (Part 3) : 2003."
       ],
       "why_not": [
-        "Alternative standard SP 57 (QAWSM) has lower composite relevance (0.560 vs 1.000).",
+        "Alternative standard SP 57 (QAWSM) has lower composite relevance (0.553 vs 1.000).",
         "Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification."
       ],
       "completeness_label": "POTENTIALLY_MISSING",
@@ -992,7 +992,7 @@
         "decision": "ACCEPT",
         "reviewer_standard": null,
         "reviewer_note": "Verified by procurement officer",
-        "reviewed_at": "2026-10-19T06:08:42.728511+00:00",
+        "reviewed_at": "2026-10-19T07:02:57.206290+00:00",
         "system_standard": "IS 15778 : 2007",
         "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
       },
@@ -1349,7 +1349,7 @@
       "decision": "ACCEPT",
       "reviewer_standard": null,
       "reviewer_note": "Verified by procurement officer",
-      "reviewed_at": "2026-10-19T06:08:42.728511+00:00",
+      "reviewed_at": "2026-10-19T07:02:57.206290+00:00",
       "system_standard": "IS 15778 : 2007",
       "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
     }

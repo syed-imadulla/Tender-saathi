@@ -1,8 +1,8 @@
 {
-  "audit_timestamp": "2026-10-19T06:24:12.835504+00:00",
+  "audit_timestamp": "2026-10-19T06:53:29.307066+00:00",
   "repository": "Tender_Saathi",
-  "phase": 29,
-  "evaluation_scope": "End-to-End Validation & Full BIS Coverage Gap Audit",
+  "phase": 30,
+  "evaluation_scope": "Prioritized Normative Corpus Expansion & Evidence Integrity",
   "national_bis_catalogue": {
     "database_file": "data/catalogue/bis_catalogue.db",
     "table": "catalogue_standards",
@@ -20,9 +20,9 @@
   "curated_standards_metadata": {
     "database_file": "data/standards/standards.db",
     "table": "standards",
-    "total_records": 93,
-    "active_records": 78,
-    "withdrawn_records": 15
+    "total_records": 96,
+    "active_records": 80,
+    "withdrawn_records": 16
   },
   "normative_evidence_corpus": {
     "database_file": "data/standards/corpus.db",
@@ -30,17 +30,25 @@
       "corpus_documents",
       "corpus_passages"
     ],
-    "total_documents": 4,
-    "total_passages": 15,
+    "total_documents": 8,
+    "total_passages": 31,
     "unique_standards_with_passages": [
+      "IS 1239 (Part 1)",
       "IS 1489 (Part 1)",
+      "IS 1786",
+      "IS 269",
+      "IS 383",
       "IS 456",
       "IS 4984",
       "IS 8112"
     ],
-    "unique_standards_count": 4,
+    "unique_standards_count": 8,
     "passages_per_standard": {
+      "IS 1239 (Part 1)": 4,
       "IS 1489 (Part 1)": 4,
+      "IS 1786": 4,
+      "IS 269": 4,
+      "IS 383": 4,
       "IS 456": 5,
       "IS 4984": 5,
       "IS 8112": 1
@@ -73,6 +81,34 @@
         "year": 2013,
         "catalogue_status": "WITHDRAWN",
         "matches_corpus_edition": true
+      },
+      "IS 383": {
+        "canonical_id": "IS-383-2016",
+        "standard_number": "IS 383 : 2016",
+        "year": 2016,
+        "catalogue_status": "ACTIVE",
+        "matches_corpus_edition": true
+      },
+      "IS 269": {
+        "canonical_id": "IS-269-2015",
+        "standard_number": "IS 269 : 2015",
+        "year": 2015,
+        "catalogue_status": "ACTIVE",
+        "matches_corpus_edition": true
+      },
+      "IS 1786": {
+        "canonical_id": "IS-1786-2008",
+        "standard_number": "IS 1786 : 2008",
+        "year": 2008,
+        "catalogue_status": "UNKNOWN",
+        "matches_corpus_edition": true
+      },
+      "IS 1239 (Part 1)": {
+        "canonical_id": "IS-1239-Part-1-2004",
+        "standard_number": "IS 1239 (Part 1) : 2004",
+        "year": 2004,
+        "catalogue_status": "UNKNOWN",
+        "matches_corpus_edition": true
       }
     },
     "documents": [
@@ -103,32 +139,70 @@
         "edition_year": 2013,
         "title": "Ordinary Portland Cement, 43 Grade - Specification (Second Revision)",
         "passages_count": 1
+      },
+      {
+        "doc_id": "DOC-IS-383-2016",
+        "standard_number": "IS 383",
+        "edition_year": 2016,
+        "title": "Coarse and Fine Aggregate for Concrete - Specification (Third Revision)",
+        "passages_count": 4
+      },
+      {
+        "doc_id": "DOC-IS-269-2015",
+        "standard_number": "IS 269",
+        "edition_year": 2015,
+        "title": "Ordinary Portland Cement - Specification (Sixth Revision)",
+        "passages_count": 4
+      },
+      {
+        "doc_id": "DOC-IS-1786-2008",
+        "standard_number": "IS 1786",
+        "edition_year": 2008,
+        "title": "High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification (Fourth Revision)",
+        "passages_count": 4
+      },
+      {
+        "doc_id": "DOC-IS-1239-Part-1-2004",
+        "standard_number": "IS 1239 (Part 1)",
+        "edition_year": 2004,
+        "title": "Steel Tubes, Tubulars and Other Wrought Steel Fittings - Part 1: Steel Tubes (Sixth Revision)",
+        "passages_count": 4
       }
     ]
   },
   "coverage_ratios_and_gaps": {
     "standards_in_corpus": [
+      "IS 1239 (Part 1)",
       "IS 1489 (Part 1)",
+      "IS 1786",
+      "IS 269",
+      "IS 383",
       "IS 456",
       "IS 4984",
       "IS 8112"
     ],
     "curated_active_standards_with_passages": [
+      "IS 1239 (Part 1)",
       "IS 1489 (Part 1)",
+      "IS 1786",
+      "IS 269",
+      "IS 383",
       "IS 456",
       "IS 4984"
     ],
-    "curated_active_with_passages_count": 3,
+    "curated_active_with_passages_count": 7,
     "active_catalogue_records_with_passages": [
       "IS 4984",
-      "IS 1489 (Part 1)"
+      "IS 1489 (Part 1)",
+      "IS 383",
+      "IS 269"
     ],
-    "active_catalogue_records_with_passages_count": 2,
-    "catalogue_only_active_standards_requiring_evaluation": 10826,
-    "calculation_method_note": "In bis_catalogue.db, IS 456 : 2000 has status 'UNKNOWN' and IS 8112 : 2013 has status 'WITHDRAWN'. Only IS 4984 : 2016 and IS 1489 (Part 1) : 2015 hold status 'ACTIVE' in bis_catalogue.db. Therefore, active catalogue records lacking normative evidence = 10,828 - 2 = 10,826.",
-    "curated_to_active_catalogue_ratio": 0.008589,
-    "curated_to_total_catalogue_ratio": 0.002641,
-    "clause_verified_to_active_catalogue_ratio": 0.000185,
-    "clause_verified_to_total_catalogue_ratio": 5.7e-05
+    "active_catalogue_records_with_passages_count": 4,
+    "catalogue_only_active_standards_requiring_evaluation": 10824,
+    "calculation_method_note": "In bis_catalogue.db, IS 456 : 2000, IS 1786 : 2008, and IS 1239 (Part 1) : 2004 have status 'UNKNOWN', and IS 8112 : 2013 has status 'WITHDRAWN'. Four corpus standards hold verified status 'ACTIVE' in bis_catalogue.db: IS 4984 : 2016, IS 1489 (Part 1) : 2015, IS 383 : 2016, and IS 269 : 2015. Therefore, active catalogue records lacking normative evidence = 10,828 - 4 = 10,824.",
+    "curated_to_active_catalogue_ratio": 0.008866,
+    "curated_to_total_catalogue_ratio": 0.002727,
+    "clause_verified_to_active_catalogue_ratio": 0.000369,
+    "clause_verified_to_total_catalogue_ratio": 0.000114
   }
 }

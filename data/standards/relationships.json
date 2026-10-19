@@ -691,5 +691,14 @@
     "evidence_source": "BIS_OFFICIAL_GAZETTE",
     "provenance": "VERIFIED",
     "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 456 : 2000",
+    "target_standard": "IS 383 : 2016",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 5.3 Aggregates cites IS 383 for coarse and fine aggregate specifications in concrete works.",
+    "evidence_source": "BIS_OFFICIAL_GAZETTE",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
   }
 ]

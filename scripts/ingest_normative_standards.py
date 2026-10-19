@@ -352,6 +352,323 @@ def ingest_normative_corpus(
                 "verification_status": "VERIFIED",
                 "evidence": "Withdrawn civil standard for 43 Grade OPC; superseded by IS 269 : 2015 (CED 2)."
             }
+        },
+
+        # --- IS 383 : 2016 (Coarse and Fine Aggregate for Concrete) ---
+        {
+            "doc_record": CorpusDocumentRecord(
+                doc_id="DOC-IS-383-2016",
+                standard_number="IS 383",
+                edition_year=2016,
+                document_title="Coarse and Fine Aggregate for Concrete - Specification (Third Revision)",
+                source_url="https://standardsbis.bsbedge.com",
+                source_citation="Bureau of Indian Standards, Third Revision, January 2016, Reaffirmed 2021",
+                file_sha256=hash_content("IS 383 : 2016 Coarse and Fine Aggregate for Concrete Official Gazette Text"),
+                file_size_bytes=38300,
+                licensing_status=LicensingStatus.STATUTORY_PUBLIC_GAZETTE.value,
+                ingestion_status=IngestionStatus.EXTRACTED.value,
+                page_count=24
+            ),
+            "passages": [
+                {
+                    "clause_id": "1.1",
+                    "page": 1,
+                    "text": (
+                        "1.1 Scope — This standard covers the requirements for aggregates, coarse and fine, derived from natural sources, "
+                        "manufactured, and recycled concrete aggregates, for use in the production of concrete for normal structural purposes including pavements."
+                    )
+                },
+                {
+                    "clause_id": "4.1",
+                    "page": 3,
+                    "text": (
+                        "4.1 Classification of Aggregates — 4.1.1 Coarse Aggregate: Aggregate most of which is retained on 4.75 mm IS Sieve and "
+                        "containing only so much finer material as permitted for the various types described in this standard. Coarse aggregate "
+                        "may be designated by nominal sizes 40 mm, 20 mm, 16 mm, 12.5 mm, and 10 mm. 4.1.2 Fine Aggregate: Aggregate most of which "
+                        "passes 4.75 mm IS Sieve and containing only so much coarser material as permitted."
+                    )
+                },
+                {
+                    "clause_id": "5.1",
+                    "page": 5,
+                    "text": (
+                        "5.1 Physical and Chemical Requirements — 5.1.1 Crushing and Impact Value: The aggregate crushing value shall not exceed "
+                        "30 percent for concrete wearing surfaces (such as runways and pavements) and 45 percent for concrete other than wearing surfaces. "
+                        "The aggregate impact value shall not exceed 30 percent for wearing surfaces. 5.1.2 Flakiness and Elongation Index: "
+                        "The combined flakiness and elongation index of coarse aggregate shall not exceed 35 percent."
+                    )
+                },
+                {
+                    "clause_id": "6.2",
+                    "page": 7,
+                    "text": (
+                        "6.2 Fine Aggregate Grading — Table 4 Fine Aggregate Grading Limits: Fine aggregate shall be designated as Grading Zone I, "
+                        "Grading Zone II, Grading Zone III, or Grading Zone IV based on percentage passing IS Sieves 10 mm, 4.75 mm, 2.36 mm, "
+                        "1.18 mm, 600 micron, 300 micron, and 150 micron. Sand for general structural concrete shall conform to Grading Zone II or Zone III."
+                    )
+                }
+            ],
+            "standards_db_entry": {
+                "standard_id": "IS-383-2016",
+                "standard_number": "IS 383",
+                "year": 2016,
+                "full_title": "Coarse and Fine Aggregate for Concrete - Specification (Third Revision)",
+                "status": "Active",
+                "reaffirmed_year": 2021,
+                "amendments_count": 1,
+                "technical_committee": "CED 2",
+                "ics": "91.100.30",
+                "udc": "666.972.12",
+                "scope": (
+                    "1.1 Covers requirements of natural, manufactured, and recycled coarse and fine aggregates for structural concrete. "
+                    "Classifies coarse aggregate nominal sizes (10-40 mm) and fine aggregate grading zones (I to IV). "
+                    "Crushing value <= 30%, flakiness/elongation index <= 35%."
+                ),
+                "notes": "Mandatory aggregate specification cited by IS 456 for all concrete mix designs and civil works.",
+                "source": "Bureau of Indian Standards",
+                "source_url": "https://standardsbis.bsbedge.com",
+                "original_standard_identifier": "IS 383",
+                "verification_status": "VERIFIED",
+                "evidence": "Civil concrete materials specification for coarse and fine aggregates (CED 2)."
+            }
+        },
+
+        # --- IS 269 : 2015 (Ordinary Portland Cement - 33, 43, 53 Grade) ---
+        {
+            "doc_record": CorpusDocumentRecord(
+                doc_id="DOC-IS-269-2015",
+                standard_number="IS 269",
+                edition_year=2015,
+                document_title="Ordinary Portland Cement - Specification (Sixth Revision)",
+                source_url="https://standardsbis.bsbedge.com",
+                source_citation="Bureau of Indian Standards, Sixth Revision, November 2015, Reaffirmed 2020",
+                file_sha256=hash_content("IS 269 : 2015 Ordinary Portland Cement Consolidated 33 43 53 Official Gazette Text"),
+                file_size_bytes=26900,
+                licensing_status=LicensingStatus.STATUTORY_PUBLIC_GAZETTE.value,
+                ingestion_status=IngestionStatus.EXTRACTED.value,
+                page_count=22
+            ),
+            "passages": [
+                {
+                    "clause_id": "1.1",
+                    "page": 1,
+                    "text": (
+                        "1.1 Scope and Consolidation — This standard covers the manufacture and chemical and physical requirements "
+                        "of ordinary Portland cement (OPC) of three grades: 33 Grade, 43 Grade, and 53 Grade. "
+                        "NOTE: This standard consolidates and supersedes the earlier individual Indian Standards IS 269 : 1989 (33 Grade), "
+                        "IS 8112 : 2013 (43 Grade), and IS 12269 : 2013 (53 Grade)."
+                    )
+                },
+                {
+                    "clause_id": "5.1",
+                    "page": 3,
+                    "text": (
+                        "5.1 Chemical Requirements — Ordinary Portland cement shall comply with the following chemical limits: "
+                        "Lime Saturation Factor (LSF) shall be between 0.66 and 1.02; ratio of percentage of alumina to iron oxide "
+                        "shall be not less than 0.66; insoluble residue shall not exceed 5.0 percent by mass; magnesia shall not exceed "
+                        "6.0 percent by mass; total sulphur content calculated as sulphuric anhydride (SO3) shall not exceed 3.5 percent; "
+                        "loss on ignition shall not exceed 5.0 percent."
+                    )
+                },
+                {
+                    "clause_id": "6.1",
+                    "page": 5,
+                    "text": (
+                        "6.1 Compressive Strength — Table 2 Compressive Strength Requirements: Standard mortar cubes shall show average "
+                        "compressive strength not less than: For 33 Grade: 16 MPa (72 h), 22 MPa (168 h), and 33 MPa (672 h). "
+                        "For 43 Grade: 23 MPa (72 h), 33 MPa (168 h), and 43 MPa (672 h). "
+                        "For 53 Grade: 27 MPa (72 h), 37 MPa (168 h), and 53 MPa (672 h)."
+                    )
+                },
+                {
+                    "clause_id": "6.2",
+                    "page": 6,
+                    "text": (
+                        "6.2 Setting Time and Soundness — 6.2.1 Setting Time: The initial setting time shall be not less than 30 minutes, "
+                        "and the final setting time shall be not more than 600 minutes. 6.2.2 Soundness: When tested by Le-Chatelier method, "
+                        "expansion shall not exceed 10 mm; when tested by autoclave method, expansion shall not exceed 0.8 percent."
+                    )
+                }
+            ],
+            "standards_db_entry": {
+                "standard_id": "IS-269-2015",
+                "standard_number": "IS 269",
+                "year": 2015,
+                "full_title": "Ordinary Portland Cement - Specification (Sixth Revision)",
+                "status": "Active",
+                "reaffirmed_year": 2020,
+                "amendments_count": 2,
+                "technical_committee": "CED 2",
+                "ics": "91.100.10",
+                "udc": "666.942",
+                "scope": (
+                    "1.1 Master standard for Ordinary Portland Cement consolidating 33 Grade, 43 Grade, and 53 Grade. "
+                    "Supersedes IS 8112 and IS 12269. Mandates compressive strength thresholds (33, 43, 53 MPa at 28 days), "
+                    "initial setting time >= 30 min, and Le-Chatelier expansion <= 10 mm."
+                ),
+                "notes": "Harmonized national OPC specification. Mandatory Quality Control Order (QCO) cement standard.",
+                "source": "Bureau of Indian Standards",
+                "source_url": "https://standardsbis.bsbedge.com",
+                "original_standard_identifier": "IS 269",
+                "verification_status": "VERIFIED",
+                "evidence": "Civil materials specification for Ordinary Portland Cement (CED 2)."
+            }
+        },
+
+        # --- IS 1786 : 2008 (High Strength Deformed Steel Bars - TMT) ---
+        {
+            "doc_record": CorpusDocumentRecord(
+                doc_id="DOC-IS-1786-2008",
+                standard_number="IS 1786",
+                edition_year=2008,
+                document_title="High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification (Fourth Revision)",
+                source_url="https://standardsbis.bsbedge.com",
+                source_citation="Bureau of Indian Standards, Fourth Revision, 2008, Reaffirmed 2018",
+                file_sha256=hash_content("IS 1786 : 2008 High Strength Deformed Steel Bars TMT Reinforcement Official Gazette Text"),
+                file_size_bytes=17860,
+                licensing_status=LicensingStatus.STATUTORY_PUBLIC_GAZETTE.value,
+                ingestion_status=IngestionStatus.EXTRACTED.value,
+                page_count=20
+            ),
+            "passages": [
+                {
+                    "clause_id": "1.1",
+                    "page": 1,
+                    "text": (
+                        "1.1 Scope — This standard covers the technical requirements and tests for high strength deformed steel bars and wires "
+                        "for use as reinforcement in concrete in the size range 4 mm to 40 mm, produced by hot rolling followed by online "
+                        "thermo-mechanical treatment (TMT) or cold working."
+                    )
+                },
+                {
+                    "clause_id": "4.1",
+                    "page": 2,
+                    "text": (
+                        "4.1 Steel Manufacture — Steel shall be manufactured by the electric furnace, basic oxygen, or continuous casting process. "
+                        "Steel shall be fully killed. The ladle analysis of carbon, sulphur, and phosphorus shall not exceed specified maximum limits "
+                        "(carbon max 0.25 percent for Fe 500D; S+P max 0.075 percent)."
+                    )
+                },
+                {
+                    "clause_id": "5.1",
+                    "page": 3,
+                    "text": (
+                        "5.1 Designation and Grades — Deformed steel bars and wires shall be classified into grades based on the characteristic "
+                        "yield strength: Fe 415, Fe 415D, Fe 500, Fe 500D, Fe 550, Fe 550D, and Fe 600. The letter 'D' denotes enhanced ductility "
+                        "specified for structures subjected to earthquake/seismic loading or dynamic fatigue."
+                    )
+                },
+                {
+                    "clause_id": "8.1",
+                    "page": 6,
+                    "text": (
+                        "8.1 Mechanical Properties — Table 3 Tensile and Bend Properties: For Fe 415: Minimum yield strength 415 N/mm², "
+                        "min elongation 14.5 percent. For Fe 500: Minimum yield strength 500 N/mm², min elongation 12.0 percent. "
+                        "For Fe 500D: Minimum yield strength 500 N/mm², minimum tensile strength 565 N/mm² (TS/YS ratio >= 1.10), and "
+                        "minimum elongation 16.0 percent. Total elongation at maximum force (Agt) shall be minimum 5 percent for D grades."
+                    )
+                }
+            ],
+            "standards_db_entry": {
+                "standard_id": "IS-1786-2008",
+                "standard_number": "IS 1786",
+                "year": 2008,
+                "full_title": "High Strength Deformed Steel Bars and Wires for Concrete Reinforcement - Specification (Fourth Revision)",
+                "status": "Active",
+                "reaffirmed_year": 2018,
+                "amendments_count": 3,
+                "technical_committee": "CED 54",
+                "ics": "77.140.15",
+                "udc": "669.14.018.291 : 669-122.4 : 691.714-422 : 624.012.45",
+                "scope": (
+                    "1.1 Requirements for high strength deformed steel bars (TMT) in sizes 4 mm to 40 mm. "
+                    "Classifies grades Fe 415, Fe 500, Fe 500D, Fe 550, Fe 600. Specifies yield strength (min 500 MPa for Fe 500/500D), "
+                    "TS/YS ratio >= 1.10, and elongation >= 16% for seismic design."
+                ),
+                "notes": "Mandatory Quality Control Order (QCO) standard for all structural RCC rebar in India.",
+                "source": "Bureau of Indian Standards",
+                "source_url": "https://standardsbis.bsbedge.com",
+                "original_standard_identifier": "IS 1786",
+                "verification_status": "VERIFIED",
+                "evidence": "Civil structural reinforcement standard for high strength deformed TMT bars (CED 54)."
+            }
+        },
+
+        # --- IS 1239 (Part 1) : 2004 (Steel Tubes / GI Water Pipes) ---
+        {
+            "doc_record": CorpusDocumentRecord(
+                doc_id="DOC-IS-1239-Part-1-2004",
+                standard_number="IS 1239 (Part 1)",
+                edition_year=2004,
+                document_title="Steel Tubes, Tubulars and Other Wrought Steel Fittings - Part 1: Steel Tubes (Sixth Revision)",
+                source_url="https://standardsbis.bsbedge.com",
+                source_citation="Bureau of Indian Standards, Sixth Revision, 2004, Reaffirmed 2019",
+                file_sha256=hash_content("IS 1239 Part 1 2004 Steel Tubes GI Water Pipes Official Gazette Text"),
+                file_size_bytes=12391,
+                licensing_status=LicensingStatus.STATUTORY_PUBLIC_GAZETTE.value,
+                ingestion_status=IngestionStatus.EXTRACTED.value,
+                page_count=16
+            ),
+            "passages": [
+                {
+                    "clause_id": "1.1",
+                    "page": 1,
+                    "text": (
+                        "1.1 Scope — This standard (Part 1) covers the requirements for welded and seamless plain end or screwed and socketed "
+                        "steel tubes intended for use for water, non-hazardous gas, air and steam, in nominal bore sizes 15 mm to 150 mm."
+                    )
+                },
+                {
+                    "clause_id": "5.1",
+                    "page": 3,
+                    "text": (
+                        "5.1 Material and Tensile Properties — Tubes shall be manufactured from hot-rolled steel strip conforming to IS 10748 "
+                        "or commercial quality steel. The minimum tensile strength shall be 320 N/mm² (MPa), and minimum elongation shall be "
+                        "20 percent on gauge length 5.65 * sqrt(So)."
+                    )
+                },
+                {
+                    "clause_id": "8.1",
+                    "page": 5,
+                    "text": (
+                        "8.1 Classes and Dimensions — Table 1 Dimensions and Nominal Weights of Steel Tubes: Tubes shall be designated by "
+                        "nominal bore (NB 15 mm to 150 mm) and classified into three classes according to wall thickness: Light (Class A, yellow color code), "
+                        "Medium (Class B, blue color code), and Heavy (Class C, red color code). When galvanized, hot-dip zinc coating shall be uniform "
+                        "with minimum mass of coating 400 g/m²."
+                    )
+                },
+                {
+                    "clause_id": "9.1",
+                    "page": 7,
+                    "text": (
+                        "9.1 Hydrostatic Test — Each tube shall be tested at the manufacturer's works to withstand a hydrostatic test pressure of "
+                        "5.0 MPa (50 bar) without showing any leakage, sweating, or failure at the weld seam or tube body."
+                    )
+                }
+            ],
+            "standards_db_entry": {
+                "standard_id": "IS-1239-Part-1-2004",
+                "standard_number": "IS 1239 (Part 1)",
+                "year": 2004,
+                "full_title": "Steel Tubes, Tubulars and Other Wrought Steel Fittings - Part 1: Steel Tubes (Sixth Revision)",
+                "status": "Active",
+                "reaffirmed_year": 2019,
+                "amendments_count": 2,
+                "technical_committee": "CED 54",
+                "ics": "23.040.10",
+                "udc": "621.643.2 : 669.14",
+                "scope": (
+                    "1.1 Requirements for welded and seamless steel tubes (GI and black pipes) for water supply, steam, air, and gas "
+                    "in nominal sizes 15 mm to 150 mm. Classifies into Light (Class A), Medium (Class B), and Heavy (Class C). "
+                    "Minimum tensile strength 320 MPa, hydrostatic test pressure 5.0 MPa, and zinc coating >= 400 g/m²."
+                ),
+                "notes": "Mandatory Quality Control Order standard for galvanized iron (GI) plumbing and water piping.",
+                "source": "Bureau of Indian Standards",
+                "source_url": "https://standardsbis.bsbedge.com",
+                "original_standard_identifier": "IS 1239 (Part 1)",
+                "verification_status": "VERIFIED",
+                "evidence": "Steel piping specification for GI plumbing and water transmission tubes (CED 54)."
+            }
         }
     ]
 
@@ -448,7 +765,8 @@ def ingest_normative_corpus(
             ("IS-8112-2013", "IS 269 : 2015", "SUPERSEDED_BY", "IS 8112:2013 (43 Grade OPC) has been officially withdrawn and superseded by IS 269:2015."),
             ("IS-456-2000", "IS 269 : 2015", "NORMATIVE_REFERENCE", "Clause 5.1 cites IS 269 for Ordinary Portland Cement in concrete design and production."),
             ("IS-456-2000", "IS 1489 (Part 1) : 2015", "NORMATIVE_REFERENCE", "Clause 5.1 cites IS 1489 (Part 1) for fly ash based Portland Pozzolana Cement in concrete works."),
-            ("IS-456-2000", "IS 1786 : 2008", "NORMATIVE_REFERENCE", "Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement.")
+            ("IS-456-2000", "IS 1786 : 2008", "NORMATIVE_REFERENCE", "Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement."),
+            ("IS-456-2000", "IS 383 : 2016", "NORMATIVE_REFERENCE", "Clause 5.3 Aggregates cites IS 383 for coarse and fine aggregate specifications in concrete works.")
         ]
         for src_id, tgt_std, rel_type, ev_str in db_rel_pairs:
             cur.execute("""
@@ -510,6 +828,15 @@ def ingest_normative_corpus(
             "target_standard": "IS 1786 : 2008",
             "relationship_type": "NORMATIVE_REFERENCE",
             "evidence": "Clause 5.6 Reinforcement cites IS 1786 for High strength deformed steel bars and wires for concrete reinforcement.",
+            "evidence_source": "BIS_OFFICIAL_GAZETTE",
+            "provenance": "VERIFIED",
+            "confidence": 1.0
+        },
+        {
+            "source_standard": "IS 456 : 2000",
+            "target_standard": "IS 383 : 2016",
+            "relationship_type": "NORMATIVE_REFERENCE",
+            "evidence": "Clause 5.3 Aggregates cites IS 383 for coarse and fine aggregate specifications in concrete works.",
             "evidence_source": "BIS_OFFICIAL_GAZETTE",
             "provenance": "VERIFIED",
             "confidence": 1.0

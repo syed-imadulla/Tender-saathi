@@ -1209,8 +1209,19 @@ class StandardsRecommender:
             prefix = "Validated National Catalogue Citation" if is_explicit else "Discovered National Catalogue Standard"
             decision_reason = f"{prefix} (Scope Unindexed): {top_rec.evidence}"
 
-        # Phase 27: Verification tier and exact passage metadata
-        if top_clause_ev and getattr(top_clause_ev, "is_grounded", False) and getattr(top_clause_ev, "passage_text", None):
+        # Phase 27 & 30: Verification tier and exact passage metadata
+        # CLAUSE_VERIFIED requires authentic local normative evidence matching canonical standard, active lifecycle, and no superseded warnings
+        has_lifecycle_or_successor_conflict = bool(
+            superseded_explicit_warnings
+            or (explicit_stds and not any(exp.split(":")[0].strip() in top_rec.standard_number for exp in explicit_stds))
+            or top_rec.status != "Active"
+        )
+        if (
+            top_clause_ev 
+            and getattr(top_clause_ev, "is_grounded", False) 
+            and getattr(top_clause_ev, "passage_text", None)
+            and not has_lifecycle_or_successor_conflict
+        ):
             verification_tier = "CLAUSE_VERIFIED"
             p_sha = getattr(top_clause_ev, "passage_sha256", None)
             doc_id = getattr(top_clause_ev, "document_id", None)
