@@ -1,6 +1,7 @@
 # Graphify Exclusions for Tender Saathi
 
 # Sensitive environment and credentials
+
 .env
 .env.*
 *.secret

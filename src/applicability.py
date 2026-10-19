@@ -692,16 +692,36 @@ class ApplicabilityGate:
                 cand_corpus_low
             ))
         )
+        is_concrete_code_std = (
+            "456" in std_num or
+            bool(re.search(
+                r'\b(?:plain\s+and\s+reinforced\s+concrete|code\s+of\s+practice\s+for\s+plain\s+and\s+reinforced\s+concrete)\b',
+                cand_corpus_low
+            ))
+        )
         has_concrete_reinforcement_req = bool(re.search(
             r'\b(?:rebar|reinforcement|reinforcing|rcc|reinforced\s+concrete|tmt\s+bars?|concrete\s+reinforcing)\b',
             req_text_low
         ))
-        if has_structural_framing_req and is_concrete_reinforcement_std and not has_concrete_reinforcement_req:
+        if has_structural_framing_req and (is_concrete_reinforcement_std or is_concrete_code_std) and not has_concrete_reinforcement_req:
             application_match = False
             conflict_flags.append("APPLICATION_CONFLICT: structural steel framing vs concrete reinforcement standard")
             rejection_reasons.append(
                 "Product/application mismatch: Requirement specifies structural steel framing (roof trusses/purlins/structural steelwork), "
-                "which cannot be satisfied by concrete reinforcement bars/wires (e.g. IS 1786). Applicable standards are IS 800 / IS 2062."
+                "which cannot be satisfied by concrete reinforcement bars/wires (e.g. IS 1786) or concrete codes (e.g. IS 456). Applicable standards are IS 800 / IS 2062."
+            )
+
+        # D3. Industrial Valves vs Pipe Specification Compatibility
+        has_valves_req = bool(re.search(r'\b(?:valve|valves|gate\s+valve|sluice\s+valve|globe\s+valve|check\s+valve|ball\s+valve|butterfly\s+valve)\b', req_text_low))
+        has_pipe_req = bool(re.search(r'\b(?:pipes?|piping|tubes?|conduit|fittings?)\b', req_text_low))
+        is_pipe_only_std = bool(re.search(r'\b(?:pipes?|piping|tubes?)\b', cand_corpus_low)) and not bool(re.search(r'\b(?:valves?)\b', cand_corpus_low))
+        if has_valves_req and not has_pipe_req and is_pipe_only_std:
+            application_match = False
+            product_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: industrial valves vs pipe standard")
+            rejection_reasons.append(
+                f"Product/application mismatch: Requirement specifies industrial valves/flow control equipment, "
+                f"which cannot be satisfied by pipe specification standard ({candidate.standard_number})."
             )
 
         is_storage_tank_std = any(k in cand_corpus_low for k in ["storage tank", "storage tanks", "oil storage", "pressure vessel", "cylindrical welded"])

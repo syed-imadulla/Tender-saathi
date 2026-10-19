@@ -1,8 +1,8 @@
 # Tender Saathi — Active Planning State
 
-**Active Milestone**: Milestone: National BIS Catalogue Integration  
-**Current Phase**: Phase 25 (`25-national-bis-catalogue-metadata-retrieval`)  
-**Phase Position**: Phase 25 Complete (Tasks 1-6 Verified, 708/708 Tests Passing, 0 Regressions)  
+**Active Milestone**: Milestone: National BIS Catalogue Integration & Targeted Normative Evidence Ingestion  
+**Current Phase**: Phase 26 (`26-targeted-normative-evidence-ingestion`)  
+**Phase Position**: Phase 26 Complete (Tasks 1-5 Verified, 717/717 Tests Passing, 0 Regressions)  
 **Working Directory**: `/home/syed-imadulla/Desktop/Tender_Saathi`  
 **Git Head**: `main`
 
@@ -56,20 +56,27 @@
     - Zero clause fabrication: catalogue-only standards flagged `PENDING_TECHNICAL_EVALUATION` with `human_review_required: True`.
     - 14/14 Phase 25 tests passing (`tests/test_national_catalogue_retrieval.py`).
     - Full suite passing (708/708 tests), frontend build passing (1.97s), ground-truth SHA-256 intact.
+17. **Phase 26 Targeted Normative Evidence Ingestion**: Completed in `.planning/phases/26-targeted-normative-evidence-ingestion/26-UAT.md`.
+    - High-value standards batch ingested: `IS 456 : 2000`, `IS 4984 : 2016`, `IS 1489 (Part 1) : 2015`, and supersedence links for `IS 8112 : 2013` -> `IS 269 : 2015`.
+    - Ingested 4 documents and 15 normative clause passages into `data/standards/corpus.db` with lawful fair-use citations.
+    - Expanded `standards.db` from 90 to 93 standards with rich clause evidence.
+    - Rebuffed cross-domain leakage (pipe vs valve and structural framing vs concrete).
+    - 9/9 Phase 26 tests passing (`tests/test_targeted_normative_ingestion.py`).
+    - Full suite passing (717/717 tests in 144s), clean frontend production build (1.85s), ground-truth SHA-256 unchanged (`8bcc9bc5...`).
 
 ---
 
-## Active Phase Overview: Phase 25
+## Active Phase Overview: Phase 26
 
 | Plan ID | Title | Scope & Target Files | Deliverable | Status |
 |---|---|---|---|---|
-| **25-CAT-RET** | National BIS Catalogue Metadata Retrieval | `scripts/build_catalogue_search_index.py`, `src/catalogue/search.py`, `src/retrieval.py`, `src/recommend.py`, `src/applicability.py`, `src/decompose.py`, `tests/test_national_catalogue_retrieval.py` | Offline FTS5 index generator, search engine, two-tier cascade, strict safeguards, 14-test matrix, UAT verification report. | **Complete** |
+| **26-NORM-INGEST** | Targeted Normative Evidence Ingestion | `scripts/ingest_normative_standards.py`, `src/recommend.py`, `src/applicability.py`, `data/standards/corpus.db`, `data/standards/standards.db`, `data/standards/relationships.json`, `tests/test_targeted_normative_ingestion.py` | Lawful normative excerpts ingestion CLI, database synchronization, domain conflict gates, 9-test matrix, UAT verification report. | **Complete** |
 
 ---
 
 ## Next Steps (Human Boundary)
 
-1. Proceed to Phase 26 (Phase 3 of Gap Analysis): Targeted Normative Corpus Ingestion & Automated Clause Indexing for frequent high-volume procurement standards discovered in the national catalogue.
-2. Maintain read-only database integrity and zero clause fabrication policies.
+1. Proceed to Phase 27: Automated Adjudication Packet Batch Ingestion and Dynamic Multi-Standard Tender Audit Reporting.
+2. Maintain read-only national catalogue database integrity and zero clause fabrication policies.
 
 
