@@ -90,10 +90,10 @@
   - Alternative SP 57 (QAWSM) is a general code of practice/handbook rather than a direct manufacturing product specification.
 - **Specification Review Completeness:** `POTENTIALLY_MISSING` (Potentially missing: Diameter / Nominal Bore (DN/OD), Pressure Class / Schedule / SDR)
 - **Related Standards Identified for Review (Graph Depth = 1):**
-  - [→ TEST_METHOD] `IS 12235 : 2004` — *Thermoplastics Pipes and Fittings - Methods of Test (First Revision)* (Unknown) — *Note:* Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance.
-  - [→ INSTALLATION_CODE] `IS 7634 (Part 3) : 2003` — *Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)* (Unknown) — *Note:* Laying / civil installation code of practice associated with IS 7634 (Part 3) : 2003. Review for installation compliance.
+  - [→ TEST_METHOD] `IS 12235 : 2004` — *Thermoplastics Pipes and Fittings - Methods of Test (First Revision)* (Active) — *Note:* Official test method standard for parameter verification and quality assurance. Review for testing protocol compliance.
+  - [→ INSTALLATION_CODE] `IS 7634 (Part 3) : 2003` — *Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)* (Active) — *Note:* Laying / civil installation code of practice associated with IS 7634 (Part 3) : 2003. Review for installation compliance.
   - [→ ALLIED_STANDARD] `IS 4985 : 2000` — *Unplasticized pvc pipes for potable water supplies - Specification (Third Revision)* (Withdrawn) — *Note:* Allied product or component standard. Review for equipment interface compatibility.
-  - [← ALLIED_STANDARD] `IS 4985 : 2021` — *Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)* (Unknown) — *Note:* Allied product or component standard. Review for equipment interface compatibility.
+  - [← ALLIED_STANDARD] `IS 4985 : 2021` — *Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)* (Active) — *Note:* Allied product or component standard. Review for equipment interface compatibility.
 - **Standards Dependencies Mapped (5):**
   - [TEST METHOD] `IS 12235 : 2004` — *Thermoplastics Pipes and Fittings - Methods of Test (First Revision)* (IS 12235 : 2004 (Thermoplastics Pipes and Fittings - Methods of Test (First Revision)) is identified as an evidence-backed official test method standard for quality and verification associated with IS 15778 : 2007. Evidence: Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity. [Provenance: CURATED].)
   - [INSTALLATION CODE] `IS 7634 (Part 3) : 2003` — *Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)* (IS 7634 (Part 3) : 2003 (Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)) is identified as an evidence-backed related standard associated with IS 15778 : 2007. Evidence: Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3). [Provenance: CURATED].)
@@ -111,7 +111,7 @@
 - **Standards Review Decision:** `RECOMMEND` | **Risk Level:** `LOW` | **Confidence:** `High`
 - **Human Review Decision:** **ACCEPT**
 - **Reviewer Note:** "Verified by procurement officer"
-- **Decision Recorded:** `2026-10-19T13:01:08.966373+00:00`
+- **Decision Recorded:** `2026-10-19T14:48:07.203160+00:00`
 
 ---
 
@@ -134,4 +134,4 @@ TenderSaathi is a standards-review aid for procurement specifications. Final app
 
 | # | Requirement ID | Original System Finding | Human Decision | Reviewer Standard | Reviewer Note | Reviewed Timestamp |
 |---|---|---|---|---|---|---|
-| 1 | `SAMPLE-CPVC-R001` | Authoritative active standard IS 15778 : 2007 verified against scope with High confidence. | **ACCEPT** | `—` | Verified by procurement officer | 2026-10-19T13:01:08.966373+00:00 |
+| 1 | `SAMPLE-CPVC-R001` | Authoritative active standard IS 15778 : 2007 verified against scope with High confidence. | **ACCEPT** | `—` | Verified by procurement officer | 2026-10-19T14:48:07.203160+00:00 |

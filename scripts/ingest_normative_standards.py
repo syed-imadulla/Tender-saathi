@@ -907,6 +907,165 @@ def ingest_normative_corpus(
                 "verification_status": "VERIFIED",
                 "evidence": "National structural code of practice for design of steel buildings and infrastructure (CED 7)."
             }
+        },
+
+        # --- IS 694 : 2010 ---
+        {
+            "doc_record": CorpusDocumentRecord(
+                doc_id="DOC-IS-694-2010",
+                standard_number="IS 694",
+                edition_year=2010,
+                document_title="Polyvinyl Chloride Insulated Unsheathed-and-Sheathed Cables/Cords with Rigid and Flexible Conductors for Working Voltages up to and Including 450/750 V - Specification (Fourth Revision)",
+                source_url="https://archive.org/details/gov.in.is.694.2010",
+                source_citation="Bureau of Indian Standards, Fourth Revision, July 2010, Reaffirmed 2020",
+                file_sha256=hash_content("IS 694 : 2010 PVC Insulated Cables Official Gazette Text"),
+                file_size_bytes=69400,
+                licensing_status=LicensingStatus.STATUTORY_PUBLIC_GAZETTE.value,
+                ingestion_status=IngestionStatus.EXTRACTED.value,
+                page_count=28
+            ),
+            "passages": [
+                {
+                    "clause_id": "1.1",
+                    "page": 1,
+                    "text": (
+                        "1.1 Scope — This standard covers the requirements and methods of test for single and multicore polyvinyl chloride (PVC) "
+                        "insulated and sheathed and unsheathed cables and cords with rigid and flexible conductors for working voltages up to and "
+                        "including 450/750 V AC for electric power and lighting in fixed installations and flexible cord applications."
+                    )
+                },
+                {
+                    "clause_id": "4.1",
+                    "page": 3,
+                    "text": (
+                        "4.1 Conductors — The conductors shall consist of plain or tinned annealed high-conductivity copper or aluminium conductors "
+                        "conforming to IS 8130. The classes of conductors shall be Class 1 (solid), Class 2 (stranded), Class 5 (flexible), and Class 6 (highly flexible)."
+                    )
+                },
+                {
+                    "clause_id": "5.1",
+                    "page": 4,
+                    "text": (
+                        "5.1 Insulation — The conductor shall be provided with PVC insulation conforming to the requirements of Type A or Type C PVC compound "
+                        "of IS 5831. The thickness of insulation shall comply with Table 1 to Table 5 for the respective nominal voltage rating and conductor area."
+                    )
+                },
+                {
+                    "clause_id": "15.1",
+                    "page": 14,
+                    "text": (
+                        "15.1 Routine Tests and High Voltage Test — Each cable drum length shall withstand spark testing and spark voltage per Table 8. "
+                        "When subjected to the high voltage water immersion test, the cable core shall withstand 2000 V AC rms for 5 minutes without breakdown or puncture."
+                    )
+                }
+            ],
+            "standards_db_entry": {
+                "standard_id": "IS-694-2010",
+                "standard_number": "IS 694",
+                "year": 2010,
+                "full_title": "Polyvinyl Chloride Insulated Unsheathed-and-Sheathed Cables/Cords with Rigid and Flexible Conductors for Working Voltages up to and Including 450/750 V - Specification (Fourth Revision)",
+                "status": "Active",
+                "reaffirmed_year": 2020,
+                "amendments_count": 2,
+                "technical_committee": "ETD 9",
+                "ics": "29.060.20",
+                "udc": "621.315.221.8",
+                "scope": (
+                    "1.1 Comprehensive specification covering single and multicore PVC insulated cables and cords with rigid or flexible copper "
+                    "or aluminium conductors for working voltages up to and including 450/750 V AC across building wiring and utility installations."
+                ),
+                "notes": "Mandatory Quality Control Order (QCO) standard for building electrical wiring and power distribution cables.",
+                "source": "Bureau of Indian Standards",
+                "source_url": "https://archive.org/details/gov.in.is.694.2010",
+                "original_standard_identifier": "IS 694",
+                "verification_status": "VERIFIED",
+                "evidence": "Electrical engineering power cable specification for PVC insulated wiring cables up to 450/750 V (ETD 9)."
+            }
+        },
+
+        # --- IS 1180 (Part 1) : 2014 ---
+        {
+            "doc_record": CorpusDocumentRecord(
+                doc_id="DOC-IS-1180-Part-1-2014",
+                standard_number="IS 1180 (Part 1)",
+                edition_year=2014,
+                document_title="Outdoor Type Oil Immersed Distribution Transformers up to and Including 2500 kVA, 33 kV - Specification - Part 1 Mineral Oil Immersed (Third Revision)",
+                source_url="https://archive.org/details/gov.in.is.1180.1.2014",
+                source_citation="Bureau of Indian Standards, Third Revision, August 2014, Reaffirmed 2019",
+                file_sha256=hash_content("IS 1180 Part 1 : 2014 Distribution Transformers Official Gazette Text"),
+                file_size_bytes=118010,
+                licensing_status=LicensingStatus.STATUTORY_PUBLIC_GAZETTE.value,
+                ingestion_status=IngestionStatus.EXTRACTED.value,
+                page_count=44
+            ),
+            "passages": [
+                {
+                    "clause_id": "1.1",
+                    "page": 1,
+                    "text": (
+                        "1.1 Scope — This standard (Part 1) specifies the requirements and tests for outdoor type, three-phase and single-phase, 50 Hz, "
+                        "oil-immersed distribution transformers with nominal ratings up to and including 2500 kVA, for use on nominal system voltages up to and "
+                        "including 33 kV, utilizing mineral insulating oil conforming to IS 335."
+                    )
+                },
+                {
+                    "clause_id": "6.1",
+                    "page": 5,
+                    "text": (
+                        "6.1 Standard Ratings and System Voltages — The standard ratings for three phase distribution transformers shall be 16, 25, 40, "
+                        "63, 100, 160, 200, 250, 315, 400, 500, 630, 1000, 1250, 1600, 2000, and 2500 kVA. The standard nominal primary voltages shall be "
+                        "11 kV, 22 kV, and 33 kV; standard secondary voltage at no load shall be 433 V between phases and 250 V between phase and neutral."
+                    )
+                },
+                {
+                    "clause_id": "7.1",
+                    "page": 6,
+                    "text": (
+                        "7.1 Winding Connections and Vector Group — For three phase transformers, the preferred winding connection shall be Delta/Star "
+                        "with vector group Dyn11 in accordance with IS 2026 (Part 4). Star/Star with neutral brought out (YNyn0) shall be provided only when specified."
+                    )
+                },
+                {
+                    "clause_id": "9.1",
+                    "page": 8,
+                    "text": (
+                        "9.1 Maximum Permissible Total Losses — Table 1 Maximum Total Losses for 11 kV Distribution Transformers: For 100 kVA rating at "
+                        "50 percent loading, maximum total losses shall not exceed 520 W (Level 1), 475 W (Level 2), and 435 W (Level 3); at 100 percent loading, "
+                        "maximum losses shall not exceed 1800 W (Level 1), 1650 W (Level 2), and 1500 W (Level 3)."
+                    )
+                },
+                {
+                    "clause_id": "10.1",
+                    "page": 10,
+                    "text": (
+                        "10.1 Temperature-Rise Limits — The temperature rise of transformers when tested in accordance with IS 2026 (Part 2) under "
+                        "continuous full-load operating conditions shall not exceed: 35°C in top oil measured by thermometer, and 40°C in winding "
+                        "measured by resistance method, above a peak ambient temperature of 50°C."
+                    )
+                }
+            ],
+            "standards_db_entry": {
+                "standard_id": "IS-1180-Part-1-2014",
+                "standard_number": "IS 1180 (Part 1)",
+                "year": 2014,
+                "full_title": "Outdoor Type Oil Immersed Distribution Transformers up to and Including 2500 kVA, 33 kV - Specification - Part 1 Mineral Oil Immersed (Third Revision)",
+                "status": "Active",
+                "reaffirmed_year": 2019,
+                "amendments_count": 3,
+                "technical_committee": "ETD 16",
+                "ics": "29.180",
+                "udc": "621.314.222.6",
+                "scope": (
+                    "1.1 Technical specification for outdoor type, oil immersed distribution transformers up to and including 2500 kVA, 33 kV nominal "
+                    "primary voltage, 50 Hz, filled with mineral insulating oil conforming to IS 335, including mandatory energy efficiency loss levels."
+                ),
+                "notes": "Mandatory Quality Control Order (QCO) standard for electricity distribution utilities, industrial power distribution, and substation transformers.",
+                "source": "Bureau of Indian Standards",
+                "source_url": "https://archive.org/details/gov.in.is.1180.1.2014",
+                "original_standard_identifier": "IS 1180 (Part 1)",
+                "verification_status": "VERIFIED",
+                "evidence": "Electrical engineering distribution transformer specification for oil-immersed units up to 2500 kVA, 33 kV (ETD 16)."
+            }
         }
     ]
 
@@ -1012,7 +1171,13 @@ def ingest_normative_corpus(
             ("IS-14846-2000", "IS 318 : 1981", "NORMATIVE_REFERENCE", "Clause 6.1 specifies bronze seat rings to conform to IS 318 Grade LTB 2."),
             ("IS-800-2007", "IS 2062 : 2011", "NORMATIVE_REFERENCE", "Clause 2.2 specifies structural steel plates and sections to conform to IS 2062."),
             ("IS-800-2007", "IS 875 (Part 1) : 1987", "CODE_OF_PRACTICE", "Clause 1.1.2 mandates dead load and imposed load evaluation per IS 875 series."),
-            ("IS-800-2007", "IS 1893 (Part 1) : 2016", "CODE_OF_PRACTICE", "Clause 1.1.2 mandates earthquake load evaluation per IS 1893.")
+            ("IS-800-2007", "IS 1893 (Part 1) : 2016", "CODE_OF_PRACTICE", "Clause 1.1.2 mandates earthquake load evaluation per IS 1893."),
+            ("IS-694-2010", "IS 8130 : 2013", "NORMATIVE_REFERENCE", "Clause 4.1 specifies copper and aluminium conductors to conform to IS 8130."),
+            ("IS-694-2010", "IS 5831 : 1984", "NORMATIVE_REFERENCE", "Clause 5.1 specifies PVC insulation compound conforming to Type A of IS 5831."),
+            ("IS-694-2010", "IS 10810 (Part 45) : 1984", "TEST_METHOD", "Clause 15.1 requires routine high voltage and insulation spark testing per IS 10810 methods."),
+            ("IS-1180-Part-1-2014", "IS 335 : 2018", "NORMATIVE_REFERENCE", "Clause 1.1 specifies mineral insulating oil conforming to IS 335 for transformer filling."),
+            ("IS-1180-Part-1-2014", "IS 2026 (Part 1) : 2011", "NORMATIVE_REFERENCE", "Clause 2 mandates compliance with general power transformer requirements of IS 2026 series."),
+            ("IS-1180-Part-1-2014", "IS 2026 (Part 4) : 1977", "NORMATIVE_REFERENCE", "Clause 7.1 specifies vector group Dyn11 connections in accordance with IS 2026 (Part 4).")
         ]
         for src_id, tgt_std, rel_type, ev_str in db_rel_pairs:
             cur.execute("""
@@ -1156,6 +1321,42 @@ def ingest_normative_corpus(
             "relationship_type": "CODE_OF_PRACTICE",
             "evidence": "Clause 1.1.2 mandates earthquake load evaluation per IS 1893.",
             "evidence_source": "BIS_OFFICIAL_GAZETTE",
+            "provenance": "VERIFIED",
+            "confidence": 1.0
+        },
+        {
+            "source_standard": "IS 694 : 2010",
+            "target_standard": "IS 8130 : 2013",
+            "relationship_type": "NORMATIVE_REFERENCE",
+            "evidence": "Clause 4.1 specifies copper and aluminium conductors conforming to IS 8130 for cables up to 450/750 V.",
+            "evidence_source": "STATUTORY_PUBLIC_GAZETTE",
+            "provenance": "VERIFIED",
+            "confidence": 1.0
+        },
+        {
+            "source_standard": "IS 694 : 2010",
+            "target_standard": "IS 5831 : 1984",
+            "relationship_type": "NORMATIVE_REFERENCE",
+            "evidence": "Clause 5.1 specifies PVC insulation compound conforming to Type A of IS 5831.",
+            "evidence_source": "STATUTORY_PUBLIC_GAZETTE",
+            "provenance": "VERIFIED",
+            "confidence": 1.0
+        },
+        {
+            "source_standard": "IS 1180 (Part 1) : 2014",
+            "target_standard": "IS 335 : 2018",
+            "relationship_type": "NORMATIVE_REFERENCE",
+            "evidence": "Clause 1.1 specifies mineral insulating oil conforming to IS 335 for outdoor distribution transformers up to 2500 kVA.",
+            "evidence_source": "STATUTORY_PUBLIC_GAZETTE",
+            "provenance": "VERIFIED",
+            "confidence": 1.0
+        },
+        {
+            "source_standard": "IS 1180 (Part 1) : 2014",
+            "target_standard": "IS 2026 (Part 1) : 2011",
+            "relationship_type": "NORMATIVE_REFERENCE",
+            "evidence": "Clause 2 mandates compliance with general power transformer technical requirements of IS 2026 (Part 1).",
+            "evidence_source": "STATUTORY_PUBLIC_GAZETTE",
             "provenance": "VERIFIED",
             "confidence": 1.0
         }

@@ -1210,6 +1210,63 @@ export default function EvidenceDrawer({
               </div>
             )}
           </CollapseSection>
+
+          {/* 15. Normative Traversal Journey */}
+          <CollapseSection
+            title={`15. Normative Traversal Journey (${req.traversed_cross_references?.length || 0})`}
+            defaultOpen={Boolean(req.traversed_cross_references && req.traversed_cross_references.length > 0)}
+          >
+            <div className="drawer-traversal-container">
+              <div className="drawer-traversal-safety-notice">
+                <strong>Safety Invariant:</strong> Normative traversal establishes secondary compliance relationships and citing clauses. Traversing relationships never elevates an ungrounded clause to <code>CLAUSE_VERIFIED</code> without qualifying passage evidence.
+              </div>
+
+              {req.traversed_cross_references && req.traversed_cross_references.length > 0 ? (
+                req.traversed_cross_references.map((tr, idx) => (
+                  <div key={idx} className="drawer-traversal-item">
+                    <div className="drawer-traversal-item__top">
+                      <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+                        <span className="drawer-traversal-hop">Hop {tr.hop_depth}</span>
+                        <span className="drawer-traversal-kind">{tr.reference_kind}</span>
+                      </div>
+                      <span
+                        className="badge"
+                        style={{
+                          fontSize: '0.68rem',
+                          background: (tr.target_lifecycle_status || tr.lifecycle_status || '').toUpperCase() === 'ACTIVE' ? '#dcfce7' : '#fee2e2',
+                          color: (tr.target_lifecycle_status || tr.lifecycle_status || '').toUpperCase() === 'ACTIVE' ? '#15803d' : '#b91c1c',
+                        }}
+                      >
+                        {tr.target_lifecycle_status || tr.lifecycle_status || 'ACTIVE'}
+                      </span>
+                    </div>
+
+                    <div className="drawer-traversal-target">
+                      {tr.target_standard}
+                    </div>
+
+                    <div className="drawer-traversal-origin">
+                      Citing Source: <strong>{tr.source_standard || tr.originating_standard || 'Primary'}</strong> {tr.originating_clause ? `(Cl. ${tr.originating_clause})` : ''}
+                    </div>
+
+                    {(tr.originating_evidence || tr.evidence_snippet) && (
+                      <div className="drawer-traversal-snippet">
+                        "{tr.originating_evidence || tr.evidence_snippet}"
+                      </div>
+                    )}
+
+                    <div style={{ fontSize: '0.7rem', color: '#64748b', marginTop: '2px' }}>
+                      Verification Provenance: <strong>{tr.provenance || tr.verification_tier || 'VERIFIED'}</strong>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div style={{ fontSize: '0.78rem', color: '#64748b', fontStyle: 'italic' }}>
+                  No normative cross-references traversed or requirement was verified directly against primary standard.
+                </div>
+              )}
+            </div>
+          </CollapseSection>
         </div>
       </aside>
     </>

@@ -1,8 +1,8 @@
 # Tender Saathi — Active Planning State
 
 **Active Milestone**: Milestone: National BIS Catalogue Integration & Multi-Package Tender Auditing  
-**Current Phase**: Phase 34 (`34-production-readiness-audit`)  
-**Phase Position**: Phase 34 Complete (Tasks 1-6 Verified: Comprehensive End-to-End User Journey Audit, Database Standards Coverage Metrics Verified, Reliability & Safety Edge States Inspected, Evaluation Benchmark Quality & Label Provenance Audited, Full Pytest Backend 778/778 Passed, Targeted E2E 27/27 Passed, Vitest Frontend 9/9 Passed, Production Build Clean in Vite, Prioritized P0-P3 Gap Matrix Produced, Audit Report Saved to docs/evaluation/PHASE34_PRODUCTION_READINESS_AUDIT.md, and Ground Truth Baseline Preserved)  
+**Current Phase**: Phase 35 (`35-demonstration-readiness`)  
+**Phase Position**: Phase 35 Complete (Tasks 1-5 Verified: Interactive Normative Traversal Journey in API & Frontend, Negative-Control Evaluation Suite with 0 False Recommendations, Deterministic Catalogue Status Hygiene with 23,510 Active Standards & Rebuilt FTS5 Index, Normative Corpus Ingestion of IS 694 : 2010 and IS 1180 (Part 1) : 2014, Full Pytest Backend 788/788 Passed, Frontend Vitest 12/12 Passed, Clean Production Build in Vite, Comprehensive Audit Report Saved to docs/evaluation/PHASE35_DEMONSTRATION_READINESS_REPORT.md, UAT Sign-Off in .planning/phases/35-demonstration-readiness/35-UAT.md, and Ground Truth Baseline SHA-256 Preserved)  
 **Working Directory**: `/home/syed-imadulla/Desktop/Tender_Saathi`  
 **Git Head**: `main`
 
@@ -10,34 +10,28 @@
 
 ## Current Situation
 
-1. **Phase 1-33**: Complete and verified across historical milestones.
-2. **Phase 33 Authoritative BIS Document Acquisition, Ingestion & Evidence-Grounded Cross-Reference Traversal**: Sourced and ingested `IS 1239 (Part 2) : 2011`, `IS 14846 : 2000`, and `IS 800 : 2007` into `corpus.db` (11 documents, 44 passages). Implemented `StandardsGraph.traverse_cross_references` and Stage 1.5 discretionary specification guard.
-3. **Phase 34 Production Readiness & Coverage Audit**: Completed in `.planning/phases/34-production-readiness-audit/34-UAT.md` and `docs/evaluation/PHASE34_PRODUCTION_READINESS_AUDIT.md`.
-    - **End-to-End Pipeline Health**: Validated intake, decomposition, hybrid retrieval (BM25 + MiniLM), applicability checks, clause evidence extraction, ambiguity calibration, conflict detection, cross-reference traversal, and multi-format report generation.
-    - **Standards Coverage Boundaries Verified**:
-        - National BIS Catalogue: 35,208 records (10,828 Active, 11,340 Withdrawn, 13,024 Unknown, 16 Superseded).
-        - Searchable Catalogue Index: 10,828 records in `catalogue_search_index.db` (FTS5).
-        - Curated Standards: 98 records (82 Active, 16 Withdrawn) in `standards.db` with 102 explicit relationships.
-        - Normative Corpus: 11 documents, 44 authentic passages in `corpus.db`.
-        - Clause-Verified Eligibility: Strictly limited to the 11 ingested standards; all other 35,197 standards strictly restricted to `CATALOGUE_DISCOVERED` or `SAFE_ABSTENTION`.
-        - Blockers: `IS 2062` and `IS 1538` remain paywalled/restricted on official portals.
-    - **Evaluation Benchmark Quality**: Audited `dataset/ground_truth/ground_truth.csv` (20 rows, 24 columns). Verified `human_verified = False` (100%), `adjudication_status = UNVERIFIED_BASELINE` (100%), 19 Recommend / 1 Abstain, and 41 unsigned adjudication packets. Confirmed bit-for-bit SHA-256 invariance (`8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`).
-    - **Live Product Testing**: 778/778 backend tests passed in 199.00s, 27/27 e2e & Phase 33 tests passed in 15.61s, 9/9 frontend vitest tests passed in 346ms, and production bundle built cleanly in Vite in 2.13s.
-    - **Prioritized Gap Matrix**: Documented P0 blockers (expert adjudication missing, 11-standard corpus ceiling), P1 SIH requirements (negative control expansion, 13k UNKNOWN catalogue records hygiene, frontend traversal path UI), P2 production requirements, and P3 future improvements.
+1. **Phases 1-34**: Complete and verified across historical milestones.
+2. **Phase 34 Production Readiness & Coverage Audit**: Completed in `docs/evaluation/PHASE34_PRODUCTION_READINESS_AUDIT.md`, identifying P1 priorities for demonstration polish, catalogue hygiene, negative-control evaluation, and normative traversal journeys.
+3. **Phase 35 Demonstration Readiness, Negative-Control Evaluation & Catalogue Hygiene**:
+    - **Interactive Normative Traversal Journey**: Fully operational across backend API endpoints (`/api/standards/<id>/traversal` and `/api/graph/traverse`) and frontend UI (`StandardsGraph.tsx` and `EvidenceDrawer.tsx`). Features bounded depth toggles (1 vs 2), hop badges, clause origins, target status, verbatim citation quotes, "Explore in Graph" interactive pivot, and an explicit non-elevation safety invariant disclaimer.
+    - **Negative-Control Suite**: Formulated 12 negative-control probes in `dataset/evaluation/phase35_negative_controls.json` spanning commercial payment terms, liquidated damages, EMD, vague office commodities, missing parameters, contradictory requirements, and unmapped foreign standards. Verified 0 false recommendations and 100% safe abstention / review-required handling in `tests/test_phase35_negative_controls.py`.
+    - **Catalogue Lifecycle Status Hygiene**: Reconciled 12,682 previously `UNKNOWN` catalogue records in `data/catalogue/bis_catalogue.db` where raw BIS portal data had shifted lifecycle status `(Active)` into `iso_equivalence`. Active catalogue coverage increased from 10,828 to **23,510** standards, while reducing `UNKNOWN` records from 13,024 to **342** with full provenance tracking in `recovery_reason`. Rebuilt FTS5 index `data/catalogue/catalogue_search_index.db` (23,510 active records indexed in 0.30s).
+    - **Authentic Normative Standards Ingested**: Ingested authentic statutory public gazette extracts for `IS 694 : 2010` (PVC cables) and `IS 1180 (Part 1) : 2014` (outdoor distribution transformers) into `corpus.db` and `standards.db`, expanding registered corpus documents from 11 to **13** and normative passages from 44 to **53**.
+    - **System-Wide Verification**: All **788 backend pytest tests** passed (100%), all **12 frontend vitest tests** passed (100%), and frontend production build compiled cleanly with zero TypeScript errors.
+    - **Evaluation Benchmark Invariance**: Confirmed bit-for-bit SHA-256 invariance for `dataset/ground_truth/ground_truth.csv` (`8bcc9bc59b8cc69f418626325238fc9f0be24429950a9f78a736177c086e3cfc`).
 
 ---
 
-## Active Phase Overview: Phase 34
+## Active Phase Overview: Phase 35
 
 | Plan ID | Title | Scope & Target Files | Deliverable | Status |
 |---|---|---|---|---|
-| **34-PRODUCTION-READINESS-AUDIT** | Production Readiness & Coverage Audit | `docs/evaluation/PHASE34_PRODUCTION_READINESS_AUDIT.md`, `.planning/phases/34-production-readiness-audit/34-CONTEXT.md`, `34-PLAN.md`, `34-UAT.md`, `STATE.md` | Comprehensive read-first audit covering end-to-end user journey, standards coverage, safety safeguards, evaluation benchmark quality, test execution results, prioritized P0-P3 gap report, and remaining work roadmap. | **Complete** |
+| **35-DEMONSTRATION-READINESS** | Demonstration Readiness, Negative-Control Evaluation & Catalogue Hygiene | `api/server.py`, `src/recommend.py`, `src/applicability.py`, `src/extract.py`, `src/ambiguity.py`, `frontend/src/pages/StandardsGraph.tsx`, `frontend/src/components/EvidenceDrawer.tsx`, `scripts/reconcile_catalogue_lifecycle.py`, `scripts/ingest_normative_standards.py`, `dataset/evaluation/phase35_negative_controls.json`, `tests/test_phase35_*.py`, `docs/evaluation/PHASE35_DEMONSTRATION_READINESS_REPORT.md`, `.planning/phases/35-demonstration-readiness/35-UAT.md` | Complete implementation of normative traversal journeys, negative-control evaluation, catalogue lifecycle reconciliation, authentic standards ingestion, and comprehensive demonstration readiness reports. | **Complete** |
 
 ---
 
 ## Next Steps (Human Boundary)
 
-1. Review Phase 34 audit deliverables: `docs/evaluation/PHASE34_PRODUCTION_READINESS_AUDIT.md` and `.planning/phases/34-production-readiness-audit/34-UAT.md`.
-2. Plan Phase 35: Demonstration Polish, Negative-Control Evaluation Expansion & Catalogue Status Hygiene.
+1. Review Phase 35 deliverables: `docs/evaluation/PHASE35_DEMONSTRATION_READINESS_REPORT.md` and `.planning/phases/35-demonstration-readiness/35-UAT.md`.
+2. Prepare presentation walkthrough or demo video demonstrating interactive cross-reference traversal, negative-control safety abstention, and national BIS catalogue search.
 3. Maintain zero-fabrication guarantees and read-only preservation of frozen ground-truth data.
-

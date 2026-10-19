@@ -204,7 +204,8 @@ def test_corpus_storage_provenance_and_licensing(corpus_storage):
             assert std_num in [
                 "IS 456", "IS 4984", "IS 1489 (Part 1)", "IS 8112",
                 "IS 383", "IS 269", "IS 1786", "IS 1239 (Part 1)",
-                "IS 1239 (Part 2)", "IS 14846", "IS 800"
+                "IS 1239 (Part 2)", "IS 14846", "IS 800",
+                "IS 694", "IS 1180 (Part 1)"
             ]
             assert license_st == LicensingStatus.STATUTORY_PUBLIC_GAZETTE.value
             assert len(sha) == 64, "File hash must be a valid 64-char SHA-256"

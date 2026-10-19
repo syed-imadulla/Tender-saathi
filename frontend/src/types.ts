@@ -148,6 +148,7 @@ export interface Requirement {
   passage_id?: string | null;
   clause_number?: string | null;
   edition_year?: string | null;
+  traversed_cross_references?: TraversedReference[];
 }
 
 export type VerificationTier = 'CLAUSE_VERIFIED' | 'CATALOGUE_DISCOVERED' | 'SAFE_ABSTENTION';
@@ -556,6 +557,36 @@ export interface StandardsGraphOverviewResponse {
     overview_nodes_count: number;
     overview_edges_count: number;
   };
+  disclaimer: string;
+}
+
+export interface TraversedReference {
+  source_standard: string;
+  originating_standard?: string;
+  originating_clause: string;
+  target_standard: string;
+  target_title: string;
+  relationship_type: string;
+  reference_kind: string;
+  hop_depth: number;
+  lifecycle_status: string;
+  target_lifecycle_status?: string;
+  is_active: boolean;
+  originating_evidence: string;
+  evidence_snippet?: string;
+  source_citation: string;
+  provenance: string;
+  verification_tier?: string;
+  is_contextually_relevant?: boolean;
+  relevance_reason?: string;
+  review_note?: string;
+}
+
+export interface StandardsTraversalResponse {
+  start_standard: string;
+  max_depth: number;
+  traversed_references: TraversedReference[];
+  count: number;
   disclaimer: string;
 }
 

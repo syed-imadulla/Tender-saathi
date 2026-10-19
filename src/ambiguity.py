@@ -232,7 +232,7 @@ class ConflictRegistry:
         # Rule CONF-04: Voltage Tier Incompatibility (e.g. LV/LT requirement vs MV/HT standard, or vice versa)
         has_mv_hv_req = bool(re.search(r'\b(?:3\.3\s*kv|6\.6\s*kv|11\s*kv|22\s*kv|33\s*kv|66\s*kv|medium\s*voltage|mv\b|high\s*voltage|substation|transmission\s*line)\b', t_low))
         has_lv_lt_req = bool(re.search(r'\b(?:415\s*v|240\s*v|1100\s*v|1\.1\s*kv|low\s*voltage|lt\s+cable|lt\s+power)\b', t_low))
-        has_is694 = bool(re.search(r'\bis\s*694\b', t_low)) or any(bool(re.search(r'\b694\b', c.standard_number)) for c in working_candidates)
+        has_is694 = bool(re.search(r'\bis\s*[-:]?\s*694\b', t_low))
 
         if has_mv_hv_req and has_is694:
             rule = cls.RULES["CONF-04-VOLTAGE-CONFLICT"]

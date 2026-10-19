@@ -147,7 +147,10 @@ GENERIC_STOPWORDS: Set[str] = {
     "sharpener", "sharpeners", "marker", "markers", "highlighter", "highlighters", "glue",
     # Office Furniture & Commercial Fixtures (Non-Engineering Commodities)
     "furniture", "chair", "chairs", "swivel", "sofa", "sofas", "table", "tables",
-    "workstation", "workstations", "ergonomic", "almirah", "cupboard", "cabinet", "cabinets"
+    "workstation", "workstations", "ergonomic", "almirah", "cupboard", "cabinet", "cabinets",
+    "credenza", "credenzas",
+    # Generic qualifiers and IT service words (non-engineering)
+    "enterprise", "hosted", "platform", "monthly", "annual", "percent", "agreement", "provisioning"
 }
 
 
@@ -162,15 +165,15 @@ def is_non_engineering_or_abstention_query(text: str) -> bool:
         return True
 
     # 1. Non-engineering administrative, legal, audit, financial, commercial conditions
-    if bool(re.search(r'\b(?:audit|audits|auditing|taxation|chartered\s+accountan|gst\s+compliance|internal\s+audit|statutory\s+audit|earnest\s+money|emd\b|pan\s+card|bank\s+guarantee|balance\s+sheets?|financial\s+bid|turnover\s+certificate|experience\s+certificate)\b', t_low)):
+    if bool(re.search(r'\b(?:audit|audits|auditing|taxation|chartered\s+accountan|gst\s+compliance|internal\s+audit|statutory\s+audit|earnest\s+money|emd\b|pan\s+card|bank\s+guarantee|balance\s+sheets?|financial\s+bid|turnover\s+certificate|experience\s+certificate|liquidated\s+damages|mobilization\s+advance)\b', t_low)):
         return True
 
     # 2. Commercial office stationery, supplies and consumables
-    if bool(re.search(r'\b(?:stationery|gel\s+pens?|ballpoint|paper\s+clips?|sticky\s+notes?|notebooks?|desk\s+organizers?|printer\s+cartridges?|toner\s+cartridges?)\b', t_low)):
+    if bool(re.search(r'\b(?:stationery|gel\s+pens?|ballpoint|paper\s+clips?|sticky\s+notes?|notebooks?|desk\s+organizers?|printer\s+cartridges?|toner\s+cartridges?|copier\s+paper)\b', t_low)):
         return True
 
     # 3. Commercial office furniture
-    if bool(re.search(r'\b(?:swivel\s+chairs?|mesh\s+chairs?|office\s+chairs?|conference\s+tables?|ergonomic\s+(?:office\s+)?chairs?|workstations?)\b', t_low)):
+    if bool(re.search(r'\b(?:swivel\s+chairs?|mesh\s+chairs?|office\s+chairs?|conference\s+tables?|ergonomic\s+(?:office\s+)?chairs?|workstations?|credenza)\b', t_low)):
         return True
 
     # 4. Catering, refreshments, boardroom hospitality
@@ -182,7 +185,7 @@ def is_non_engineering_or_abstention_query(text: str) -> bool:
         return True
 
     # 6. Software cloud subscription / IT licenses
-    if bool(re.search(r'\b(?:cloud\s+erp|software\s+subscription|database\s+management\s+system|license\s+renewal)\b', t_low)):
+    if bool(re.search(r'\b(?:cloud[-\s]+(?:hosted\s+)?erp|software\s+subscription|database\s+management\s+system|license\s+renewal|saas\b|kubernetes|service\s+level\s+agreement)\b', t_low)):
         return True
 
     # 7. Quay crane rail track replacement (designated out-of-scope probe in dependency & adversarial benchmarks)
@@ -797,6 +800,20 @@ class ApplicabilityGate:
                 application_match = False
                 conflict_flags.append("MATERIAL_MISMATCH: cpvc polymer specified vs non-cpvc pipe standard")
                 rejection_reasons.append("Material conflict: Requirement specifies CPVC polymer piping, but candidate standard covers alternative material.")
+
+        # G3. Cable Dielectric Insulation & Construction Compatibility (XLPE vs PVC; Armored vs Unarmored)
+        is_xlpe_req = any(k in req_text_low for k in ["xlpe", "crosslinked polyethylene", "cross-linked polyethylene", "cross linked polyethylene"])
+        is_pvc_cable_std = ("694" in std_num or "1554" in std_num) and ("7098" not in std_num)
+        if is_xlpe_req and is_pvc_cable_std:
+            application_match = False
+            conflict_flags.append("MATERIAL_MISMATCH: xlpe insulation specified vs pvc cable standard")
+            rejection_reasons.append("Material conflict: Requirement specifies crosslinked polyethylene (XLPE) insulated cables, but candidate standard covers PVC insulated cables.")
+
+        is_armored_req = any(k in req_text_low for k in ["armored", "armoured", "armoring", "armouring"])
+        if is_armored_req and "694" in std_num:
+            application_match = False
+            conflict_flags.append("APPLICATION_CONFLICT: armored cable requirement vs unarmored standard IS 694")
+            rejection_reasons.append("Construction conflict: Requirement specifies armored power/control cables, but IS 694 is restricted to unarmored cables and flexible cords.")
 
         # H. Chemical Compatibility (Aggressive Chemical vs Clean Water / Non-Chemical scope)
         if req_prof.chemical_nature == "aggressive_chemical":

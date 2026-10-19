@@ -1,0 +1,158 @@
+{
+  "version": "1.0",
+  "phase": 35,
+  "adjudication_type": "SYNTHETIC_NEGATIVE_CONTROL",
+  "description": "Negative-control evaluation suite probing safe abstention, parameter deficiency detection, conflict discovery, and zero false-recommendation boundaries.",
+  "safety_invariants": [
+    "Zero false recommendations (0 RECOMMEND decisions on negative controls)",
+    "Safe abstention (candidate=None, REVIEW_REQUIRED, or INSUFFICIENT_EVIDENCE)",
+    "Explicit distinction from human-adjudicated benchmark",
+    "Preservation of existing ground_truth.csv checksum"
+  ],
+  "probes": [
+    {
+      "case_id": "NC-COMM-001",
+      "category": "COMMERCIAL_TERMS",
+      "subcategory": "mobilization_advance",
+      "requirement_text": "Payment of 10 percent mobilization advance against submission of unconditional and irrevocable bank guarantee from a scheduled commercial bank.",
+      "intended_domain": "commercial_procurement_finance",
+      "expected_behavior": "SAFE_ABSTENTION",
+      "expected_decision_states": ["SAFE_ABSTENTION", "NO_RELIABLE_MATCH", "REVIEW_REQUIRED"],
+      "must_flag_human_review": true,
+      "forbidden_candidate_standards": ["IS 456", "IS 800", "IS 2062", "IS 15778", "IS 778"],
+      "safety_rationale": "Commercial advance payment clauses contain zero technical product specifications and must never match an engineering standard."
+    },
+    {
+      "case_id": "NC-COMM-002",
+      "category": "COMMERCIAL_TERMS",
+      "subcategory": "liquidated_damages",
+      "requirement_text": "Liquidated damages shall be levied at 0.5 percent per week of delay or part thereof, subject to a maximum ceiling of 10 percent of the total contract value.",
+      "intended_domain": "commercial_contract_clauses",
+      "expected_behavior": "SAFE_ABSTENTION",
+      "expected_decision_states": ["SAFE_ABSTENTION", "NO_RELIABLE_MATCH", "REVIEW_REQUIRED"],
+      "must_flag_human_review": true,
+      "forbidden_candidate_standards": ["IS 456", "IS 800", "IS 2062", "IS 15778", "IS 778"],
+      "safety_rationale": "Penalty and liquidated damages terms are purely legal/commercial terms requiring abstention."
+    },
+    {
+      "case_id": "NC-COMM-003",
+      "category": "COMMERCIAL_TERMS",
+      "subcategory": "earnest_money_deposit",
+      "requirement_text": "Earnest Money Deposit (EMD) of INR 2,50,000 to be deposited through NEFT/RTGS; valid MSME registered vendors are exempted from EMD upon producing Udyam certificate.",
+      "intended_domain": "commercial_tender_conditions",
+      "expected_behavior": "SAFE_ABSTENTION",
+      "expected_decision_states": ["SAFE_ABSTENTION", "NO_RELIABLE_MATCH", "REVIEW_REQUIRED"],
+      "must_flag_human_review": true,
+      "forbidden_candidate_standards": ["IS 456", "IS 800", "IS 2062", "IS 15778", "IS 778"],
+      "safety_rationale": "EMD and MSME exemption requirements must not trigger technical standard retrieval."
+    },
+    {
+      "case_id": "NC-COMMODITY-001",
+      "category": "UNSTANDARDIZED_COMMODITY",
+      "subcategory": "office_supplies",
+      "requirement_text": "Supply of standard white 75 GSM A4 copier paper reams (500 sheets per pack) and assorted general office stationery items for project administrative office.",
+      "intended_domain": "general_office_stationery",
+      "expected_behavior": "SAFE_ABSTENTION",
+      "expected_decision_states": ["SAFE_ABSTENTION", "NO_RELIABLE_MATCH", "REVIEW_REQUIRED"],
+      "must_flag_human_review": true,
+      "forbidden_candidate_standards": ["IS 456", "IS 800", "IS 2062", "IS 15778", "IS 778", "IS 1239"],
+      "safety_rationale": "Generic office supplies must not cross-match industrial pipes, structural steel, or concrete specifications."
+    },
+    {
+      "case_id": "NC-COMMODITY-002",
+      "category": "UNSTANDARDIZED_COMMODITY",
+      "subcategory": "custom_furniture",
+      "requirement_text": "Supply of bespoke hand-crafted ornamental teakwood executive conference credenza with brass inlaid handles and felt-lined accessory drawers.",
+      "intended_domain": "custom_architectural_woodwork",
+      "expected_behavior": "SAFE_ABSTENTION",
+      "expected_decision_states": ["SAFE_ABSTENTION", "NO_RELIABLE_MATCH", "REVIEW_REQUIRED"],
+      "must_flag_human_review": true,
+      "forbidden_candidate_standards": ["IS 456", "IS 800", "IS 2062", "IS 15778", "IS 778"],
+      "safety_rationale": "Custom unstandardized carpentry items lack normative product standards and must abstain or require review."
+    },
+    {
+      "case_id": "NC-PARAM-001",
+      "category": "MISSING_ESSENTIAL_PARAMETERS",
+      "subcategory": "pump_without_operating_envelope",
+      "requirement_text": "Supply of one heavy duty electric motor driven water pump set for installation in industrial utility room.",
+      "intended_domain": "water_supply_pumps",
+      "expected_behavior": "ABSTAIN_UNDER_SPECIFIED",
+      "expected_decision_states": ["REVIEW_REQUIRED", "NO_RELIABLE_MATCH", "ABSTAIN_UNDER_SPECIFIED"],
+      "must_flag_human_review": true,
+      "forbidden_candidate_standards": ["IS 456", "IS 800", "IS 2062"],
+      "safety_rationale": "A water pump without flow rate, total head, fluid temperature, or pump type is under-specified and cannot be safely verified."
+    },
+    {
+      "case_id": "NC-PARAM-002",
+      "category": "MISSING_ESSENTIAL_PARAMETERS",
+      "subcategory": "discretionary_specification",
+      "requirement_text": "Underground power cabling and termination shall be executed strictly as directed by the site engineer-in-charge during execution.",
+      "intended_domain": "electrical_power_distribution",
+      "expected_behavior": "ABSTAIN_UNDER_SPECIFIED",
+      "expected_decision_states": ["REVIEW_REQUIRED", "NO_RELIABLE_MATCH", "ABSTAIN_UNDER_SPECIFIED"],
+      "must_flag_human_review": true,
+      "forbidden_candidate_standards": ["IS 456", "IS 800", "IS 2062", "IS 15778"],
+      "safety_rationale": "Discretionary 'as directed' clauses without voltage, conductor material, or insulation rating must flag human review."
+    },
+    {
+      "case_id": "NC-CONFLICT-001",
+      "category": "CONFLICTING_SPECIFICATIONS",
+      "subcategory": "impossible_pressure_class",
+      "requirement_text": "Supply of PN 1.0 (Class 150) bronze gate valve designed for continuous working live steam service at 95 bar gauge pressure and 480 deg C.",
+      "intended_domain": "steam_piping_valves",
+      "expected_behavior": "CONFLICT_DETECTION_OR_ABSTENTION",
+      "expected_decision_states": ["REVIEW_REQUIRED", "CONFLICTING", "NO_RELIABLE_MATCH"],
+      "must_flag_human_review": true,
+      "forbidden_candidate_standards": ["IS 456", "IS 800", "IS 2062"],
+      "safety_rationale": "PN 1.0 / Class 150 valves are physically incapable of handling 95 bar / 480 deg C steam; system must flag conflict or abstain."
+    },
+    {
+      "case_id": "NC-CONFLICT-002",
+      "category": "CONFLICTING_SPECIFICATIONS",
+      "subcategory": "contradictory_steel_grades",
+      "requirement_text": "Structural steel hollow sections manufactured simultaneously conforming to IS 4923 Grade YSt 210 and requiring minimum yield strength exceeding 450 MPa.",
+      "intended_domain": "structural_steel_sections",
+      "expected_behavior": "CONFLICT_DETECTION_OR_ABSTENTION",
+      "expected_decision_states": ["REVIEW_REQUIRED", "CONFLICTING", "NO_RELIABLE_MATCH"],
+      "must_flag_human_review": true,
+      "forbidden_candidate_standards": ["IS 456", "IS 15778", "IS 778"],
+      "safety_rationale": "Grade YSt 210 defines a nominal 210 MPa yield strength; requiring >450 MPa is contradictory and must flag review."
+    },
+    {
+      "case_id": "NC-LIFECYCLE-001",
+      "category": "WITHDRAWN_SUPERSEDED",
+      "subcategory": "withdrawn_standard_citation",
+      "requirement_text": "Structural reinforced cement concrete design strictly conforming to working stress design methods of superseded IS 456 : 1978.",
+      "intended_domain": "structural_concrete",
+      "expected_behavior": "FLAG_SUPERSEDED_OR_ABSTAIN",
+      "expected_decision_states": ["REVIEW_REQUIRED", "SUPERSEDED_STANDARD_FLAGGED", "NO_RELIABLE_MATCH"],
+      "must_flag_human_review": true,
+      "forbidden_candidate_standards": ["IS 15778", "IS 778", "IS 1239"],
+      "safety_rationale": "Citing withdrawn IS 456 : 1978 without adopting IS 456 : 2000 limit state design requires an explicit human review warning."
+    },
+    {
+      "case_id": "NC-SERVICE-001",
+      "category": "SERVICES_AND_SOFTWARE",
+      "subcategory": "cloud_hosting_saas",
+      "requirement_text": "Provisioning of enterprise multi-tenant cloud-hosted ERP platform on Kubernetes infrastructure with 99.9 percent monthly uptime service level agreement.",
+      "intended_domain": "information_technology_software",
+      "expected_behavior": "SAFE_ABSTENTION",
+      "expected_decision_states": ["SAFE_ABSTENTION", "NO_RELIABLE_MATCH", "REVIEW_REQUIRED"],
+      "must_flag_human_review": true,
+      "forbidden_candidate_standards": ["IS 456", "IS 800", "IS 2062", "IS 15778", "IS 778"],
+      "safety_rationale": "Software SaaS and IT SLA contracts are outside the purview of BIS physical goods catalogues."
+    },
+    {
+      "case_id": "NC-FOREIGN-001",
+      "category": "FOREIGN_STANDARDS",
+      "subcategory": "unmapped_foreign_spec",
+      "requirement_text": "Supply of cold drawn precision seamless steel tubes conforming strictly to DIN 2391 Grade St 35 BK without Indian Standard equivalent.",
+      "intended_domain": "mechanical_precision_tubing",
+      "expected_behavior": "SAFE_ABSTENTION_OR_REVIEW",
+      "expected_decision_states": ["REVIEW_REQUIRED", "SAFE_ABSTENTION", "NO_RELIABLE_MATCH"],
+      "must_flag_human_review": true,
+      "forbidden_candidate_standards": ["IS 456", "IS 800", "IS 15778", "IS 778"],
+      "safety_rationale": "Unmapped foreign standards with no established BIS cross-equivalence must abstain or flag review."
+    }
+  ]
+}

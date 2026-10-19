@@ -62,6 +62,8 @@ def test_all_eight_corpus_documents_registered(corpus_storage):
         "DOC-IS-1239-Part-2-2011": ("IS 1239 (Part 2)", 2011),
         "DOC-IS-14846-2000": ("IS 14846", 2000),
         "DOC-IS-800-2007": ("IS 800", 2007),
+        "DOC-IS-694-2010": ("IS 694", 2010),
+        "DOC-IS-1180-Part-1-2014": ("IS 1180 (Part 1)", 2014),
     }
 
     found_doc_ids = set()

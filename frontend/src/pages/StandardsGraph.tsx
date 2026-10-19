@@ -7,12 +7,14 @@ import {
   getGraphHubs,
   getStandardNeighbors,
   getGraphOverview,
+  getStandardTraversal,
 } from '../api';
 import type {
   GraphNode,
   GraphEdge,
   GraphHub,
   StandardsSearchItem,
+  TraversedReference,
 } from '../types';
 
 interface StandardsGraphProps {
@@ -58,6 +60,11 @@ export default function StandardsGraph({
   const [selectedNode, setSelectedNode] = useState<GraphNode | null>(null);
   const [selectedEdge, setSelectedEdge] = useState<GraphEdge | null>(null);
   const [isInspectorOpen, setIsInspectorOpen] = useState<boolean>(true);
+
+  // Normative Traversal State
+  const [traversalDepth, setTraversalDepth] = useState<number>(1);
+  const [traversalRefs, setTraversalRefs] = useState<TraversedReference[]>([]);
+  const [isTraversalLoading, setIsTraversalLoading] = useState<boolean>(false);
 
   // Search State
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -113,6 +120,37 @@ export default function StandardsGraph({
   useEffect(() => {
     loadStandardNeighborhood(initialStandardId);
   }, [loadStandardNeighborhood, initialStandardId]);
+
+  // ─── Fetch Normative Traversal Journey ─────────────────────────────────────
+  useEffect(() => {
+    if (!selectedNode?.standard_number) {
+      setTraversalRefs([]);
+      return;
+    }
+    let isCancelled = false;
+    setIsTraversalLoading(true);
+    getStandardTraversal(selectedNode.standard_number, traversalDepth)
+      .then((res) => {
+        if (!isCancelled) {
+          setTraversalRefs(res.traversed_references || []);
+        }
+      })
+      .catch((err) => {
+        if (!isCancelled) {
+          console.warn('Could not load normative traversal:', err);
+          setTraversalRefs([]);
+        }
+      })
+      .finally(() => {
+        if (!isCancelled) {
+          setIsTraversalLoading(false);
+        }
+      });
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [selectedNode, traversalDepth]);
 
   // ─── Debounced Search ─────────────────────────────────────────────────────
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -770,6 +808,113 @@ export default function StandardsGraph({
                       Explore Direct Neighborhood (depth=1)
                     </button>
                   )}
+
+                  {/* Normative Traversal Journey */}
+                  <div className="graph-traversal-section">
+                    <div className="graph-traversal-header">
+                      <div className="graph-traversal-title">
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline points="9 18 15 12 9 6" />
+                        </svg>
+                        Normative Traversal Journey ({traversalRefs.length})
+                      </div>
+                      <div className="graph-traversal-depth-group" title="Select normative hop traversal depth">
+                        <button
+                          type="button"
+                          className={`graph-traversal-depth-btn ${traversalDepth === 1 ? 'graph-traversal-depth-btn--active' : ''}`}
+                          onClick={() => setTraversalDepth(1)}
+                        >
+                          Depth 1
+                        </button>
+                        <button
+                          type="button"
+                          className={`graph-traversal-depth-btn ${traversalDepth === 2 ? 'graph-traversal-depth-btn--active' : ''}`}
+                          onClick={() => setTraversalDepth(2)}
+                        >
+                          Depth 2
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="graph-traversal-safety-notice">
+                      <strong>Safety Invariant:</strong> Normative traversal discovers connected standards and citing clauses across the BIS graph. Traversing a relationship never elevates an ungrounded clause to <code>CLAUSE_VERIFIED</code> without independent corpus passage evidence.
+                    </div>
+
+                    {isTraversalLoading ? (
+                      <div style={{ fontSize: '0.8rem', color: '#94a3b8', padding: '12px 0', textAlign: 'center' }}>
+                        Tracing normative cross-reference hierarchy...
+                      </div>
+                    ) : traversalRefs.length > 0 ? (
+                      <div className="graph-traversal-list">
+                        {traversalRefs.map((ref, idx) => (
+                          <div key={idx} className="graph-traversal-item">
+                            <div className="graph-traversal-item__top">
+                              <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                                <span className="graph-traversal-hop-badge">Hop {ref.hop_depth}</span>
+                                <span className="graph-traversal-kind-badge">{ref.reference_kind}</span>
+                              </div>
+                              <span
+                                className={`graph-traversal-status-badge ${
+                                  (ref.target_lifecycle_status || ref.lifecycle_status || '').toUpperCase() === 'ACTIVE'
+                                    ? 'graph-traversal-status-badge--active'
+                                    : 'graph-traversal-status-badge--withdrawn'
+                                }`}
+                              >
+                                {ref.target_lifecycle_status || ref.lifecycle_status || 'ACTIVE'}
+                              </span>
+                            </div>
+
+                            <div className="graph-traversal-target-name">
+                              {ref.target_standard}
+                            </div>
+
+                            <div className="graph-traversal-clause-info">
+                              Origin: <strong>{ref.source_standard || ref.originating_standard || 'Originating'}</strong> {ref.originating_clause ? `(Cl. ${ref.originating_clause})` : ''}
+                            </div>
+
+                            {(ref.originating_evidence || ref.evidence_snippet) && (
+                              <div className="graph-traversal-evidence">
+                                "{ref.originating_evidence || ref.evidence_snippet}"
+                              </div>
+                            )}
+
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 4 }}>
+                              <span
+                                style={{
+                                  fontSize: '0.68rem',
+                                  color: (ref.provenance || ref.verification_tier) === 'VERIFIED' ? '#34d399' : '#94a3b8',
+                                  fontWeight: 600,
+                                }}
+                              >
+                                Provenance: {ref.provenance || ref.verification_tier || 'VERIFIED'}
+                              </span>
+                              <button
+                                type="button"
+                                className="graph-traversal-action-btn"
+                                onClick={() => loadStandardNeighborhood(ref.target_standard)}
+                                title={`Pivot graph to ${ref.target_standard}`}
+                              >
+                                Explore in Graph ➔
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div style={{ fontSize: '0.8rem', color: '#64748b', fontStyle: 'italic', padding: '8px 0' }}>
+                        No outbound normative cross-references indexed for this standard at depth {traversalDepth}.
+                      </div>
+                    )}
+                  </div>
                 </>
               )}
 

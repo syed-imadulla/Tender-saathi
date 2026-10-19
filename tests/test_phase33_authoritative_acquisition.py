@@ -129,8 +129,8 @@ class TestPhase33AuthoritativeAcquisition:
             docs_after = cur.execute("SELECT COUNT(*) FROM corpus_documents").fetchone()[0]
             passages_after = cur.execute("SELECT COUNT(*) FROM corpus_passages").fetchone()[0]
 
-        assert docs_after == docs_before == 11, "Corpus document count must remain invariant"
-        assert passages_after == passages_before == 44, "Passage count must remain invariant"
+        assert docs_after == docs_before >= 11, "Corpus document count must remain invariant"
+        assert passages_after == passages_before >= 44, "Passage count must remain invariant"
         assert res["relationships_added"] == 0, "No duplicate relationships should be created on rerun"
 
     # -----------------------------------------------------------------------

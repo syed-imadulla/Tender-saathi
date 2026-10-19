@@ -374,6 +374,7 @@ def _normalize_result(
             "clause_number": getattr(r, "clause_number", None),
             "edition_year": getattr(r, "edition_year", None),
             "explicit_standards_found": getattr(r, "explicit_standards_found", []) or [],
+            "traversed_cross_references": getattr(r, "traversed_cross_references", []) or [],
         }
 
         all_reqs.append(req_dict)
@@ -1286,6 +1287,53 @@ def get_standard_neighbors(standard_id: str):
             "disclaimer": GRAPH_DISCLAIMER
         }
     })
+
+
+@app.route("/api/standards/<path:standard_id>/traversal", methods=["GET"])
+@app.route("/api/graph/traverse", methods=["GET"])
+def get_standard_traversal(standard_id: Optional[str] = None):
+    """
+    GET /api/standards/<standard_id>/traversal?depth=1
+    GET /api/graph/traverse?standard=<standard_id>&depth=1&context=<text>
+
+    Returns evidence-grounded cross-reference traversal journey starting from grounded clauses.
+    Strictly bounded to depth 1 or 2. Preserves originating clauses, citation text, reference kinds,
+    and lifecycle currency.
+    """
+    std = standard_id or request.args.get("standard", "")
+    clean_id = (std or "").strip()
+    if not clean_id:
+        return jsonify({"error": "standard or standard_id parameter is required."}), 400
+
+    depth_param = request.args.get("depth", "1")
+    try:
+        depth = int(depth_param)
+    except (ValueError, TypeError):
+        depth = 1
+
+    depth = max(1, min(depth, 2))  # Strictly bounded to 1 or 2
+
+    context = request.args.get("context", "")
+    clause_id = request.args.get("clause")
+
+    graph = get_standards_graph()
+    traversed = graph.traverse_cross_references(
+        start_standard=clean_id,
+        grounded_clause=clause_id,
+        max_depth=depth,
+        tender_context=context or None
+    )
+
+    return jsonify({
+        "start_standard": clean_id,
+        "max_depth": depth,
+        "traversed_references": [t.to_dict() for t in traversed],
+        "count": len(traversed),
+        "disclaimer": (
+            "Evidence-grounded cross-references traverse normative citations and testing codes cited in "
+            "authoritative operative clauses. Graph traversal alone does not establish tender applicability."
+        )
+    }), 200
 
 
 @app.route("/api/standards/graph/overview", methods=["GET"])

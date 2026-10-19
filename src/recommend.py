@@ -149,6 +149,7 @@ class RequirementRecommendationResult:
     passage_id: Optional[str] = None
     clause_number: Optional[str] = None
     edition_year: Optional[str] = None
+    traversed_cross_references: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -1034,6 +1035,9 @@ class StandardsRecommender:
             ("432" in top_rec.standard_number) and
             any(w in working_text.lower() for w in ["column", "columns", "beam", "beams", "rcc", "seismic", "frame", "residential"])
         )
+        foreign_matches = re.findall(r'\b(?:DIN|ASTM|ASME|BS\s*EN|JIS)\s+[A-Za-z0-9\-]+', working_text, re.IGNORECASE)
+        has_unmapped_foreign = bool(foreign_matches and not explicit_stds)
+        has_adversarial = getattr(req, "has_adversarial_directive", False)
 
         if superseded_explicit_warnings:
             human_review_required = True
@@ -1059,6 +1063,22 @@ class StandardsRecommender:
             risk_reasons = ["Engineering verification required: mild steel plain round bars (IS 432) vs high-strength deformed rebar (IS 1786) for structural columns."]
             why_this = ["Standard covers mild steel reinforcement bars."]
             why_not = ["Structural column design requires verification of steel grade and rebar deformation per IS 456 / IS 1786."]
+            conf = "Medium"
+        elif has_unmapped_foreign:
+            human_review_required = True
+            decision_reason = f"Foreign specification ({', '.join(foreign_matches)}) cited without Indian Standard equivalent. Engineering review required for cross-standard substitution."
+            risk_level = "HIGH"
+            risk_reasons = [f"Unmapped foreign specification: {', '.join(foreign_matches)}"]
+            why_this = critic_outcome.why_this if critic_outcome else []
+            why_not = [f"Tender specifies foreign specification {', '.join(foreign_matches)}; cross-standard substitution requires human verification."]
+            conf = "Low"
+        elif has_adversarial:
+            human_review_required = True
+            decision_reason = "Adversarial prompt injection directive detected and neutralized at ingestion boundary. Engineering review required."
+            risk_level = "HIGH"
+            risk_reasons = ["Ingestion trust boundary: prompt injection attempt stripped; requires manual verification."]
+            why_this = critic_outcome.why_this if critic_outcome else []
+            why_not = ["Input contained instruction overrides or adversarial prompt directives."]
             conf = "Medium"
         elif ambiguity_report.human_review_required or ambiguity_flag:
             human_review_required = True
@@ -1240,6 +1260,9 @@ class StandardsRecommender:
                     comp_msg = f"Subcomponent '{c_text}' requires engineering review."
                     if comp_msg not in reasons_list:
                         reasons_list.append(comp_msg)
+
+        if human_review_required and critic_dict.get("decision") == "RECOMMEND":
+            critic_dict["decision"] = "RECOMMEND_WITH_REVIEW"
 
         top_app = candidate_applicability_map.get(top_rec.standard_number) or (
             candidate_applicability_map.get(top_rec.standard_number.split(":")[0].strip()) if ":" in top_rec.standard_number else None
@@ -1449,7 +1472,8 @@ class StandardsRecommender:
             verification_tier=verification_tier,
             passage_id=passage_id,
             clause_number=clause_number,
-            edition_year=ed_year_str
+            edition_year=ed_year_str,
+            traversed_cross_references=getattr(dep_report, "traversed_cross_references", []) or []
         )
 
 

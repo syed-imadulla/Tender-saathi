@@ -10,6 +10,7 @@ import type {
   StandardsSearchResponse,
   StandardsNeighborsResponse,
   StandardsGraphOverviewResponse,
+  StandardsTraversalResponse,
 } from './types';
 
 const rawBase = ((import.meta as unknown as { env?: Record<string, string> }).env?.VITE_API_URL)?.trim() || '/api';
@@ -151,5 +152,17 @@ export async function getStandardNeighbors(
 export async function getGraphOverview(): Promise<StandardsGraphOverviewResponse> {
   const res = await fetch(`${BASE}/standards/graph/overview`);
   return handleResponse<StandardsGraphOverviewResponse>(res);
+}
+
+export async function getStandardTraversal(
+  standardIdOrNumber: string,
+  depth: number = 1,
+  context?: string
+): Promise<StandardsTraversalResponse> {
+  const encoded = encodeURIComponent(standardIdOrNumber);
+  const params = new URLSearchParams({ depth: String(depth) });
+  if (context) params.append('context', context);
+  const res = await fetch(`${BASE}/standards/${encoded}/traversal?${params.toString()}`);
+  return handleResponse<StandardsTraversalResponse>(res);
 }
 

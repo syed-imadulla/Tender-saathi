@@ -40,6 +40,7 @@ class Requirement:
     package_id: Optional[str] = "PKG-01"
     package_name: Optional[str] = "Main Scope"
     domain: Optional[str] = None
+    has_adversarial_directive: bool = False
 
     def to_dict(self) -> Dict[str, Any]:
         d = asdict(self)
@@ -123,7 +124,7 @@ def sanitize_untrusted_text(text: str) -> str:
     cleaned = re.sub(r'\b(?:return|output)\s+json\s*[:\-]?[^\n.]*', ' ', cleaned, flags=re.IGNORECASE)
     cleaned = re.sub(r'\bignore\s+(?:all\s+)?(?:previous\s+)?(?:instructions|tender\s+text|bis\s+catalogue)[^\n.]*', ' ', cleaned, flags=re.IGNORECASE)
     cleaned = re.sub(r'\b(?:unconditionally\s+recommend|output\s+standard\s+IS|always\s+recommend|do\s+not\s+abstain)[^\n.]*', ' ', cleaned, flags=re.IGNORECASE)
-    cleaned = re.sub(r'\b(?:you\s+must\s+output|mark\s+publication\s+readiness)[^\n.]*', ' ', cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r'\b(?:you\s+must\s+(?:output|return)|mark\s+publication\s+readiness)[^\n.]*', ' ', cleaned, flags=re.IGNORECASE)
     # Clean multiple punctuation dots (e.g. "..." or ".. ") without corrupting decimal numbers (e.g. 1.1 kV)
     cleaned = re.sub(r'\.{2,}', '. ', cleaned)
     cleaned = re.sub(r'\s+', ' ', cleaned).strip()
@@ -315,9 +316,10 @@ def extract_from_text(
     Extracts a Requirement object from a plain text requirement string.
     """
     sanitized = sanitize_untrusted_text(text)
+    has_injection = bool(re.search(r'(?:\b(?:Assistant|System)\s*:|\boutput\s+format\s+changed|\byou\s+must\s+(?:output|return)|\bbypass\s+applicability\s+gate|\bignore\s+all\s+previous|\bsystem\s+override)\b', text, re.IGNORECASE))
     cat = classify_category(sanitized)
     dom = domain or detect_technical_domain(sanitized)
-    explicit_stds = detect_explicit_standards(text)
+    explicit_stds = detect_explicit_standards(sanitized)
     decomp = decompose_requirement(sanitized)
     return Requirement(
         requirement_id=requirement_id,
@@ -332,7 +334,8 @@ def extract_from_text(
         decomposition_confidence=decomp.decomposition_confidence,
         package_id=package_id or "PKG-01",
         package_name=package_name or "Main Scope",
-        domain=dom
+        domain=dom,
+        has_adversarial_directive=has_injection
     )
 
 

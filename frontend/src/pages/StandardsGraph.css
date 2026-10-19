@@ -607,6 +607,183 @@
   margin-bottom: 8px;
 }
 
+/* ─── Normative Traversal Journey ─────────────────────────────────────────── */
+.graph-traversal-section {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.graph-traversal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.graph-traversal-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.graph-traversal-depth-group {
+  display: inline-flex;
+  gap: 4px;
+  background: rgba(15, 23, 42, 0.6);
+  padding: 2px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.graph-traversal-depth-btn {
+  padding: 3px 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 120ms ease;
+}
+
+.graph-traversal-depth-btn--active {
+  background: #0284c7;
+  color: #ffffff;
+}
+
+.graph-traversal-safety-notice {
+  background: rgba(2, 132, 199, 0.08);
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.72rem;
+  color: #93c5fd;
+  line-height: 1.4;
+}
+
+.graph-traversal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.graph-traversal-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 150ms ease;
+}
+
+.graph-traversal-item:hover {
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+.graph-traversal-item__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.graph-traversal-hop-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.graph-traversal-kind-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.graph-traversal-status-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.graph-traversal-status-badge--active {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.graph-traversal-status-badge--withdrawn {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.graph-traversal-target-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.graph-traversal-clause-info {
+  font-size: 0.74rem;
+  color: #cbd5e1;
+}
+
+.graph-traversal-evidence {
+  font-size: 0.74rem;
+  color: #94a3b8;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 6px 8px;
+  border-radius: 4px;
+  border-left: 2px solid #38bdf8;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.graph-traversal-action-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  padding: 4px 10px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 120ms ease;
+}
+
+.graph-traversal-action-btn:hover {
+  background: rgba(56, 189, 248, 0.2);
+  color: #ffffff;
+}
+
 /* ─── Responsive Adjustments ─────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .graph-header {
@@ -630,3 +807,4 @@
     display: none; /* Auto-hide floating legend on small viewports */
   }
 }
+
