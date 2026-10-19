@@ -72,6 +72,12 @@ flowchart LR
 
 ---
 
-### Upcoming Phases
-- [ ] **Phase 37**: Hackathon Pitch Deck, Live Demo Script & Deployment Packaging (5-minute SIH live demonstration script, judges FAQ, and turnkey Docker Compose packaging).
+- [x] **Phase 37**: SIH Demo Packaging, Deployment Readiness & Judge Presentation (`docs/evaluation/PHASE37_DEMO_DEPLOYMENT_AUDIT.md`, `docs/demo/SIH_LIVE_DEMO.md`, `docs/demo/JUDGE_QA.md`).
+
+---
+
+### Hackathon Live Deployment Status
+- **Status**: 🟢 **READY FOR LIVE SIH JURY EVALUATION**
+- **Deployment**: Multi-Container Docker Compose (`docker compose up --build`) on ports 5000 (backend) & 3000 (frontend) + Local Dev path (`python3 api/server.py` + `npm run dev`).
+
 

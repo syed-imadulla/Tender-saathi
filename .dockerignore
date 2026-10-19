@@ -13,7 +13,6 @@ frontend
 .env.*
 !.env.example
 tenders/raw
-dataset
 experiments
 scratch
 *.log

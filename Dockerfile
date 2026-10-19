@@ -27,6 +27,7 @@ RUN pip install --no-cache-dir -r requirements.txt gunicorn
 COPY src/ /app/src/
 COPY api/ /app/api/
 COPY data/ /app/data/
+COPY dataset/ /app/dataset/
 
 # Create writable directory for generated audit reports
 RUN mkdir -p /app/reports/generated

@@ -3,138 +3,66 @@
 **Evidence-Backed Indian Standards Intelligence & Tender Specification Audit Engine**
 
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![Tests Passing](https://img.shields.io/badge/Pytest-506%20Passed-brightgreen.svg)]()
-[![BIS Catalogue](https://img.shields.io/badge/BIS%20Catalogue-35%2C208%20Standards-blue.svg)]()
+[![Tests Passing](https://img.shields.io/badge/Pytest-799%20Passed%20(100%25)-brightgreen.svg)]()
+[![Vitest Passing](https://img.shields.io/badge/Vitest-12%20Passed%20(100%25)-brightgreen.svg)]()
+[![BIS Catalogue](https://img.shields.io/badge/BIS%20Catalogue-35%2C208%20Standards%20(23%2C510%20Active)-blue.svg)]()
 [![Benchmark Top-1](https://img.shields.io/badge/Benchmark%20Top--1-90.0%25-success.svg)]()
 [![Adversarial Safety](https://img.shields.io/badge/Adversarial%20Safety-98.57%25%20(69%2F70)-brightgreen.svg)]()
-[![Production Live](https://img.shields.io/badge/Production-Live-success.svg)](https://tendersaathi.vercel.app)
 [![SIH Problem](https://img.shields.io/badge/SIH-SIH26108-orange.svg)]()
 
 > **"Groq AI interprets. Rules validate. Evidence supports. Humans decide."**
 
 ---
 
-## Live Demo
+## SIH Demonstration Resources
 
-- **Canonical Production Frontend**: [https://tendersaathi.vercel.app](https://tendersaathi.vercel.app)
-- **Production Backend API**: [https://tender-saathi-backend.whiteground-dc69e38a.centralindia.azurecontainerapps.io](https://tender-saathi-backend.whiteground-dc69e38a.centralindia.azurecontainerapps.io)
-- **Backend Health Check**: [`/api/health`](https://tender-saathi-backend.whiteground-dc69e38a.centralindia.azurecontainerapps.io/api/health)
-- **Architecture**: Decoupled deployment (Vercel Frontend + Dedicated Azure Container Apps Backend)
-- **Hybrid AI Engine**: Groq LLM (`openai/gpt-oss-120b`) domain understanding with 100% deterministic offline fallback
+- **5-Minute Live Presentation Script**: [docs/demo/SIH_LIVE_DEMO.md](docs/demo/SIH_LIVE_DEMO.md)
+- **Judge Q&A & Technical Differentiation**: [docs/demo/JUDGE_QA.md](docs/demo/JUDGE_QA.md)
+- **Phase 36 Comprehensive Audit**: [docs/evaluation/PHASE36_FINAL_E2E_AUDIT.md](docs/evaluation/PHASE36_FINAL_E2E_AUDIT.md)
 
 ---
 
-## 1. What is Tender Saathi?
+## Quickstart & Deployment
 
-**Tender Saathi** is an evidence-backed technical specification review and audit system designed for Indian public procurement (CPPP, GeM, CPWD, MES, Railways, and state authorities). It automates the technical verification of tender documents against authoritative Bureau of Indian Standards (BIS) codes and line-ministry statutory regulations.
+### Method 1: Turnkey Multi-Container Deployment (Recommended for Judges & Live Demo)
 
-### What Tender Saathi Does
-- **Extracts Technical Requirements**: Strips procurement boilerplate (EMD, payment terms, turnover criteria) from PDFs and text to isolate genuine technical engineering clauses.
-- **Performs Hybrid Standards Retrieval**: Matches requirements across **35,208 BIS catalogue records** using pure-Python Okapi BM25 and dense semantic embeddings.
-- **Enforces Engineering Boundary Gates**: Evaluates temperature, pressure, medium, and material conditions to prevent dangerous cross-domain mismatches.
-- **Traverses Relationship Graphs**: Identifies 8 canonical relationship types (normative references, test methods, installation codes, safety standards) to bundle complete engineering specifications.
-- **Surfaces Regulatory Disclosures**: Ingests advisory mandates from external authorities (FSSAI, CEA, CPWD) and gazetted Quality Control Orders (QCOs).
-- **Routes to Prioritized Human Review**: Flags under-specified clauses, missing parameters, and superseded citations into an actionable review queue.
-- **Generates Evidence-Grounded Audit Trails**: Exports downloadable JSON and Markdown audit reports with verbatim standard citations and human sign-offs.
+Run both the production WSGI backend (port 5000) and optimized Nginx frontend (port 3000) in isolated containers with automated health checks:
 
-### What Tender Saathi Does NOT Do
-- It does **not** generate ungrounded recommendations; every candidate must resolve to a verified catalogue standard.
-- It does **not** certify legal or structural safety guarantees; it serves as a decision-support advisory system.
-- It does **not** silently guess missing engineering parameters; it abstains and asks the technical officer for missing inputs.
+```bash
+# 1. Clone the repository
+git clone https://github.com/syed-imadulla/Tender-saathi.git
+cd Tender-saathi
 
----
-
-## 2. System Architecture
-
-Tender Saathi implements a deterministic 10-stage decision-safety pipeline:
-
-```text
-  [ Tender PDF / Scanned Image / Plain Text ]
-                       │
-                       ▼
- 1. Document Extraction & Clause Segmentation
-                       │
-                       ▼
- 2. Normalization & Parameter Decomposition
-                       │
-                       ▼
- 3. Hybrid Retrieval (Pure-Python BM25 + NumPy Embeddings)
-                       │
-                       ▼
- 4. Cross-Encoder Reranking & Normalization
-                       │
-                       ▼
- 5. Engineering Applicability & Contradiction Gates
-                       │
-                       ▼
- 6. Ambiguity Detection & Completeness Checking
-                       │
-                       ▼
- 7. Verbatim Evidence Grounding Critic
-                       │
-                       ▼
- 8. Lifecycle & Supersedence Traversal
-                       │
-                       ▼
- 9. Standards Relationship Graph (Depth-1 Horizon)
-                       │
-                       ▼
-10. Regulatory Signals & Human Review Queue Routing
-                       │
-                       ▼
-      [ Interactive UI / JSON & Markdown Reports ]
+# 2. Launch with Docker Compose
+docker compose up --build
 ```
-
-*For detailed component architecture and module references, see [Architecture Overview](docs/architecture/overview.md) and [Module Reference](docs/architecture/modules.md).*
-
----
-
-## 3. Verified System Performance
-
-Every metric reported below is independently reproducible using the evaluation commands in this repository:
-
-| Metric Category | Verified Performance | Evaluation Reference |
-| :--- | :--- | :--- |
-| **Unit & Integration Suite** | **506 / 506 Passed (100%)** | `python3 -m pytest -q` |
-| **Full BIS Catalogue** | **35,208 standards** indexed | `data/catalogue/bis_catalogue.db` |
-| **Curated Core Standards** | **90 standards**, 72 verified relationships | `data/standards/standards.db` |
-| **Benchmark Top-1 Accuracy** | **90.0% (18/20)** | `python3 -m src.evaluate` |
-| **Mean Reciprocal Rank (MRR)** | **0.900** | `python3 -m src.evaluate` |
-| **Negative Control Rejection** | **100.0% (5/5 safe rejections)** | `python3 -m src.evaluate` |
-| **Adversarial Safety Pass Rate**| **98.57% (69/70 probes passed)** | `python3 -m src.eval_adversarial` |
-| **Ambiguity Detection Recall** | **100.0%** (All under-specified queries caught) | `python3 -m src.eval_adversarial` |
-| **Evidence Grounding Invariant**| **100.0%** (Zero hallucinated citations) | `python3 -m src.eval_adversarial` |
-| **Prompt Injection Defense** | **100.0% (5/5 contained)** | `python3 -m src.eval_adversarial` |
-
-*For complete evaluation details, see [Benchmark Evaluation](docs/evaluation/benchmark.md) and [Adversarial Suite](docs/evaluation/adversarial_suite.md).*
+- **Web Interface:** `http://localhost:3000` (Nginx reverse-proxies `/api/` seamlessly to backend)
+- **Backend Health Check:** `http://localhost:5000/api/health`
 
 ---
 
-## 4. Quickstart
+### Method 2: Local Developer Setup (No Docker Required)
 
-### Prerequisites
+#### Prerequisites
 - Python 3.10+
 - Node.js 18+ and npm 9+
-- *(Optional)* `tesseract-ocr` and `poppler-utils` for scanned PDF ingestion
+- *(Optional)* `tesseract-ocr` and `poppler-utils` for scanned document OCR
 
-### Step 1: Install Python Backend
+#### Step 1: Install Python Backend
 ```bash
-git clone <repo-url> sih26108-feasibility
-cd sih26108-feasibility
-
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Step 2: Install Frontend
+#### Step 2: Install Frontend
 ```bash
 cd frontend
 npm install
 cd ..
 ```
 
-### Step 3: Run the Application
+#### Step 3: Run the Application
 In Terminal 1 (Backend REST API):
 ```bash
 python3 -u api/server.py
