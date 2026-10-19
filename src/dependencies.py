@@ -123,6 +123,7 @@ class StandardsDependencyReport:
     qco_related: List[DependencyItem] = field(default_factory=list)
     related_for_review: List[DependencyItem] = field(default_factory=list)
     all_dependencies: List[DependencyItem] = field(default_factory=list)
+    traversed_cross_references: List[Dict[str, Any]] = field(default_factory=list)
     lifecycle_warnings: List[Dict[str, Any]] = field(default_factory=list)
     amendment_metadata: Optional[Dict[str, Any]] = None
 
@@ -143,6 +144,7 @@ class StandardsDependencyReport:
             "qco_related": [d.to_dict() for d in self.qco_related],
             "related_for_review": [d.to_dict() for d in self.related_for_review],
             "all_dependencies": [d.to_dict() for d in self.all_dependencies],
+            "traversed_cross_references": self.traversed_cross_references,
             "lifecycle_warnings": self.lifecycle_warnings,
             "amendment_metadata": self.amendment_metadata
         }
@@ -342,6 +344,16 @@ class StandardsDependencyEngine:
                         "status": p_status,
                         "currency_summary": f"Current edition reaffirmed in {reaff}"
                     }
+
+        try:
+            traversed = self.graph.traverse_cross_references(
+                start_standard=primary_standard,
+                max_depth=min(depth or 1, 2),
+                tender_context=req_text
+            )
+            report.traversed_cross_references = [t.to_dict() for t in traversed]
+        except Exception:
+            report.traversed_cross_references = []
 
         report.total_dependencies = len(report.all_dependencies)
         return report

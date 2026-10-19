@@ -13,10 +13,14 @@ Enforces Milestone 5 constraints:
   IDENTICAL_ADOPTION, etc.). Does NOT infer relationships from title similarity or years.
 """
 
+import os
+import json
+import sqlite3
 import re
 from dataclasses import dataclass, asdict, field
 from typing import List, Dict, Any, Optional, Set
 
+from src.catalogue.normalizer import StandardIdentifierNormalizer
 from src.standards import (
     StandardsDatabase,
     CANONICAL_RELATIONSHIP_TYPES,
@@ -135,6 +139,33 @@ class RelatedStandardResult:
     evidence_text: str                    # Stored relationship evidence
     source_url: Optional[str] = None
     review_note: str = "Related standard to review"  # Non-authoritative guidance
+
+    def to_dict(self) -> Dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass
+class TraversedReference:
+    """
+    Represents an evidence-grounded cross-reference discovered via graph traversal.
+    Preserves source standard, originating clause, canonical target standard,
+    explicit vs informative reference classification, lifecycle status, and evidence snippet.
+    """
+    source_standard: str                  # Originating standard identifier (e.g. "IS 800 : 2007")
+    originating_clause: str               # Grounded clause identifier where reference appears (e.g. "2.2")
+    target_standard: str                  # Canonical target standard identifier (e.g. "IS 2062 : 2011")
+    target_title: str                     # Title of target standard from catalogue / index
+    relationship_type: str                # NORMATIVE_REFERENCE, CODE_OF_PRACTICE, TEST_METHOD, etc.
+    reference_kind: str                   # "EXPLICIT_NORMATIVE", "INFORMATIVE", "CODE_OF_PRACTICE", "TEST_METHOD"
+    hop_depth: int                        # Current depth hop (1 or 2)
+    lifecycle_status: str                 # "Active", "Withdrawn", "Superseded", "Unknown"
+    is_active: bool                       # True if lifecycle_status == "Active"
+    originating_evidence: str             # Verbatim sentence or citation passage
+    source_citation: str                  # Originating standard or gazette reference
+    provenance: str = "VERIFIED"          # Strictly "VERIFIED" or "CURATED"
+    is_contextually_relevant: bool = False # Whether requirement keywords warrant this dependency
+    relevance_reason: str = ""            # Explanation of contextual relevance
+    review_note: str = "Related standard for engineering review"
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -509,3 +540,216 @@ class StandardsGraph:
                     f"Evidence: \"{r.evidence}\" (Provenance: {r.provenance})."
                 )
         return None
+
+    def traverse_cross_references(
+        self,
+        start_standard: str,
+        grounded_clause: Optional[str] = None,
+        max_depth: int = 1,
+        max_results: int = 10,
+        tender_context: Optional[str] = None
+    ) -> List[TraversedReference]:
+        """
+        Executes bounded, evidence-grounded cross-reference traversal starting from an explicit standard
+        and its grounded clause.
+        
+        Strict constraints:
+        - Max depth strictly bounded: default 1, maximum permitted 2. Raises ValueError if depth > 2 or depth < 1.
+        - Cycle detection: avoids revisited standards.
+        - Provenance preservation: each traversed edge retains originating clause and evidence snippet.
+        - Lifecycle awareness: identifies whether referenced standards are Active, Withdrawn, or Superseded.
+        - Contextual relevance: flags whether the reference applies to tender_context.
+        - Graph relationship alone NEVER implies CLAUSE_VERIFIED.
+        """
+        if max_depth < 1 or max_depth > 2:
+            raise ValueError(f"Cross-reference traversal depth must be between 1 and 2, got {max_depth}")
+
+        norm_start = self._normalize_id(start_standard)
+        start_digits = self._extract_digits(norm_start)
+        parsed_start = StandardIdentifierNormalizer.parse(start_standard)
+        canonical_start = parsed_start.canonical_id if parsed_start.is_valid else norm_start
+
+        visited_stds: Set[str] = {canonical_start}
+        if start_digits:
+            visited_stds.add(start_digits)
+
+        traversed_results: List[TraversedReference] = []
+
+        # Internal helper to extract citations from corpus_passages
+        def _get_corpus_citations(std_num: str, clause_id: Optional[str]) -> List[Dict[str, Any]]:
+            citations = []
+            corpus_db_path = "data/standards/corpus.db"
+            if not os.path.exists(corpus_db_path):
+                return citations
+
+            digits = self._extract_digits(std_num)
+            try:
+                with sqlite3.connect(corpus_db_path) as conn:
+                    conn.row_factory = sqlite3.Row
+                    cur = conn.cursor()
+                    q = "SELECT standard_number, clause_identifier, passage_text, edition_year FROM corpus_passages WHERE (standard_number = ? OR ( ? != '' AND standard_number LIKE ? ))"
+                    params = [std_num, digits or "", f"%{digits}%" if digits else ""]
+                    if clause_id:
+                        q += " AND clause_identifier = ?"
+                        params.append(clause_id)
+
+                    rows = cur.execute(q, params).fetchall()
+                    for r in rows:
+                        p_text = r["passage_text"]
+                        cid = r["clause_identifier"]
+                        sentences = re.split(r'(?<=[.!?])\s+', p_text)
+                        for sent in sentences:
+                            matches = re.finditer(r'\b(IS\s*(?:\(Part\s*\d+\))?\s*(?:/|\s*)?\d+(?:\s*\(Part\s*\d+\))?(?:\s*:\s*\d{4})?)\b', sent, re.IGNORECASE)
+                            for m in matches:
+                                raw_cite = m.group(1).strip()
+                                parsed = StandardIdentifierNormalizer.parse(raw_cite)
+                                if parsed.is_valid and parsed.canonical_id != canonical_start:
+                                    sent_lower = sent.lower()
+                                    if any(k in sent_lower for k in ["test", "testing", "method", "hydrostatic"]):
+                                        ref_kind = "TEST_METHOD"
+                                        rel_type = "TEST_METHOD"
+                                    elif any(k in sent_lower for k in ["code of practice", "loading", "earthquake", "wind"]):
+                                        ref_kind = "CODE_OF_PRACTICE"
+                                        rel_type = "CODE_OF_PRACTICE"
+                                    elif any(k in sent_lower for k in ["shall conform", "conforming to", "requirements of", "shall be"]):
+                                        ref_kind = "EXPLICIT_NORMATIVE"
+                                        rel_type = "NORMATIVE_REFERENCE"
+                                    else:
+                                        ref_kind = "INFORMATIVE"
+                                        rel_type = "REFERENCES"
+
+                                    citations.append({
+                                        "source_standard": r["standard_number"],
+                                        "clause_identifier": cid,
+                                        "target_raw": raw_cite,
+                                        "target_canonical": parsed.canonical_id,
+                                        "relationship_type": rel_type,
+                                        "reference_kind": ref_kind,
+                                        "evidence": sent.strip(),
+                                        "provenance": "VERIFIED"
+                                    })
+            except Exception:
+                pass
+            return citations
+
+        # Queue for breadth-first traversal: (current_std, current_clause, depth)
+        queue = [(start_standard, grounded_clause, 1)]
+
+        while queue and len(traversed_results) < max_results:
+            curr_std, curr_clause, curr_depth = queue.pop(0)
+
+            # 1. Check corpus passages for exact clause citations
+            corpus_cites = _get_corpus_citations(curr_std, curr_clause)
+            for c in corpus_cites:
+                tgt_canon = c["target_canonical"]
+                tgt_digits = self._extract_digits(tgt_canon)
+                if tgt_canon in visited_stds or (tgt_digits and tgt_digits in visited_stds):
+                    continue
+
+                visited_stds.add(tgt_canon)
+                if tgt_digits:
+                    visited_stds.add(tgt_digits)
+
+                tgt_info = self._resolve_standard_info(tgt_canon)
+                lifecycle = tgt_info.get("status", "Unknown")
+                is_act = (str(lifecycle).upper() == "ACTIVE")
+
+                is_rel = False
+                rel_reason = ""
+                if tender_context:
+                    tc_lower = tender_context.lower()
+                    title_lower = (tgt_info.get("title") or "").lower()
+                    keywords = [w for w in re.findall(r'\b[a-zA-Z]{4,}\b', title_lower) if w not in ["standard", "indian", "specification", "code", "practice", "part"]]
+                    matches = [k for k in keywords if k in tc_lower]
+                    if matches:
+                        is_rel = True
+                        rel_reason = f"Tender requirement mentions relevant scope terms ({', '.join(matches[:3])}) matching {tgt_canon}."
+                    elif any(k in tc_lower for k in ["pipe", "valve", "steel", "fitting", "joint", "testing", "load", "structure"]):
+                        is_rel = True
+                        rel_reason = f"Supporting standard relevant to tender engineering domain ({c['relationship_type']})."
+
+                ref_item = TraversedReference(
+                    source_standard=c["source_standard"],
+                    originating_clause=c["clause_identifier"],
+                    target_standard=tgt_canon,
+                    target_title=tgt_info.get("title", "Standard in BIS Catalogue"),
+                    relationship_type=c["relationship_type"],
+                    reference_kind=c["reference_kind"],
+                    hop_depth=curr_depth,
+                    lifecycle_status=lifecycle,
+                    is_active=is_act,
+                    originating_evidence=c["evidence"],
+                    source_citation=f"{c['source_standard']} Clause {c['clause_identifier']}",
+                    provenance=c["provenance"],
+                    is_contextually_relevant=is_rel,
+                    relevance_reason=rel_reason,
+                    review_note=f"Cross-referenced under Clause {c['clause_identifier']} of {c['source_standard']} for review."
+                )
+                traversed_results.append(ref_item)
+
+                if curr_depth < max_depth and len(traversed_results) < max_results:
+                    queue.append((tgt_canon, None, curr_depth + 1))
+
+            # 2. Check standard_relationships / relationships.json
+            direct_rels = self.get_direct_relationships(curr_std, depth=1)
+            for r in direct_rels:
+                if r.direction != "OUTGOING":
+                    continue
+                tgt_clean = r.target_standard.strip()
+                parsed_tgt = StandardIdentifierNormalizer.parse(tgt_clean)
+                tgt_canon = parsed_tgt.canonical_id if parsed_tgt.is_valid else tgt_clean
+                tgt_digits = self._extract_digits(tgt_canon)
+
+                if tgt_canon in visited_stds or (tgt_digits and tgt_digits in visited_stds):
+                    continue
+
+                visited_stds.add(tgt_canon)
+                if tgt_digits:
+                    visited_stds.add(tgt_digits)
+
+                tgt_info = self._resolve_standard_info(tgt_clean)
+                lifecycle = tgt_info.get("status", "Unknown")
+                is_act = (str(lifecycle).upper() == "ACTIVE")
+
+                is_rel = False
+                rel_reason = ""
+                if tender_context:
+                    tc_lower = tender_context.lower()
+                    title_lower = (tgt_info.get("title") or "").lower()
+                    keywords = [w for w in re.findall(r'\b[a-zA-Z]{4,}\b', title_lower) if w not in ["standard", "indian", "specification", "code", "practice", "part"]]
+                    matches = [k for k in keywords if k in tc_lower]
+                    if matches:
+                        is_rel = True
+                        rel_reason = f"Tender requirement mentions terms ({', '.join(matches[:3])}) matching {tgt_canon}."
+
+                ref_kind = "EXPLICIT_NORMATIVE" if r.relationship_type in ["NORMATIVE_REFERENCE", "SUPERSEDES"] else "INFORMATIVE"
+                if "test" in str(r.relationship_type).lower():
+                    ref_kind = "TEST_METHOD"
+                elif "code_of_practice" in str(r.relationship_type).lower():
+                    ref_kind = "CODE_OF_PRACTICE"
+
+                clause_repr = r.evidence_clause or curr_clause or "General"
+
+                ref_item = TraversedReference(
+                    source_standard=r.source_standard,
+                    originating_clause=clause_repr,
+                    target_standard=tgt_canon,
+                    target_title=tgt_info.get("title", "Standard in BIS Catalogue"),
+                    relationship_type=r.relationship_type,
+                    reference_kind=ref_kind,
+                    hop_depth=curr_depth,
+                    lifecycle_status=lifecycle,
+                    is_active=is_act,
+                    originating_evidence=r.evidence,
+                    source_citation=f"{r.source_standard} ({clause_repr})",
+                    provenance=r.provenance,
+                    is_contextually_relevant=is_rel,
+                    relevance_reason=rel_reason,
+                    review_note=f"Cross-referenced in {r.source_standard} ({r.relationship_type}) for review."
+                )
+                traversed_results.append(ref_item)
+
+                if curr_depth < max_depth and len(traversed_results) < max_results:
+                    queue.append((tgt_canon, None, curr_depth + 1))
+
+        return traversed_results[:max_results]

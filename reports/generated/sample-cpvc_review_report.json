@@ -992,7 +992,7 @@
         "decision": "ACCEPT",
         "reviewer_standard": null,
         "reviewer_note": "Verified by procurement officer",
-        "reviewed_at": "2026-10-19T11:56:44.547462+00:00",
+        "reviewed_at": "2026-10-19T13:01:08.966373+00:00",
         "system_standard": "IS 15778 : 2007",
         "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
       },
@@ -1250,6 +1250,59 @@
                 "explanation": "IS 4985 : 2021 (Unplasticized PVC Pipes for Potable Water Supplies - Specification (Fourth Revision)) is identified as an evidence-backed allied product or equipment specification standard associated with IS 15778. Evidence: Allied thermoplastic piping specification for potable water distribution networks. [Provenance: CURATED]."
               }
             ],
+            "traversed_cross_references": [
+              {
+                "source_standard": "IS 15778 : 2007",
+                "originating_clause": "Clause 2",
+                "target_standard": "IS-12235-2004",
+                "target_title": "Thermoplastics Pipes and Fittings - Methods of Test (First Revision)",
+                "relationship_type": "TEST_METHOD",
+                "reference_kind": "TEST_METHOD",
+                "hop_depth": 1,
+                "lifecycle_status": "Unknown",
+                "is_active": false,
+                "originating_evidence": "Clause 2 References and Clause 8 Requirements cite IS 12235 (various parts) for methods of testing plastic piping, including hydrostatic pressure, dimensions, and opacity.",
+                "source_citation": "IS 15778 : 2007 (Clause 2)",
+                "provenance": "CURATED",
+                "is_contextually_relevant": true,
+                "relevance_reason": "Tender requirement mentions terms (pipes) matching IS-12235-2004.",
+                "review_note": "Cross-referenced in IS 15778 : 2007 (TEST_METHOD) for review."
+              },
+              {
+                "source_standard": "IS 15778 : 2007",
+                "originating_clause": "Foreword",
+                "target_standard": "IS-7634-Part-3-2003",
+                "target_title": "Plastics Pipe Selection, Handling, Storage and Installation for Potable Water Supplies - Code of Practice: Part 3 Laying and Jointing of UPVC Pipes (First Revision)",
+                "relationship_type": "INSTALLATION_CODE",
+                "reference_kind": "INFORMATIVE",
+                "hop_depth": 1,
+                "lifecycle_status": "Unknown",
+                "is_active": false,
+                "originating_evidence": "Foreword note and Annex B recommend laying and jointing of CPVC/PVC water pipes to be executed per IS 7634 (Part 3).",
+                "source_citation": "IS 15778 : 2007 (Foreword)",
+                "provenance": "CURATED",
+                "is_contextually_relevant": true,
+                "relevance_reason": "Tender requirement mentions terms (pipe, pipes) matching IS-7634-Part-3-2003.",
+                "review_note": "Cross-referenced in IS 15778 : 2007 (INSTALLATION_CODE) for review."
+              },
+              {
+                "source_standard": "IS 15778 : 2007",
+                "originating_clause": "General",
+                "target_standard": "IS-4985-2000",
+                "target_title": "Unplasticized pvc pipes for potable water supplies - Specification (Third Revision)",
+                "relationship_type": "ALLIED_STANDARD",
+                "reference_kind": "INFORMATIVE",
+                "hop_depth": 1,
+                "lifecycle_status": "Withdrawn",
+                "is_active": false,
+                "originating_evidence": "Allied thermoplastic pipe standard for potable water supplies (uPVC vs CPVC).",
+                "source_citation": "IS 15778 : 2007 (General)",
+                "provenance": "CURATED",
+                "is_contextually_relevant": true,
+                "relevance_reason": "Tender requirement mentions terms (pipes) matching IS-4985-2000.",
+                "review_note": "Cross-referenced in IS 15778 : 2007 (ALLIED_STANDARD) for review."
+              }
+            ],
             "lifecycle_warnings": [
               {
                 "dependency_standard": "IS 4985 : 2000",
@@ -1349,7 +1402,7 @@
       "decision": "ACCEPT",
       "reviewer_standard": null,
       "reviewer_note": "Verified by procurement officer",
-      "reviewed_at": "2026-10-19T11:56:44.547462+00:00",
+      "reviewed_at": "2026-10-19T13:01:08.966373+00:00",
       "system_standard": "IS 15778 : 2007",
       "system_finding": "Authoritative active standard IS 15778 : 2007 verified against scope with High confidence."
     }

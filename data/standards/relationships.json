@@ -700,5 +700,68 @@
     "evidence_source": "BIS_OFFICIAL_GAZETTE",
     "provenance": "VERIFIED",
     "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 1239 (Part 2) : 2011",
+    "target_standard": "IS 1239 (Part 1) : 2004",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 1.1 specifies pipe fittings for use in conjunction with steel tubes conforming to IS 1239 (Part 1).",
+    "evidence_source": "BIS_OFFICIAL_GAZETTE",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 1239 (Part 2) : 2011",
+    "target_standard": "IS 554 : 1999",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 7.1 requires fitting pipe threads to conform to IS 554.",
+    "evidence_source": "BIS_OFFICIAL_GAZETTE",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 14846 : 2000",
+    "target_standard": "IS 210 : 2009",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 6.1 and Table 1 require valve body, bonnet, and wedge castings to conform to IS 210 Grade FG 200.",
+    "evidence_source": "BIS_OFFICIAL_GAZETTE",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 14846 : 2000",
+    "target_standard": "IS 1538 : 1993",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 7.1 specifies valve flanged connection dimensions and drilling to conform to IS 1538.",
+    "evidence_source": "BIS_OFFICIAL_GAZETTE",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 800 : 2007",
+    "target_standard": "IS 2062 : 2011",
+    "relationship_type": "NORMATIVE_REFERENCE",
+    "evidence": "Clause 2.2 specifies structural steel plates and sections to conform to IS 2062.",
+    "evidence_source": "BIS_OFFICIAL_GAZETTE",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 800 : 2007",
+    "target_standard": "IS 875 (Part 1) : 1987",
+    "relationship_type": "CODE_OF_PRACTICE",
+    "evidence": "Clause 1.1.2 mandates dead load and imposed load evaluation per IS 875 series.",
+    "evidence_source": "BIS_OFFICIAL_GAZETTE",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
+  },
+  {
+    "source_standard": "IS 800 : 2007",
+    "target_standard": "IS 1893 (Part 1) : 2016",
+    "relationship_type": "CODE_OF_PRACTICE",
+    "evidence": "Clause 1.1.2 mandates earthquake load evaluation per IS 1893.",
+    "evidence_source": "BIS_OFFICIAL_GAZETTE",
+    "provenance": "VERIFIED",
+    "confidence": 1.0
   }
 ]

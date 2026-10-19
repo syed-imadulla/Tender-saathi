@@ -502,6 +502,28 @@ class AmbiguityEngine:
             )
 
         # -------------------------------------------------------------------
+        # Stage 1.5: Discretionary / Vague Specification Guard
+        # Flags requirements that defer critical technical parameters to field discretion
+        # (e.g. 'as directed by site in-charge') without explicit standard citations.
+        # -------------------------------------------------------------------
+        discretionary_match = re.search(
+            r'\b(?:as directed by|at the discretion of|directed by\s+(?:the\s+)?site|as per\s+(?:the\s+)?site in[- ]charge|as directed by\s+(?:the\s+)?(?:site\s+in[- ]charge|engineer))\b',
+            text,
+            re.IGNORECASE
+        )
+        if discretionary_match and not explicit_standards:
+            return AmbiguityReport(
+                ambiguity_state=AmbiguityState.AMBIGUOUS,
+                ambiguity_reason=f"Requirement contains discretionary/vague instruction ('{discretionary_match.group(0)}') without objective technical specifications or explicit standard citations.",
+                retrieval_status="CANDIDATES_FOUND" if retrieved_candidates else "ZERO_RESULTS",
+                applicability_status="VIABLE_CANDIDATE" if applicable_candidates else "ALL_REJECTED",
+                evidence_status="INSUFFICIENT",
+                human_review_required=True,
+                suggested_clarification_question="Requirement defers technical specifications to site discretion. Please specify the governing standard, material grade, and engineering parameters.",
+                decision_confidence="High"
+            )
+
+        # -------------------------------------------------------------------
         # Stage 2: Catalogue Retrieval / Coverage
         # Evaluates retrieval ONLY. Does NOT use Applicability Gate results.
         # -------------------------------------------------------------------

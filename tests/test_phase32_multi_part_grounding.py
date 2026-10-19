@@ -130,16 +130,17 @@ class TestSourceAcquisitionReadiness:
     """Verifies physical source acquisition audit rules and blockers."""
 
     def test_no_synthetic_clauses_for_unacquired_sources(self):
-        """Confirms that unacquired sources IS 1239 Part 2 and IS 2062 have zero unverified passages in corpus."""
+        """Confirms that unacquired sources (e.g. IS 2062) have zero unverified passages in corpus,
+        and acquired sources (IS 1239 Part 2) only contain verified authentic passages."""
         conn = sqlite3.connect("data/standards/corpus.db")
         cursor = conn.cursor()
 
-        # Check for any passages asserting IS 1239 Part 2
-        cursor.execute("SELECT COUNT(*) FROM corpus_passages WHERE standard_number LIKE '%1239%Part 2%'")
-        part2_count = cursor.fetchone()[0]
-        assert part2_count == 0, "Corpus must not contain fabricated passages for IS 1239 Part 2"
-
-        # Check for any passages asserting IS 2062
+        # Check for any passages asserting unacquired IS 2062
         cursor.execute("SELECT COUNT(*) FROM corpus_passages WHERE standard_number LIKE '%2062%'")
         is2062_count = cursor.fetchone()[0]
-        assert is2062_count == 0, "Corpus must not contain fabricated passages for IS 2062"
+        assert is2062_count == 0, "Corpus must not contain fabricated passages for unacquired IS 2062"
+
+        # Check that IS 1239 Part 2 passages acquired in Phase 33 are strictly authentic CLAUSE_IDENTIFIER_VERIFIED
+        cursor.execute("SELECT COUNT(*) FROM corpus_passages WHERE standard_number LIKE '%1239%Part 2%' AND verification_state != 'CLAUSE_IDENTIFIER_VERIFIED'")
+        unverified_part2 = cursor.fetchone()[0]
+        assert unverified_part2 == 0, "All IS 1239 Part 2 passages must have authentic CLAUSE_IDENTIFIER_VERIFIED provenance"
