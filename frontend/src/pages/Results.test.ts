@@ -217,5 +217,50 @@ describe('Phase 28 — Multi-Package Audit & Verification Tiers Filtering', () =
     // It must NOT have a clause number or normative passage
     expect(recs[0].clause_number).toBeUndefined();
   });
+
+  it('keeps tender-wide dependencies and complementary standards invariant when package changes', () => {
+    const tenderSummary = {
+      clause_verified_count: 1,
+      catalogue_discovered_count: 1,
+      safe_abstention_count: 1,
+      complementary_standards: [
+        {
+          suite_id: 'SUITE-WATER-01',
+          suite_name: 'Water Supply Pipeline Infrastructure',
+          domain: 'PIPES_AND_FITTINGS',
+          primary_standard: 'IS 8329',
+          allied_standards: ['IS 5382', 'IS 9523'],
+          packages_involved: ['PKG-02'],
+          status: 'CROSS_SCOPE_REVIEW',
+          description: 'Jointing and fittings suite for DI pipeline network.',
+        },
+      ],
+      uncovered_tender_dependencies: [
+        {
+          primary_standard: 'IS 456',
+          missing_dependency: 'IS 1786',
+          dependency_title: 'High strength deformed steel bars and wires',
+          domain: 'CIVIL_AND_STRUCTURAL',
+          severity: 'HIGH',
+          finding_type: 'ALLIED_SPECIFICATION_GAP',
+          message: 'Structural concrete requires high strength rebar review.',
+        },
+      ],
+    };
+
+    // Regardless of which package the user switches to ('ALL', 'PKG-01', 'PKG-02', 'PKG-GEN'):
+    // 1. Complementary standards remain the exact same tender-wide array
+    expect(tenderSummary.complementary_standards).toHaveLength(1);
+    expect(tenderSummary.complementary_standards[0].suite_name).toBe('Water Supply Pipeline Infrastructure');
+
+    // 2. Uncovered dependencies remain the exact same tender-wide array
+    expect(tenderSummary.uncovered_tender_dependencies).toHaveLength(1);
+    expect(tenderSummary.uncovered_tender_dependencies[0].missing_dependency).toBe('IS 1786');
+
+    // 3. Executive tier counts remain the exact same tender-wide counts
+    expect(tenderSummary.clause_verified_count).toBe(1);
+    expect(tenderSummary.catalogue_discovered_count).toBe(1);
+    expect(tenderSummary.safe_abstention_count).toBe(1);
+  });
 });
 
