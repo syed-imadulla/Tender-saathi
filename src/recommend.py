@@ -268,6 +268,25 @@ class StandardsRecommender:
 
             matched_c = None
             for cs in c_search:
+                # Multi-part disambiguation guard for components
+                cs_num = cs.standard_number
+                c_low = comp_query.lower()
+                if "1239" in cs_num:
+                    if "Part 2" in cs_num and any(k in c_low for k in ["tube", "tubes", "pipe", "pipes"]) and not any(k in c_low for k in ["fitting", "fittings", "elbow", "tee", "socket", "union"]):
+                        continue
+                    if "Part 1" in cs_num and any(k in c_low for k in ["fitting", "fittings", "elbow", "tee", "socket", "union"]):
+                        continue
+                if "7098" in cs_num:
+                    if "Part 2" in cs_num and any(k in c_low for k in ["lt", "low tension", "low voltage", "1.1 kv", "1100 v"]):
+                        continue
+                    if "Part 1" in cs_num and any(k in c_low for k in ["ht", "mv", "hv", "high tension", "11 kv", "33 kv", "medium voltage"]):
+                        continue
+                if "1489" in cs_num:
+                    if "Part 2" in cs_num and any(k in c_low for k in ["fly ash", "flyash"]):
+                        continue
+                    if "Part 1" in cs_num and any(k in c_low for k in ["calcined clay", "clay"]):
+                        continue
+
                 app_check = self.applicability_gate.evaluate_candidate(
                     candidate=cs,
                     requirement_text=comp_query,
@@ -281,6 +300,9 @@ class StandardsRecommender:
 
             if matched_c:
                 c_std, c_app = matched_c
+                # Prevent duplicate recommendation for the same standard across overlapping components
+                if any(cb.get("candidate_standard") == c_std.standard_number for cb in component_bundles):
+                    continue
                 sub_dep = self.dependency_engine.analyze_dependencies(
                     requirement=comp_text,
                     primary_standard=c_std.standard_number,
@@ -367,9 +389,10 @@ class StandardsRecommender:
             ai_components = parsed_ai.to_components()
             existing_texts = {c.text.lower() for c in req.components}
             for ac in ai_components:
-                if ac.text.lower() not in existing_texts:
+                ac_lower = ac.text.lower()
+                if not any(ac_lower == et or ac_lower in et or et in ac_lower for et in existing_texts):
                     req.components.append(ac)
-                    existing_texts.add(ac.text.lower())
+                    existing_texts.add(ac_lower)
 
         # Analyze specification completeness across engineering domain
         completeness_report = self.completeness_analyzer.analyze(working_text, req.components)
@@ -400,7 +423,70 @@ class StandardsRecommender:
                     "SELECT * FROM standards WHERE standard_number = ? OR standard_number = ? OR standard_number = ? OR standard_id = ? OR standard_id LIKE ?",
                     (exp, exp_base, norm_exp_base, exp, f"{norm_exp_id}%")
                 )
-                row = cursor.fetchone()
+                rows = cursor.fetchall()
+                row = None
+
+                if rows:
+                    if parsed_exp.part is not None:
+                        matching_rows = [
+                            r for r in rows
+                            if StandardIdentifierNormalizer.parse(dict(r)["standard_number"]).part == parsed_exp.part
+                        ]
+                        row = matching_rows[0] if matching_rows else rows[0]
+                    elif len(rows) > 1:
+                        # Multi-part standard cited without explicit part number
+                        tw = working_text.lower()
+                        is_bare_ambiguous = False
+
+                        if "1239" in norm_exp_id:
+                            fittings_kws = ["fitting", "fittings", "tubulars", "elbow", "tee", "socket", "union", "coupling", "nipple"]
+                            tubes_kws = ["tube", "tubes", "pipe", "pipes", "tubular"]
+                            has_fitting = any(re.search(rf"\b{k}\b", tw) for k in fittings_kws)
+                            has_tube = any(re.search(rf"\b{k}\b", tw) for k in tubes_kws)
+                            if has_fitting:
+                                p2 = [r for r in rows if StandardIdentifierNormalizer.parse(dict(r)["standard_number"]).part == 2]
+                                row = p2[0] if p2 else rows[0]
+                            elif has_tube:
+                                p1 = [r for r in rows if StandardIdentifierNormalizer.parse(dict(r)["standard_number"]).part == 1]
+                                row = p1[0] if p1 else rows[0]
+                            else:
+                                is_bare_ambiguous = True
+                                row = rows[0]
+                        elif "7098" in norm_exp_id:
+                            ht_kws = ["11 kv", "33 kv", "3.3 kv", "6.6 kv", "ht", "medium voltage", "high tension"]
+                            lt_kws = ["1.1 kv", "1100 v", "lt", "low voltage", "low tension"]
+                            has_ht = any(k in tw for k in ht_kws)
+                            has_lt = any(k in tw for k in lt_kws)
+                            if has_ht:
+                                p2 = [r for r in rows if StandardIdentifierNormalizer.parse(dict(r)["standard_number"]).part == 2]
+                                row = p2[0] if p2 else rows[0]
+                            elif has_lt:
+                                p1 = [r for r in rows if StandardIdentifierNormalizer.parse(dict(r)["standard_number"]).part == 1]
+                                row = p1[0] if p1 else rows[0]
+                            else:
+                                is_bare_ambiguous = True
+                                row = rows[0]
+                        elif "1489" in norm_exp_id:
+                            clay_kws = ["calcined clay", "calcined", "clay"]
+                            has_clay = any(k in tw for k in clay_kws)
+                            if has_clay:
+                                p2 = [r for r in rows if StandardIdentifierNormalizer.parse(dict(r)["standard_number"]).part == 2]
+                                row = p2[0] if p2 else rows[0]
+                            else:
+                                p1 = [r for r in rows if StandardIdentifierNormalizer.parse(dict(r)["standard_number"]).part == 1]
+                                row = p1[0] if p1 else rows[0]
+                        else:
+                            row = rows[0]
+
+                        if is_bare_ambiguous:
+                            part_options = [dict(r).get("standard_number") for r in rows]
+                            superseded_explicit_warnings.append(
+                                f"AMBIGUOUS_MULTI_PART_CITATION: Cited standard '{exp}' is a multi-part specification ({', '.join(part_options)}). "
+                                "Tender specification lacks discriminating product parameters to determine the exact part. Human review required."
+                            )
+                    else:
+                        row = rows[0]
+
                 if row:
                     r_dict = dict(row)
                     exact_res = self.search_engine.det_engine._format_result(
@@ -682,6 +768,14 @@ class StandardsRecommender:
                     critic_decision = "NO_RELIABLE_MATCH"
                     critic_reasons = list(nonexistent_citation_warnings)
                     why_it_matches = "Cited standard does not exist in the official BIS standards catalogue."
+                elif superseded_explicit_warnings:
+                    for sew in reversed(superseded_explicit_warnings):
+                        why_not_reasons.insert(0, sew)
+                    user_facing_explanation = f"{superseded_explicit_warnings[0]}"
+                    title = "Inactive or Ambiguous Citation Detected"
+                    critic_decision = "REVIEW_REQUIRED"
+                    critic_reasons = list(superseded_explicit_warnings)
+                    why_it_matches = "Tender cites an inactive, superseded, or ambiguous multi-part standard."
                 else:
                     if not why_not_reasons:
                         why_not_reasons = ["No reliable candidate standards retrieved from catalogue."]

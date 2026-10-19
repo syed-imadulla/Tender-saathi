@@ -27,8 +27,8 @@
     "active_count": 2,
     "unknown_lifecycle_count": 0,
     "evidence_distribution": {
-      "STRONG": 1,
-      "MODERATE": 1,
+      "STRONG": 2,
+      "MODERATE": 0,
       "WEAK": 0,
       "NONE": 0
     },
@@ -57,15 +57,15 @@
         "requirement_text": "XLPE insulated electric power cables conforming to IS 7098",
         "risk_level": "HIGH",
         "decision": "REVIEW_REQUIRED",
-        "candidate_standard": "IS 7098 (Part 1) : 1988",
-        "evidence_strength": "MODERATE",
-        "primary_reason": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section",
+        "candidate_standard": "IS 7098 (Part 2) : 2011",
+        "evidence_strength": "STRONG",
+        "primary_reason": "AMBIGUOUS_MULTI_PART_CITATION: Cited standard 'IS 7098' is a multi-part specification (IS 7098 (Part 2), IS 7098 (Part 1)). Tender specification lacks discriminating product parameters to determine the exact part. Human review required.",
         "priority": 2,
         "category": "CLARIFICATION_REQUIRED",
         "component_id": null,
-        "review_action": "Verify application of IS 7098 (Part 1) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
+        "review_action": "Verify application of IS 7098 (Part 2) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 2) and IS 7098 (Part 1) due to missing distinguishing parameters: voltage_rating (MV/HV vs LV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
         "uncertainty": "",
-        "what_to_check": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section"
+        "what_to_check": "AMBIGUOUS_MULTI_PART_CITATION: Cited standard 'IS 7098' is a multi-part specification (IS 7098 (Part 2), IS 7098 (Part 1)). Tender specification lacks discriminating product parameters to determine the exact part. Human review required."
       }
     ],
     "publication_readiness": "REVIEW_REQUIRED",
@@ -177,7 +177,7 @@
             "ELECTRICAL_AND_POWER"
           ],
           "standards": [
-            "IS 7098 (Part 1) : 1988"
+            "IS 7098 (Part 2) : 2011"
           ]
         }
       ],
@@ -279,17 +279,17 @@
         "requirement_text": "XLPE insulated electric power cables conforming to IS 7098",
         "coverage_state": "REVIEW_REQUIRED",
         "primary_standards": [
-          "IS 7098 (Part 1) : 1988"
+          "IS 7098 (Part 2) : 2011"
         ],
         "component_breakdown": [],
         "gap_details": null,
         "lifecycle_concerns": [],
         "ambiguity_details": {
           "ambiguity_state": "REVIEW_REQUIRED",
-          "ambiguity_reason": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
+          "ambiguity_reason": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 2) and IS 7098 (Part 1) due to missing distinguishing parameters: voltage_rating (MV/HV vs LV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
           "missing_information": [],
           "competing_interpretations": [],
-          "suggested_clarification_question": "Verify application of IS 7098 (Part 1) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
+          "suggested_clarification_question": "Verify application of IS 7098 (Part 2) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 2) and IS 7098 (Part 1) due to missing distinguishing parameters: voltage_rating (MV/HV vs LV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
           "unresolved_components": []
         },
         "lifecycle_warnings": [],
@@ -358,29 +358,29 @@
             "finding_type": "AMBIGUOUS_REQUIREMENT",
             "title": "Ambiguous requirement with competing interpretations",
             "standards": [
-              "IS 7098 (Part 1) : 1988"
+              "IS 7098 (Part 2) : 2011"
             ],
             "applicability_decision": "VIABLE_CANDIDATE",
-            "evidence_strength": "MODERATE",
+            "evidence_strength": "STRONG",
             "supporting_facts": [
-              "Ambiguity reason: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
+              "Ambiguity reason: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 2) and IS 7098 (Part 1) due to missing distinguishing parameters: voltage_rating (MV/HV vs LV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
               "Missing technical parameters: Technical parameters unspecified"
             ],
             "lifecycle_status": "ACTIVE",
             "lifecycle_note": null,
             "relationships": [],
             "provenance": {
-              "source": "VALIDATED_RESEARCH_GOVERNMENT_GAZETTE_QCO_AND_BIS",
+              "source": "BIS_OFFICIAL_CATALOGUE",
               "source_type": "STANDARDS_DB",
-              "source_url": "IS 7098 (Part 1):1988 Clause 1; IS 1255 Section 6",
-              "raw_record_ref": "IS 7098 (Part 1) : 1988",
+              "source_url": "https://standardsbis.bsbedge.com",
+              "raw_record_ref": "IS 7098 (Part 2) : 2011",
               "ingestion_run_id": null,
-              "verification_status": "CURATED",
-              "retrieved_at": "2026-09-12T09:56:24.306412+00:00"
+              "verification_status": "VERIFIED",
+              "retrieved_at": "2026-09-12T09:35:36.514250+00:00"
             },
             "uncertainty": "Requirement is underspecified or subject to competing interpretations. Safe abstention preserved.",
             "human_review_required": true,
-            "review_action": "Verify application of IS 7098 (Part 1) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
+            "review_action": "Verify application of IS 7098 (Part 2) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 2) and IS 7098 (Part 1) due to missing distinguishing parameters: voltage_rating (MV/HV vs LV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
             "severity": "MEDIUM"
           }
         ]
@@ -482,29 +482,29 @@
         "finding_type": "AMBIGUOUS_REQUIREMENT",
         "title": "Ambiguous requirement with competing interpretations",
         "standards": [
-          "IS 7098 (Part 1) : 1988"
+          "IS 7098 (Part 2) : 2011"
         ],
         "applicability_decision": "VIABLE_CANDIDATE",
-        "evidence_strength": "MODERATE",
+        "evidence_strength": "STRONG",
         "supporting_facts": [
-          "Ambiguity reason: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
+          "Ambiguity reason: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 2) and IS 7098 (Part 1) due to missing distinguishing parameters: voltage_rating (MV/HV vs LV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
           "Missing technical parameters: Technical parameters unspecified"
         ],
         "lifecycle_status": "ACTIVE",
         "lifecycle_note": null,
         "relationships": [],
         "provenance": {
-          "source": "VALIDATED_RESEARCH_GOVERNMENT_GAZETTE_QCO_AND_BIS",
+          "source": "BIS_OFFICIAL_CATALOGUE",
           "source_type": "STANDARDS_DB",
-          "source_url": "IS 7098 (Part 1):1988 Clause 1; IS 1255 Section 6",
-          "raw_record_ref": "IS 7098 (Part 1) : 1988",
+          "source_url": "https://standardsbis.bsbedge.com",
+          "raw_record_ref": "IS 7098 (Part 2) : 2011",
           "ingestion_run_id": null,
-          "verification_status": "CURATED",
-          "retrieved_at": "2026-09-12T09:56:24.306412+00:00"
+          "verification_status": "VERIFIED",
+          "retrieved_at": "2026-09-12T09:35:36.514250+00:00"
         },
         "uncertainty": "Requirement is underspecified or subject to competing interpretations. Safe abstention preserved.",
         "human_review_required": true,
-        "review_action": "Verify application of IS 7098 (Part 1) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
+        "review_action": "Verify application of IS 7098 (Part 2) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 2) and IS 7098 (Part 1) due to missing distinguishing parameters: voltage_rating (MV/HV vs LV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
         "severity": "MEDIUM"
       }
     ],
@@ -517,29 +517,29 @@
         "finding_type": "AMBIGUOUS_REQUIREMENT",
         "title": "Ambiguous requirement with competing interpretations",
         "standards": [
-          "IS 7098 (Part 1) : 1988"
+          "IS 7098 (Part 2) : 2011"
         ],
         "applicability_decision": "VIABLE_CANDIDATE",
-        "evidence_strength": "MODERATE",
+        "evidence_strength": "STRONG",
         "supporting_facts": [
-          "Ambiguity reason: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
+          "Ambiguity reason: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 2) and IS 7098 (Part 1) due to missing distinguishing parameters: voltage_rating (MV/HV vs LV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
           "Missing technical parameters: Technical parameters unspecified"
         ],
         "lifecycle_status": "ACTIVE",
         "lifecycle_note": null,
         "relationships": [],
         "provenance": {
-          "source": "VALIDATED_RESEARCH_GOVERNMENT_GAZETTE_QCO_AND_BIS",
+          "source": "BIS_OFFICIAL_CATALOGUE",
           "source_type": "STANDARDS_DB",
-          "source_url": "IS 7098 (Part 1):1988 Clause 1; IS 1255 Section 6",
-          "raw_record_ref": "IS 7098 (Part 1) : 1988",
+          "source_url": "https://standardsbis.bsbedge.com",
+          "raw_record_ref": "IS 7098 (Part 2) : 2011",
           "ingestion_run_id": null,
-          "verification_status": "CURATED",
-          "retrieved_at": "2026-09-12T09:56:24.306412+00:00"
+          "verification_status": "VERIFIED",
+          "retrieved_at": "2026-09-12T09:35:36.514250+00:00"
         },
         "uncertainty": "Requirement is underspecified or subject to competing interpretations. Safe abstention preserved.",
         "human_review_required": true,
-        "review_action": "Verify application of IS 7098 (Part 1) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
+        "review_action": "Verify application of IS 7098 (Part 2) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 2) and IS 7098 (Part 1) due to missing distinguishing parameters: voltage_rating (MV/HV vs LV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
         "severity": "MEDIUM"
       }
     ],
@@ -665,7 +665,7 @@
               "ELECTRICAL_AND_POWER"
             ],
             "standards": [
-              "IS 7098 (Part 1) : 1988"
+              "IS 7098 (Part 2) : 2011"
             ]
           }
         ],
@@ -767,17 +767,17 @@
           "requirement_text": "XLPE insulated electric power cables conforming to IS 7098",
           "coverage_state": "REVIEW_REQUIRED",
           "primary_standards": [
-            "IS 7098 (Part 1) : 1988"
+            "IS 7098 (Part 2) : 2011"
           ],
           "component_breakdown": [],
           "gap_details": null,
           "lifecycle_concerns": [],
           "ambiguity_details": {
             "ambiguity_state": "REVIEW_REQUIRED",
-            "ambiguity_reason": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
+            "ambiguity_reason": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 2) and IS 7098 (Part 1) due to missing distinguishing parameters: voltage_rating (MV/HV vs LV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
             "missing_information": [],
             "competing_interpretations": [],
-            "suggested_clarification_question": "Verify application of IS 7098 (Part 1) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
+            "suggested_clarification_question": "Verify application of IS 7098 (Part 2) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 2) and IS 7098 (Part 1) due to missing distinguishing parameters: voltage_rating (MV/HV vs LV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
             "unresolved_components": []
           },
           "lifecycle_warnings": [],
@@ -846,29 +846,29 @@
               "finding_type": "AMBIGUOUS_REQUIREMENT",
               "title": "Ambiguous requirement with competing interpretations",
               "standards": [
-                "IS 7098 (Part 1) : 1988"
+                "IS 7098 (Part 2) : 2011"
               ],
               "applicability_decision": "VIABLE_CANDIDATE",
-              "evidence_strength": "MODERATE",
+              "evidence_strength": "STRONG",
               "supporting_facts": [
-                "Ambiguity reason: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
+                "Ambiguity reason: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 2) and IS 7098 (Part 1) due to missing distinguishing parameters: voltage_rating (MV/HV vs LV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
                 "Missing technical parameters: Technical parameters unspecified"
               ],
               "lifecycle_status": "ACTIVE",
               "lifecycle_note": null,
               "relationships": [],
               "provenance": {
-                "source": "VALIDATED_RESEARCH_GOVERNMENT_GAZETTE_QCO_AND_BIS",
+                "source": "BIS_OFFICIAL_CATALOGUE",
                 "source_type": "STANDARDS_DB",
-                "source_url": "IS 7098 (Part 1):1988 Clause 1; IS 1255 Section 6",
-                "raw_record_ref": "IS 7098 (Part 1) : 1988",
+                "source_url": "https://standardsbis.bsbedge.com",
+                "raw_record_ref": "IS 7098 (Part 2) : 2011",
                 "ingestion_run_id": null,
-                "verification_status": "CURATED",
-                "retrieved_at": "2026-09-12T09:56:24.306412+00:00"
+                "verification_status": "VERIFIED",
+                "retrieved_at": "2026-09-12T09:35:36.514250+00:00"
               },
               "uncertainty": "Requirement is underspecified or subject to competing interpretations. Safe abstention preserved.",
               "human_review_required": true,
-              "review_action": "Verify application of IS 7098 (Part 1) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
+              "review_action": "Verify application of IS 7098 (Part 2) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 2) and IS 7098 (Part 1) due to missing distinguishing parameters: voltage_rating (MV/HV vs LV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
               "severity": "MEDIUM"
             }
           ]
@@ -951,29 +951,29 @@
           "finding_type": "AMBIGUOUS_REQUIREMENT",
           "title": "Ambiguous requirement with competing interpretations",
           "standards": [
-            "IS 7098 (Part 1) : 1988"
+            "IS 7098 (Part 2) : 2011"
           ],
           "applicability_decision": "VIABLE_CANDIDATE",
-          "evidence_strength": "MODERATE",
+          "evidence_strength": "STRONG",
           "supporting_facts": [
-            "Ambiguity reason: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
+            "Ambiguity reason: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 2) and IS 7098 (Part 1) due to missing distinguishing parameters: voltage_rating (MV/HV vs LV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
             "Missing technical parameters: Technical parameters unspecified"
           ],
           "lifecycle_status": "ACTIVE",
           "lifecycle_note": null,
           "relationships": [],
           "provenance": {
-            "source": "VALIDATED_RESEARCH_GOVERNMENT_GAZETTE_QCO_AND_BIS",
+            "source": "BIS_OFFICIAL_CATALOGUE",
             "source_type": "STANDARDS_DB",
-            "source_url": "IS 7098 (Part 1):1988 Clause 1; IS 1255 Section 6",
-            "raw_record_ref": "IS 7098 (Part 1) : 1988",
+            "source_url": "https://standardsbis.bsbedge.com",
+            "raw_record_ref": "IS 7098 (Part 2) : 2011",
             "ingestion_run_id": null,
-            "verification_status": "CURATED",
-            "retrieved_at": "2026-09-12T09:56:24.306412+00:00"
+            "verification_status": "VERIFIED",
+            "retrieved_at": "2026-09-12T09:35:36.514250+00:00"
           },
           "uncertainty": "Requirement is underspecified or subject to competing interpretations. Safe abstention preserved.",
           "human_review_required": true,
-          "review_action": "Verify application of IS 7098 (Part 1) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
+          "review_action": "Verify application of IS 7098 (Part 2) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 2) and IS 7098 (Part 1) due to missing distinguishing parameters: voltage_rating (MV/HV vs LV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
           "severity": "MEDIUM"
         }
       ],
@@ -1047,20 +1047,20 @@
       ],
       "evidence_audit": {
         "evidence_distribution": {
-          "STRONG": 1,
-          "MODERATE": 1,
+          "STRONG": 2,
+          "MODERATE": 0,
           "WEAK": 0,
           "NONE": 0
         },
         "provenance_distribution": {
-          "VERIFIED": 1,
-          "CURATED": 1,
+          "VERIFIED": 2,
+          "CURATED": 0,
           "INFERRED": 0,
           "UNKNOWN": 0
         },
         "scope_status_distribution": {
-          "AUTHORITATIVE_VERIFIED": 1,
-          "CURATED": 1,
+          "AUTHORITATIVE_VERIFIED": 2,
+          "CURATED": 0,
           "UNKNOWN": 0
         }
       },
@@ -1070,15 +1070,15 @@
           "requirement_text": "XLPE insulated electric power cables conforming to IS 7098",
           "risk_level": "HIGH",
           "decision": "REVIEW_REQUIRED",
-          "candidate_standard": "IS 7098 (Part 1) : 1988",
-          "evidence_strength": "MODERATE",
-          "primary_reason": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section",
+          "candidate_standard": "IS 7098 (Part 2) : 2011",
+          "evidence_strength": "STRONG",
+          "primary_reason": "AMBIGUOUS_MULTI_PART_CITATION: Cited standard 'IS 7098' is a multi-part specification (IS 7098 (Part 2), IS 7098 (Part 1)). Tender specification lacks discriminating product parameters to determine the exact part. Human review required.",
           "priority": 2,
           "category": "CLARIFICATION_REQUIRED",
           "component_id": null,
-          "review_action": "Verify application of IS 7098 (Part 1) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
+          "review_action": "Verify application of IS 7098 (Part 2) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 2) and IS 7098 (Part 1) due to missing distinguishing parameters: voltage_rating (MV/HV vs LV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
           "uncertainty": "",
-          "what_to_check": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section"
+          "what_to_check": "AMBIGUOUS_MULTI_PART_CITATION: Cited standard 'IS 7098' is a multi-part specification (IS 7098 (Part 2), IS 7098 (Part 1)). Tender specification lacks discriminating product parameters to determine the exact part. Human review required."
         }
       ],
       "disclaimers_and_notes": [
@@ -1102,7 +1102,7 @@
           "escalation_action": "NONE",
           "standards": [
             "IS 456 : 2000",
-            "IS 7098 (Part 1) : 1988"
+            "IS 7098 (Part 2) : 2011"
           ]
         }
       ],
@@ -1134,7 +1134,7 @@
             "ELECTRICAL_AND_POWER"
           ],
           "standards": [
-            "IS 7098 (Part 1) : 1988"
+            "IS 7098 (Part 2) : 2011"
           ]
         }
       ],
@@ -1178,7 +1178,7 @@
         "escalation_action": "NONE",
         "standards": [
           "IS 456 : 2000",
-          "IS 7098 (Part 1) : 1988"
+          "IS 7098 (Part 2) : 2011"
         ]
       }
     ],
@@ -1215,7 +1215,7 @@
           "ELECTRICAL_AND_POWER"
         ],
         "standards": [
-          "IS 7098 (Part 1) : 1988"
+          "IS 7098 (Part 2) : 2011"
         ]
       }
     ],
@@ -1850,26 +1850,21 @@
           "search_concepts": []
         }
       ],
-      "recommended_standard": "IS 7098 (Part 1) : 1988",
-      "recommended_title": "Crosslinked Polyethylene Insulated Cables - Part 1: Up to 1100 V; Code of Practice for Installation of Power Cables [IS 7098 (Part 1)]",
-      "relevance_score": 0.98,
+      "recommended_standard": "IS 7098 (Part 2) : 2011",
+      "recommended_title": "Crosslinked Polyethylene Insulated Thermoplastic Sheathed Cables - Part 2: For Working Voltages from 3.3 kV up to and Including 33 kV",
+      "relevance_score": 1.0,
       "lifecycle_status": "Active",
       "successor_standard": null,
       "superseded_citation": null,
-      "evidence_strength": "MODERATE",
-      "provenance": "CURATED",
-      "evidence_text": "Partial Match: Proposed standard covers the physical cable, but the tender explicitly mandates Providing and Laying underground cable, which requires laying code IS 1255.",
-      "evidence_source": "BIS Standards Catalogue",
+      "evidence_strength": "STRONG",
+      "provenance": "VERIFIED",
+      "evidence_text": "Tender explicitly requires compliance with IS 7098 (Part 2).",
+      "evidence_source": "Tender Document",
       "why_this": [
-        "Standard title directly matches requirement component(s): 'power cables'.",
-        "Authoritative scope explicitly covers application: \"Partial Match: Proposed standard covers the physical cable, but the tender explicitly mandates Providing and Laying unde...\"",
-        "Standard is currently active in the BIS repository with verified currency.",
-        "Provenance established via BIS Standards Catalogue (CURATED).",
-        "Official code of practice associated with IS 1255 : 1983.",
-        "Cites normative reference IS 8130 : 2013 (Conductors for insulated electric cables and flexible cords - Specification (Second Revision))."
+        "Recommended authoritative active successor standard recorded in BIS database."
       ],
       "why_not": [
-        "Alternative standard IS 7098 (Part 2) scored lower across the 5-dimension critic evaluation."
+        "Original cited standard is superseded, obsolete, or an older revision requiring technical verification."
       ],
       "completeness_label": "POTENTIALLY_MISSING",
       "potentially_missing_parameters": [
@@ -1932,16 +1927,15 @@
       "decision": "REVIEW_REQUIRED",
       "risk_level": "HIGH",
       "risk_reasons": [
-        "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section",
-        "Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV)",
+        "AMBIGUOUS_MULTI_PART_CITATION: Cited standard 'IS 7098' is a multi-part specification (IS 7098 (Part 2), IS 7098 (Part 1)). Tender specification lacks discriminating product parameters to determine the exact part. Human review required.",
         "Lifecycle warning for dependency None: None (Active successor: None)"
       ],
       "human_review_required": true,
       "confidence": "High",
-      "review_reason": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
-      "candidate_standard": "IS 7098 (Part 1) : 1988",
-      "evidence_standard": "IS 7098 (Part 1) : 1988",
-      "why_it_matches": "Partial Match: Proposed standard covers the physical cable, but the tender explicitly mandates Providing and Laying unde...",
+      "review_reason": "AMBIGUOUS_MULTI_PART_CITATION: Cited standard 'IS 7098' is a multi-part specification (IS 7098 (Part 2), IS 7098 (Part 1)). Tender specification lacks discriminating product parameters to determine the exact part. Human review required.",
+      "candidate_standard": "IS 7098 (Part 2) : 2011",
+      "evidence_standard": "IS 7098 (Part 2) : 2011",
+      "why_it_matches": "1.1 This standard covers requirements of crosslinked polyethylene (XLPE) insulated thermoplastic sheathed electric power cables for system voltages from 3.3 kV up to and including 33 kV.",
       "dependencies": [
         {
           "standard_number": "IS 1255 : 1983",
@@ -1955,7 +1949,7 @@
           "evidence_text": "Clause 1 Scope note and Clause 19 Installation recommend installation, laying, and jointing of power cables per IS 1255 Code of practice.",
           "source": "BSB_EDGE_MANUALLY_VERIFIED",
           "confidence": 1.0,
-          "why_related": "IS 1255 : 1983 (Crosslinked Polyethylene Insulated Cables - Part 1: Up to 1100 V; Code of Practice for Installation of Power Cables [IS 1255]) is identified as an evidence-backed related standard associated with IS 7098 (Part 1) : 1988. Evidence: Clause 1 Scope note and Clause 19 Installation recommend installation, laying, and jointing of power cables per IS 1255 Code of practice. [Provenance: VERIFIED].",
+          "why_related": "IS 1255 : 1983 (Crosslinked Polyethylene Insulated Cables - Part 1: Up to 1100 V; Code of Practice for Installation of Power Cables [IS 1255]) is identified as an evidence-backed related standard associated with IS 7098 (Part 2) : 2011. Evidence: Clause 1 Scope note and Clause 19 Installation recommend installation, laying, and jointing of power cables per IS 1255 Code of practice. [Provenance: VERIFIED].",
           "functional_category": "installation",
           "is_applicable_to_requirement": false,
           "applicability_decision": "REVIEW_REQUIRED",
@@ -1963,7 +1957,7 @@
           "evidence": "Clause 1 Scope note and Clause 19 Installation recommend installation, laying, and jointing of power cables per IS 1255 Code of practice.",
           "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
           "applicability_assessment": "REVIEW_REQUIRED",
-          "explanation": "IS 1255 : 1983 (Crosslinked Polyethylene Insulated Cables - Part 1: Up to 1100 V; Code of Practice for Installation of Power Cables [IS 1255]) is identified as an evidence-backed related standard associated with IS 7098 (Part 1) : 1988. Evidence: Clause 1 Scope note and Clause 19 Installation recommend installation, laying, and jointing of power cables per IS 1255 Code of practice. [Provenance: VERIFIED]."
+          "explanation": "IS 1255 : 1983 (Crosslinked Polyethylene Insulated Cables - Part 1: Up to 1100 V; Code of Practice for Installation of Power Cables [IS 1255]) is identified as an evidence-backed related standard associated with IS 7098 (Part 2) : 2011. Evidence: Clause 1 Scope note and Clause 19 Installation recommend installation, laying, and jointing of power cables per IS 1255 Code of practice. [Provenance: VERIFIED]."
         },
         {
           "standard_number": "IS 8130 : 2013",
@@ -1977,7 +1971,7 @@
           "evidence_text": "Clause 2 References and Clause 5 Conductors cite IS 8130 for Conductors for insulated electric cables and flexible cords.",
           "source": "BSB_EDGE_MANUALLY_VERIFIED",
           "confidence": 1.0,
-          "why_related": "IS 8130 : 2013 (Conductors for insulated electric cables and flexible cords - Specification (Second Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 7098 (Part 1) : 1988. Evidence: Clause 2 References and Clause 5 Conductors cite IS 8130 for Conductors for insulated electric cables and flexible cords. [Provenance: VERIFIED].",
+          "why_related": "IS 8130 : 2013 (Conductors for insulated electric cables and flexible cords - Specification (Second Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 7098 (Part 2) : 2011. Evidence: Clause 2 References and Clause 5 Conductors cite IS 8130 for Conductors for insulated electric cables and flexible cords. [Provenance: VERIFIED].",
           "functional_category": "normative",
           "is_applicable_to_requirement": true,
           "applicability_decision": "REVIEW_REQUIRED",
@@ -1985,7 +1979,7 @@
           "evidence": "Clause 2 References and Clause 5 Conductors cite IS 8130 for Conductors for insulated electric cables and flexible cords.",
           "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
           "applicability_assessment": "REVIEW_REQUIRED",
-          "explanation": "IS 8130 : 2013 (Conductors for insulated electric cables and flexible cords - Specification (Second Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 7098 (Part 1) : 1988. Evidence: Clause 2 References and Clause 5 Conductors cite IS 8130 for Conductors for insulated electric cables and flexible cords. [Provenance: VERIFIED]."
+          "explanation": "IS 8130 : 2013 (Conductors for insulated electric cables and flexible cords - Specification (Second Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 7098 (Part 2) : 2011. Evidence: Clause 2 References and Clause 5 Conductors cite IS 8130 for Conductors for insulated electric cables and flexible cords. [Provenance: VERIFIED]."
         },
         {
           "standard_number": "IS 5831 : 1984",
@@ -1999,7 +1993,7 @@
           "evidence_text": "Clause 2 References cites IS 5831 for PVC insulation and sheath of electric cables.",
           "source": "BSB_EDGE_MANUALLY_VERIFIED",
           "confidence": 1.0,
-          "why_related": "IS 5831 : 1984 (Specification for PVC insulation and sheath of electric cables (First Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 7098 (Part 1) : 1988. Evidence: Clause 2 References cites IS 5831 for PVC insulation and sheath of electric cables. [Provenance: VERIFIED].",
+          "why_related": "IS 5831 : 1984 (Specification for PVC insulation and sheath of electric cables (First Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 7098 (Part 2) : 2011. Evidence: Clause 2 References cites IS 5831 for PVC insulation and sheath of electric cables. [Provenance: VERIFIED].",
           "functional_category": "normative",
           "is_applicable_to_requirement": true,
           "applicability_decision": "REVIEW_REQUIRED",
@@ -2007,7 +2001,7 @@
           "evidence": "Clause 2 References cites IS 5831 for PVC insulation and sheath of electric cables.",
           "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
           "applicability_assessment": "REVIEW_REQUIRED",
-          "explanation": "IS 5831 : 1984 (Specification for PVC insulation and sheath of electric cables (First Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 7098 (Part 1) : 1988. Evidence: Clause 2 References cites IS 5831 for PVC insulation and sheath of electric cables. [Provenance: VERIFIED]."
+          "explanation": "IS 5831 : 1984 (Specification for PVC insulation and sheath of electric cables (First Revision)) is identified as an evidence-backed normative reference cited within the primary specification associated with IS 7098 (Part 2) : 2011. Evidence: Clause 2 References cites IS 5831 for PVC insulation and sheath of electric cables. [Provenance: VERIFIED]."
         },
         {
           "standard_number": "IS 10810 : 1984",
@@ -2021,7 +2015,7 @@
           "evidence_text": "Clause 15 Tests cites IS 10810 series for methods of test for electric cables.",
           "source": "BSB_EDGE_MANUALLY_VERIFIED",
           "confidence": 0.95,
-          "why_related": "IS 10810 : 1984 (Methods of test for cables  Part 0  General) is identified as an evidence-backed official test method standard for quality and verification associated with IS 7098 (Part 1) : 1988. Evidence: Clause 15 Tests cites IS 10810 series for methods of test for electric cables. [Provenance: VERIFIED].",
+          "why_related": "IS 10810 : 1984 (Methods of test for cables  Part 0  General) is identified as an evidence-backed official test method standard for quality and verification associated with IS 7098 (Part 2) : 2011. Evidence: Clause 15 Tests cites IS 10810 series for methods of test for electric cables. [Provenance: VERIFIED].",
           "functional_category": "testing",
           "is_applicable_to_requirement": false,
           "applicability_decision": "REVIEW_REQUIRED",
@@ -2029,7 +2023,7 @@
           "evidence": "Clause 15 Tests cites IS 10810 series for methods of test for electric cables.",
           "evidence_source": "BSB_EDGE_MANUALLY_VERIFIED",
           "applicability_assessment": "REVIEW_REQUIRED",
-          "explanation": "IS 10810 : 1984 (Methods of test for cables  Part 0  General) is identified as an evidence-backed official test method standard for quality and verification associated with IS 7098 (Part 1) : 1988. Evidence: Clause 15 Tests cites IS 10810 series for methods of test for electric cables. [Provenance: VERIFIED]."
+          "explanation": "IS 10810 : 1984 (Methods of test for cables  Part 0  General) is identified as an evidence-backed official test method standard for quality and verification associated with IS 7098 (Part 2) : 2011. Evidence: Clause 15 Tests cites IS 10810 series for methods of test for electric cables. [Provenance: VERIFIED]."
         },
         {
           "standard_number": "IS 3043 : 2018",
@@ -2066,8 +2060,8 @@
         "qco": {
           "category": "QCO",
           "status": "CURRENT",
-          "matched_product": "XLPE Insulated Cables up to 1100V",
-          "standard_number": "IS 7098 (Part 1) : 1988",
+          "matched_product": "XLPE Insulated Cables 3.3 kV up to 33 kV",
+          "standard_number": "IS 7098 (Part 2) : 2011",
           "legal_basis": "Sections 16, 17 and 25 of the Bureau of Indian Standards Act, 2016 (11 of 2016)",
           "source": "https://egazette.gov.in/WriteReadData/2023/248901.pdf",
           "source_url": "https://egazette.gov.in/WriteReadData/2023/248901.pdf",
@@ -2088,7 +2082,7 @@
           "category": "CRS",
           "status": "NOT_IDENTIFIED",
           "matched_product": "",
-          "standard_number": "IS 7098 (Part 1) : 1988",
+          "standard_number": "IS 7098 (Part 2) : 2011",
           "legal_basis": "",
           "source": "MeitY / BIS Compulsory Registration Portal",
           "source_url": "MeitY / BIS Compulsory Registration Portal",
@@ -2103,7 +2097,7 @@
           "category": "HALLMARKING",
           "status": "NOT_APPLICABLE",
           "matched_product": "",
-          "standard_number": "IS 7098 (Part 1) : 1988",
+          "standard_number": "IS 7098 (Part 2) : 2011",
           "legal_basis": "BIS (Hallmarking) Regulations, 2018",
           "source": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
           "source_url": "Ministry of Consumer Affairs / BIS Hallmarking Regulations",
@@ -2116,7 +2110,7 @@
         }
       },
       "ambiguity_state": "REVIEW_REQUIRED",
-      "ambiguity_reason": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
+      "ambiguity_reason": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 2) and IS 7098 (Part 1) due to missing distinguishing parameters: voltage_rating (MV/HV vs LV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
       "human_decision": null,
       "component_recommendations": [
         {
@@ -2445,7 +2439,7 @@
         }
       ],
       "amendment_metadata": {
-        "standard_number": "IS 7098 (Part 1) : 1988",
+        "standard_number": "IS 7098 (Part 2) : 2011",
         "amendments_count": 0,
         "reaffirmed_year": 2021,
         "status": "Active",
@@ -2457,7 +2451,7 @@
       "verification_tier": "CATALOGUE_DISCOVERED",
       "passage_id": null,
       "clause_number": null,
-      "edition_year": "1988"
+      "edition_year": "2011"
     }
   ],
   "review_queue": [
@@ -2466,27 +2460,27 @@
       "requirement_text": "XLPE insulated electric power cables conforming to IS 7098",
       "risk_level": "HIGH",
       "decision": "REVIEW_REQUIRED",
-      "candidate_standard": "IS 7098 (Part 1) : 1988",
-      "evidence_strength": "MODERATE",
-      "primary_reason": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section",
+      "candidate_standard": "IS 7098 (Part 2) : 2011",
+      "evidence_strength": "STRONG",
+      "primary_reason": "AMBIGUOUS_MULTI_PART_CITATION: Cited standard 'IS 7098' is a multi-part specification (IS 7098 (Part 2), IS 7098 (Part 1)). Tender specification lacks discriminating product parameters to determine the exact part. Human review required.",
       "priority": 2,
       "category": "CLARIFICATION_REQUIRED",
       "component_id": null,
-      "review_action": "Verify application of IS 7098 (Part 1) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 1) and IS 7098 (Part 2) due to missing distinguishing parameters: voltage_rating (LV vs MV/HV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
+      "review_action": "Verify application of IS 7098 (Part 2) and review the following notes: Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section; Ambiguous choice between IS 7098 (Part 2) and IS 7098 (Part 1) due to missing distinguishing parameters: voltage_rating (MV/HV vs LV); Specification lacks key parameters (Voltage Grade, Conductor Material, Number of Cores & Cross-section). Human review recommended.",
       "uncertainty": "",
-      "what_to_check": "Potentially missing engineering parameters: Voltage Grade, Conductor Material, Number of Cores & Cross-section"
+      "what_to_check": "AMBIGUOUS_MULTI_PART_CITATION: Cited standard 'IS 7098' is a multi-part specification (IS 7098 (Part 2), IS 7098 (Part 1)). Tender specification lacks discriminating product parameters to determine the exact part. Human review required."
     }
   ],
   "evidence_summary": {
     "evidence_distribution": {
-      "STRONG": 1,
-      "MODERATE": 1,
+      "STRONG": 2,
+      "MODERATE": 0,
       "WEAK": 0,
       "NONE": 0
     },
     "provenance_distribution": {
-      "VERIFIED": 1,
-      "CURATED": 1,
+      "VERIFIED": 2,
+      "CURATED": 0,
       "INFERRED": 0,
       "UNKNOWN": 0
     },
@@ -2522,7 +2516,7 @@
         "ELECTRICAL_AND_POWER"
       ],
       "standards": [
-        "IS 7098 (Part 1) : 1988"
+        "IS 7098 (Part 2) : 2011"
       ]
     }
   ],

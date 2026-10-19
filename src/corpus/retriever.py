@@ -284,21 +284,28 @@ class ClauseRetriever:
                     valid_req_sizes.append(val)
 
         if valid_req_sizes:
+            ceiling_match = re.search(r'\bup\s+to\s+(?:and\s+including\s+)?(\d+)\s*mm\b', pas_clean)
             range_match = re.search(r'\b(?:dn\s*)?(\d+)\s*(?:mm\s*)?to\s*(?:dn\s*)?(\d+)\s*mm\b', pas_clean)
             pas_sizes = re.findall(r'\b(?:dn\s*(\d+)|\b(\d+)\s*mm\b)', pas_clean)
             pas_valid_sizes = [float(d or m) for d, m in pas_sizes if (d or m)]
             
+            if ceiling_match:
+                max_ceiling = float(ceiling_match.group(1))
+                for val in valid_req_sizes:
+                    if val > max_ceiling:
+                        return RequirementEvidenceSupportState.UNSUPPORTED.value
+
             if range_match:
                 min_size = float(range_match.group(1))
                 max_size = float(range_match.group(2))
                 for val in valid_req_sizes:
                     if val > max_size or val < min_size:
                         return RequirementEvidenceSupportState.UNSUPPORTED.value
-            elif pas_valid_sizes:
+            elif pas_valid_sizes and not ceiling_match:
                 for val in valid_req_sizes:
                     if val not in pas_valid_sizes:
                         return RequirementEvidenceSupportState.UNSUPPORTED.value
-            else:
+            elif not ceiling_match:
                 # Requirement specified an exact diameter/size, but this passage only covers generic scope without dimensions
                 return RequirementEvidenceSupportState.PARTIALLY_SUPPORTED.value
 

@@ -52,7 +52,7 @@ class Requirement:
 # ---------------------------------------------------------------------------
 
 STANDARD_REGEX = re.compile(
-    r'\b((?:IS|IS/ISO|IS/IEC|SP)\s*[:/]?\s*\d+(?:[\s\-:]*(?:\(\s*)?(?:Part|Sec|Section)?\s*\d+\s*\)?)*(?:[\s\-:]+\d{4})?)(?!\w)',
+    r'\b((?:IS\s*/\s*ISO|IS\s*/\s*IEC|IS|SP)\s*[:/]?\s*\d+(?:[\s\-:]*(?:\(\s*)?(?:Part|Sec|Section|Pt\.?)?\s*[-/]?\s*\d+\s*\)?)*(?:[\s\-:]+\d{4})?)(?!\w)',
     re.IGNORECASE
 )
 
@@ -90,7 +90,11 @@ BOILERPLATE_IGNORE_PATTERNS = [
 
 
 def normalize_standard_mention(raw: str) -> str:
-    """Normalizes raw standard mentions like 'IS:1239 - 2004' into 'IS 1239 : 2004'."""
+    """Normalizes raw standard mentions like 'IS:1239 - 2004' into canonical 'IS 1239 : 2004' while preserving prefixes and parts."""
+    from src.catalogue.normalizer import StandardIdentifierNormalizer
+    parsed = StandardIdentifierNormalizer.parse(raw)
+    if parsed.is_valid and parsed.canonical_number and parsed.canonical_number != "UNKNOWN":
+        return parsed.canonical_number
     clean = re.sub(r'\s+', ' ', raw.strip())
     clean = re.sub(r'[:/]', ' ', clean)
     clean = re.sub(r'\s*-\s*', ' : ', clean)
