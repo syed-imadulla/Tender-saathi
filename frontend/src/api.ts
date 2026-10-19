@@ -79,9 +79,9 @@ export async function analyzeImages(files: File[]): Promise<AnalysisResult> {
 
 export async function downloadReport(
   tenderId: string,
-  format: 'json' | 'markdown'
+  format: 'json' | 'markdown' | 'csv'
 ): Promise<Blob> {
-  const ext = format === 'json' ? 'json' : 'markdown';
+  const ext = format === 'json' ? 'json' : format === 'csv' ? 'csv' : 'markdown';
   const res = await fetch(`${BASE}/report/${tenderId}/${ext}`);
   if (!res.ok) {
     let msg = `Download failed (${res.status})`;

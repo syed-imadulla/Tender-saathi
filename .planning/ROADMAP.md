@@ -63,5 +63,15 @@ flowchart LR
 
 ---
 
+### Multi-Package Tender Auditing, Catalogue Integration & Demonstration Hardening
+- [x] **Phase 23**: Production Containerized Deployment & Cloud Run Hardening.
+- [x] **Phase 24–33**: National BIS Catalogue Ingestion, FTS5 Search Indexing, Multi-Package Tender Ingestion & Audit Pipeline.
+- [x] **Phase 34**: Production Readiness & Coverage Audit (`docs/evaluation/PHASE34_PRODUCTION_READINESS_AUDIT.md`).
+- [x] **Phase 35**: Demonstration Readiness, Negative-Control Evaluation & Catalogue Hygiene (`docs/evaluation/PHASE35_DEMONSTRATION_READINESS_REPORT.md`).
+- [x] **Phase 36**: Final End-to-End Recommendation Audit & SIH Demo Hardening (`docs/evaluation/PHASE36_FINAL_E2E_AUDIT.md`).
+
+---
+
 ### Upcoming Phases
-- [ ] **Phase 23**: Production Containerized Deployment (Final container packaging, environment secrets auditing, and health monitoring).
+- [ ] **Phase 37**: Hackathon Pitch Deck, Live Demo Script & Deployment Packaging (5-minute SIH live demonstration script, judges FAQ, and turnkey Docker Compose packaging).
+

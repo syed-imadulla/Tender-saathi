@@ -324,12 +324,12 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
   }, [attentionList, humanDecisions]);
 
   // Download handler
-  const handleDownload = async (format: 'markdown' | 'json') => {
+  const handleDownload = async (format: 'markdown' | 'json' | 'csv') => {
     try {
       setIsDownloading(true);
       setShowReportMenu(false);
       const blob = await downloadReport(tender.id, format);
-      const ext = format === 'markdown' ? 'md' : 'json';
+      const ext = format === 'markdown' ? 'md' : format === 'csv' ? 'csv' : 'json';
       triggerDownload(blob, `TenderSaathi_Audit_${tender.id}.${ext}`);
     } catch (err) {
       alert(`Failed to download report: ${(err as Error).message}`);
@@ -441,6 +441,14 @@ export default function Results({ result, onNewCheck }: ResultsProps) {
                   >
                     <span>Machine-Readable Data</span>
                     <span className="file-type-tag">.JSON</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDownload('csv')}
+                    className="report-dropdown-item"
+                  >
+                    <span>Structured CSV Table</span>
+                    <span className="file-type-tag">.CSV</span>
                   </button>
                 </div>
               )}

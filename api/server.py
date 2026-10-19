@@ -16,6 +16,8 @@ import os
 import sys
 import re
 import json
+import csv
+import io
 import uuid
 import tempfile
 import traceback
@@ -370,6 +372,7 @@ def _normalize_result(
             "package_name": getattr(r, "package_name", "Main Scope"),
             "domain": getattr(r, "domain", None),
             "verification_tier": getattr(r, "verification_tier", "SAFE_ABSTENTION"),
+            "evidence_tier": getattr(r, "verification_tier", "SAFE_ABSTENTION"),
             "passage_id": getattr(r, "passage_id", None),
             "clause_number": getattr(r, "clause_number", None),
             "edition_year": getattr(r, "edition_year", None),
@@ -770,6 +773,56 @@ def report_markdown_latest():
         return jsonify({"error": "No analysis results yet."}), 404
     tid = list(_report_cache.keys())[-1]
     return report_markdown(tid)
+
+
+@app.route("/api/report/<tender_id>/csv", methods=["GET"])
+def report_csv(tender_id: str):
+    cache = _report_cache.get(tender_id)
+    if not cache:
+        return jsonify({"error": "Report not found. Run analysis first."}), 404
+    normalized = cache.get("normalized") or {}
+    requirements = normalized.get("requirements") or []
+
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow([
+        "Requirement ID", "Package ID", "Category", "Requirement Statement",
+        "Candidate Standard", "Title", "Lifecycle Status", "Verification Tier",
+        "Confidence", "Decision", "Human Review Required", "Evidence Source",
+        "Clause Evidence", "Traversed References"
+    ])
+    for req in requirements:
+        traversed = ", ".join(t.get("target_standard", "") for t in req.get("traversed_cross_references", []))
+        writer.writerow([
+            req.get("id", ""),
+            req.get("package_id", "PKG-01"),
+            req.get("category", ""),
+            req.get("text", ""),
+            req.get("candidate_standard") or "None (Safe Abstention)",
+            req.get("title", ""),
+            req.get("lifecycle_status", "Unknown"),
+            req.get("verification_tier", "SAFE_ABSTENTION"),
+            req.get("confidence", "Low"),
+            req.get("decision", "REVIEW_REQUIRED"),
+            req.get("human_review_required", False),
+            req.get("source", ""),
+            req.get("clause_number") or "",
+            traversed
+        ])
+    output.seek(0)
+    return Response(
+        output.getvalue(),
+        mimetype="text/csv",
+        headers={"Content-Disposition": f"attachment; filename=tendersaathi_report_{tender_id}.csv"}
+    )
+
+
+@app.route("/api/report/csv", methods=["GET"])
+def report_csv_latest():
+    if not _report_cache:
+        return jsonify({"error": "No analysis results yet."}), 404
+    tid = list(_report_cache.keys())[-1]
+    return report_csv(tid)
 
 
 # ---------------------------------------------------------------------------

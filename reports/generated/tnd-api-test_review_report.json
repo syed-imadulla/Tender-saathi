@@ -265,7 +265,7 @@
               "raw_record_ref": "IS 456",
               "ingestion_run_id": null,
               "verification_status": "VERIFIED",
-              "retrieved_at": "2026-10-19T14:45:12.605934+00:00"
+              "retrieved_at": "2026-10-19T14:50:01.018325+00:00"
             },
             "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
             "human_review_required": false,
@@ -412,7 +412,7 @@
           "raw_record_ref": "IS 456",
           "ingestion_run_id": null,
           "verification_status": "VERIFIED",
-          "retrieved_at": "2026-10-19T14:45:12.605934+00:00"
+          "retrieved_at": "2026-10-19T14:50:01.018325+00:00"
         },
         "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
         "human_review_required": false,
@@ -601,7 +601,7 @@
               "raw_record_ref": "IS 456",
               "ingestion_run_id": null,
               "verification_status": "VERIFIED",
-              "retrieved_at": "2026-10-19T14:45:12.605934+00:00"
+              "retrieved_at": "2026-10-19T14:50:01.018325+00:00"
             },
             "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
             "human_review_required": false,
@@ -753,7 +753,7 @@
                 "raw_record_ref": "IS 456",
                 "ingestion_run_id": null,
                 "verification_status": "VERIFIED",
-                "retrieved_at": "2026-10-19T14:45:12.605934+00:00"
+                "retrieved_at": "2026-10-19T14:50:01.018325+00:00"
               },
               "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
               "human_review_required": false,
@@ -932,7 +932,7 @@
                 "raw_record_ref": "IS 456",
                 "ingestion_run_id": null,
                 "verification_status": "VERIFIED",
-                "retrieved_at": "2026-10-19T14:45:12.605934+00:00"
+                "retrieved_at": "2026-10-19T14:50:01.018325+00:00"
               },
               "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
               "human_review_required": false,
@@ -1035,7 +1035,7 @@
                 "raw_record_ref": "IS 456",
                 "ingestion_run_id": null,
                 "verification_status": "VERIFIED",
-                "retrieved_at": "2026-10-19T14:45:12.605934+00:00"
+                "retrieved_at": "2026-10-19T14:50:01.018325+00:00"
               },
               "uncertainty": "Multi-standard requirement; verify all sub-components are addressed.",
               "human_review_required": false,
